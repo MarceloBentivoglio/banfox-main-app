@@ -1,1 +1,103 @@
 // Specific CSS for your home-page
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  h1 {
+    color: $dark-gray;
+    font-weight: bold;
+    font-size: 65px;
+  }
+  p {
+    color: $near-black;
+    font-size: 25px;
+  }
+}
+.banner2 {
+  padding: 20px;
+  margin-top: 20px;
+}
+.card {
+  height: 200px;
+  border-radius: 6px;
+  background-color: $near-white;
+  -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+}
+.card1 {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 1em 1em 0.75em;
+  color: $dark-gray;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 10px;
+    li {
+      opacity: 0.9;
+    }
+  }
+}
+.card2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: $dark-gray;
+  }
+}
+.btn-mvp {
+  color: $near-white;
+  margin: 1rem auto 2px;
+  padding: 1em 1em 0.75em;
+  border-radius: 3em;
+  font-weight: bold;
+  background: $orange;
+  transition: background 0.6s ease;
+  &:hover {
+    opacity: 0.9;
+    background: $red;
+    text-decoration: none;
+    color: white;
+  }
+}
+.information {
+  color: $dark-gray;
+  padding: 20px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 900px;
+  h2 {
+    font-weight: bold;
+    font-size: 45px;
+    span {
+      color: $orange;
+    }
+  }
+  h3 {
+    font-weight: bold;
+  }
+  p {
+    font-size: 32px;
+    color: $near-black;
+    span {
+      color: $red;
+    }
+  }
+  .info1 {
+    h2 {
+      font-size: 35px;
+    }
+    p {
+      font-size: 25px;
+    }
+  }
+}
