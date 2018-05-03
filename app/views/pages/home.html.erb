@@ -23,18 +23,31 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <div class="card card2">
-          <p>Cadastre-se usando o seu email.</p>
-          <p>mail box</p>
-          <a href="#" class="btn-mvp">Cadastrar agora 100% de graça</a>
-          <p>Ou entre com sua conta
+          <div class="login-form-homepage">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :email, label: "Qual seu email ?", autofocus: true, class: "label-text" %>
+              <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+              <!-- <%= f.input :password_confirmation, required: true %> -->
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+        <p>Ou entre com sua conta
           <span style="color: #4285f4;">G</span>
           <span style="color: #ea4335;">o</span>
           <span style="color: #fbbc05;">o</span>
           <span style="color: #4285f4;">g</span>
           <span style="color: #34a853;">l</span>
           <span style="color: #ea4335;">e</span>
-          </p>
-        </div>
+        </p>
       </div>
     </div>
   </div>
