@@ -19,11 +19,12 @@
   margin-top: 20px;
 }
 .card {
-  height: 200px;
+  height: 250px;
   border-radius: 6px;
   background-color: $near-white;
   -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  margin-bottom: 20px;
 }
 .card1 {
   display: flex;
@@ -45,14 +46,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   p {
     color: $dark-gray;
   }
+  label {
+    text-decoration: none;
+    font-weight: 400;
+    color: $near-black;
+  }
+}
+.login-form-homepage {
+  width: 90%;
 }
 .btn-mvp {
   color: $near-white;
-  margin: 1rem auto 2px;
-  padding: 1em 1em 0.75em;
+  margin: 0.5rem auto 2px;
+  padding: 0.7em 0.7em 0.45em;
   border-radius: 3em;
   font-weight: bold;
   background: $orange;

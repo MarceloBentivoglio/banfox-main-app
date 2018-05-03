@@ -1,0 +1,19 @@
+.login-form {
+  background: $near-white;
+  color: $near-black;
+  padding: 10px 20px;
+  margin: 50px 0;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin: 15px auto;
+  }
+}
