@@ -1,0 +1,17 @@
+.client-form {
+  height: calc(100vh - 170px);
+  padding: 30px 10px;
+  margin: 10px 0;
+  background-color: $near-white;
+  color: $near-black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  h2 {
+    font-size: 30px;
+  }
+
+}
