@@ -4,12 +4,15 @@
       <div class="client-form">
         <%= image_tag "porco.png", height: 70 %>
         <h2>Estamos a poucos passos de criar a sua conta...</h2>
-        <ol class="breadcrumb">
-          <li class='active'>Step 1</li>
-          <li>Step 2</li>
-          <li>Step 3</li>
-          <li>Step 4</li>
-        </ol>
+        <div class="progress-bar">
+          <span class="point active">1</span>
+          <span class="bar"></span>
+          <span class="point future">2</span>
+          <span class="bar future"></span>
+          <span class="point future">3</span>
+          <span class="bar future"></span>
+          <span class="point future">4</span>
+        </div>
 
         <%= simple_form_for @client_wizard, as: :client_wizard, url: validate_step_wizard_path do |f| %>
         <%= f.error_notification %>
