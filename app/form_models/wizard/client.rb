@@ -15,18 +15,21 @@ module Wizard
 
     class Step1 < Base
       validates :company_name, presence: true
+      validates :full_name, presence: true
+      validates :cpf, presence: true
+      validates :cnpj, presence: true
     end
 
     class Step2 < Step1
-      validates :full_name, presence: true
+      # validates :full_name, presence: true
     end
 
     class Step3 < Step2
-      validates :cpf, presence: true
+      # validates :cpf, presence: true
     end
 
     class Step4 < Step3
-      validates :cnpj, presence: true
+      # validates :cnpj, presence: true
     end
   end
 end
