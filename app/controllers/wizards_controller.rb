@@ -44,7 +44,7 @@ class WizardsController < ApplicationController
   end
 
   def client_wizard_params
-    params.require(:client_wizard).permit(:full_name, :company_name, :cpf, :cnpj)
+    params.require(:client_wizard).permit(:full_name, :company_name, :cpf, :cnpj, :phone)
   end
 
   class InvalidStep < StandardError; end
