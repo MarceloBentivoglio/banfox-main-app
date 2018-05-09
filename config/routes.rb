@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
 
-  resource :wizard do
-    get :step1
-    get :step2
-    get :step3
-    get :step4
+  # resource :wizard do
+  #   get :step1
+  #   get :step2
+  #   get :step3
+  #   get :step4
 
-    post :validate_step
-  end
+  #   post :validate_step
+  # end
 end
 
 
