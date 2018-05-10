@@ -18,6 +18,9 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+# Used to create the wizard (or multistep form) of the client
+gem 'wicked'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
