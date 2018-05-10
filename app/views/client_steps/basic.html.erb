@@ -14,10 +14,8 @@
           <span class="point future">4</span>
         </div>
         <div class="client-infos">
-          <%= simple_form_for @client_wizard, as: :client_wizard, url: validate_step_wizard_path do |f| %>
+          <%= simple_form_for @client, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-
-          <%= hidden_field_tag :current_step, 'step1' %>
           <%= f.input :full_name, label: "Qual o seu nome?" %>
           <%= f.input :cpf, label: "E o seu CPF?" %>
           <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
