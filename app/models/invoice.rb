@@ -1,3 +1,3 @@
 class Invoice < ApplicationRecord
-  belongs_to :seller, class_name: "Client"
+  belongs_to :seller
 end
