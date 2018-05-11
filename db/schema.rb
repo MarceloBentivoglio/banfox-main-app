@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20180430220935) do
     t.string "cnpj"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_clients_on_users_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,9 +38,11 @@ ActiveRecord::Schema.define(version: 20180430220935) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_users_on_client_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "clients", "users", column: "users_id"
+  add_foreign_key "users", "clients"
 end
