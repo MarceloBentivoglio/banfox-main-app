@@ -4,11 +4,13 @@ class ClientStepsController < ApplicationController
 
   def show
     @user = current_user
-    if step == :basic
-      @client = Client.new
-      # @client.save!
-      # @user.client = @client
-      # @user.save
+    case step
+    when :basic
+      if @user.client
+        @client = @user.client
+      else
+        @client = Client.new
+      end
     else
       @client = @user.client
     end
@@ -17,12 +19,14 @@ class ClientStepsController < ApplicationController
 
   def update
     @user = current_user
-    if step == :basic
-      @client = Client.new(params[:client_params])
+    case step
+    when :basic
+      @client = Client.new(client_params)
       @user.client = @client
       @user.save!
     else
-      @client.attributes = params[:client_params]
+      @client = @user.client
+      @client.attributes = client_params
     end
     render_wizard @client
   end

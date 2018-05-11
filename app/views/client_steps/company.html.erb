@@ -16,7 +16,7 @@
         <div class="client-infos">
           <%= simple_form_for @client, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <%= f.input :full_name, label: "Qual o seu nome?" %>
+          <%= f.input :cpf, label: "Qual o seu CPF?" %>
 
           <%= f.submit 'Continue' %>
           <% end %>
