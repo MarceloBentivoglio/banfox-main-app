@@ -1,6 +1,6 @@
-class CreateClients < ActiveRecord::Migration[5.1]
+class CreateSellers < ActiveRecord::Migration[5.1]
   def change
-    create_table :clients do |t|
+    create_table :sellers do |t|
       t.string :full_name
       t.string :cpf
       t.string :phone
