@@ -21,6 +21,9 @@ gem 'webpacker'
 # Used to create the wizard (or multistep form) of the client
 gem 'wicked'
 
+# Used to upload documents using a form, for example a XML or a PDF with a cheque photo
+gem "paperclip"
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
