@@ -1,6 +1,6 @@
 class ClientStepsController < ApplicationController
   include Wicked::Wizard
-  steps :basic, :company, :finantial, :client
+  steps :basic, :company, :finantial, :client, :invoice
 
   def show
     @user = current_user
