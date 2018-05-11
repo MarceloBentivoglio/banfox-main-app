@@ -6,15 +6,15 @@
         <h2>Estamos a poucos passos de criar a sua conta...</h2>
         <div class="progress-bar">
           <span class="point done">1</span>
-          <span class="point active">2</span>
-          <span class="point future">3</span>
+          <span class="point done">2</span>
+          <span class="point active">3</span>
           <span class="point future">4</span>
           <span class="point future">5</span>
         </div>
         <div class="client-infos">
-          <%= simple_form_for @client, url: wizard_path, method: :put do |f| %>
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <%= f.input :cpf, label: "Qual o seu CPF?" %>
+          <%= f.input :company_name, label: "Qual o nome da sua empresa nome?" %>
 
           <%= f.submit 'Continue' %>
           <% end %>
