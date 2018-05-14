@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'clients/new'
+  get "pages/howitworks", to: "pages#howitworks"
 
   devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
