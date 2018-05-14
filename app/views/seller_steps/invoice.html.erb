@@ -12,7 +12,7 @@
           <span class="point active">5</span>
         </div>
         <div class="client-infos">
-          <%= simple_form_for @client, url: wizard_path, method: :put do |f| %>
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
           <%= f.input :phone, label: "Qual o seu telefone?" %>
 

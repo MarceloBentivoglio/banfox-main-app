@@ -12,7 +12,7 @@
           <span class="point future">5</span>
         </div>
         <div class="client-infos">
-          <%= simple_form_for @client, url: wizard_path, method: :put do |f| %>
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
           <%= f.input :cnpj, label: "Qual o seu cnpj?" %>
 
