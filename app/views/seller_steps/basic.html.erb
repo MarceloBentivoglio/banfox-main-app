@@ -1,26 +1,36 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <div class="client-form">
-        <%= image_tag "porco.png", height: 100 %>
-        <h2>Estamos a poucos passos de criar a sua conta...</h2>
-        <div class="progress-bar">
-          <span class="point active">1</span>
-          <span class="point future">2</span>
-          <span class="point future">3</span>
-          <span class="point future">4</span>
-          <span class="point future">5</span>
+<div class="form-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="client-form-header">
+          <%= image_tag "porco.png", height: 100 %>
+          <h2>Estamos a poucos passos <br>de criar a sua conta...</h2>
         </div>
-        <div class="client-infos">
-          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :full_name, label: "Qual o seu nome?" %>
-          <%= f.input :cpf, label: "E o seu CPF?" %>
-          <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
-          <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="client-form">
+          <!-- <%= image_tag "porco.png", height: 100 %>
+          <h2>Estamos a poucos passos de criar a sua conta...</h2> -->
+          <div class="progress-bar">
+            <span class="point active">1</span>
+            <span class="point future">2</span>
+            <span class="point future">3</span>
+            <span class="point future">4</span>
+            <span class="point future">5</span>
+          </div>
+          <div class="client-infos">
+            <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :full_name, label: "Qual o seu nome?" %>
+            <%= f.input :cpf, label: "E o seu CPF?" %>
+            <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
+            <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa" %>
 
-          <%= f.submit 'Continuar' %>
-          <% end %>
+            <%= f.submit 'Continuar' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
