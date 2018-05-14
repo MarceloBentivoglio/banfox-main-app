@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511193151) do
+ActiveRecord::Schema.define(version: 20180514192805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "company_purposes", force: :cascade do |t|
+    t.bigint "seller_id"
+    t.bigint "purpose_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purpose_id"], name: "index_company_purposes_on_purpose_id"
+    t.index ["seller_id"], name: "index_company_purposes_on_seller_id"
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.string "invoice_type"
@@ -22,6 +31,12 @@ ActiveRecord::Schema.define(version: 20180511193151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
+  end
+
+  create_table "purposes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -53,5 +68,7 @@ ActiveRecord::Schema.define(version: 20180511193151) do
     t.index ["seller_id"], name: "index_users_on_seller_id"
   end
 
+  add_foreign_key "company_purposes", "purposes"
+  add_foreign_key "company_purposes", "sellers"
   add_foreign_key "users", "sellers"
 end
