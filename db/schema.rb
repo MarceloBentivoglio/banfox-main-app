@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430220935) do
+ActiveRecord::Schema.define(version: 20180511193151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "clients", force: :cascade do |t|
+  create_table "invoices", force: :cascade do |t|
+    t.string "invoice_type"
+    t.string "number"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seller_id"], name: "index_invoices_on_seller_id"
+  end
+
+  create_table "sellers", force: :cascade do |t|
     t.string "full_name"
     t.string "cpf"
     t.string "phone"
@@ -23,8 +32,6 @@ ActiveRecord::Schema.define(version: 20180430220935) do
     t.string "cnpj"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_clients_on_users_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,9 +47,11 @@ ActiveRecord::Schema.define(version: 20180430220935) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "seller_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["seller_id"], name: "index_users_on_seller_id"
   end
 
-  add_foreign_key "clients", "users", column: "users_id"
+  add_foreign_key "users", "sellers"
 end

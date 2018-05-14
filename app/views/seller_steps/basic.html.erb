@@ -6,18 +6,14 @@
         <h2>Estamos a poucos passos de criar a sua conta...</h2>
         <div class="progress-bar">
           <span class="point active">1</span>
-          <span class="bar"></span>
           <span class="point future">2</span>
-          <span class="bar future"></span>
           <span class="point future">3</span>
-          <span class="bar future"></span>
           <span class="point future">4</span>
+          <span class="point future">5</span>
         </div>
         <div class="client-infos">
-          <%= simple_form_for @client_wizard, as: :client_wizard, url: validate_step_wizard_path do |f| %>
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-
-          <%= hidden_field_tag :current_step, 'step1' %>
           <%= f.input :full_name, label: "Qual o seu nome?" %>
           <%= f.input :cpf, label: "E o seu CPF?" %>
           <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
