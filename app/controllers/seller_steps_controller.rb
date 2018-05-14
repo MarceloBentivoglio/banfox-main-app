@@ -34,7 +34,7 @@ class SellerStepsController < ApplicationController
   private
 
   def seller_params
-      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name, :cnpj)
+      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name, :cnpj, :product_manufacture, :service_provision, :product_reselling)
   end
 end
 

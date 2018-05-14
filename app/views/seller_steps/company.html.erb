@@ -14,7 +14,10 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <%= f.input :cpf, label: "Qual o seu CPF?" %>
+
+            <%= f.input :product_manufacture, label: "Fabricação de produtos" %>
+            <%= f.input :service_provision, label: "Prestação de serviço" %>
+            <%= f.input :product_reselling, label: "Revenda de produtos" %>
 
           <%= f.submit 'Continue' %>
           <% end %>
