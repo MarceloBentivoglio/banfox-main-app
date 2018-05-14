@@ -14,7 +14,21 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <%= f.input :cpf, label: "Qual o seu CPF?" %>
+          <fieldset class="form-group">
+            <input type="hidden" name="seller[purpose_ids][]" value="">
+            <div class="tag-choices">
+              <% Purpose.all.each do |purpose| %>
+                  <input class="hidden" type="checkbox" value="<%= purpose.id %>" name="seller[purpose_ids][]" id="seller_purpose_ids_<%= purpose.id %>">
+                  <label class="tag-choice" for="seller_purpose_ids_<%= purpose.id %>">
+                    <%= purpose.name %>
+                    <i class="fa fa-check"></i>
+                  </label>
+              <% end %>
+            </div>
+
+
+
+          </fieldset>
 
           <%= f.submit 'Continue' %>
           <% end %>
