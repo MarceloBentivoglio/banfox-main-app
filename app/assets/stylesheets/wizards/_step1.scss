@@ -9,7 +9,7 @@
     display: inline-block;
     border: none;
     box-shadow: none;
-    background-color: $near-white;
+    background-color: #fff;
     border-bottom: 2px solid #C3C5C8;
     box-sizing: border-box;
     &:focus {
@@ -27,7 +27,7 @@
     transition: .333s ease top, .333s ease opacity;
   }
   input[type=button], input[type=submit], input[type=reset] {
-    color: $near-white;
+    color: #fff;
     float: right;
     margin: 0.5rem auto 2px;
     padding: 0.7em 0.7em 0.45em;
