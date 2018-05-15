@@ -14,34 +14,18 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <div class="tag-choices">
-            <fieldset class="form-group">
-                <input name="seller[product_manufacture]" type="hidden" value="0">
-                <input class="hidden" type="checkbox" value="1" name="seller[product_manufacture]" id="seller_product_manufacture">
-                <label class="tag-choice" for="seller_product_manufacture">
-                  Fabricação de produtos
-                  <i class="fa fa-check"></i>
-                </label>
-            </fieldset>
-
-            <fieldset class="form-group">
-                <input name="seller[service_provision]" type="hidden" value="0">
-                <input class="hidden" type="checkbox" value="1" name="seller[service_provision]" id="seller_service_provision">
-                <label class="tag-choice" for="seller_service_provision">
-                  Prestação de serviço
-                  <i class="fa fa-check"></i>
-                </label>
-            </fieldset>
-
-            <fieldset class="form-group">
-                <input name="seller[product_reselling]" type="hidden" value="0">
-                <input class="hidden" type="checkbox" value="1" name="seller[product_reselling]" id="seller_product_reselling">
-                <label class="tag-choice" for="seller_product_reselling">
-                  Revenda de produtos
-                  <i class="fa fa-check"></i>
-                </label>
-            </fieldset>
-          </div>
+            <div class="form-group">
+              <div class="tag-choices">
+                <% Seller::PURPOSE.each do |key, value| %>
+                  <input name="seller[<%= key %>]" type="hidden" value="0">
+                  <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
+                  <label class="tag-choice" for="seller_<%= key %>">
+                    <%= value %>
+                    <i class="fa fa-check"></i>
+                  </label>
+                <% end %>
+              </div>
+            </div>
           <%= f.submit 'Continue' %>
           <% end %>
         </div>
