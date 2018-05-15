@@ -14,11 +14,37 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
+          <div class="tag-choices">
+            <fieldset class="form-group">
+              <div class="form-check">
+                <input name="seller[product_manufacture]" type="hidden" value="0">
+                <input class="hidden" type="checkbox" value="1" name="seller[product_manufacture]" id="seller_product_manufacture">
+                <label class="form-check-label tag-choice" for="seller_product_manufacture">
+                  Fabricação de produtos
+                </label>
+              </div>
+            </fieldset>
 
-            <%= f.input :product_manufacture, label: "Fabricação de produtos" %>
-            <%= f.input :service_provision, label: "Prestação de serviço" %>
-            <%= f.input :product_reselling, label: "Revenda de produtos" %>
+            <fieldset class="form-group">
+              <div class="form-check">
+                <input name="seller[service_provision]" type="hidden" value="0">
+                <input class="hidden" type="checkbox" value="1" name="seller[service_provision]" id="seller_service_provision">
+                <label class="form-check-label tag-choice" for="seller_service_provision">
+                  Prestação de serviço
+                </label>
+              </div>
+            </fieldset>
 
+            <fieldset class="form-group">
+              <div class="form-check">
+                <input name="seller[product_reselling]" type="hidden" value="0">
+                <input class="hidden" type="checkbox" value="1" name="seller[product_reselling]" id="seller_product_reselling">
+                <label class="form-check-label tag-choice" for="seller_product_reselling">
+                  Revenda de produtos
+                </label>
+              </div>
+            </fieldset>
+          </div>
           <%= f.submit 'Continue' %>
           <% end %>
         </div>
