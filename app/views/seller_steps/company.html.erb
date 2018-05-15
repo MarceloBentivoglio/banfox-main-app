@@ -1,10 +1,15 @@
-<div class="form-body">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="client-form-header">
-          <%= image_tag "porco.png", height: 100 %>
-          <h2>Estamos a poucos passos <br>de criar a sua conta...</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="client-form">
+        <%= image_tag "porco.png", height: 100 %>
+        <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        <div class="progress-bar">
+          <span class="point done">1</span>
+          <span class="point active">2</span>
+          <span class="point future">3</span>
+          <span class="point future">4</span>
+          <span class="point future">5</span>
         </div>
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
