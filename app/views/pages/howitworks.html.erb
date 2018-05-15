@@ -45,37 +45,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <div class="how-content">
-          <p>Vamos começar?</p>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="pre-footer-btn-how">
+          <h4>Vamos começar?</h4>
+          <%= link_to "Antecipe recebíveis agora mesmo", new_user_registration_path, class: "btn-mvp-footer" %>
+          <p>Rápido, prático e sem burocracias.</p>
         </div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="card card2 card-how">
-          <div class="login-form-homepage">
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-
-            <div class="form-inputs">
-              <%= f.input :email, label: "Qual seu email ?", autofocus: true, class: "label-text" %>
-              <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-              <!-- <%= f.input :password_confirmation, required: true %> -->
-            </div>
-
-            <div class="form-actions">
-              <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
-            </div>
-            <% end %>
-          </div>
-        </div>
-        <p>Ou entre com sua conta
-          <span style="color: #4285f4;">G</span>
-          <span style="color: #ea4335;">o</span>
-          <span style="color: #fbbc05;">o</span>
-          <span style="color: #4285f4;">g</span>
-          <span style="color: #34a853;">l</span>
-          <span style="color: #ea4335;">e</span>
-        </p>
       </div>
     </div>
   </div>
