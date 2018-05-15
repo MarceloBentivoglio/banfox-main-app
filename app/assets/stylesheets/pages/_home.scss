@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-top: 70px;
   h1 {
     color: $dark-gray;
     font-weight: bold;
@@ -39,11 +40,17 @@
   align-items: left;
   padding: 1em 1em 0.75em;
   color: $dark-gray;
+  h4 {
+    font-size: 26px;
+    font-weight: 700;
+    color: $near-black;
+  }
   ul {
     list-style-type: none;
     margin: 0;
     padding-left: 10px;
     li {
+      font-size: 22px;
       opacity: 0.9;
     }
   }
@@ -106,7 +113,8 @@
     font-size: 32px;
     color: $near-black;
     span {
-      color: $red;
+      color: $green;
+      font-weight: 700;
     }
   }
   .info1 {
@@ -118,9 +126,34 @@
     }
   }
 }
-.pre-footer {
-  margin: 50px auto;
-
+.pre-footer-btn {
+  height: 100px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    margin-top: 5px;
+    color: $near-black;
+    font-style: italic;
+  }
+}
+.btn-mvp-footer {
+  color: $near-white;
+  margin: 0.5rem auto 2px;
+  padding: 1em 1em 0.85em;
+  border-radius: 3em;
+  font-weight: bold;
+  font-size: 20px;
+  background: $orange;
+  transition: background 0.6s ease;
+  &:hover {
+    opacity: 0.9;
+    background: $red;
+    text-decoration: none;
+    color: white;
+  }
 }
 .card-footer {
   height: 100px;
