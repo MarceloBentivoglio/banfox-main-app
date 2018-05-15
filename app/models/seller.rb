@@ -1,5 +1,9 @@
 class Seller < ApplicationRecord
-  PURPOSE = ["product_manufacture", "service_provision", "product_reselling"]
+  PURPOSE = {
+    "product_manufacture" => "Fabricação de Produtos",
+    "service_provision" => "Prestação de Serviço",
+    "product_reselling" => "Revenda de Produtos",
+  }
 
   # validates :company_name, presence: true
   # validates :full_name, presence: true
