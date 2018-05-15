@@ -14,8 +14,17 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <%= f.input :company_name, label: "Qual o nome da sua empresa nome?" %>
-
+            <div class="form-group">
+              <div class="tag-choices">
+                <% Seller.company_types.each_key do |company_type_key| %>
+                  <input class="hidden" type="radio" value="<%= company_type_key %>" name="seller[company_type]" id="seller_company_type_<%= company_type_key %>">
+                  <label class="tag-choice single-choice" for="seller_company_type_<%= company_type_key %>">
+                    <%= company_type_key %>
+                    <i class="fa fa-check"></i>
+                  </label>
+                <% end %>
+              </div>
+            </div>
           <%= f.submit 'Continue' %>
           <% end %>
         </div>
