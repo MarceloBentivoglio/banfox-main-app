@@ -39,4 +39,3 @@ class SellerStepsController < ApplicationController
       :company_type )
   end
 end
-
