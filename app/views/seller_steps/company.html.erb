@@ -14,22 +14,18 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-          <fieldset class="form-group">
-            <input type="hidden" name="seller[purpose_ids][]" value="">
-            <div class="tag-choices">
-              <% Purpose.all.each do |purpose| %>
-                  <input class="hidden" type="checkbox" value="<%= purpose.id %>" name="seller[purpose_ids][]" id="seller_purpose_ids_<%= purpose.id %>">
-                  <label class="tag-choice" for="seller_purpose_ids_<%= purpose.id %>">
-                    <%= purpose.name %>
+            <div class="form-group">
+              <div class="tag-choices">
+                <% Seller::PURPOSE.each do |key, value| %>
+                  <input name="seller[<%= key %>]" type="hidden" value="0">
+                  <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
+                  <label class="tag-choice" for="seller_<%= key %>">
+                    <%= value %>
                     <i class="fa fa-check"></i>
                   </label>
-              <% end %>
+                <% end %>
+              </div>
             </div>
-
-
-
-          </fieldset>
-
           <%= f.submit 'Continue' %>
           <% end %>
         </div>
