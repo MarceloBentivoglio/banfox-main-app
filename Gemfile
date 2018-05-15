@@ -24,6 +24,9 @@ gem 'wicked'
 # Used to upload documents using a form, for example a XML or a PDF with a cheque photo
 gem "paperclip"
 
+# This gem is used to enable enum to become a selection in simple_form
+gem 'enum_help'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
