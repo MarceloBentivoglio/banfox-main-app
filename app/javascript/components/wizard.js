@@ -7,4 +7,3 @@ function selectTagOnClick() {
 }
 
 export { selectTagOnClick };
-

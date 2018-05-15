@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20180514192805) do
     t.string "cnpj"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "product_manufacture", default: false
+    t.boolean "service_provision", default: false
+    t.boolean "product_reselling", default: false
   end
 
   create_table "users", force: :cascade do |t|
