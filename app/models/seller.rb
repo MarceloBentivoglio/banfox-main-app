@@ -5,6 +5,13 @@ class Seller < ApplicationRecord
     "product_reselling" => "Revenda de Produtos",
   }
 
+  enum company_type: {
+    LTDA: 0,
+    SA: 1,
+    ME: 2,
+    MEI: 3,
+  }
+
   # validates :company_name, presence: true
   # validates :full_name, presence: true
   # validates :cpf, presence: true
