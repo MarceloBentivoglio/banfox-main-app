@@ -1,4 +1,5 @@
 .how-it-works {
+  margin-top: 70px;
   color: #212D34;
   h1 {
     padding: 0;
@@ -25,4 +26,19 @@
 }
 .card-how {
   margin-top: 70px;
+}
+.pre-footer-btn-how {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h4 {
+    font-size: 50px;
+  }
+  p {
+    margin-top: 5px;
+    color: $near-black;
+    font-style: italic;
+  }
 }
