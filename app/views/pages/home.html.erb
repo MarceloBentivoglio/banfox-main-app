@@ -1,10 +1,109 @@
-<div class="banner">
-  <div class="banner-text">
-    <h1>Estávamos esperando por você.</h1>
-    <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
+<section id="home-banner">
+  <div class="banner">
+    <div class="jumbotron jumbotron-fluid jumbotron-banner">
+      <div class="container">
+        <h1>Estávamos esperando por você.</h1>
+        <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
+        <%= image_tag "mvapp.png" %>
+      </div>
+    </div>
   </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="card card1">
+        <h4>Porque a MVP Invest?</h4>
+        <ul>
+          <li>Somos rápidos no gatilho</li>
+          <li>Easy Peasy Lemon Squeazy</li>
+          <li>Temos taxas Individualizadas</li>
+          <li>Mais que uma Factoring, um parceiro $</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="card card2">
+        <div class="login-form-homepage">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email, label: "Qual seu email ?", autofocus: true, class: "label-text" %>
+            <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section id="how-it-works">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box image-box">
+          <%= image_tag "mvapp.png" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box content-box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box content-box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box image-box">
+          <%= image_tag "mvapp.png" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box image-box">
+          <%= image_tag "mvapp.png" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="how-box content-box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="how-to-register">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="step-to-register">
+          <h1>image</h1>
+          <p>texto</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="step-to-register">
+          <h1>image</h1>
+          <p>texto</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="step-to-register">
+          <h1>image</h1>
+          <p>texto</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
-<div class="banner-img">
+
+<!-- <div class="banner-img">
   <%= image_tag "mvapp.png", height: 380 %>
 </div>
 <div class="container">
@@ -30,7 +129,7 @@
             <div class="form-inputs">
               <%= f.input :email, label: "Qual seu email ?", autofocus: true, class: "label-text" %>
               <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-              <!-- <%= f.input :password_confirmation, required: true %> -->
+              <%= f.input :password_confirmation, required: true %>
             </div>
 
             <div class="form-actions">
@@ -75,4 +174,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

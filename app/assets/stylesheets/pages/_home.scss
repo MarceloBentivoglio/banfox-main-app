@@ -1,20 +1,149 @@
-// Specific CSS for your home-page
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 70px;
-  h1 {
-    color: $dark-gray;
-    font-weight: bold;
-    font-size: 65px;
-  }
-  p {
-    color: $near-black;
-    font-size: 25px;
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .banner {
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+    h1 {
+      color: $dark-gray;
+      font-weight: bold;
+      font-size: 25px;
+    }
+    p {
+      color: $near-black;
+      font-size: 13px;
+    }
+    img {
+      height: 260px;
+    }
   }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .banner {
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+    h1 {
+      color: $dark-gray;
+      font-weight: bold;
+      font-size: 25px;
+    }
+    p {
+      color: $near-black;
+      font-size: 13px;
+    }
+    img {
+      height: 260px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .banner {
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+    h1 {
+      color: $dark-gray;
+      font-weight: bold;
+      font-size: 45px;
+    }
+    p {
+      color: $near-black;
+      font-size: 25px;
+    }
+    img {
+      height: 260px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .banner {
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+    h1 {
+      color: $dark-gray;
+      font-weight: bold;
+      font-size: 55px;
+    }
+    p {
+      color: $near-black;
+      font-size: 25px;
+    }
+    img {
+      height: 330px;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px;
+    h1 {
+      color: $dark-gray;
+      font-weight: bold;
+      font-size: 65px;
+    }
+    p {
+      color: $near-black;
+      font-size: 25px;
+    }
+    img {
+      height: 380px;
+    }
+  }
+  .how-box {
+    height: 380px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+.jumbotron-banner {
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+
+#how-it-works {
+  margin-top: 50px;
+}
+
+
+
+
+
+
+
 .banner-img {
   margin: 0;
   padding: 0;
