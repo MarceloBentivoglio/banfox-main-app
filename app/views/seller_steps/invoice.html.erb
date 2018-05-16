@@ -14,13 +14,10 @@
         <div class="client-infos">
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
           <%= f.error_notification %>
-
-            <%#= f.input_field :revenue, label: false, as: :range, step: 5, value: (@seller.revenue || 0), input_html: { min: 50, max: 1000} %>
             <div class="slider-container">
-              <input class="slider" label="false" min="50" step="50" max="1000" value="<%= @seller.revenue %>" type="range" name="seller[revenue]" id="seller_revenue">
+              <input class="slider" label="false" min="50" step="50" max="1000" value="<%= @seller.revenue %>" type="range" name="seller[revenue]" id="slider">
               <p>Receita mensal média aproximada: <span id="slider-value"></span></p>
             </div>
-
           <%= f.submit 'Continue' %>
           <% end %>
         </div>
