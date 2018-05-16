@@ -1,33 +1,37 @@
-<div class="form-body">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="client-form-header">
-          <%= image_tag "porco.png", height: 100 %>
-          <h2>Estamos a poucos passos <br>de criar a sua conta...</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="client-form">
+        <%= image_tag "porco.png", height: 100 %>
+        <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        <div class="progress-bar">
+          <span class="point done">1</span>
+          <span class="point done">2</span>
+          <span class="point active">3</span>
+          <span class="point future">4</span>
+          <span class="point future">5</span>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="client-form">
-          <!-- <%= image_tag "porco.png", height: 100 %>
-          <h2>Estamos a poucos passos de criar a sua conta...</h2> -->
-          <div class="progress-bar">
-            <span class="point done">1</span>
-            <span class="point done">2</span>
-            <span class="point active">3</span>
-            <span class="point future">4</span>
-            <span class="point future">5</span>
-          </div>
-          <div class="client-infos">
-            <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :company_name, label: "Qual o nome da sua empresa nome?" %>
+        <div class="client-infos">
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+          <%= f.error_notification %>
+          <!-- TODO: Refatorar -->
+            <div class="form-group">
+              <div class="slider-container">
+                <input class="slider" label="false" min="50" step="50" max="1000" value="<%= @seller.revenue %>" type="range" name="seller[revenue]" id="revenue">
+                <p>Receita mensal média aproximada: <span id="revenue-slider-value"></span></p>
+              </div>
+            <div class="slider-container">
+              <input class="slider" label="false" min="1" step="1" max="100" value="<%= @seller.rental_cost %>" type="range" name="seller[rental_cost]" id="rental_cost">
+              <p>Alguel mensal aproximado: <span id="rental_cost-slider-value"></span></p>
+            </div>
+            <div class="slider-container">
+              <input class="slider" label="false" min="0" step="1" max="100" value="<%= @seller.employees %>" type="range" name="seller[employees]" id="employees">
+              <p>Número aproximado de funcionários: <span id="employees-slider-value"></span></p>
+            </div>
 
-            <%= f.submit 'Continue' %>
-            <% end %>
-          </div>
+            </div>
+          <%= f.submit 'Continue' %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514192805) do
+ActiveRecord::Schema.define(version: 20180516202537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,24 @@ ActiveRecord::Schema.define(version: 20180514192805) do
     t.boolean "product_manufacture", default: false
     t.boolean "service_provision", default: false
     t.boolean "product_reselling", default: false
+    t.integer "company_type"
+    t.integer "revenue"
+    t.integer "rental_cost"
+    t.integer "employees"
+    t.boolean "generate_boleto", default: false
+    t.boolean "generate_invoice", default: false
+    t.boolean "receive_cheque", default: false
+    t.boolean "receive_money_transfer", default: false
+    t.boolean "company_clients", default: false
+    t.boolean "individual_clients", default: false
+    t.boolean "government_clients", default: false
+    t.boolean "pay_up_front", default: false
+    t.boolean "pay_30_60_90", default: false
+    t.boolean "pay_90_plus", default: false
+    t.boolean "pay_factoring", default: false
+    t.boolean "permit_contact_client", default: false
+    t.boolean "charge_payer", default: false
+    t.boolean "consent", default: false
   end
 
   create_table "users", force: :cascade do |t|
