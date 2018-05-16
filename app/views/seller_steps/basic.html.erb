@@ -27,6 +27,15 @@
             <%= f.input :cpf, label: "E o seu CPF?" %>
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa" %>
+            <div class="tag-choices">
+              <% Seller.company_types.each_key do |company_type_key| %>
+                <input class="hidden" type="radio" value="<%= company_type_key %>" name="seller[company_type]" id="seller_company_type_<%= company_type_key %>">
+                <label class="tag-choice single-choice" for="seller_company_type_<%= company_type_key %>">
+                  <%= company_type_key %>
+                  <i class="fa fa-check"></i>
+                </label>
+              <% end %>
+            </div>
 
             <%= f.submit 'Continuar' %>
             <% end %>
