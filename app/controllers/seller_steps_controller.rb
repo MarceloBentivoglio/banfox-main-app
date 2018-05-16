@@ -1,6 +1,6 @@
 class SellerStepsController < ApplicationController
   include Wicked::Wizard
-  steps :basic, :company, :finantial, :client, :invoice
+  steps :basic, :company, :finantial, :client, :consent
 
   def show
     @user = current_user
@@ -34,6 +34,12 @@ class SellerStepsController < ApplicationController
   private
 
   def seller_params
-      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name, :cnpj, :product_manufacture, :service_provision, :product_reselling)
+      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
+      :cnpj, :product_manufacture, :service_provision, :product_reselling,
+      :company_type, :revenue, :rental_cost, :employees, :generate_boleto,
+      :generate_invoice, :receive_cheque, :receive_money_transfer,
+      :company_clients, :individual_clients, :government_clients, :pay_up_front,
+      :pay_30_60_90, :pay_90_plus, :pay_factoring, :permit_contact_client,
+      :charge_payer, :consent)
   end
 end
