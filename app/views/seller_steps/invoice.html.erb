@@ -1,34 +1,31 @@
-<div class="form-body">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="client-form-header">
-          <%= image_tag "porco.png", height: 100 %>
-          <h2>Estamos a poucos passos <br>de criar a sua conta...</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="client-form">
+        <%= image_tag "porco.png", height: 100 %>
+        <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        <div class="progress-bar">
+          <span class="point done">1</span>
+          <span class="point active">2</span>
+          <span class="point future">3</span>
+          <span class="point future">4</span>
+          <span class="point future">5</span>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="client-form">
-          <div class="progress-bar">
-            <span class="point done">1</span>
-            <span class="point done">2</span>
-            <span class="point done">3</span>
-            <span class="point done">4</span>
-            <span class="point active">5</span>
-          </div>
-          <div class="client-infos">
-            <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :phone, label: "Qual o seu telefone?" %>
+        <div class="client-infos">
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+          <%= f.error_notification %>
 
+            <%#= f.input_field :revenue, label: false, as: :range, step: 5, value: (@seller.revenue || 0), input_html: { min: 50, max: 1000} %>
+            <div class="slider-container">
+              <input class="slider" label="false" min="50" step="50" max="1000" value="<%= @seller.revenue %>" type="range" name="seller[revenue]" id="seller_revenue">
+              <p>Receita mensal média aproximada: <span id="slider-value"></span></p>
+            </div>
 
-            <%= f.submit 'Continue' %>
-            <% end %>
-          </div>
+          <%= f.submit 'Continue' %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
