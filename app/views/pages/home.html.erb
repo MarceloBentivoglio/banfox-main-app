@@ -43,6 +43,11 @@
   </div>
   <section id="how-it-works">
     <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <h1>Você sabia...</h1>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12 col-sm-6">
         <div class="how-box image-box">
           <%= image_tag "mvapp.png" %>
@@ -79,24 +84,34 @@
       </div>
     </div>
   </section>
-  <section class="how-to-register">
+  <section id="how-to-register">
     <div class="row">
-      <div class="col-xs-12 col-md-4">
-        <div class="step-to-register">
-          <h1>image</h1>
-          <p>texto</p>
-        </div>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <h1>Como aplicar?</h1>
       </div>
-      <div class="col-xs-12 col-md-4">
-        <div class="step-to-register">
-          <h1>image</h1>
-          <p>texto</p>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "info.png", class: "how-to-register-image" %>
+            <h4>Simples</h4>
+            <p>Nosso cadastro demora apenas 2 minutinhos.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-xs-12 col-md-4">
-        <div class="step-to-register">
-          <h1>image</h1>
-          <p>texto</p>
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "xml.png", class: "how-to-register-image" %>
+            <h4>Rápido</h4>
+            <p>Faça o upload do arquivo XML da sua nota fiscal.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "dinheiro.png", class: "how-to-register-image" %>
+            <h4>Fácil</h4>
+            <p>Pronto, agora é só aumentar suas vendas.</p>
+          </div>
         </div>
       </div>
     </div>
