@@ -42,4 +42,9 @@ class SellerStepsController < ApplicationController
       :pay_30_60_90, :pay_90_plus, :pay_factoring, :permit_contact_client,
       :charge_payer, :consent)
   end
+
+  def finish_wizard_path
+    root_url
+  end
+
 end
