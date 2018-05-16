@@ -135,10 +135,50 @@
 }
 
 #how-it-works {
-  margin-top: 50px;
+  margin: 50px 0;
+  h1 {
+    color: $dark-gray;
+    font-size: 55px;
+  }
 }
-
-
+#how-to-register {
+  margin: 100px 0;
+  h1 {
+    color: $dark-gray;
+    font-size: 55px;
+  }
+  .content {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.step-to-register {
+  height: 500px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h4 {
+    font-size: 30px;
+    color: $orange;
+  }
+  p {
+    text-align: center;
+    font-size: 25px;
+    color: $dark-gray;
+  }
+  &:hover {
+    transition: 0.2s;
+    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+  }
+}
+.how-to-register-image {
+  height: 280px;
+}
 
 
 
@@ -172,7 +212,7 @@
   h4 {
     font-size: 26px;
     font-weight: 700;
-    color: $near-black;
+    color: $dark-gray;
   }
   ul {
     list-style-type: none;
@@ -196,7 +236,7 @@
   label {
     text-decoration: none;
     font-weight: 400;
-    color: $near-black;
+    color: $dark-gray;
   }
 }
 .login-form-homepage {
@@ -240,7 +280,7 @@
   }
   p {
     font-size: 32px;
-    color: $near-black;
+    color: $dark-gray;
     span {
       color: $green;
       font-weight: 700;
@@ -264,7 +304,7 @@
   justify-content: center;
   p {
     margin-top: 5px;
-    color: $near-black;
+    color: $dark-gray;
     font-style: italic;
   }
 }
