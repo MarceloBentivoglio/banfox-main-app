@@ -24,6 +24,14 @@
                     <i class="fa fa-check"></i>
                   </label>
                 <% end %>
+                <% Seller::PAYMENT_METHOD.each do |key, value| %>
+                  <input name="seller[<%= key %>]" type="hidden" value="0">
+                  <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
+                  <label class="tag-choice" for="seller_<%= key %>">
+                    <%= value %>
+                    <i class="fa fa-check"></i>
+                  </label>
+                <% end %>
               </div>
             </div>
           <%= f.submit 'Continue' %>
