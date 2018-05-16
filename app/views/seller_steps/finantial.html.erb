@@ -28,9 +28,9 @@
               <input class="slider" label="false" min="0" step="1" max="100" value="<%= @seller.employees %>" type="range" name="seller[employees]" id="employees">
               <p>Número aproximado de funcionários: <span id="employees-slider-value"></span></p>
             </div>
-
             </div>
           <%= f.submit 'Continue' %>
+          <%= link_to "Back", previous_wizard_path %>
           <% end %>
         </div>
       </div>
