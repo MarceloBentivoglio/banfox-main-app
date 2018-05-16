@@ -1,3 +1,4 @@
+// TODO: refatorar
 function sliderShowValue() {
   $(document).ready(() => {
     var slider = document.getElementById("revenue");
