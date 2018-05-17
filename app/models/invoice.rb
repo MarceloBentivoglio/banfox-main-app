@@ -1,6 +1,6 @@
 class Invoice < ApplicationRecord
-  belongs_to :payer
-  belongs_to :seller
+  belongs_to :payer, optional: true
+  belongs_to :seller, optional: true
   has_many :installments, dependent: :destroy
 
   enum invoice_type: {
@@ -9,6 +9,11 @@ class Invoice < ApplicationRecord
     check: 2,
   }
 
-  # We need this to upload the invoices in xml format
-  # has_attached_file :xml_file
+  has_one_attached :xml
+
+  def self.from_file(file)
+    extract = ExtractDataFromXml.new
+    invoice = extract.invoice(file)
+  end
+
 end

@@ -4,7 +4,7 @@ class CreateInstallments < ActiveRecord::Migration[5.1]
       t.references :invoice, foreign_key: true
       t.string :number
       t.monetize :value
-      t.datetime :due_date
+      t.date :due_date
 
       t.timestamps
     end
