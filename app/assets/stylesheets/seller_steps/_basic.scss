@@ -126,37 +126,6 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .progress-bar {
   height: 50px;
   width: 90%;
@@ -171,7 +140,7 @@
     width: 40px;
     height: 40px;
     border: 2px solid $dark-blue;
-    border-radius: 10px;
+    border-radius: 50%;
     font-weight: bold;
     font-size: 22px;
     display: flex;
@@ -185,7 +154,7 @@
     background: $dark-blue;
   }
   .future {
-    opacity: 0.6;
+    opacity: 0.4;
   }
   .done {
     color: $orange;

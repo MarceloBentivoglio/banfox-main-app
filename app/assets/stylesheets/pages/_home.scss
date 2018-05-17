@@ -92,28 +92,57 @@
   }
 }
 .how-box {
-  height: 400px;
-  margin: 20px;
-  padding: 20px;
+  height: 360px;
+  margin: 5px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   img {
-    height: 400px;
+    height: 300px;
   }
   h2 {
     color: $orange;
-    font-size: 45px;
+    font-size: 40px;
   }
   P {
+    text-align: center;
     font-size: 25px;
     color: $dark-blue;
     opacity: 0.85;
   }
 }
+.content-box {
+  margin: 0;
+  padding: 0;
+  ul {
+    width: 90%;
 
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      // justify-content: center;
+      align-items: center;
+      text-align: center;
+      span, p {
+        margin: 0;
+        display: inline-block;
+        text-align: center;
+     }
+     p {
+       margin-top: 10px;
+     }
+    }
+  }
+  img {
+    height: 40px !important;
+  }
+}
 
 
 .jumbotron-banner {
@@ -125,14 +154,14 @@
   margin: 50px 0;
   h1 {
     color: $dark-blue;
-    font-size: 55px;
+    font-size: 45px;
   }
 }
 #how-to-register {
-  margin: 100px 0;
+  margin: 50px 0;
   h1 {
     color: $dark-blue;
-    font-size: 55px;
+    font-size: 45px;
   }
   .content {
     height: 600px;
@@ -148,9 +177,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h4 {
+  img {
+    margin-bottom: 30px;
+  }
+  span {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border: 2px solid $orange;
+    border-radius: 50%;
     font-size: 30px;
     color: $orange;
+    margin-bottom: 20px;
   }
   p {
     text-align: center;
@@ -331,3 +369,8 @@
     box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   }
 }
+hr.style-1 {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(238, 123, 49, 0), rgba(238, 123, 49, 0.75), rgba(238, 123, 49, 0));
+  }
