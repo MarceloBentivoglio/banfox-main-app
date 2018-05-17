@@ -50,49 +50,71 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
         <div class="how-box image-box">
-          <%= image_tag "mvapp.png" %>
+          <%= image_tag "predio.png" %>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5">
         <div class="how-box content-box">
-          <h2>Super</h2>
-          <p>Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+          <h2>A Factoring...</h2>
+          <ul>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Antecipa pagamentos</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Tem menos burocracia</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Não possui custos escondidos</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>É super rápida de serviço</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Além de ser simples e prático</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
         <div class="how-box content-box">
-          <h2>Lemon</h2>
-          <p>Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+          <h2>É simples</h2>
+          <p>Não confunda, é diferente de banco.</p>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5">
         <div class="how-box image-box">
-          <%= image_tag "mvapp.png" %>
+          <%= image_tag "nao.png" %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
         <div class="how-box image-box">
-          <%= image_tag "mvapp.png" %>
+          <%= image_tag "3.png" %>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-5">
         <div class="how-box content-box">
-          <h2>Peazy</h2>
-          <p>Atque laboriosam rem, sed, sequi eveniet nobis dolor ad beatae voluptas inventore voluptates necessitatibus, commodi. Vitae assumenda excepturi dolor necessitatibus voluptatibus. Ipsum!</p>
+          <h2>Para cadastrar</h2>
+          <p>Basta seguir os 3 passos rápidos e simples.</p>
         </div>
       </div>
     </div>
   </section>
+  <hr class="style-1">
   <section id="how-to-register">
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <h1>Como aplicar?</h1>
+        <h1>Vamos começar?</h1>
       </div>
     </div>
     <div class="content">
@@ -100,21 +122,21 @@
         <div class="col-xs-12 col-md-4">
           <div class="step-to-register">
             <%= image_tag "info.png", class: "how-to-register-image" %>
-            <h4>Simples</h4>
+            <span>1</span>
             <p>Nosso cadastro demora apenas 2 minutinhos.</p>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
           <div class="step-to-register">
             <%= image_tag "xml.png", class: "how-to-register-image" %>
-            <h4>Rápido</h4>
+            <span>2</span>
             <p>Faça o upload do arquivo XML da sua nota fiscal.</p>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
           <div class="step-to-register">
             <%= image_tag "dinheiro.png", class: "how-to-register-image" %>
-            <h4>Fácil</h4>
+            <span>3</span>
             <p>Pronto, agora é só aumentar suas vendas.</p>
           </div>
         </div>
@@ -122,76 +144,3 @@
     </div>
   </section>
 </div>
-
-<!-- <div class="banner-img">
-  <%= image_tag "mvapp.png", height: 380 %>
-</div>
-<div class="container">
-  <div class="banner2">
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <div class="card card1">
-          <h4>Porque a MVP Invest?</h4>
-          <ul>
-            <li>Somos rápidos no gatilho</li>
-            <li>Easy Peasy Lemon Squeazy</li>
-            <li>Temos taxas Individualizadas</li>
-            <li>Mais que uma Factoring, um parceiro $</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="card card2">
-          <div class="login-form-homepage">
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-
-            <div class="form-inputs">
-              <%= f.input :email, label: "Qual seu email ?", autofocus: true, class: "label-text" %>
-              <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-              <%= f.input :password_confirmation, required: true %>
-            </div>
-
-            <div class="form-actions">
-              <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
-            </div>
-            <% end %>
-
-          </div>
-        </div>
-        <p>Ou entre com sua conta
-          <span style="color: #4285f4;">G</span>
-          <span style="color: #ea4335;">o</span>
-          <span style="color: #fbbc05;">o</span>
-          <span style="color: #4285f4;">g</span>
-          <span style="color: #34a853;">l</span>
-          <span style="color: #ea4335;">e</span>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="information">
-      <h2>Já temos +<span>152</span> clientes atendidos...</h2>
-      <p>Isso significa 7 milhões 142 mil reais antecipados. </p>
-      <h2>Empresas que utilizam Factoring...</h2>
-      <p>crescem em média <span>15%</span> a mais, os empresários têm mais tempo para focar no que realmente importa.</p>
-      <div class="info1">
-        <h2>O que você faz?</h2>
-        <p>Nós queremos conhecer o seu negócio, temos soluções simples e eficientes para antecipar suas vendas a prazo.</p>
-        <h2>Quer uma cotação?</h2>
-        <p>Nós analisamos título a título, sem compromisso. E usamos a tecnologia a seu favor, é de graça.</p>
-        <h2>Seja inteligente</h2>
-        <p>Utilize o dinheiro para comprar matéria-prima a vista, obtenha mais descontos, evite multas e juros pagando suas contas em dia.</p>
-        <h2>Creça mais Rápido</h2>
-        <p>Não deixe seu cliente esperando, antecipe um título seguro, compre sua matéria-prima e venda!</p>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <div class="pre-footer-btn">
-        <%= link_to "Antecipe recebíveis agora mesmo", new_user_registration_path, class: "btn-mvp-footer" %>
-        <p>Rápido, prático e sem burocracias.</p>
-      </div>
-    </div>
-  </div>
-</div> -->
