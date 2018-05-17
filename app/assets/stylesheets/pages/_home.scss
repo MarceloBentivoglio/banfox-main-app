@@ -1,20 +1,10 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   .banner {
-    width: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 70px;
     h1 {
-      color: $dark-gray;
-      font-weight: bold;
       font-size: 25px;
     }
     p {
-      color: $near-black;
       font-size: 13px;
     }
     img {
@@ -26,20 +16,10 @@
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
   .banner {
-    width: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 70px;
     h1 {
-      color: $dark-gray;
-      font-weight: bold;
       font-size: 25px;
     }
     p {
-      color: $near-black;
       font-size: 13px;
     }
     img {
@@ -51,20 +31,10 @@
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
   .banner {
-    width: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 70px;
     h1 {
-      color: $dark-gray;
-      font-weight: bold;
       font-size: 45px;
     }
     p {
-      color: $near-black;
       font-size: 25px;
     }
     img {
@@ -76,20 +46,10 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .banner {
-    width: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 70px;
     h1 {
-      color: $dark-gray;
-      font-weight: bold;
       font-size: 55px;
     }
     p {
-      color: $near-black;
       font-size: 25px;
     }
     img {
@@ -101,33 +61,60 @@
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 70px;
     h1 {
-      color: $dark-gray;
-      font-weight: bold;
       font-size: 65px;
     }
     p {
-      color: $near-black;
       font-size: 25px;
     }
     img {
       height: 380px;
     }
   }
-  .how-box {
-    height: 380px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
 }
+
+// GENERAL CSS FOR WHOLE SIZES
+.banner {
+  width: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 70px;
+  h1 {
+    color: $dark-blue;
+    font-weight: bold;
+  }
+  p {
+    color: $dark-blue;
+    opacity: 0.85;
+  }
+}
+.how-box {
+  height: 400px;
+  margin: 20px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 400px;
+  }
+  h2 {
+    color: $orange;
+    font-size: 45px;
+  }
+  P {
+    font-size: 25px;
+    color: $dark-blue;
+    opacity: 0.85;
+  }
+}
+
+
 
 .jumbotron-banner {
   margin: 0 !important;
@@ -137,14 +124,14 @@
 #how-it-works {
   margin: 50px 0;
   h1 {
-    color: $dark-gray;
+    color: $dark-blue;
     font-size: 55px;
   }
 }
 #how-to-register {
   margin: 100px 0;
   h1 {
-    color: $dark-gray;
+    color: $dark-blue;
     font-size: 55px;
   }
   .content {
@@ -168,7 +155,7 @@
   p {
     text-align: center;
     font-size: 25px;
-    color: $dark-gray;
+    color: $dark-blue;
   }
   &:hover {
     transition: 0.2s;
@@ -208,11 +195,11 @@
   flex-direction: column;
   align-items: left;
   padding: 1em 1em 0.75em;
-  color: $dark-gray;
+  color: $dark-blue;
   h4 {
     font-size: 26px;
     font-weight: 700;
-    color: $dark-gray;
+    color: $dark-blue;
   }
   ul {
     list-style-type: none;
@@ -231,12 +218,12 @@
   justify-content: center;
   overflow: hidden;
   p {
-    color: $dark-gray;
+    color: $dark-blue;
   }
   label {
     text-decoration: none;
     font-weight: 400;
-    color: $dark-gray;
+    color: $dark-blue;
   }
 }
 .login-form-homepage {
@@ -258,7 +245,7 @@
   }
 }
 .information {
-  color: $dark-gray;
+  color: $dark-blue;
   padding: 20px;
   margin: auto;
   margin-top: 20px;
@@ -280,7 +267,7 @@
   }
   p {
     font-size: 32px;
-    color: $dark-gray;
+    color: $dark-blue;
     span {
       color: $green;
       font-weight: 700;
@@ -304,7 +291,7 @@
   justify-content: center;
   p {
     margin-top: 5px;
-    color: $dark-gray;
+    color: $dark-blue;
     font-style: italic;
   }
 }

@@ -1,48 +1,168 @@
-.form-body {
-  height: 100vh;
-  width: auto;
-  background-color: #F5F2F0;
-}
-.client-form-header {
+.client-form-box {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  h2 {
-    color: $near-black;
-    font-weight: 700;
+  .client-form-logo {
+    height: 120px;
+    width: 120px;
+    padding: 10px;
+  }
+  .client-form-header {
+    height: 120px;
+    margin-bottom: 10px;
+    h2 {
+      margin: 0;
+      text-align: center;
+      color: $dark-blue;
+      font-size: 40px;
+    }
+  }
+  .client-progress-bar {
+    height: 60px;
+    margin: 5px 0;
+  }
+  .client-form {
+    height: 650px;
+    width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    color: $dark-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+    form {
+      margin-top: 15px;
+      width: 90%;
+    }
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 4px 0;
+      display: inline-block;
+      border: none;
+      box-shadow: none;
+      background-color: #fff;
+      border-bottom: 2px solid #C3C5C8;
+      box-sizing: border-box;
+      &:focus {
+        border-bottom: 2px solid $orange;
+      }
+      abbr[title="required"] {
+        display: none;
+      }
+      label {
+        font-size: 22px;
+        font-weight: 400;
+        display: block;
+        -webkit-transition: .333s ease top, .333s ease opacity;
+        transition: .333s ease top, .333s ease opacity;
+      }
+    }
+    input[type=button], input[type=submit], input[type=reset] {
+      float: right;
+      box-sizing: border-box;
+      appearance: none;
+      background-color: transparent;
+      border: 2px solid $orange;
+      border-radius: 0.6em;
+      color: $orange;
+      cursor: pointer;
+      display: flex;
+      align-self: center;
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 1em 1.6em;
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 40px 40px $orange inset;
+        color: #fff;
+        outline: 0;
+      }
+    }
+    h4 {
+      font-size: 20px;
+      opacity: 0.9;
+    }
+  }
+  .tag-choices-basic {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    input {
+      width: 30px;
+    }
+  }
+
+  .tag-choice1 {
+    padding: 10px;
+    margin-right: 30px;
+    border-radius: 3px;
+    opacity: 0.4;
     text-align: center;
-    margin: 0px 0px 20px 0px;
+    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+    &:hover {
+      transition: 0.6s;
+      box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+      opacity: 1;
+      cursor: pointer;
+    }
+    &.active {
+    background: $brand-primary;
+    color: white;
+    opacity: 1;
+    }
   }
 }
-.client-form {
-  // height: calc(100vh - 170px);
-  padding: 30px 10px;
-  margin: 10px 0;
-  background-color: #fff;
-  color: $near-black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 6px;
-  // -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  // box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  box-shadow: 0 -1px 10px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1), 0 10px 30px #f3ece8;
-  img {
-    margin: 20px 0;
-  }
-  h2 {
-    font-size: 30px;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .progress-bar {
   height: 50px;
   width: 90%;
   margin: 5px 10px;
   background-color: #fff;
-  color: $near-black;
+  color: $dark-blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +170,7 @@
   .point {
     width: 40px;
     height: 40px;
-    border: 2px solid $near-black;
+    border: 2px solid $dark-blue;
     border-radius: 10px;
     font-weight: bold;
     font-size: 22px;
@@ -62,7 +182,7 @@
     width: 6rem;
     height: 0.2rem;
     border-radius: 6px;
-    background: $near-black;
+    background: $dark-blue;
   }
   .future {
     opacity: 0.6;
