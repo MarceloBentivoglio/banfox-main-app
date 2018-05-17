@@ -9,9 +9,6 @@ class Invoice < ApplicationRecord
     check: 2,
   }
 
-  # We need this to upload the invoices in xml format and the cheques in pdf
-  # has_attached_file :invoice_document
-
   # We need this to upload the invoices in xml format
-  has_attached_file :xml_file
+  # has_attached_file :xml_file
 end

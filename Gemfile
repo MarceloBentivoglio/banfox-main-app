@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
-
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
@@ -22,7 +21,7 @@ gem 'webpacker'
 gem 'wicked'
 
 # Used to upload documents using a form, for example a XML or a PDF with a cheque photo
-gem 'paperclip'
+# gem 'paperclip'
 
 # This gem is used to enable enum to become a selection in simple_form
 gem 'enum_help'
