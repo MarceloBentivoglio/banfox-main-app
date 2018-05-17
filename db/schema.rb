@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516202537) do
+ActiveRecord::Schema.define(version: 20180517132646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "company_purposes", force: :cascade do |t|
-    t.bigint "seller_id"
-    t.bigint "purpose_id"
+  create_table "installments", force: :cascade do |t|
+    t.bigint "invoice_id"
+    t.string "number"
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "USD", null: false
+    t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["purpose_id"], name: "index_company_purposes_on_purpose_id"
-    t.index ["seller_id"], name: "index_company_purposes_on_seller_id"
+    t.index ["invoice_id"], name: "index_installments_on_invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -30,11 +32,30 @@ ActiveRecord::Schema.define(version: 20180516202537) do
     t.bigint "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "payer_id"
+    t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
 
-  create_table "purposes", force: :cascade do |t|
-    t.string "name"
+  create_table "payers", force: :cascade do |t|
+    t.string "cnpj"
+    t.string "company_name"
+    t.string "company_nickname"
+    t.string "business_entity"
+    t.string "registration_number"
+    t.string "nire"
+    t.datetime "incorporation_date"
+    t.string "zip_code"
+    t.string "address"
+    t.string "address_number"
+    t.string "neighborhood"
+    t.string "address_2"
+    t.string "state"
+    t.string "city"
+    t.string "corporate_capital"
+    t.string "activity"
+    t.string "cnae"
+    t.string "tax_option"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,7 +110,7 @@ ActiveRecord::Schema.define(version: 20180516202537) do
     t.index ["seller_id"], name: "index_users_on_seller_id"
   end
 
-  add_foreign_key "company_purposes", "purposes"
-  add_foreign_key "company_purposes", "sellers"
+  add_foreign_key "installments", "invoices"
+  add_foreign_key "invoices", "payers"
   add_foreign_key "users", "sellers"
 end
