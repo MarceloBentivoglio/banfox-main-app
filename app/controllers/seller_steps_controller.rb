@@ -2,6 +2,7 @@ class SellerStepsController < ApplicationController
   include Wicked::Wizard
   steps :basic, :company, :finantial, :client, :consent
 
+
   def show
     @user = current_user
     case step
