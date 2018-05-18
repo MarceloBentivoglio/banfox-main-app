@@ -1,0 +1,33 @@
+.tag-choices-finantial {
+  height: 400px;
+  h4 {
+    margin-bottom: 50px;
+  }
+  input {
+    margin: 30px 0;
+  }
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #EEF1F6; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: $orange;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+      background: $orange;
+      cursor: pointer;
+  }
+}
