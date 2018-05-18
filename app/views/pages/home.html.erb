@@ -1,16 +1,18 @@
-<div class="banner">
-  <div class="banner-text">
-    <h1>Estávamos esperando por você.</h1>
-    <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
+<section id="home-banner">
+  <div class="banner">
+    <div class="jumbotron jumbotron-fluid jumbotron-banner">
+      <div class="container">
+        <h1>Estávamos esperando por você.</h1>
+        <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
+        <%= image_tag "mvapp.png" %>
+      </div>
+    </div>
   </div>
-</div>
-<div class="banner-img">
-  <%= image_tag "mvapp.png", height: 380 %>
-</div>
+</section>
 <div class="container">
-  <div class="banner2">
+  <section id="home-calltoaction">
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-sm-6">
         <div class="card card1">
           <h4>Porque a MVP Invest?</h4>
           <ul>
@@ -21,9 +23,10 @@
           </ul>
         </div>
       </div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-sm-6">
         <div class="card card2">
-          <% if user_signed_in? %>
+
+          <% if user_signed_in?%>
             <div>
               <%= link_to "Subir nova nota", new_invoice_path, class: "btn btn-primary" %>
             </div>
@@ -55,29 +58,105 @@
         <% end %>
       </div>
     </div>
-  </div>
-  <div class="information">
-      <h2>Já temos +<span>152</span> clientes atendidos...</h2>
-      <p>Isso significa 7 milhões 142 mil reais antecipados. </p>
-      <h2>Empresas que utilizam Factoring...</h2>
-      <p>crescem em média <span>15%</span> a mais, os empresários têm mais tempo para focar no que realmente importa.</p>
-      <div class="info1">
-        <h2>O que você faz?</h2>
-        <p>Nós queremos conhecer o seu negócio, temos soluções simples e eficientes para antecipar suas vendas a prazo.</p>
-        <h2>Quer uma cotação?</h2>
-        <p>Nós analisamos título a título, sem compromisso. E usamos a tecnologia a seu favor, é de graça.</p>
-        <h2>Seja inteligente</h2>
-        <p>Utilize o dinheiro para comprar matéria-prima a vista, obtenha mais descontos, evite multas e juros pagando suas contas em dia.</p>
-        <h2>Creça mais Rápido</h2>
-        <p>Não deixe seu cliente esperando, antecipe um título seguro, compre sua matéria-prima e venda!</p>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <div class="pre-footer-btn">
-        <%= link_to "Antecipe recebíveis agora mesmo", new_user_registration_path, class: "btn-mvp-footer" %>
-        <p>Rápido, prático e sem burocracias.</p>
+  </section>
+  <section id="how-it-works">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <h1>Você sabia...</h1>
       </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+        <div class="how-box image-box">
+          <%= image_tag "predio.png" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <div class="how-box content-box">
+          <h2>A MVP Invest...</h2>
+          <ul>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Antecipa pagamentos</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Tem menos burocracia</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Não possui custos escondidos</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>É super rápida de serviço</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkbox", height: 5 %></span>
+              <p>Além de ser simples e prática</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+        <div class="how-box content-box">
+          <h2>É simples</h2>
+          <p>Não confunda, somos diferentes de bancos tradicionais.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <div class="how-box image-box">
+          <%= image_tag "nao.png" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+        <div class="how-box image-box">
+          <%= image_tag "3.png" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <div class="how-box content-box">
+          <h2>Para cadastrar</h2>
+          <p>Basta seguir os 3 passos abaixo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="style-1">
+  <section id="how-to-register">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <h1>Vamos começar?</h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "info.png", class: "how-to-register-image" %>
+            <span>1</span>
+            <p>Nosso cadastro demora apenas 2 minutinhos.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "xml.png", class: "how-to-register-image" %>
+            <span>2</span>
+            <p>Faça o upload do arquivo XML da sua nota fiscal.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div class="step-to-register">
+            <%= image_tag "dinheiro.png", class: "how-to-register-image" %>
+            <span>3</span>
+            <p>Pronto, agora é só aumentar suas vendas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
