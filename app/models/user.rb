@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :seller, optional: true
 
+  def registration_completed?
+    seller.consent
+  end
 end
