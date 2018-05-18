@@ -1,2 +1,12 @@
-<h1>Invoices#index</h1>
-<p>Find me in app/views/invoices/index.html.erb</p>
+<h1>Invoices from <%= @seller.company_name %></h1>
+
+<div class="container">
+  <%= link_to "Subir nova nota", new_invoice_path, class: "btn btn-primary" %>
+  <% @invoices.each do |invoice| %>
+    <div class="well">
+      <p><%= invoice.number %></p>
+      <p><%= invoice.payer.company_name %></p>
+      <p><%= humanized_money_with_symbol invoice.total_value %></p>
+    </div>
+  <% end %>
+</div>
