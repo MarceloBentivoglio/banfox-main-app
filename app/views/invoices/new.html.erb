@@ -1,7 +1,7 @@
 <h1>Invoices#new</h1>
-
-<%= simple_form_for @invoice do |f| %>
-  <%= f.label :xml %>
-  <%= f.file_field :xml %>
-  <%= f.submit 'Continue' %>
-<% end %>
+<div class="container">
+  <%= simple_form_for @invoice do |f| %>
+    <%= f.file_field :xml %>
+    <%= f.submit 'Continue' %>
+  <% end %>
+</div>
