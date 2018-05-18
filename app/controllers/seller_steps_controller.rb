@@ -1,5 +1,9 @@
 class SellerStepsController < ApplicationController
+  before_action :check_not_fully_registered_seller
+  # This inclusion is needed to make the wizard
   include Wicked::Wizard
+  # If these steps are changed the enum in model Seller and the names of the
+  # seller_steps views must change as well
   steps :basic, :company, :finantial, :client, :consent
 
   def show
@@ -21,11 +25,20 @@ class SellerStepsController < ApplicationController
     @user = current_user
     case step
     when :basic
-      @seller = Seller.new(seller_params)
+      unless @user.seller
+        @seller = Seller.new(seller_params)
+      else
+        @seller = @user.seller
+      end
+      # This line is necessary for the validations of fields on each step
+      @seller.validation_status = step.to_s
       @user.seller = @seller
       @user.save!
     else
       @seller = @user.seller
+      # This line is necessary for the validations of fields on each step
+      @seller.validation_status = step.to_s
+      @seller.active! if wizard_steps.last == step
       @seller.attributes = seller_params
     end
     render_wizard @seller
@@ -44,7 +57,16 @@ class SellerStepsController < ApplicationController
   end
 
   def finish_wizard_path
-    root_url
+    invoices_path
+  end
+# TODO: refactor, I am sure that there is a smater way to write this code with less querries
+  def check_not_fully_registered_seller
+    if current_user.seller
+      if current_user.seller.active?
+        flash[:error] = "Você já completou essa etapa"
+        redirect_to invoices_path
+      end
+    end
   end
 
 end
