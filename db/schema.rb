@@ -10,31 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516202537) do
+ActiveRecord::Schema.define(version: 2018_05_17_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "company_purposes", force: :cascade do |t|
-    t.bigint "seller_id"
-    t.bigint "purpose_id"
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "installments", force: :cascade do |t|
+    t.bigint "invoice_id"
+    t.string "number"
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "BRL", null: false
+    t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["purpose_id"], name: "index_company_purposes_on_purpose_id"
-    t.index ["seller_id"], name: "index_company_purposes_on_seller_id"
+    t.index ["invoice_id"], name: "index_installments_on_invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string "invoice_type"
+    t.integer "invoice_type"
     t.string "number"
     t.bigint "seller_id"
+    t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
 
-  create_table "purposes", force: :cascade do |t|
-    t.string "name"
+  create_table "payers", force: :cascade do |t|
+    t.string "cnpj"
+    t.string "company_name"
+    t.string "registration_number"
+    t.string "zip_code"
+    t.string "address"
+    t.string "address_number"
+    t.string "neighborhood"
+    t.string "state"
+    t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,16 +77,15 @@ ActiveRecord::Schema.define(version: 20180516202537) do
     t.string "cpf"
     t.string "phone"
     t.string "company_name"
+    t.string "company_nickname"
     t.string "cnpj"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "company_type"
+    t.integer "revenue"
+    t.integer "employees"
+    t.integer "rental_cost"
     t.boolean "product_manufacture", default: false
     t.boolean "service_provision", default: false
     t.boolean "product_reselling", default: false
-    t.integer "company_type"
-    t.integer "revenue"
-    t.integer "rental_cost"
-    t.integer "employees"
     t.boolean "generate_boleto", default: false
     t.boolean "generate_invoice", default: false
     t.boolean "receive_cheque", default: false
@@ -68,6 +100,8 @@ ActiveRecord::Schema.define(version: 20180516202537) do
     t.boolean "permit_contact_client", default: false
     t.boolean "charge_payer", default: false
     t.boolean "consent", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,15 +115,16 @@ ActiveRecord::Schema.define(version: 20180516202537) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.bigint "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "seller_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["seller_id"], name: "index_users_on_seller_id"
   end
 
-  add_foreign_key "company_purposes", "purposes"
-  add_foreign_key "company_purposes", "sellers"
+  add_foreign_key "installments", "invoices"
+  add_foreign_key "invoices", "payers"
+  add_foreign_key "invoices", "sellers"
   add_foreign_key "users", "sellers"
 end
