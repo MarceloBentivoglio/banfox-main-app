@@ -9,13 +9,13 @@
     padding: 10px;
   }
   .client-form-header {
-    height: 120px;
+    height: 50px;
     margin-bottom: 10px;
     h2 {
       margin: 0;
       text-align: center;
       color: $dark-blue;
-      font-size: 40px;
+      font-size: 30px;
     }
   }
   .client-progress-bar {
@@ -32,8 +32,8 @@
     flex-direction: column;
     align-items: center;
     border-radius: 6px;
-    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1), 0 10px 30px #f3ece8;
+    // box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
     form {
       margin-top: 15px;
       width: 90%;
