@@ -1,41 +1,44 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <div class="client-form">
-        <%= image_tag "porco.png", height: 100 %>
-        <h2>Estamos a poucos passos de criar a sua conta...</h2>
-        <div class="progress-bar">
-          <span class="point done">1</span>
-          <span class="point active">2</span>
-          <span class="point future">3</span>
-          <span class="point future">4</span>
-          <span class="point future">5</span>
+      <div class="client-form-box">
+        <div class="client-form-logo">
+          <%= image_tag "porco.png", height: 100 %>
         </div>
-        <div class="client-infos">
+        <div class="client-form-header">
+          <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        </div>
+        <div class="client-form">
+          <div class="progress-bar">
+            <span class="point done">1</span>
+            <span class="point active">2</span>
+            <span class="point future">3</span>
+            <span class="point future">4</span>
+            <span class="point future">5</span>
+          </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-          <%= f.error_notification %>
-            <div class="form-group">
-              <div class="tag-choices">
-                <% Seller::PURPOSE.each do |key, value| %>
-                  <input name="seller[<%= key %>]" type="hidden" value="0">
-                  <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
-                  <label class="tag-choice" for="seller_<%= key %>">
-                    <%= value %>
-                    <i class="fa fa-check"></i>
-                  </label>
-                <% end %>
-                <% Seller::PAYMENT_METHOD.each do |key, value| %>
-                  <input name="seller[<%= key %>]" type="hidden" value="0">
-                  <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
-                  <label class="tag-choice" for="seller_<%= key %>">
-                    <%= value %>
-                    <i class="fa fa-check"></i>
-                  </label>
-                <% end %>
-              </div>
+            <%= f.error_notification %>
+            <div class="tag-choices-company">
+              <h4>Selecione todos que se aplicam ao seu negócio...</h4>
+              <% Seller::PURPOSE.each do |key, value| %>
+                <input name="seller[<%= key %>]" type="hidden" value="0">
+                <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
+                <label class="tag-choice tag-choice2" for="seller_<%= key %>">
+                  <%= value %>
+                  <i class="fa fa-check"></i>
+                </label>
+              <% end %>
+              <% Seller::PAYMENT_METHOD.each do |key, value| %>
+                <input name="seller[<%= key %>]" type="hidden" value="0">
+                <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
+                <label class="tag-choice tag-choice2" for="seller_<%= key %>">
+                  <%= value %>
+                  <i class="fa fa-check"></i>
+                </label>
+              <% end %>
             </div>
-          <%= f.submit 'Continue' %>
-          <%= link_to "Back", previous_wizard_path %>
+            <%= f.submit 'Continue' %>
+            <%= link_to "Back", previous_wizard_path %>
           <% end %>
         </div>
       </div>

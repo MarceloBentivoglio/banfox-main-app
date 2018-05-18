@@ -1,3 +1,6 @@
+.footer {
+  z-index: -99;
+}
 .footer-copyright {
   p {
     margin-top: 50px;
@@ -19,9 +22,10 @@
 }
 .footer-graph {
   width: 100%;
-  margin-top: -700px;
+  margin-top: -450px;
   img {
     max-width: 100%;
+    opacity: 0.4;
     height: auto;
   }
 }
