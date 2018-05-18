@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.all
+    @seller = current_user.seller
+    @invoices = Invoice.includes(:seller).where(seller: @seller)
   end
 
   def new
