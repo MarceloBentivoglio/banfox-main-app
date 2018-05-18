@@ -99,7 +99,8 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
     t.boolean "pay_factoring", default: false
     t.boolean "permit_contact_client", default: false
     t.boolean "charge_payer", default: false
-    t.boolean "consent", default: false
+    t.boolean "consent"
+    t.integer "validation_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
