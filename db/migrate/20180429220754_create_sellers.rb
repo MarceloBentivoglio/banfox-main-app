@@ -27,7 +27,8 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.boolean :pay_factoring, default: false
       t.boolean :permit_contact_client, default: false
       t.boolean :charge_payer, default: false
-      t.boolean :consent, default: false
+      t.boolean :consent
+      t.integer :validation_status
 
       t.timestamps
     end
