@@ -10,8 +10,8 @@
         </div>
         <div class="client-form">
           <div class="progress-bar">
-            <span class="point active">1</span>
-            <span class="point future">2</span>
+            <span class="point done">1</span>
+            <span class="point active">2</span>
             <span class="point future">3</span>
             <span class="point future">4</span>
             <span class="point future">5</span>
@@ -19,6 +19,7 @@
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.error_notification %>
             <div class="tag-choices-company">
+              <h4>Selecione todos que se aplicam ao seu negócio...</h4>
               <% Seller::PURPOSE.each do |key, value| %>
                 <input name="seller[<%= key %>]" type="hidden" value="0">
                 <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
@@ -36,8 +37,8 @@
                 </label>
               <% end %>
             </div>
-          <%= f.submit 'Continue' %>
-          <%= link_to "Back", previous_wizard_path %>
+            <%= f.submit 'Continue' %>
+            <%= link_to "Back", previous_wizard_path %>
           <% end %>
         </div>
       </div>
