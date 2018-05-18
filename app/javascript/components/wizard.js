@@ -8,7 +8,6 @@ function selectTagOnClick() {
       $(this).toggleClass("active");
     });
   });
-
 }
 
 export { selectTagOnClick };

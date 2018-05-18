@@ -1,20 +1,214 @@
-// Specific CSS for your home-page
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .banner {
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 13px;
+    }
+    img {
+      height: 260px;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .banner {
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 13px;
+    }
+    img {
+      height: 260px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .banner {
+    h1 {
+      font-size: 45px;
+    }
+    p {
+      font-size: 25px;
+    }
+    img {
+      height: 260px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .banner {
+    h1 {
+      font-size: 55px;
+    }
+    p {
+      font-size: 25px;
+    }
+    img {
+      height: 330px;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .banner {
+    h1 {
+      font-size: 65px;
+    }
+    p {
+      font-size: 25px;
+    }
+    img {
+      height: 380px;
+    }
+  }
+}
+
+// GENERAL CSS FOR WHOLE SIZES
 .banner {
+  width: auto;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin-top: 70px;
   h1 {
-    color: $dark-gray;
+    color: $dark-blue;
     font-weight: bold;
-    font-size: 65px;
   }
   p {
-    color: $near-black;
-    font-size: 25px;
+    color: $dark-blue;
+    opacity: 0.85;
   }
 }
+.how-box {
+  height: 360px;
+  margin: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 300px;
+  }
+  h2 {
+    color: $orange;
+    font-size: 40px;
+  }
+  P {
+    text-align: center;
+    font-size: 25px;
+    color: $dark-blue;
+    opacity: 0.85;
+  }
+}
+.content-box {
+  margin: 0;
+  padding: 0;
+  ul {
+    width: 90%;
+
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      // justify-content: center;
+      align-items: center;
+      text-align: center;
+      span, p {
+        margin: 0;
+        display: inline-block;
+        text-align: center;
+     }
+     p {
+       margin-top: 10px;
+     }
+    }
+  }
+  img {
+    height: 40px !important;
+  }
+}
+
+
+.jumbotron-banner {
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+
+#how-it-works {
+  margin: 50px 0;
+  h1 {
+    color: $dark-blue;
+    font-size: 45px;
+  }
+}
+#how-to-register {
+  margin: 50px 0;
+  h1 {
+    color: $dark-blue;
+    font-size: 45px;
+  }
+  .content {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.step-to-register {
+  height: 500px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-bottom: 30px;
+  }
+  span {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border: 2px solid $orange;
+    border-radius: 50%;
+    font-size: 30px;
+    color: $orange;
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: center;
+    font-size: 25px;
+    color: $dark-blue;
+  }
+  &:hover {
+    transition: 0.2s;
+    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+  }
+}
+.how-to-register-image {
+  height: 280px;
+}
+
+
+
+
+
 .banner-img {
   margin: 0;
   padding: 0;
@@ -39,11 +233,11 @@
   flex-direction: column;
   align-items: left;
   padding: 1em 1em 0.75em;
-  color: $dark-gray;
+  color: $dark-blue;
   h4 {
     font-size: 26px;
     font-weight: 700;
-    color: $near-black;
+    color: $dark-blue;
   }
   ul {
     list-style-type: none;
@@ -62,12 +256,12 @@
   justify-content: center;
   overflow: hidden;
   p {
-    color: $dark-gray;
+    color: $dark-blue;
   }
   label {
     text-decoration: none;
     font-weight: 400;
-    color: $near-black;
+    color: $dark-blue;
   }
 }
 .login-form-homepage {
@@ -89,7 +283,7 @@
   }
 }
 .information {
-  color: $dark-gray;
+  color: $dark-blue;
   padding: 20px;
   margin: auto;
   margin-top: 20px;
@@ -111,7 +305,7 @@
   }
   p {
     font-size: 32px;
-    color: $near-black;
+    color: $dark-blue;
     span {
       color: $green;
       font-weight: 700;
@@ -135,7 +329,7 @@
   justify-content: center;
   p {
     margin-top: 5px;
-    color: $near-black;
+    color: $dark-blue;
     font-style: italic;
   }
 }
@@ -175,3 +369,8 @@
     box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   }
 }
+hr.style-1 {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(238, 123, 49, 0), rgba(238, 123, 49, 0.75), rgba(238, 123, 49, 0));
+  }
