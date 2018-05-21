@@ -61,6 +61,8 @@ class Seller < ApplicationRecord
     active: 5,
   }
 
+  validates_with CnpjValidator, if: :active_or_basic?
+  validates_with CpfValidator, if: :active_or_basic?
   validates :company_type, :full_name, :cpf, :company_name, :cnpj,  presence: true, if: :active_or_basic?
   validates_with AtLeastOneTrue, fields: [:product_manufacture, :service_provision, :product_reselling], if: :active_or_company?
   validates_with AtLeastOneTrue, fields: [:generate_boleto, :generate_invoice, :receive_cheque, :receive_money_transfer], if: :active_or_company?
@@ -68,6 +70,9 @@ class Seller < ApplicationRecord
   validates_with AtLeastOneTrue, fields: [:pay_up_front, :pay_30_60_90, :pay_90_plus], if: :active_or_client?
   validates_with AtLeastOneTrue, fields: [:pay_factoring, :permit_contact_client, :charge_payer], if: :active_or_client?
   validates :consent, acceptance: true, if: :active_or_consent?
+
+  before_update :strip_cnpj, if: :cnpj_changed?
+  before_update :strip_cpf, if: :cpf_changed?
 
   # These methods are needed so that the validations works at each step of the
   # wizard. For more details:
@@ -87,6 +92,16 @@ class Seller < ApplicationRecord
 
   def active_or_consent?
     consent? || active?
+  end
+
+  private
+
+  def strip_cnpj
+    Formatter.strip(cnpj, strict: true)
+  end
+
+  def strip_cpf
+    Formatter.strip(cpf, strict: true)
   end
 
 end

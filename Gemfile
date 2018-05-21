@@ -29,6 +29,9 @@ gem 'enum_help'
 #   This gem treats money as cents in integer with the respective currency
 gem 'money-rails' #https://github.com/RubyMoney/money-rails
 
+# These two gems are used for validating the CPF and the CNPJ
+gem 'cpf_cnpj'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
