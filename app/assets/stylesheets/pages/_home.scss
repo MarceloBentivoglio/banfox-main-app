@@ -247,6 +247,13 @@
       font-size: 22px;
       opacity: 0.9;
     }
+    span, p {
+      margin: 0;
+      display: inline-block;
+    }
+    p {
+      margin-top: 8px;
+    }
   }
 }
 .card2 {
@@ -335,11 +342,10 @@
 }
 .btn-mvp-footer {
   color: $near-white;
-  margin: 0.5rem auto 2px;
-  padding: 1em 1em 0.85em;
+  margin: 0.2rem auto 2px;
+  padding: 0.6em 1.5em;
   border-radius: 3em;
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   background: $orange;
   transition: background 0.6s ease;
   &:hover {
@@ -352,7 +358,6 @@
 .card-footer {
   height: 100px;
   border-radius: 6px;
-  font-weight: bold;
   color: $gray;
   background-color: $near-white;
   -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
@@ -373,4 +378,9 @@ hr.style-1 {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(238, 123, 49, 0), rgba(238, 123, 49, 0.75), rgba(238, 123, 49, 0));
-  }
+}
+.call-to-action-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
