@@ -1,3 +1,5 @@
+<!-- Home Banner -->
+
 <section id="home-banner">
   <div class="banner">
     <div class="jumbotron jumbotron-fluid jumbotron-banner">
@@ -9,17 +11,32 @@
     </div>
   </div>
 </section>
-<div class="container">
-  <section id="home-calltoaction">
+
+
+<!-- Home Call to Action -->
+<section id="home-calltoaction">
+  <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
         <div class="card card1">
-          <h4>Porque a MVP Invest?</h4>
+          <h4>Porque Antecipar Recebíveis?</h4>
           <ul>
-            <li>Somos rápidos no gatilho</li>
-            <li>Easy Peasy Lemon Squeazy</li>
-            <li>Temos taxas Individualizadas</li>
-            <li>Mais que uma Factoring, um parceiro $</li>
+            <li>
+              <span> <%= image_tag "checkazul", height: 29 %></span>
+              <p>Pagar contas essênciais à produção</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkazul", height: 29 %></span>
+              <p>Comprar matéria-prima com desconto</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkazul", height: 29 %></span>
+              <p>Aumentar suas <span style="color: #EE7B31">Vendas</span> mais Rápido!</p>
+            </li>
+            <li>
+              <span> <%= image_tag "checkazul", height: 29 %></span>
+              <p>Folha de pagamento de funcionários</p>
+            </li>
           </ul>
         </div>
       </div>
@@ -58,8 +75,12 @@
         <% end %>
       </div>
     </div>
-  </section>
-  <section id="how-it-works">
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how-it-works">
+  <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-sm-offset-4">
         <h1>Você sabia...</h1>
@@ -125,16 +146,21 @@
         </div>
       </div>
     </div>
-  </section>
-  <hr class="style-1">
-  <section id="how-to-register">
+  </div>
+</section>
+
+<hr class="style-1">
+
+<!-- How to register -->
+<section id="how-to-register">
+  <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-sm-offset-4">
         <h1>Vamos começar?</h1>
       </div>
     </div>
-    <div class="content">
-      <div class="row">
+    <div class="row">
+      <div class="content">
         <div class="col-xs-12 col-md-4">
           <div class="step-to-register">
             <%= image_tag "info.png", class: "how-to-register-image" %>
@@ -158,5 +184,12 @@
         </div>
       </div>
     </div>
-  </section>
-</div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="call-to-action-2">
+          <%= link_to "Criar conta 100% grátis", new_user_registration_path, class: "btn btn-mvp-footer" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
