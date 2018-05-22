@@ -29,6 +29,7 @@ class SellerStepsController < ApplicationController
         @seller = Seller.new(seller_params)
       else
         @seller = @user.seller
+        @seller.assign_attributes(seller_params)
       end
       # This line is necessary for the validations of fields on each step
       @seller.validation_status = step.to_s
@@ -39,7 +40,7 @@ class SellerStepsController < ApplicationController
       # This line is necessary for the validations of fields on each step
       @seller.validation_status = step.to_s
       @seller.active! if wizard_steps.last == step
-      @seller.attributes = seller_params
+      @seller.update_attributes(seller_params)
     end
     render_wizard @seller
   end
