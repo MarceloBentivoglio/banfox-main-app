@@ -1,0 +1,33 @@
+<div class="dashmenu-parent">
+  <div class="dashmenu-mvp">
+    <!-- Logo -->
+    <%= link_to root_path, class: "navbar-mvp-brand" do %>
+      <%= image_tag "logo2.png", height: 40 %>
+    <% end %>
+
+    <div class="navbar-mvp-right hidden-xs hidden-sm">
+
+      <%= link_to "Subir XML", new_invoice_path, class: "navbar-mvp-item navbar-mvp-link" %>
+
+      <% if user_signed_in? %>
+
+      <!-- Links when logged in -->
+      <%= link_to "Dashboard", invoices_path, class: "navbar-mvp-item navbar-mvp-link" %>
+
+      <!-- Avatar with dropdown menu -->
+      <div class="navbar-mvp-item">
+        <div class="dropdown">
+          <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "navbar-mvp-menu", "data-toggle" => "dropdown" %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-mvp-dropdown-menu">
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
