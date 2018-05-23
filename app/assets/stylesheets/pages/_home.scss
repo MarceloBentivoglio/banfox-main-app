@@ -74,6 +74,9 @@
 }
 
 // GENERAL CSS FOR WHOLE SIZES
+body {
+  padding-top: 70px;
+}
 .banner {
   width: auto;
   overflow: hidden;
@@ -81,7 +84,6 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 70px;
   h1 {
     color: $dark-blue;
     font-weight: bold;

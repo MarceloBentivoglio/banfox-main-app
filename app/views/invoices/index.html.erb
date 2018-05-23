@@ -1,12 +1,52 @@
-<h1>Invoices from <%= @seller.company_name %></h1>
-
-<div class="container">
-  <%= link_to "Subir nova nota", new_invoice_path, class: "btn btn-primary" %>
-  <% @invoices.each do |invoice| %>
-    <div class="well">
-      <p><%= invoice.number %></p>
-      <p><%= invoice.payer.company_name %></p>
-      <p><%= humanized_money_with_symbol invoice.total_value %></p>
+<section class="invoice-table">
+  <div class="container">
+    <div class="page-header">
+      <h1>Seja bem vindo, <span><%= @seller.company_name %></span></h1>
+        <p>Acompanhe o status de suas notas fiscais</p>
     </div>
-  <% end %>
-</div>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <!-- <div class="panel-heading">Notas disponíveis <%= @seller.company_name %></div>
+      <div class="panel-body">
+        <p>Acompanhe o status das suas notas fiscais</p>
+      </div> -->
+
+      <!-- Table -->
+      <div style="overflow-x:auto;">
+        <table class="table table-mvp" id="table-mvp">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Número</th>
+              <th style="text-align: center;">Data de Vencimento</th>
+              <th>Valor</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @invoices.each do |invoice| %>
+              <% invoice.installments.each do |installment| %>
+              <tr>
+                <td><%= invoice.payer.company_name.downcase.capitalize[0..15] %></td>
+                <td><%= installment.number %></td>
+                <td style="text-align: center;"><%= installment.due_date.strftime("%d/%m/%Y") %></td>
+                <td><%= humanized_money_with_symbol installment.value_cents / 1000 %></td>
+                <td></td>
+              </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <%= link_to "Subir nova nota", new_invoice_path, class: "btn btn-invoice" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
