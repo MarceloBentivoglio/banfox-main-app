@@ -2,6 +2,7 @@ class InvoicesController < ApplicationController
   before_action :require_active
 
   def index
+
     @seller = current_user.seller
     @invoices = Invoice.includes(:seller).where(seller: @seller)
   end
