@@ -29,11 +29,14 @@ class InvoicesController < ApplicationController
 
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def require_active
-    if current_user.seller
-      unless current_user.seller.active?
+    if (seller = current_user.seller)
+      unless seller.active?
         flash[:error] = "Você precisa completar seu cadastro"
-        redirect_to seller_steps_path
+        redirect_to "#{seller_steps_path}/#{seller.validation_status}"
       end
+    else
+      flash[:error] = "Você precisa completar seu cadastro"
+      redirect_to seller_steps_path
     end
   end
 end
