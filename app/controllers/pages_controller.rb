@@ -10,7 +10,7 @@ class PagesController < ApplicationController
           @redirection_options[:path] = invoices_path
         else
           @redirection_options[:situation] = "incomplete"
-          @redirection_options[:path] = "#{seller_steps_path}/#{seller.validation_status}"
+          @redirection_options[:path] = "#{seller_steps_path}/#{seller.next_step}"
         end
       else
         @redirection_options[:situation] = "begin"
