@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    @seller = current_user.seller
     @invoice = Invoice.new
   end
 
