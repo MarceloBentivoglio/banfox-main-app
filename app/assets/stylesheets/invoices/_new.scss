@@ -1,0 +1,41 @@
+.input-file {
+  height: 200px;
+  width: 500px;
+  border: 2px dashed $gray;
+  border-radius: 6px;
+  background-color: $near-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: $dark-blue;
+    opacity: 0.8;
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+.input-file-box {
+  height: 250px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.btn-file-upload {
+  color: $near-white;
+  float: right;
+  margin: 0.2rem auto 1px;
+  padding: 0.2em 0.8em;
+  border-radius: 0.25em;
+  font-size: 15px;
+  background: $orange;
+  transition: background 0.6s ease;
+  &:hover {
+    opacity: 0.9;
+    background: $red;
+    text-decoration: none;
+    color: white;
+  }
+}
