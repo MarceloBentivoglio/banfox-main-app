@@ -94,6 +94,12 @@ class Seller < ApplicationRecord
     consent? || active?
   end
 
+  # We created this method to make the user come back to the next step when s/he
+  # exit the wizard and then come back
+  def next_step
+    Seller.validation_statuses.key(Seller.validation_statuses[validation_status] + 1)
+  end
+
   private
 
   def strip_cnpj
