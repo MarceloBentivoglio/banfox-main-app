@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
+  def after_sign_in_path_for(resource_or_scope)
+   invoices_path
+  end
+
   def resource_name
     :user
   end
