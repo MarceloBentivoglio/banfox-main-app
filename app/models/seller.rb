@@ -71,6 +71,8 @@ class Seller < ApplicationRecord
   validates_with AtLeastOneTrue, fields: [:pay_factoring, :permit_contact_client, :charge_payer], if: :active_or_client?
   validates :consent, acceptance: true, if: :active_or_consent?
 
+  # We need this to insert in the database a standardized CPF and CNPJ, that is,
+  # without dots and slashes
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
   before_create :strip_cnpj
