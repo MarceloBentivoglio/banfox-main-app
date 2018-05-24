@@ -73,6 +73,9 @@ class Seller < ApplicationRecord
 
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
+  before_create :strip_cnpj
+  before_create :strip_cpf
+
 
   # These methods are needed so that the validations works at each step of the
   # wizard. For more details:
@@ -103,11 +106,11 @@ class Seller < ApplicationRecord
   private
 
   def strip_cnpj
-    Formatter.strip(cnpj, strict: true)
+    self.cnpj = CNPJ::Formatter.strip(self.cnpj, strict: true)
   end
 
   def strip_cpf
-    Formatter.strip(cpf, strict: true)
+    self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
   end
 
 end
