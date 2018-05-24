@@ -17,16 +17,18 @@
     font-size: 50px;
   }
   p {
-    font-size: 22px;
+    font-size: 24px;
+    opacity: 0.9;
   }
 }
 .description-area {
-  margin-top: 30px;
+  margin-top: 50px;
   p {
     text-align: justify;
   }
 }
 .howitworks-img {
+  margin: 30px 0;
   img {
     max-width: 100%;
     height: auto;
@@ -36,13 +38,13 @@
   margin-top: 10px;
   padding-top: 30px;
   height: 250px;
-  background-image: linear-gradient(to right bottom, rgba(248,54,0,0.1) 0%, rgba(238,123,49,0.2) 99%);
+  background-image: linear-gradient(to right, rgba(248,54,0,0.1) 0%, rgba(238,123,49,0.2) 99%);
   border-radius: 140px 350px 200px;
 }
 .area2 {
   height: 250px;
   border-radius: 200px 140px 350px;
-  background-image: linear-gradient(to right top, rgba(228,90,101,0.05) 0%, rgba(185,84,135,0.2) 99%);
+  background-image: linear-gradient(to right, rgba(228,90,101,0.05) 0%, rgba(185,84,135,0.2) 99%);
 }
 .back-area {
   display: flex;
