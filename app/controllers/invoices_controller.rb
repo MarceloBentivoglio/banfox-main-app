@@ -14,12 +14,19 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    if params[:invoice][:xml].present?
-      @invoice = Invoice.from_file(params[:invoice][:xml])
+    if params[:invoice]
+      extract = ExtractDataFromXml.new
+      begin
+      @invoice = extract.invoice(params[:invoice][:xml], current_user.seller)
       @invoice.save!
       @invoice.traditional_invoice!
       redirect_to invoices_path
+      rescue
+        flash[:error] = "Seu CNPJ não confere com o da nota"
+        redirect_to new_invoice_path
+      end
     else
+      flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
       redirect_to new_invoice_path
     end
   end
@@ -35,7 +42,7 @@ class InvoicesController < ApplicationController
     if (seller = current_user.seller)
       unless seller.active?
         flash[:error] = "Você precisa completar seu cadastro"
-        redirect_to "#{seller_steps_path}/#{seller.validation_status}"
+        redirect_to "#{seller_steps_path}/#{seller.next_step}"
       end
     else
       flash[:error] = "Você precisa completar seu cadastro"
