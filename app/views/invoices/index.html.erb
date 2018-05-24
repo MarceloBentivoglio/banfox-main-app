@@ -1,15 +1,10 @@
 <section class="invoice-table">
   <div class="container">
     <div class="page-header">
-      <h1>Seja bem vindo, <span><%= @seller.company_name %></span></h1>
+      <h1>Seja bem vindo, <span><%= @current_user.seller.company_name %></span></h1>
         <p>Acompanhe o status de suas notas fiscais</p>
     </div>
     <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <!-- <div class="panel-heading">Notas disponíveis <%= @seller.company_name %></div>
-      <div class="panel-body">
-        <p>Acompanhe o status das suas notas fiscais</p>
-      </div> -->
 
       <!-- Table -->
       <div style="overflow-x:auto;">
@@ -24,6 +19,7 @@
             </tr>
           </thead>
           <tbody>
+            <% if @invoices %>
             <% @invoices.each do |invoice| %>
               <% invoice.installments.each do |installment| %>
               <tr>
@@ -34,6 +30,7 @@
                 <td></td>
               </tr>
               <% end %>
+            <% end %>
             <% end %>
             <tr>
               <td></td>
