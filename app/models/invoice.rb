@@ -11,11 +11,6 @@ class Invoice < ApplicationRecord
 
   has_one_attached :xml
 
-  def self.from_file(file)
-    extract = ExtractDataFromXml.new
-    invoice = extract.invoice(file)
-  end
-
   def total_value
     Money.new(installments.sum("value_cents"))
   end
