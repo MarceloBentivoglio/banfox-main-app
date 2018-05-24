@@ -54,14 +54,6 @@
                 <div class="form-actions">
                   <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
                 </div>
-                <p>Ou entre com sua conta
-                  <span style="color: #4285f4;">G</span>
-                  <span style="color: #ea4335;">o</span>
-                  <span style="color: #fbbc05;">o</span>
-                  <span style="color: #4285f4;">g</span>
-                  <span style="color: #34a853;">l</span>
-                  <span style="color: #ea4335;">e</span>
-                </p>
               <% end %>
             </div>
           <% elsif @redirection_options[:situation] == "active" %>
@@ -74,9 +66,17 @@
             </div>
           <% end %>
         </div>
-        <% if !user_signed_in? %>
-
+        <% if @redirection_options[:situation] == "register" %>
+        <p>Ou entre com sua conta
+          <span style="color: #4285f4;">G</span>
+          <span style="color: #ea4335;">o</span>
+          <span style="color: #fbbc05;">o</span>
+          <span style="color: #4285f4;">g</span>
+          <span style="color: #34a853;">l</span>
+          <span style="color: #ea4335;">e</span>
+        </p>
         <% end %>
+
       </div>
     </div>
   </div>
