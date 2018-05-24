@@ -1,12 +1,12 @@
 class ExtractDataFromXml
-  def invoice(file)
+  def invoice(file, seller)
     doc = Nokogiri::XML(file.read)
     file.rewind
     invoice = Invoice.new
+    invoice = check_invoice_seller(doc, invoice, seller)
     invoice = extract_invoice_general_info(doc, invoice)
     invoice = extract_installments(doc, invoice)
     invoice = extract_payer_info(doc, invoice)
-    invoice = extract_seller_info(doc, invoice)
     return invoice
   end
 
@@ -53,17 +53,12 @@ class ExtractDataFromXml
     end
   end
 
-  def extract_seller_info (doc, invoice)
+
+
+  def check_invoice_seller (doc, invoice, seller)
     doc.search('emit').each do |xml_seller_info|
       cnpj = xml_seller_info.search('CNPJ').text.strip
-      if Seller.exists?(cnpj: cnpj)
-        seller = Seller.find_by_cnpj(cnpj)
-      else
-        seller = Seller.new
-        seller.cnpj = cnpj
-        seller.company_name = xml_seller_info.search('xNome').text.strip
-        seller.company_nickname = xml_seller_info.search('xFant').text.strip
-      end
+      raise RuntimeError, 'Invoice do not belongs to seller' unless cnpj == seller.cnpj
       invoice.seller = seller
       return invoice
     end
