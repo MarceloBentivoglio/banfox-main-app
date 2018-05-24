@@ -17,7 +17,6 @@
             <span class="point future">5</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.error_notification %>
             <div class="tag-choices-company">
               <h4>Selecione todos que se aplicam ao seu negócio...</h4>
               <% Seller::PURPOSE.each do |key, value| %>
@@ -28,6 +27,8 @@
                   <i class="fa fa-check"></i>
                 </label>
               <% end %>
+            </div>
+            <div class="tag-choices-company">
               <% Seller::PAYMENT_METHOD.each do |key, value| %>
                 <input name="seller[<%= key %>]" type="hidden" value="0">
                 <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
