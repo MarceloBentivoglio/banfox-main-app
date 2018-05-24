@@ -16,9 +16,7 @@
             <span class="point done">4</span>
             <span class="point active">5</span>
           </div>
-
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-          <%= f.error_notification %>
             <div class="form-group">
               <div class="tag-choices-consent">
                 <% Seller::CONSENT.each do |key, value| %>
@@ -31,6 +29,7 @@
                 <% end %>
               </div>
             </div>
+          <%= f.error :consent %>
           <%= f.submit 'Continue' %>
           <%= link_to "Back", previous_wizard_path %>
           <% end %>

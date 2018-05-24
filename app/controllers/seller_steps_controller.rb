@@ -41,8 +41,11 @@ class SellerStepsController < ApplicationController
       @seller = @user.seller
       # This line is necessary for the validations of fields on each step
       @seller.validation_status = step.to_s
-      @seller.active! if wizard_steps.last == step
-      @seller.update_attributes(seller_params)
+      # I had to put seller active inside the if loop because it wouldn't work
+      # otherway
+      if @seller.update_attributes(seller_params)
+        @seller.active! if wizard_steps.last == step
+      end
     end
     render_wizard @seller
   end
