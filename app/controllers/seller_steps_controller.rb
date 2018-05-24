@@ -6,6 +6,8 @@ class SellerStepsController < ApplicationController
   # seller_steps views must change as well
   steps :basic, :company, :finantial, :client, :consent
 
+  layout "empty_layout"
+
   def show
     @user = current_user
     case step
