@@ -2,13 +2,11 @@ class InvoicesController < ApplicationController
   before_action :require_active
 
   def index
-    render layout: "dash_layout"
     @seller = current_user.seller
     @invoices = Invoice.includes(:seller).where(seller: @seller)
   end
 
   def new
-    render layout: "dash_layout"
     @seller = current_user.seller
     @invoice = Invoice.new
   end
