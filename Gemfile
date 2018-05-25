@@ -32,6 +32,9 @@ gem 'money-rails' #https://github.com/RubyMoney/money-rails
 # These two gems are used for validating the CPF and the CNPJ
 gem 'cpf_cnpj'
 
+# This gem is used to create an admin interface
+gem 'rails_admin', '~> 1.3'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
