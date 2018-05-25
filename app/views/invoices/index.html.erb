@@ -16,6 +16,7 @@
               <th style="text-align: center;">Data de Vencimento</th>
               <th>Valor</th>
               <th>Status</th>
+              <th>Deletar</th>
             </tr>
           </thead>
           <tbody>
@@ -28,11 +29,17 @@
                 <td style="text-align: center;"><%= installment.due_date.strftime("%d/%m/%Y") %></td>
                 <td><%= humanized_money_with_symbol installment.value_cents / 1000 %></td>
                 <td></td>
+                <td>
+                  <%= link_to(invoice_path(invoice), class: "", method: :delete, "data-confirm" => "Are you sure?" ) do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+                </td>
               </tr>
               <% end %>
             <% end %>
             <% end %>
             <tr>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
