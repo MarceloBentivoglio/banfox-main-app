@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :howitworks]
+  layout "homelayout"
 
   def home
     @redirection_options = {situation: "register"}
@@ -17,12 +18,8 @@ class PagesController < ApplicationController
         @redirection_options[:path] = seller_steps_path
       end
     end
-
-
-    render layout: "homelayout"
   end
 
   def howitworks
-    render layout: "homelayout"
   end
 end
