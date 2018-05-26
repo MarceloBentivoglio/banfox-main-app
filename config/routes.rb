@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'invoices/index'
   get 'invoices/new'
   root to: 'pages#home'
