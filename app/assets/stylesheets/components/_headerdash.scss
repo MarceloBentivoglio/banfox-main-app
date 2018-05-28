@@ -46,7 +46,7 @@ a:hover {
     }
   }
   i {
-    color: $dark-gray;
+    color: rgb(102, 179, 255);
     font-size: 2em;
   }
   p {
@@ -54,4 +54,8 @@ a:hover {
     margin-top: 10px;
     color: $dark-gray;
   }
+  #icon2 {color:  rgb(102, 134, 255);}
+  #icon1 {color: $green;}
+  #icon3 {color: $purple;}
+  #icon4 {color: $orange;}
 }
