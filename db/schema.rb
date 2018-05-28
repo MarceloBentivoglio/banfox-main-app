@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_26_173551) do
+ActiveRecord::Schema.define(version: 2018_05_28_165417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 2018_05_26_173551) do
     t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "liquidation_status", default: 0
+    t.date "deposit_date"
+    t.date "receipt_date"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
   end
 
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_173551) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "backoffice_status", default: 0
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
