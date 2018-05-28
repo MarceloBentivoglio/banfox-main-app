@@ -14,6 +14,7 @@
         <div class="card-menu">
           <i class="fa fa-line-chart" id="icon1"></i>
           <p>Operações Finalizadas</p>
+          <span><%= current_user.seller.invoices.count %></span>
 
         </div>
         <% end  %>
@@ -23,6 +24,7 @@
         <div class="card-menu">
           <i class="fa fa-folder-open-o" id="icon2"></i>
           <p>Notas em Aberto</p>
+          <span><%= current_user.seller.invoices.count %></span>
 
         </div>
         <% end  %>
@@ -32,6 +34,7 @@
         <div class="card-menu">
           <i class="fa fa-calendar" id="icon3"></i>
           <p>Próximos Vencimentos</p>
+          <span><%= current_user.seller.invoices.last.installments.last.due_date.strftime('%d, %B %Y') if current_user.seller.invoices.count > 0 %></span>
 
         </div>
         <% end  %>
@@ -41,7 +44,6 @@
         <div class="card-menu">
           <i class="fa fa-file-excel-o" id="icon4"></i>
           <p>Adicionar XML</p>
-
         </div>
         <% end  %>
       </div>
