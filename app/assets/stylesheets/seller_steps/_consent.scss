@@ -1,5 +1,18 @@
+.consent {
+  height: 360px;
+  overflow: scroll;
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
+  border-radius: 3px;
+  background-color: #fff;
+  p, h4, h5 {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+
 .tag-choices-consent {
-  height: 400px;
+  height: 100px;
   padding: 40px 0;
   display: flex;
   flex-direction: column;
