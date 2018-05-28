@@ -1,0 +1,65 @@
+.page-header {
+  color: $near-black;
+  font-weight: normal;
+  border: none;
+  margin: 40px 0 0;
+  h1 {
+    color: $dark-blue;
+  }
+  span {
+    color: $orange;
+  }
+  p {
+    color: $dark-blue;
+    font-style: italic;
+    font-size: 22px;
+    opacity: 0.8;
+  }
+}
+.menu-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+a:hover {
+  text-decoration: none;
+}
+.card-menu {
+  height: 120px;
+  background-color: $near-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px 0 rgba(192,208,230,0.5);
+  border-radius: 3px;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+    transition: 0.7s;
+    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+    p {
+      text-decoration: none;
+    }
+  }
+  i {
+    color: rgb(102, 179, 255);
+    font-size: 2em;
+  }
+  p {
+    font-size: 0.9em;
+    margin: 10px 0 0;
+    color: $dark-gray;
+  }
+  span {
+    color: $light-gray;
+
+  }
+  #icon2 {color:  rgb(102, 134, 255);}
+  #icon1 {color: $green;}
+  #icon3 {color: $purple;}
+  #icon4 {color: $orange;}
+}

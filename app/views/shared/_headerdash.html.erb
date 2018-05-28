@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h1>Seja bem vindo, <span><%= @current_user.seller.company_name %></span></h1>
+        <p>Acompanhe o status de suas notas fiscais</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="menu-options">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to invoices_path do %>
+        <div class="card-menu">
+          <i class="fa fa-line-chart" id="icon1"></i>
+          <p>Operações Finalizadas</p>
+          <span><%= current_user.seller.invoices.count %></span>
+
+        </div>
+        <% end  %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to invoices_path do %>
+        <div class="card-menu">
+          <i class="fa fa-folder-open-o" id="icon2"></i>
+          <p>Notas em Aberto</p>
+          <span><%= current_user.seller.invoices.count %></span>
+
+        </div>
+        <% end  %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to invoices_path do %>
+        <div class="card-menu">
+          <i class="fa fa-calendar" id="icon3"></i>
+          <p>Próximos Vencimentos</p>
+          <span><%= current_user.seller.invoices.last.installments.last.due_date.strftime('%d, %B %Y') if current_user.seller.invoices.count > 0 %></span>
+
+        </div>
+        <% end  %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to new_invoice_path do %>
+        <div class="card-menu">
+          <i class="fa fa-file-excel-o" id="icon4"></i>
+          <p>Adicionar XML</p>
+        </div>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+</div>
