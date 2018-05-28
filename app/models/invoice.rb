@@ -9,6 +9,12 @@ class Invoice < ApplicationRecord
     check: 2,
   }
 
+  enum backoffice_status: {
+    registred: 0,
+    approved: 1,
+    deposited: 2,
+  }
+
   has_one_attached :xml
 
   def total_value
