@@ -51,8 +51,12 @@ a:hover {
   }
   p {
     font-size: 0.9em;
-    margin-top: 10px;
+    margin: 10px 0 0;
     color: $dark-gray;
+  }
+  span {
+    color: $light-gray;
+
   }
   #icon2 {color:  rgb(102, 134, 255);}
   #icon1 {color: $green;}
