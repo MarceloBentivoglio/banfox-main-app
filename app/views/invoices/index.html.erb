@@ -25,7 +25,7 @@
                 <td><%= invoice.payer.company_name.downcase.capitalize[0..15] %></td>
                 <td><%= installment.number %></td>
                 <td style="text-align: center;"><%= installment.due_date.strftime("%d/%m/%Y") %></td>
-                <td><%= humanized_money_with_symbol installment.value_cents / 1000 %></td>
+                <td><%= humanized_money_with_symbol installment.value %></td>
                 <td><%= invoice.status_for_client %></td>
                 <td>
                   <%= link_to(invoice_path(invoice), class: "", method: :delete, "data-confirm" => "Are you sure?" ) do %>
