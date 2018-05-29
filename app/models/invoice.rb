@@ -21,4 +21,10 @@ class Invoice < ApplicationRecord
     Money.new(installments.sum("value_cents"))
   end
 
+  def status_for_client
+    return "Título em análise" if registred?
+    return "Titulo aprovado" if approved?
+    return "Adiantamento depositado" if deposited?
+  end
+
 end
