@@ -24,7 +24,11 @@ class Invoice < ApplicationRecord
   def status_for_client
     return "Título em análise" if registred?
     return "Titulo aprovado" if approved?
-    return "Adiantamento depositado" if deposited?
+    if deposited?
+      return "Título liquidado" if installments.all? {|installment| installment.paid?}
+      return "Título em atraso" if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return "Atecipação depositada" if installments.all? {|installment| installment.open?}
+    end
   end
 
 end
