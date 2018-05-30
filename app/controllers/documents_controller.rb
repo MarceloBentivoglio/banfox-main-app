@@ -2,6 +2,8 @@ class DocumentsController < ApplicationController
   before_action :set_seller, only: [:index, :new, :create]
 
   def index
+    @uploads = []
+    @uploads << @seller.social_contract
   end
 
   def new
