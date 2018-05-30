@@ -2,15 +2,18 @@
 <p>Find me in app/views/documents/index.html.erb</p>
 
 <div>
-  <% @uploads.each do |upload| %>
-    <% if upload.variable? %>
-      <%= link_to image_tag(upload.variant(resize: "400x400")), upload %>
-    <% elsif upload.previewable? %>
-      <%= link_to image_tag(upload.preview(resize: "400x400")), upload %>
-    <% elsif upload.image? %>
-      <%= link_to image_tag(upload, width: 400), upload %>
-    <% else %>
-      <%= link_to upload.filename, rails_blob_path(upload, disposition: :attachment) %>
+  <% @uploads.each do |name, upload| %>
+    <% if upload.attached? %>
+      <p><%= name %></p>
+      <% if upload.variable? %>
+        <%= link_to image_tag(upload.variant(resize: "400x400")), upload %>
+      <% elsif upload.previewable? %>
+        <%= link_to image_tag(upload.preview(resize: "400x400")), upload %>
+      <% elsif upload.image? %>
+        <%= link_to image_tag(upload, width: 400), upload %>
+      <% else %>
+        <%= link_to upload.filename, rails_blob_path(upload, disposition: :attachment) %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

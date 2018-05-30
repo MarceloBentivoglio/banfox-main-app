@@ -5,8 +5,13 @@ class Seller < ApplicationRecord
   has_many :users
   has_many :invoices
   has_one_attached :social_contract
+  has_one_attached :update_on_social_contract
   has_one_attached :proof_of_address
   has_one_attached :irpj
+  has_one_attached :proof_of_revenue
+  has_one_attached :sisbacen
+
+
 
   #validate :correct_document_mime_type
 
@@ -117,6 +122,18 @@ class Seller < ApplicationRecord
   # exit the wizard and then come back
   def next_step
     Seller.validation_statuses.key(Seller.validation_statuses[validation_status] + 1)
+  end
+
+  def attachments
+    {
+      "Contrato social" => social_contract,
+      "Última alteração contratual" => update_on_social_contract,
+      "Comprovante de endereço da empresa" => proof_of_address,
+      "IRPJ" => irpj,
+      "Relação de faturamento dos últimos 12 meses (assinado por contador)" => proof_of_revenue,
+      "SISBACEN" => sisbacen,
+    }
+
   end
 
   private
