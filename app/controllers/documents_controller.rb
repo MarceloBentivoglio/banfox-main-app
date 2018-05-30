@@ -1,5 +1,4 @@
 class DocumentsController < ApplicationController
-  before_action :require_active
   before_action :set_seller, only: [:index, :new, :create]
   before_action :set_uploads, only: [:index, :new]
 
