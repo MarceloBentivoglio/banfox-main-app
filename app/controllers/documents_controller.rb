@@ -1,8 +1,10 @@
 class DocumentsController < ApplicationController
+  before_action :require_active
   before_action :set_seller, only: [:index, :new, :create]
+  before_action :set_uploads, only: [:index, :new]
+
 
   def index
-    @uploads = @seller.attachments
   end
 
   def new
@@ -27,7 +29,7 @@ class DocumentsController < ApplicationController
     params.require(:seller).permit(:social_contract, :update_on_social_contract, :proof_of_address, :irpj, :proof_of_revenue, :sisbacen)
   end
 
-  def load_attachments
-
+  def set_uploads
+    @uploads = @seller.attachments
   end
 end
