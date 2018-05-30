@@ -8,6 +8,8 @@ class Seller < ApplicationRecord
   has_one_attached :proof_of_address
   has_one_attached :irpj
 
+  #validate :correct_document_mime_type
+
 
 # Through this constatants we are linking the name of the selllers table column
 # with the name we want to appear in the view. It is used to facilitate the
@@ -126,5 +128,11 @@ class Seller < ApplicationRecord
   def strip_cpf
     self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
   end
+
+  # def correct_document_mime_type
+  #   if proof_of_address.attached? && !proof_of_address.content_type.in?(%w(application/msword application/pdf))
+  #     errors.add(:proof_of_address, 'Must be a PDF or a DOC file')
+  #   end
+  # end
 
 end
