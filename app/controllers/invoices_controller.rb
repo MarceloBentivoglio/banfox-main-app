@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-  before_action :require_active
 
   def index
     @seller = current_user.seller
@@ -41,16 +40,4 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:xml)
   end
 
-# TODO: refactor, I am sure that there is a smater way to write this code with less querries
-  def require_active
-    if (seller = current_user.seller)
-      unless seller.active?
-        flash[:error] = "Você precisa completar seu cadastro"
-        redirect_to "#{seller_steps_path}/#{seller.next_step}"
-      end
-    else
-      flash[:error] = "Você precisa completar seu cadastro"
-      redirect_to seller_steps_path
-    end
-  end
 end

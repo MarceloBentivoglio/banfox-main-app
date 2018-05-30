@@ -20,9 +20,6 @@ gem 'webpacker'
 # Used to create the wizard (or multistep form) of the client
 gem 'wicked'
 
-# Used to upload documents using a form, for example a XML or a PDF with a cheque photo
-# gem 'paperclip'
-
 # This gem is used to enable enum to become a selection in simple_form
 gem 'enum_help'
 
@@ -34,6 +31,9 @@ gem 'cpf_cnpj'
 
 # This gem is used to create an admin interface
 gem 'forest_liana'
+
+# This gem is used to transform images that are uploaded by the user
+gem 'image_processing'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

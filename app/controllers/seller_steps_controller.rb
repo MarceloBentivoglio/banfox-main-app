@@ -1,4 +1,5 @@
 class SellerStepsController < ApplicationController
+  skip_before_action :require_active
   before_action :check_not_fully_registered_seller
   # This inclusion is needed to make the wizard
   include Wicked::Wizard
