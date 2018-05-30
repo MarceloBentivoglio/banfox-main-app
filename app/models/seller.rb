@@ -4,6 +4,10 @@ class Seller < ApplicationRecord
 
   has_many :users
   has_many :invoices
+  has_one_attached :social_contract
+  has_one_attached :proof_of_address
+  has_one_attached :irpj
+
 
 # Through this constatants we are linking the name of the selllers table column
 # with the name we want to appear in the view. It is used to facilitate the
