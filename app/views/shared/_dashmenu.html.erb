@@ -4,16 +4,12 @@
     <%= link_to root_path, class: "navbar-mvp-brand" do %>
       <%= image_tag "logo2.png", height: 40 %>
     <% end %>
-
     <div class="navbar-mvp-right hidden-xs hidden-sm">
-
-      <%= link_to "Subir XML", new_invoice_path, class: "navbar-mvp-item navbar-mvp-link" %>
-
       <% if user_signed_in? %>
-
       <!-- Links when logged in -->
+      <%= link_to "Meu documentos", documents_path, class: "navbar-mvp-item navbar-mvp-link" %>
+      <%= link_to "Subir XML", new_invoice_path, class: "navbar-mvp-item navbar-mvp-link" %>
       <%= link_to "Dashboard", invoices_path, class: "navbar-mvp-item navbar-mvp-link" %>
-
       <!-- Avatar with dropdown menu -->
       <div class="navbar-mvp-item">
         <div class="dropdown">
