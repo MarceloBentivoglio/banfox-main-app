@@ -8,67 +8,9 @@
       <div class="col-xs-12">
         <div class="input-file-box">
           <%= simple_form_for @seller, url: documents_path, method: :post do |f| %>
-
-          <label class="input-file">
-            <p id="demo">Contrato social</p>
-            <% if @seller.social_contract.attached?  %>
-              <i class="fa fa-check"></i>
+            <% @uploads.each do |name, upload| %>
+              <%= render partial: "input_document", locals: {f: f, name: name, upload: upload} %>
             <% end %>
-            <span style="display:none;">
-              <%= f.file_field :social_contract, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
-          <label class="input-file">
-            <p id="demo">Última alteração contratual</p>
-            <% if @seller.update_on_social_contract.attached?  %>
-              <i class="fa fa-check"></i>
-            <% end %>
-            <span style="display:none;">
-              <%= f.file_field :update_on_social_contract, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
-          <label class="input-file">
-            <p id="demo">Comprovante de endereço da empresa</p>
-            <% if @seller.proof_of_address.attached?  %>
-              <i class="fa fa-check"></i>
-            <% end %>
-            <span style="display:none;">
-              <%= f.file_field :proof_of_address, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
-          <label class="input-file">
-            <p id="demo">IRPJ</p>
-            <% if @seller.irpj.attached?  %>
-              <i class="fa fa-check"></i>
-            <% end %>
-            <span style="display:none;">
-              <%= f.file_field :irpj, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
-          <label class="input-file">
-            <p id="demo">Relação de faturamento dos últimos 12 meses (assinado por contador)</p>
-            <% if @seller.proof_of_revenue.attached?  %>
-              <i class="fa fa-check"></i>
-            <% end %>
-            <span style="display:none;">
-              <%= f.file_field :proof_of_revenue, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
-          <label class="input-file">
-            <p id="demo">Sisbacen</p>
-            <% if @seller.sisbacen.attached?  %>
-              <i class="fa fa-check"></i>
-            <% end %>
-            <span style="display:none;">
-              <%= f.file_field :sisbacen, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-
           <%= f.submit 'Continue', class: "btn btn-file-upload"%>
           <% end %>
         </div>
