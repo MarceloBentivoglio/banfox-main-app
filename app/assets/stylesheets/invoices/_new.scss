@@ -6,6 +6,7 @@
   background-color: $near-white;
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
   justify-content: center;
   p {
@@ -16,7 +17,7 @@
   }
 }
 .input-file-box {
-  height: 250px;
+  // height: 250px;
   width: 500px;
   display: flex;
   flex-direction: column;

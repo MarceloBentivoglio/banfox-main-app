@@ -1,0 +1,9 @@
+<label class="input-file">
+<p id="demo"><%= name %></p>
+<% if upload.attached?  %>
+  <i class="fa fa-check"></i>
+<% end %>
+<span style="display:none;">
+  <%= f.file_field upload.name.to_sym, id: "file", class: "inputfile"%>
+</span>
+</label>
