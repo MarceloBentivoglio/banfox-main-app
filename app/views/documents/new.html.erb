@@ -2,16 +2,16 @@
   <div class="container">
     <div class="page-header">
       <h1>Seja bem vindo, <span><%= @seller.company_name %></span></h1>
-        <p>Faça o upload do arquivo XML da sua nota fiscal</p>
+        <p>Faça o upload do arquivo PDF, uma imagem ou Excel</p>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="input-file-box">
-          <%= simple_form_for @invoice do |f| %>
+          <%= simple_form_for @seller, url: documents_path, method: :post do |f| %>
           <label class="input-file">
-            <p id="demo">Selecione o arquivo XML</p>
+            <p id="demo">Selecione o arquivo PDF, uma imagem ou Excel</p>
             <span style="display:none;">
-              <%= f.file_field :xml, id: "file", class: "inputfile"%>
+              <%= f.file_field :social_contract, id: "file", class: "inputfile"%>
             </span>
           </label>
           <%= f.submit 'Continue', class: "btn btn-file-upload"%>
