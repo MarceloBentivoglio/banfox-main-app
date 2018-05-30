@@ -4,6 +4,15 @@ class Seller < ApplicationRecord
 
   has_many :users
   has_many :invoices
+  has_one_attached :social_contract
+  has_one_attached :update_on_social_contract
+  has_one_attached :proof_of_address
+  has_one_attached :irpj
+  has_one_attached :proof_of_revenue
+  has_one_attached :sisbacen
+
+  #validate :correct_document_mime_type
+
 
 # Through this constatants we are linking the name of the selllers table column
 # with the name we want to appear in the view. It is used to facilitate the
@@ -113,6 +122,18 @@ class Seller < ApplicationRecord
     Seller.validation_statuses.key(Seller.validation_statuses[validation_status] + 1)
   end
 
+  def attachments
+    {
+      "Contrato social" => social_contract,
+      "Última alteração contratual" => update_on_social_contract,
+      "Comprovante de endereço da empresa" => proof_of_address,
+      "IRPJ" => irpj,
+      "Relação de faturamento dos últimos 12 meses (assinado por contador)" => proof_of_revenue,
+      "SISBACEN" => sisbacen,
+    }
+
+  end
+
   private
 
   def strip_cnpj
@@ -122,5 +143,11 @@ class Seller < ApplicationRecord
   def strip_cpf
     self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
   end
+
+  # def correct_document_mime_type
+  #   if proof_of_address.attached? && !proof_of_address.content_type.in?(%w(application/msword application/pdf))
+  #     errors.add(:proof_of_address, 'Must be a PDF or a DOC file')
+  #   end
+  # end
 
 end
