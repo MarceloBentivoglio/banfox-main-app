@@ -18,4 +18,5 @@ yarn-error.log
 
 # ignore storage
 storage
-storage/*
+
+

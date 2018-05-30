@@ -11,8 +11,6 @@ class Seller < ApplicationRecord
   has_one_attached :proof_of_revenue
   has_one_attached :sisbacen
 
-
-
   #validate :correct_document_mime_type
 
 
