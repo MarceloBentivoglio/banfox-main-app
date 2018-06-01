@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def after_sign_in_path_for(resource_or_scope)
-   invoices_path
+   sellers_show_path
   end
 
   def resource_name
