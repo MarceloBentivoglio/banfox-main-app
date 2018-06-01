@@ -1,0 +1,11 @@
+.font-size-m {
+  font-size: 22px;
+}
+
+a.link-unstyled {
+  color: $dark-gray;
+  opacity: 0.85;
+  &:hover {
+    opacity:1;
+  }
+}

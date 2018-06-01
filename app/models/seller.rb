@@ -11,12 +11,20 @@ class Seller < ApplicationRecord
   has_one_attached :proof_of_revenue
   has_one_attached :sisbacen
 
-  #validate :correct_document_mime_type
+# validate :correct_document_mime_type
 
 
 # Through this constatants we are linking the name of the selllers table column
 # with the name we want to appear in the view. It is used to facilitate the
 # creation of the views
+  DOCUMENTS = [
+    :social_contract,
+    :update_on_social_contract,
+    :proof_of_address,
+    :irpj,
+    :proof_of_revenue,
+    :sisbacen,
+  ]
 
   PURPOSE = {
     "product_manufacture" => "Fabricação de Produtos",
@@ -68,6 +76,13 @@ class Seller < ApplicationRecord
     client: 3,
     consent: 4,
     active: 5,
+  }
+
+  # If this enum is changed the steps in SellerStepsController must change as well
+  enum analysis_status: {
+    on_going: 0,
+    rejected: 1,
+    approved: 2,
   }
 
   validates_with CnpjValidator, if: :active_or_basic?
@@ -131,7 +146,23 @@ class Seller < ApplicationRecord
       "Relação de faturamento dos últimos 12 meses (assinado por contador)" => proof_of_revenue,
       "SISBACEN" => sisbacen,
     }
+  end
 
+  def documentation_completed?
+    DOCUMENTS.all? do |document|
+      self.send(document).attached?
+    end
+  end
+
+  def documents_uploaded
+    docs_uploaded = DOCUMENTS.map do |document|
+      self.send(document).attached?
+    end
+    docs_uploaded.count(true)
+  end
+
+  def total_documents
+    DOCUMENTS.length
   end
 
   private

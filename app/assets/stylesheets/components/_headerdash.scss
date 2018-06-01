@@ -16,6 +16,24 @@
     opacity: 0.8;
   }
 }
+
+.page-messages {
+  color: $near-black;
+  font-weight: normal;
+  border: none;
+  h2 {
+    color: $dark-blue;
+  }
+  p {
+    color: $dark-blue;
+    font-style: italic;
+    font-size: 22px;
+    opacity: 0.8;
+  }
+}
+
+
+
 .menu-options {
   display: flex;
   flex-direction: row;
@@ -56,6 +74,9 @@ a:hover {
   }
   span {
     color: $light-gray;
+    i {
+      font-size: 1.5em;
+    }
 
   }
   #icon2 {color:  rgb(102, 134, 255);}
