@@ -71,7 +71,7 @@ class SellerStepsController < ApplicationController
     if current_user.seller
       if current_user.seller.active?
         flash[:error] = "Você já completou essa etapa"
-        redirect_to invoices_path
+        redirect_to sellers_show_path
       end
     end
   end
