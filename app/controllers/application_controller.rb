@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
   private
   # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def require_active
-    if (user_signed_in?)
       if (seller = current_user.seller)
         unless seller.active?
           flash[:error] = "Você precisa completar seu cadastro"
@@ -38,6 +37,5 @@ class ApplicationController < ActionController::Base
         flash[:error] = "Você precisa completar seu cadastro"
         redirect_to seller_steps_path
       end
-    end
   end
 end
