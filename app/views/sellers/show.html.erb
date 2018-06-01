@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h1>Bem vindo, <span><%= @seller.company_name %></span></h1>
+        <p>Esta é sua página principal! Controle seus adiantamentos de maneira rápida e prática! </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/dashmenu" %>
+<div class="container">
+  <div class="well well-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="page-messages">
+            <h2>Status</h2>
+            <% unless @documents_ok %>
+              <p> <%= link_to "Clique aqui!", new_document_path %> para inserir os documentos de sua empresa. Quanto mais completo, menor a taxa!</p>
+            <% end %>
+            <% unless @at_leat_one_invoice %>
+              <p> Vamos começar? Faça o
+                <%= link_to "upload do XML de uma nota fiscal.", new_invoice_path  %>
+              </p>
+            <% end %>
+            <% if @documents_ok && @at_leat_one_invoice && !@visited %>
+              <p>Está tudo preparado, agora é só esperar alguém de nossa esquipe entrar em contato com você para marcar uma visita</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- tentei fazer com alerts mas fizemos overwrite de algo do bootstrap e ele ta ficando muito feio -->
+  <!--
+    <% unless @documents_ok %>
+      <div class="alert alert-info">
+          <p> <%= link_to "Clique aqui!", new_document_path, class: "alert-link" %> para inserir os documentos de sua empresa. Quanto mais completo, menor a taxa!</p>
+      </div>
+    <% end %>
+    <% unless @at_leat_one_invoice %>
+      <div class="alert alert-info">
+        <p> Vamos começar? Faça o
+          <%= link_to "upload do XML de uma nota fiscal.", new_invoice_path, class: "alert-link"  %>
+        </p>
+      </div>
+    <% end %>
+    <% if @documents_ok && @at_leat_one_invoice && !@visited %>
+      <div class="alert alert-info">
+        <p>Está tudo preparado, agora é só esperar alguém de nossa esquipe entrar em contato com você para marcar uma visita</p>
+      </div>
+    <% end %>
+       -->
+    <!-- Status do seller -->
+    <div class="container">
+      <ul class="list-unstyled font-size-m">
+        <li>
+          <i class="fa fa-check-circle color-ok"></i>
+          Cadastro
+        </li>
+        <li>
+          <% if @documents_ok %>
+            <i class="fa fa-check-circle color-ok"></i>
+          <% else %>
+            <i class="fa fa-times-circle color-atention"></i>
+          <% end %>
+          <%= link_to "Upload de documentos", new_document_path, class: "link-unstyled" %>
+        </li>
+        <li>
+          <% if @at_leat_one_invoice %>
+            <i class="fa fa-check-circle color-ok"></i>
+          <% else %>
+            <i class="fa fa-times-circle color-atention"></i>
+          <% end %>
+          <%= link_to "Upload de títulos", new_invoice_path, class: "link-unstyled"  %>
+        </li>
+        <li>
+          <% if @visited %>
+            <i class="fa fa-check-circle color-ok"></i>
+          <% else %>
+            <i class="fa fa-times-circle color-atention"></i>
+          <% end %>
+          Visita
+        </li>
+        <li>
+          <% if @seller.approved? %>
+            <i class="fa fa-check-circle color-ok"></i>
+          <% else %>
+            <i class="fa fa-times-circle color-atention"></i>
+          <% end %>
+          <%= link_to "Pronto para operar", new_invoice_path, class: "link-unstyled"  %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
