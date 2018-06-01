@@ -64,7 +64,7 @@ class SellerStepsController < ApplicationController
   end
 
   def finish_wizard_path
-    invoices_path
+    sellers_show_path
   end
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def check_not_fully_registered_seller
