@@ -1,25 +1,20 @@
-<div class="navbar-parent">
-  <div class="navbar-wagon">
+<div class="dashmenu-parent">
+  <div class="dashmenu-mvp">
     <!-- Logo -->
-    <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= link_to root_path, class: "navbar-mvp-brand" do %>
+      <%= image_tag "logo2.png", height: 40 %>
     <% end %>
-
-    <!-- Right Navigation -->
-    <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-      <%= link_to "Como funciona?", pages_howitworks_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+    <div class="navbar-mvp-right hidden-xs hidden-sm">
       <% if user_signed_in? %>
-
       <!-- Links when logged in -->
-      <%= link_to "Dashboard", invoices_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to "Meus documentos", documents_path, class: "navbar-mvp-item navbar-mvp-link" %>
+      <%= link_to "Meus títulos", invoices_path, class: "navbar-mvp-item navbar-mvp-link" %>
+      <%= link_to "Dashboard", sellers_show_path, class: "navbar-mvp-item navbar-mvp-link" %>
       <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
+      <div class="navbar-mvp-item">
         <div class="dropdown">
-          <%= image_tag "logoutazul.png", height: 30, class: "dropdown-toggle", id: "navbar-mvp-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "navbar-mvp-menu", "data-toggle" => "dropdown" %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-mvp-dropdown-menu">
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
               <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
@@ -28,22 +23,7 @@
           </ul>
         </div>
       </div>
-      <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Entrar"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
-    </div>
-
-    <!-- Dropdown list appearing on mobile only -->
-    <div class="navbar-wagon-item hidden-md hidden-lg">
-      <div class="dropdown">
-        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Some mobile link</a></li>
-          <li><a href="#">Other one</a></li>
-          <li><a href="#">Other one</a></li>
-        </ul>
-      </div>
     </div>
   </div>
 </div>

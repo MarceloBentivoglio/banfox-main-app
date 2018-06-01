@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sellers/show'
   mount ForestLiana::Engine => '/forest'
   root to: 'pages#home'
   get "pages/howitworks", to: "pages#howitworks"
