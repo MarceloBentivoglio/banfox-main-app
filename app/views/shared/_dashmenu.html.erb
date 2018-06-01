@@ -1,29 +1,28 @@
-<div class="dashmenu-parent">
-  <div class="dashmenu-mvp">
-    <!-- Logo -->
-    <%= link_to root_path, class: "navbar-mvp-brand" do %>
-      <%= image_tag "logo2.png", height: 40 %>
-    <% end %>
-    <div class="navbar-mvp-right hidden-xs hidden-sm">
-      <% if user_signed_in? %>
-      <!-- Links when logged in -->
-      <%= link_to "Meu documentos", documents_path, class: "navbar-mvp-item navbar-mvp-link" %>
-      <%= link_to "Subir XML", new_invoice_path, class: "navbar-mvp-item navbar-mvp-link" %>
-      <%= link_to "Dashboard", invoices_path, class: "navbar-mvp-item navbar-mvp-link" %>
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-mvp-item">
-        <div class="dropdown">
-          <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "navbar-mvp-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-mvp-dropdown-menu">
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
+<div class="container">
+  <div class="row">
+    <div class="menu-options">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to invoices_path do %>
+        <div class="card-menu">
+          <i class="fa fa-line-chart" id="icon1"></i>
+          <p>Meus títulos</p>
+          <span><%= @seller.invoices.count %></span>
         </div>
+        <% end  %>
       </div>
-      <% end %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to documents_path do %>
+        <div class="card-menu">
+          <i class="fa fa-folder-open-o" id="icon2"></i>
+          <p>Meus documentos</p>
+          <% if @documents_ok %>
+            <span><i class="fa fa-check-circle color-ok"></i></span>
+          <% else %>
+            <%= @seller.documents_uploaded %> / <%= @seller.total_documents %>
+          <% end %>
+        </div>
+        <% end  %>
+      </div>
     </div>
   </div>
 </div>
