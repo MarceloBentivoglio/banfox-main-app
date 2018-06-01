@@ -1,4 +1,15 @@
-<%= render "shared/headerdash" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h1>Títulos de <span><%= @current_user.seller.company_name %></span></h1>
+        <p>Acompanhe o status de suas notas fiscais</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/invoicesmenu" %>
 
 <section class="invoice-table">
   <div class="container">
