@@ -3,6 +3,8 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_user && current_user.admin
   end
 
+  config.total_columns_width = 999999
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -40,5 +42,8 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    # Added by Joaquim
+    # Use default horizontal scroll settings of 3 frozen columns (checkboxes, links/actions, ID) with a border on the right:
   end
 end
