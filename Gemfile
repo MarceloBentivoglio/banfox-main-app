@@ -39,6 +39,11 @@ gem 'image_processing'
 # attachments from Active Storage
 gem 'rails_admin'
 
+# These 2 gems are used to make an interface between amazon S3 and heroku. This
+# enables us to make the upload of clients' documents and store them on amazon
+gem 'aws-sdk'
+gem "aws-sdk-s3", require: false
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
