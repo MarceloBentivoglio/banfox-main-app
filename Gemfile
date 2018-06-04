@@ -35,6 +35,10 @@ gem 'forest_liana'
 # This gem is used to transform images that are uploaded by the user
 gem 'image_processing'
 
+# This gem is used to create and admin interface that allows to accesss
+# attachments from Active Storage
+gem 'rails_admin'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
