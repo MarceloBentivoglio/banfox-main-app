@@ -8,7 +8,7 @@ test:
 
 amazon:
   service: S3
-  access_key_id: ""
-  secret_access_key: ""
-  region: ""
-  bucket: ""
+  access_key_id: "AKIAJ3GHBZM63HA4HKIA"
+  secret_access_key: "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"
+  region: "us-east-1"
+  bucket: "bucketeer-3f9da8b6-379e-4b2d-a547-e688bff3f1f5"
