@@ -108,7 +108,7 @@ body {
     color: $orange;
     font-size: 40px;
   }
-  P {
+  p {
     text-align: center;
     font-size: 25px;
     color: $dark-blue;
@@ -134,7 +134,7 @@ body {
       span, p {
         margin: 0;
         display: inline-block;
-        text-align: center;
+        text-align: left;
      }
      p {
        margin-top: 10px;
@@ -206,10 +206,6 @@ body {
 .how-to-register-image {
   height: 280px;
 }
-
-
-
-
 
 .banner-img {
   margin: 0;
