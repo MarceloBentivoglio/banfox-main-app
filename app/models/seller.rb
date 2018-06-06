@@ -10,6 +10,10 @@ class Seller < ApplicationRecord
   has_one_attached :irpj
   has_one_attached :proof_of_revenue
   has_one_attached :sisbacen
+  has_many_attached :partners_cpfs
+  has_many_attached :partners_rgs
+  has_many_attached :partners_irpfs
+  has_many_attached :partners_proof_of_addresses
 
 # validate :correct_document_mime_type
 
@@ -24,6 +28,17 @@ class Seller < ApplicationRecord
     :irpj,
     :proof_of_revenue,
     :sisbacen,
+    :partners_cpfs,
+    :partners_rgs,
+    :partners_irpfs,
+    :partners_proof_of_addresses,
+  ]
+
+  MULTIPLE_ATTACHMENTS = [
+    "partners_cpfs",
+    "partners_rgs",
+    "partners_irpfs",
+    "partners_proof_of_addresses",
   ]
 
   PURPOSE = {
@@ -145,6 +160,10 @@ class Seller < ApplicationRecord
       "IRPJ" => irpj,
       "Relação de faturamento dos últimos 12 meses (assinado por contador)" => proof_of_revenue,
       "SISBACEN" => sisbacen,
+      "CPF dos sócios" => partners_cpfs,
+      "RG dos sócios" => partners_rgs,
+      "IRPF dos sócios" => partners_irpfs,
+      "Comprovante de endereço dos sócios" => partners_proof_of_addresses,
     }
   end
 
