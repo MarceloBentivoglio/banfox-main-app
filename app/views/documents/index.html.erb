@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <% @uploads.each do |name, upload| %>
         <% if upload.attached? %>
-          <p><%= name %></p>
+          <h3><%= name %></h3>
           <% if upload.class == ActiveStorage::Attached::One%>
            <%= render partial: "document_preview", locals: {upload: upload} %>
           <% elsif upload.class == ActiveStorage::Attached::Many %>
