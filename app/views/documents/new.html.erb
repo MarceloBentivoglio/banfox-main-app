@@ -9,7 +9,7 @@
         <div class="input-file-box">
           <%= simple_form_for @seller, url: documents_path, method: :post do |f| %>
             <% @uploads.each do |name, upload| %>
-              <%= render partial: "input_document", locals: {f: f, name: name, upload: upload} %>
+              <%= render partial: "document_input", locals: {f: f, name: name, upload: upload} %>
             <% end %>
           <%= f.submit 'Continue', class: "btn btn-file-upload"%>
           <% end %>
