@@ -1,8 +1,19 @@
 class InvoicesController < ApplicationController
-
+  before_action :set_seller, only: [:index, :store, :opened, :history]
   def index
-    @seller = current_user.seller
-    @invoices = Invoice.includes(:seller).where(seller: @seller)
+    # @invoices = Invoice.includes(:seller).where(seller: @seller)
+  end
+
+  def store
+    @invoices = Invoice.in_store
+  end
+
+  def opened
+
+  end
+
+  def history
+
   end
 
   def new
@@ -40,4 +51,13 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:xml)
   end
 
+  def set_seller
+    @seller = current_user.seller
+  end
+
 end
+
+# Joaquims notes
+# Client.where("created_at >= :start_date AND created_at <= :end_date",
+#   {start_date: params[:start_date], end_date: params[:end_date]})
+

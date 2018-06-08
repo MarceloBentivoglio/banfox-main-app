@@ -2,32 +2,32 @@
   <div class="row">
     <div class="menu-options">
       <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+        <%= link_to store_invoices_path do %>
         <div class="card-menu">
-          <i class="fa fa-check" id="icon1"></i>
-          <p>Operações Finalizadas</p>
-          <span><%= current_user.seller.invoices.count %></span>
+          <i class="fa fa-store" id="icon2"></i>
+          <p>Títulos a venda</p>
+          <span><%= @seller.invoices.registred.count + @seller.invoices.approved.count %></span>
         </div>
         <% end %>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+        <%= link_to opened_invoices_path do %>
         <div class="card-menu">
           <i class="fa fa-calendar" id="icon3"></i>
           <p>Notas em Aberto</p>
-          <span><%= current_user.seller.invoices.count %></span>
+          <span><%= @seller.invoices.count %></span>
         </div>
         <% end %>
       </div>
-     <!--  <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to history_invoices_path do %>
         <div class="card-menu">
-          <i class="fa fa-calendar" id="icon2"></i>
-          <p>Próximos Vencimentos</p>
-          <span><%= current_user.seller.invoices.last.installments.last.due_date.strftime('%d, %B %Y') if current_user.seller.invoices.count > 0 %></span>
+          <i class="fa fa-check" id="icon1"></i>
+          <p>Operações Finalizadas</p>
+          <span><%= @seller.invoices.count %></span>
         </div>
         <% end %>
-      </div> -->
+      </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <%= link_to new_invoice_path do %>
         <div class="card-menu">
