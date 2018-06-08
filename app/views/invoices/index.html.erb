@@ -1,13 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="page-header">
-        <h1>Títulos de <span><%= @current_user.seller.company_name %></span></h1>
-        <p>Acompanhe o status de suas notas fiscais</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "shared/header", locals: {
+  title: "Títulos de",
+  sub_title: "Acompanhe o status de seus títulos",
+  company_name: @seller.company_name
+} %>
 
 <%= render "shared/invoicesmenu" %>
 
@@ -37,7 +32,7 @@
                 <td><%= installment.number %></td>
                 <td style="text-align: center;"><%= installment.due_date.strftime("%d/%m/%Y") %></td>
                 <td><%= humanized_money_with_symbol installment.value %></td>
-                <td><%= invoice.status_for_client %></td>
+                <td><%= invoice.status %></td>
                 <td>
                   <%= link_to(invoice_path(invoice), class: "", method: :delete, "data-confirm" => "Are you sure?" ) do %>
                     <i class="fa fa-trash" aria-hidden="true"></i>
