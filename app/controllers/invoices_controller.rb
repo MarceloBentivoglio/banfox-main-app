@@ -5,15 +5,17 @@ class InvoicesController < ApplicationController
   end
 
   def store
-    @invoices = Invoice.in_store
+    @invoices = Invoice.in_store(@seller.invoices)
   end
 
   def opened
-
+    @opened_invoices = Invoice.opened(@seller)
+    @overdue_invoices = Invoice.overdue(@seller)
   end
 
   def history
-
+    @paid_invoices = Invoice.paid(@seller)
+    @rebought_invoices = Invoice.rebought(@seller)
   end
 
   def new
