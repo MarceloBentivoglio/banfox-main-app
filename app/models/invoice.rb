@@ -49,46 +49,67 @@ class Invoice < ApplicationRecord
   end
 
   def self.overdue(seller_invoices)
+    seller_invoices.find_by_sql("
+      SELECT a.* FROM invoices a
+      JOIN installments b ON a.id = b.invoice_id
+      WHERE a.backoffice_status = 2
+      GROUP BY a.id
+      HAVING SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) > 0 ")
+  end
+  # NOTE: the upper querry performers better than the one below! But will let this one just in case
+  def self.overdue_2(seller_invoices)
     seller_invoices ||= self
     date_range_past = (Date.today - 6.years)...(Date.today)
     seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "open", due_date: date_range_past})
   end
-
+  # TODO: transform on Active Record
   def self.opened(seller_invoices)
-    seller_invoices ||= self
-    date_range_past = (Date.today - 6.years)...(Date.today)
-    date_range_future = Date.today..(Date.today + 1.year)
-    # seller_invoices.deposited.joins(:installments).where.not(installments: {liquidation_status: "open", due_date: date_range_past}).where(installments: {liquidation_status: "open", due_date: date_range_future})
-    seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "open", due_date: date_range_future}).where.not(installments: {due_date: date_range_past})
+    seller_invoices.find_by_sql("
+      SELECT a.* FROM invoices a
+      JOIN installments b ON a.id = b.invoice_id
+      WHERE a.backoffice_status = 2
+      GROUP BY a.id
+      HAVING SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status) ")
   end
-
-  def self.history_paid(seller_invoices)
+  # TODO: transform on Active Record
+  def self.paid(seller_invoices)
+    seller_invoices.find_by_sql("
+      SELECT a.* FROM invoices a
+      JOIN installments b ON a.id = b.invoice_id
+      WHERE a.backoffice_status = 2
+      GROUP BY a.id
+      HAVING SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status) ")
+  end
+  # NOTE: the upper querry performers better than the one below! But will let this one just in case
+  def self.paid_2(seller_invoices)
     seller_invoices ||= self
     seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "paid"}).distinct.select { |invoice|
       invoice.installments.all? {|installment| installment.paid?}
     }
   end
 
-  def self.history_rebought(seller_invoices)
+  def self.rebought(seller_invoices)
+    seller_invoices.find_by_sql("
+      SELECT a.* FROM invoices a
+      JOIN installments b ON a.id = b.invoice_id
+      WHERE a.backoffice_status = 2
+      GROUP BY a.id
+      HAVING SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status) ")
+  end
+  # NOTE: the upper querry performers better than the one below! But will let this one just in case
+  def self.rebought_2(seller_invoices)
     seller_invoices ||= self
     seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "rebought"}).distinct.select { |invoice|
       invoice.installments.all? {|installment| installment.rebought?}
     }
   end
 
-  def self.history(seller_invoices)
-    seller_invoices ||= self
-    seller_invoices.joins(:installments).where(installments: {liquidation_status: "rebought"}).or(seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "paid"})).distinct.select { |invoice|
-      invoice.installments.all? {|installment| installment.rebought? || installment.paid? }
-    }
-
-  end
-
-  def self.paid
-    invoices = []
-    deposited.find_each do |invoice|
-      invoices << invoice if invoice.installments.all? {|installment| installment.paid?}
-    end
-    invoices
+  def self.lost
+    seller_invoices.find_by_sql("
+      SELECT a.* FROM invoices a
+      JOIN installments b ON a.id = b.invoice_id
+      WHERE a.backoffice_status = 2
+      GROUP BY a.id
+      HAVING SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status) ")
   end
 end
