@@ -43,8 +43,8 @@ class Invoice < ApplicationRecord
   end
 
   # TODO: Verificar se essa lógica está certa ou se eu teria que colocar um seller_invoices antes de approved
+  # Transformar em sql
   def self.in_store(seller_invoices)
-    seller_invoices ||= self
     seller_invoices.registred.or(approved)
   end
 

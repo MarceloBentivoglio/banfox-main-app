@@ -6,7 +6,7 @@
         <div class="card-menu">
           <i class="fa fa-store" id="icon2"></i>
           <p>Títulos a venda</p>
-          <span><%= @seller.invoices.registred.count + @seller.invoices.approved.count %></span>
+          <span><%= Invoice.in_store(@seller.invoices).count %></span>
         </div>
         <% end %>
       </div>
@@ -15,7 +15,7 @@
         <div class="card-menu">
           <i class="fa fa-calendar" id="icon3"></i>
           <p>Notas em Aberto</p>
-          <span><%= @seller.invoices.count %></span>
+          <span><%= Invoice.opened(@seller).count + Invoice.overdue(@seller).count %></span>
         </div>
         <% end %>
       </div>
@@ -24,7 +24,7 @@
         <div class="card-menu">
           <i class="fa fa-check" id="icon1"></i>
           <p>Operações Finalizadas</p>
-          <span><%= @seller.invoices.count %></span>
+          <span><%= Invoice.paid(@seller).count + Invoice.rebought(@seller).count %></span>
         </div>
         <% end %>
       </div>
