@@ -1,9 +1,13 @@
+<%= render partial: "shared/header_name_first", locals: {
+  title: "que tal adiantarmos umas notas?",
+  sub_title: "Faça o upload do arquivo XML da sua nota fiscal",
+  company_name: @seller.company_name
+} %>
+
+<%= render "shared/invoicesmenu" %>
+
 <section class="invoice-table">
   <div class="container">
-    <div class="page-header">
-      <h1><span><%= @seller.company_name %></span>, que tal adiantarmos umas notas?</h1>
-        <p>Faça o upload do arquivo XML da sua nota fiscal</p>
-    </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="input-file-box">

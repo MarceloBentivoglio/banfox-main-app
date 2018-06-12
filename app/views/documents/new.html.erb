@@ -1,9 +1,12 @@
+<%= render partial: "shared/header_name_first", locals: {
+  title: "que tal deixarmos seu cadastro atualizado?",
+  sub_title: "Faça o upload dos arquivos solicitados",
+  company_name: @seller.company_name
+} %>
+
+
 <section class="invoice-table">
   <div class="container">
-    <div class="page-header">
-      <h1><span><%= @seller.company_name %></span>, que tal deixarmos seu cadastro atualizado?</h1>
-        <p>Faça o upload dos arquivos solicitados</p>
-    </div>
     <div class="row">
       <div class="col-xs-12">
         <div class="input-file-box">
