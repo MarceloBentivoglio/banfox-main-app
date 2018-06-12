@@ -6,7 +6,7 @@
         <div class="card-menu">
           <i class="fa fa-store" id="icon2"></i>
           <p>Títulos a venda</p>
-          <span><%= Invoice.in_store(@seller.invoices).count %></span>
+          <span><%= Invoice.in_store(@seller).count %></span>
         </div>
         <% end %>
       </div>

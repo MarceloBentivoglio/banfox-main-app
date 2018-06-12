@@ -42,13 +42,13 @@ class Invoice < ApplicationRecord
     end
   end
 
-  # TODO: Verificar se essa lógica está certa ou se eu teria que colocar um seller_invoices antes de approved
-  # Transformar em sql
-  def self.in_store(seller_invoices)
-    seller_invoices.registred.or(approved)
+  # TODO: transform all sql on Active Record
+  def self.in_store(seller)
+    find_by_sql(["
+      SELECT a.* FROM invoices a
+      WHERE (a.backoffice_status = 0 OR a.backoffice_status = 1) AND a.seller_id = ?", seller.id])
   end
 
-  # TODO: transform all sql on Active Record
   def self.overdue(seller)
     find_by_sql(["
       SELECT a.* FROM invoices a
