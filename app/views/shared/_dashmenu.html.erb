@@ -6,7 +6,7 @@
         <div class="card-menu">
           <i class="fa fa-line-chart" id="icon1"></i>
           <p>Meus títulos</p>
-          <span><%= @seller.invoices.count %></span>
+          <span><%= Invoice.opened(@seller).count + Invoice.overdue(@seller).count %></span>
         </div>
         <% end  %>
       </div>
