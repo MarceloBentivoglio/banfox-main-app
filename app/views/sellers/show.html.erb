@@ -1,13 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="page-header">
-        <h1>Bem vindo, <span><%= @seller.company_name %></span></h1>
-        <p>Esta é sua página principal! Controle seus adiantamentos de maneira rápida e prática! </p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "shared/header", locals: {
+  title: "Bem vindo",
+  sub_title: "Esta é sua página principal! Controle seus adiantamentos de maneira rápida e prática!",
+  company_name: @seller.company_name
+} %>
 
 <%= render "shared/dashmenu" %>
 <div class="container">

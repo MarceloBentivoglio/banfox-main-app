@@ -6,6 +6,4 @@ class SellersController < ApplicationController
     @at_leat_one_invoice = @seller.invoices.count > 0
     @visited = @seller.visited?
   end
-
-
 end
