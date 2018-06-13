@@ -42,6 +42,7 @@ class Invoice < ApplicationRecord
     end
   end
   # TODO: create the method with the COUNT inside to get a better performance
+  # TODO: Use Joia's email to guide me to getting a better querry performance
   # TODO: transform all sql on Active Record
   def self.in_store(seller)
     find_by_sql(["
