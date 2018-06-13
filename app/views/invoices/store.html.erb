@@ -1,0 +1,9 @@
+<%= render partial: "shared/header", locals: {
+  title: "Títulos a venda",
+  sub_title: "Gerencie os títulos que quer vender",
+  company_name: @seller.company_name
+} %>
+
+<%= render "shared/invoicesmenu" %>
+
+<%= render partial: "shared/table", locals: { columns: {"t-col-1" => "Cliente", "t-col-2" => "Número", "t-col-3" => "Número de parcelas", "t-col-4" => "Valor (R$)", "t-col-5" => "Status"}, row_type: "shared/table_row_invoice_w_del", items: @invoices }%>

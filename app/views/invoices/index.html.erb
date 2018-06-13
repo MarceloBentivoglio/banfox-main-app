@@ -1,65 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="page-header">
-        <h1>Títulos de <span><%= @current_user.seller.company_name %></span></h1>
-        <p>Acompanhe o status de suas notas fiscais</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "shared/header", locals: {
+  title: "Títulos de",
+  sub_title: "Acompanhe o status de seus títulos",
+  company_name: @seller.company_name
+} %>
 
 <%= render "shared/invoicesmenu" %>
 
-<section class="invoice-table">
-  <div class="container">
-    <div class="panel panel-default">
 
-      <!-- Table -->
-      <div style="overflow-x:auto;">
-        <table class="table table-mvp" id="table-mvp">
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Número</th>
-              <th style="text-align: center;">Data de Vencimento</th>
-              <th>Valor</th>
-              <th>Status</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if @invoices %>
-            <% @invoices.each do |invoice| %>
-              <% invoice.installments.each do |installment| %>
-              <tr>
-                <td><%= invoice.payer.company_name.downcase.capitalize[0..15] %></td>
-                <td><%= installment.number %></td>
-                <td style="text-align: center;"><%= installment.due_date.strftime("%d/%m/%Y") %></td>
-                <td><%= humanized_money_with_symbol installment.value %></td>
-                <td><%= invoice.status_for_client %></td>
-                <td>
-                  <%= link_to(invoice_path(invoice), class: "", method: :delete, "data-confirm" => "Are you sure?" ) do %>
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
-                </td>
-              </tr>
-              <% end %>
-            <% end %>
-            <% end %>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <%= link_to "Subir nova nota", new_invoice_path, class: "btn btn-invoice" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
