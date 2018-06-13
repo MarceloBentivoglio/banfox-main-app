@@ -4,7 +4,7 @@
   company_name: @seller.company_name
 } %>
 
-<%= render "shared/invoicesmenu" %>
+<%= render partial: "shared/invoicesmenu", locals: {menu_in: :new} %>
 
 <div class="container">
   <div class="row">
