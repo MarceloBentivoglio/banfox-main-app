@@ -19,7 +19,7 @@ class Invoice < ApplicationRecord
   INVOICE_STATUS = [
     "Título em análise",
     "Titulo aprovado",
-    "Atecipação depositada",
+    "Título a vencer",
     "Título liquidado",
     "Título recomprado",
     "Título em atraso",
@@ -32,16 +32,16 @@ class Invoice < ApplicationRecord
   end
 
   def status
-    return INVOICE_STATUS[1] if registred?
-    return INVOICE_STATUS[2] if approved?
+    return INVOICE_STATUS[0] if registred?
+    return INVOICE_STATUS[1] if approved?
     if deposited?
-      return INVOICE_STATUS[4] if installments.all? {|installment| installment.paid?}
-      return INVOICE_STATUS[5] if installments.all? {|installment| installment.rebought?}
-      return INVOICE_STATUS[6] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
-      return INVOICE_STATUS[3] if installments.all? {|installment| installment.open?}
+      return INVOICE_STATUS[3] if installments.all? {|installment| installment.paid?}
+      return INVOICE_STATUS[4] if installments.all? {|installment| installment.rebought?}
+      return INVOICE_STATUS[5] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return INVOICE_STATUS[2]
     end
   end
-
+  # TODO: create the method with the COUNT inside to get a better performance
   # TODO: transform all sql on Active Record
   def self.in_store(seller)
     find_by_sql(["

@@ -1,0 +1,9 @@
+<%= render partial: "shared/header", locals: {
+  title: "Detalhes do Título de ",
+  sub_title: "Analise as parcelas e datas de vencimento do título",
+  company_name: @invoice.payer.company_name.downcase.capitalize[0..27]
+} %>
+
+<%= render "shared/invoicesmenu" %>
+
+<%= render partial: "shared/table", locals: { columns: { "t-col-1" => "Número", "t-col-2" => "Vencimento", "t-col-4" => "Valor (R$)", "t-col-5" => "Status"}, row_type: "shared/table_row_installment", items: @installments }%>
