@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-6 col-md-3">
         <%= link_to invoices_path do %>
         <div class="card-menu">
-          <i class="fa fa-line-chart" id="icon1"></i>
+          <i class="fa fa-line-chart" id="icon-green"></i>
           <p>Meus títulos</p>
           <span><%= Invoice.opened(@seller).count + Invoice.overdue(@seller).count %></span>
         </div>
@@ -13,7 +13,7 @@
       <div class="col-xs-12 col-sm-6 col-md-3">
         <%= link_to documents_path do %>
         <div class="card-menu">
-          <i class="fa fa-folder-open-o" id="icon2"></i>
+          <i class="fa fa-folder-open-o" id="icon-blue"></i>
           <p>Meus documentos</p>
           <% if @documents_ok %>
             <span><i class="fa fa-check-circle color-ok"></i></span>
