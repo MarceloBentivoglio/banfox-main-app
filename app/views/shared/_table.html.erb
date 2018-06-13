@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="t-header">
+    <% columns.each do |col_class, col_content| %>
+      <div class="<%= col_class %>"><span><%= col_content %></span></div>
+    <% end %>
+  </div>
+  <div class="t-rows">
+    <%= render partial: row_type, collection: items, as: :item %>
+  </div>
+</div>
+

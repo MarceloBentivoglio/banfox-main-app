@@ -2,39 +2,39 @@
   <div class="row">
     <div class="menu-options">
       <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+        <%= link_to store_invoices_path do %>
         <div class="card-menu">
-          <i class="fa fa-check" id="icon1"></i>
-          <p>Operações Finalizadas</p>
-          <span><%= current_user.seller.invoices.count %></span>
+          <i class="fa fa-usd" id="icon1"></i>
+          <p>Títulos a venda</p>
+          <span><%= Invoice.in_store(@seller).count %></span>
         </div>
         <% end %>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+        <%= link_to opened_invoices_path do %>
         <div class="card-menu">
           <i class="fa fa-calendar" id="icon3"></i>
           <p>Notas em Aberto</p>
-          <span><%= current_user.seller.invoices.count %></span>
+          <span><%= Invoice.opened(@seller).count + Invoice.overdue(@seller).count %></span>
         </div>
         <% end %>
       </div>
-     <!--  <div class="col-xs-12 col-sm-6 col-md-3">
-        <%= link_to invoices_path do %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= link_to history_invoices_path do %>
         <div class="card-menu">
-          <i class="fa fa-calendar" id="icon2"></i>
-          <p>Próximos Vencimentos</p>
-          <span><%= current_user.seller.invoices.last.installments.last.due_date.strftime('%d, %B %Y') if current_user.seller.invoices.count > 0 %></span>
+          <i class="fa fa-history" id="icon2"></i>
+          <p>Operações Finalizadas</p>
+          <span><%= Invoice.paid(@seller).count + Invoice.rebought(@seller).count %></span>
         </div>
         <% end %>
-      </div> -->
+      </div>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <%= link_to new_invoice_path do %>
         <div class="card-menu">
           <i class="fa fa-file-excel-o" id="icon4"></i>
-          <p>Adicionar XML</p>
+          <p>Vender nova nota</p>
         </div>
-        <% end  %>
+        <% end %>
       </div>
     </div>
   </div>

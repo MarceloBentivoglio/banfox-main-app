@@ -34,13 +34,6 @@ class Seller < ApplicationRecord
     :partners_proof_of_addresses,
   ]
 
-  MULTIPLE_ATTACHMENTS = [
-    "partners_cpfs",
-    "partners_rgs",
-    "partners_irpfs",
-    "partners_proof_of_addresses",
-  ]
-
   PURPOSE = {
     "product_manufacture" => "Fabricação de Produtos",
     "service_provision" => "Prestação de Serviço",

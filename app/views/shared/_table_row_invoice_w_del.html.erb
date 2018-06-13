@@ -1,0 +1,17 @@
+<div class="t-wrapper-row">
+  <div class="t-delete-button">
+    <%= link_to(invoice_path(item), class: "", method: :delete, "data-confirm" => "Tem certeza?" ) do %>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <%= link_to invoice_path(item) do %>
+    <div class="t-row">
+      <div class="t-col-1"><span><%= item.payer.company_name.downcase.capitalize[0..20] %></span></div>
+      <div class="t-col-2"><span><%= item.number %></span></div>
+      <div class="t-col-3 text-center"><span><%= item.installments.count %></span></div>
+      <div class="t-col-4"><span><%= humanized_money item.total_value %></span></div>
+      <div class="t-col-5"><span><%= item.status %></span></div>
+    </div>
+  <% end %>
+</div>
+
