@@ -4,27 +4,26 @@
   company_name: @seller.company_name
 } %>
 
-<%= render "shared/invoicesmenu" %>
+<%= render partial: "shared/invoicesmenu", locals: {menu_in: :new} %>
 
-<section class="invoice-table">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="input-file-box">
-          <%= simple_form_for @invoice do |f| %>
-          <label class="input-file">
-            <p id="demo">Selecione o arquivo XML</p>
-            <span style="display:none;">
-              <%= f.file_field :xml, id: "file", class: "inputfile"%>
-            </span>
-          </label>
-          <%= f.submit 'Continue', class: "btn btn-file-upload"%>
-          <% end %>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="input-file-box">
+        <%= simple_form_for @invoice do |f| %>
+        <label class="input-file">
+          <p id="demo">Selecione o arquivo XML</p>
+          <span style="display:none;">
+            <%= f.file_field :xml, id: "file", class: "inputfile"%>
+          </span>
+        </label>
+        <%= f.submit 'Continue', class: "btn btn-file-upload"%>
+        <% end %>
       </div>
     </div>
   </div>
-</section>
+</div>
+
 
 <script>
   var input = document.getElementById( 'file' );
