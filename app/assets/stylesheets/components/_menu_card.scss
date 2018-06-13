@@ -1,39 +1,3 @@
-.page-header {
-  color: $near-black;
-  font-weight: normal;
-  border: none;
-  margin: 40px 0 0;
-  h1 {
-    color: $dark-blue;
-  }
-  span {
-    color: $orange;
-  }
-  p {
-    color: $dark-blue;
-    font-style: italic;
-    font-size: 22px;
-    opacity: 0.8;
-  }
-}
-
-.page-messages {
-  color: $near-black;
-  font-weight: normal;
-  border: none;
-  h2 {
-    color: $dark-blue;
-  }
-  p {
-    color: $dark-blue;
-    font-style: italic;
-    font-size: 22px;
-    opacity: 0.8;
-  }
-}
-
-
-
 .menu-options {
   display: flex;
   flex-direction: row;
@@ -79,8 +43,14 @@ a:hover {
     }
 
   }
-  #icon2 {color:  rgb(102, 134, 255);}
-  #icon1 {color: $green;}
-  #icon3 {color: $purple;}
-  #icon4 {color: $orange;}
+
+  #icon-blue {color: $other-blue;}
+  #icon-green {color: $green;}
+  #icon-purple {color: $purple;}
+  #icon-orange {color: $orange;}
 }
+
+  .active {
+    background-color: $orange;
+    opacity: 0.5;
+  }

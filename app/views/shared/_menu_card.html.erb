@@ -1,0 +1,9 @@
+<div class="col-xs-12 col-sm-6 col-md-3">
+  <%= link_to itempath do %>
+  <div class="card-menu <%= "active" if active_menu %>">
+    <i class="<%= icon %>" id="<%= icon_color %>"></i>
+    <p><%= title %></p>
+    <span><%= sub_title %></span>
+  </div>
+  <% end %>
+</div>
