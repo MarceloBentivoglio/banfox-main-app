@@ -20,6 +20,22 @@
   }
 }
 
+.t-wrapper-row {
+  position: relative;
+
+  &:hover .t-delete-button {
+   display:block
+ }
+}
+
+.t-delete-button {
+  position: absolute;
+  right: 0.5em;
+  top: 0.25em;
+  z-index: 1;
+  display: none;
+}
+
 .t-row {
   margin: 0;
   padding: 0.5em;
@@ -31,16 +47,13 @@
   border-color: $light-gray;
   border-width: thin;
   color: $dark-gray;
-
-  .t-col-3 {
-    text-align: center;
-  }
+  position: relative;
 
   &:hover {
     background: $light-gray;
   }
-
 }
+
 
 .t-col-1 {
   flex: 1 1 20%;
@@ -61,6 +74,8 @@
 .t-col-5 {
   flex: 1 1 20%;
 }
+
+
 
 
 
