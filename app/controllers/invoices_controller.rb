@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_seller, only: [:index, :store, :opened, :history, :show]
   before_action :verify_owner_of_invoice, only: [:show]
   def index
-    # @invoices = Invoice.includes(:seller).where(seller: @seller)
+
   end
 
   def show
