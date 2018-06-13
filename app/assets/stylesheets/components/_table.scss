@@ -1,0 +1,67 @@
+.t-mvp {
+
+}
+
+.t-header {
+  margin: 0;
+  padding: 0.5em;
+  background: $near-white;
+  display: flex;
+  align-items: center;
+  border: solid;
+  border-color: $light-gray;
+  border-width: thin;
+
+  span {
+    font-weight: bold;
+    color: $dark-blue;
+    font-size: 0.8em;
+    opacity: 0.8;
+  }
+}
+
+.t-row {
+  margin: 0;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  background: $near-white;
+  border-bottom: solid;
+  border-color: $light-gray;
+  border-width: thin;
+  color: $dark-gray;
+
+  .t-col-3 {
+    text-align: center;
+  }
+
+  &:hover {
+    background: $light-gray;
+  }
+
+}
+
+.t-col-1 {
+  flex: 1 1 20%;
+}
+
+.t-col-2 {
+  flex: 1 1 20%;
+}
+
+.t-col-3 {
+  flex: 1 1 20%;
+}
+
+.t-col-4 {
+  flex: 1 1 20%;
+}
+
+.t-col-5 {
+  flex: 1 1 20%;
+}
+
+
+
+
