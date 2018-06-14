@@ -1,13 +1,9 @@
 <label class="input-file">
-<p id="demo"><%= name %></p>
+<p id="demo"><%= description %></p>
 <% if upload.attached?  %>
   <i class="fa fa-check"></i>
 <% end %>
 <span style="display:none;">
-  <% if upload.class == ActiveStorage::Attached::One %>
-  <%= f.file_field(upload.name.to_sym, class: "inputfile") %>
-  <% elsif upload.class == ActiveStorage::Attached::Many %>
   <%= f.file_field(upload.name.to_sym, multiple: true, class: "inputfile") %>
-  <% end %>
 </span>
 </label>

@@ -6,19 +6,14 @@
 
 <%= render partial: "shared/documents_menu", locals: {menu_in: :index} %>
 
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <% @uploads.each do |name, upload| %>
+      <% @uploads.each do |description, upload| %>
         <% if upload.attached? %>
-          <h3><%= name %></h3>
-          <% if upload.class == ActiveStorage::Attached::One%>
-           <%= render partial: "document_preview", locals: {upload: upload} %>
-          <% elsif upload.class == ActiveStorage::Attached::Many %>
-            <% upload.attachments.each do |upload_a| %>
-              <%= render partial: "document_preview", locals: {upload: upload_a} %>
-            <% end %>
+          <h3><%= description %></h3>
+          <% upload.attachments.each do |upload| %>
+            <%= render partial: "document_preview", locals: {upload: upload} %>
           <% end %>
         <% end %>
       <% end %>
