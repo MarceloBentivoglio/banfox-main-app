@@ -1,9 +1,6 @@
 class InvoicesController < ApplicationController
-  before_action :set_seller, only: [:index, :store, :opened, :history, :show]
+  before_action :set_seller, only: [:store, :opened, :history, :show]
   before_action :verify_owner_of_invoice, only: [:show]
-  def index
-
-  end
 
   def show
     @installments = @invoice.installments
