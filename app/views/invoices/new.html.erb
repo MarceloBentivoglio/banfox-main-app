@@ -4,7 +4,7 @@
   company_name: @seller.company_name
 } %>
 
-<%= render partial: "shared/invoicesmenu", locals: {menu_in: :new} %>
+<%= render partial: "shared/invoices_menu", locals: {menu_in: :new} %>
 
 <div class="container">
   <div class="row">
@@ -17,7 +17,7 @@
             <%= f.file_field :xml, id: "file", class: "inputfile"%>
           </span>
         </label>
-        <%= f.submit 'Continue', class: "btn btn-file-upload"%>
+        <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
         <% end %>
       </div>
     </div>
