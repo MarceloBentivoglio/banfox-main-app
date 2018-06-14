@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="menu-options">
+
+      <%= render partial: "shared/menu_card", locals: { itempath: documents_path, icon: "fa fa-folder-open-o", icon_color: "icon-blue" , title: "Vizualizar documentos", sub_title: @seller.documents_uploaded, active_menu: (true if menu_in == :index) } %>
+
+      <%= render partial: "shared/menu_card", locals: { itempath: new_document_path, icon: "fa fa-pencil", icon_color: "icon-orange" , title: "Atualizar documentos", sub_title:"#{@seller.documents_uploaded} / #{@seller.total_documents}", active_menu: (true if menu_in == :new) } %>
+
+    </div>
+  </div>
+</div>
