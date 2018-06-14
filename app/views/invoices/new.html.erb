@@ -14,7 +14,7 @@
         <label class="input-file">
           <p id="demo">Selecione o arquivo XML</p>
           <span style="display:none;">
-            <%= f.file_field :xml, id: "file", class: "inputfile"%>
+            <%= f.file_field :xmls, id: "file", multiple: true, class: "inputfile"%>
           </span>
         </label>
         <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
@@ -34,6 +34,6 @@
   function showFileName( event ) {
     var input = event.srcElement;
     var fileName = input.files[0].name;
-    infoArea.textContent = 'Arquivo selecionado!';
+    infoArea.textContent = 'Arquivo(s) selecionado(s)!';
   }
 </script>

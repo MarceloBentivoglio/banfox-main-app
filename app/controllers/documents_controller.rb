@@ -2,7 +2,6 @@ class DocumentsController < ApplicationController
   before_action :set_seller, only: [:index, :new, :create]
   before_action :set_uploads, only: [:index, :new]
 
-
   def index
   end
 
@@ -15,7 +14,6 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-
   end
 
   private
