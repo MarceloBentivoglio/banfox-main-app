@@ -165,7 +165,7 @@ class Seller < ApplicationRecord
     end
   end
 
-  def documents_uploaded
+  def categories_w_documents_num
     docs_uploaded = DOCUMENTS.map do |document|
       self.send(document).attached?
     end
