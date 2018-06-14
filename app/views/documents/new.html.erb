@@ -4,6 +4,8 @@
   company_name: @seller.company_name
 } %>
 
+<%= render partial: "shared/documents_menu", locals: {menu_in: :new} %>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -12,7 +14,7 @@
           <% @uploads.each do |name, upload| %>
             <%= render partial: "document_input", locals: {f: f, name: name, upload: upload} %>
           <% end %>
-        <%= f.submit 'Continue', class: "btn btn-file-upload"%>
+        <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
         <% end %>
       </div>
     </div>

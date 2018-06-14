@@ -1,15 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="page-header">
-        <h1>Documentos de <span><%= @seller.company_name %></span></h1>
-        <p>Aqui estão os documentos que você já nos enviou até o momento</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "shared/header", locals: {
+  title: "Documentos de",
+  sub_title: "Mantenha seus docuemntos guardados conosco e sempre atualizados",
+  company_name: @seller.company_name
+} %>
 
-<%= render "shared/documentsmenu" %>
+<%= render partial: "shared/documents_menu", locals: {menu_in: :index} %>
+
 
 <div class="container">
   <div class="row">
