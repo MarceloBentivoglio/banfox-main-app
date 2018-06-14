@@ -3,7 +3,7 @@
     <div class="menu-options">
       <%= render partial: "shared/menu_card", locals: { itempath: store_invoices_path, icon: "fa fa-line-chart", icon_color: "icon-green" , title: "Meus títulos", sub_title: Invoice.opened(@seller).count + Invoice.overdue(@seller).count + Invoice.in_store(@seller).count, active_menu: false } %>
 
-      <%= render partial: "shared/menu_card", locals: { itempath: documents_path, icon: "fa fa-folder-o", icon_color: "icon-blue" , title: "Meus documentos", sub_title: "#{@seller.documents_uploaded} / #{@seller.total_documents}" , active_menu: false } %>
+      <%= render partial: "shared/menu_card", locals: { itempath: documents_path, icon: "fa fa-folder-o", icon_color: "icon-blue" , title: "Meus documentos", sub_title: "#{@seller.categories_w_documents_num} / #{@seller.total_documents}" , active_menu: false } %>
     </div>
   </div>
 </div>
