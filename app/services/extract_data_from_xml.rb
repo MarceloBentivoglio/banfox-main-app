@@ -1,13 +1,21 @@
 class ExtractDataFromXml
-  def invoice(file, seller)
-    doc = Nokogiri::XML(file.read)
-    file.rewind
-    invoice = Invoice.new
-    invoice = check_invoice_seller(doc, invoice, seller)
-    invoice = extract_invoice_general_info(doc, invoice)
-    invoice = extract_installments(doc, invoice)
-    invoice = extract_payer_info(doc, invoice)
-    return invoice
+  def invoice(files, seller)
+    invoices = []
+    files.each do |file|
+      doc = Nokogiri::XML(file.read)
+      file.rewind
+      invoice = Invoice.new
+      begin
+      invoice = check_invoice_seller(doc, invoice, seller)
+      invoice = extract_invoice_general_info(doc, invoice)
+      invoice = extract_installments(doc, invoice)
+      invoice = extract_payer_info(doc, invoice)
+      invoices << invoice
+      rescue => e
+        invoices << e
+      end
+    end
+    return invoices
   end
 
   private
@@ -52,8 +60,6 @@ class ExtractDataFromXml
       return invoice
     end
   end
-
-
 
   def check_invoice_seller (doc, invoice, seller)
     doc.search('emit').each do |xml_seller_info|

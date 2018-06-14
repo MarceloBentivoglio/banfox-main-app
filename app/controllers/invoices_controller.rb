@@ -30,15 +30,18 @@ class InvoicesController < ApplicationController
   def create
     if params[:invoice]
       extract = ExtractDataFromXml.new
-      begin
-      @invoice = extract.invoice(params[:invoice][:xml], current_user.seller)
-      @invoice.save!
-      @invoice.traditional_invoice!
-      redirect_to invoices_path
-      rescue
-        flash[:error] = "Seu CNPJ não confere com o da nota"
-        redirect_to new_invoice_path
+      show_message = false
+      invoices = extract.invoice(params[:invoice][:xmls], current_user.seller)
+      invoices.each do |invoice|
+        if invoice.instance_of?(RuntimeError)
+        show_message = true
+        else
+          invoice.save!
+          invoice.traditional_invoice!
+        end
       end
+      flash[:error] = "Uma das notas que você subiu contem um CNPJ que não com o seu. As demais notas (caso haja) foram adicionadas." if show_message
+      redirect_to store_invoices_path
     else
       flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
       redirect_to new_invoice_path
@@ -48,13 +51,13 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice = Invoice.find(params[:id])
     @invoice.destroy
-    redirect_to invoices_path
+    redirect_to store_invoices_path
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:xml)
+    params.require(:invoice).permit(xmls: [])
   end
 
   def set_seller
@@ -63,7 +66,7 @@ class InvoicesController < ApplicationController
 # TODO fazer com PUNDIT
   def verify_owner_of_invoice
     @invoice = Invoice.find(params[:id])
-    redirect_to invoices_path if !@seller.invoices.include?(@invoice)
+    redirect_to store_invoices_path if !@seller.invoices.include?(@invoice)
   end
 
 end

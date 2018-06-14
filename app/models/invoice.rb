@@ -2,6 +2,7 @@ class Invoice < ApplicationRecord
   belongs_to :payer, optional: true
   belongs_to :seller, optional: true
   has_many :installments, dependent: :destroy
+  has_many_attached :xmls
 
   enum invoice_type: {
     contract: 0,
@@ -24,8 +25,6 @@ class Invoice < ApplicationRecord
     "Título recomprado",
     "Título em atraso",
   ]
-
-  has_one_attached :xml
 
   def total_value
     Money.new(installments.sum("value_cents"))
