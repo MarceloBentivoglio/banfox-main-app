@@ -4,34 +4,33 @@ class Seller < ApplicationRecord
 
   has_many :users
   has_many :invoices
-  has_one_attached :social_contract
-  has_one_attached :update_on_social_contract
-  has_one_attached :proof_of_address
-  has_one_attached :irpj
-  has_one_attached :proof_of_revenue
-  has_one_attached :sisbacen
+  has_many_attached :social_contracts
+  has_many_attached :update_on_social_contracts
+  has_many_attached :address_proofs
+  has_many_attached :irpjs
+  has_many_attached :revenue_proofs
+  has_many_attached :sisbacens
   has_many_attached :partners_cpfs
   has_many_attached :partners_rgs
   has_many_attached :partners_irpfs
-  has_many_attached :partners_proof_of_addresses
+  has_many_attached :partners_address_proofs
 
 # validate :correct_document_mime_type
-
 
 # Through this constatants we are linking the name of the selllers table column
 # with the name we want to appear in the view. It is used to facilitate the
 # creation of the views
   DOCUMENTS = [
-    :social_contract,
-    :update_on_social_contract,
-    :proof_of_address,
-    :irpj,
-    :proof_of_revenue,
-    :sisbacen,
+    :social_contracts,
+    :update_on_social_contracts,
+    :address_proofs,
+    :irpjs,
+    :revenue_proofs,
+    :sisbacens,
     :partners_cpfs,
     :partners_rgs,
     :partners_irpfs,
-    :partners_proof_of_addresses,
+    :partners_address_proofs,
   ]
 
   PURPOSE = {
@@ -147,16 +146,16 @@ class Seller < ApplicationRecord
 
   def attachments
     {
-      "Contrato social" => social_contract,
-      "Última alteração contratual" => update_on_social_contract,
-      "Comprovante de endereço da empresa" => proof_of_address,
-      "IRPJ" => irpj,
-      "Relação de faturamento dos últimos 12 meses (assinado por contador)" => proof_of_revenue,
-      "SISBACEN" => sisbacen,
+      "Contrato social" => social_contracts,
+      "Última alteração contratual" => update_on_social_contracts,
+      "Comprovante de endereço da empresa" => address_proofs,
+      "IRPJ" => irpjs,
+      "Relação de faturamento dos últimos 12 meses (assinado por contador)" => revenue_proofs,
+      "SISBACEN" => sisbacens,
       "CPF dos sócios" => partners_cpfs,
       "RG dos sócios" => partners_rgs,
       "IRPF dos sócios" => partners_irpfs,
-      "Comprovante de endereço dos sócios" => partners_proof_of_addresses,
+      "Comprovante de endereço dos sócios" => partners_address_proofs,
     }
   end
 
