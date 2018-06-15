@@ -33,7 +33,7 @@ gem 'cpf_cnpj'
 gem 'forest_liana'
 
 # This gem is used to transform images that are uploaded by the user
-gem 'image_processing'
+gem 'mini_magick'
 
 # This gem is used to create and admin interface that allows to accesss
 # attachments from Active Storage
