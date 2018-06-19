@@ -29,10 +29,14 @@
   var input = document.getElementById( 'file' );
   var infoArea = document.getElementById( 'demo' );
 
+  console.log(input);
+  console.log(input.files);
+  console.log( infoArea  );
+
   input.addEventListener( 'change', showFileName );
 
   function showFileName( event ) {
-    var input = event.srcElement;
+    console.log(input.files);
     var fileName = input.files[0].name;
     infoArea.textContent = 'Arquivo(s) selecionado(s)!';
   }
