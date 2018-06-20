@@ -52,5 +52,8 @@ a:hover {
 
   .active {
     background-color: $orange;
-    opacity: 0.5;
+    opacity: 1;
+    p, span, #icon-blue, #icon-green, #icon-purple, #icon-orange {
+      color: $white !important;
+    }
   }
