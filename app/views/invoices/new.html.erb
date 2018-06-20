@@ -11,12 +11,7 @@
     <div class="col-xs-12">
       <div class="input-file-box">
         <%= simple_form_for @invoice do |f| %>
-        <label class="input-file">
-          <p id="demo">Selecione o arquivo XML</p>
-          <span style="display:none;">
-            <%= f.file_field :xmls, id: "file", multiple: true, class: "inputfile"%>
-          </span>
-        </label>
+          <%= render partial: "shared/files_input", locals: {f: f, description: "Selecione arquivos XML", upload: :xmls} %>
         <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
         <% end %>
       </div>
@@ -25,19 +20,3 @@
 </div>
 
 
-<script>
-  var input = document.getElementById( 'file' );
-  var infoArea = document.getElementById( 'demo' );
-
-  console.log(input);
-  console.log(input.files);
-  console.log( infoArea  );
-
-  input.addEventListener( 'change', showFileName );
-
-  function showFileName( event ) {
-    console.log(input.files);
-    var fileName = input.files[0].name;
-    infoArea.textContent = 'Arquivo(s) selecionado(s)!';
-  }
-</script>
