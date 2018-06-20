@@ -21,16 +21,4 @@
   </div>
 </div>
 
-<script>
-  var input = document.getElementById( 'file' );
-  var infoArea = document.getElementById( 'demo' );
-
-  input.addEventListener( 'change', showFileName );
-
-  function showFileName( event ) {
-    var input = event.srcElement;
-    var fileName = input.files[0].name;
-    infoArea.textContent = 'Arquivo selecionado!';
-  }
-</script>
 
