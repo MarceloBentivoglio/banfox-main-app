@@ -1,6 +1,6 @@
 const displayFileNames = (event) => {
   const input = event.target;
-  const infoArea = event.target.parentNode.parentNode.querySelector(".file-status");
+  const infoArea = event.target.parentNode.parentNode.querySelector(".input-file-status");
   let txt = "";
   if ('files' in input) {
       if (input.files.length === 0) {
@@ -34,7 +34,7 @@ const bindDisplayFileName = (element) => {
 
 const nameFilesToUpload = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
-    event.target.querySelectorAll(".inputfile").forEach(bindDisplayFileName);
+    event.target.querySelectorAll(".input-file-field").forEach(bindDisplayFileName);
   });
 };
 

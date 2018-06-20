@@ -1,0 +1,15 @@
+<label class="input-file">
+  <p> <%= description %> </p>
+  <% unless upload.is_a? Symbol %>
+    <% if upload.attached?  %>
+      <i class="fa fa-check"></i>
+    <% end %>
+    <% upload = upload.name.to_sym %>
+  <% end %>
+  <ul class="input-file-status"></ul>
+  <span style="display:none;">
+    <%= f.file_field upload, multiple: true, class: "input-file-field" %>
+  </span>
+</label>
+
+

@@ -12,7 +12,7 @@
       <div class="input-file-box">
         <%= simple_form_for @seller, url: documents_path, method: :post do |f| %>
           <% @uploads.each do |description, upload| %>
-            <%= render partial: "document_input", locals: {f: f, description: description, upload: upload} %>
+            <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
           <% end %>
         <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
         <% end %>
