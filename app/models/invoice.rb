@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
   belongs_to :payer, optional: true
   belongs_to :seller, optional: true
   has_many :installments, dependent: :destroy
-  has_many_attached :xmls
+  has_many_attached :xmls, dependent: :purge
 
   enum invoice_type: {
     contract: 0,

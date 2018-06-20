@@ -2,18 +2,18 @@ class Seller < ApplicationRecord
   # We need to include this Model so that the custom validations AtLeatOne works
   include ActiveModel::Validations
 
-  has_many :users
-  has_many :invoices
-  has_many_attached :social_contracts
-  has_many_attached :update_on_social_contracts
-  has_many_attached :address_proofs
-  has_many_attached :irpjs
-  has_many_attached :revenue_proofs
-  has_many_attached :sisbacens
-  has_many_attached :partners_cpfs
-  has_many_attached :partners_rgs
-  has_many_attached :partners_irpfs
-  has_many_attached :partners_address_proofs
+  has_many :users, dependent: :destroy
+  has_many :invoices, dependent: :destroy
+  has_many_attached :social_contracts, dependent: :purge
+  has_many_attached :update_on_social_contracts, dependent: :purge
+  has_many_attached :address_proofs, dependent: :purge
+  has_many_attached :irpjs, dependent: :purge
+  has_many_attached :revenue_proofs, dependent: :purge
+  has_many_attached :sisbacens, dependent: :purge
+  has_many_attached :partners_cpfs, dependent: :purge
+  has_many_attached :partners_rgs, dependent: :purge
+  has_many_attached :partners_irpfs, dependent: :purge
+  has_many_attached :partners_address_proofs, dependent: :purge
 
 # validate :correct_document_mime_type
 
@@ -94,7 +94,7 @@ class Seller < ApplicationRecord
 
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
-  validates :company_type, :full_name, :cpf, :company_name, :cnpj,  presence: true, if: :active_or_basic?
+  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: true, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: true, if: :active_or_basic?
   # validates_with AtLeastOneTrue, fields: [:product_manufacture, :service_provision, :product_reselling], if: :active_or_company?
   # validates_with AtLeastOneTrue, fields: [:generate_boleto, :generate_invoice, :receive_cheque, :receive_money_transfer], if: :active_or_company?
