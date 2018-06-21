@@ -94,7 +94,7 @@ class Seller < ApplicationRecord
 
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
-  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: true, if: :active_or_basic?
+  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: true, if: :active_or_basic?
   # validates_with AtLeastOneTrue, fields: [:product_manufacture, :service_provision, :product_reselling], if: :active_or_company?
   # validates_with AtLeastOneTrue, fields: [:generate_boleto, :generate_invoice, :receive_cheque, :receive_money_transfer], if: :active_or_company?
