@@ -19,11 +19,11 @@
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.input :full_name, label: "Qual o seu nome?" %>
             <%= f.input :cpf, label: "E o seu CPF?", input_html: {class: "cpf"} %>
-            <%= f.error :cpf_validation %>
+            <%= f.error :cpf_validation, class: "invalid-feedback"  %>
             <%= f.input :phone, label: "Qual o seu telefone de contato?"%>
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
-            <%= f.error :cnpj_validation %>
+            <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
             <h4>Escolha a opção que melhor representa a sua empresa:</h4>
             <div class="tag-choices-basic">
               <% Seller.company_types.each_key do |company_type_key| %>
@@ -34,7 +34,9 @@
                 </label>
               <% end %>
             </div>
-            <%= @seller.errors.messages[:company_type].first %>
+            <div class="invalid-feedback">
+              <%= @seller.errors.messages[:company_type].first  %>
+            </div>
             <%= f.submit 'Continuar' %>
           <% end %>
         </div>
