@@ -94,20 +94,23 @@ class Seller < ApplicationRecord
 
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
-  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: true, if: :active_or_basic?
-  validates :cpf, :cnpj,  uniqueness: true, if: :active_or_basic?
+  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
+  validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   # validates_with AtLeastOneTrue, fields: [:product_manufacture, :service_provision, :product_reselling], if: :active_or_company?
   # validates_with AtLeastOneTrue, fields: [:generate_boleto, :generate_invoice, :receive_cheque, :receive_money_transfer], if: :active_or_company?
-  validates :revenue, numericality: { greater_than: 0 }, if: :active_or_finantial?
-  validates :rental_cost, numericality: { greater_than: 0 }, if: :active_or_finantial?
-  validates :employees, numericality: { greater_than: 0 }, if: :active_or_finantial?
+  validates :revenue, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
+  validates :rental_cost, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
+  validates :employees, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   # validates_with AtLeastOneTrue, fields: [:company_clients, :individual_clients, :government_clients], if: :active_or_client?
   # validates_with AtLeastOneTrue, fields: [:pay_up_front, :pay_30_60_90, :pay_90_plus], if: :active_or_client?
   # validates_with AtLeastOneTrue, fields: [:pay_factoring, :permit_contact_client, :charge_payer], if: :active_or_client?
-  validates :consent, acceptance: true, if: :active_or_consent?
+  validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
   # We need this to insert in the database a standardized CPF and CNPJ, that is,
   # without dots and slashes
+
+  before_validation :strip_cnpj
+  before_validation :strip_cpf
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
   before_create :strip_cnpj

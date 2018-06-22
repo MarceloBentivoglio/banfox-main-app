@@ -1,10 +1,14 @@
 .tag-choices-finantial {
-  height: 400px;
+  min-height: 400px;
   h4 {
     margin-bottom: 50px;
   }
   input {
     margin: 30px 0;
+  }
+  span {
+    color: $orange;
+    font-weight: bold;
   }
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
