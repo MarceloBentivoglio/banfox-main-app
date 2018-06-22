@@ -116,9 +116,9 @@
                     <i class="fa fa-check"></i>
                   </label>
                 <% end %>
+                <%= f.error :consent, class: "invalid-feedback" %>
               </div>
             </div>
-          <%= f.error :consent %>
           <%= f.submit 'Continue' %>
           <%= link_to "Back", previous_wizard_path %>
           <% end %>

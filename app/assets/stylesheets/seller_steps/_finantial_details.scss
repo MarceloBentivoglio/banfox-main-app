@@ -10,6 +10,10 @@
     color: $orange;
     font-weight: bold;
   }
+
+  p {
+    margin-bottom: 0;
+  }
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
