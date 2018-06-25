@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   belongs_to :payer, optional: true
   belongs_to :seller, optional: true
+  belongs_to :operation, optional: true
   has_many :installments, dependent: :destroy
   has_many_attached :xmls, dependent: :purge
 
