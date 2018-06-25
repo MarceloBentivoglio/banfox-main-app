@@ -32,15 +32,18 @@ class InvoicesController < ApplicationController
       extract = ExtractDataFromXml.new
       show_message = false
       invoices = extract.invoice(params[:invoice][:xmls], current_user.seller)
+      operation = Operation.create
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
         show_message = true
         else
+          invoice.operation = operation
           invoice.save!
           invoice.traditional_invoice!
         end
       end
-      flash[:error] = "Uma das notas que você subiu contem um CNPJ que não com o seu. As demais notas (caso haja) foram adicionadas." if show_message
+      operation.destroy if operation.invoices.empty?
+      flash[:error] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
       redirect_to store_invoices_path
     else
       flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
