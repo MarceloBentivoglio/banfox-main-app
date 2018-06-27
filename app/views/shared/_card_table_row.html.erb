@@ -1,1 +1,8 @@
-
+<div class="t-r-wrapper">
+  <div class="t-r-bundle">
+    <%= item.id %>
+  </div>
+  <div class="t-r-content">
+    <%= render partial: "shared/card_table_row_content", collection: item.invoices, as: :item %>
+  </div>
+</div>

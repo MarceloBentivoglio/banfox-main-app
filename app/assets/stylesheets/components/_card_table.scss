@@ -1,3 +1,46 @@
 .card-table {
 
 }
+
+.t-r-wrapper {
+  display: flex;
+}
+
+.t-r-bundle {
+  flex: 1 1 5%;
+  background: $near-white;
+  border: solid;
+  border-color: $light-gray;
+  border-width: thin;
+}
+
+.t-r-content {
+  flex: 1 1 95%;
+}
+
+.t-item {
+  display: flex;
+}
+
+.item-card {
+  flex: 1 1 50%;
+  background: $near-white;
+  border: solid;
+  border-color: $light-gray;
+  border-width: thin;
+}
+
+.item-details {
+  flex: 1 1 50%;
+  background: $light-gray;
+}
+
+.detail-card {
+  background: $near-white;
+  border: solid;
+  border-color: $light-gray;
+  border-width: thin;
+  display: flex;
+  justify-content: space-between;
+
+}
