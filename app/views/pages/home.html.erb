@@ -1,83 +1,67 @@
+
 <!-- Home Banner -->
-
-<section id="home-banner">
-  <div class="banner">
-    <div class="jumbotron jumbotron-fluid jumbotron-banner">
-      <div class="container">
-        <h1>Estávamos esperando por você.</h1>
-        <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
-        <%= image_tag "mvapp.png" %>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Home Call to Action -->
-<section id="home-calltoaction">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <div class="card card1">
-          <h4>Por que Antecipar Recebíveis?</h4>
-          <ul>
-            <li>
-              <span> <%= image_tag "checkazul.png", height: 29 %></span>
-              <p>Pagar contas essenciais à produção</p>
-            </li>
-            <li>
-              <span> <%= image_tag "checkazul.png", height: 29 %></span>
-              <p>Comprar matéria-prima com desconto</p>
-            </li>
-            <li>
-              <span> <%= image_tag "checkazul.png", height: 29 %></span>
-              <p>Aumentar suas <span style="color: #EE7B31">vendas</span> mais rápido!</p>
-            </li>
-            <li>
-              <span> <%= image_tag "checkazul.png", height: 29 %></span>
-              <p>Quitar folha de pagamento de funcionários</p>
-            </li>
-          </ul>
+<section id="new-home-banner">
+  <div class="new-banner">
+    <div class="jumbotron jumbotron-fluid new-jumbotron-banner">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <div class="banner-content">
+              <h1>Estávamos esperando por você.</h1>
+              <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
+              <div class="card-banner-why">
+                <h2>Porque antecipar recebíveis?</h2>
+                <ul>
+                  <li>
+                    <span> <%= image_tag "check1.png", height: 22 %></span>
+                    <p>Pagar contas essenciais à produção.</p>
+                  </li>
+                  <li>
+                    <span> <%= image_tag "check1.png", height: 22 %></span>
+                    <p>Comprar matéria-prima com desconto.</p>
+                  </li>
+                  <li>
+                    <span> <%= image_tag "check1.png", height: 22 %></span>
+                    <p>Aumentar suas vendas mais rápido!</p>
+                  </li>
+                  <li>
+                    <span> <%= image_tag "check1.png", height: 22 %></span>
+                    <p>Quitar folha de pagamento de funcionários.</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-banner-login">
+                <% if @redirection_options[:situation] == "register" %>
+                  <div class="login-form-homepage">
+                    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <%= f.error_notification %>
+                      <div class="form-inputs">
+                        <%= f.input :email, label: "Qual seu email ?", class: "label-text" %>
+                        <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                        <!-- <%= f.input :password_confirmation, required: true %> -->
+                      </div>
+                      <div class="form-actions">
+                        <%= f.button :submit, "Cadastrar agora", class: "btn-mvp" %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% elsif @redirection_options[:situation] == "active" %>
+                  <div>
+                    <%= link_to "Ir para minha página", sellers_show_path, class: "btn btn-primary" %>
+                  </div>
+                <% else %>
+                  <div>
+                    <%= link_to "Completar cadastro", @redirection_options[:path], class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+              <div class="banner-porco">
+              </div>
+          </div>
         </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div class="card card2">
-          <% if @redirection_options[:situation] == "register" %>
-            <div class="login-form-homepage">
-              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= f.error_notification %>
-                <div class="form-inputs">
-                  <%= f.input :email, label: "Qual seu email ?", class: "label-text" %>
-                  <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-                  <!-- <%= f.input :password_confirmation, required: true %> -->
-                </div>
-                <div class="form-actions">
-                  <%= f.button :submit, "Cadastrar agora", class: "btn-mvp" %>
-                </div>
-              <% end %>
-            </div>
-          <% elsif @redirection_options[:situation] == "active" %>
-            <div>
-              <%= link_to "Ir para minha página", sellers_show_path, class: "btn btn-primary" %>
-            </div>
-          <% else %>
-            <div>
-              <%= link_to "Completar cadastro", @redirection_options[:path], class: "btn btn-primary" %>
-            </div>
-          <% end %>
-        </div>
-        <% if @redirection_options[:situation] == "register" %>
-        <!-- <p>Ou entre com sua conta
-          <span style="color: #4285f4;">G</span>
-          <span style="color: #ea4335;">o</span>
-          <span style="color: #fbbc05;">o</span>
-          <span style="color: #4285f4;">g</span>
-          <span style="color: #34a853;">l</span>
-          <span style="color: #ea4335;">e</span>
-        </p> -->
-        <% end %>
-
-      </div>
     </div>
   </div>
 </section>

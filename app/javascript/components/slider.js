@@ -32,4 +32,3 @@ function sliderShowValue() {
 }
 
 export { sliderShowValue };
-

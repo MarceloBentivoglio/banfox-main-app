@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount ForestLiana::Engine => '/forest'
   root to: 'pages#home'
   get "pages/howitworks", to: "pages#howitworks"
+  get "pages/newhome", to: "pages#newhome"
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions',
