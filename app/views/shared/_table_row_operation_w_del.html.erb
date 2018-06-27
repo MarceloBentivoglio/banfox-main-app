@@ -5,11 +5,11 @@
     <% end %>
   </div>
 
-  <div class="t-row clickable operation-row">
+  <div class="t-row">
     <div class="t-col-1"><%="# #{item.id}" %></div>
   </div>
 
-  <%= render partial: "shared/table", locals: { columns: {"t-col-1" => "Cliente", "t-col-2" => "Número", "t-col-3" => "Número de parcelas", "t-col-4" => "Valor (R$)", "t-col-5" => "Status"}, row_type: "shared/table_row_invoice_w_del", items: item.invoices }%>
+  <%= render partial: "shared/table", locals: { columns: {"t-col-1" => "Cliente", "t-col-2" => "Número", "t-col-3" => "Número de parcelas", "t-col-4" => "Valor (R$)", "t-col-5" => "Status"}, row_type: "shared/table_row_invoice_w_installments_w_del", items: item.invoices }%>
 
 </div>
 
