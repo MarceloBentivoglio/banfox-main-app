@@ -41,77 +41,28 @@ class Invoice < ApplicationRecord
       return INVOICE_STATUS[2]
     end
   end
-  # TODO: create the method with the COUNT inside to get a better performance
   # TODO: Use Joia's email to guide me to getting a better querry performance
-  # TODO: transform all sql on Active Record
   def self.in_store(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      WHERE (a.backoffice_status = 0 OR a.backoffice_status = 1) AND a.seller_id = ?", seller.id])
+    where(backoffice_status: 0).or(Invoice.where(backoffice_status: 1)).where(seller: seller)
   end
 
   def self.overdue(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      JOIN installments b ON a.id = b.invoice_id
-      WHERE a.backoffice_status = 2 AND a.seller_id = ?
-      GROUP BY a.id
-      HAVING SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) > 0", seller.id])
-  end
-  # NOTE: the upper querry performers better than the one below! But will let this one just in case
-  def self.overdue_2(seller_invoices)
-    seller_invoices ||= self
-    date_range_past = (Date.today - 6.years)...(Date.today)
-    seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "open", due_date: date_range_past})
+    joins(:installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("invoices.id").having("SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0")
   end
 
   def self.opened(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      JOIN installments b ON a.id = b.invoice_id
-      WHERE a.backoffice_status = 2 AND a.seller_id = ?
-      GROUP BY a.id
-      HAVING SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)", seller.id])
+    joins(:installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")
   end
 
   def self.paid(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      JOIN installments b ON a.id = b.invoice_id
-      WHERE a.backoffice_status = 2 AND a.seller_id = ?
-      GROUP BY a.id
-      HAVING SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status) ", seller.id])
-  end
-  # NOTE: the upper querry performers better than the one below! But will let this one just in case
-  def self.paid_2(seller_invoices)
-    seller_invoices ||= self
-    seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "paid"}).distinct.select { |invoice|
-      invoice.installments.all? {|installment| installment.paid?}
-    }
+    joins(:installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")
   end
 
   def self.rebought(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      JOIN installments b ON a.id = b.invoice_id
-      WHERE a.backoffice_status = 2 AND a.seller_id = ?
-      GROUP BY a.id
-      HAVING SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)", seller.id])
-  end
-  # NOTE: the upper querry performers better than the one below! But will let this one just in case
-  def self.rebought_2(seller_invoices)
-    seller_invoices ||= self
-    seller_invoices.deposited.joins(:installments).where(installments: {liquidation_status: "rebought"}).distinct.select { |invoice|
-      invoice.installments.all? {|installment| installment.rebought?}
-    }
+    joins(:installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")
   end
 
   def self.lost(seller)
-    find_by_sql(["
-      SELECT a.* FROM invoices a
-      JOIN installments b ON a.id = b.invoice_id
-      WHERE a.backoffice_status = 2 AND a.seller_id = ?
-      GROUP BY a.id
-      HAVING SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)", seller.id])
+    joins(:installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")
   end
 end
