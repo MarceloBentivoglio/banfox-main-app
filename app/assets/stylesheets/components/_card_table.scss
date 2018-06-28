@@ -89,11 +89,10 @@
 
 .status-tag {
   font-size: 0.8em;
-  // TODO: I left commentec because I will use it later to put a javascript on it
-  // border: 0.1em solid;
-  // border-radius: 1em;
-  // font-weight: bold;
-  // padding: 0em 0.5em;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .color-go {

@@ -1,0 +1,14 @@
+<div class="dropdown">
+  <%= link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do %>
+    <div class="menu-container"><i class="fa fa-ellipsis-v"></i></div>
+  <% end %>
+  <ul class="dropdown-menu dropdown-menu-mvp">
+    <li>
+      <%= link_to({controller: "#{item.class.name.downcase}s", action: "destroy", id: item}, {method: :delete, "data-confirm" => "Tem certeza?"}) do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+
