@@ -1,4 +1,6 @@
 .card-table {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin-bottom: 50px;
 
 }
 
@@ -9,9 +11,18 @@
 .t-r-bundle {
   flex: 1 1 5%;
   background: $near-white;
-  border: solid;
+  border-bottom: solid;
   border-color: $light-gray;
   border-width: thin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Overpass;
+  font-size: 1.5em;
+  font-weight: 100;
+  font-style: italic;
+
 }
 
 .t-r-content {
@@ -25,22 +36,107 @@
 .item-card {
   flex: 1 1 50%;
   background: $near-white;
-  border: solid;
+  border-bottom: solid;
   border-color: $light-gray;
   border-width: thin;
+  padding: .3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-card-id {
+  font-size: 0.5em;
+  text-align: left;
+  font-style: italic;
+  width: 100%;
+}
+
+.item-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.3em 0;
+
 }
 
 .item-details {
   flex: 1 1 50%;
-  background: $light-gray;
+  background: $near-white;
+  border-bottom: solid;
+  border-color: $light-gray;
+  border-width: thin;
 }
 
 .detail-card {
   background: $near-white;
-  border: solid;
-  border-color: $light-gray;
-  border-width: thin;
+  // border: solid;
+  // border-color: $light-gray;
+  // border-width: thin;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
+  padding: .3em;
+  a {
+    color: $gray-base;
+  }
 }
+
+.dropdown-menu-mvp {
+  min-width: inherit;
+}
+
+.status-tag {
+  font-size: 0.8em;
+  // TODO: I left commentec because I will use it later to put a javascript on it
+  // border: 0.1em solid;
+  // border-radius: 1em;
+  // font-weight: bold;
+  // padding: 0em 0.5em;
+}
+
+.color-go {
+  color: $green;
+  border-color: $green;
+}
+
+.color-attention {
+  color: $yellow;
+  border-color: $yellow;
+}
+
+.color-danger {
+  color: $red;
+  border-color: $red;
+}
+
+.color-good {
+  color: $blue;
+  border-color: $blue;
+}
+
+.detail-col-35 {
+  flex: 1 1 35%;
+}
+
+.detail-col-30 {
+  flex: 1 1 30%;
+}
+
+.detail-col-25 {
+  flex: 1 1 25%;
+}
+
+.detail-col-15 {
+  flex: 1 1 15%;
+}
+
+.detail-col-10 {
+  flex: 1 1 10%;
+}
+
+.detail-col-5 {
+  flex: 1 1 5%;
+}
+

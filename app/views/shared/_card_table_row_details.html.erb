@@ -1,7 +1,22 @@
 <div class="detail-card">
-  <div><%= item.number %></div>
-  <div><%= item.due_date %></div>
-  <div><%= item.value_cents %></div>
-  <div><%= item.status %></div>
+  <div class="detail-col-30"><%= item.number %></div>
+  <div class="detail-col-30"><%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="detail-col-30"><%= humanized_money_with_symbol item.value %></div>
+  <div class="detail-col-5 text-center"><%= render partial: "shared/status_tag", locals: {status: item.status} %></div>
+  <div class="detail-col-5 text-center">
+    <div class="dropdown">
+      <%= link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do %>
+        <div class="menu-container"><i class="fa fa-ellipsis-v"></i></div>
+      <% end %>
+      <ul class="dropdown-menu dropdown-menu-mvp">
+        <li>
+          <%= link_to(installment_path(item), class: "", method: :delete, "data-confirm" => "Tem certeza?" ) do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
+
 

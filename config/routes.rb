@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :history
     end
   end
+  resources :installments, only: [:destroy]
   resources :operations, only: [:new, :create, :destroy, :show] do
     collection do
       get :store

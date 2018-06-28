@@ -1,9 +1,13 @@
 <div class="t-item">
   <div class="item-card">
-    <p><%= item.number %></p>
-    <p><%= item.payer.company_name %></p>
-    <p><%= item.total_value %></p>
-    <p><%= item.status %></p>
+    <div class="item-card-id"> <span><%= item.number %></span> </div>
+    <div class="item-card-content">
+      <span> <strong> <%= item.payer.company_name.downcase.capitalize %> </strong> </span>
+      <span><%= humanized_money_with_symbol item.total_value %></span>
+    </div>
+    <div class="item-card-status">
+      <%= render partial: "shared/status_tag", locals: {status: item.status} %>
+    </div>
   </div>
   <div class="item-details">
     <%= render partial: "shared/card_table_row_details", collection: item.installments, as: :item %>
