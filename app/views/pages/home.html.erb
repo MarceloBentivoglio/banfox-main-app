@@ -1,4 +1,3 @@
-
 <!-- Home Banner -->
 <section id="new-home-banner">
   <div class="new-banner">
@@ -31,29 +30,36 @@
                 </ul>
               </div>
               <div class="card-banner-login">
-                <% if @redirection_options[:situation] == "register" %>
-                  <div class="login-form-homepage">
+                <p>Cadastre-se agora, é grátis.</p>
+                <div class="card-banner-login-input">
+                  <% if @redirection_options[:situation] == "register" %>
                     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                      <%= f.error_notification %>
-                      <div class="form-inputs">
-                        <%= f.input :email, label: "Qual seu email ?", class: "label-text" %>
-                        <%= f.input :password, label: "Escolha uma Senha", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-                        <!-- <%= f.input :password_confirmation, required: true %> -->
+                    <%= f.error_notification %>
+                    <div class="container-fluid">
+                      <div class="row display-call">
+                        <div class="col-xs-12 col-sm-5">
+                          <div class="form-group email required user_email">
+                            <input class="form-control string email required" placeholder="Qual seu email?" type="email" value="" name="user[email]" id="user_email">
+                          </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-5">
+                          <div class="form-group password optional user_password">
+                            <input class="form-control password optional" placeholder="Escolha uma Senha" type="password" name="user[password]" id="user_password">
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                          <button name="button" type="submit" class="banner-btn">Cadastrar agora</button>
+                        </div>
                       </div>
-                      <div class="form-actions">
-                        <%= f.button :submit, "Cadastrar agora", class: "btn-mvp" %>
-                      </div>
+                    </div>
                     <% end %>
-                  </div>
-                <% elsif @redirection_options[:situation] == "active" %>
-                  <div>
+                  <% elsif @redirection_options[:situation] == "active" %>
                     <%= link_to "Ir para minha página", sellers_show_path, class: "btn btn-primary" %>
-                  </div>
-                <% else %>
-                  <div>
+                  <% else %>
                     <%= link_to "Completar cadastro", @redirection_options[:path], class: "btn btn-primary" %>
-                  </div>
-                <% end %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -62,114 +68,6 @@
               </div>
           </div>
         </div>
-    </div>
-  </div>
-</section>
-
-<!-- How it works -->
-<section id="how-it-works">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <h1>Você sabia...</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <div class="how-box image-box">
-          <%= image_tag "predio.png" %>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-5">
-        <div class="how-box content-box">
-          <h2>A MVP Invest...</h2>
-          <ul>
-            <li>
-              <span> <%= image_tag "checkbox.png", height: 5 %></span>
-              <p>Antecipa pagamentos sem burocracia</p>
-            </li>
-            <li>
-              <span> <%= image_tag "checkbox.png", height: 5 %></span>
-              <p>Trabalha com 100% de transparência</p>
-            </li>
-            <li>
-              <span> <%= image_tag "checkbox.png", height: 5 %></span>
-              <p>É super rápida de serviço</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <div class="how-box content-box">
-          <h2>É simples</h2>
-          <p>Não confunda, somos diferentes de bancos tradicionais.</p>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-5">
-        <div class="how-box image-box">
-          <%= image_tag "nao.png" %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <div class="how-box image-box">
-          <%= image_tag "3.png" %>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-5">
-        <div class="how-box content-box">
-          <h2>Para cadastrar</h2>
-          <p>Basta seguir os 3 passos abaixo.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="style-1">
-
-<!-- How to register -->
-<section id="how-to-register">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <h1>Vamos começar?</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="content">
-        <div class="col-xs-12 col-md-4">
-          <div class="step-to-register">
-            <%= image_tag "info.png", class: "how-to-register-image" %>
-            <span>1</span>
-            <p>Nosso cadastro leva apenas 2 minutinhos.</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="step-to-register">
-            <%= image_tag "xml.png", class: "how-to-register-image" %>
-            <span>2</span>
-            <p>Faça o upload do arquivo XML da sua nota fiscal.</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="step-to-register">
-            <%= image_tag "dinheiro.png", class: "how-to-register-image" %>
-            <span>3</span>
-            <p>Pronto, agora é só aumentar suas vendas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <div class="call-to-action-2">
-          <%= link_to "Crie sua conta", new_user_registration_path, class: "btn btn-mvp-footer" %>
-        </div>
-      </div>
     </div>
   </div>
 </section>
