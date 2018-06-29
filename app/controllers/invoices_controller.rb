@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_seller, only: [:store, :opened, :history, :show]
+  before_action :set_seller, only: [:store, :opened, :history, :show, :new]
   before_action :verify_owner_of_invoice, only: [:show]
 
   def show
@@ -23,7 +23,6 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @seller = current_user.seller
     @invoice = Invoice.new
   end
 
@@ -44,10 +43,10 @@ class InvoicesController < ApplicationController
       end
       operation.destroy if operation.invoices.empty?
       flash[:error] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
-      redirect_to store_invoices_path
+      redirect_to store_operations_path
     else
       flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
-      redirect_to new_invoice_path
+      redirect_to new_operation_path
     end
   end
 

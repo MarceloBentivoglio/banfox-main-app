@@ -1,5 +1,5 @@
 class OperationsController < ApplicationController
-  before_action :set_seller, only: [:store, :opened, :history]
+  before_action :set_seller, only: [:store, :opened, :history, :new]
 
   def store
     @operations = Operation.in_store(@seller)
@@ -19,7 +19,6 @@ class OperationsController < ApplicationController
   end
 
   def new
-    @seller = current_user.seller
     @invoice = Invoice.new
   end
 
@@ -27,7 +26,7 @@ class OperationsController < ApplicationController
     if params[:invoice]
       extract = ExtractDataFromXml.new
       show_message = false
-      invoices = extract.invoice(params[:invoice][:xmls], current_user.seller)
+      invoices = extract.invoice(params[:invoice][:xmls], @seller)
       operation = Operation.create
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
@@ -40,10 +39,10 @@ class OperationsController < ApplicationController
       end
       operation.destroy if operation.invoices.empty?
       flash[:error] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
-      redirect_to store_invoices_path
+      redirect_to store_operations_path
     else
       flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
-      redirect_to new_invoice_path
+      redirect_to new_operation_path
     end
   end
 
