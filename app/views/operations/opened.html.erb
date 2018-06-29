@@ -1,9 +1,0 @@
-<%= render partial: "shared/header", locals: {
-  title: "Títulos em aberto",
-  sub_title: "Acompanhe os títulos atrasados e a serem liquidados",
-  company_name: @seller.company_name
-} %>
-
-<%= render partial: "shared/operations_menu", locals: {menu_in: :opened} %>
-
-<%= render partial: "shared/card_table", locals: {items: @operations}%>

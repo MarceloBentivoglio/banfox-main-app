@@ -21,12 +21,6 @@ Rails.application.routes.draw do
     end
   end
   resources :installments, only: [:destroy]
-  resources :operations, only: [:new, :create, :destroy, :show] do
-    collection do
-      get :store
-      get :opened
-      get :history
-    end
-  end
+  resources :operations, only: [:destroy]
   resources :documents, only: [:index, :new, :create, :destroy]
 end
