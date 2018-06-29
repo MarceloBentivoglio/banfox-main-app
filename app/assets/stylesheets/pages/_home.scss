@@ -1,4 +1,12 @@
 /* Animations */
+// Making sure content loads (javascript)
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important;
+}
+
+// Re-usable keyframes
 @keyframes no-transform {
   100% {
     opacity: 1;
@@ -92,11 +100,14 @@ header:after {
   }
 }
 .banner-porco {
+  animation: no-transform 2.2s 1.2s cubic-bezier(0,.5,0,1) forwards;
   margin-top: 25%;
   height: 550px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530216508/mvpinvest/cofresombra.png');
+  opacity: 0;
+  transform: translateX(50rem);
 }
 
 /* Card Porque Antecipar Recebíveis */
@@ -106,6 +117,7 @@ header:after {
   padding: 10px 50px 25px 50px;
   height: auto;
   max-width: 580px;
+  border-radius: 6px;
   overflow: hidden;
   background-color: $near-white;
   box-shadow: 0px 5px 35px -5px #213748;
@@ -149,7 +161,7 @@ header:after {
   min-width: 100%;
   height: 100px;
   background-color: $white;
-  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+  box-shadow: 1px 1px 1px 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   p {
     font-size: 1em !important;
     font-weight: bold;

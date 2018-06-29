@@ -4,6 +4,8 @@ import { sliderShowValue } from "../components/slider";
 import { maskCpfAndCnpj } from "../components/formMask";
 import { nameFilesToUpload } from "../components/filesUpload";
 import { animateNavbar } from "../components/newnavbar";
+import { showPage } from "../components/homeAnimation";
+showPage();
 selectTagOnClick();
 sliderShowValue();
 maskCpfAndCnpj();

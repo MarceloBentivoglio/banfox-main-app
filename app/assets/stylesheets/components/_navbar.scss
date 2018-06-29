@@ -1,5 +1,5 @@
 /* Parent for fixed navbar */
-.navbar-parent {
+.newnavbar-parent {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,85 +7,61 @@
   width: 100%;
   z-index: 99;
 }
-/* Main navbar */
-.navbar-wagon {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
-  opacity: 0.9;
-  transition: all 0.3s ease;
+
+#new-homenavbar-mvp {
+  background-color: rgba(0,0,0,0);
   height: 70px;
-  padding: 0px 30px;
+  padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: 0.7s;
   h2 {
     font-weight: bold;
     color: $orange;
   }
+  /* Basic navbar item */
+  .new-mvp-item {
+    cursor: pointer;
+    padding: 0 20px;
+  }
+  /* Navbar link */
+  .new-mvp-link {
+    color: $near-white;
+    font-size: 18px;
+    &:hover {
+      color: $near-black;
+      text-decoration: none;
+    }
+  }
+}
+.white-navbar {
+  transition: 0.7s;
+  background-color: $near-white !important;
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(89,105,128,.05), 0 3px 20px 0 rgba(89,105,128,.15), 0 1px 2px 0 rgba(0,0,0,.025);
+  transition: box-shadow .5s,opacity .3s,-webkit-box-shadow .5s;
+  transform: translate3d(0px, 0px, 0px);
+  .new-mvp-link {
+    color: $near-black !important;
+    &:hover {
+      color: $orange !important;
+    }
+  }
 }
 
-/* Logo */
-.navbar-wagon-brand img {
+.logo-navbar {
+  transition: 0.7s;
   height: 50px;
+  width: 200px;
+  background-color: rgba(0,0,0,0);
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530022164/mvpinvest/logolinha1.png');
+  background-size: cover;
 }
-
-/* User Avatar */
-.navbar-wagon .avatar {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-}
-
-/* Right section */
-.navbar-wagon-right {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Basic navbar item */
-.navbar-wagon-item {
-  cursor: pointer;
-  padding: 0 20px;
-}
-
-/* Navbar link */
-.navbar-wagon-link {
-  color: $near-black;
-  font-size: 18px;
-}
-.navbar-wagon-link:hover {
-  color: $orange;
-  text-decoration: none;
-}
-
-/* Dropdown menu */
-.navbar-wagon-dropdown-menu {
-  margin-top: 15px;
-  box-shadow: 1px 1px 4px #E6E6E6;
-  border-color: #E6E6E6;
-}
-.navbar-wagon-dropdown-menu li > a {
-  transition: color 0.3s ease;
-  font-weight: lighter !important;
-  color: #999999 !important;
-  font-size: 15px !important;
-  line-height: 22px !important;
-  padding: 10px 20px;
-}
-.navbar-wagon-dropdown-menu li > a:hover {
-  background: transparent !important;
-  color: black !important;
-}
-.navbar-wagon-dropdown-menu:before {
-  content: ' ';
-  height: 10px;
-  width: 10px;
-  position: absolute;
-  right: 10px;
-  top: -6px;
-  background-color: white;
-  transform: rotate(45deg);
-  border-left: 1px solid #E6E6E6;
-  border-top: 1px solid #E6E6E6;
+.logo-navbar-dark {
+  transition: 0.7s;
+  height: 50px;
+  width: 200px;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/logo.png');
+  background-size: cover;
 }
