@@ -1,5 +1,6 @@
 class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
+  belongs_to :rebuy, optional: true
   monetize :value_cents, with_model_currency: :currency
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model

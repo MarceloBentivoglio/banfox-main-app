@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_171341) do
+ActiveRecord::Schema.define(version: 2018_06_25_203207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 2018_06_01_171341) do
     t.integer "liquidation_status", default: 0
     t.date "deposit_date"
     t.date "receipt_date"
+    t.bigint "rebuy_id"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
+    t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -58,8 +60,15 @@ ActiveRecord::Schema.define(version: 2018_06_01_171341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "backoffice_status", default: 0
+    t.bigint "operation_id"
+    t.index ["operation_id"], name: "index_invoices_on_operation_id"
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "payers", force: :cascade do |t|
@@ -74,6 +83,13 @@ ActiveRecord::Schema.define(version: 2018_06_01_171341) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rebuys", force: :cascade do |t|
+    t.bigint "operation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["operation_id"], name: "index_rebuys_on_operation_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -132,7 +148,10 @@ ActiveRecord::Schema.define(version: 2018_06_01_171341) do
   end
 
   add_foreign_key "installments", "invoices"
+  add_foreign_key "installments", "rebuys"
+  add_foreign_key "invoices", "operations"
   add_foreign_key "invoices", "payers"
   add_foreign_key "invoices", "sellers"
+  add_foreign_key "rebuys", "operations"
   add_foreign_key "users", "sellers"
 end

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'sellers/show'
   mount ForestLiana::Engine => '/forest'
   root to: 'pages#home'
   get "pages/howitworks", to: "pages#howitworks"
+  get 'sellers/show'
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions',
@@ -19,5 +20,7 @@ Rails.application.routes.draw do
       get :history
     end
   end
+  resources :installments, only: [:destroy]
+  resources :operations, only: [:destroy]
   resources :documents, only: [:index, :new, :create, :destroy]
 end
