@@ -1,73 +1,72 @@
-<!-- Home Banner -->
-<section id="new-home-banner">
-  <div class="new-banner">
-    <div class="jumbotron jumbotron-fluid new-jumbotron-banner">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-12 col-sm-8">
-            <div class="banner-content">
-              <h1>Estávamos esperando por você.</h1>
-              <p>Temos todas as soluções de capital de giro para o seu negócio.</p>
-              <div class="card-banner-why">
-                <h2>Porque antecipar recebíveis?</h2>
-                <ul>
-                  <li>
-                    <span> <%= image_tag "check1.png", height: 22 %></span>
-                    <p>Pagar contas essenciais à produção.</p>
-                  </li>
-                  <li>
-                    <span> <%= image_tag "check1.png", height: 22 %></span>
-                    <p>Comprar matéria-prima com desconto.</p>
-                  </li>
-                  <li>
-                    <span> <%= image_tag "check1.png", height: 22 %></span>
-                    <p>Aumentar suas vendas mais rápido!</p>
-                  </li>
-                  <li>
-                    <span> <%= image_tag "check1.png", height: 22 %></span>
-                    <p>Quitar folha de pagamento de funcionários.</p>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-banner-login">
-                <p>Cadastre-se agora, é grátis.</p>
-                <div class="card-banner-login-input">
-                  <% if @redirection_options[:situation] == "register" %>
-                    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                    <%= f.error_notification %>
-                    <div class="container-fluid">
-                      <div class="row display-call">
-                        <div class="col-xs-12 col-sm-5">
-                          <div class="form-group email required user_email">
-                            <input class="form-control string email required" placeholder="Qual seu email?" type="email" value="" name="user[email]" id="user_email">
-                          </div>
+<header>
+  <section id="home-banner">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="banner-content">
+            <h1 class="animate-pop-in">Estávamos esperando por você.</h1>
+            <h2 class="animate-pop-in">Temos todas as soluções de capital de giro para o seu negócio.</h2>
+            <div class="card-banner-why animate-pop-in">
+              <h3>Por que antecipar recebíveis?</h3>
+              <ul>
+                <li>
+                  <span> <%= image_tag "check1.png", height: 22 %></span>
+                  <p>Pagar contas essenciais à produção.</p>
+                </li>
+                <li>
+                  <span> <%= image_tag "check1.png", height: 22 %></span>
+                  <p>Comprar matéria-prima com desconto.</p>
+                </li>
+                <li>
+                  <span> <%= image_tag "check1.png", height: 22 %></span>
+                  <p>Aumentar suas vendas mais rápido!</p>
+                </li>
+                <li>
+                  <span> <%= image_tag "check1.png", height: 22 %></span>
+                  <p>Quitar folha de pagamento de funcionários.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="card-banner-login">
+              <p>Cadastre-se agora e antecipe seus recebíveis de maneira inteligente, é grátis.</p>
+              <div class="card-banner-login-input">
+                <% if @redirection_options[:situation] == "register" %>
+                  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <%= f.error_notification %>
+                  <div class="container-fluid">
+                    <div class="row display-call">
+                      <div class="col-xs-12 col-sm-5">
+                        <div class="form-group email required user_email">
+                          <input class="form-control string email required" placeholder="Qual seu email?" type="email" value="" name="user[email]" id="user_email">
+                        </div>
 
-                        </div>
-                        <div class="col-xs-12 col-sm-5">
-                          <div class="form-group password optional user_password">
-                            <input class="form-control password optional" placeholder="Escolha uma Senha" type="password" name="user[password]" id="user_password">
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-2">
-                          <button name="button" type="submit" class="banner-btn">Cadastrar agora</button>
+                      </div>
+                      <div class="col-xs-12 col-sm-5">
+                        <div class="form-group password optional user_password">
+                          <input class="form-control password optional" placeholder="Escolha uma Senha" type="password" name="user[password]" id="user_password">
                         </div>
                       </div>
+                      <div class="col-xs-12 col-sm-2">
+                        <button name="button" type="submit" class="banner-btn fade-slide-up">Cadastrar agora</button>
+                      </div>
                     </div>
-                    <% end %>
-                  <% elsif @redirection_options[:situation] == "active" %>
-                    <%= link_to "Ir para minha página", sellers_show_path, class: "btn btn-primary" %>
-                  <% else %>
-                    <%= link_to "Completar cadastro", @redirection_options[:path], class: "btn btn-primary" %>
+                  </div>
                   <% end %>
-                </div>
+                <% elsif @redirection_options[:situation] == "active" %>
+                  <%= link_to "Ir para minha página", sellers_show_path, class: "btn btn-primary" %>
+                <% else %>
+                  <%= link_to "Completar cadastro", @redirection_options[:path], class: "btn btn-primary" %>
+                <% end %>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
-              <div class="banner-porco">
-              </div>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="banner-porco">
           </div>
         </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</header>
