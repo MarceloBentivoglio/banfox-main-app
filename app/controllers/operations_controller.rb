@@ -1,10 +1,5 @@
 class OperationsController < ApplicationController
-  before_action :set_seller, only: [:store, :opened, :history, :show]
-  before_action :verify_owner_of_invoice, only: [:show]
-
-  def show
-    # @installments = @invoice.installments
-  end
+  before_action :set_seller, only: [:store, :opened, :history]
 
   def store
     @operations = Operation.in_store(@seller)
@@ -67,9 +62,5 @@ class OperationsController < ApplicationController
   def set_seller
     @seller = current_user.seller
   end
-# TODO fazer com PUNDIT
-  def verify_owner_of_invoice
-    @invoice = Invoice.find(params[:id])
-    redirect_to store_invoices_path if !@seller.invoices.include?(@invoice)
-  end
+
 end
