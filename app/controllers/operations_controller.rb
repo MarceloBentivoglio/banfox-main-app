@@ -3,7 +3,7 @@ class OperationsController < ApplicationController
   before_action :verify_owner_of_invoice, only: [:show]
 
   def show
-    @installments = @invoice.installments
+    # @installments = @invoice.installments
   end
 
   def store
@@ -11,15 +11,16 @@ class OperationsController < ApplicationController
   end
 
   def opened
-    @opened_invoices = Invoice.opened(@seller)
-    @overdue_invoices = Invoice.overdue(@seller)
-    @invoices = @overdue_invoices + @opened_invoices
+    opened_operations = Operation.opened(@seller)
+    overdue_operations = Operation.overdue(@seller)
+    @operations = overdue_operations + opened_operations
   end
 
   def history
-    @paid_invoices = Invoice.paid(@seller)
-    @rebought_invoices = Invoice.rebought(@seller)
-    @invoices = @paid_invoices + @rebought_invoices
+    paid_operations = Operation.paid(@seller)
+    rebought_operations = Operation.rebought(@seller)
+    lost_operations = Operation.lost(@seller)
+    @operations = paid_operations + rebought_operations + lost_operations
   end
 
   def new
@@ -52,9 +53,9 @@ class OperationsController < ApplicationController
   end
 
   def destroy
-    @invoice = Invoice.find(params[:id])
-    @invoice.destroy
-    redirect_to store_invoices_path
+    @operation = Operation.find(params[:id])
+    @operation.destroy
+    redirect_to store_operations_path
   end
 
   private

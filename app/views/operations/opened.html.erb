@@ -4,6 +4,6 @@
   company_name: @seller.company_name
 } %>
 
-<%= render partial: "shared/invoices_menu", locals: {menu_in: :opened} %>
+<%= render partial: "shared/operations_menu", locals: {menu_in: :opened} %>
 
-<%= render partial: "shared/table", locals: { columns: {"t-col-1" => "Cliente", "t-col-2" => "Número", "t-col-3" => "Número de parcelas", "t-col-4" => "Valor (R$)", "t-col-5" => "Status"}, row_type: "shared/table_row_invoice", items: @invoices }%>
+<%= render partial: "shared/card_table", locals: {items: @operations}%>

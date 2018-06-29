@@ -4,11 +4,11 @@
 
       <%= render partial: "shared/menu_card", locals: { itempath: store_invoices_path, icon: "fa fa-usd", icon_color: "icon-green" , title: "Títulos a venda", sub_title: Invoice.in_store(@seller).count, active_menu: (true if menu_in == :store)  } %>
 
-      <%= render partial: "shared/menu_card", locals: { itempath: opened_invoices_path, icon: "fa fa-calendar", icon_color: "icon-purple" , title: "Notas em aberto", sub_title: Invoice.opened(@seller).count.keys.count + Invoice.overdue(@seller).count.keys.count, active_menu: (true if menu_in == :opened)  } %>
+      <%= render partial: "shared/menu_card", locals: { itempath: opened_invoices_path, icon: "fa fa-calendar", icon_color: "icon-purple" , title: "Títulos em aberto", sub_title: Invoice.opened(@seller).count.keys.count + Invoice.overdue(@seller).count.keys.count, active_menu: (true if menu_in == :opened)  } %>
 
-      <%= render partial: "shared/menu_card", locals: { itempath: history_invoices_path, icon: "fa fa-history", icon_color: "icon-blue" , title: "Operações Finalizadas", sub_title: Invoice.paid(@seller).count.keys.count + Invoice.rebought(@seller).count.keys.count + Invoice.lost(@seller).count.keys.count, active_menu: (true if menu_in == :history)  } %>
+      <%= render partial: "shared/menu_card", locals: { itempath: history_invoices_path, icon: "fa fa-history", icon_color: "icon-blue" , title: "Operações Finalizadas", sub_title: nil, active_menu: (true if menu_in == :history)  } %>
 
-      <%= render partial: "shared/menu_card", locals: { itempath: new_invoice_path, icon: "fa fa-file-excel-o", icon_color: "icon-orange" , title: "Vender nova nota", sub_title: nil, active_menu: (true if menu_in == :new)  } %>
+      <%= render partial: "shared/menu_card", locals: { itempath: new_invoice_path, icon: "fa fa-file-excel-o", icon_color: "icon-orange" , title: "Vender novo título", sub_title: nil, active_menu: (true if menu_in == :new)  } %>
 
       </div>
     </div>

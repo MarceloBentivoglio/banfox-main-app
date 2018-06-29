@@ -1,7 +1,12 @@
 <div class="t-r-wrapper">
   <div class="t-r-bundle">
-    <span>#</span>
-    <span><%= item.id %></span>
+    <div class="bundle-content content-next-to-options">
+      <span>#</span>
+      <span><%= item.id %></span>
+    </div>
+    <div class="options-dropdown">
+      <%= render partial: "shared/options_dropdown", locals: {item: item} %>
+    </div>
   </div>
   <div class="t-r-content">
     <%= render partial: "shared/card_table_row_content", collection: item.invoices, as: :item %>

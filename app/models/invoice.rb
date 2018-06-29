@@ -31,6 +31,10 @@ class Invoice < ApplicationRecord
     Money.new(installments.sum("value_cents"))
   end
 
+  def total_value_w_installments_preloaded
+    Money.new(installments.reduce(0){ |sum, i| sum + i.value_cents })
+  end
+
   def status
     return INVOICE_STATUS[0] if registred?
     return INVOICE_STATUS[1] if approved?
