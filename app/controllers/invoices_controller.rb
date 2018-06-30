@@ -6,16 +6,11 @@ class InvoicesController < ApplicationController
   end
 
   def opened
-    opened_operations = Operation.opened(@seller)
-    overdue_operations = Operation.overdue(@seller)
-    @operations = overdue_operations + opened_operations
+    @operations = Operation.opened_not_preloaded(@seller)
   end
 
   def history
-    paid_operations = Operation.paid(@seller)
-    rebought_operations = Operation.rebought(@seller)
-    lost_operations = Operation.lost(@seller)
-    @operations = paid_operations + rebought_operations + lost_operations
+    @operations = Operation.finished(@seller)
   end
 
   def new
