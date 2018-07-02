@@ -6,7 +6,7 @@ class InvoicesController < ApplicationController
   end
 
   def opened
-    @operations = Operation.opened_not_preloaded(@seller)
+    @operations = Operation.opened(@seller)
   end
 
   def history

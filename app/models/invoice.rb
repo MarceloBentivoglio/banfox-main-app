@@ -47,7 +47,7 @@ class Invoice < ApplicationRecord
   end
   # TODO: Use Joia's email to guide me to getting a better querry performance
   def self.in_store(seller)
-    where(backoffice_status: 0).or(Invoice.where(backoffice_status: 1)).where(seller: seller)
+    where(backoffice_status: 0).or(self.where(backoffice_status: 1)).where(seller: seller)
   end
 
   def self.overdue(seller)

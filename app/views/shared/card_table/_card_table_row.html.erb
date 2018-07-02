@@ -1,0 +1,15 @@
+<div class="t-r-wrapper">
+  <div class="t-r-bundle">
+    <div class="bundle-content content-next-to-options">
+      <span>#</span>
+      <span><%= item.id %></span>
+    </div>
+    <div class="options-dropdown">
+      <%= render partial: "shared/card_table/options_dropdown", locals: {item: item} %>
+    </div>
+  </div>
+  <div class="t-r-content">
+    <!-- Be careful with the send method. It doesn't show the queries on the console, however i tested without the send method before and I checked that calling, for example, opened_invoices does not create more queries and thus it prevents the N+1 query problem -->
+    <%= render partial: "shared/card_table/card_table_row_content", collection: item.send(query), as: :item %>
+  </div>
+</div>

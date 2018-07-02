@@ -6,4 +6,4 @@
 
 <%= render partial: "shared/invoices_menu", locals: {menu_in: :history} %>
 
-<%= render partial: "shared/card_table", locals: {items: @operations}%>
+<%= render partial: "shared/card_table/card_table_container", locals: {items: @operations, query: :finished_invoices}%>
