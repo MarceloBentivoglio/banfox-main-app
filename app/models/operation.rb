@@ -1,14 +1,14 @@
 class Operation < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :rebuys, dependent: :destroy
-  has_many :in_store_invoices, -> {where(backoffice_status: 0).or(where(backoffice_status: 1))}, class_name: "Invoice"
-  has_many :overdue_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0")}, class_name: "Invoice"
-  has_many :on_date_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")}, class_name: "Invoice"
-  has_many :opened_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0)")}, class_name: "Invoice"
-  has_many :paid_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}, class_name: "Invoice"
-  has_many :rebought_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}, class_name: "Invoice"
-  has_many :lost_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}, class_name: "Invoice"
-  has_many :finished_invoices, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))")}, class_name: "Invoice"
+  has_many :in_store_invoices, -> {in_store}, class_name: "Invoice"
+  has_many :overdue_invoices, -> {overdue}, class_name: "Invoice"
+  has_many :on_date_invoices, -> {on_date}, class_name: "Invoice"
+  has_many :opened_invoices, -> {opened}, class_name: "Invoice"
+  has_many :paid_invoices, -> {paid}, class_name: "Invoice"
+  has_many :rebought_invoices, -> {rebought}, class_name: "Invoice"
+  has_many :lost_invoices, -> {lost}, class_name: "Invoice"
+  has_many :finished_invoices, -> {finished}, class_name: "Invoice"
 
   def self.in_store_not_preloaded(seller)
     includes(:invoices).where("invoices.backoffice_status" => 0).or(self.includes(:invoices).where("invoices.backoffice_status" => 1)).where("invoices.seller" => seller)
