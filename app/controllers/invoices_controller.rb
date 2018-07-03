@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
 
   def store
     @operations = Operation.in_store(@seller)
+    authorize @operations
   end
 
   def opened

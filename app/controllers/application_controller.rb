@@ -1,9 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   before_action :authenticate_user!
   before_action :require_active
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
+  include Pundit
+  # Pundit: white-list approach.
+  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  # Uncomment when you *really understand* Pundit!
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # def user_not_authorized
+  #   flash[:alert] = "You are not authorized to perform this action."
+  #   redirect_to(root_path)
+  # end
 
   def after_sign_in_path_for(resource_or_scope)
    sellers_show_path
@@ -37,5 +46,9 @@ class ApplicationController < ActionController::Base
         flash[:error] = "Você precisa completar seu cadastro"
         redirect_to seller_steps_path
       end
+  end
+
+  def skip_pundit?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 end
