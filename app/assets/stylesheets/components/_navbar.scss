@@ -1,5 +1,5 @@
 /* Links */
-/* Styles for the title tooltips */
+/* Styles for the title tooltips
 a {
   color: #fff;
   position: relative;
@@ -44,7 +44,7 @@ a::after {
     right: 0;
   }
 }
-
+*/
 
 /* Parent for fixed navbar */
 .navbar-parent {
@@ -68,11 +68,17 @@ a::after {
     font-weight: bold;
     color: $orange;
   }
-  /* Basic navbar item */
+  // Basic navbar item
   .mvp-item {
     cursor: pointer;
     padding: 0 2px;
     margin: 0 18px;
+  }
+  .mvp-link {
+    color: $near-white;
+    &:hover {
+      color: $near-black;
+    }
   }
 }
 .white-navbar {

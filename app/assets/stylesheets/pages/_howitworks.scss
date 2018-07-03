@@ -32,7 +32,6 @@
     color: $near-white;
   }
 }
-
 // card post banner
 .card-banner-how {
   width: 100%;
@@ -55,9 +54,7 @@
       background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba($orange, 0.75), rgba(0, 0, 0, 0));
   }
 }
-
-
-// title 1
+// how content
 .how-title1 {
   text-align: center;
   color: #1C2E57;
@@ -84,4 +81,96 @@
   justify-content: center;
   align-items: center;
   float: left;
+}
+.how-number {
+  color: $orange;
+  font-weight: bold;
+  p {
+    float: right;
+    margin: 0;
+    padding: 0;
+  }
+}
+.how-number-content {
+  color: #1C2E57;
+  margin-bottom: 50px;
+  h4 {
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+}
+.how-image-content {
+  height: 500px;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/xml.png');
+  background-size: cover;
+}
+
+/* Quote Banner Intra Page */
+#content-banner {
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 100px 0 200px;
+  p {
+    color: $near-white;
+    font-size: 3rem;
+    font-weight: lighter;
+    line-height: 65px;
+    letter-spacing: 0.1em;
+  }
+}
+#content-banner:before {
+  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530626204/mvpinvest/imagemquote_1440px.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: translateY(-10rem);
+  content: "";
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  z-index: -1;
+}
+
+/* Call to Action Intra Page */
+.call-to-action {
+  height: calc(30vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  h2 {
+    margin-bottom: 30px;
+    color: #1C2E57;
+    span {
+      color: #9B51E0;
+    }
+  }
+}
+
+// button
+.intra-call-to-action {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  background: #9B51E0;
+  transition: opacity 0.3s ease;
+}
+.intra-call-to-action:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  color: white;
 }
