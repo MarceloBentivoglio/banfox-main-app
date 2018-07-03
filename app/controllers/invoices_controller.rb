@@ -8,14 +8,17 @@ class InvoicesController < ApplicationController
 
   def opened
     @operations = Operation.opened(@seller)
+    authorize @operations
   end
 
   def history
     @operations = Operation.finished(@seller)
+    authorize @operations
   end
 
   def new
     @invoice = Invoice.new
+    authorize @invoice
   end
 
   def create
@@ -29,6 +32,7 @@ class InvoicesController < ApplicationController
         show_message = true
         else
           invoice.operation = operation
+          authorize invoice
           invoice.save!
           invoice.traditional_invoice!
         end
@@ -44,6 +48,7 @@ class InvoicesController < ApplicationController
 
   def destroy
     @invoice = Invoice.find(params[:id])
+    authorize @invoice
     @invoice.destroy
     redirect_to store_invoices_path
   end

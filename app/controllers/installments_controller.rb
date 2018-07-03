@@ -1,8 +1,9 @@
 class InstallmentsController < ApplicationController
 
   def destroy
-    @isntallment = Installment.find(params[:id])
-    @isntallment.destroy
+    @installment = Installment.find(params[:id])
+    authorize @installment
+    @installment.destroy
     redirect_to store_invoices_path
   end
 end
