@@ -4,6 +4,7 @@ class Invoice < ApplicationRecord
   belongs_to :operation, optional: true
   has_many :installments, dependent: :destroy
   has_many_attached :xmls, dependent: :purge
+  after_destroy :destroy_parent_if_void
 
   enum invoice_type: {
     contract: 0,
@@ -54,5 +55,11 @@ class Invoice < ApplicationRecord
       return INVOICE_STATUS[5] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
       return INVOICE_STATUS[2]
     end
+  end
+
+  private
+
+  def destroy_parent_if_void
+    operation.destroy if operation.invoices.count == 0
   end
 end

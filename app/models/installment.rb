@@ -2,6 +2,7 @@ class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :rebuy, optional: true
   monetize :value_cents, with_model_currency: :currency
+  after_destroy :destroy_parent_if_void
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model
   enum liquidation_status: {
@@ -27,7 +28,6 @@ class Installment < ApplicationRecord
     return INSTALLMENT_STATUS[3] if paid?
     return INSTALLMENT_STATUS[4] if rebought?
     return INSTALLMENT_STATUS[5] if pdd?
-
   end
 
   def overdue?
@@ -40,5 +40,11 @@ class Installment < ApplicationRecord
 
   def due_today?
     open? && due_date == Date.today
+  end
+
+  private
+
+  def destroy_parent_if_void
+    invoice.destroy if invoice.installments.count == 0
   end
 end
