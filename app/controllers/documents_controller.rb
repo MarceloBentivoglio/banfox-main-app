@@ -20,6 +20,7 @@ class DocumentsController < ApplicationController
 
   def set_seller
     @seller = current_user.seller
+    authorize @seller
   end
 
   def seller_params

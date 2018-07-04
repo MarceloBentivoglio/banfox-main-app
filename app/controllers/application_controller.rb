@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
   include Pundit
   # Pundit: white-list approach.
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  after_action :verify_authorized, unless: :skip_pundit? # except: :index -> There was this peace of code but we are not using
+  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit? -> There was this line but we are not using
   # Uncomment when you *really understand* Pundit!
-  rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
-  def action_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_back(fallback_location: root_path)
-  end
+  # rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
+  # def action_not_authorized
+  #   flash[:alert] = "You are not authorized to perform this action."
+  #   redirect_back(fallback_location: root_path)
+  # end
 
   def after_sign_in_path_for(resource_or_scope)
    sellers_show_path
