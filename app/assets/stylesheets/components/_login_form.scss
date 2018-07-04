@@ -7,13 +7,33 @@
   -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   h2 {
+    color: $orange;
     font-size: 40px;
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
   }
-  .btn {
-    width: 100%;
-    margin: 15px auto;
+}
+.btn-sessions {
+  width: 100%;
+  margin: 15px auto;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #9B51E0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: white;
   }
+}
+
+#login-logo {
+  height: 130px;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }

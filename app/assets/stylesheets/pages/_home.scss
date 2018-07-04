@@ -1,123 +1,132 @@
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-  .banner {
-    h1 {
-      font-size: 25px;
-    }
-    p {
-      font-size: 13px;
-    }
-    img {
-      height: 260px;
-    }
-  }
+/* Animations */
+// Making sure content loads (javascript)
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important;
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .banner {
-    h1 {
-      font-size: 25px;
-    }
-    p {
-      font-size: 13px;
-    }
-    img {
-      height: 260px;
-    }
+// Re-usable keyframes
+@keyframes no-transform {
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .banner {
-    h1 {
-      font-size: 45px;
-    }
-    p {
-      font-size: 25px;
-    }
-    img {
-      height: 260px;
-    }
+@keyframes rotate-up {
+  100% {
+    transform: rotateZ(-4deg);
   }
 }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .banner {
-    h1 {
-      font-size: 55px;
-    }
-    p {
-      font-size: 25px;
-    }
-    img {
-      height: 330px;
-    }
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: none;
+  }
+  50% {
+    opacity: .8;
+    transform: scale(.9);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .banner {
-    h1 {
-      font-size: 65px;
-    }
-    p {
-      font-size: 25px;
-    }
-    img {
-      height: 380px;
-    }
-  }
+// Animation Classes
+.animate-pop-in {
+  animation: no-transform .5s cubic-bezier(0,.9,.3,1.2) forwards;
+  opacity: 0;
+  transform: translateY(-4rem) scale(.7);
 }
-
-// GENERAL CSS FOR WHOLE SIZES
-body {
-  padding-top: 70px;
+.fade-slide-up {
+  animation: no-transform 1s 1s ease-out forwards,
+             pulse 2s 4s ease-out infinite;
+  opacity: 0;
+  transform: translateY(4rem);
 }
-.banner {
-  width: auto;
+/* Home Banner */
+// Header
+#home-header {
+  height: 100vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  h1 {
-    color: $dark-blue;
-    font-weight: bold;
-  }
-  p {
-    color: $dark-blue;
-    opacity: 0.85;
-  }
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 100px;
 }
-.how-box {
-  height: 360px;
-  margin: 5px;
-  overflow: hidden;
+#home-header:before {
+  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530032402/mvpinvest/imgbanner_1440px_2.png');
+  background-size: cover !important;
+  opacity: 0;
+  transform: translateY(-10rem);
+  content: "";
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  z-index: -1;
+}
+#home-header:after {
+  animation: rotate-up .5s .5s cubic-bezier(0,.5,0,1) forwards;
+  background: #F9FCFF;
+  content: "";
+  height: 40rem;
+  left: -5%;
+  position: absolute;
+    right: -5%;
+    top: 90%;
+  transform-origin: 0 0;
+  z-index: 0;
+}
+
+.banner-content {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  img {
-    height: 300px;
+  padding-left: 30px;
+  h1 {
+    animation-delay: 0.8s;
+    font-size: 4em;
+    color: $near-white;
+    font-weight: bold;
   }
   h2 {
-    color: $orange;
-    font-size: 40px;
-  }
-  p {
-    text-align: center;
-    font-size: 25px;
-    color: $dark-blue;
-    opacity: 0.85;
+    animation-delay: 1s;
+    margin-top: 30px;
+    letter-spacing: 1px;
+    color: rgba($near-white, 0.92);
+    font-size: 1.8em;
   }
 }
-.content-box {
-  margin: 0;
-  padding: 0;
+.banner-porco {
+  animation: no-transform 2.2s 1.2s cubic-bezier(0,.5,0,1) forwards;
+  margin-top: 30%;
+  height: 550px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530216508/mvpinvest/cofresombra.png');
+  opacity: 0;
+  transform: translateX(50rem);
+}
+
+/* Card Porque Antecipar Recebíveis */
+.card-banner-why {
+  animation-delay: 1.2s;
+  margin-top: 30px;
+  padding: 10px 50px 25px 50px;
+  height: auto;
+  max-width: 580px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: $near-white;
+  box-shadow: 0px 5px 35px -5px #213748;
+  h3 {
+    font-size: 1.5em;
+    color: $orange;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
   ul {
     width: 90%;
 
@@ -125,260 +134,95 @@ body {
     padding: 0;
     list-style-type: none;
     li {
-      height: 60px;
+      height: 35px;
       display: flex;
       flex-direction: row;
-      // justify-content: center;
       align-items: center;
       text-align: center;
       span, p {
-        margin: 0;
+        padding-left: 10px;
+        font-size: 1em !important;
+        color: $near-black !important;
+        margin: 0 !important;
         display: inline-block;
         text-align: left;
-     }
-     p {
-       margin-top: 10px;
-     }
+      }
     }
   }
-  img {
-    height: 40px !important;
-  }
 }
 
-
-.jumbotron-banner {
-  margin: 0 !important;
-  padding-top: 0 !important;
-}
-
-#how-it-works {
-  margin: 50px 0;
-  h1 {
-    color: $dark-blue;
-    font-size: 45px;
-  }
-}
-#how-to-register {
-  margin: 50px 0;
-  h1 {
-    color: $dark-blue;
-    font-size: 45px;
-  }
-  .content {
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-.step-to-register {
-  height: 500px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  img {
-    margin-bottom: 30px;
-  }
-  span {
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    border: 2px solid $orange;
-    border-radius: 50%;
-    font-size: 30px;
-    color: $orange;
-    margin-bottom: 20px;
-  }
+/* Fixed Login Bar at Bottom */
+.card-banner-login {
+  z-index: 1;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  padding: 10px 20px 20px 20px;
+  min-width: 100%;
+  height: 100px;
+  background-color: $white;
+  box-shadow: 1px 1px 1px 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   p {
-    text-align: center;
-    font-size: 25px;
-    color: $dark-blue;
-  }
-  &:hover {
-    transition: 0.2s;
-    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
-    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
-  }
-}
-.how-to-register-image {
-  height: 280px;
-}
-
-.banner-img {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.banner2 {
-  padding: 20px;
-  margin-top: 20px;
-}
-.card {
-  height: 250px;
-  border-radius: 6px;
-  background-color: $near-white;
-  -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  margin-bottom: 20px;
-}
-.card1 {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 1em 1em 0.75em;
-  color: $dark-blue;
-  h4 {
-    font-size: 26px;
-    font-weight: 700;
-    color: $dark-blue;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 10px;
-    li {
-      font-size: 22px;
-      opacity: 0.9;
-    }
-    span, p {
-      margin: 0;
-      display: inline-block;
-    }
-    p {
-      margin-top: 8px;
-    }
-  }
-}
-.card2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  p {
-    color: $dark-blue;
+    font-size: 1em !important;
+    font-weight: bold;
+    padding-left: 15px;
+    color: #213748 !important;
+    margin: 0 0 -10px 0 !important;
   }
   label {
-    text-decoration: none;
-    font-weight: 400;
-    color: $dark-blue;
+    color: #213748;
+    font-weight: lighter;
+  }
+  .display-call {
+    display: flex;
+    align-items: flex-end;
   }
 }
-.login-form-homepage {
-  width: 90%;
-}
-.btn-mvp {
+
+/* Fancy button */
+.banner-btn {
+  border: none;
+  background: none;
+  text-decoration: none;
+  height: 2.1em;
+  padding: 2px 15px 2px 15px;
+  position: relative;
   color: $near-white;
-  margin: 0.5rem auto 2px;
-  padding: 0.7em 0.7em 0.45em;
-  border-radius: 3em;
-  font-weight: bold;
-  background: $orange;
-  transition: background 0.6s ease;
+  &::before {
+    background: rgba(200,200,200,.8);
+    border-radius: .25em;
+    content: "";
+    position: absolute;
+      top: .5em;
+      right: .1em;
+      bottom: -.1em;
+      left: .1em;
+    z-index: -1;
+  }
+  &::after {
+    background: #9B51E0;
+    border-radius: .25em;
+    content: "";
+    position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    z-index: -1;
+  }
   &:hover {
-    opacity: 0.9;
-    background: $red;
     text-decoration: none;
-    color: white;
+    transform: scale(1.05);
+  }
+  &:hover::before {
+    transform: translateY(.1em);
+  }
+  &:hover::after {
+    background: #4D0292;
   }
 }
-.information {
-  color: $dark-blue;
-  padding: 20px;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 900px;
-  h2 {
-    font-weight: bold;
-    font-size: 45px;
-    span {
-      color: $orange;
-    }
-  }
-  h3 {
-    font-weight: bold;
-  }
-  p {
-    font-size: 32px;
-    color: $dark-blue;
-    span {
-      color: $green;
-      font-weight: 700;
-    }
-  }
-  .info1 {
-    h2 {
-      font-size: 35px;
-    }
-    p {
-      font-size: 25px;
-    }
-  }
-}
-.pre-footer-btn {
-  height: 100px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  p {
-    margin-top: 5px;
-    color: $dark-blue;
-    font-style: italic;
-  }
-}
-.btn-mvp-footer {
-  color: $near-white;
-  margin: 0.2rem auto 2px;
-  padding: 0.6em 1.5em;
-  border-radius: 3em;
-  font-size: 25px;
-  background: $orange;
-  transition: background 0.6s ease;
-  &:hover {
-    opacity: 0.9;
-    background: $red;
-    text-decoration: none;
-    color: white;
-  }
-}
-.card-footer {
-  height: 100px;
-  border-radius: 6px;
-  color: $gray;
-  background-color: $near-white;
-  -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    padding-top: -2px;
-    cursor: pointer;
-    transition: 0.2s;
-    -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
-    box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
-  }
-}
-hr.style-1 {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(238, 123, 49, 0), rgba(238, 123, 49, 0.75), rgba(238, 123, 49, 0));
-}
-.call-to-action-2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.banner-btn,
+.banner-btn:before,
+.banner-btn:after {
+  transition: all .5s cubic-bezier(0,1,.3,1);
 }
