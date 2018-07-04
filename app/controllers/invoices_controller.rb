@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  include ApplicationHelper
   before_action :set_seller, only: [:store, :opened, :history, :show, :new, :create]
 
   def store
@@ -21,11 +22,13 @@ class InvoicesController < ApplicationController
     if params[:invoice]
       extract = ExtractDataFromXml.new
       show_message = false
+      messages = []
       invoices = extract.invoice(params[:invoice][:xmls], @seller)
       operation = Operation.create
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
-        show_message = true
+          messages << invoice.message
+          show_message = true
         else
           invoice.operation = operation
           invoice.save!
@@ -33,7 +36,14 @@ class InvoicesController < ApplicationController
         end
       end
       operation.destroy if operation.invoices.empty?
-      flash[:alert] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
+      if show_message
+        messages.each do |err_message|
+          flash_message(:alert, 'Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas') if err_message == "Invoice do not belongs to seller"
+          flash_message(:alert, 'Um dos arquivos que você subiu não é um XML') if err_message == "File is not a xml type"
+          # flash[:alert] << "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if err_message == "Invoice do not belongs to seller"
+          # flash[:alert] << "Um dos arquivos que você subiu não é um XML" if err_message == "File is not a xml type"
+        end
+      end
       redirect_to store_invoices_path
     else
       flash[:alert] = "É necessário ao menos subir uma nota fiscal em XML"
