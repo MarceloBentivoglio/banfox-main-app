@@ -1,0 +1,21 @@
+<div class="t-item">
+  <div class="item-card">
+    <div class="item-card-content content-next-to-options">
+      <div class="item-card-id"> <span><%= item.number %></span> </div>
+      <div class="item-card-description">
+        <span> <strong> <%= item.payer.company_name.downcase.capitalize %> </strong> </span>
+        <!-- We are using total value preload because we already have the installments and don't want to make another querry, as it would be done if we used .sum(value_cents) -->
+        <span><%=  humanized_money_with_symbol item.total_value_w_installments_preloaded %></span>
+      </div>
+      <div class="item-card-status">
+        <%= render partial: "shared/card_table/status_tag", locals: {status: item.status} %>
+      </div>
+    </div>
+    <div class="options-dropdown">
+      <%= render partial: "shared/card_table/options_dropdown", locals: {item: item} %>
+    </div>
+  </div>
+  <div class="item-details">
+    <%= render partial: "shared/card_table/card_table_row_details", collection: item.installments, as: :item %>
+  </div>
+</div>

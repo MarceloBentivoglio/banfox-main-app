@@ -70,7 +70,7 @@ class SellerStepsController < ApplicationController
   def check_not_fully_registered_seller
     if current_user.seller
       if current_user.seller.active?
-        flash[:error] = "Você já completou essa etapa"
+        flash[:alert] = "Você já completou essa etapa"
         redirect_to sellers_show_path
       end
     end

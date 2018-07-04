@@ -1,5 +1,6 @@
 <label class="input-file">
   <p> <%= description %> </p>
+  <!-- We have this condition to make this partial work with invoices and with documents -->
   <% unless upload.is_a? Symbol %>
     <% if upload.attached?  %>
       <i class="fa fa-check"></i>

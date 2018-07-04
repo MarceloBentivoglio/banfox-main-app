@@ -1,0 +1,11 @@
+<div class="detail-card">
+  <div class="detail-col-30"><%= item.number %></div>
+  <div class="detail-col-30"><%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="detail-col-30"><%= humanized_money_with_symbol item.value %></div>
+  <div class="detail-col-5 text-center"><%= render partial: "shared/card_table/status_tag", locals: {status: item.status} %></div>
+  <div class="detail-col-5 text-center">
+    <%= render partial: "shared/card_table/options_dropdown", locals: {item: item} %>
+  </div>
+</div>
+
+

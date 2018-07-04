@@ -16,6 +16,9 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+# Used to create authorizations on our application
+gem "pundit"
+
 # Used to create the wizard (or multistep form) of the client
 gem 'wicked'
 
