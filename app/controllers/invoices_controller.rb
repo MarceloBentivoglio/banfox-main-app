@@ -43,6 +43,7 @@ class InvoicesController < ApplicationController
 
   def destroy
     @invoice = Invoice.find(params[:id])
+    authorize @invoice
     @invoice.destroy
     redirect_to store_invoices_path
   end
