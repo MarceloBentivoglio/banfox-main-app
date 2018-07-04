@@ -58,21 +58,28 @@
 .how-title1 {
   text-align: center;
   color: #1C2E57;
-  margin-bottom: 50px;
+}
+.how-title2 {
+  text-align: center;
+  color: #1C2E57;
+  margin: 75px 0;
 }
 .card-title1-how {
-  padding: 50px;
+  height: 300px;
+  padding: 10px;
+  margin-bottom: 30px;
   color: #1C2E57;
+  opacity: 0;
+  transform: translateY(4em);
+  transition: transform 4s .3s cubic-bezier(0,1,.3,1),
+              opacity .3s .3s ease-out;
+  will-change: transform, opacity;
   img {
     height: 75px;
   }
-  span {
-    float: left;
-    margin-right: 15px;
-  }
-  p {
-    margin-left: 50px;
-  }
+}
+.is-visible {
+  opacity: 1;
 }
 .img-title1 {
   height: 125px;
@@ -80,7 +87,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  float: left;
 }
 .how-number {
   color: $orange;
@@ -102,8 +108,9 @@
 }
 .how-image-content {
   height: 500px;
-  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/xml.png');
-  background-size: cover;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530638273/mvpinvest/pessoamuitoprofissional.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* Quote Banner Intra Page */
@@ -115,7 +122,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 100px 0 200px;
   p {
     color: $near-white;
     font-size: 3rem;
@@ -156,7 +162,6 @@
     }
   }
 }
-
 // button
 .intra-call-to-action {
   color: white;
@@ -173,4 +178,12 @@
   transition: opacity 0.3s ease;
   text-decoration: none;
   color: white;
+}
+
+/* Responsive CSS adjustments */
+@media screen and (max-width: 415px) {
+  #content-banner p {
+    font-size: 2rem;
+    line-height: 30px;
+  }
 }

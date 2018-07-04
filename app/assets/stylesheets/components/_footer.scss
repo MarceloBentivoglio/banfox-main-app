@@ -1,38 +1,83 @@
-.footer {
-  // z-index: -99;
-  height: calc(100vh - 70px);
-  width: auto;
-  background-size: cover !important;
+#footer {
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 100px;
+  color: $near-white;
+}
+#footer:before {
+  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530713798/mvpinvest/imgfooter_1440px.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: translateY(10rem);
+  content: "";
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  z-index: -1;
+}
+.f-link {
+  color: $near-white;
+  border: 1px solid $near-white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 15px 19px;
+  margin: 0 20px;
+  &:hover {
+    color: $orange;
+    border: 1px solid $orange;
+  }
+}
+.column {
+  height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(180deg, rgba(250,252,255,0.1) 0%, rgba(218,224,236,0.6) 99%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270383/mvpinvest/graph.png');
+  justify-content: center;
 }
-.footer-copyright {
+.links-footer {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.column1 {
+  span img {
+    height: 100px;
+  }
+}
+.footer-content {
+  padding: 0 20px;
+  margin: 0 20px;
+  align-items: flex-start;
   p {
-    margin-top: 50px;
-    font-size: 12px;
-    font-style: italic;
-    color: $near-black;
-    text-align: center;
+    font-size: 0.8em;
+    opacity: 0.85;
+  }
+  a {
+    font-size: 0.8em;
+    color: $near-white;
+    opacity: 0.85;
+    text-decoration: none;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
-.footer-quote {
+.copyright {
+  padding: 10% 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   p {
-    font-size: 22px;
-    font-style: italic;
-    text-align: center;
-  }
-  span {
-    color: $orange;
-  }
-}
-.footer-graph {
-  width: 100%;
-  margin-top: 0px;
-  img {
-    max-width: 100%;
-    opacity: 0.4;
-    height: auto;
+    opacity: 0.85;
+    font-size: 0.8em;
   }
 }
