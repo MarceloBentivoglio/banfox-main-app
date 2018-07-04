@@ -3,6 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
   skip_before_action :require_active
   # before_action :configure_sign_in_params, only: [:create]
+  layout "sessions_layout"
 
   # GET /resource/sign_in
   # def new

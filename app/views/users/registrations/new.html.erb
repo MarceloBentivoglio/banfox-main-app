@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
+    <div class="col-xs-12 col-md-5 col-md-offset-3">
+      <%= link_to root_path do %>
+        <div id="login-logo" class="login-logo"></div>
+      <% end %>
       <div class="login-form">
-        <h2>Olá, bem vindo</h2>
+        <h2>Olá, bem vindo!</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -14,7 +17,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-mvp" %>
+          <%= f.button :submit, "Cadastrar agora 100% grátis", class: "btn-sessions" %>
         </div>
         <% end %>
 
