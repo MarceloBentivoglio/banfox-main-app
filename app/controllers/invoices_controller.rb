@@ -33,10 +33,10 @@ class InvoicesController < ApplicationController
         end
       end
       operation.destroy if operation.invoices.empty?
-      flash[:error] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
+      flash[:alert] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
       redirect_to store_invoices_path
     else
-      flash[:error] = "É necessário ao menos subir uma nota fiscal em XML"
+      flash[:alert] = "É necessário ao menos subir uma nota fiscal em XML"
       redirect_to new_invoice_path
     end
   end

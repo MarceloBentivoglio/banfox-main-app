@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
   def require_active
       if (seller = current_user.seller)
         unless seller.active?
-          flash[:error] = "Você precisa completar seu cadastro"
+          flash[:alert] = "Você precisa completar seu cadastro"
           redirect_to "#{seller_steps_path}/#{seller.next_step}"
         end
       else
-        flash[:error] = "Você precisa completar seu cadastro"
+        flash[:alert] = "Você precisa completar seu cadastro"
         redirect_to seller_steps_path
       end
   end
