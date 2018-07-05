@@ -2,16 +2,17 @@ class ExtractDataFromXml
   def invoice(files, seller)
     invoices = []
     files.each do |file|
+      begin
+      check_file_is_xml(file)
       doc = Nokogiri::XML(file.read)
       file.rewind
       invoice = Invoice.new
-      begin
       invoice = check_invoice_seller(doc, invoice, seller)
       invoice = extract_invoice_general_info(doc, invoice)
       invoice = extract_installments(doc, invoice)
       invoice = extract_payer_info(doc, invoice)
       invoices << invoice
-      rescue => e
+      rescue RuntimeError => e
         invoices << e
       end
     end
@@ -68,5 +69,9 @@ class ExtractDataFromXml
       invoice.seller = seller
       return invoice
     end
+  end
+
+  def check_file_is_xml (file)
+    raise RuntimeError, 'File is not a xml type' unless file.content_type == "text/xml"
   end
 end
