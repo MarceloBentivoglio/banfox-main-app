@@ -1,17 +1,17 @@
-<div class="navbar-parent">
-  <div id="homenavbar-mvp">
+<div class="dash-parent">
+  <div id="dashmenu-mvp">
     <!-- Logo -->
     <%= link_to root_path, class: "navbar-mvp-brand" do %>
-      <div id="logo-banner" class="logo-navbar"></div>
+      <div id="logo-dash" class="logo-dash"></div>
     <% end %>
-    <div class="navbar-mvp-right hidden-xs hidden-sm">
+    <div class="dash-mvp-right hidden-xs hidden-sm">
       <% if user_signed_in? %>
       <!-- Links when logged in -->
-      <%= link_to "Meus documentos", documents_path, class: "mvp-item mvp-link" %>
-      <%= link_to "Meus títulos", store_invoices_path, class: "mvp-item mvp-link" %>
-      <%= link_to "Dashboard", sellers_show_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Meus documentos", documents_path, class: "dash-mvp-item dash-mvp-link" %>
+      <%= link_to "Meus títulos", store_invoices_path, class: "dash-mvp-item dash-mvp-link" %>
+      <%= link_to "Dashboard", sellers_show_path, class: "dash-mvp-item dash-mvp-link" %>
       <!-- Avatar with dropdown menu -->
-      <div class="mvp-item">
+      <div class="dash-mvp-item">
         <div class="dropdown">
           <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "mvp-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
@@ -24,9 +24,9 @@
         </div>
       </div>
       <% else %>
-      <%= link_to "Como Funciona?", pages_howitworks_path, class: "mvp-item mvp-link" %>
-      <%= link_to "Login", new_user_session_path, class: "mvp-item mvp-link" %>
-      <%= link_to "Antecipar Recebíveis", new_user_registration_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Como Funciona?", pages_howitworks_path, class: "dash-mvp-item dash-mvp-link" %>
+      <%= link_to "Login", new_user_session_path, class: "dash-mvp-item dash-mvp-link" %>
+      <%= link_to "Antecipar Recebíveis", new_user_registration_path, class: "dash-mvp-item dash-mvp-link" %>
 
       <% end %>
     </div>
