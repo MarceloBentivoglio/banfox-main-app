@@ -1,25 +1,20 @@
 <div class="navbar-parent">
-  <div class="navbar-wagon">
+  <div id="homenavbar-mvp">
     <!-- Logo -->
-    <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= link_to root_path, class: "navbar-mvp-brand" do %>
+      <div id="logo-banner" class="logo-navbar"></div>
     <% end %>
-
-    <!-- Right Navigation -->
-    <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-      <%= link_to "Como funciona?", pages_howitworks_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+    <div class="navbar-mvp-right hidden-xs hidden-sm">
       <% if user_signed_in? %>
-
       <!-- Links when logged in -->
-      <%= link_to "Dashboard", sellers_show_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to "Meus documentos", documents_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Meus títulos", store_invoices_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Dashboard", sellers_show_path, class: "mvp-item mvp-link" %>
       <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
+      <div class="mvp-item">
         <div class="dropdown">
-          <%= image_tag "logoutazul.png", height: 30, class: "dropdown-toggle", id: "navbar-mvp-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "mvp-menu", "data-toggle" => "dropdown" %>
+          <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
               <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
@@ -29,21 +24,11 @@
         </div>
       </div>
       <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Entrar"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <% end %>
-    </div>
+      <%= link_to "Como Funciona?", pages_howitworks_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Login", new_user_session_path, class: "mvp-item mvp-link" %>
+      <%= link_to "Antecipar Recebíveis", new_user_registration_path, class: "mvp-item mvp-link" %>
 
-    <!-- Dropdown list appearing on mobile only -->
-    <div class="navbar-wagon-item hidden-md hidden-lg">
-      <div class="dropdown">
-        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Some mobile link</a></li>
-          <li><a href="#">Other one</a></li>
-          <li><a href="#">Other one</a></li>
-        </ul>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
