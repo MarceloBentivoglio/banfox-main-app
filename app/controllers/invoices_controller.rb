@@ -20,12 +20,13 @@ class InvoicesController < ApplicationController
   def create
     if params[:invoice]
       extract = ExtractDataFromXml.new
-      show_message = false
+      flash[:alert] = []
       invoices = extract.invoice(params[:invoice][:xmls], @seller)
       operation = Operation.create
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
-        show_message = true
+          flash[:alert] << 'Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas' if invoice.message == "Invoice do not belongs to seller"
+          flash[:alert] << 'Um dos arquivos que você subiu não é um XML' if invoice.message == "File is not a xml type"
         else
           invoice.operation = operation
           invoice.save!
@@ -33,7 +34,6 @@ class InvoicesController < ApplicationController
         end
       end
       operation.destroy if operation.invoices.empty?
-      flash[:alert] = "Uma das notas que você subiu contem um CNPJ que não confere com o seu. As demais notas (caso haja) foram adicionadas." if show_message
       redirect_to store_invoices_path
     else
       flash[:alert] = "É necessário ao menos subir uma nota fiscal em XML"

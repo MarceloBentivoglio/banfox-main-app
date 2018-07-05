@@ -53,7 +53,7 @@ class Seller < ApplicationRecord
   }
 
   PAYMENT_PERIOD = {
-    "pay_up_front" => "A Vista",
+    "pay_up_front" => "À Vista",
     "pay_30_60_90" => "Parcelado em 30/60/90",
     "pay_90_plus" => "Parcelado em 90+",
   }

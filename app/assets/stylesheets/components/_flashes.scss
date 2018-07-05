@@ -2,13 +2,16 @@
  * Your CSS code for flash notices and alerts
 * ------------------------------------- */
 
-.alert {
+.flashes-wrapper {
   position: absolute;
   text-align: center;
   font-weight: bold;
   z-index: 1000;
   left: 0;
   right: 0;
+}
+
+.alert {
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
