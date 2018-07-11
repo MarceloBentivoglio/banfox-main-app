@@ -60,6 +60,7 @@ class Invoice < ApplicationRecord
   private
 
   def destroy_parent_if_void
-    operation.destroy if operation.invoices.count == 0
+    operation.destroy if operation.try(:invoices).try(:count) == 0
+    payer.destroy if payer.try(:invoices).try(:count) == 0
   end
 end

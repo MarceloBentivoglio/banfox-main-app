@@ -46,6 +46,9 @@ gem 'rails_admin'
 gem 'aws-sdk'
 gem "aws-sdk-s3", require: false
 
+# This gem is used to read xlsx files so that we can convert the data inside the file into ruby objects
+gem 'creek'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
