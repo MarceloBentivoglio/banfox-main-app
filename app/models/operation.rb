@@ -19,7 +19,7 @@ class Operation < ApplicationRecord
   end
 
   def self.overdue_not_preloaded(seller)
-    joins(invoices: :installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("operations.id, invoices.id").having("SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0").distinct
+    joins(invoices: :installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("operations.id, invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) > 0").distinct
   end
 
   def self.overdue(seller)
@@ -27,7 +27,7 @@ class Operation < ApplicationRecord
   end
 
   def self.on_date_not_preloaded(seller)
-    joins(invoices: :installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("operations.id, invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)").distinct
+    joins(invoices: :installments).where("invoices.backoffice_status" => 2).where("invoices.seller" => seller).group("operations.id, invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)").distinct
   end
 
   def self.on_date(seller)
