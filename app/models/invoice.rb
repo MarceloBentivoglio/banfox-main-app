@@ -20,12 +20,16 @@ class Invoice < ApplicationRecord
 
 # No one can change the order of this array without reflecting the changes on the status invoice method
   INVOICE_STATUS = [
-    "Título em análise",
-    "Titulo aprovado",
-    "Título a vencer",
-    "Título liquidado",
-    "Título recomprado",
-    "Título em atraso",
+    "Em análise",
+    "Aprovado",
+    "A vencer",
+    "Vence hoje",
+    "Em atraso",
+    "Liquidado",
+    "Recomprado",
+    "Perdido",
+    "Parcialmente recomprado",
+    "Parcialmente perdido",
   ]
 
   # TODO: Use Joia's email to guide me to getting a better querry performance
@@ -50,9 +54,13 @@ class Invoice < ApplicationRecord
     return INVOICE_STATUS[0] if registred?
     return INVOICE_STATUS[1] if approved?
     if deposited?
-      return INVOICE_STATUS[3] if installments.all? {|installment| installment.paid?}
-      return INVOICE_STATUS[4] if installments.all? {|installment| installment.rebought?}
-      return INVOICE_STATUS[5] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return INVOICE_STATUS[4] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date = Date.today}
+      return INVOICE_STATUS[5] if installments.all? {|installment| installment.paid?}
+      return INVOICE_STATUS[6] if installments.all? {|installment| installment.rebought?}
+      return INVOICE_STATUS[7] if installments.all? {|installment| installment.pdd?}
+      return INVOICE_STATUS[9] if installments.any? {|installment| installment.pdd?}
+      return INVOICE_STATUS[8] if installments.any? {|installment| installment.rebought?}
       return INVOICE_STATUS[2]
     end
   end
