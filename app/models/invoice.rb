@@ -20,23 +20,27 @@ class Invoice < ApplicationRecord
 
 # No one can change the order of this array without reflecting the changes on the status invoice method
   INVOICE_STATUS = [
-    "Título em análise",
-    "Titulo aprovado",
-    "Título a vencer",
-    "Título liquidado",
-    "Título recomprado",
-    "Título em atraso",
+    "Em análise",
+    "Aprovado",
+    "A vencer",
+    "Vence hoje",
+    "Em atraso",
+    "Liquidado",
+    "Recomprado",
+    "Perdido",
+    "Parcialmente recomprado",
+    "Parcialmente perdido",
   ]
 
   # TODO: Use Joia's email to guide me to getting a better querry performance
   scope :in_store, -> {where(backoffice_status: 0).or(where(backoffice_status: 1))}
-  scope :overdue, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0")}
-  scope :on_date, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")}
-  scope :opened, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) < 1 AND SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (installments.liquidation_status = 0) AND (installments.due_date <= NOW()) THEN 1 ELSE 0 END) > 0)")}
-  scope :paid, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :rebought, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :lost, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :finished, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))")}
+  scope :overdue, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0")}
+  scope :on_date, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")}
+  scope :opened, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("(SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0)")}
+  scope :paid, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :rebought, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :lost, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :finished, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))")}
 
   def total_value
     Money.new(installments.sum("value_cents"))
@@ -50,9 +54,13 @@ class Invoice < ApplicationRecord
     return INVOICE_STATUS[0] if registred?
     return INVOICE_STATUS[1] if approved?
     if deposited?
-      return INVOICE_STATUS[3] if installments.all? {|installment| installment.paid?}
-      return INVOICE_STATUS[4] if installments.all? {|installment| installment.rebought?}
-      return INVOICE_STATUS[5] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return INVOICE_STATUS[4] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
+      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date == Date.today}
+      return INVOICE_STATUS[5] if installments.all? {|installment| installment.paid?}
+      return INVOICE_STATUS[6] if installments.all? {|installment| installment.rebought?}
+      return INVOICE_STATUS[7] if installments.all? {|installment| installment.pdd?}
+      return INVOICE_STATUS[9] if installments.any? {|installment| installment.pdd?}
+      return INVOICE_STATUS[8] if installments.any? {|installment| installment.rebought?}
       return INVOICE_STATUS[2]
     end
   end
@@ -60,6 +68,7 @@ class Invoice < ApplicationRecord
   private
 
   def destroy_parent_if_void
-    operation.destroy if operation.invoices.count == 0
+    operation.destroy if operation.try(:invoices).try(:count) == 0
+    payer.destroy if payer.try(:invoices).try(:count) == 0
   end
 end

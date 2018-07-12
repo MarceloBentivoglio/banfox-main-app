@@ -45,6 +45,6 @@ class Installment < ApplicationRecord
   private
 
   def destroy_parent_if_void
-    invoice.destroy if invoice.installments.count == 0
+    invoice.destroy if invoice.try(:installments).try(:count) == 0
   end
 end

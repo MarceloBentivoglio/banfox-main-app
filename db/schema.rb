@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_203207) do
+ActiveRecord::Schema.define(version: 2018_07_11_190125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 2018_06_25_203207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "liquidation_status", default: 0
-    t.date "deposit_date"
     t.date "receipt_date"
     t.bigint "rebuy_id"
+    t.string "import_ref"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 2018_06_25_203207) do
     t.datetime "updated_at", null: false
     t.integer "backoffice_status", default: 0
     t.bigint "operation_id"
+    t.string "import_ref"
+    t.date "sale_date"
+    t.date "deposit_date"
     t.index ["operation_id"], name: "index_invoices_on_operation_id"
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
@@ -69,12 +72,12 @@ ActiveRecord::Schema.define(version: 2018_06_25_203207) do
   create_table "operations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "import_ref"
   end
 
   create_table "payers", force: :cascade do |t|
     t.string "cnpj"
     t.string "company_name"
-    t.string "registration_number"
     t.string "zip_code"
     t.string "address"
     t.string "address_number"
@@ -83,12 +86,16 @@ ActiveRecord::Schema.define(version: 2018_06_25_203207) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "import_ref"
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "rebuys", force: :cascade do |t|
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "import_ref"
     t.index ["operation_id"], name: "index_rebuys_on_operation_id"
   end
 
@@ -125,6 +132,12 @@ ActiveRecord::Schema.define(version: 2018_06_25_203207) do
     t.datetime "updated_at", null: false
     t.boolean "visited", default: false, null: false
     t.integer "analysis_status", default: 0
+    t.string "zip_code"
+    t.string "address"
+    t.string "address_number"
+    t.string "neighborhood"
+    t.string "state"
+    t.string "city"
   end
 
   create_table "users", force: :cascade do |t|
