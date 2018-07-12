@@ -54,8 +54,8 @@ class Invoice < ApplicationRecord
     return INVOICE_STATUS[0] if registred?
     return INVOICE_STATUS[1] if approved?
     if deposited?
-      return INVOICE_STATUS[4] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
-      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date == Date.today}
+      return INVOICE_STATUS[4] if installments.any? {|installment| installment.open? && installment.due_date < Date.current}
+      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date == Date.current}
       return INVOICE_STATUS[5] if installments.all? {|installment| installment.paid?}
       return INVOICE_STATUS[6] if installments.all? {|installment| installment.rebought?}
       return INVOICE_STATUS[7] if installments.all? {|installment| installment.pdd?}

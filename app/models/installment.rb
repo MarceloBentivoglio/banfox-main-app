@@ -31,15 +31,15 @@ class Installment < ApplicationRecord
   end
 
   def overdue?
-    open? && due_date < Date.today
+    open? && due_date < Date.current
   end
 
   def on_date?
-    open? && due_date > Date.today
+    open? && due_date > Date.current
   end
 
   def due_today?
-    open? && due_date == Date.today
+    open? && due_date == Date.current
   end
 
   private
