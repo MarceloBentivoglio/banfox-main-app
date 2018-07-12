@@ -2,72 +2,63 @@
   <section id="home-banner">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-9">
+        <div class="col-xs-12">
           <div class="banner-content">
             <h1 class="animate-pop-in">Antecipe Recebíveis de maneira inteligente.</h1>
             <h2 class="animate-pop-in">Temos todas as soluções de capital de giro para o seu negócio.</h2>
-            <div class="card-banner-why animate-pop-in">
-              <h3>Por que antecipar recebíveis?</h3>
-              <ul>
-                <li>
-                  <span> <%= image_tag "check1.png", height: 22 %></span>
-                  <p>Pagar contas essenciais à produção.</p>
-                </li>
-                <li>
-                  <span> <%= image_tag "check1.png", height: 22 %></span>
-                  <p>Comprar matéria-prima com desconto.</p>
-                </li>
-                <li>
-                  <span> <%= image_tag "check1.png", height: 22 %></span>
-                  <p>Aumentar suas vendas mais rápido!</p>
-                </li>
-                <li>
-                  <span> <%= image_tag "check1.png", height: 22 %></span>
-                  <p>Quitar folha de pagamento de funcionários.</p>
-                </li>
-              </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="list-card animate-pop-in">
+            <div class="message">
+              <%= image_tag "check1.png", height: 22 %>
+              <div class="message-name">
+                <h5>Pagar contas essenciais à produção.</h5>
+              </div>
+            </div>
+            <div class="message">
+              <%= image_tag "check1.png", height: 22 %>
+              <div class="message-name">
+                <h5>Comprar matéria-prima com desconto.</h5>
+              </div>
+            </div>
+            <div class="message">
+              <%= image_tag "check1.png", height: 22 %>
+              <div class="message-name">
+                <h5>Aumentar suas vendas mais rápido!</h5>
+              </div>
+            </div>
+            <div class="message">
+              <%= image_tag "check1.png", height: 22 %>
+              <div class="message-name">
+                <h5>Quitar folha de pagamento de funcionários.</h5>
+              </div>
             </div>
           </div>
-
         </div>
-        <div class="col-xs-3">
-          <div class="banner-porco">
+        <div class="col-xs-12 col-sm-6">
+          <div class="wrapper-porco">
+            <div class="banner-porco">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </header>
-<!-- temporary login call to action -->
-<div class="card-banner-login">
-        <p>Cadastre-se agora e antecipe seus recebíveis de maneira inteligente, é grátis.</p>
-        <div class="card-banner-login-input">
-          <% if @redirection_options[:situation] == "register" %>
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-            <div class="container-fluid">
-              <div class="row display-call">
-                <div class="col-xs-12 col-sm-5">
-                  <div class="form-group email required user_email">
-                    <input class="form-control string email required" placeholder="Qual seu email?" type="email" value="" name="user[email]" id="user_email">
-                  </div>
-
-                </div>
-                <div class="col-xs-12 col-sm-5">
-                  <div class="form-group password optional user_password">
-                    <input class="form-control password optional" placeholder="Escolha uma Senha" type="password" name="user[password]" id="user_password">
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-2">
-                  <button name="button" type="submit" class="banner-btn fade-slide-up">Cadastrar agora</button>
-                </div>
-              </div>
-            </div>
-            <% end %>
-          <% elsif @redirection_options[:situation] == "active" %>
-            <%= link_to "Ir para minha página", sellers_show_path, class: "banner-btn-2" %>
-          <% else %>
-            <%= link_to "Completar cadastro", @redirection_options[:path], class: "banner-btn-2" %>
-          <% end %>
+  <div class="container-fluid">
+    <section id="home-call-to-action">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="buttons-card animate-pop-in">
+          <%= link_to "Como Funciona?", pages_howitworks_path, class: "banner-btn-3" %>
+          <%= link_to "Antecipar Recebíveis", new_user_registration_path, class: "banner-btn-4" %>
         </div>
       </div>
+    </div>
+  </section>
+  </div>
+
+<%= render 'shared/footer' %>

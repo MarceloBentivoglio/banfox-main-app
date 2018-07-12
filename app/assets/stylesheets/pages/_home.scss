@@ -5,7 +5,6 @@
 .js-loading *:after {
   animation-play-state: paused !important;
 }
-
 // Re-usable keyframes
 @keyframes no-transform {
   100% {
@@ -47,8 +46,8 @@
 /* Home Banner */
 // Header
 #home-header {
-  height: 100vh;
-  overflow: hidden;
+  height: calc(100% - 140px);
+  overflow: scroll;
   position: relative;
   transform-style: preserve-3d;
   perspective: 100px;
@@ -67,27 +66,14 @@
     left: 0;
   z-index: -1;
 }
-#home-header:after {
-  animation: rotate-up .5s .5s cubic-bezier(0,.5,0,1) forwards;
-  background: #F9FCFF;
-  content: "";
-  height: 40rem;
-  left: -5%;
-  position: absolute;
-    right: -5%;
-    top: 90%;
-  transform-origin: 0 0;
-  z-index: 0;
-}
-
 .banner-content {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  padding-left: 30px;
+  padding-left: 3%;
   h1 {
     animation-delay: 0.8s;
-    font-size: 4em;
+    font-size: 6.5rem;
     color: $near-white;
     font-weight: bold;
   }
@@ -96,90 +82,109 @@
     margin-top: 30px;
     letter-spacing: 1px;
     color: rgba($near-white, 0.92);
-    font-size: 1.8em;
+    font-size: 2.8rem;
   }
+}
+/* Home Call to Action */
+#home-call-to-action {
+  height: 140px;
+  margin-left: 2%;
+}
+.buttons-card {
+  animation-delay: 1.5s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/* Card and Messages inside card */
+.list-card {
+  animation-delay: 1.2s;
+  background-color: $near-white;
+  border-radius: 6px;
+  padding: 2% 2% 2% 3%;
+  margin: 5% 3% 0 3%;
+  max-width: 460px;
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+}
+.message {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(220,224,244,0.4);
+}
+.message:last-child {
+  border-bottom: none;
+}
+.message-name {
+  padding-left: 10px;
+  min-width: 100px;
+}
+
+/* Imagem Porco */
+.wrapper-porco {
+  height: 450px;
 }
 .banner-porco {
   animation: no-transform 2.2s 1.2s cubic-bezier(0,.5,0,1) forwards;
-  margin-top: 30%;
-  height: 550px;
-  background-size: contain;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530216508/mvpinvest/cofresombra.png');
+  height: 100%;
+  background-position: top;
   background-repeat: no-repeat;
-  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530216508/mvpinvest/cofresombra.png');
+  background-size: contain;
   opacity: 0;
   transform: translateX(50rem);
 }
 
-/* Card Porque Antecipar Recebíveis */
-.card-banner-why {
-  animation-delay: 1.2s;
-  margin-top: 30px;
-  padding: 10px 50px 25px 50px;
-  height: auto;
-  max-width: 580px;
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: $near-white;
-  box-shadow: 0px 5px 35px -5px #213748;
-  h3 {
-    font-size: 1.5em;
-    color: $orange;
-    margin-top: 15px;
-    margin-bottom: 20px;
+/* Buttons */
+.banner-btn-2 {
+  float: right;
+  width: auto;
+  margin: 15px auto;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #9B51E0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: white;
   }
-  ul {
-    width: 90%;
-
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    li {
-      height: 35px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      text-align: center;
-      span, p {
-        padding-left: 10px;
-        font-size: 1em !important;
-        color: $near-black !important;
-        margin: 0 !important;
-        display: inline-block;
-        text-align: left;
-      }
-    }
+}
+.banner-btn-3 {
+  color: $dark-gray;
+  border: 1px solid $dark-gray;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: lighter;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: $dark-gray;
+  }
+}
+.banner-btn-4 {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  opacity: 0.8;
+  background: #9B51E0;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: white;
   }
 }
 
-/* Fixed Login Bar at Bottom */
-.card-banner-login {
-  z-index: 1;
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  padding: 10px 20px 20px 20px;
-  min-width: 100%;
-  height: 100px;
-  background-color: $white;
-  box-shadow: 1px 1px 1px 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
-  p {
-    font-size: 1em !important;
-    font-weight: bold;
-    padding-left: 15px;
-    color: #213748 !important;
-    margin: 0 0 -10px 0 !important;
-  }
-  label {
-    color: #213748;
-    font-weight: lighter;
-  }
-  .display-call {
-    display: flex;
-    align-items: flex-end;
-  }
-}
-
-/* Fancy button */
+/* Fancy button
 .banner-btn {
   border: none;
   background: none;
@@ -226,20 +231,4 @@
 .banner-btn:after {
   transition: all .5s cubic-bezier(0,1,.3,1);
 }
-.banner-btn-2 {
-  float: right;
-  width: auto;
-  margin: 15px auto;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-weight: bold;
-  background: #9B51E0;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  &:hover {
-    opacity: 1;
-    text-decoration: none;
-    color: white;
-  }
-}
+*/
