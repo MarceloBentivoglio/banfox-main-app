@@ -34,13 +34,13 @@ class Invoice < ApplicationRecord
 
   # TODO: Use Joia's email to guide me to getting a better querry performance
   scope :in_store, -> {where(backoffice_status: 0).or(where(backoffice_status: 1))}
-  scope :overdue, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) > 0")}
-  scope :on_date, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")}
-  scope :opened, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (liquidation_status = 0) AND (due_date <= NOW()) THEN 1 ELSE 0 END) > 0)")}
-  scope :paid, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :rebought, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :lost, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
-  scope :finished, -> {joins(:installments).where("invoices.backoffice_status" => 2).group("invoices.id").having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))")}
+  scope :overdue, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0")}
+  scope :on_date, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)")}
+  scope :opened, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("(SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0)")}
+  scope :paid, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :rebought, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :lost, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)")}
+  scope :finished, -> {joins(:installments).where("backoffice_status" => 2).group("invoices.id").having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))")}
 
   def total_value
     Money.new(installments.sum("value_cents"))
@@ -55,7 +55,7 @@ class Invoice < ApplicationRecord
     return INVOICE_STATUS[1] if approved?
     if deposited?
       return INVOICE_STATUS[4] if installments.any? {|installment| installment.open? && installment.due_date < Date.today}
-      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date = Date.today}
+      return INVOICE_STATUS[3] if installments.any? {|installment| installment.open? && installment.due_date == Date.today}
       return INVOICE_STATUS[5] if installments.all? {|installment| installment.paid?}
       return INVOICE_STATUS[6] if installments.all? {|installment| installment.rebought?}
       return INVOICE_STATUS[7] if installments.all? {|installment| installment.pdd?}

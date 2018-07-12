@@ -3,8 +3,8 @@
     <div class="item-card-content content-next-to-options">
       <div class="item-card-id"> <span><%= item.number %></span> </div>
       <div class="item-card-description">
-        <span> <strong> <%= item.payer.company_name.downcase.capitalize %> </strong> </span>
-        <!-- We are using total value preload because we already have the installments and don't want to make another querry, as it would be done if we used .sum(value_cents) -->
+        <span> <strong> <%= item.payer.company_name.mb_chars.downcase.titleize %> </strong> </span>
+        <!-- We are using total value preload because we already have the installments and don't want to make another query, as it would be done if we used .sum(value_cents) -->
         <span><%=  humanized_money_with_symbol item.total_value_w_installments_preloaded %></span>
       </div>
       <div class="item-card-status">
