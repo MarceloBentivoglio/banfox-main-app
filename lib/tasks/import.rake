@@ -1,7 +1,7 @@
 namespace :import do
   desc "Give the path of the files to import in this order: payers, paid invoices and opened invoices"
   task :all, [:payer_path, :paid_path, :opened_path] => [:payers, :paid_invoices, :opened_invoices] do |t, args|
-    puts "Importing all"
+    puts "Finished importing all"
   end
 
   desc "Given the path of a excel spreadsheet exported from Smart it will import payers "
