@@ -1,0 +1,9 @@
+document.querySelector('.card-table').insertAdjacentHTML('beforeend', '<%= j render partial: "shared/card_table/card_table_row", collection: @operations, as: :item, locals: {query: :in_store_invoices} %>');
+<% if @operations.next_page %>
+  document.querySelector('.pagination').innerHTML = '<%= j will_paginate @operations %>';
+<% else %>
+  document.querySelector('.pagination').remove();
+<% end %>
+<%#= sleep 10 %>
+
+
