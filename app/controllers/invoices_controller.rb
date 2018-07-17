@@ -10,11 +10,19 @@ class InvoicesController < ApplicationController
   end
 
   def opened
-    @operations = Operation.opened(@seller)
+    @operations = Operation.opened(@seller).paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def history
-    @operations = Operation.finished(@seller)
+    @operations = Operation.finished(@seller).paginate(page: params[:page], per_page: 5)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
