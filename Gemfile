@@ -49,6 +49,9 @@ gem "aws-sdk-s3", require: false
 # This gem is used to read xlsx files so that we can convert the data inside the file into ruby objects
 gem 'creek'
 
+# This gem is used to create pagination and to create the endless / infinite scrolling
+gem 'will_paginate', '~> 3.1.0'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end

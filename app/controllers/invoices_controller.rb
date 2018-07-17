@@ -2,7 +2,11 @@ class InvoicesController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history, :show, :new, :create]
 
   def store
-    @operations = Operation.in_store(@seller)
+    @operations = Operation.in_store(@seller).paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def opened

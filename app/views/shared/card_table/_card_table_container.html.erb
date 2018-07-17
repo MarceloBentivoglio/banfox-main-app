@@ -2,4 +2,9 @@
   <div class="card-table">
       <%= render partial: "shared/card_table/card_table_row", collection: items, as: :item, locals: {query: query} %>
   </div>
+  <div id="infinite-scrolling">
+    <%= will_paginate items %>
+  </div>
 </div>
+
+
