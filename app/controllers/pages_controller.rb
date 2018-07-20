@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :howitworks, :newhome]
-  skip_before_action :require_active, only: [:home, :howitworks, :newhome]
+  skip_before_action :authenticate_user!, only: [:home, :howitworks, :about_us]
+  skip_before_action :require_active, only: [:home, :howitworks, :about_us]
   layout "homelayout"
 
   def home
@@ -22,5 +22,8 @@ class PagesController < ApplicationController
   end
 
   def howitworks
+  end
+
+  def about_us
   end
 end
