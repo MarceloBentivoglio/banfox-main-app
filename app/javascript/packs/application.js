@@ -19,4 +19,4 @@ showPage();
 loop();
 presentAndDismissAlerts();
 infiniteScrolling();
-displayProgressbar();
+// displayProgressbar();
