@@ -1,0 +1,99 @@
+/* Helpers */
+.brand-dot {
+  color: $orange;
+}
+
+/* Building */
+.about-us-building {
+  height: 50vh;
+  background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532108632/mvpinvest/predio2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.about-us-text {
+  color: $dark-blue;
+}
+
+/* About us cards */
+.about-us-cards {
+  margin: 3em 0;
+}
+
+.about-us-card {
+  background: #fff;
+  box-shadow: 0 4px 20px 0 #eceffc;
+  border-radius: 5px;
+  padding: 30px 30px 25px;
+  margin-bottom: 20px;
+  min-height: 133px;
+  color: $dark-blue;
+  i {
+    font-size: 2em;
+  }
+  #coffee { color: #9B51E0; }
+  #money { color: #00CE8C; }
+  #flag { color: #50D4FF; }
+}
+
+/* page break */
+.about-us-page-break {
+  height: 20vh;
+  background: $dark-blue;
+  color: #F7F9FC;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+/* Team cards */
+.card-team-member {
+  min-height: 300px;
+  width: 220px;
+  background: #fff;
+  box-shadow: 0 4px 20px 0 #eceffc;
+  border-radius: 5px;
+  color: $dark-blue;
+  margin: 2em auto;
+  h4 {
+    color: #46547C;
+    padding-left: 0.5em;
+    font-size: 1em;
+  }
+  .member-info {
+    display: flex;
+    flex-direction: row;
+    span {
+      height: 25px;
+      width: 25px;
+      background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532114335/mvpinvest/porcofundoazul.png');
+      background-position: center;
+      background-size: cover;
+      border-radius: 2px;
+      margin: 0 0.6em 0.3em 0.5em;
+    }
+  }
+}
+.marcelo {
+  background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532113528/mvpinvest/dsc_9214_1.png');
+}
+.joao {
+background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532113526/mvpinvest/image_1.png');
+}
+.joaquim {
+  background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532113526/mvpinvest/21743622_10211183289366297_8743129571971819676_o_1.png');
+}
+.gabriel {
+  background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532113527/mvpinvest/AF061E6A-09EE-4BC6-9C79-9608C2285066_1.png');
+}
+.julia {
+  background: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532113527/mvpinvest/CC82491C-5E88-48AD-ABBC-4F8611CBC723_1.jpg');
+}
+.member-image {
+  height: 220px;
+  width: 220px;
+  border-radius: 5px;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
