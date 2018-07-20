@@ -1,14 +1,37 @@
 <%= render partial: "shared/header", locals: {
-  title: "Bem vindo",
+  title: "Bem vindo!",
   sub_title: "Esta é sua página principal! Controle seus adiantamentos de maneira rápida e prática!",
-  company_name: @seller.company_name
+  company_name: "",
 } %>
 
-<%= render "shared/dash_menu" %>
+<div class="container-fluid">
 
-<div class="container">
-  <div class="well well-sm">
-    <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/small_graph_card" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/small_info_card" %>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/small_info_card" %>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/small_info_card" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- well -->
+  <!-- <div class="well well-sm"> -->
+
+    <!-- <div class="container">
       <div class="row">
         <div class="col-xs-12">
           <div class="page-messages">
@@ -27,10 +50,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- tentei fazer com alerts mas fizemos overwrite de algo do bootstrap e ele ta ficando muito feio -->
-  <!--
-    <% unless @documents_ok %>
+
+<!--     <% unless @documents_ok %>
       <div class="alert alert-info">
           <p> <%= link_to "Clique aqui!", new_document_path, class: "alert-link" %> para inserir os documentos de sua empresa. Quanto mais completo, menor a taxa!</p>
       </div>
@@ -46,10 +69,10 @@
       <div class="alert alert-info">
         <p>Está tudo preparado, agora é só esperar alguém de nossa esquipe entrar em contato com você para marcar uma visita</p>
       </div>
-    <% end %>
-       -->
+    <% end %> -->
+
     <!-- Status do seller -->
-    <div class="container">
+    <!-- <div class="container">
       <ul class="list-unstyled font-size-m">
         <li>
           <i class="fa fa-check-circle color-ok"></i>
@@ -88,6 +111,8 @@
           <%= link_to "Pronto para operar", new_invoice_path, class: "link-unstyled"  %>
         </li>
       </ul>
-    </div>
-  </div>
+    </div> -->
+<!-- well -->
+  <!-- </div> -->
+
 </div>
