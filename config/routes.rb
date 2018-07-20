@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount ForestLiana::Engine => '/forest'
   root to: 'pages#home'
-  get "pages/howitworks", to: "pages#howitworks"
+  get "howitworks", to: "pages#howitworks"
+  get "about_us", to: "pages#about_us"
   get 'sellers/show'
-  
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions',
