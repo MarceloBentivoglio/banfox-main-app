@@ -5,5 +5,8 @@ class SellersController < ApplicationController
     @documents_ok = @seller.documentation_completed?
     @at_leat_one_invoice = @seller.invoices.count > 0
     @visited = @seller.visited?
+    if @seller.approved?
+
+    end
   end
 end

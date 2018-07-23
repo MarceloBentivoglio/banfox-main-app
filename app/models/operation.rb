@@ -2,12 +2,12 @@ class Operation < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :rebuys, dependent: :destroy
   has_many :in_store_invoices, -> {in_store}, class_name: "Invoice"
-  has_many :overdue_invoices, -> {overdue}, class_name: "Invoice"
-  has_many :on_date_invoices, -> {on_date}, class_name: "Invoice"
-  has_many :opened_invoices, -> {opened}, class_name: "Invoice"
-  has_many :paid_invoices, -> {paid}, class_name: "Invoice"
+  has_many :overdue_invoices,  -> {overdue},  class_name: "Invoice"
+  has_many :on_date_invoices,  -> {on_date},  class_name: "Invoice"
+  has_many :opened_invoices,   -> {opened},   class_name: "Invoice"
+  has_many :paid_invoices,     -> {paid},     class_name: "Invoice"
   has_many :rebought_invoices, -> {rebought}, class_name: "Invoice"
-  has_many :lost_invoices, -> {lost}, class_name: "Invoice"
+  has_many :lost_invoices,     -> {lost},     class_name: "Invoice"
   has_many :finished_invoices, -> {finished}, class_name: "Invoice"
 
   def self.in_store_not_preloaded(seller)

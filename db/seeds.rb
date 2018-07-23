@@ -65,7 +65,7 @@ Installment.create!(
  number: "004.849/02",
  value: Money.new(3630000),
  due_date: Date.new(2018,12,6),
- liquidation_status: "open",
+ liquidation_status: "opened",
 )
 
 # for i3 atrasada com um installment pago
@@ -82,7 +82,7 @@ Installment.create!(
  number: "004.850/02",
  value: Money.new(3830000),
  due_date: Date.new(2018,6,6),
- liquidation_status: "open",
+ liquidation_status: "opened",
 )
 
 # for i4 atrasada com um installment aberto
@@ -91,7 +91,7 @@ Installment.create!(
  number: "004.851/01",
  value: Money.new(3930000),
  due_date: Date.new(2018,6,6),
- liquidation_status: "open",
+ liquidation_status: "opened",
 )
 
 Installment.create!(
@@ -99,5 +99,5 @@ Installment.create!(
  number: "004.851/02",
  value: Money.new(4030000),
  due_date: Date.new(2018,12,6),
- liquidation_status: "open",
+ liquidation_status: "opened",
 )
