@@ -1,0 +1,35 @@
+.solution {
+  margin-top: 10px;
+}
+.image-1 { background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532351548/mvpinvest/vendedor.png'); }
+.image-2 { background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532351548/mvpinvest/pagador.png'); }
+.image-3 { background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1532351548/mvpinvest/investidora.png'); }
+.solution-image {
+  height: 50vh;
+  margin: 5em 0;
+  width: auto;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.solution-text {
+  margin: 5em 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: $dark-blue;
+  opacity: 0.9;
+  font-size: 1em;
+  span {
+    opacity: 1;
+    font-weight: bold;
+  }
+}
+
+/* Responsive CSS adjustments */
+@media screen and (max-width: 767.98px) {
+  .inverted-row {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
