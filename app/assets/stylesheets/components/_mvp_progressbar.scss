@@ -1,8 +1,11 @@
-#mvp-progressbar {
-    border:1px solid black;
-    width:500px;
-    background:#999;
-    text-align:center;
-    margin-top:10px;
+#mvp-progressbar-wrapper {
+  background-color: $lightest-gray;
+  border-radius: 13px;
+
+  #mvp-progressbar {
+    background: linear-gradient(to right, rgb(39, 219, 204) 50%, rgb(61, 233, 220) 100%);
+    height: 20px;
+    border-radius: 13px;
+  }
 }
 
