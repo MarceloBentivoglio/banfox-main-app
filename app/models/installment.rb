@@ -4,9 +4,12 @@ class Installment < ApplicationRecord
   monetize :value_cents, with_model_currency: :currency
   after_destroy :destroy_parent_if_void
 
-  scope :opened_today, -> { opened.where(due_date: Date.current) }
-  scope :opened_week,  -> { opened.where("due_date >= :today AND due_date <= :end_week", {today: Date.current, end_week: Date.current.end_of_week}) }
-  scope :opened_month, -> { opened.where("due_date >= :today AND due_date <= :end_month", {today: Date.current, end_month: Date.current.end_of_month}) }
+  scope :opened_today,    -> { opened.where(due_date: Date.current) }
+  scope :opened_week,     -> { opened.where("due_date >= :today AND due_date <= :end_week", {today: Date.current, end_week: Date.current.end_of_week}) }
+  scope :opened_month,    -> { opened.where("due_date >= :today AND due_date <= :end_month", {today: Date.current, end_month: Date.current.end_of_month}) }
+  scope :overdue_upto_7,  -> { opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date}) }
+  scope :overdue_upto_30, -> { opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date}) }
+  scope :overdue_30_plus, -> { opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date}) }
 
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model

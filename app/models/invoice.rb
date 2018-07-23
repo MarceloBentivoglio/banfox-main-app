@@ -52,6 +52,10 @@ class Invoice < ApplicationRecord
   scope :count_opened_week,  -> { deposited_aux.merge(Installment.opened_week).count }
   scope :sum_opened_month,   -> { deposited_aux.merge(Installment.opened_month).sum(:value_cents) }
   scope :count_opened_month, -> { deposited_aux.merge(Installment.opened_month).count }
+  # TOdo make thies methods as we did to opened
+  scope :overdue_upto_7,  -> { opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date}) }
+  scope :overdue_upto_30, -> { opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date}) }
+  scope :overdue_30_plus, -> { opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date}) }
 
   def self.total_opened(seller)
     Money.new(where(seller: seller).sum_opened)
