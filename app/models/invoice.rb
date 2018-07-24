@@ -34,60 +34,34 @@ class Invoice < ApplicationRecord
 
   # TODO: Use Joia's email to guide me to getting a better querry performance
   # TODO: There is a warning that says that for rails 6.0 the comand oder(max(installments.due_date) DESC) won't work anymore
-  scope :not_deposited_aux,  -> { joins(:installments).where(backoffice_status: [0,1]).group("invoices.id") }
-  scope :deposited_aux_g,    -> { joins(:installments).deposited.group("invoices.id") }
-  scope :deposited_aux,      -> { joins(:installments).deposited }
-  scope :in_store,           -> { not_deposited_aux.having("SUM(CASE WHEN (liquidation_status = 0) THEN 1 ELSE 0 END) > 0").order(Arel.sql("max(installments.due_date) DESC")) }
-  scope :overdue,            -> { deposited_aux_g.having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0").order(Arel.sql("max(installments.due_date) ASC")) }
-  scope :on_date,            -> { deposited_aux_g.having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) ASC")) }
-  scope :opened,             -> { deposited_aux_g.having("(SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0)").order(Arel.sql("max(installments.due_date) ASC")) }
-  scope :paid,               -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
-  scope :rebought,           -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
-  scope :lost,               -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
-  scope :finished,           -> { deposited_aux_g.having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))").order(Arel.sql("max(installments.due_date) DESC")) }
-  scope :sum_opened,         -> { deposited_aux.merge(Installment.opened).sum(:value_cents) }
-  scope :sum_opened_today,   -> { deposited_aux.merge(Installment.opened_today).sum(:value_cents) }
-  scope :count_opened_today, -> { deposited_aux.merge(Installment.opened_today).count }
-  scope :sum_opened_week,    -> { deposited_aux.merge(Installment.opened_week).sum(:value_cents) }
-  scope :count_opened_week,  -> { deposited_aux.merge(Installment.opened_week).count }
-  scope :sum_opened_month,   -> { deposited_aux.merge(Installment.opened_month).sum(:value_cents) }
-  scope :count_opened_month, -> { deposited_aux.merge(Installment.opened_month).count }
-  # TOdo make thies methods as we did to opened
-  scope :overdue_upto_7,  -> { opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date}) }
-  scope :overdue_upto_30, -> { opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date}) }
-  scope :overdue_30_plus, -> { opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date}) }
 
-  def self.total_opened(seller)
-    Money.new(where(seller: seller).sum_opened)
-  end
+  # Used in the card tables
+  scope :not_deposited_aux, -> { joins(:installments).where(backoffice_status: [0,1]).group("invoices.id") }
+  scope :deposited_aux_g,   -> { joins(:installments).deposited.group("invoices.id") }
+  scope :deposited_aux,     -> { joins(:installments).deposited }
+  scope :in_store,          -> { not_deposited_aux.having("SUM(CASE WHEN (liquidation_status = 0) THEN 1 ELSE 0 END) > 0").order(Arel.sql("max(installments.due_date) DESC")) }
+  scope :overdue,           -> { deposited_aux_g.having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0").order(Arel.sql("max(installments.due_date) ASC")) }
+  scope :on_date,           -> { deposited_aux_g.having("SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) ASC")) }
+  scope :opened,            -> { deposited_aux_g.having("(SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN liquidation_status > 0 THEN 1 ELSE 0 END) < COUNT(liquidation_status)) OR (SUM(CASE WHEN (liquidation_status = 0) AND (installments.due_date < NOW()) THEN 1 ELSE 0 END) > 0)").order(Arel.sql("max(installments.due_date) ASC")) }
+  scope :paid,              -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
+  scope :rebought,          -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
+  scope :lost,              -> { deposited_aux_g.having("SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status)").order(Arel.sql("max(installments.due_date) DESC")) }
+  scope :finished,          -> { deposited_aux_g.having("(SUM(CASE liquidation_status WHEN 1 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 2 THEN 1 ELSE 0 END) = COUNT(liquidation_status)) OR (SUM(CASE liquidation_status WHEN 3 THEN 1 ELSE 0 END) = COUNT(liquidation_status))").order(Arel.sql("max(installments.due_date) DESC")) }
+  # Used in the dashboard
+  scope :total,             -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents))}
+  scope :quant,             -> (scope, seller) { __send__(scope, seller).count}
+  scope :opened_all,        -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened) }
+  scope :opened_today,      -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened_today) }
+  scope :opened_week,       -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened_week) }
+  scope :opened_month,      -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened_month) }
+  scope :overdue_upto_7,    -> (seller) { where(seller: seller).deposited_aux.merge(Installment.overdue_upto_7) }
+  scope :overdue_upto_30,   -> (seller) { where(seller: seller).deposited_aux.merge(Installment.overdue_upto_30) }
+  scope :overdue_30_plus,   -> (seller) { where(seller: seller).deposited_aux.merge(Installment.overdue_30_plus) }
+  scope :settled,           -> (seller) { where(seller: seller).deposited_aux.merge(Installment.settled) }
 
-  def self.total_opened_today(seller)
-    Money.new(where(seller: seller).sum_opened_today)
-  end
-
-  def self.quantity_opened_today(seller)
-    where(seller: seller).count_opened_today
-  end
-
-  def self.total_opened_week(seller)
-    Money.new(where(seller: seller).sum_opened_week)
-  end
-
-  def self.quantity_opened_week(seller)
-    where(seller: seller).count_opened_week
-  end
-
-  def self.total_opened_month(seller)
-    Money.new(where(seller: seller).sum_opened_month)
-  end
-
-  def self.quantity_opened_month(seller)
-    where(seller: seller).count_opened_month
-  end
-
-  def total_value
-    Money.new(installments.sum("value_cents"))
-  end
+  # def total_value
+  #   Money.new(installments.sum("value_cents"))
+  # end
 
   def total_value_w_installments_preloaded
     Money.new(installments.reduce(0){ |sum, i| sum + i.value_cents })
