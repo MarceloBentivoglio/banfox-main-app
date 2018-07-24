@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history, :show, :new, :create]
 
   def store
-    @operations = Operation.in_store(@seller).paginate(page: params[:page]).order(created_at: :asc)
+    @operations = Operation.preload_scope(:in_store, @seller).paginate(page: params[:page]).order(created_at: :asc)
     respond_to do |format|
       format.html
       format.js
@@ -10,7 +10,7 @@ class InvoicesController < ApplicationController
   end
 
   def opened
-    @operations = Operation.opened(@seller).paginate(page: params[:page]).order(created_at: :asc)
+    @operations = Operation.preload_scope(:opened, @seller).paginate(page: params[:page]).order(created_at: :asc)
     respond_to do |format|
       format.html
       format.js
@@ -18,7 +18,7 @@ class InvoicesController < ApplicationController
   end
 
   def history
-    @operations = Operation.finished(@seller).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
+    @operations = Operation.preload_scope(:finished, @seller).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     respond_to do |format|
       format.html
       format.js
