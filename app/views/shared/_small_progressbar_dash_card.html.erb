@@ -6,10 +6,7 @@
     </div>
   </div>
   <div class="dash-card-content">
-    <div id="mvp-progressbar-wrapper">
-      <div id="mvp-progressbar" data-value="50">
-      </div>
-    </div>
+    <%= render partial: "shared/mvp_progressbar", locals: {used: @seller.used_limit, limit: @seller.operation_limit} %>
   </div>
 </div>
 

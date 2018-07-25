@@ -2,6 +2,7 @@ class Seller < ApplicationRecord
   # We need to include this Model so that the custom validations AtLeatOne works
   include ActiveModel::Validations
 
+  monetize :operation_limit_cents, with_model_currency: :currency
   has_many :users, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many_attached :social_contracts, dependent: :purge
@@ -177,6 +178,10 @@ class Seller < ApplicationRecord
 
   def total_documents
     DOCUMENTS.length
+  end
+
+  def used_limit
+    Invoice.total(:opened_all, self)
   end
 
   private

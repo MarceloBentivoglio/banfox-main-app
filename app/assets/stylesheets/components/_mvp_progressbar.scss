@@ -1,11 +1,31 @@
-#mvp-progressbar-wrapper {
-  background-color: $lightest-gray;
+#mvp-progressbar-fill-wrapper {
+  background-color: $light-gray;
   border-radius: 13px;
 
-  #mvp-progressbar {
+  #mvp-progressbar-fill {
     background: linear-gradient(to right, rgb(39, 219, 204) 50%, rgb(61, 233, 220) 100%);
     height: 20px;
     border-radius: 13px;
   }
 }
+.mvp-progressbar-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+
+  .mvp-progressbar-content-left {
+    color: rgb(39, 219, 204);
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mvp-progressbar-content-right {
+    color: $light-gray;
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 
