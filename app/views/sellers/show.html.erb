@@ -10,12 +10,12 @@
     <div class="col-xs-12">
       <div class="row">
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_progressbar_dash_card" %>
+          <%= render partial: "shared/dash_cards/small_progressbar_dash_card" %>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos a vencer",
             primary_content: Invoice.total(:opened_today, @seller),
             secondary_content: Invoice.quant(:opened_today, @seller),
@@ -23,7 +23,7 @@
           } %>
         </div>
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos a vencer",
             primary_content: Invoice.total(:opened_week, @seller),
             secondary_content: Invoice.quant(:opened_week, @seller),
@@ -31,7 +31,7 @@
           } %>
         </div>
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos a vencer",
             primary_content: Invoice.total(:opened_month, @seller),
             secondary_content: Invoice.quant(:opened_month, @seller),
@@ -41,7 +41,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos atrasados",
             primary_content: Invoice.total(:overdue_upto_7, @seller),
             secondary_content: Invoice.quant(:overdue_upto_7, @seller),
@@ -49,7 +49,7 @@
           } %>
         </div>
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos atrasados",
             primary_content: Invoice.total(:overdue_upto_30, @seller),
             secondary_content: Invoice.quant(:overdue_upto_30, @seller),
@@ -57,7 +57,7 @@
           } %>
         </div>
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos atrasados",
             primary_content: Invoice.total(:overdue_30_plus, @seller),
             secondary_content: Invoice.quant(:overdue_30_plus, @seller),
@@ -67,7 +67,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/small_info_dash_card", locals: {
+          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
             title: "Títulos já liquidados",
             primary_content: Invoice.total(:settled, @seller),
             secondary_content: Invoice.quant(:settled, @seller),
