@@ -1,12 +1,17 @@
 <div class="small-dash-card">
   <div class="dash-card-title">
-    <span>Limite</span>
+    <span><%= title %></span>
     <div class="dash-card-icon">
       <i class="fa fa-bar-chart"></i>
     </div>
   </div>
   <div class="dash-card-content">
-    <%= render partial: "shared/mvp_progressbar", locals: {used: @seller.used_limit, limit: @seller.operation_limit} %>
+    <%= render partial: "shared/mvp_progressbar", locals: {
+      left_data: left_data,
+      right_data: right_data,
+      left_legend: left_legend,
+      right_legend: right_legend,
+    } %>
   </div>
 </div>
 

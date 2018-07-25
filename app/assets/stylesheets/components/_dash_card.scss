@@ -6,7 +6,7 @@
   margin: 0.5em 0;
 
   .dash-card-title {
-    font-size: 1.2em;
+    font-size: 0.9em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,17 +24,29 @@
     line-height: normal;
 
     .primary-content {
-      font-size: 2em;
+      font-size: 1.6em;
     }
 
     .secondary-content {
-      font-size: 1.5em;
+      font-size: 1.2em;
       color:$light-gray;
     }
 
     .aux-content {
-      font-size: 1em;
+      font-size: 0.8em;
     }
+  }
+}
+
+.dash-cards-sections-header {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .dash-cards-sections-title {
+    font-size: 1.25em;
+    color: $dark-blue;
   }
 }
 

@@ -6,77 +6,132 @@
 
 <div class="container-fluid">
 
-  <div class="row">
-    <div class="col-xs-12">
       <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_progressbar_dash_card" %>
+        <div class="col-xs-12">
+          <div class="dash-cards-sections-header">
+            <span class="dash-cards-sections-title">Novas operações</span>
+            <div class="hidden-xs">
+              <%= render partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Começar uma nova operação" } %>
+            </div>
+          </div>
+          <div class="cards-section-content">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
+                  title: "Limite operacional",
+                  left_data: @seller.used_limit,
+                  right_data: @seller.operation_limit,
+                  left_legend: "Utilizado",
+                  right_legend: "Disponível",
+                } %>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Títulos disponíveis para operação",
+                  primary_content: Invoice.total(:in_store_all, @seller),
+                  secondary_content: Invoice.quant(:in_store_all, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos a vencer",
-            primary_content: Invoice.total(:opened_today, @seller),
-            secondary_content: Invoice.quant(:opened_today, @seller),
-            aux_content: "hoje",
-          } %>
-        </div>
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos a vencer",
-            primary_content: Invoice.total(:opened_week, @seller),
-            secondary_content: Invoice.quant(:opened_week, @seller),
-            aux_content: "Essa semana",
-          } %>
-        </div>
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos a vencer",
-            primary_content: Invoice.total(:opened_month, @seller),
-            secondary_content: Invoice.quant(:opened_month, @seller),
-            aux_content: "Esse mês",
-          } %>
+        <div class="col-xs-12">
+          <div class="dash-cards-sections-header">
+            <span class="dash-cards-sections-title">Títulos a vencer</span>
+          </div>
+          <div class="cards-section-content">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Hoje",
+                  primary_content: Invoice.total(:opened_today, @seller),
+                  secondary_content: Invoice.quant(:opened_today, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Essa semana",
+                  primary_content: Invoice.total(:opened_week, @seller),
+                  secondary_content: Invoice.quant(:opened_week, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Esse mês",
+                  primary_content: Invoice.total(:opened_month, @seller),
+                  secondary_content: Invoice.quant(:opened_month, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos atrasados",
-            primary_content: Invoice.total(:overdue_upto_7, @seller),
-            secondary_content: Invoice.quant(:overdue_upto_7, @seller),
-            aux_content: "há menos de 7 dias",
-          } %>
-        </div>
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos atrasados",
-            primary_content: Invoice.total(:overdue_upto_30, @seller),
-            secondary_content: Invoice.quant(:overdue_upto_30, @seller),
-            aux_content: "há mais de 7 dias e menos de 1 mês",
-          } %>
-        </div>
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos atrasados",
-            primary_content: Invoice.total(:overdue_30_plus, @seller),
-            secondary_content: Invoice.quant(:overdue_30_plus, @seller),
-            aux_content: "há mais de 1 mês",
-          } %>
+        <div class="col-xs-12">
+          <div class="dash-cards-sections-header">
+            <span class="dash-cards-sections-title">Títulos atrasados</span>
+          </div>
+          <div class="cards-section-content">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Há menos de 7 dias",
+                  primary_content: Invoice.total(:overdue_upto_7, @seller),
+                  secondary_content: Invoice.quant(:overdue_upto_7, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Há mais de 7 dias e menos de 1 mês",
+                  primary_content: Invoice.total(:overdue_upto_30, @seller),
+                  secondary_content: Invoice.quant(:overdue_upto_30, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Há mais de 1 mês",
+                  primary_content: Invoice.total(:overdue_30_plus, @seller),
+                  secondary_content: Invoice.quant(:overdue_30_plus, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-            title: "Títulos já liquidados",
-            primary_content: Invoice.total(:settled, @seller),
-            secondary_content: Invoice.quant(:settled, @seller),
-            aux_content: "histórico",
-          } %>
+        <div class="col-xs-12">
+          <div class="dash-cards-sections-header">
+            <span class="dash-cards-sections-title">Títulos liquidados</span>
+          </div>
+          <div class="cards-section-content">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+                  title: "Histórico",
+                  primary_content: Invoice.total(:settled, @seller),
+                  secondary_content: Invoice.quant(:settled, @seller),
+                  aux_content: "",
+                } %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+
+
+
 
 
 <!-- well -->

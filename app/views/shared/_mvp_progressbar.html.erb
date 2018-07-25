@@ -1,16 +1,16 @@
 <div class="mvp-progressbar">
   <div id="mvp-progressbar-fill-wrapper">
-    <div id="mvp-progressbar-fill" data-value="<%= ((used / limit)*100).round %>">
+    <div id="mvp-progressbar-fill" data-value="<%= ((left_data / right_data)*100).round %>">
     </div>
   </div>
   <div class="mvp-progressbar-content">
     <div class="mvp-progressbar-content-left">
-      <span>Utilizado</span>
-      <span><%= humanized_money_with_symbol(used) %></span>
+      <span><%= left_legend %></span>
+      <span><%= humanized_money_with_symbol(left_data) %></span>
     </div>
     <div class="mvp-progressbar-content-right">
-      <span>Restante</span>
-      <span><%= humanized_money_with_symbol(limit - used) %></span>
+      <span><%= right_legend %></span>
+      <span><%= humanized_money_with_symbol(right_data - left_data) %></span>
     </div>
   </div>
 </div>
