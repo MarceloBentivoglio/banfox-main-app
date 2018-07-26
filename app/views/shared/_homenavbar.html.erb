@@ -8,7 +8,11 @@
       <%= link_to "Sobre nós", about_us_path, class: "mvp-item mvp-link" %>
       <%= link_to "Como funciona?", howitworks_path, class: "mvp-item mvp-link" %>
       <%= link_to "Solução", solution_path, class: "mvp-item mvp-link" %>
-      <%= link_to "Login", new_user_session_path, class: "mvp-item mvp-link" %>
+      <% if user_signed_in? %>
+        <%= link_to "Minha área",  sellers_show_path, class: "mvp-item mvp-link" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "mvp-item mvp-link" %>
+      <% end %>
     </div>
   </div>
 </div>
