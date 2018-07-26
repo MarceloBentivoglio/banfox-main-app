@@ -1,5 +1,5 @@
 .small-dash-card-link {
-  box-shadow: 0 2px 4px 0 rgba(192,208,230,0.5);
+  box-shadow: 0 0 20px 0 rgba(207,219,232,.3);
   color: $gray;
 
   &:hover {
@@ -9,11 +9,12 @@
   }
 }
 .small-dash-card {
-  background: $near-white;
+  background: $white;
   box-shadow: 0 1px 3px rgba(240, 240, 240, 1);
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 1em;
   margin: 0.5em 0;
+  font-weight: 400;
 
   .dash-card-title {
     font-size: 0.9em;
@@ -64,4 +65,3 @@
     color: $dark-blue;
   }
 }
-
