@@ -49,6 +49,8 @@ class Invoice < ApplicationRecord
   # Used in the dashboard
   scope :total,             -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents).values.inject(:+))}
   scope :quant,             -> (scope, seller) { __send__(scope, seller).count.keys.count}
+  scope :in_analysis,       -> (seller) { where(seller: seller).joins(:installments).group("invoices.id").registred }
+  scope :approved_all,      -> (seller) { where(seller: seller).joins(:installments).group("invoices.id").approved }
   scope :in_store_all,      -> (seller) { where(seller: seller).not_deposited_aux }
   scope :opened_all,        -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened) }
   scope :opened_today,      -> (seller) { where(seller: seller).deposited_aux.merge(Installment.opened_today) }

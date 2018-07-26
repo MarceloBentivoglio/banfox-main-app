@@ -1,224 +1,176 @@
 <%= render partial: "shared/header", locals: {
   title: "Bem vindo!",
-  sub_title: "Esta é sua página principal! Controle seus adiantamentos de maneira rápida e prática!",
+  sub_title: "",
   company_name: "",
 } %>
 
 <div class="container-fluid">
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="dash-cards-sections-header">
-            <span class="dash-cards-sections-title">Novas operações</span>
-            <div class="hidden-xs">
-              <%= render partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Começar uma nova operação" } %>
-            </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Cadastrar empresa",
+        checked: true,
+        button_path: "#",
+      } %>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Adicionar documentos",
+        checked: @seller.documentation_completed?,
+        button_path: new_document_path,
+      } %>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Adicionar um ou mais títulos",
+        checked: @seller.invoices.count > 0,
+        button_path: new_invoice_path,
+      } %>
+    </div>
+    <!-- TODO: Aqui precisamos decidir se vamos deixar essa info pois se sim teremos que criar uma propriedade para o seller first_phone_contact -->
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Receber telefonema da MVP Invest",
+        checked: false,
+        button_path: "#",
+      } %>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Receber MVP Invest na sua empresa",
+        checked: @seller.visited?,
+        button_path: "#",
+      } %>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
+        title: "Primeiro título antecipado com sucesso",
+        checked: @seller.finished_invoices.count.present?,
+        button_path: "#",
+      } %>
+    </div>
+  </div>
+  <% if @seller.approved? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+          title: "Novas operações",
+          optional_button: render(partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Subir mais títulos para análise"}),
+        } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
+              title: "Limite operacional",
+              left_data: @seller.used_limit,
+              right_data: @seller.operation_limit,
+              left_legend: "Utilizado",
+              right_legend: "Disponível",
+            } %>
           </div>
-          <div class="cards-section-content">
-            <div class="row">
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
-                  title: "Limite operacional",
-                  left_data: @seller.used_limit,
-                  right_data: @seller.operation_limit,
-                  left_legend: "Utilizado",
-                  right_legend: "Disponível",
-                } %>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Títulos disponíveis para operação",
-                  primary_content: Invoice.total(:in_store_all, @seller),
-                  secondary_content: Invoice.quant(:in_store_all, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-            </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Títulos em análise",
+              primary_content: Invoice.total(:in_analysis, @seller),
+              secondary_content: Invoice.quant(:in_analysis, @seller),
+              aux_content: "",
+            } %>
           </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="dash-cards-sections-header">
-            <span class="dash-cards-sections-title">Títulos a vencer</span>
-          </div>
-          <div class="cards-section-content">
-            <div class="row">
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Hoje",
-                  primary_content: Invoice.total(:opened_today, @seller),
-                  secondary_content: Invoice.quant(:opened_today, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Essa semana",
-                  primary_content: Invoice.total(:opened_week, @seller),
-                  secondary_content: Invoice.quant(:opened_week, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Esse mês",
-                  primary_content: Invoice.total(:opened_month, @seller),
-                  secondary_content: Invoice.quant(:opened_month, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="dash-cards-sections-header">
-            <span class="dash-cards-sections-title">Títulos atrasados</span>
-          </div>
-          <div class="cards-section-content">
-            <div class="row">
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Há menos de 7 dias",
-                  primary_content: Invoice.total(:overdue_upto_7, @seller),
-                  secondary_content: Invoice.quant(:overdue_upto_7, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Há mais de 7 dias e menos de 1 mês",
-                  primary_content: Invoice.total(:overdue_upto_30, @seller),
-                  secondary_content: Invoice.quant(:overdue_upto_30, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Há mais de 1 mês",
-                  primary_content: Invoice.total(:overdue_30_plus, @seller),
-                  secondary_content: Invoice.quant(:overdue_30_plus, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-            </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Títulos aprovados",
+              primary_content: Invoice.total(:approved_all, @seller),
+              secondary_content: Invoice.quant(:approved_all, @seller),
+              aux_content: "",
+            } %>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="dash-cards-sections-header">
-            <span class="dash-cards-sections-title">Títulos liquidados</span>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+          title: "Títulos a vencer",
+          optional_button: nil,
+        } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Hoje",
+              primary_content: Invoice.total(:opened_today, @seller),
+              secondary_content: Invoice.quant(:opened_today, @seller),
+              aux_content: "",
+            } %>
           </div>
-          <div class="cards-section-content">
-            <div class="row">
-              <div class="col-sm-12 col-md-4">
-                <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
-                  title: "Histórico",
-                  primary_content: Invoice.total(:settled, @seller),
-                  secondary_content: Invoice.quant(:settled, @seller),
-                  aux_content: "",
-                } %>
-              </div>
-            </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Essa semana",
+              primary_content: Invoice.total(:opened_week, @seller),
+              secondary_content: Invoice.quant(:opened_week, @seller),
+              aux_content: "",
+            } %>
           </div>
-        </div>
-      </div>
-
-
-
-
-
-<!-- well -->
-  <!-- <div class="well well-sm"> -->
-
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="page-messages">
-            <h2>Status</h2>
-            <% unless @documents_ok %>
-              <p> <%= link_to "Clique aqui!", new_document_path %> para inserir os documentos de sua empresa. Quanto mais completo, menor a taxa!</p>
-            <% end %>
-            <% unless @at_leat_one_invoice %>
-              <p> Vamos começar? Faça o
-                <%= link_to "upload do XML de uma nota fiscal.", new_invoice_path  %>
-              </p>
-            <% end %>
-            <% if @documents_ok && @at_leat_one_invoice && !@visited %>
-              <p>Está tudo preparado, agora é só esperar alguém de nossa esquipe entrar em contato com você para marcar uma visita</p>
-            <% end %>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Esse mês",
+              primary_content: Invoice.total(:opened_month, @seller),
+              secondary_content: Invoice.quant(:opened_month, @seller),
+              aux_content: "",
+            } %>
           </div>
         </div>
       </div>
-    </div> -->
-    <!-- tentei fazer com alerts mas fizemos overwrite de algo do bootstrap e ele ta ficando muito feio -->
-
-<!--     <% unless @documents_ok %>
-      <div class="alert alert-info">
-          <p> <%= link_to "Clique aqui!", new_document_path, class: "alert-link" %> para inserir os documentos de sua empresa. Quanto mais completo, menor a taxa!</p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+          title: "Títulos atrasados",
+          optional_button: nil,
+        } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Há menos de 7 dias",
+              primary_content: Invoice.total(:overdue_upto_7, @seller),
+              secondary_content: Invoice.quant(:overdue_upto_7, @seller),
+              aux_content: "",
+            } %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Há mais de 7 dias e menos de 1 mês",
+              primary_content: Invoice.total(:overdue_upto_30, @seller),
+              secondary_content: Invoice.quant(:overdue_upto_30, @seller),
+              aux_content: "",
+            } %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Há mais de 1 mês",
+              primary_content: Invoice.total(:overdue_30_plus, @seller),
+              secondary_content: Invoice.quant(:overdue_30_plus, @seller),
+              aux_content: "",
+            } %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <% unless @at_leat_one_invoice %>
-      <div class="alert alert-info">
-        <p> Vamos começar? Faça o
-          <%= link_to "upload do XML de uma nota fiscal.", new_invoice_path, class: "alert-link"  %>
-        </p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+          title: "Títulos liquidados",
+          optional_button: nil,
+        } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+              title: "Histórico",
+              primary_content: Invoice.total(:settled, @seller),
+              secondary_content: Invoice.quant(:settled, @seller),
+              aux_content: "",
+            } %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <% if @documents_ok && @at_leat_one_invoice && !@visited %>
-      <div class="alert alert-info">
-        <p>Está tudo preparado, agora é só esperar alguém de nossa esquipe entrar em contato com você para marcar uma visita</p>
-      </div>
-    <% end %> -->
-
-    <!-- Status do seller -->
-    <!-- <div class="container">
-      <ul class="list-unstyled font-size-m">
-        <li>
-          <i class="fa fa-check-circle color-ok"></i>
-          Cadastro
-        </li>
-        <li>
-          <% if @documents_ok %>
-            <i class="fa fa-check-circle color-ok"></i>
-          <% else %>
-            <i class="fa fa-times-circle color-atention"></i>
-          <% end %>
-          <%= link_to "Upload de documentos", new_document_path, class: "link-unstyled" %>
-        </li>
-        <li>
-          <% if @at_leat_one_invoice %>
-            <i class="fa fa-check-circle color-ok"></i>
-          <% else %>
-            <i class="fa fa-times-circle color-atention"></i>
-          <% end %>
-          <%= link_to "Upload de títulos", new_invoice_path, class: "link-unstyled"  %>
-        </li>
-        <li>
-          <% if @visited %>
-            <i class="fa fa-check-circle color-ok"></i>
-          <% else %>
-            <i class="fa fa-times-circle color-atention"></i>
-          <% end %>
-          Visita
-        </li>
-        <li>
-          <% if @seller.approved? %>
-            <i class="fa fa-check-circle color-ok"></i>
-          <% else %>
-            <i class="fa fa-times-circle color-atention"></i>
-          <% end %>
-          <%= link_to "Pronto para operar", new_invoice_path, class: "link-unstyled"  %>
-        </li>
-      </ul>
-    </div> -->
-<!-- well -->
-  <!-- </div> -->
-
+    </div>
+  <% end %>
 </div>

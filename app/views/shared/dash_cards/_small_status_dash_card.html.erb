@@ -1,0 +1,17 @@
+<%= link_to button_path do %>
+  <div class="small-dash-card small-dash-card-link">
+    <div class="dash-card-title">
+      <span><%= title %></span>
+      <% if checked %>
+        <div class="dash-card-checked-icon">
+          <i class="fa fa-check-circle"></i>
+        </div>
+      <% else %>
+        <div class="dash-card-icon">
+          <i class="fa fa-circle-o"></i>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
