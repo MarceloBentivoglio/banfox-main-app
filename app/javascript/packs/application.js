@@ -7,7 +7,8 @@ import { animateNavbar } from "../components/newnavbar";
 import { showPage } from "../components/homeAnimation";
 import { loop } from "../components/showOnScroll";
 import { presentAndDismissAlerts } from "../components/flashes";
-import {infiniteScrolling } from "../components/pagination";
+import { infiniteScrolling } from "../components/pagination";
+import { showProgressbar } from "../components/mvpProgressbar";
 
 selectTagOnClick();
 sliderShowValue();
@@ -18,3 +19,4 @@ showPage();
 loop();
 presentAndDismissAlerts();
 infiniteScrolling();
+showProgressbar();

@@ -3,16 +3,20 @@
   font-weight: normal;
   border: none;
   margin: 90px 0 10px 0;
-  h1 {
+
+  .page-header-title {
+    font-size: 1.7em;
     color: $dark-blue;
+
+    span {
+      color: $orange;
+    }
   }
-  span {
-    color: $orange;
-  }
-  p {
+
+  .page-header-subtitle {
     color: $dark-blue;
     font-style: italic;
-    font-size: 22px;
+    font-size: 0.9em;
     opacity: 0.8;
   }
 }

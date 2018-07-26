@@ -2,8 +2,10 @@ class Seller < ApplicationRecord
   # We need to include this Model so that the custom validations AtLeatOne works
   include ActiveModel::Validations
 
+  monetize :operation_limit_cents, with_model_currency: :currency
   has_many :users, dependent: :destroy
   has_many :invoices, dependent: :destroy
+  has_many :finished_invoices, -> {finished}, class_name: "Invoice"
   has_many_attached :social_contracts, dependent: :purge
   has_many_attached :update_on_social_contracts, dependent: :purge
   has_many_attached :address_proofs, dependent: :purge
@@ -164,19 +166,23 @@ class Seller < ApplicationRecord
 
   def documentation_completed?
     DOCUMENTS.all? do |document|
-      self.send(document).attached?
+      self.__send__(document).attached?
     end
   end
 
   def categories_w_documents_num
     docs_uploaded = DOCUMENTS.map do |document|
-      self.send(document).attached?
+      self.__send__(document).attached?
     end
     docs_uploaded.count(true)
   end
 
   def total_documents
     DOCUMENTS.length
+  end
+
+  def used_limit
+    Invoice.total(:opened_all, self)
   end
 
   private

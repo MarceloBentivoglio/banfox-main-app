@@ -5,15 +5,26 @@
       <div id="logo-dash" class="logo-dash"></div>
     <% end %>
     <div class="dash-mvp-right hidden-xs hidden-sm">
-      <% if user_signed_in? %>
+
       <!-- Links when logged in -->
-      <%= link_to "Meus documentos", documents_path, class: "dash-mvp-item dash-mvp-link" %>
-      <%= link_to "Meus títulos", store_invoices_path, class: "dash-mvp-item dash-mvp-link" %>
-      <%= link_to "Dashboard", sellers_show_path, class: "dash-mvp-item dash-mvp-link" %>
+      <%= link_to store_invoices_path, class: "dash-mvp-item dash-mvp-link" do %>
+        <i class="fa fa-line-chart"></i>
+      <% end %>
+
+      <%= link_to documents_path, class: "dash-mvp-item dash-mvp-link" do %>
+        <i class="fa fa-folder"></i>
+      <% end %>
+
+       <%= link_to sellers_show_path, class: "dash-mvp-item dash-mvp-link" do %>
+        <i class="fa fa-laptop"></i>
+      <% end %>
+
       <!-- Avatar with dropdown menu -->
       <div class="dash-mvp-item">
         <div class="dropdown">
-          <%= image_tag "logout3.png", height: 30, class: "dropdown-toggle", id: "mvp-menu", "data-toggle" => "dropdown" %>
+          <a id="mvp-menu" href="#" data-toggle="dropdown" class="dash-mvp-link">
+            <i class="fa fa-user-circle"></i>
+          </a>
           <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
@@ -23,12 +34,9 @@
           </ul>
         </div>
       </div>
-      <% else %>
-      <%= link_to "Como Funciona?", howitworks_path, class: "dash-mvp-item dash-mvp-link" %>
-      <%= link_to "Login", new_user_session_path, class: "dash-mvp-item dash-mvp-link" %>
-      <%= link_to "Antecipar Recebíveis", new_user_registration_path, class: "dash-mvp-item dash-mvp-link" %>
 
-      <% end %>
+      <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name %> </span>
+
     </div>
   </div>
 </div>

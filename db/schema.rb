@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_190125) do
+ActiveRecord::Schema.define(version: 2018_07_24_205350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_190125) do
     t.string "neighborhood"
     t.string "state"
     t.string "city"
+    t.integer "operation_limit_cents", default: 0, null: false
+    t.string "operation_limit_currency", default: "BRL", null: false
   end
 
   create_table "users", force: :cascade do |t|

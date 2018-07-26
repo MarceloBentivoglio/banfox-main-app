@@ -24,8 +24,12 @@
   .dash-mvp-link {
     color: $near-white;
     &:hover {
-      color: $near-black;
+      color: $orange;
     }
+  }
+  .profile-name {
+    color: $orange;
+    font-size: 1.2em;
   }
 }
 /* Right section */
