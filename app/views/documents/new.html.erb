@@ -1,10 +1,10 @@
-<%= render partial: "shared/header_name_first", locals: {
-  title: "que tal deixarmos seu cadastro atualizado?",
-  sub_title: "Faça o upload dos arquivos solicitados",
-  company_name: @seller.company_name
+<%= render partial: "shared/header", locals: {
+  title: "Upload de documentos",
+  sub_title: "É permitido arquivos em qualquer formato",
+  company_name: "",
 } %>
 
-<%= render partial: "shared/documents_menu", locals: {menu_in: :new} %>
+<%= render partial: "shared/menus/documents_menu", locals: {menu_in: :new} %>
 
 <div class="container">
   <div class="row">
