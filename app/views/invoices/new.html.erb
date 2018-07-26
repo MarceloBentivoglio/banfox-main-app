@@ -1,17 +1,17 @@
-<%= render partial: "shared/header_name_first", locals: {
-  title: "que tal adiantarmos umas notas?",
-  sub_title: "Faça o upload do arquivo XML da sua nota fiscal",
-  company_name: @seller.company_name
+<%= render partial: "shared/header", locals: {
+  title: "Upload de títulos",
+  sub_title: "Para títulos que não sejam XML, favor enviar por e-mail para joao.conte@mvpinvest.com.br",
+  company_name: "",
 } %>
 
-<%= render partial: "shared/invoices_menu", locals: {menu_in: :new} %>
+<%= render partial: "shared/menus/invoices_menu", locals: {menu_in: :new} %>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <div class="input-file-box">
         <%= simple_form_for @invoice do |f| %>
-          <%= render partial: "shared/files_input", locals: {f: f, description: "Selecione arquivos XML", upload: :xmls} %>
+          <%= render partial: "shared/files_input", locals: {f: f, description: "Selecionar arquivos XML", upload: :xmls} %>
         <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
         <% end %>
       </div>

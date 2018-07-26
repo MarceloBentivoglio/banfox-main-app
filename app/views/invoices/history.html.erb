@@ -1,9 +1,9 @@
 <%= render partial: "shared/header", locals: {
   title: "Histórico de títulos",
   sub_title: "Tenha controle dos títulos que ja foram operados conosco",
-  company_name: @seller.company_name
+  company_name: "",
 } %>
 
-<%= render partial: "shared/invoices_menu", locals: {menu_in: :history} %>
+<%= render partial: "shared/menus/invoices_menu", locals: {menu_in: :history} %>
 
 <%= render partial: "shared/card_table/card_table_container", locals: {items: @operations, query: :finished_invoices}%>

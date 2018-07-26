@@ -1,10 +1,10 @@
 <%= render partial: "shared/header", locals: {
-  title: "Documentos de",
+  title: "Documentos",
   sub_title: "Mantenha seus documentos guardados conosco e sempre atualizados",
-  company_name: @seller.company_name
+  company_name: "",
 } %>
 
-<%= render partial: "shared/documents_menu", locals: {menu_in: :index} %>
+<%= render partial: "shared/menus/documents_menu", locals: {menu_in: :index} %>
 
 <div class="container">
   <div class="row">
