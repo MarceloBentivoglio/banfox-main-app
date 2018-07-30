@@ -12,9 +12,7 @@
           <div class="progress-bar">
             <span class="point done">1</span>
             <span class="point done">2</span>
-            <span class="point done">3</span>
-            <span class="point done">4</span>
-            <span class="point active">5</span>
+            <span class="point active">3</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <div class="form-group">
@@ -119,8 +117,8 @@
                 <%= f.error :consent, class: "invalid-feedback" %>
               </div>
             </div>
-          <%= f.submit 'Continue' %>
-          <%= link_to "Back", previous_wizard_path %>
+          <%= f.submit 'Finalizar' %>
+          <%= link_to "Voltar", previous_wizard_path %>
           <% end %>
         </div>
       </div>

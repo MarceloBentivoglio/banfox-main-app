@@ -11,32 +11,18 @@
         <div class="client-form">
           <div class="progress-bar">
             <span class="point done">1</span>
-            <span class="point done">2</span>
-            <span class="point active">3</span>
-            <span class="point future">4</span>
-            <span class="point future">5</span>
+            <span class="point active">2</span>
+            <span class="point future">3</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <div class="tag-choices-finantial">
-              <h4>Nos conte um pouquinho sobre suas finanças...</h4>
-              <div class="slider-container">
-                <p>Qual sua Receita Mensal? <span id="revenue-slider-value"></span></p>
-                <%= f.error :revenue, class: "invalid-feedback" %>
-                <input class="slider" label="false" min="0" step="50" max="950" value="<%= @seller.revenue || 0 %>" type="range" name="seller[revenue]" id="revenue">
-              </div>
-              <div class="slider-container">
-                <p>Quanto você paga de aluguel? <span id="rental_cost-slider-value"></span></p>
-                <%= f.error :rental_cost, class: "invalid-feedback"  %>
-                <input class="slider" label="false" min="0" step="1" max="100" value="<%= @seller.rental_cost || 0 %>" type="range" name="seller[rental_cost]" id="rental_cost">
-              </div>
-              <div class="slider-container">
-                <p>Quantos funcionários vocês possuem? <span id="employees-slider-value"></span></p>
-                <%= f.error :employees, class: "invalid-feedback"  %>
-                <input class="slider" label="false" min="0" step="1" max="100" value="<%= @seller.employees || 0 %>" type="range" name="seller[employees]" id="employees">
-              </div>
-            </div>
-          <%= f.submit 'Continue' %>
-          <%= link_to "Back", previous_wizard_path %>
+            <%= f.input :monthly_revenue, label: "Qual sua Receita Mensal?" %>
+            <%= f.input :monthly_fixed_cost, label: "E o seu custo fixo mensal?" %>
+            <%= f.input :monthly_units_sold, label: "Quantas unidades do produto/serviço você vende por mês?" %>
+            <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?"%>
+            <%= f.input :debt, label: "Qual o total de dívidas que sua empresa possui?" %>
+
+            <%= f.submit 'Continuar' %>
+            <%= link_to "Voltar", previous_wizard_path %>
           <% end %>
         </div>
       </div>
