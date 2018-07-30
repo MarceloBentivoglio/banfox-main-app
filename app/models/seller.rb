@@ -185,6 +185,53 @@ class Seller < ApplicationRecord
     Invoice.total(:opened_all, self)
   end
 
+  # def seller_attributes
+  #   {
+  #     id: self.id,
+  #     full_name: self.full_name,
+  #     cpf: self.cpf,
+  #     phone: self.phone,
+  #     company_name: self.company_name,
+  #     company_nickname: self.company_nickname,
+  #     cnpj: self.cnpj,
+  #     company_type: self.company_type,
+  #     revenue: self.revenue,
+  #     employees: self.employees,
+  #     rental_cost: self.rental_cost,
+  #     product_manufacture: self.product_manufacture,
+  #     service_provision: self.service_provision,
+  #     product_reselling: self.product_reselling,
+  #     generate_boleto: self.generate_boleto,
+  #     generate_invoice: self.generate_invoice,
+  #     receive_cheque: self.receive_cheque,
+  #     receive_money_transfer: self.receive_money_transfer,
+  #     company_clients: self.company_clients,
+  #     individual_clients: self.individual_clients,
+  #     government_clients: self.government_clients,
+  #     pay_up_front: self.pay_up_front,
+  #     pay_30_60_90: self.pay_30_60_90,
+  #     pay_90_plus: self.pay_90_plus,
+  #     pay_factoring: self.pay_factoring,
+  #     permit_contact_client: self.permit_contact_client,
+  #     charge_payer: self.charge_payer,
+  #     consent: self.consent,
+  #     validation_status: self.validation_status,
+  #     created_at: self.created_at,
+  #     updated_at: self.updated_at,
+  #     visited: self.visited,
+  #     analysis_status: self.analysis_status,
+  #     zip_code: self.zip_code,
+  #     address: self.address,
+  #     address_number: self.address_number,
+  #     neighborhood: self.neighborhood,
+  #     state: self.state,
+  #     city: self.city,
+  #     operation_limit_cents: self.operation_limit_cents,
+  #     operation_limit_currency: self.operation_limit_currency,
+  #   }
+
+  # end
+
   private
 
   def strip_cnpj

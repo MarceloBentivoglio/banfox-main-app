@@ -46,6 +46,7 @@ class SellerStepsController < ApplicationController
       # otherway
       if @seller.update_attributes(seller_params)
         @seller.active! if wizard_steps.last == step
+        Spreadsheets::Service.set_row(spreadsheet_id, worksheet_name, (@seller.id + 1), @seller.attributes) if wizard_steps.last == step
       end
     end
     render_wizard @seller
@@ -74,6 +75,14 @@ class SellerStepsController < ApplicationController
         redirect_to sellers_show_path
       end
     end
+  end
+
+  def spreadsheet_id
+    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+  end
+
+  def worksheet_name
+    Rails.application.credentials[Rails.env.to_sym][:google_seller_worksheet_name]
   end
 
 end

@@ -52,6 +52,9 @@ gem 'creek'
 # This gem is used to create pagination and to create the endless / infinite scrolling
 gem 'will_paginate', '~> 3.1.0'
 
+# This gem is used to write our data on the google spreadsheet
+gem 'google-api-client', '~> 0.23.4'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
