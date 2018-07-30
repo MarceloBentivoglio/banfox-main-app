@@ -9,6 +9,7 @@
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
         title: "Cadastrar empresa",
+        actual_phase: "",
         checked: true,
         button_path: "#",
       } %>
@@ -16,6 +17,7 @@
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
         title: "Adicionar documentos",
+        actual_phase: "Etapa Atual",
         checked: @seller.documentation_completed?,
         button_path: new_document_path,
       } %>
@@ -23,30 +25,9 @@
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
         title: "Adicionar um ou mais títulos",
+        actual_phase: "",
         checked: @seller.invoices.count > 0,
         button_path: new_invoice_path,
-      } %>
-    </div>
-    <!-- TODO: Aqui precisamos decidir se vamos deixar essa info pois se sim teremos que criar uma propriedade para o seller first_phone_contact -->
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Receber telefonema da MVP Invest",
-        checked: false,
-        button_path: "#",
-      } %>
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Receber MVP Invest na sua empresa",
-        checked: @seller.visited?,
-        button_path: "#",
-      } %>
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Primeiro título antecipado com sucesso",
-        checked: @seller.finished_invoices.count.present?,
-        button_path: "#",
       } %>
     </div>
   </div>
