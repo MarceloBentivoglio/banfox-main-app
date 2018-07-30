@@ -21,8 +21,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
+    p {
+      font-size: 0.9em;
+      margin: 0;
+      color: $blue;
+    }
     .dash-card-icon {
       color:$light-gray;
     }
