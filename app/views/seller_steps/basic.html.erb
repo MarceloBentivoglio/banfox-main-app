@@ -13,8 +13,6 @@
             <span class="point active">1</span>
             <span class="point future">2</span>
             <span class="point future">3</span>
-            <span class="point future">4</span>
-            <span class="point future">5</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.input :full_name, label: "Qual o seu nome?" %>
@@ -24,16 +22,7 @@
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
             <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
-            <h4>Escolha a opção que melhor representa a sua empresa:</h4>
-            <div class="tag-choices-basic">
-              <% Seller.company_types.each_key do |company_type_key| %>
-                <input class="hidden" type="radio" value="<%= company_type_key %>" name="seller[company_type]" id="seller_company_type_<%= company_type_key %>">
-                <label class="tag-choice single-choice tag-choice1" for="seller_company_type_<%= company_type_key %>">
-                  <%= company_type_key %>
-                  <i class="fa fa-check"></i>
-                </label>
-              <% end %>
-            </div>
+
             <div class="invalid-feedback">
               <%= @seller.errors.messages[:company_type].first  %>
             </div>

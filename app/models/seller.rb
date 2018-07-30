@@ -2,6 +2,10 @@ class Seller < ApplicationRecord
   # We need to include this Model so that the custom validations AtLeatOne works
   include ActiveModel::Validations
 
+  monetize :monthly_revenue_cents, with_model_currency: :currency
+  monetize :monthly_fixed_cost_cents, with_model_currency: :currency
+  monetize :cost_per_unit_cents, with_model_currency: :currency
+  monetize :debt_cents, with_model_currency: :currency
   monetize :operation_limit_cents, with_model_currency: :currency
   has_many :users, dependent: :destroy
   has_many :invoices, dependent: :destroy
@@ -35,37 +39,6 @@ class Seller < ApplicationRecord
     :partners_address_proofs,
   ]
 
-  PURPOSE = {
-    "product_manufacture" => "Fabricação de Produtos",
-    "service_provision" => "Prestação de Serviço",
-    "product_reselling" => "Revenda de Produtos",
-  }
-
-  CLIENT_TYPES = {
-    "company_clients" => "PF",
-    "individual_clients" => "PJ",
-    "government_clients" => "Governo",
-  }
-
-  PAYMENT_METHOD = {
-    "generate_boleto" => "Emito Boleto",
-    "generate_invoice" => "Emito Nota Fiscal",
-    "receive_cheque" => "Recebo Cheques",
-    "receive_money_transfer" => "Recebo TED/DOC",
-  }
-
-  PAYMENT_PERIOD = {
-    "pay_up_front" => "À Vista",
-    "pay_30_60_90" => "Parcelado em 30/60/90",
-    "pay_90_plus" => "Parcelado em 90+",
-  }
-
-  CLIENT_OPTIONS = {
-    "pay_factoring" => "Aceita pagar factoring",
-    "permit_contact_client" => "Permito contactar meu cliente",
-    "charge_payer" => "Quero que cobre meu cliente",
-  }
-
   CONSENT = {
     "consent" => "Li e aceito os termos do site"
   }
@@ -96,16 +69,9 @@ class Seller < ApplicationRecord
 
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
-  validates :company_type, :full_name, :cpf, :phone, :company_name, :cnpj,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
+  validates :full_name, :cpf, :phone, :company_name, :cnpj,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
-  # validates_with AtLeastOneTrue, fields: [:product_manufacture, :service_provision, :product_reselling], if: :active_or_company?
-  # validates_with AtLeastOneTrue, fields: [:generate_boleto, :generate_invoice, :receive_cheque, :receive_money_transfer], if: :active_or_company?
-  validates :revenue, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
-  validates :rental_cost, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
-  validates :employees, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
-  # validates_with AtLeastOneTrue, fields: [:company_clients, :individual_clients, :government_clients], if: :active_or_client?
-  # validates_with AtLeastOneTrue, fields: [:pay_up_front, :pay_30_60_90, :pay_90_plus], if: :active_or_client?
-  # validates_with AtLeastOneTrue, fields: [:pay_factoring, :permit_contact_client, :charge_payer], if: :active_or_client?
+  validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
   # We need this to insert in the database a standardized CPF and CNPJ, that is,
@@ -127,16 +93,8 @@ class Seller < ApplicationRecord
     basic? || active?
   end
 
-  def active_or_company?
-    company? || active?
-  end
-
   def active_or_finantial?
     finantial? || active?
-  end
-
-  def active_or_client?
-    client? || active?
   end
 
   def active_or_consent?
@@ -184,53 +142,6 @@ class Seller < ApplicationRecord
   def used_limit
     Invoice.total(:opened_all, self)
   end
-
-  # def seller_attributes
-  #   {
-  #     id: self.id,
-  #     full_name: self.full_name,
-  #     cpf: self.cpf,
-  #     phone: self.phone,
-  #     company_name: self.company_name,
-  #     company_nickname: self.company_nickname,
-  #     cnpj: self.cnpj,
-  #     company_type: self.company_type,
-  #     revenue: self.revenue,
-  #     employees: self.employees,
-  #     rental_cost: self.rental_cost,
-  #     product_manufacture: self.product_manufacture,
-  #     service_provision: self.service_provision,
-  #     product_reselling: self.product_reselling,
-  #     generate_boleto: self.generate_boleto,
-  #     generate_invoice: self.generate_invoice,
-  #     receive_cheque: self.receive_cheque,
-  #     receive_money_transfer: self.receive_money_transfer,
-  #     company_clients: self.company_clients,
-  #     individual_clients: self.individual_clients,
-  #     government_clients: self.government_clients,
-  #     pay_up_front: self.pay_up_front,
-  #     pay_30_60_90: self.pay_30_60_90,
-  #     pay_90_plus: self.pay_90_plus,
-  #     pay_factoring: self.pay_factoring,
-  #     permit_contact_client: self.permit_contact_client,
-  #     charge_payer: self.charge_payer,
-  #     consent: self.consent,
-  #     validation_status: self.validation_status,
-  #     created_at: self.created_at,
-  #     updated_at: self.updated_at,
-  #     visited: self.visited,
-  #     analysis_status: self.analysis_status,
-  #     zip_code: self.zip_code,
-  #     address: self.address,
-  #     address_number: self.address_number,
-  #     neighborhood: self.neighborhood,
-  #     state: self.state,
-  #     city: self.city,
-  #     operation_limit_cents: self.operation_limit_cents,
-  #     operation_limit_currency: self.operation_limit_currency,
-  #   }
-
-  # end
 
   private
 

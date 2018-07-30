@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_205350) do
+ActiveRecord::Schema.define(version: 2018_07_30_210236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,15 @@ ActiveRecord::Schema.define(version: 2018_07_24_205350) do
     t.string "city"
     t.integer "operation_limit_cents", default: 0, null: false
     t.string "operation_limit_currency", default: "BRL", null: false
+    t.integer "monthly_revenue_cents", default: 0, null: false
+    t.string "monthly_revenue_currency", default: "BRL", null: false
+    t.integer "monthly_fixed_cost_cents", default: 0, null: false
+    t.string "monthly_fixed_cost_currency", default: "BRL", null: false
+    t.integer "monthly_units_sold"
+    t.integer "cost_per_unit_cents", default: 0, null: false
+    t.string "cost_per_unit_currency", default: "BRL", null: false
+    t.integer "debt_cents", default: 0, null: false
+    t.string "debt_currency", default: "BRL", null: false
   end
 
   create_table "users", force: :cascade do |t|

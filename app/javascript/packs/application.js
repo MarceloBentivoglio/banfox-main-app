@@ -1,6 +1,5 @@
 import "bootstrap";
 import { selectTagOnClick } from "../components/wizard";
-import { sliderShowValue } from "../components/slider";
 import { maskCpfAndCnpj } from "../components/formMask";
 import { nameFilesToUpload } from "../components/filesUpload";
 import { animateNavbar } from "../components/newnavbar";
@@ -11,7 +10,6 @@ import { infiniteScrolling } from "../components/pagination";
 import { showProgressbar } from "../components/mvpProgressbar";
 
 selectTagOnClick();
-sliderShowValue();
 maskCpfAndCnpj();
 nameFilesToUpload();
 animateNavbar();
