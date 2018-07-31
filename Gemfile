@@ -55,6 +55,10 @@ gem 'will_paginate', '~> 3.1.0'
 # This gem is used to write our data on the google spreadsheet
 gem 'google-api-client', '~> 0.23.4'
 
+# This gem is used to enable the background jobs asynchronosly
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end

@@ -24,5 +24,8 @@ module Mvpinvest
     #JON: Setting time zone
     config.time_zone = 'Brasilia'
     config.active_record.default_timezone = :local
+
+    #JON: Configuring sidekiq
+    config.active_job.queue_adapter = :sidekiq
   end
 end
