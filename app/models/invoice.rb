@@ -30,7 +30,7 @@ class Invoice < ApplicationRecord
     "Perdido",
     "Parcialmente recomprado",
     "Parcialmente perdido",
-  ]
+  ].freeze
 
   # TODO: Use Joia's email to guide me to getting a better querry performance
   # TODO: There is a warning that says that for rails 6.0 the comand oder(max(installments.due_date) DESC) won't work anymore
