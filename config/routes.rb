@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount ForestLiana::Engine => '/forest'
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   root to: 'pages#home'
   get "howitworks", to: "pages#howitworks"
   get "about_us", to: "pages#about_us"

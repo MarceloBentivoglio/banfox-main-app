@@ -1,5 +1,5 @@
 class Seller < ApplicationRecord
-  after_save :send_update_to_spreadsheet
+  after_save :async_update_spreadsheet
 
   monetize :monthly_revenue_cents, with_model_currency: :currency
   monetize :monthly_fixed_cost_cents, with_model_currency: :currency
@@ -84,7 +84,6 @@ class Seller < ApplicationRecord
   before_create :strip_cnpj
   before_create :strip_cpf
 
-
   # These methods are needed so that the validations works at each step of the
   # wizard. For more details:
   # https://github.com/schneems/wicked/wiki/Building-Partial-Objects-Step-by-Step
@@ -105,6 +104,34 @@ class Seller < ApplicationRecord
   # exit the wizard and then come back
   def next_step
     Seller.validation_statuses.key(Seller.validation_statuses[validation_status] + 1)
+  end
+
+  def seller_attributes
+    {
+      id: self.id,
+      full_name: self.full_name,
+      cpf: self.cpf,
+      phone: self.phone,
+      company_name: self.company_name,
+      company_nickname: self.company_nickname,
+      cnpj: self.cnpj,
+      monthly_revenue_cents: self.monthly_revenue_cents,
+      monthly_fixed_cost_cents: self.monthly_fixed_cost_cents,
+      monthly_units_sold: self.monthly_units_sold,
+      cost_per_unit_cents: self.cost_per_unit_cents,
+      debt_cents: self.debt_cents,
+      operation_limit_cents: self.operation_limit_cents,
+      validation_status: self.validation_status,
+      analysis_status: self.analysis_status,
+      visited: self.visited,
+      address: self.address,
+      address_number: self.address_number,
+      neighborhood: self.neighborhood,
+      state: self.state,
+      city: self.city,
+      zip_code: self.zip_code,
+      consent: self.consent,
+    }.stringify_keys
   end
 
   def attachments
@@ -153,10 +180,8 @@ class Seller < ApplicationRecord
     self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
   end
 
-  def send_update_to_spreadsheet
-    Spreadsheets::Service.set_row(spreadsheet_id, worksheet_name, (self.id + 1), self.attributes)
-    # We can use this formula to update only the attribute changed and not re-copy all other attributes
-    # Spreadsheets::Service.set_row(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_changed_attributes)
+  def async_update_spreadsheet
+    SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)
   end
 
   def spreadsheet_id
@@ -165,12 +190,6 @@ class Seller < ApplicationRecord
 
   def worksheet_name
     Rails.application.credentials[Rails.env.to_sym][:google_seller_worksheet_name]
-  end
-
-  protected
-
-  def seller_changed_attributes
-    saved_changes.map{|k, v| [k, v[1]]}.to_h
   end
 
   # def correct_document_mime_type
