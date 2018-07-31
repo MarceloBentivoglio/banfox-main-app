@@ -7,28 +7,22 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :company_name
       t.string :company_nickname
       t.string :cnpj
-      t.integer :company_type
-      t.integer :revenue
-      t.integer :employees
-      t.integer :rental_cost
-      t.boolean :product_manufacture, default: false
-      t.boolean :service_provision, default: false
-      t.boolean :product_reselling, default: false
-      t.boolean :generate_boleto, default: false
-      t.boolean :generate_invoice, default: false
-      t.boolean :receive_cheque, default: false
-      t.boolean :receive_money_transfer, default: false
-      t.boolean :company_clients, default: false
-      t.boolean :individual_clients, default: false
-      t.boolean :government_clients, default: false
-      t.boolean :pay_up_front, default: false
-      t.boolean :pay_30_60_90, default: false
-      t.boolean :pay_90_plus, default: false
-      t.boolean :pay_factoring, default: false
-      t.boolean :permit_contact_client, default: false
-      t.boolean :charge_payer, default: false
+      t.monetize :operation_limit
+      t.monetize :monthly_revenue
+      t.monetize :monthly_fixed_cost
+      t.bigint :monthly_units_sold
+      t.monetize :cost_per_unit
+      t.monetize :debt
+      t.string :address
+      t.string :address_number
+      t.string :neighborhood
+      t.string :state
+      t.string :city
+      t.string :zip_code
       t.boolean :consent
       t.integer :validation_status
+      t.integer :analysis_status, default: 0
+      t.boolean :visited, null: false, default: false
 
       t.timestamps
     end

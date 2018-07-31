@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_140300) do
+ActiveRecord::Schema.define(version: 2018_05_17_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,17 +37,17 @@ ActiveRecord::Schema.define(version: 2018_07_31_140300) do
   end
 
   create_table "installments", force: :cascade do |t|
-    t.bigint "invoice_id"
     t.string "number"
-    t.integer "value_cents", default: 0, null: false
+    t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
     t.date "due_date"
+    t.date "receipt_date"
+    t.integer "liquidation_status", default: 0
+    t.string "import_ref"
+    t.bigint "invoice_id"
+    t.bigint "rebuy_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "liquidation_status", default: 0
-    t.date "receipt_date"
-    t.bigint "rebuy_id"
-    t.string "import_ref"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
@@ -55,47 +55,47 @@ ActiveRecord::Schema.define(version: 2018_07_31_140300) do
   create_table "invoices", force: :cascade do |t|
     t.integer "invoice_type"
     t.string "number"
-    t.bigint "seller_id"
-    t.bigint "payer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "backoffice_status", default: 0
-    t.bigint "operation_id"
-    t.string "import_ref"
     t.date "sale_date"
     t.date "deposit_date"
+    t.integer "backoffice_status", default: 0
+    t.string "import_ref"
+    t.bigint "seller_id"
+    t.bigint "payer_id"
+    t.bigint "operation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["operation_id"], name: "index_invoices_on_operation_id"
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
 
   create_table "operations", force: :cascade do |t|
+    t.string "import_ref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "import_ref"
   end
 
   create_table "payers", force: :cascade do |t|
     t.string "cnpj"
     t.string "company_name"
-    t.string "zip_code"
+    t.string "email"
+    t.string "phone"
     t.string "address"
     t.string "address_number"
     t.string "neighborhood"
     t.string "state"
     t.string "city"
+    t.string "zip_code"
+    t.string "import_ref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "import_ref"
-    t.string "email"
-    t.string "phone"
   end
 
   create_table "rebuys", force: :cascade do |t|
+    t.string "import_ref"
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "import_ref"
     t.index ["operation_id"], name: "index_rebuys_on_operation_id"
   end
 
@@ -106,38 +106,6 @@ ActiveRecord::Schema.define(version: 2018_07_31_140300) do
     t.string "company_name"
     t.string "company_nickname"
     t.string "cnpj"
-    t.integer "company_type"
-    t.integer "revenue"
-    t.integer "employees"
-    t.integer "rental_cost"
-    t.boolean "product_manufacture", default: false
-    t.boolean "service_provision", default: false
-    t.boolean "product_reselling", default: false
-    t.boolean "generate_boleto", default: false
-    t.boolean "generate_invoice", default: false
-    t.boolean "receive_cheque", default: false
-    t.boolean "receive_money_transfer", default: false
-    t.boolean "company_clients", default: false
-    t.boolean "individual_clients", default: false
-    t.boolean "government_clients", default: false
-    t.boolean "pay_up_front", default: false
-    t.boolean "pay_30_60_90", default: false
-    t.boolean "pay_90_plus", default: false
-    t.boolean "pay_factoring", default: false
-    t.boolean "permit_contact_client", default: false
-    t.boolean "charge_payer", default: false
-    t.boolean "consent"
-    t.integer "validation_status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "visited", default: false, null: false
-    t.integer "analysis_status", default: 0
-    t.string "zip_code"
-    t.string "address"
-    t.string "address_number"
-    t.string "neighborhood"
-    t.string "state"
-    t.string "city"
     t.bigint "operation_limit_cents", default: 0, null: false
     t.string "operation_limit_currency", default: "BRL", null: false
     t.bigint "monthly_revenue_cents", default: 0, null: false
@@ -149,6 +117,18 @@ ActiveRecord::Schema.define(version: 2018_07_31_140300) do
     t.string "cost_per_unit_currency", default: "BRL", null: false
     t.bigint "debt_cents", default: 0, null: false
     t.string "debt_currency", default: "BRL", null: false
+    t.string "address"
+    t.string "address_number"
+    t.string "neighborhood"
+    t.string "state"
+    t.string "city"
+    t.string "zip_code"
+    t.boolean "consent"
+    t.integer "validation_status"
+    t.integer "analysis_status", default: 0
+    t.boolean "visited", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -162,10 +142,10 @@ ActiveRecord::Schema.define(version: 2018_07_31_140300) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.boolean "admin", default: false, null: false
     t.bigint "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["seller_id"], name: "index_users_on_seller_id"
