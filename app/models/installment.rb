@@ -27,7 +27,7 @@ class Installment < ApplicationRecord
     "Paga",
     "Recomprada",
     "Perdida",
-  ]
+  ].freeze
 
   def status
     return INSTALLMENT_STATUS[0] if on_date?

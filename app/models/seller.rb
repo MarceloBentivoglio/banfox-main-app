@@ -1,6 +1,5 @@
 class Seller < ApplicationRecord
-  # We need to include this Model so that the custom validations AtLeatOne works
-  include ActiveModel::Validations
+  after_save :send_update_to_spreadsheet
 
   monetize :monthly_revenue_cents, with_model_currency: :currency
   monetize :monthly_fixed_cost_cents, with_model_currency: :currency
@@ -37,11 +36,11 @@ class Seller < ApplicationRecord
     :partners_rgs,
     :partners_irpfs,
     :partners_address_proofs,
-  ]
+  ].freeze
 
   CONSENT = {
     "consent" => "Li e aceito os termos do site"
-  }
+  }.freeze
 
   enum company_type: {
     LTDA: 0,
@@ -71,6 +70,7 @@ class Seller < ApplicationRecord
   validates_with CpfValidator, if: :active_or_basic?
   validates :full_name, :cpf, :phone, :company_name, :cnpj,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
+  validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
@@ -151,6 +151,26 @@ class Seller < ApplicationRecord
 
   def strip_cpf
     self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
+  end
+
+  def send_update_to_spreadsheet
+    Spreadsheets::Service.set_row(spreadsheet_id, worksheet_name, (self.id + 1), self.attributes)
+    # We can use this formula to update only the attribute changed and not re-copy all other attributes
+    # Spreadsheets::Service.set_row(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_changed_attributes)
+  end
+
+  def spreadsheet_id
+    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+  end
+
+  def worksheet_name
+    Rails.application.credentials[Rails.env.to_sym][:google_seller_worksheet_name]
+  end
+
+  protected
+
+  def seller_changed_attributes
+    saved_changes.map{|k, v| [k, v[1]]}.to_h
   end
 
   # def correct_document_mime_type
