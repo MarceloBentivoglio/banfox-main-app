@@ -9,14 +9,17 @@
       <!-- Links when logged in -->
       <%= link_to sellers_show_path, class: "dash-mvp-item dash-mvp-link" do %>
       <i class="fa fa-laptop"></i>
+      <span>Dashboard</span>
       <% end %>
 
       <%= link_to store_invoices_path, class: "dash-mvp-item dash-mvp-link" do %>
         <i class="fa fa-line-chart"></i>
+        <span>Títulos</span>
       <% end %>
 
       <%= link_to documents_path, class: "dash-mvp-item dash-mvp-link" do %>
         <i class="fa fa-folder"></i>
+        <span>Documentos</span>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -34,7 +37,7 @@
           </ul>
         </div>
       </div>
-      
+
       <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name %> </span>
 
     </div>
