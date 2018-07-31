@@ -15,12 +15,13 @@
             <span class="point future">3</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+
             <%= f.input :monthly_revenue, label: "Qual sua Receita Mensal?" %>
             <%= f.input :monthly_fixed_cost, label: "E o seu custo fixo mensal?" %>
             <%= f.input :monthly_units_sold, label: "Quantas unidades do produto/serviço você vende por mês?" %>
             <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?"%>
-            <%= f.input :debt, label: "Qual o total de dívidas que sua empresa possui?" %>
-
+            <%= f.input :debt, value: @seller.debt, label: "Qual o total de dívidas que sua empresa possui?" %>
+            
             <%= f.submit 'Continuar' %>
             <%= link_to "Voltar", previous_wizard_path %>
           <% end %>
