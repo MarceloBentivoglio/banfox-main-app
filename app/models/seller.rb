@@ -43,10 +43,11 @@ class Seller < ApplicationRecord
   }.freeze
 
   enum company_type: {
-    LTDA: 0,
-    SA: 1,
-    ME: 2,
-    MEI: 3,
+    ltda: 0,
+    sa: 1,
+    me: 2,
+    mei: 3,
+    epp: 4,
   }
 
 # If this enum is changed the steps in SellerStepsController must change as well
