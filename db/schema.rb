@@ -76,12 +76,17 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
   end
 
   create_table "payers", force: :cascade do |t|
-    t.string "cnpj"
     t.string "company_name"
+    t.string "cnpj"
+    t.string "inscr_est"
+    t.string "inscr_mun"
+    t.string "nire"
+    t.integer "company_type"
     t.string "email"
     t.string "phone"
     t.string "address"
     t.string "address_number"
+    t.string "address_comp"
     t.string "neighborhood"
     t.string "state"
     t.string "city"
@@ -106,6 +111,10 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
     t.string "company_name"
     t.string "company_nickname"
     t.string "cnpj"
+    t.string "inscr_est"
+    t.string "inscr_mun"
+    t.string "nire"
+    t.integer "company_type"
     t.bigint "operation_limit_cents", default: 0, null: false
     t.string "operation_limit_currency", default: "BRL", null: false
     t.bigint "monthly_revenue_cents", default: 0, null: false
@@ -119,6 +128,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
     t.string "debt_currency", default: "BRL", null: false
     t.string "address"
     t.string "address_number"
+    t.string "address_comp"
     t.string "neighborhood"
     t.string "state"
     t.string "city"

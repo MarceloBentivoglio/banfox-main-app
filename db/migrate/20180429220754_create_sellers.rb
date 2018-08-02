@@ -7,6 +7,10 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :company_name
       t.string :company_nickname
       t.string :cnpj
+      t.string :inscr_est
+      t.string :inscr_mun
+      t.string :nire
+      t.integer :company_type
       t.monetize :operation_limit
       t.monetize :monthly_revenue
       t.monetize :monthly_fixed_cost
@@ -15,6 +19,7 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.monetize :debt
       t.string :address
       t.string :address_number
+      t.string :address_comp
       t.string :neighborhood
       t.string :state
       t.string :city
