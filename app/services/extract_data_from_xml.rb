@@ -1,6 +1,10 @@
 class ExtractDataFromXml
+  def initialize
+    @new_invoices = []
+    @new_payers = []
+  end
+
   def invoice(files, seller)
-    invoices = []
     files.each do |file|
       begin
       check_file_is_xml(file)
@@ -11,12 +15,12 @@ class ExtractDataFromXml
       invoice = extract_invoice_general_info(doc, invoice)
       invoice = extract_installments(doc, invoice)
       invoice = extract_payer_info(doc, invoice)
-      invoices << invoice
+      @new_invoices << invoice
       rescue RuntimeError => e
-        invoices << e
+        @new_invoices << e
       end
     end
-    return invoices
+    return @new_invoices
   end
 
   private
@@ -46,16 +50,18 @@ class ExtractDataFromXml
       if Payer.exists?(cnpj: cnpj)
         payer = Payer.find_by_cnpj(cnpj)
       else
-        payer = Payer.new
+        payer = payer_just_imported(cnpj) || create_new_payer
         payer.cnpj = cnpj
         payer.company_name = xml_payer_info.search('xNome').text.strip
         payer.address = xml_payer_info.search('xLgr').text.strip
         payer.address_number = xml_payer_info.search('nro').text.strip
+        payer.address_comp = xml_payer_info.search('xCpl').text.strip
         payer.neighborhood = xml_payer_info.search('xBairro').text.strip
         payer.city = xml_payer_info.search('xMun').text.strip
         payer.state = xml_payer_info.search('UF').text.strip
         payer.zip_code = xml_payer_info.search('CEP').text.strip
-        payer.registration_number = xml_payer_info.search('IE').text.strip
+        payer.inscr_est = xml_payer_info.search('IE').text.strip
+        payer.inscr_mun = xml_payer_info.search('IM').text.strip
       end
       invoice.payer = payer
       return invoice
@@ -73,5 +79,16 @@ class ExtractDataFromXml
 
   def check_file_is_xml (file)
     raise RuntimeError, 'File is not a xml type' unless file.content_type == "text/xml"
+  end
+
+  def payer_just_imported(cnpj)
+    payer = @new_payers.select { |payer| payer.cnpj == cnpj }
+    return payer.empty? ? nil : payer.first
+  end
+
+  def create_new_payer
+    payer = Payer.new
+    @new_payers << payer
+    return payer
   end
 end

@@ -43,20 +43,19 @@ class Seller < ApplicationRecord
   }.freeze
 
   enum company_type: {
-    LTDA: 0,
-    SA: 1,
-    ME: 2,
-    MEI: 3,
+    ltda: 0,
+    sa: 1,
+    me: 2,
+    mei: 3,
+    epp: 4,
   }
 
 # If this enum is changed the steps in SellerStepsController must change as well
   enum validation_status: {
     basic: 0,
-    company: 1,
-    finantial: 2,
-    client: 3,
-    consent: 4,
-    active: 5,
+    finantial: 1,
+    consent: 2,
+    active: 3,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
@@ -115,6 +114,10 @@ class Seller < ApplicationRecord
       company_name: self.company_name,
       company_nickname: self.company_nickname,
       cnpj: self.cnpj,
+      inscr_est: self.inscr_est,
+      inscr_mun: self.inscr_mun,
+      nire: self.nire,
+      company_type: self.company_type,
       monthly_revenue_cents: self.monthly_revenue_cents,
       monthly_fixed_cost_cents: self.monthly_fixed_cost_cents,
       monthly_units_sold: self.monthly_units_sold,
@@ -126,6 +129,7 @@ class Seller < ApplicationRecord
       visited: self.visited,
       address: self.address,
       address_number: self.address_number,
+      address_comp: self.address_comp,
       neighborhood: self.neighborhood,
       state: self.state,
       city: self.city,

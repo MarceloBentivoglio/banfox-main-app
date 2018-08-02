@@ -1,10 +1,10 @@
 class ExtractDataFromXlsx
-  def paid_invoices_importation(path)
-    extract_invoices_installments(path, true)
+  def paid_invoices_importation(path, seller_cnpj)
+    extract_invoices_installments(path, true, seller_cnpj)
   end
 
-  def opened_invoices_importation(path)
-    extract_invoices_installments(path, false)
+  def opened_invoices_importation(path, seller_cnpj)
+    extract_invoices_installments(path, false, seller_cnpj)
   end
 
   def payers_importation(path)
@@ -13,7 +13,7 @@ class ExtractDataFromXlsx
 
   private
 
-  def extract_invoices_installments(path, paid_flag)
+  def extract_invoices_installments(path, paid_flag, seller_cnpj)
     data = extract_data_from_excel(path)
     data.each_with_index do |row, row_number|
       next if row_number == 0
@@ -35,7 +35,7 @@ class ExtractDataFromXlsx
         invoice_attributes = {
           number: cols[0].slice(0..-4),
           sale_date: paid_flag ? define_date(cols[9]) : define_date(cols[6]),
-          seller: Seller.where("company_name ILIKE '#{cols[4]}%'").first,
+          seller: Seller.find_by_cnpj(seller_cnpj),
           payer: paid_flag ? Payer.where("company_name LIKE '#{cols[3]}%'").first : Payer.where("company_name LIKE '#{cols[3].slice(0..-8)}%'").first,
           import_ref: paid_flag ? cols[16] : cols[9],
         }
