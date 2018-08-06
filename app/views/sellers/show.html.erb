@@ -9,7 +9,7 @@
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
         title: "Cadastrar empresa",
-        actual_phase: "",
+        tag: "",
         checked: true,
         button_path: "#",
       } %>
@@ -17,15 +17,15 @@
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
         title: "Adicionar documentos",
-        actual_phase: "Etapa Atual",
+        tag: "Etapa a completar",
         checked: @seller.documentation_completed?,
         button_path: new_document_path,
       } %>
     </div>
     <div class="col-sm-12 col-md-4">
       <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Adicionar um ou mais títulos",
-        actual_phase: "",
+        title: "Adicionar títulos",
+        tag: "Etapa a completar",
         checked: @seller.invoices.count > 0,
         button_path: new_invoice_path,
       } %>

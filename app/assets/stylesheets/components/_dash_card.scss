@@ -21,17 +21,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p {
-      font-size: 0.9em;
-      margin: 0;
-      color: $blue;
-    }
     .dash-card-icon {
       color:$light-gray;
     }
 
     .dash-card-checked-icon {
       color: $dark-green-progressbar;
+    }
+
+    .dash-card-tag {
+    font-size: 0.7em;
+    background-color: $neon-blue;
+    color: $white;
+    border-radius: 1em;
+    padding: 0.2em 1em;
+    font-weight: bold;
     }
   }
 
