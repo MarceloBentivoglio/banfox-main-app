@@ -63,5 +63,5 @@ Rails.application.configure do
   # config.default_url_options = { host: "localhost:3000" }
 
 end
-
+# Comand needed to create the attachement links - Joaquim
 Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
