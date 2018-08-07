@@ -59,6 +59,9 @@ Rails.application.configure do
   # Config for active storage - Joaquim
   config.active_storage.service = :local
 
+  # Config needed to create links for blobs on development - Joaquim
+  # config.default_url_options = { host: "localhost:3000" }
+
 end
 
-# Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
+Rails.application.routes.default_url_options[:host] = "http://localhost:3000"

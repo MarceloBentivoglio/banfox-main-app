@@ -21,11 +21,11 @@ module Mvpinvest
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    #JON: Setting time zone
+    #Joaquim: Setting time zone
     config.time_zone = 'Brasilia'
     config.active_record.default_timezone = :local
 
-    #JON: Configuring sidekiq
+    #Joaquim: Configuring sidekiq
     config.active_job.queue_adapter = :sidekiq
   end
 end
