@@ -25,7 +25,8 @@ class DocumentsController < ApplicationController
   def seller_params
     params.require(:seller).permit(social_contracts: [],
       update_on_social_contracts: [], address_proofs: [], irpjs: [],
-      revenue_proofs: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
+      revenue_proofs: [], financial_statements: [], cash_flows: [],
+      abc_clients: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
       partners_irpfs: [], partners_address_proofs: [])
   end
 

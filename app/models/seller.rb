@@ -142,6 +142,7 @@ class Seller < ApplicationRecord
       city: self.city,
       zip_code: self.zip_code,
       consent: self.consent,
+      social_contracts: get_documents_link(self.social_contracts),
     }.stringify_keys
   end
 
@@ -205,6 +206,16 @@ class Seller < ApplicationRecord
   def worksheet_name
     Rails.application.credentials[Rails.env.to_sym][:google_seller_worksheet_name]
   end
+
+  def get_documents_link(attachments)
+    links = []
+    attachments.each do |attachment|
+      links << Rails.application.routes.url_helpers.rails_blob_url(attachment)
+    end
+    links.join("\n")
+  end
+
+
 
   # def correct_document_mime_type
   #   if proof_of_address.attached? && !proof_of_address.content_type.in?(%w(application/msword application/pdf))
