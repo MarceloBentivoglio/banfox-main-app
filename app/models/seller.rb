@@ -14,6 +14,9 @@ class Seller < ApplicationRecord
   has_many_attached :address_proofs, dependent: :purge
   has_many_attached :irpjs, dependent: :purge
   has_many_attached :revenue_proofs, dependent: :purge
+  has_many_attached :financial_statements, dependent: :purge
+  has_many_attached :cash_flows, dependent: :purge
+  has_many_attached :abc_clients, dependent: :purge
   has_many_attached :sisbacens, dependent: :purge
   has_many_attached :partners_cpfs, dependent: :purge
   has_many_attached :partners_rgs, dependent: :purge
@@ -31,6 +34,9 @@ class Seller < ApplicationRecord
     :address_proofs,
     :irpjs,
     :revenue_proofs,
+    :financial_statements,
+    :cash_flows,
+    :abc_clients,
     :sisbacens,
     :partners_cpfs,
     :partners_rgs,
@@ -146,6 +152,9 @@ class Seller < ApplicationRecord
       "Comprovante de endereço da empresa" => address_proofs,
       "IRPJ" => irpjs,
       "Relação de faturamento dos últimos 12 meses (assinado por contador)" => revenue_proofs,
+      "Balanço dos últimos dois exercícios" => financial_statements,
+      "Extrato bancário dos últimos três meses (ou demonstrativos de resultados do últimos três exercícios)" => cash_flows,
+      "Curva ABC de clientes (ou principais clientes que geram a maior parte da receita da sua companhia)" => abc_clients,
       "SISBACEN" => sisbacens,
       "CPF dos sócios" => partners_cpfs,
       "RG dos sócios" => partners_rgs,
