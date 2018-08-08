@@ -27,5 +27,8 @@ module Mvpinvest
 
     #Joaquim: Configuring sidekiq
     config.active_job.queue_adapter = :sidekiq
+
+    #Joaquim: Setting portuguaise language for devise
+    config.i18n.default_locale = :'pt-BR'
   end
 end

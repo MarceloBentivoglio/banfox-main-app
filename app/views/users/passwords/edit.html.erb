@@ -7,12 +7,12 @@
   <%= f.full_error :reset_password_token %>
 
   <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+    <%= f.input :password, label: "Nova senha", required: true, autofocus: true, hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, label: "Confirme sua nova senha", required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Change my password", class: "btn-sessions"  %>
+    <%= f.button :submit, "Salvar nova senha", class: "btn-sessions"  %>
   </div>
 <% end %>
 
