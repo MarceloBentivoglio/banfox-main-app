@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contato@mvpinvest.com'
+  # default from: 'joaquim.oliveira@mvpinvest.com.br'
   layout 'mailer'
 end
+
+
