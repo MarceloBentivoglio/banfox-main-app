@@ -2,6 +2,7 @@
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
   skip_before_action :require_active
+  layout "sessions_layout"
   # GET /resource/confirmation/new
   # def new
   #   super
