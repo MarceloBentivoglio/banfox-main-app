@@ -727,6 +727,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    json (2.1.0)
     jsonapi-serializers (1.0.1)
       activesupport
     jwt (2.1.0)
@@ -788,6 +789,12 @@ GEM
     orm_adapter (0.5.0)
     os (0.9.6)
     pg (0.21.0)
+    postmark (1.13.0)
+      json
+      rake
+    postmark-rails (0.17.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.13.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -958,6 +965,7 @@ DEPENDENCIES
   mini_magick
   money-rails
   pg (~> 0.21)
+  postmark-rails
   pry-byebug
   pry-rails
   puma

@@ -62,8 +62,12 @@ gem 'sidekiq-failures', '~> 1.0'
 # This gem is used to show backend errors on production
 gem 'rollbar'
 
+# This gem is used to enable sending trasactional e-mails
+gem 'postmark-rails'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
+  # This gem is used to open the email in development in a browser tab
   gem "letter_opener"
 end
 
