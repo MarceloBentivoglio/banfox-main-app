@@ -216,7 +216,7 @@ class Seller < ApplicationRecord
   end
 
   def worksheet_name
-    Rails.application.credentials[Rails.env.to_sym][:google_seller_worksheet_name]
+    Rails.application.credentials[:google][:google_seller_worksheet_name]
   end
 
   def get_documents_link(attachments)

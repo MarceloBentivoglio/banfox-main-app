@@ -1,11 +1,11 @@
 class Spreadsheets::Service
 
   def self.app_name
-    @@app_name ||= Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_app_name]
+    @@app_name ||= Rails.application.credentials[:google][:google_spreadsheet_app_name]
   end
 
   def self.json_key
-    @@json_key ||= Rails.application.credentials[:google_spreadsheet_json_key]
+    @@json_key ||= Rails.application.credentials[:google][:google_spreadsheet_json_key]
   end
 
   def self.service(spreadsheet_id, worksheet_name)
