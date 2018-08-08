@@ -59,6 +59,9 @@ gem 'google-api-client', '~> 0.23.4'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
+# This gem is used to show backend errors on production
+gem 'rollbar'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
