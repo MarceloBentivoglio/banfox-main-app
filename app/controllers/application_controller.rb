@@ -47,7 +47,7 @@
   end
 
   def action_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "Você não está autorizado a performar essa ação."
     redirect_back(fallback_location: root_path)
   end
 end
