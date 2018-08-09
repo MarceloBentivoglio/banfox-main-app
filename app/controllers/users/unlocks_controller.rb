@@ -2,6 +2,7 @@
 
 class Users::UnlocksController < Devise::UnlocksController
   skip_before_action :require_active
+  layout "sessions_layout"
   # GET /resource/unlock/new
   # def new
   #   super
