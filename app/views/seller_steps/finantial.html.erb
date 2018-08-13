@@ -16,11 +16,11 @@
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
 
-            <%= f.input :monthly_revenue, label: "Qual sua receita mensal?" %>
-            <%= f.input :monthly_fixed_cost, label: "E o seu custo fixo mensal?" %>
-            <%= f.input :monthly_units_sold, label: "Quantas unidades do produto/serviço você vende por mês?" %>
-            <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?"%>
-            <%= f.input :debt, value: @seller.debt, label: "Qual o total de dívidas que sua empresa possui?" %>
+            <%= f.input :monthly_revenue, label: "Qual sua receita mensal?", input_html: {id: "monthly_revenue"} %>
+            <%= f.input :monthly_fixed_cost, label: "E o seu custo fixo mensal?", input_html: {id: "monthly_fixed_cost"}  %>
+            <%= f.input :monthly_units_sold, label: "Quantas unidades do produto/serviço você vende por mês?", input_html: {id: "monthly_units_sold"} %>
+            <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?", input_html: {id: "cost_per_unit"} %>
+            <%= f.input :debt, label: "Qual o total de dívidas que sua empresa possui?", input_html: {id: "debt"} %>
 
             <%= f.submit 'Continuar' %>
             <%= link_to "Voltar", previous_wizard_path %>

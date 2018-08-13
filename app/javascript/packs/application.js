@@ -1,6 +1,6 @@
 import "bootstrap";
 import { selectTagOnClick } from "../components/wizard";
-import { maskCpfAndCnpj } from "../components/formMask";
+import { maskCpfCnpjCurrency } from "../components/formMask";
 import { nameFilesToUpload } from "../components/filesUpload";
 import { animateNavbar } from "../components/newnavbar";
 import { showPage } from "../components/homeAnimation";
@@ -10,7 +10,7 @@ import { infiniteScrolling } from "../components/pagination";
 import { showProgressbar } from "../components/mvpProgressbar";
 
 selectTagOnClick();
-maskCpfAndCnpj();
+maskCpfCnpjCurrency();
 nameFilesToUpload();
 animateNavbar();
 showPage();
