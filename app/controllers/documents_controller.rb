@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_seller, only: [:index, :new, :create]
-  before_action :set_uploads, only: [:index, :new]
+  before_action :set_uploads, only: [:index, :new, :create]
 
   def index
   end
@@ -9,8 +9,10 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @seller.update(seller_params)
+    @seller.update!(seller_params)
     redirect_to documents_path
+    rescue ActionController::ParameterMissing
+      render :new
   end
 
   def destroy

@@ -46,12 +46,14 @@ class SellerStepsController < ApplicationController
       @seller.validation_status = step.to_s
       # I had to put seller active inside the if loop because it wouldn't work
       # otherway
-      binding.pry
       if @seller.update_attributes(seller_params)
         @seller.active! if wizard_steps.last == step
       end
     end
     render_wizard @seller
+    rescue ActionController::ParameterMissing
+      @seller.validation_status = previous_step.to_s
+      render_wizard
   end
 
   private
