@@ -39,6 +39,16 @@ class SellerStepsController < ApplicationController
       @seller.validation_status = step.to_s
       @user.seller = @seller
       @user.save!
+    when :documentation
+      set_seller
+      set_uploads
+      @seller.update_attributes(seller_params)
+      if @seller.documentation_completed?
+        @seller.validation_status = step.to_s
+        @seller.save!
+      else
+        return render_wizard
+      end
     else
       set_seller
       set_uploads

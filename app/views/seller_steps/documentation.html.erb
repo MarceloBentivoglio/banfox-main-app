@@ -20,6 +20,7 @@
 
                 <div class="input-file-box">
                   <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+                  <%= f.error :documents_validation, class: "invalid-feedback"  %>
                     <% @uploads.each do |description, upload| %>
                       <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
                     <% end %>
