@@ -1,4 +1,8 @@
 class SellerStepsController < ApplicationController
+  before_action :set_user, only: [:show, :update]
+  before_action :set_seller, only: [:show, :update]
+  before_action :set_uploads, only: [:show, :update]
+
   skip_before_action :require_active
   before_action :check_not_fully_registered_seller
   # This inclusion is needed to make the wizard
@@ -10,39 +14,13 @@ class SellerStepsController < ApplicationController
   layout "empty_layout"
 
   def show
-    @user = current_user
-    case step
-    when :basic
-      if @user.seller
-        set_seller
-      else
-        @seller = Seller.new
-      end
-    else
-      set_seller
-      set_uploads
-    end
     render_wizard
   end
 
   def update
-    @user = current_user
     case step
-    when :basic
-      unless @user.seller
-        @seller = Seller.new(seller_params)
-      else
-        set_seller
-        @seller.assign_attributes(seller_params)
-      end
-      # This line is necessary for the validations of fields on each step
-      @seller.validation_status = step.to_s
-      @user.seller = @seller
-      @user.save!
     when :documentation
-      set_seller
-      set_uploads
-      @seller.update_attributes(seller_params)
+      @seller.try("update_attributes(seller_params)")
       if @seller.documentation_completed?
         @seller.validation_status = step.to_s
         @seller.save!
@@ -50,26 +28,26 @@ class SellerStepsController < ApplicationController
         return render_wizard
       end
     else
-      set_seller
-      set_uploads
-      # This line is necessary for the validations of fields on each step
       @seller.validation_status = step.to_s
-      # I had to put seller active inside the if loop because it wouldn't work
-      # otherway
       if @seller.update_attributes(seller_params)
         @seller.active! if wizard_steps.last == step
       end
+      if step == :basic
+        @user.seller = @seller
+        @user.save!
+      end
     end
     render_wizard @seller
-    rescue ActionController::ParameterMissing
-      @seller.validation_status = previous_step.to_s
-      render_wizard
   end
 
   private
 
+  def set_user
+    @user = current_user
+  end
+
   def set_seller
-    @seller = @user.seller
+    @seller = @user.seller || Seller.new(seller_params)
   end
 
   def set_uploads
@@ -77,13 +55,13 @@ class SellerStepsController < ApplicationController
   end
 
   def seller_params
-      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
-      :cnpj, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
-      :cost_per_unit, :debt, :consent, social_contracts: [],
-      update_on_social_contracts: [], address_proofs: [], irpjs: [],
-      revenue_proofs: [], financial_statements: [], cash_flows: [],
-      abc_clients: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
-      partners_irpfs: [], partners_address_proofs: [])
+    params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
+    :cnpj, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
+    :cost_per_unit, :debt, :consent, social_contracts: [],
+    update_on_social_contracts: [], address_proofs: [], irpjs: [],
+    revenue_proofs: [], financial_statements: [], cash_flows: [],
+    abc_clients: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
+    partners_irpfs: [], partners_address_proofs: []) if params[:seller].present?
   end
 
   def finish_wizard_path
