@@ -1,10 +1,10 @@
 class SellerStepsController < ApplicationController
+  skip_before_action :require_active
+  before_action :check_not_fully_registered_seller
   before_action :set_user, only: [:show, :update]
   before_action :set_seller, only: [:show, :update]
   before_action :set_uploads, only: [:show, :update]
-
-  skip_before_action :require_active
-  before_action :check_not_fully_registered_seller
+  before_action :require_step
   # This inclusion is needed to make the wizard
   include Wicked::Wizard
   # If these steps are changed the enum in model Seller and the names of the
@@ -20,7 +20,7 @@ class SellerStepsController < ApplicationController
   def update
     case step
     when :documentation
-      @seller.try("update_attributes(seller_params)")
+      @seller.update_attributes(seller_params) if seller_params
       if @seller.documentation_completed?
         @seller.validation_status = step.to_s
         @seller.save!
@@ -73,6 +73,17 @@ class SellerStepsController < ApplicationController
       if current_user.seller.active?
         flash[:alert] = "Você já completou essa etapa"
         redirect_to sellers_show_path
+      end
+    end
+  end
+
+  def require_step
+    if params[:id]
+      requested_step = wizard_steps.index(params[:id].to_sym)
+      allowed_step = wizard_steps.index(@seller.validation_status.try(:to_sym)) || 0
+      if requested_step > allowed_step + 1
+        return jump_to(wizard_steps.first) unless @seller.validation_status
+        jump_to(@seller.validation_status.to_sym)
       end
     end
   end
