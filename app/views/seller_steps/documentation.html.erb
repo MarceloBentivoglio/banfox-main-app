@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="client-form-box">
+        <div class="client-form-logo">
+          <%= image_tag "porco.png", height: 100 %>
+        </div>
+        <div class="client-form-header">
+          <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        </div>
+        <div class="client-form">
+          <div class="progress-bar">
+            <span class="point done">1</span>
+            <span class="point done">2</span>
+            <span class="point active">3</span>
+            <span class="point future">4</span>
+          </div>
+
+
+
+                <div class="input-file-box">
+                  <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+                  <%= f.error :documents_validation, class: "invalid-feedback"  %>
+                    <% @uploads.each do |description, upload| %>
+                      <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
+                    <% end %>
+                  <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
+                  <%= link_to "Voltar", previous_wizard_path %>
+                  <% end %>
+                </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

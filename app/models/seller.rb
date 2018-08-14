@@ -60,8 +60,9 @@ class Seller < ApplicationRecord
   enum validation_status: {
     basic: 0,
     finantial: 1,
-    consent: 2,
-    active: 3,
+    documentation: 2,
+    consent: 3,
+    active: 4,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
@@ -78,6 +79,8 @@ class Seller < ApplicationRecord
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   validates :monthly_units_sold, numericality: { only_integer: true, message: "precisa ser um número inteiro" }, if: :active_or_finantial?
+  # validates :social_contracts, :update_on_social_contracts, :address_proofs, :irpjs, :revenue_proofs, :financial_statements, :cash_flows, :abc_clients, :sisbacens, :partners_cpfs, :partners_rgs, :partners_irpfs, :partners_address_proofs, presence: { message: "esse documento é necessário para análise de crédito" }, if: :active_or_documentation?
+  # validates_with DocumentsValidator, if: :active_or_documentation?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
   # We need this to insert in the database a standardized CPF and CNPJ, that is,
@@ -100,6 +103,10 @@ class Seller < ApplicationRecord
 
   def active_or_finantial?
     finantial? || active?
+  end
+
+  def active_or_documentation?
+    documentation? || active?
   end
 
   def active_or_consent?

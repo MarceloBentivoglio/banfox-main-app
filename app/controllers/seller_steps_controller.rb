@@ -1,51 +1,40 @@
 class SellerStepsController < ApplicationController
   skip_before_action :require_active
   before_action :check_not_fully_registered_seller
+  before_action :set_user, only: [:show, :update]
+  before_action :set_seller, only: [:show, :update]
+  before_action :set_uploads, only: [:show, :update]
+  before_action :require_step
   # This inclusion is needed to make the wizard
   include Wicked::Wizard
   # If these steps are changed the enum in model Seller and the names of the
   # seller_steps views must change as well
-  steps :basic, :finantial, :consent
+  steps :basic, :finantial, :documentation, :consent
 
   layout "empty_layout"
 
   def show
-    @user = current_user
-    case step
-    when :basic
-      if @user.seller
-        @seller = @user.seller
-      else
-        @seller = Seller.new
-      end
-    else
-      @seller = @user.seller
-    end
     render_wizard
   end
 
   def update
-    @user = current_user
     case step
-    when :basic
-      unless @user.seller
-        @seller = Seller.new(seller_params)
+    when :documentation
+      @seller.update_attributes(seller_params) if seller_params
+      if @seller.documentation_completed?
+        @seller.validation_status = step.to_s
+        @seller.save!
       else
-        @seller = @user.seller
-        @seller.assign_attributes(seller_params)
+        return render_wizard
       end
-      # This line is necessary for the validations of fields on each step
-      @seller.validation_status = step.to_s
-      @user.seller = @seller
-      @user.save!
     else
-      @seller = @user.seller
-      # This line is necessary for the validations of fields on each step
       @seller.validation_status = step.to_s
-      # I had to put seller active inside the if loop because it wouldn't work
-      # otherway
       if @seller.update_attributes(seller_params)
         @seller.active! if wizard_steps.last == step
+      end
+      if step == :basic
+        @user.seller = @seller
+        @user.save!
       end
     end
     render_wizard @seller
@@ -53,10 +42,26 @@ class SellerStepsController < ApplicationController
 
   private
 
+  def set_user
+    @user = current_user
+  end
+
+  def set_seller
+    @seller = @user.seller || Seller.new(seller_params)
+  end
+
+  def set_uploads
+    @uploads = @seller.attachments
+  end
+
   def seller_params
-      params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
-      :cnpj, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
-      :cost_per_unit, :debt, :consent)
+    params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
+    :cnpj, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
+    :cost_per_unit, :debt, :consent, social_contracts: [],
+    update_on_social_contracts: [], address_proofs: [], irpjs: [],
+    revenue_proofs: [], financial_statements: [], cash_flows: [],
+    abc_clients: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
+    partners_irpfs: [], partners_address_proofs: []) if params[:seller].present?
   end
 
   def finish_wizard_path
@@ -68,6 +73,17 @@ class SellerStepsController < ApplicationController
       if current_user.seller.active?
         flash[:alert] = "Você já completou essa etapa"
         redirect_to sellers_show_path
+      end
+    end
+  end
+
+  def require_step
+    if params[:id]
+      requested_step = wizard_steps.index(params[:id].to_sym)
+      allowed_step = wizard_steps.index(@seller.validation_status.try(:to_sym)) || 0
+      if requested_step > allowed_step + 1
+        return jump_to(wizard_steps.first) unless @seller.validation_status
+        jump_to(@seller.validation_status.to_sym)
       end
     end
   end
