@@ -12,7 +12,7 @@
       <div class="input-file-box">
         <%= simple_form_for @invoice do |f| %>
           <%= render partial: "shared/files_input", locals: {f: f, description: "Selecionar arquivos XML", upload: :xmls} %>
-        <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
+        <%= f.submit 'Subir arquivos', class: "btn btn-submit-form"%>
         <% end %>
       </div>
     </div>

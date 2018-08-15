@@ -23,7 +23,7 @@
             <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?", input_html: {id: "cost_per_unit"} %>
             <%= f.input :debt, label: "Qual o total de dívidas que sua empresa possui?", input_html: {id: "debt"} %>
 
-            <%= f.submit 'Continuar' %>
+            <%= f.submit 'Continuar', class: "btn-submit-form" %>
             <%= link_to "Voltar", previous_wizard_path %>
           <% end %>
         </div>

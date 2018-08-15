@@ -14,7 +14,7 @@
           <% @uploads.each do |description, upload| %>
             <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
           <% end %>
-        <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
+        <%= f.submit 'Subir arquivos', class: "btn btn-submit-form"%>
         <% end %>
       </div>
     </div>
