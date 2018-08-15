@@ -118,8 +118,10 @@
                 <%= f.error :consent, class: "invalid-feedback" %>
               </div>
             </div>
-          <%= f.submit 'Finalizar', class: "btn-submit-form" %>
-          <%= link_to "Voltar", previous_wizard_path %>
+            <div class="form-buttons">
+              <%= link_to "Voltar", previous_wizard_path %>
+              <%= f.submit 'Finalizar', class: "btn-submit-form" %>
+            </div>
           <% end %>
         </div>
       </div>
