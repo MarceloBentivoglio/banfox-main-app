@@ -110,7 +110,7 @@
                 <% Seller::CONSENT.each do |key, value| %>
                   <input name="seller[<%= key %>]" type="hidden" value="0">
                   <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
-                  <label class="tag-choice tag-choice4" for="seller_<%= key %>">
+                  <label class="tag-choice tag-consent" for="seller_<%= key %>">
                     <%= value %>
                     <i class="fa fa-check"></i>
                   </label>
