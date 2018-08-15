@@ -27,7 +27,9 @@
             <div class="invalid-feedback">
               <%= @seller.errors.messages[:company_type].first  %>
             </div>
-            <%= f.submit 'Continuar' %>
+            <div class="form-buttons">
+              <%= f.submit 'Continuar', class: "btn-submit-form" %>
+            </div>
           <% end %>
         </div>
       </div>

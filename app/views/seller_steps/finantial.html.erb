@@ -22,9 +22,10 @@
             <%= f.input :monthly_units_sold, label: "Quantas unidades do produto/serviço você vende por mês?", input_html: {id: "monthly_units_sold"} %>
             <%= f.input :cost_per_unit, label: "Quanto custa para você produzir uma unidade do produto/serviço sem considerar os custos fixos?", input_html: {id: "cost_per_unit"} %>
             <%= f.input :debt, label: "Qual o total de dívidas que sua empresa possui?", input_html: {id: "debt"} %>
-
-            <%= f.submit 'Continuar' %>
-            <%= link_to "Voltar", previous_wizard_path %>
+            <div class="form-buttons">
+              <%= link_to "Voltar", previous_wizard_path %>
+              <%= f.submit 'Continuar', class: "btn-submit-form" %>
+            </div>
           <% end %>
         </div>
       </div>

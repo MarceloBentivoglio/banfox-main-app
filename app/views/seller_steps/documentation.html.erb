@@ -15,24 +15,28 @@
             <span class="point active">3</span>
             <span class="point future">4</span>
           </div>
-
-
-
-                <div class="input-file-box">
-                  <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-                  <%= f.error :documents_validation, class: "invalid-feedback"  %>
-                    <% @uploads.each do |description, upload| %>
-                      <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
-                    <% end %>
-                  <%= f.submit 'Subir arquivos', class: "btn btn-file-upload"%>
-                  <%= link_to "Voltar", previous_wizard_path %>
-                  <% end %>
-                </div>
-
-
-
+          <div class="input-file-box">
+            <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+            <%= f.error :documents_validation, class: "invalid-feedback"  %>
+              <% @uploads.each do |description, upload| %>
+                <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
+              <% end %>
+              <h4>Planilhas modelo</h4>
+              <div class="auxiliar-documents">
+                <%= link_to "Curva ABC", "#" %>
+                <%= link_to "Endividamento total por instituição financeira", "#" %>
+              </div>
+              <div class="form-buttons">
+                <%= link_to "Voltar", previous_wizard_path %>
+                <%= link_to "Estou com dúvida na documentação", '#', "data-toggle" => "modal", 'data-target' => '#contact_us_modal', class: "text-center" %>
+                <%= f.submit 'Subir arquivos', class: "btn-submit-form"%>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= render partial: "shared/modal_contact_us", locals: {seller: @seller, user: @user, subject: "Dúvida sobre documentação"} %>
