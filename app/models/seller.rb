@@ -72,6 +72,7 @@ class Seller < ApplicationRecord
     approved: 2,
   }
 
+  #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
   validates :full_name, :cpf, :mobile, :company_name, :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp, :website, presence: { message: "precisa ser informado" }, if: :active_or_basic?
