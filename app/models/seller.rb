@@ -74,7 +74,7 @@ class Seller < ApplicationRecord
 
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
-  validates :full_name, :cpf, :mobile, :company_name, :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp,  presence: { message: "precisa ser informado" }, if: :active_or_basic?
+  validates :full_name, :cpf, :mobile, :company_name, :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp, :website, presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
@@ -86,8 +86,9 @@ class Seller < ApplicationRecord
   # We need this to insert in the database a standardized CPF and CNPJ, that is,
   # without dots and slashes
 
-  before_validation :strip_cnpj
-  before_validation :strip_cpf
+  # before_validation :strip_cnpj
+  # before_validation :strip_cpf
+  before_validation :clean_inputs
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
   before_create :strip_cnpj
@@ -206,6 +207,12 @@ class Seller < ApplicationRecord
   end
 
   private
+
+  def clean_inputs
+    %i{mobile mobile_partner phone zip_code phone cpf cpf_partner cnpj birth_date birth_date_partner}.each do |attr|
+      self.__send__(attr).gsub!(/[^0-9A-Za-z]/, '') unless self.__send__(attr).nil?
+    end
+  end
 
   def strip_cnpj
     self.cnpj = CNPJ::Formatter.strip(self.cnpj, strict: true)

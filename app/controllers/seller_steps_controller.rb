@@ -46,7 +46,7 @@ class SellerStepsController < ApplicationController
   def seller_params
     params.require(:seller).permit(:full_name, :cpf, :birth_date, :mobile, :company_name,
     :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp,
-    :phone, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
+    :phone, :website, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
     :cost_per_unit, :debt, :consent) if params[:seller].present?
   end
 
