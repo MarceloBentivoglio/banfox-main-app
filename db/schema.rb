@@ -141,10 +141,10 @@ ActiveRecord::Schema.define(version: 2018_08_16_122307) do
     t.datetime "updated_at", null: false
     t.string "full_name_partner"
     t.string "cpf_partner"
-    t.date "birth_date"
-    t.date "birth_date_partner"
+    t.string "birth_date"
+    t.string "birth_date_partner"
     t.string "mobile"
-    t.integer "mobile_partner"
+    t.string "mobile_partner"
     t.string "email_partner"
     t.boolean "contact_is_partner"
     t.string "website"
