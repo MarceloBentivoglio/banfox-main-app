@@ -18,24 +18,13 @@ class SellerStepsController < ApplicationController
   end
 
   def update
-    case step
-    when :documentation
-      @seller.update_attributes(seller_params) if seller_params
-      if @seller.documentation_completed?
-        @seller.validation_status = step.to_s
-        @seller.save!
-      else
-        return render_wizard
-      end
-    else
-      @seller.validation_status = step.to_s
-      if @seller.update_attributes(seller_params)
-        @seller.active! if wizard_steps.last == step
-      end
-      if step == :basic
-        @user.seller = @seller
-        @user.save!
-      end
+    @seller.validation_status = step.to_s
+    if @seller.update_attributes(seller_params)
+      @seller.active! if wizard_steps.last == step
+    end
+    if step == :basic
+      @user.seller = @seller
+      @user.save!
     end
     render_wizard @seller
   end
@@ -55,14 +44,10 @@ class SellerStepsController < ApplicationController
   end
 
   def seller_params
-    params.require(:seller).permit(:full_name, :cpf, :mobile, :company_name,
+    params.require(:seller).permit(:full_name, :cpf, :birth_date, :mobile, :company_name,
     :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp,
     :phone, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
-    :cost_per_unit, :debt, :consent, social_contracts: [],
-    update_on_social_contracts: [], address_proofs: [], irpjs: [],
-    revenue_proofs: [], financial_statements: [], cash_flows: [],
-    abc_clients: [], sisbacens: [], partners_cpfs: [], partners_rgs: [],
-    partners_irpfs: [], partners_address_proofs: []) if params[:seller].present?
+    :cost_per_unit, :debt, :consent, ) if params[:seller].present?
   end
 
   def finish_wizard_path

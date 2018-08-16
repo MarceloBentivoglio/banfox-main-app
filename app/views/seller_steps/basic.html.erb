@@ -19,10 +19,12 @@
             <%= f.input :full_name, label: "Qual o seu nome?" %>
             <%= f.input :cpf, label: "E o seu CPF?", input_html: {class: "cpf"} %>
             <%= f.error :cpf_validation, class: "invalid-feedback"  %>
+            <%= f.input :birth_date, label: "Qual a sua data de nascimento?" %>
             <%= f.input :mobile, label: "Qual o seu celular de contato?"%>
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
             <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
+            <%= f.input :website, label: "Qual site da sua empresa?" %>
             <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?" %>
             <%= f.input :address, label: "Endereço" %>
             <%= f.input :address_number, label: "Número" %>

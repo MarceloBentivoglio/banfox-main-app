@@ -143,10 +143,11 @@ ActiveRecord::Schema.define(version: 2018_08_16_122307) do
     t.string "cpf_partner"
     t.date "birth_date"
     t.date "birth_date_partner"
-    t.integer "mobile"
+    t.string "mobile"
     t.integer "mobile_partner"
     t.string "email_partner"
     t.boolean "contact_is_partner"
+    t.string "website"
   end
 
   create_table "users", force: :cascade do |t|
