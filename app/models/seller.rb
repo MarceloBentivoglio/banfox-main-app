@@ -75,6 +75,8 @@ class Seller < ApplicationRecord
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
   validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
+  validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
+  validates :phone, format: { with: /\A^[1-9]{2}[2-5]\d{7}$\z/, message: "precisa ser um número de linha fixa válido" }, if: :active_or_basic?
   validates :full_name, :cpf, :mobile, :company_name, :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp, :website, presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
@@ -107,8 +109,8 @@ class Seller < ApplicationRecord
     finantial? || active?
   end
 
-  def active_or_documentation?
-    documentation? || active?
+  def active_or_partner?
+    partner? || active?
   end
 
   def active_or_consent?

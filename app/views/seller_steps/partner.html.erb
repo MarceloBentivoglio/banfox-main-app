@@ -22,12 +22,12 @@
             <%= f.input :full_name_partner, label: "Qual o seu nome?" %>
             <%= f.input :cpf_partner, label: "E o seu CPF?", input_html: {class: "cpf"} %>
             <%= f.error :cpf_validation, class: "invalid-feedback"  %>
-            <%= f.input :birth_date_partner, label: "Qual a sua data de nascimento?" %>
+            <%= f.input :birth_date_partner, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
             <%= f.input :email_partner, label: "Qual email?" %>
-            <%= f.input :mobile_partner, label: "Qual o seu celular de contato?"%>
+            <%= f.input :mobile_partner, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
               <div class="form-buttons">
                 <%= link_to "Voltar", previous_wizard_path %>
-                <%= f.submit 'Subir arquivos', class: "btn-submit-form"%>
+                <%= f.submit 'Continuar', class: "btn-submit-form"%>
               </div>
             <% end %>
           </div>

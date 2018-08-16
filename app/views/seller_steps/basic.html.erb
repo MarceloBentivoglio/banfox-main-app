@@ -16,7 +16,7 @@
             <span class="point future">4</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.input :full_name, label: "Qual o seu nome?", placeholder: "Gabriela" %>
+            <%= f.input :full_name, label: "Qual o seu nome?" %>
             <%= f.input :cpf, label: "E o seu CPF?", input_html: {class: "cpf"} %>
             <%= f.error :cpf_validation, class: "invalid-feedback"  %>
             <%= f.input :birth_date, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
@@ -25,6 +25,7 @@
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
             <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
             <%= f.input :website, label: "Qual site da sua empresa?" %>
+            <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
             <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code"} %>
             <%= f.input :address, label: "Endereço" %>
             <%= f.input :address_number, label: "Número" %>
