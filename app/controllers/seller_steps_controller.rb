@@ -9,7 +9,7 @@ class SellerStepsController < ApplicationController
   include Wicked::Wizard
   # If these steps are changed the enum in model Seller and the names of the
   # seller_steps views must change as well
-  steps :basic, :finantial, :documentation, :consent
+  steps :basic, :finantial, :partner, :consent
 
   layout "empty_layout"
 
@@ -47,7 +47,7 @@ class SellerStepsController < ApplicationController
     params.require(:seller).permit(:full_name, :cpf, :birth_date, :mobile, :company_name,
     :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp,
     :phone, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
-    :cost_per_unit, :debt, :consent, ) if params[:seller].present?
+    :cost_per_unit, :debt, :consent) if params[:seller].present?
   end
 
   def finish_wizard_path

@@ -60,7 +60,7 @@ class Seller < ApplicationRecord
   enum validation_status: {
     basic: 0,
     finantial: 1,
-    documentation: 2,
+    partner: 2,
     consent: 3,
     active: 4,
   }

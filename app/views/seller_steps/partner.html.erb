@@ -18,17 +18,15 @@
           <div class="input-file-box">
             <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.error :documents_validation, class: "invalid-feedback"  %>
-              <% @uploads.each do |description, upload| %>
-                <%= render partial: "shared/files_input", locals: {f: f, description: description, upload: upload} %>
-              <% end %>
-              <h4>Planilhas modelo</h4>
-              <div class="auxiliar-documents">
-                <%= link_to "Curva ABC", "#" %>
-                <%= link_to "Endividamento total por instituição financeira", "#" %>
-              </div>
+            <%= f.input :contact_is_partner, label: "Você é o sócio desse empresa?" %>
+            <%= f.input :full_name_partner, label: "Qual o seu nome?" %>
+            <%= f.input :cpf_partner, label: "E o seu CPF?", input_html: {class: "cpf"} %>
+            <%= f.error :cpf_validation, class: "invalid-feedback"  %>
+            <%= f.input :birth_date_partner, label: "Qual a sua data de nascimento?" %>
+            <%= f.input :email_partner, label: "Qual email?" %>
+            <%= f.input :mobile_partner, label: "Qual o seu celular de contato?"%>
               <div class="form-buttons">
                 <%= link_to "Voltar", previous_wizard_path %>
-                <%= link_to "Estou com dúvida na documentação", '#', "data-toggle" => "modal", 'data-target' => '#contact_us_modal', class: "text-center" %>
                 <%= f.submit 'Subir arquivos', class: "btn-submit-form"%>
               </div>
             <% end %>
