@@ -55,8 +55,9 @@ class SellerStepsController < ApplicationController
   end
 
   def seller_params
-    params.require(:seller).permit(:full_name, :cpf, :phone, :company_name,
-    :cnpj, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
+    params.require(:seller).permit(:full_name, :cpf, :mobile, :company_name,
+    :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp,
+    :phone, :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold,
     :cost_per_unit, :debt, :consent, social_contracts: [],
     update_on_social_contracts: [], address_proofs: [], irpjs: [],
     revenue_proofs: [], financial_statements: [], cash_flows: [],
