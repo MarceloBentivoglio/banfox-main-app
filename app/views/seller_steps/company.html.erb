@@ -19,7 +19,7 @@
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
-            <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
+            <%= f.error :cnpj_validator, class: "invalid-feedback"  %>
             <%= f.input :website, label: "Qual site da sua empresa?" %>
             <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
             <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code"} %>

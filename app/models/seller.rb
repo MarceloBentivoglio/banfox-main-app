@@ -77,6 +77,7 @@ class Seller < ApplicationRecord
   validates_with CpfValidator, if: :active_or_basic?
   validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
+  validates_with DateValidator, attr: :birth_date, if: :active_or_basic?
   validates :full_name, :cpf, :mobile, :birth_date, presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates_with CnpjValidator, if: :active_or_company?
   validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
