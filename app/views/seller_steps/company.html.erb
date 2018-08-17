@@ -16,19 +16,19 @@
             <span class="point future">4</span>
             <span class="point future">4</span>
           </div>
-          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+          <%= simple_form_for @seller, url: wizard_path, method: :put, input_html: {id: "company_form"} do |f| %>
             <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
             <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
             <%= f.error :cnpj_validator, class: "invalid-feedback"  %>
             <%= f.input :website, label: "Qual site da sua empresa?" %>
             <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
-            <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code"} %>
-            <%= f.input :address, label: "Endereço" %>
+            <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code", id: "zipcode"} %>
             <%= f.input :address_number, label: "Número" %>
-            <%= f.input :city, label: "Cidade" %>
-            <%= f.input :neighborhood, label: "Bairro" %>
-            <%= f.input :state, label: "Estado" %>
-            <%= f.input :address_comp, label: "Complemento (OPCIONAL)" %>
+            <%= f.input :address, label: "Endereço", input_html: { id: "address" } %>
+            <%= f.input :neighborhood, label: "Bairro", input_html: { id: "neighborhood" }  %>
+            <%= f.input :city, label: "Cidade", input_html: { id: "city" }  %>
+            <%= f.input :state, label: "Estado", input_html: { id: "state" } %>
+            <%= f.input :address_comp, label: "Complemento (OPCIONAL)", input_html: { id: "address_comp" } %>
             <div class="form-buttons">
               <%= link_to "Voltar", previous_wizard_path %>
               <%= f.submit 'Continuar', class: "btn-submit-form" %>
