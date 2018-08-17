@@ -14,6 +14,7 @@
             <span class="point future">2</span>
             <span class="point future">3</span>
             <span class="point future">4</span>
+            <span class="point future">5</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.input :full_name, label: "Qual o seu nome?" %>
@@ -21,22 +22,8 @@
             <%= f.error :cpf_validation, class: "invalid-feedback"  %>
             <%= f.input :birth_date, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
             <%= f.input :mobile, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
-            <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
-            <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
-            <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
-            <%= f.input :website, label: "Qual site da sua empresa?" %>
-            <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
-            <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code"} %>
-            <%= f.input :address, label: "Endereço" %>
-            <%= f.input :address_number, label: "Número" %>
-            <%= f.input :city, label: "Cidade" %>
-            <%= f.input :neighborhood, label: "Bairro" %>
-            <%= f.input :address_comp, label: "Complemento (OPCIONAL)" %>
-
-            <div class="invalid-feedback">
-              <%= @seller.errors.messages[:company_type].first  %>
-            </div>
             <div class="form-buttons">
+
               <%= f.submit 'Continuar', class: "btn-submit-form" %>
             </div>
           <% end %>

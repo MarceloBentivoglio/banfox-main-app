@@ -59,10 +59,11 @@ class Seller < ApplicationRecord
 # If this enum is changed the steps in SellerStepsController must change as well
   enum validation_status: {
     basic: 0,
-    finantial: 1,
-    partner: 2,
-    consent: 3,
-    active: 4,
+    company: 1,
+    finantial: 2,
+    partner: 3,
+    consent: 4,
+    active: 5,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
@@ -73,24 +74,20 @@ class Seller < ApplicationRecord
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
-  validates_with CnpjValidator, if: :active_or_basic?
   validates_with CpfValidator, if: :active_or_basic?
+  validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
-  validates :phone, format: { with: /\A^[1-9]{2}[2-5]\d{7}$\z/, message: "precisa ser um número de linha fixa válido" }, if: :active_or_basic?
-  validates :full_name, :cpf, :mobile, :company_name, :cnpj, :zip_code, :address, :address_number, :city, :neighborhood, :address_comp, :website, presence: { message: "precisa ser informado" }, if: :active_or_basic?
-  validates :cpf, :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
+  validates :full_name, :cpf, :mobile, :birth_date, presence: { message: "precisa ser informado" }, if: :active_or_basic?
+  validates_with CnpjValidator, if: :active_or_company?
+  validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
+  validates :phone, format: { with: /\A^[1-9]{2}[2-5]\d{7}$\z/, message: "precisa ser um número de linha fixa válido" }, if: :active_or_company?
+  validates :company_name, :cnpj, :website, :phone,  :zip_code, :address, :neighborhood, :address_number, :city, :address_comp, :state, presence: { message: "precisa ser informado" }, if: :active_or_company?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   validates :monthly_units_sold, numericality: { only_integer: true, message: "precisa ser um número inteiro" }, if: :active_or_finantial?
-  # validates :social_contracts, :update_on_social_contracts, :address_proofs, :irpjs, :revenue_proofs, :financial_statements, :cash_flows, :abc_clients, :sisbacens, :partners_cpfs, :partners_rgs, :partners_irpfs, :partners_address_proofs, presence: { message: "esse documento é necessário para análise de crédito" }, if: :active_or_documentation?
-  # validates_with DocumentsValidator, if: :active_or_documentation?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
-  # We need this to insert in the database a standardized CPF and CNPJ, that is,
-  # without dots and slashes
-
-  # before_validation :strip_cnpj
-  # before_validation :strip_cpf
+  # TODO: Refactor this block of code
   before_validation :clean_inputs
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
@@ -103,6 +100,10 @@ class Seller < ApplicationRecord
 
   def active_or_basic?
     basic? || active?
+  end
+
+  def active_or_company?
+    company? || active?
   end
 
   def active_or_finantial?
@@ -244,8 +245,6 @@ class Seller < ApplicationRecord
     end
     links.join("\n")
   end
-
-
 
   # def correct_document_mime_type
   #   if proof_of_address.attached? && !proof_of_address.content_type.in?(%w(application/msword application/pdf))
