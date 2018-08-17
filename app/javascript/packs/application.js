@@ -8,6 +8,7 @@ import { loop } from "../components/showOnScroll";
 import { presentAndDismissAlerts } from "../components/flashes";
 import { infiniteScrolling } from "../components/pagination";
 import { showProgressbar } from "../components/mvpProgressbar";
+import { addressAutocomplete } from "../components/addressAutocomplete";
 
 selectTagOnClick();
 maskCpfCnpjCurrency();
@@ -18,3 +19,4 @@ loop();
 presentAndDismissAlerts();
 infiniteScrolling();
 showProgressbar();
+addressAutocomplete();
