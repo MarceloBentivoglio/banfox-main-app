@@ -14,20 +14,16 @@
             <span class="point future">2</span>
             <span class="point future">3</span>
             <span class="point future">4</span>
+            <span class="point future">5</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <%= f.input :full_name, label: "Qual o seu nome?" %>
             <%= f.input :cpf, label: "E o seu CPF?", input_html: {class: "cpf"} %>
             <%= f.error :cpf_validation, class: "invalid-feedback"  %>
-            <%= f.input :phone, label: "Qual o seu telefone de contato?"%>
-            <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
-            <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
-            <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
-
-            <div class="invalid-feedback">
-              <%= @seller.errors.messages[:company_type].first  %>
-            </div>
+            <%= f.input :birth_date, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
+            <%= f.input :mobile, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
             <div class="form-buttons">
+
               <%= f.submit 'Continuar', class: "btn-submit-form" %>
             </div>
           <% end %>

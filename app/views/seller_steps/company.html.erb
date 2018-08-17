@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="client-form-box">
+        <div class="client-form-logo">
+          <%= image_tag "porco.png", height: 100 %>
+        </div>
+        <div class="client-form-header">
+          <h2>Estamos a poucos passos de criar a sua conta...</h2>
+        </div>
+        <div class="client-form">
+          <div class="progress-bar">
+            <span class="point done">1</span>
+            <span class="point active">2</span>
+            <span class="point future">3</span>
+            <span class="point future">4</span>
+            <span class="point future">4</span>
+          </div>
+          <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
+            <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
+            <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
+            <%= f.error :cnpj_validation, class: "invalid-feedback"  %>
+            <%= f.input :website, label: "Qual site da sua empresa?" %>
+            <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
+            <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code"} %>
+            <%= f.input :address, label: "Endereço" %>
+            <%= f.input :address_number, label: "Número" %>
+            <%= f.input :city, label: "Cidade" %>
+            <%= f.input :neighborhood, label: "Bairro" %>
+            <%= f.input :state, label: "Estado" %>
+            <%= f.input :address_comp, label: "Complemento (OPCIONAL)" %>
+            <div class="form-buttons">
+              <%= link_to "Voltar", previous_wizard_path %>
+              <%= f.submit 'Continuar', class: "btn-submit-form" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
