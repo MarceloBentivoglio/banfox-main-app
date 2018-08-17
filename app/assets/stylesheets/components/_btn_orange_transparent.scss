@@ -3,7 +3,7 @@
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
-  border: 0.15em solid $orange;
+  border: 0.1em solid $orange;
   border-radius: 0.3em;
   color: $orange;
   cursor: pointer;
@@ -16,7 +16,7 @@
   text-align: center;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   &:hover,
   &:focus {
