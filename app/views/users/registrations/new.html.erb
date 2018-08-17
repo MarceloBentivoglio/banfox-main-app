@@ -4,8 +4,8 @@
 <%= f.error_notification %>
 
 <div class="form-inputs">
-  <%= f.input :email, required: true, autofocus: true %>
-  <%= f.input :password, required: true, label: "Senha", hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
+  <%= f.input :email, required: true, label: "Indique seu Email", autofocus: true %>
+  <%= f.input :password, required: true, label: "Crie uma Senha", hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
   <!-- <%= f.input :password_confirmation, required: true %> -->
 </div>
 

@@ -1,0 +1,41 @@
+.progress-bar {
+  height: 50px;
+  width: 90%;
+  margin: 5px 10px;
+  background-color: #fff;
+  color: $dark-blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: none !important;
+  .point {
+    width: 40px;
+    height: 40px;
+    border: 2px solid $dark-blue;
+    background-color: $white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bar {
+    width: 6rem;
+    height: 0.2rem;
+    border-radius: 6px;
+    background: $dark-blue;
+  }
+  .future {
+    opacity: 0.4;
+  }
+  .done {
+    background-color: $orange;
+    border: 2px solid $orange;
+    color: $white;
+  }
+  .bdone {
+    color: $near-white;
+    background: $orange;
+  }
+}
