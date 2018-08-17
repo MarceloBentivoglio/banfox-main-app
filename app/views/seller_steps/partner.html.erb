@@ -18,11 +18,10 @@
           </div>
           <div class="input-file-box">
             <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.error :documents_validation, class: "invalid-feedback"  %>
             <%= f.input :contact_is_partner, label: "Você é o sócio desse empresa?" %>
             <%= f.input :full_name_partner, label: "Qual o seu nome?" %>
             <%= f.input :cpf_partner, label: "E o seu CPF?", input_html: {class: "cpf"} %>
-            <%= f.error :cpf_validation, class: "invalid-feedback"  %>
+            <%= f.error :cpf_validator, class: "invalid-feedback"  %>
             <%= f.input :birth_date_partner, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
             <%= f.input :email_partner, label: "Qual email?" %>
             <%= f.input :mobile_partner, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
