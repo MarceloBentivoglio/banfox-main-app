@@ -1,12 +1,12 @@
 .form-group {
-  margin-bottom: 0px;
-  margin-top: 15px;
+  margin: 1.8em 0;
 }
 
 .client-form-box {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5em;
   // justify-content: center;
   .client-form-logo {
     height: 120px;
@@ -26,16 +26,15 @@
   }
 
   .client-form {
-    min-height: 650px;
-    max-width: 900px;
-    padding: 20px;
+    margin-top: 0.5em;
+    padding: 2em;
     background-color: #fff;
     color: $dark-blue;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 6px;
-    box-shadow: 0 4px 20px 0 #eceffc;
+    box-shadow: 0 2px 4px 0 #eceffc;
     form {
       margin-top: 15px;
       width: 90%;
@@ -48,7 +47,7 @@
       border: none;
       box-shadow: none;
       background-color: #fff;
-      border-bottom: 2px solid #C3C5C8;
+      border-bottom: 1px solid #CFD7D9;
       box-sizing: border-box;
       &:focus {
         border-bottom: 2px solid $orange;
@@ -68,47 +67,6 @@
       font-size: 20px;
       opacity: 0.9;
     }
-  }
-}
-
-.progress-bar {
-  height: 50px;
-  width: 90%;
-  margin: 5px 10px;
-  background-color: #fff;
-  color: $dark-blue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: none !important;
-  .point {
-    width: 40px;
-    height: 40px;
-    border: 2px solid $dark-blue;
-    background-color: $white;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .bar {
-    width: 6rem;
-    height: 0.2rem;
-    border-radius: 6px;
-    background: $dark-blue;
-  }
-  .future {
-    opacity: 0.4;
-  }
-  .done {
-    color: $orange;
-    border: 2px solid $orange;
-  }
-  .bdone {
-    color: $near-white;
-    background: $orange;
   }
 }
 

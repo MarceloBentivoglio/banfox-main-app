@@ -17,15 +17,24 @@
             <span class="point future">5</span>
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.input :full_name, label: "Qual o seu nome?" %>
-            <%= f.input :cpf, label: "E o seu CPF?", input_html: {class: "cpf"} %>
-            <%= f.error :cpf_validator, class: "invalid-feedback"  %>
-            <%= f.input :birth_date, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
-            <%= f.error :date_validator, class: "invalid-feedback"  %>
-            <%= f.input :mobile, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
-            <div class="form-buttons">
-
-              <%= f.submit 'Continuar', class: "btn-submit-form" %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                <%= f.input :full_name, label: "Qual o seu nome?" %>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.input :cpf, label: "Qual o seu CPF?", input_html: {class: "cpf"} %>
+                <%= f.error :cpf_validator, class: "invalid-feedback"  %>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.input :birth_date, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
+                <%= f.error :date_validator, class: "invalid-feedback"  %>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <%= f.input :mobile, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-sm-offset-6">
+                <%= f.submit 'Continuar', class: "btn-submit-form" %>
+              </div>
             </div>
           <% end %>
         </div>
