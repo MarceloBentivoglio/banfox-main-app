@@ -42,11 +42,11 @@ class SellerStepsController < ApplicationController
   end
 
   def set_partner_eql_user
-    @seller.full_name_partner = @seller.full_name
-    @seller.cpf_partner = @seller.cpf
-    @seller.birth_date_partner = @seller.birth_date
-    @seller.mobile_partner = @seller.mobile
-    @seller.email_partner = @user.email
+    @seller.full_name_partner = @seller.full_name_partner || @seller.full_name
+    @seller.cpf_partner = @seller.cpf_partner || @seller.cpf
+    @seller.birth_date_partner = @seller.birth_date_partner || @seller.birth_date
+    @seller.mobile_partner = @seller.mobile_partner || @seller.mobile
+    @seller.email_partner = @seller.email_partner || @user.email
   end
 
   def seller_params

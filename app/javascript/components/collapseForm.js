@@ -1,6 +1,17 @@
 import $ from 'jquery';
 import collapse from 'bootstrap';
 
+const validationReturnedError = () => {
+  const arr = Array.from(document.getElementsByClassName("invalid-feedback"));
+  let flag = false;
+  arr.forEach((elem) => {
+    if (elem.innerHTML) {
+      flag = true;
+    };
+  });
+  return flag;
+}
+
 const cleanForm = () => {
   $("#seller_full_name_partner").val('');
   $("#seller_cpf_partner").val('');
@@ -10,23 +21,27 @@ const cleanForm = () => {
 }
 
 const reInputForm = () => {
-  if (!$("#seller_full_name_partner").val()) {$("#seller_full_name_partner").val(localStorage['fullName'])};
-  if (!$("#seller_cpf_partner").val()) {$("#seller_cpf_partner").val(localStorage['cpf'])};
-  if (!$("#seller_birth_date_partner").val()) {$("#seller_birth_date_partner").val(localStorage['birthDate'])};
-  if (!$("#seller_email_partner").val()) {$("#seller_email_partner").val(localStorage['email'])};
-  if (!$("#seller_mobile_partner").val()) {$("#seller_mobile_partner").val(localStorage['mobile'])};
+  $("#seller_full_name_partner").val(localStorage['fullName']);
+  $("#seller_cpf_partner").val(localStorage['cpf']);
+  $("#seller_birth_date_partner").val(localStorage['birthDate']);
+  $("#seller_email_partner").val(localStorage['email']);
+  $("#seller_mobile_partner").val(localStorage['mobile']);
 }
 
 const storeForm = () => {
-  localStorage['fullName'] = $("#seller_full_name_partner").val();
-  localStorage['cpf'] = $("#seller_cpf_partner").val();
-  localStorage['birthDate'] = $("#seller_birthDate_partner").val();
-  localStorage['email'] = $("#seller_email_partner").val();
-  localStorage['mobile'] = $("#seller_mobile_partner").val();
+  localStorage['fullName'] = localStorage['fullName'] || $("#seller_full_name_partner").val();
+  localStorage['cpf'] = localStorage['cpf'] || $("#seller_cpf_partner").val();
+  localStorage['birthDate'] = localStorage['birthDate'] || $("#seller_birth_date_partner").val();
+  localStorage['email'] = localStorage['email'] || $("#seller_email_partner").val();
+  localStorage['mobile'] = localStorage['mobile'] || $("#seller_mobile_partner").val();
 }
 
 const keepFormOpened = (form) => {
   form.collapse('show')
+}
+
+const keepButtonClicked = (btn) => {
+  btn.classList.add("btn-orange-transparent-clicked");
 }
 
 const openFormOnClick = (btn, form) => {
@@ -50,28 +65,21 @@ const collapseFormOnOptionButton = (openBtn, closeBtn, form) => {
   closeFormOnClick(closeBtn, form);
 }
 
-const afterValidation = () => {
-  const arr = Array.from(document.getElementsByClassName("invalid-feedback"));
-  let flag = false;
-  arr.forEach((elem) => {
-    if (elem.innerHTML) {
-      flag = true;
-    };
-  });
-  return flag;
-}
-
-const keepButtonClicked = (btn) => {
-  btn.classList.add("btn-orange-transparent-clicked");
-}
-
 const configCollapse = () => {
   const subForm = $("#wrapperSubForm");
   const no = document.getElementById("btn-option-no");
   const yes = document.getElementById("btn-option-yes");
   storeForm()
-  if (afterValidation()) {
+  if (localStorage['no'] == 'true') {
+    keepFormOpened(subForm);
+  }
+  if (validationReturnedError()) {
     keepButtonClicked(no);
+    yes.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.remove('btn-orange-transparent');
+      e.currentTarget.classList.add('btn-orange-transparent-inactive');
+    })
     keepFormOpened(subForm);
   } else {
     collapseFormOnOptionButton(no, yes, subForm);
