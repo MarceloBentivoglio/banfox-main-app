@@ -14,11 +14,7 @@ class SellerStepsController < ApplicationController
 
   def show
     if step == :partner
-      @seller.full_name_partner = @seller.full_name
-      @seller.cpf_partner = @seller.cpf
-      @seller.birth_date_partner = @seller.birth_date
-      @seller.mobile_partner = @seller.mobile
-      @seller.email_partner = @user.email
+      set_partner_eql_user
     end
     render_wizard
   end
@@ -45,6 +41,14 @@ class SellerStepsController < ApplicationController
     @seller = @user.seller || Seller.new(seller_params)
   end
 
+  def set_partner_eql_user
+    @seller.full_name_partner = @seller.full_name
+    @seller.cpf_partner = @seller.cpf
+    @seller.birth_date_partner = @seller.birth_date
+    @seller.mobile_partner = @seller.mobile
+    @seller.email_partner = @user.email
+  end
+
   def seller_params
     params.require(:seller).permit(:full_name, :cpf, :birth_date, :mobile, :company_name,
     :cnpj, :zip_code, :address, :address_number, :city, :state, :neighborhood, :address_comp,
@@ -56,6 +60,7 @@ class SellerStepsController < ApplicationController
   def finish_wizard_path
     sellers_show_path
   end
+
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def check_not_fully_registered_seller
     if current_user.seller
