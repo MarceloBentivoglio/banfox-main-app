@@ -3,7 +3,6 @@ class SellerStepsController < ApplicationController
   before_action :check_not_fully_registered_seller
   before_action :set_user, only: [:show, :update]
   before_action :set_seller, only: [:show, :update]
-  before_action :set_uploads, only: [:show, :update]
   before_action :require_step
   # This inclusion is needed to make the wizard
   include Wicked::Wizard
@@ -14,6 +13,13 @@ class SellerStepsController < ApplicationController
   layout "empty_layout"
 
   def show
+    if step == :partner
+      @seller.full_name_partner = @seller.full_name
+      @seller.cpf_partner = @seller.cpf
+      @seller.birth_date_partner = @seller.birth_date
+      @seller.mobile_partner = @seller.mobile
+      @seller.email_partner = @user.email
+    end
     render_wizard
   end
 
@@ -37,10 +43,6 @@ class SellerStepsController < ApplicationController
 
   def set_seller
     @seller = @user.seller || Seller.new(seller_params)
-  end
-
-  def set_uploads
-    @uploads = @seller.attachments
   end
 
   def seller_params

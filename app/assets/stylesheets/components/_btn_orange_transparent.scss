@@ -1,4 +1,4 @@
-.btn-submit-form {
+.btn-orange-transparent {
   float: right;
   box-sizing: border-box;
   appearance: none;
@@ -23,5 +23,11 @@
     box-shadow: 0 0 40px 40px $orange inset;
     color: #fff;
     outline: 0;
+    text-decoration: none;
   }
+}
+
+.btn-orange-transparent-clicked {
+  box-shadow: 0 0 40px 40px $orange inset;
+  color: #fff;
 }

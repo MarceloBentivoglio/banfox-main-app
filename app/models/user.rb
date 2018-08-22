@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :seller, optional: true
+  validates :email, email: true
+  validates :email, corporate_email: true
+  # validates_with CorporateEmailValidator
 
   after_save :async_update_spreadsheet
 

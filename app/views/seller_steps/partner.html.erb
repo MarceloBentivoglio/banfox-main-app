@@ -18,16 +18,26 @@
           </div>
           <div class="input-file-box">
             <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-            <%= f.input :contact_is_partner, label: "Você é o sócio desse empresa?" %>
-            <%= f.input :full_name_partner, label: "Qual o seu nome?" %>
-            <%= f.input :cpf_partner, label: "E o seu CPF?", input_html: {class: "cpf"} %>
-            <%= f.error :cpf_validator, class: "invalid-feedback"  %>
-            <%= f.input :birth_date_partner, label: "Qual a sua data de nascimento?", input_html: {class: "birth_date"} %>
-            <%= f.input :email_partner, label: "Qual email?" %>
-            <%= f.input :mobile_partner, label: "Qual o seu celular de contato?", input_html: {class: "mobile"}%>
+              <div class="wrapper-btn-options-form form-group">
+                <label for="">Você tem poderes para assinar pela empresa? </label>
+                <div class="wrapper-btn-options">
+                  <%= link_to "Não", "#", id: "btn-option-no", class: "btn-orange-transparent", "aria-expanded" => "false"  %>
+                  <%= link_to "Sim", "#", id: "btn-option-yes", class: "btn-orange-transparent" %>
+                </div>
+              </div>
+              <div id="wrapperSubForm", class="collapse", aria-expanded="false">
+                <%= f.input :full_name_partner, label: "Qual o nome do sócio?" %>
+                <%= f.input :cpf_partner, label: "E o CPF do sócio?", input_html: {class: "cpf"} %>
+                <%= f.error :cpf_validator, class: "invalid-feedback"  %>
+                <%= f.input :birth_date_partner, label: "Qual a data de nascimento do sócio?", input_html: {class: "birth_date"} %>
+                <%= f.error :date_validator, class: "invalid-feedback"  %>
+                <%= f.input :email_partner, label: "Qual email do sócio?" %>
+                <%= f.error :corporate_email_validator, class: "invalid-feedback"  %>
+                <%= f.input :mobile_partner, label: "Qual o seu celular do sócio?", input_html: {class: "mobile"}%>
+              </div>
               <div class="form-buttons">
                 <%= link_to "Voltar", previous_wizard_path %>
-                <%= f.submit 'Continuar', class: "btn-submit-form"%>
+                <%= f.submit 'Continuar', class: "btn-orange-transparent"%>
               </div>
             <% end %>
           </div>

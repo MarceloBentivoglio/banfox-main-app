@@ -9,6 +9,7 @@ import { presentAndDismissAlerts } from "../components/flashes";
 import { infiniteScrolling } from "../components/pagination";
 import { showProgressbar } from "../components/mvpProgressbar";
 import { addressAutocomplete } from "../components/addressAutocomplete";
+import { collapseForm } from "../components/collapseForm";
 
 selectTagOnClick();
 maskCpfCnpjCurrency();
@@ -20,3 +21,4 @@ presentAndDismissAlerts();
 infiniteScrolling();
 showProgressbar();
 addressAutocomplete();
+collapseForm();
