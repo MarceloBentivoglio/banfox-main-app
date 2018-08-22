@@ -137,6 +137,7 @@ class Seller < ApplicationRecord
       id: self.id,
       full_name: self.full_name,
       cpf: self.cpf,
+      birth_date: self.birth_date,
       email: self.try(:users).try(:first).try(:email),
       phone: self.phone,
       company_name: self.company_name,

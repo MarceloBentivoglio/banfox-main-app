@@ -4,10 +4,11 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :full_name
       t.string :cpf
       t.string :birth_date
-      t.string :phone
+      t.string :mobile
       t.string :company_name
       t.string :company_nickname
       t.string :cnpj
+      t.string :phone
       t.string :website
       t.string :address
       t.string :address_number
@@ -29,7 +30,6 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :full_name_partner
       t.string :cpf_partner
       t.string :birth_date_partner
-      t.string :mobile
       t.string :mobile_partner
       t.string :email_partner
       t.boolean :consent
