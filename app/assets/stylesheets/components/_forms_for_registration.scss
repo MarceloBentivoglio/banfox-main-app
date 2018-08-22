@@ -39,7 +39,7 @@
       margin-top: 15px;
       width: 90%;
     }
-    input[type=text], input[type=number], input[type=tel], select {
+    input[type=text], input[type=number], input[type=tel], input[type=email], input[type=password] select {
       width: 100%;
       padding: 12px 20px;
       margin: 4px 0;
@@ -130,4 +130,13 @@
 .invalid-feedback {
   color: $red;
   font-size: 0.8em;
+}
+
+.wrapper-btn-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1em;
+    padding-right: 5em;
+    padding-left: 5em;
 }

@@ -14,7 +14,7 @@ function maskCpfCnpjCurrency() {
   $('.cpf').mask('000.000.000-00');
   $('.cnpj').mask('00.000.000/0000-00');
   $('.mobile').mask('(00) 9 0000-0000');
-  $('.phone').mask('(00) 0000-0000');
+  $('.phone').mask('(00) 000000000');
   $('.birth_date').mask('00/00/0000');
   $('.zip_code').mask('00000-000');
   if (document.getElementById("monthly_revenue")) {

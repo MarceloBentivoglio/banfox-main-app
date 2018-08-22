@@ -3,7 +3,6 @@ class SellerStepsController < ApplicationController
   before_action :check_not_fully_registered_seller
   before_action :set_user, only: [:show, :update]
   before_action :set_seller, only: [:show, :update]
-  before_action :set_uploads, only: [:show, :update]
   before_action :require_step
   # This inclusion is needed to make the wizard
   include Wicked::Wizard
@@ -14,6 +13,9 @@ class SellerStepsController < ApplicationController
   layout "empty_layout"
 
   def show
+    if step == :partner
+      set_partner_eql_user
+    end
     render_wizard
   end
 
@@ -39,8 +41,12 @@ class SellerStepsController < ApplicationController
     @seller = @user.seller || Seller.new(seller_params)
   end
 
-  def set_uploads
-    @uploads = @seller.attachments
+  def set_partner_eql_user
+    @seller.full_name_partner = @seller.full_name_partner || @seller.full_name
+    @seller.cpf_partner = @seller.cpf_partner || @seller.cpf
+    @seller.birth_date_partner = @seller.birth_date_partner || @seller.birth_date
+    @seller.mobile_partner = @seller.mobile_partner || @seller.mobile
+    @seller.email_partner = @seller.email_partner || @user.email
   end
 
   def seller_params
@@ -54,6 +60,7 @@ class SellerStepsController < ApplicationController
   def finish_wizard_path
     sellers_show_path
   end
+
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def check_not_fully_registered_seller
     if current_user.seller

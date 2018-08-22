@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_122307) do
+ActiveRecord::Schema.define(version: 2018_05_17_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,10 +107,19 @@ ActiveRecord::Schema.define(version: 2018_08_16_122307) do
   create_table "sellers", force: :cascade do |t|
     t.string "full_name"
     t.string "cpf"
+    t.string "birth_date"
     t.string "phone"
     t.string "company_name"
     t.string "company_nickname"
     t.string "cnpj"
+    t.string "website"
+    t.string "address"
+    t.string "address_number"
+    t.string "address_comp"
+    t.string "neighborhood"
+    t.string "state"
+    t.string "city"
+    t.string "zip_code"
     t.string "inscr_est"
     t.string "inscr_mun"
     t.string "nire"
@@ -126,28 +135,18 @@ ActiveRecord::Schema.define(version: 2018_08_16_122307) do
     t.string "cost_per_unit_currency", default: "BRL", null: false
     t.bigint "debt_cents", default: 0, null: false
     t.string "debt_currency", default: "BRL", null: false
-    t.string "address"
-    t.string "address_number"
-    t.string "address_comp"
-    t.string "neighborhood"
-    t.string "state"
-    t.string "city"
-    t.string "zip_code"
+    t.string "full_name_partner"
+    t.string "cpf_partner"
+    t.string "birth_date_partner"
+    t.string "mobile"
+    t.string "mobile_partner"
+    t.string "email_partner"
     t.boolean "consent"
     t.integer "validation_status"
     t.integer "analysis_status", default: 0
     t.boolean "visited", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "full_name_partner"
-    t.string "cpf_partner"
-    t.string "birth_date"
-    t.string "birth_date_partner"
-    t.string "mobile"
-    t.string "mobile_partner"
-    t.string "email_partner"
-    t.boolean "contact_is_partner"
-    t.string "website"
   end
 
   create_table "users", force: :cascade do |t|

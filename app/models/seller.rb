@@ -74,18 +74,25 @@ class Seller < ApplicationRecord
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
-  validates_with CpfValidator, if: :active_or_basic?
+  validates_with CpfValidator, attr: :cpf, if: :active_or_basic?
   validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
   validates_with DateValidator, attr: :birth_date, if: :active_or_basic?
   validates :full_name, :cpf, :mobile, :birth_date, presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates_with CnpjValidator, if: :active_or_company?
   validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
-  validates :phone, format: { with: /\A^[1-9]{2}[2-5]\d{7}$\z/, message: "precisa ser um número de linha fixa válido" }, if: :active_or_company?
-  validates :company_name, :cnpj, :website, :phone,  :zip_code, :address, :neighborhood, :address_number, :city, :address_comp, :state, presence: { message: "precisa ser informado" }, if: :active_or_company?
+  validates :phone, format: { with: /\A([1-9]{2}9\d{8}|^[1-9]{2}[2-5]\d{7})\z/, message: "precisa ser um número de linha fixa ou movel válido" }, if: :active_or_company?
+  validates :company_name, :cnpj, :website, :phone,  :zip_code, :address, :neighborhood, :address_number, :city, :state, presence: { message: "precisa ser informado" }, if: :active_or_company?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
   validates :monthly_units_sold, numericality: { only_integer: true, message: "precisa ser um número inteiro" }, if: :active_or_finantial?
+  validates_with CpfValidator, attr: :cpf_partner, if: :active_or_partner?
+  validates :cpf_partner, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_partner?
+  validates :mobile_partner, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_partner?
+  validates_with DateValidator, attr: :birth_date_partner, if: :active_or_partner?
+  validates :email_partner, email: true, if: :active_or_partner?
+  validates :email_partner, corporate_email: true, if: :active_or_partner?
+  validates :full_name_partner, :cpf_partner, :mobile_partner, :birth_date_partner, :email_partner, presence: { message: "precisa ser informado" }, if: :active_or_partner?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
 
   # TODO: Refactor this block of code
