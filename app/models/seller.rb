@@ -81,7 +81,7 @@ class Seller < ApplicationRecord
   validates :full_name, :cpf, :mobile, :birth_date, presence: { message: "precisa ser informado" }, if: :active_or_basic?
   validates_with CnpjValidator, if: :active_or_company?
   validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
-  validates :phone, format: { with: /\A^[1-9]{2}[2-5]\d{7}$\z/, message: "precisa ser um número de linha fixa válido" }, if: :active_or_company?
+  validates :phone, format: { with: /\A([1-9]{2}9\d{8}|^[1-9]{2}[2-5]\d{7})\z/, message: "precisa ser um número de linha fixa ou movel válido" }, if: :active_or_company?
   validates :company_name, :cnpj, :website, :phone,  :zip_code, :address, :neighborhood, :address_number, :city, :state, presence: { message: "precisa ser informado" }, if: :active_or_company?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
   validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
