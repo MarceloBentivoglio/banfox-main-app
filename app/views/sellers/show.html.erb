@@ -1,53 +1,39 @@
+<!-- TODO: Adjust Css so that we don't need this header -->
 <%= render partial: "shared/header", locals: {
-  title: "Bem vindo!",
+  title: "",
   sub_title: "",
   company_name: "",
 } %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Cadastrar empresa",
-        tag: "",
-        checked: true,
-        button_path: "#",
+    <div class="col-xs-12">
+      <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+        title: "Seus limites",
+        optional_button: render(partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Subir títulos para análise"}),
       } %>
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Adicionar documentos",
-        tag: "Etapa a completar",
-        checked: @seller.documentation_completed?,
-        button_path: new_document_path,
-      } %>
-    </div>
-    <div class="col-sm-12 col-md-4">
-      <%= render partial: "shared/dash_cards/small_status_dash_card", locals: {
-        title: "Adicionar títulos",
-        tag: "Etapa a completar",
-        checked: @seller.invoices.count > 0,
-        button_path: new_invoice_path,
-      } %>
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
+            title: "Limite operacional",
+            left_data: @seller.used_limit,
+            right_data: @seller.operation_limit,
+            left_legend: "Utilizado",
+            right_legend: "Disponível",
+          } %>
+        </div>
+      </div>
     </div>
   </div>
+
   <% if @seller.approved? %>
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/dash_cards/dash_section_header", locals: {
           title: "Novas operações",
-          optional_button: render(partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Subir mais títulos para análise"}),
+          optional_button: "",
         } %>
         <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
-              title: "Limite operacional",
-              left_data: @seller.used_limit,
-              right_data: @seller.operation_limit,
-              left_legend: "Utilizado",
-              right_legend: "Disponível",
-            } %>
-          </div>
           <div class="col-sm-12 col-md-4">
             <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
               title: "Títulos em análise",
