@@ -3,12 +3,17 @@ const renderProgressbar = (value, progressbarElement) => {
 };
 
 const loadProgressbar = (progressbarElement) => {
-  const t = setTimeout(() => {
-    renderProgressbar(t, progressbarElement)
-    loadProgressbar(progressbarElement);
-  }, 30);
-  if (t == progressbarElement.getAttribute("data-value")) { clearTimeout(t); }
-  console.log(t);
+  const progressbarFinalWidth = progressbarElement.getAttribute("data-value")
+  if (progressbarFinalWidth === "0") {
+    renderProgressbar(progressbarFinalWidth, progressbarElement);
+  } else {
+    const t = setTimeout(() => {
+      renderProgressbar(t, progressbarElement)
+      loadProgressbar(progressbarElement);
+    }, 30);
+    if (t == progressbarElement.getAttribute("data-value")) { clearTimeout(t); }
+    console.log(t);
+  }
 }
 
 const showProgressbar = () => {

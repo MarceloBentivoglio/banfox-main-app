@@ -226,6 +226,11 @@ class Seller < ApplicationRecord
     Invoice.total(:opened_all, self)
   end
 
+  def set_initial_limit
+    self.operation_limit = Money.new("2000000") if self.operation_limit == Money.new(0) && self.active?
+    self.save!
+  end
+
   private
 
   def clean_inputs
