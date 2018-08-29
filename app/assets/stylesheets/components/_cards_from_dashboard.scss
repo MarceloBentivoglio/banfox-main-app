@@ -1,4 +1,4 @@
-.small-dash-card-link {
+.card-white-w-multiple-content-clickable {
   box-shadow: 0 0 20px 0 rgba(207,219,232,.3);
   color: $gray;
 
@@ -8,7 +8,7 @@
     box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   }
 }
-.small-dash-card {
+.card-white-w-multiple-content {
   background: $white;
   box-shadow: 0 1px 3px rgba(240, 240, 240, 1);
   border-radius: 5px;
@@ -16,20 +16,20 @@
   margin: 0.5em 0;
   font-weight: 400;
 
-  .dash-card-title {
+  .card-title {
     font-size: 0.9em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .dash-card-icon {
+    .card-icon {
       color:$light-gray;
     }
 
-    .dash-card-checked-icon {
+    .card-checked-icon {
       color: $dark-green-progressbar;
     }
 
-    .dash-card-tag {
+    .card-tag {
     font-size: 0.7em;
     background-color: $neon-blue;
     color: $white;
@@ -39,7 +39,7 @@
     }
   }
 
-  .dash-card-content {
+  .card-content {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
@@ -61,14 +61,3 @@
   }
 }
 
-.dash-cards-sections-header {
-  margin-top: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .dash-cards-sections-title {
-    font-size: 1.25em;
-    color: $dark-blue;
-  }
-}

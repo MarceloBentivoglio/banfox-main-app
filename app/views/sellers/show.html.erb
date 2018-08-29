@@ -8,18 +8,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
-      <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+      <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
         title: "Seus limites",
         optional_button: render(partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Subir títulos para análise"}),
       } %>
       <div class="row">
         <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/dash_cards/small_progressbar_dash_card", locals: {
+          <%= render partial: "shared/cards/card_w_progressbar", locals: {
             title: "Limite operacional",
             left_data: @seller.used_limit,
             right_data: @seller.operation_limit,
             left_legend: "Utilizado",
             right_legend: "Disponível",
+          } %>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <%= render partial: "shared/cards/card_w_text_link_info", locals: {
+            title: "Marcar visita da MVP",
+            primary_content: "Você já foi pré-aprovado",
+            secondary_content: "O último passo é marcar uma visita",
+            aux_content: "clique aqui",
           } %>
         </div>
       </div>
@@ -29,13 +37,13 @@
   <% if @seller.approved? %>
     <div class="row">
       <div class="col-xs-12">
-        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Novas operações",
           optional_button: "",
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Títulos em análise",
               primary_content: Invoice.total(:in_analysis, @seller),
               secondary_content: Invoice.quant(:in_analysis, @seller),
@@ -43,7 +51,7 @@
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Títulos aprovados",
               primary_content: Invoice.total(:approved_all, @seller),
               secondary_content: Invoice.quant(:approved_all, @seller),
@@ -55,13 +63,13 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Títulos a vencer",
           optional_button: nil,
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Hoje",
               primary_content: Invoice.total(:opened_today, @seller),
               secondary_content: Invoice.quant(:opened_today, @seller),
@@ -69,7 +77,7 @@
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Essa semana",
               primary_content: Invoice.total(:opened_week, @seller),
               secondary_content: Invoice.quant(:opened_week, @seller),
@@ -77,7 +85,7 @@
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Esse mês",
               primary_content: Invoice.total(:opened_month, @seller),
               secondary_content: Invoice.quant(:opened_month, @seller),
@@ -89,13 +97,13 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Títulos atrasados",
           optional_button: nil,
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Há menos de 7 dias",
               primary_content: Invoice.total(:overdue_upto_7, @seller),
               secondary_content: Invoice.quant(:overdue_upto_7, @seller),
@@ -103,7 +111,7 @@
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Há mais de 7 dias e menos de 1 mês",
               primary_content: Invoice.total(:overdue_upto_30, @seller),
               secondary_content: Invoice.quant(:overdue_upto_30, @seller),
@@ -111,7 +119,7 @@
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Há mais de 1 mês",
               primary_content: Invoice.total(:overdue_30_plus, @seller),
               secondary_content: Invoice.quant(:overdue_30_plus, @seller),
@@ -123,13 +131,13 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <%= render partial: "shared/dash_cards/dash_section_header", locals: {
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Títulos liquidados",
           optional_button: nil,
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/dash_cards/small_info_dash_card", locals: {
+            <%= render partial: "shared/cards/card_w_money_info", locals: {
               title: "Histórico",
               primary_content: Invoice.total(:settled, @seller),
               secondary_content: Invoice.quant(:settled, @seller),
