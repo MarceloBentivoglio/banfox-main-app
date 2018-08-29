@@ -9,7 +9,7 @@
       <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: new_invoice_path, content: "Adicionar notas fiscais"}) %>
 
       <!-- Links when logged in -->
-      <%= link_to sellers_show_path, class: "dash-mvp-item dash-mvp-link" do %>
+      <%= link_to sellers_dashboard_path, class: "dash-mvp-item dash-mvp-link" do %>
         <i class="fa fa-laptop"></i>
         <span>Minha área</span>
       <% end %>

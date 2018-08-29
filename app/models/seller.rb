@@ -70,7 +70,12 @@ class Seller < ApplicationRecord
   enum analysis_status: {
     on_going: 0,
     rejected: 1,
-    approved: 2,
+    pre_approved: 2,
+    approved: 3,
+  }
+
+  enum rej_motive: {
+    insuficient_revenue: 0,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
