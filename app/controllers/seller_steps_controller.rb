@@ -28,6 +28,7 @@ class SellerStepsController < ApplicationController
       @user.seller = @seller
       @user.save!
     end
+    session["accessed"] = step
     render_wizard @seller
   end
 
@@ -58,7 +59,7 @@ class SellerStepsController < ApplicationController
   end
 
   def finish_wizard_path
-    sellers_show_path
+    sellers_show_path(first: true)
   end
 
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries

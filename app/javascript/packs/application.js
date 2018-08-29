@@ -11,6 +11,8 @@ import { showProgressbar } from "../components/mvpProgressbar";
 import { addressAutocomplete } from "../components/addressAutocomplete";
 import { collapseForm } from "../components/collapseForm";
 import { rememberOptionsBetweenSteps } from "../components/rememberOptionsBetweenSteps"
+import { showModalOnFirstAccess } from "../components/showModalOnFirstAccess"
+
 
 selectTagOnClick();
 maskCpfCnpjCurrency();
@@ -24,3 +26,4 @@ showProgressbar();
 addressAutocomplete();
 collapseForm();
 rememberOptionsBetweenSteps();
+showModalOnFirstAccess();
