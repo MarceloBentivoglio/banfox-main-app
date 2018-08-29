@@ -21,8 +21,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .card-icon {
+    .card-icon-gray {
       color:$light-gray;
+    }
+    .card-icon-blue {
+      color:$other-blue;
     }
 
     .card-checked-icon {
@@ -58,6 +61,10 @@
     .aux-content {
       font-size: 0.8em;
     }
+    .unique-content {
+      font-size: 0.8em;
+    }
   }
 }
+
 

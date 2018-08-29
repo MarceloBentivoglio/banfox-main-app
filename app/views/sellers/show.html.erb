@@ -6,6 +6,25 @@
 } %>
 
 <div class="container-fluid">
+  <% if !@seller.visited? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+        title: "Suas mensagens",
+        optional_button: "",
+        } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/card_w_text_link_clickable", locals: {
+              title: "Marcar visita da MVP",
+              content: "Você já foi pré-aprovado! O último passo é escolher um horário para visitarmos sua empresa, clicando aqui",
+              button_path: "https://mvpinvest.calendrier.com.br"
+            } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="row">
     <div class="col-xs-12">
       <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
@@ -20,14 +39,6 @@
             right_data: @seller.operation_limit,
             left_legend: "Utilizado",
             right_legend: "Disponível",
-          } %>
-        </div>
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/cards/card_w_text_link_info", locals: {
-            title: "Marcar visita da MVP",
-            primary_content: "Você já foi pré-aprovado",
-            secondary_content: "O último passo é marcar uma visita",
-            aux_content: "clique aqui",
           } %>
         </div>
       </div>
