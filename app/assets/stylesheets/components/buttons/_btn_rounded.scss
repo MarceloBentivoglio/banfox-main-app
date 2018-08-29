@@ -1,5 +1,5 @@
-.rounded-button-content {
-  background: linear-gradient(to right, $neon-dark-purple 50%, $neon-purple 100%);
+.btn-rounded {
+    background-color: $blue;
   font-size: 0.8em;
   padding: 0.6em 1em;
   border-radius: 2em;
@@ -10,5 +10,8 @@
     text-decoration: none;
     transition: 0.7s;
     box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+  }
+
+  .blue {
   }
 }

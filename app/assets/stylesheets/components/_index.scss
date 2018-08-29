@@ -1,6 +1,7 @@
 // Import your components CSS files here.
 @import "flashes";
-@import "navbar";
+@import "navbars/navbar_fixed_transparent_home";
+@import "navbars/navbar_fixed_white";
 @import "homenavbar";
 @import "footer";
 @import "login_form";
@@ -10,10 +11,10 @@
 @import "menu_card";
 @import "files_upload";
 @import "mvp_progressbar";
-@import "rounded_button";
 @import "forms_for_registration";
 @import "steps_progress_bar";
-@import "btn_orange_transparent";
+@import "buttons/btn_orange_transparent";
+@import "buttons/btn_rounded";
 @import "headers/header_section_w_opt_btn";
 @import "cards/cards_white_w_multiple_content";
 
