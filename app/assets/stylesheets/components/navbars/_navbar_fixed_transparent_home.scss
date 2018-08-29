@@ -1,0 +1,122 @@
+/* Links */
+/* Styles for the title tooltips
+a {
+  color: #fff;
+  position: relative;
+  text-decoration: none;
+  transition: color .4s ease-out;
+}
+a:hover {
+  color: $dark-gray;
+  right: 0;
+  text-decoration: none;
+}
+
+a:hover::after {
+  right: 0;
+  animation: anchor-underline 2s cubic-bezier(0,.5,0,1) infinite;
+  border-color: $dark-gray;
+}
+
+a::after {
+  border-radius: 1em;
+  border-top: .05em solid $near-white;
+  content: "";
+  position: absolute;
+    right: 100%;
+    bottom: .14em;
+    left: 0;
+  transition: right .4s cubic-bezier(0,.5,0,1),
+              border-color .4s ease-out;
+}
+
+@keyframes anchor-underline {
+  0%, 10% {
+    left: 0;
+    right: 100%;
+  }
+  40%, 60% {
+    left: 0;
+    right: 0;
+  }
+  90%, 100% {
+    left: 100%;
+    right: 0;
+  }
+}
+*/
+
+/* Parent for fixed navbar */
+.navbar-parent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  z-index: 99;
+}
+
+#homenavbar-mvp {
+  background-color: rgba(0,0,0,0);
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.7s;
+  h2 {
+    font-weight: bold;
+    color: $orange;
+  }
+  // Basic navbar item
+  .mvp-item {
+    cursor: pointer;
+    padding: 0 2px;
+    margin: 0 18px;
+  }
+  .mvp-link {
+    color: $near-white;
+    &:hover {
+      color: $near-black;
+    }
+  }
+}
+
+/* Right section */
+.navbar-mvp-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.white-navbar {
+  transition: 0.7s;
+  background-color: $near-white !important;
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(89,105,128,.05), 0 3px 20px 0 rgba(89,105,128,.15), 0 1px 2px 0 rgba(0,0,0,.025);
+  transition: box-shadow .5s,opacity .3s,-webkit-box-shadow .5s;
+  transform: translate3d(0px, 0px, 0px);
+  .mvp-link {
+    color: $near-black !important;
+    &:hover {
+      color: $orange !important;
+    }
+  }
+}
+
+.logo-navbar {
+  transition: 0.7s;
+  height: 50px;
+  width: 200px;
+  background-color: rgba(0,0,0,0);
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530022164/mvpinvest/logolinha1.png');
+  background-size: cover;
+}
+.logo-navbar-dark {
+  transition: 0.7s;
+  height: 50px;
+  width: 200px;
+  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/logo.png');
+  background-size: cover;
+}
+

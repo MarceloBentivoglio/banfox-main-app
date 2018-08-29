@@ -1,3 +1,8 @@
+<div id="modal-create-appointment-present"></div>
+<% if @show_message %>
+  <%= render partial: "shared/modals/modal_create_appointment", locals: {seller: @seller, user: @user, subject: "Marque uma visita da MVP Invest"} %>
+<% end %>
+
 <!-- TODO: Adjust Css so that we don't need this header -->
 <%= render partial: "shared/header", locals: {
   title: "",
@@ -10,14 +15,13 @@
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-        title: "Suas mensagens",
+        title: "Mensagens",
         optional_button: "",
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_text_link_clickable", locals: {
+            <%= render partial: "shared/cards/card_w_text_icon_clickable", locals: {
               title: "Marcar visita da MVP",
-              content: "Você já foi pré-aprovado! O último passo é escolher um horário para visitarmos sua empresa, clicando aqui",
               button_path: "https://mvpinvest.calendrier.com.br"
             } %>
           </div>
@@ -28,8 +32,8 @@
   <div class="row">
     <div class="col-xs-12">
       <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-        title: "Seus limites",
-        optional_button: render(partial: "shared/rounded_button", locals: {button_path: new_invoice_path, content: "Subir títulos para análise"}),
+        title: "Limites",
+        optional_button: "",
       } %>
       <div class="row">
         <div class="col-sm-12 col-md-4">
@@ -49,7 +53,7 @@
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Novas operações",
+          title: "Operações",
           optional_button: "",
         } %>
         <div class="row">

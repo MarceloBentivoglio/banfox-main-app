@@ -1,0 +1,31 @@
+.modal {
+  .header-avatar-name {
+    font-size: 0.8em;
+    margin-left: 0.8em;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  .welcome-header {
+    color: $dark-blue;
+  }
+
+  .welcome-icon {
+    font-size: 3em;
+    color: $green;
+  }
+
+  p {
+    margin-bottom: 0px;
+  }
+
+  .modal-body-button {
+    margin: auto;
+    width: 60%;
+  }
+  p, .modal-body-button {
+    margin-bottom: 1.2em;
+  }
+}
