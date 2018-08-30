@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :howitworks, :about_us, :solution, :unfortune]
-  skip_before_action :require_active, only: [:home, :howitworks, :about_us, :solution, :unfortune]
+  skip_before_action :authenticate_user!, only: [:home, :unfortune]
+  skip_before_action :require_active, only: [:home, :unfortune]
   layout "homelayout"
 
   def home
@@ -21,17 +21,9 @@ class PagesController < ApplicationController
     end
   end
 
-  def howitworks
-  end
-
-  def about_us
-  end
-
-  def solution
-  end
-
   def unfortune
     @user = current_user
     @seller = @user.seller
   end
+
 end

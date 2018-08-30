@@ -1,24 +1,9 @@
 #footer {
-  overflow: hidden;
+  background-image: linear-gradient(to bottom, rgba(22,45,90,0.95) 10%, rgba(22,45,90,1) 100%);
   position: relative;
   transform-style: preserve-3d;
   perspective: 100px;
   color: $near-white;
-}
-#footer:before {
-  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
-  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530713798/mvpinvest/imgfooter_1440px.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: translateY(10rem);
-  content: "";
-  position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  z-index: -1;
 }
 .f-link {
   color: $near-white;

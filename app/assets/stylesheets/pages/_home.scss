@@ -1,233 +1,249 @@
-/* Animations */
-// Making sure content loads (javascript)
-.js-loading *,
-.js-loading *:before,
-.js-loading *:after {
-  animation-play-state: paused !important;
+/* Homenew Banner */
+#homenew-banner {
+  width: 100%;
+  background-color: $background-blue;
 }
-// Re-usable keyframes
-@keyframes no-transform {
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes rotate-up {
-  100% {
-    transform: rotateZ(-4deg);
-  }
-}
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: none;
-  }
-  50% {
-    opacity: .8;
-    transform: scale(.9);
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-// Animation Classes
-.animate-pop-in {
-  animation: no-transform .5s cubic-bezier(0,.9,.3,1.2) forwards;
-  opacity: 0;
-  transform: translateY(-4rem) scale(.7);
-}
-.fade-slide-up {
-  animation: no-transform 1s 1s ease-out forwards,
-             pulse 2s 4s ease-out infinite;
-  opacity: 0;
-  transform: translateY(4rem);
-}
-/* Home Banner */
-// Header
-#home-header {
-  height: calc(100% - 140px);
-  position: relative;
-  transform-style: preserve-3d;
-  perspective: 100px;
-}
-#home-header:before {
-  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
-  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530032402/mvpinvest/imgbanner_1440px_2.png');
-  background-size: cover !important;
-  opacity: 0;
-  transform: translateY(-10rem);
-  content: "";
-  position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  z-index: -1;
-}
-.banner-content {
-  margin-top: 100px;
+.homenew-call-to-action {
   display: flex;
   flex-direction: column;
-  padding-left: 3%;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5em 0 0 0;
   h1 {
-    animation-delay: 0.8s;
-    font-size: 6.5rem;
-    color: $near-white;
-    font-weight: bold;
+    font-size: 3em;
+    font-weight: 700;
+    color: #162D3F;
+    line-height: 1.2em;
+    margin-bottom: 1em;
+  }
+}
+.homenew-image {
+  width: 100%;
+  height: auto;
+}
+.homenew-call-to-action-button {
+  cursor: pointer;
+  padding: 15px 35px;
+  color: $white;
+  background-color: $blue;
+  border: 0.1em solid $blue;
+  border-radius: 40px;
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: 1em;
+  transition: all .3s ease-out;
+  &:hover {
+    color: $blue;
+    background-color: $near-white;
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+}
+
+/* Homenew Banner Cards */
+.homenew-banner-info-card {
+  margin: 0;
+  background-color: $blue;
+  color: $white;
+  padding: 2em;
+  p, h2 {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    font-size: 1em;
+    margin-bottom: 0.2em;
   }
   h2 {
-    animation-delay: 1s;
-    margin-top: 30px;
-    letter-spacing: 1px;
-    color: rgba($near-white, 0.92);
-    font-size: 2.8rem;
+    font-size: 1.5em;
+    font-weight: 700;
   }
 }
-/* Home Call to Action */
-#home-call-to-action {
-  height: 140px;
-  margin-left: 2%;
-}
-.buttons-card {
-  animation-delay: 1.5s;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
-/* Card and Messages inside card */
-.list-card {
-  animation-delay: 1.2s;
-  background-color: $near-white;
-  border-radius: 6px;
-  padding: 2% 2% 2% 3%;
-  margin: 5% 3% 0 3%;
-  max-width: 460px;
-  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+/* Homenew Info 1 */
+#homenew-info {
+  margin-bottom: 2em;
 }
-.message {
+.homenew-title-box {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 4em 0 0 2em;
+  h1 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    color: #162D3F;
+    line-height: 1.2em;
+    margin-bottom: 1em;
+  }
+}
+.home-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3em 1.5em;
+  color: $dark-blue;
+  img {
+    height: 3.5em;
+    margin-bottom: 1em;
+  }
+  h3 {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 0.6em;
+  }
+  p {
+    font-size: 1em;
+    opacity: 0.8;
+  }
+}
+
+/* Homenew How it works */
+#homenew-how-it-works {
+  width: 100%;
+  margin: 3em 0;
+  background-color: $background-blue;
+  h3 {
+    margin: 1em 0;
+    color: $blue;
+    font-weight: 700;
+  }
+}
+.homenew-how-number {
+  color: $blue;
+  font-weight: bold;
+  p {
+    float: right;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+    opacity: 0.8;
+  }
+}
+.homenew-number-content {
+  color: $dark-blue;
+  margin-bottom: 2em;
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    padding: 0;
+  }
+  p {
+    margin: 0;
+  }
+}
+.homenew-image2-box {
+  display: grid;
+  height: 100%;
+}
+.homenew-image2 {
+  max-width: 102%;
+  max-height: 100vh;
+  margin: auto;
+}
+
+/* Homenew Why MVP Invest is Best */
+#why-mvpinvest-isbest {
+  margin: 5em 0;
+  h3 {
+    text-align: center;
+    color: $dark-blue;
+    margin: 0 0 5em 0;
+    font-size: 1.2em;
+  }
+}
+.homenew-list-card {
+  background-color: $near-white;
+  border-radius: 2px;
+  padding: 2% 2% 2% 3%;
+  margin: 2em 0;
+  h4 {
+    text-align: center;
+    font-size: 1em;
+    color: $dark-blue;
+    opacity: 0.8;
+  }
+}
+.card-subheader {
+  text-align: center;
+  color: $dark-blue;
+  margin: 1em 0;
+  span {
+    font-size: 0.9em;
+  }
+  p {
+    margin: 0;
+    font-size: 0.7em;
+    opacity: 0.8;
+  }
+}
+.homenew-message {
+  display: flex;
+  align-items: center;
+  padding: 0.2em 0;
   border-bottom: 1px solid rgba(220,224,244,0.4);
 }
-.message:last-child {
+.homenew-message:last-child {
   border-bottom: none;
 }
-.message-name {
-  padding-left: 10px;
-  min-width: 100px;
-}
-
-/* Imagem Porco */
-.wrapper-porco {
-  height: 450px;
-}
-.banner-porco {
-  animation: no-transform 2.2s 1.2s cubic-bezier(0,.5,0,1) forwards;
-  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530216508/mvpinvest/cofresombra.png');
-  height: 100%;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0;
-  transform: translateX(50rem);
-}
-
-/* Buttons */
-.banner-btn-2 {
-  float: right;
-  width: auto;
-  margin: 15px auto;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-weight: bold;
-  background: #9B51E0;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  &:hover {
-    opacity: 1;
-    text-decoration: none;
-    color: white;
+.homenew-message-name {
+  padding-left: 0.4em;
+  h5 {
+    color: $dark-blue;
+    font-size: 0.8em;
+    opacity: 0.8;
   }
 }
-.banner-btn-3 {
-  color: $dark-gray;
-  border: 1px solid $dark-gray;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-weight: lighter;
-  opacity: 0.6;
-  &:hover {
-    opacity: 1;
-    text-decoration: none;
-    color: $dark-gray;
+.list-card-mvpinvest {
+  margin-top: 1em;
+  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
+  h4 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6em;
+    color: $blue;
   }
-}
-.banner-btn-4 {
-  color: white;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-weight: bold;
-  opacity: 0.8;
-  background: #9B51E0;
-  transition: all 0.3s ease;
-  &:hover {
+  h5 {
+    font-size: 1em;
     opacity: 1;
-    text-decoration: none;
-    color: white;
   }
 }
 
-/* Fancy button
-.banner-btn {
-  border: none;
-  background: none;
-  text-decoration: none;
-  height: 2.1em;
-  padding: 2px 15px 2px 15px;
-  position: relative;
-  color: $near-white;
-  &::before {
-    background: rgba(200,200,200,.8);
-    border-radius: .25em;
-    content: "";
-    position: absolute;
-      top: .5em;
-      right: .1em;
-      bottom: -.1em;
-      left: .1em;
-    z-index: -1;
+/* Homenew Talk To Us */
+#homenew-talk-to-us {
+  margin: 0;
+}
+.homenew-talk-to-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5em 0 0 0;
+  h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #162D3F;
   }
-  &::after {
-    background: #9B51E0;
-    border-radius: .25em;
-    content: "";
-    position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    z-index: -1;
+  h2 {
+    margin: 0 0 2em 0;
+    font-size: 1.5em;
+    color: $dark-blue;
   }
-  &:hover {
-    text-decoration: none;
-    transform: scale(1.05);
-  }
-  &:hover::before {
-    transform: translateY(.1em);
-  }
-  &:hover::after {
-    background: #4D0292;
+  span {
+    color: $blue;
   }
 }
-.banner-btn,
-.banner-btn:before,
-.banner-btn:after {
-  transition: all .5s cubic-bezier(0,1,.3,1);
-}
-*/
