@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get "howitworks", to: "pages#howitworks"
   get "about_us", to: "pages#about_us"
   get "solution", to: "pages#solution"
-  get 'sellers/show'
+  get 'sellers/dashboard'
+  get 'sellers/analysis'
+  get 'sellers/unfortune'
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

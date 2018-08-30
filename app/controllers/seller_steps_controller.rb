@@ -59,7 +59,7 @@ class SellerStepsController < ApplicationController
   end
 
   def finish_wizard_path
-    sellers_show_path(first: true)
+    sellers_analysis_path
   end
 
 # TODO: refactor, I am sure that there is a smater way to write this code with less querries
@@ -67,7 +67,7 @@ class SellerStepsController < ApplicationController
     if current_user.seller
       if current_user.seller.active?
         flash[:alert] = "Você já completou essa etapa"
-        redirect_to sellers_show_path
+        redirect_to sellers_analysis_path
       end
     end
   end
