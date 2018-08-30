@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :howitworks, :about_us, :solution, :homenew]
-  skip_before_action :require_active, only: [:home, :howitworks, :about_us, :solution, :homenew]
+  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :require_active, only: [:home]
   layout "homelayout"
 
   def home
@@ -19,16 +19,5 @@ class PagesController < ApplicationController
         @redirection_options[:path] = seller_steps_path
       end
     end
-  end
-
-  def howitworks
-  end
-
-  def about_us
-  end
-
-  def solution
-  end
-  def homenew
   end
 end
