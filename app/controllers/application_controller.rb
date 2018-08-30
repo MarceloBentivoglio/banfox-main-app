@@ -2,6 +2,7 @@
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :require_active
+  before_action :require_not_rejected
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   include Pundit
@@ -40,6 +41,15 @@
         flash[:alert] = "Você precisa completar seu cadastro"
         redirect_to seller_steps_path
       end
+  end
+
+  def require_not_rejected
+    if (seller = current_user.seller)
+      if seller.rejected?
+        flash[:alert] = "Infelizmente não conseguimos operar com você no momento"
+        redirect_to unfortune_path
+      end
+    end
   end
 
   def skip_pundit?
