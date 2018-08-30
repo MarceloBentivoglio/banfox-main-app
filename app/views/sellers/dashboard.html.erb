@@ -1,7 +1,8 @@
-<div id="modal-create-appointment-present"></div>
-<% if @show_message %>
-  <%= render partial: "shared/modals/modal_create_appointment", locals: {seller: @seller, user: @user, subject: "Marque uma visita da MVP Invest"} %>
-<% end %>
+<div id="modal-show-wo-click-present">
+  <% if @show_message %>
+    <%= render partial: "shared/modals/modal_create_appointment", locals: {seller: @seller, user: @user } %>
+  <% end %>
+</div>
 
 <!-- TODO: Adjust Css so that we don't need this header -->
 <%= render partial: "shared/header", locals: {

@@ -1,5 +1,5 @@
 class CorporateEmailValidator < ActiveModel::EachValidator
-  INVALID_EMAILS = ["hotmail", "gmail", "icloud", "me", "bol", "uol", "outlook", "mac", "aol", "yahoo", "terra", "live"]
+  INVALID_EMAILS = ["hotmail", "gmail", "icloud", "me", "bol", "uol", "outlook", "mac", "aol", "yahoo", "rocketmail", "terra", "live", "mail", "email", "imail"]
   def validate_each(record, attribute, value)
     @corporate_email = true
     regexp  = /(?<=@)[^.]+(?=\.)/

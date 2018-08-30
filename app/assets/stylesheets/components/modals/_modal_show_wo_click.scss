@@ -1,5 +1,5 @@
 .modal {
-  .header-avatar-name {
+  .modal-header-avatar-name {
     font-size: 0.8em;
     margin-left: 0.8em;
   }
@@ -8,13 +8,13 @@
     text-align: center;
   }
 
-  .welcome-header {
-    color: $dark-blue;
-  }
-
-  .welcome-icon {
+  .modal-body-title-icon {
     font-size: 3em;
     color: $green;
+  }
+
+  .modal-body-title-message {
+    color: $dark-blue;
   }
 
   p {

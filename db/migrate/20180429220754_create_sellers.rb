@@ -34,8 +34,9 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :email_partner
       t.boolean :consent
       t.integer :validation_status
-      t.integer :analysis_status, default: 0
       t.boolean :visited, null: false, default: false
+      t.integer :analysis_status, default: 0
+      t.integer :rej_motive
 
       t.timestamps
     end

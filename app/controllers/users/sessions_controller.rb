@@ -2,6 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   skip_before_action :require_active
+  skip_before_action :require_not_rejected
   # before_action :configure_sign_in_params, only: [:create]
   layout "sessions_layout"
 

@@ -11,7 +11,7 @@
       <p>(011) 9.3800.8131</p>
     </div>
     <% if user_signed_in? %>
-      <%= link_to "Minha área",  sellers_show_path, class: "navbar-home-link" %>
+      <%= link_to "Minha área",  sellers_dashboard_path, class: "navbar-home-link" %>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "navbar-home-link" %>
       <%= link_to "Abra sua conta", new_user_registration_path, class: "navbar-home-button" %>
