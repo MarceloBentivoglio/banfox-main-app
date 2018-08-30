@@ -11,7 +11,6 @@ class SellersController < ApplicationController
   end
 
   def analysis
-    binding.pry
     redirect_to sellers_unfortune_path and return unless check_revenue
     #TODO: check if User name is the same in Receita Federal
     @seller.pre_approved!
@@ -33,13 +32,12 @@ class SellersController < ApplicationController
   end
 
   def check_revenue
-    if @seller.active?
-      if @seller.monthly_revenue < Money.new(10000000)
-        @seller.rejected!
-        @seller.insuficient_revenue!
-      end
+    if @seller.active? && @seller.monthly_revenue < Money.new(10000000)
+      @seller.rejected!
+      @seller.insuficient_revenue!
+      return false
     end
-    return false
+    return true
   end
 
   def verify_first_access
