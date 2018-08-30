@@ -8,9 +8,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   root to: 'pages#home'
-  get "howitworks", to: "pages#howitworks"
-  get "about_us", to: "pages#about_us"
-  get "solution", to: "pages#solution"
+
+  get 'sellers/show'
   get 'sellers/dashboard'
   get 'sellers/analysis'
   get 'sellers/unfortune'
