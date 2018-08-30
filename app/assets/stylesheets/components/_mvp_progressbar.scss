@@ -14,17 +14,23 @@
   margin-top: 0.8em;
 
   .mvp-progressbar-content-left {
-    color: $dark-green-progressbar;
     font-size: 0.8em;
     display: flex;
     flex-direction: column;
   }
 
   .mvp-progressbar-content-right {
-    color: $light-gray;
     font-size: 0.8em;
     display: flex;
     flex-direction: column;
+  }
+
+  .gray {
+    color: $light-gray;
+  }
+
+  .green {
+    color: $dark-green-progressbar;
   }
 }
 

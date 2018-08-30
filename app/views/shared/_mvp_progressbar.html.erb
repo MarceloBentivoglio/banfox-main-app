@@ -4,11 +4,11 @@
     </div>
   </div>
   <div class="mvp-progressbar-content">
-    <div class="mvp-progressbar-content-left">
+    <div class="mvp-progressbar-content-left <%= left_color %>">
       <span><%= left_legend %></span>
       <span><%= humanized_money_with_symbol(left_data) %></span>
     </div>
-    <div class="mvp-progressbar-content-right">
+    <div class="mvp-progressbar-content-right <%= right_color %>">
       <span><%= right_legend %></span>
       <span><%= humanized_money_with_symbol(right_data - left_data) %></span>
     </div>

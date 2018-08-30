@@ -1,16 +1,18 @@
-<div class="small-dash-card">
-  <div class="dash-card-title">
+<div class="card-white-w-multiple-content">
+  <div class="card-title">
     <span><%= title %></span>
-    <div class="dash-card-icon">
+    <div class="card-icon-gray">
       <i class="fa fa-bar-chart"></i>
     </div>
   </div>
-  <div class="dash-card-content">
+  <div class="card-content">
     <%= render partial: "shared/mvp_progressbar", locals: {
       left_data: left_data,
       right_data: right_data,
       left_legend: left_legend,
       right_legend: right_legend,
+      left_color: left_data == Money.new(0) ? "gray" : "green",
+      right_color: "gray",
     } %>
   </div>
 </div>

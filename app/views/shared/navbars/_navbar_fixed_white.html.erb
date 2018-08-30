@@ -6,10 +6,12 @@
     <% end %>
     <div class="dash-mvp-right hidden-xs hidden-sm">
 
+      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: new_invoice_path, content: "Adicionar notas fiscais"}) %>
+
       <!-- Links when logged in -->
-      <%= link_to sellers_show_path, class: "dash-mvp-item dash-mvp-link" do %>
-      <i class="fa fa-laptop"></i>
-      <span>Minha área</span>
+      <%= link_to sellers_dashboard_path, class: "dash-mvp-item dash-mvp-link" do %>
+        <i class="fa fa-laptop"></i>
+        <span>Minha área</span>
       <% end %>
 
       <%= link_to store_invoices_path, class: "dash-mvp-item dash-mvp-link" do %>
@@ -27,19 +29,17 @@
         <div class="dropdown">
           <a id="mvp-menu" href="#" data-toggle="dropdown" class="dash-mvp-link">
             <i class="fa fa-user-circle"></i>
+            <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name %> </span>
           </a>
           <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
         </div>
       </div>
-
-      <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name %> </span>
-
     </div>
   </div>
 </div>

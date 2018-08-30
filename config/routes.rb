@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   root to: 'pages#home'
+
   get 'sellers/show'
+  get 'sellers/dashboard'
+  get 'sellers/analysis'
+  get 'sellers/unfortune'
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
