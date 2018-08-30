@@ -2,9 +2,9 @@ import $ from 'jquery';
 
 const showModalOnFirstAccess = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
-    const createAppointmentElement = document.getElementById('modal-create-appointment');
+    const createAppointmentElement = document.getElementById('modal-show-wo-click-present');
     if (createAppointmentElement) {
-      $("#modal-create-appointment").modal('show');
+      $("#modal-show-wo-click").modal('show');
     };
   });
 };
