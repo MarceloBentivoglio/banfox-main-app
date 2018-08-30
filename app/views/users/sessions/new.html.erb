@@ -1,6 +1,7 @@
 <h2>Bem vindo!</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
 <div class="form-inputs">
   <%= f.input :email, required: true, autofocus: true %>
   <%= f.input :password, required: true, label: "Senha" %>

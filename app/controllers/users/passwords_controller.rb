@@ -2,6 +2,7 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   skip_before_action :require_active
+  skip_before_action :require_not_rejected
   layout "sessions_layout"
   # GET /resource/password/new
   # def new
