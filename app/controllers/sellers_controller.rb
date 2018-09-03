@@ -9,8 +9,8 @@ class SellersController < ApplicationController
   end
 
   def analysis
+    redirect_to unfortune_path and return unless CpfCheckRF.new(@seller).analyse
     redirect_to unfortune_path and return unless check_revenue
-    #TODO: check if User name is the same in Receita Federal
     @seller.pre_approved!
     redirect_to sellers_dashboard_path
   end
