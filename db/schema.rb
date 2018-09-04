@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(version: 2018_09_03_162952) do
     t.datetime "updated_at", null: false
     t.string "rf_full_name"
     t.string "rf_sit_cad"
-    t.string "rf_partner_full_name"
-    t.string "rf_partner_sit_cad"
+    t.string "rf_full_name_partner"
+    t.string "rf_sit_cad_partner"
   end
 
   create_table "users", force: :cascade do |t|
