@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "about_us", to: "pages#about_us"
   get "solution", to: "pages#solution"
   get "unfortune", to: "pages#unfortune"
+  get "takeabreath", to: "pages#take_a_breath"
   get 'sellers/dashboard'
   get 'sellers/analysis'
 

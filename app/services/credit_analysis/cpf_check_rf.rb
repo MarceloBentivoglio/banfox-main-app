@@ -15,12 +15,13 @@ class CpfCheckRF
     @inputs_checks_w_rf = false
   end
 
-  def analyse
+  def analyze
     define_cpfs_to_check
     set_rf_infos
     treat_rf_infos
     persist_rf_infos
     compare_input_w_rf
+    @seller.no_match_w_rf! unless @inputs_checks_w_rf
     return @inputs_checks_w_rf
   end
 
@@ -37,15 +38,16 @@ class CpfCheckRF
 
   def fetch_rf_info(cpf)
     url = "https://consulta-situacao-cpf-cnpj.p.mashape.com/consultaSituacaoCPF?cpf={#{cpf}}"
-    response = Unirest.get(url,
-      headers= {
-        'X-Mashape-Key' => Rails.application.credentials[Rails.env.to_sym][:mashape_key],
-        'Accept' => 'application/json'
-    })
+    Timeout::timeout(5) do
+      response = Unirest.get(url,
+        headers= {
+          'X-Mashape-Key' => Rails.application.credentials[Rails.env.to_sym][:mashape_key],
+          'Accept' => 'application/json'
+      })
+    end
   end
 
   def treat_rf_infos
-    binding.pry
     @rf_infos.each do |rf_info|
       if rf_info.body.is_a?(RestClient::Response)
         @rf_names << rf_info.body.body.downcase

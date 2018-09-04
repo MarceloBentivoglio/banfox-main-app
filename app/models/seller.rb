@@ -76,6 +76,7 @@ class Seller < ApplicationRecord
 
   enum rej_motive: {
     insuficient_revenue: 0,
+    no_match_w_rf: 1,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)

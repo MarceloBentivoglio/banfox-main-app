@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div class="modal fade" id="modal-show-wo-click">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= image_tag "http://res.cloudinary.com/dbzg4txla/image/upload/w_600,h_600,c_crop,g_face/v1535573589/joaquim_oliveira_bstvg6.jpg", class: "avatar" %>
+        <span class="modal-header-avatar-name">Joaquim da MVP Invest</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-body-title-icon"><i class="fa fa-recycle" aria-hidden="true"></i></h4>
+        <h4 class="modal-body-title-message">Estamos quase lá!</h4>
+          <p>Olá <%= seller.full_name.split.first %>,</p>
+          <p>Nós vislumbramos parcerias de longo prazo e por isso sempre oferecemos diversas ferramentas sem custo para nossos clientes e parceiros melhorarem a gestão financeira de suas empresas.</p>
+          <p>Infelizmente não conseguiremos oferecer limites de antecipação para <strong><%= seller.company_name %></strong>.</p>
+          <p>Para tornarmos o mercado brasileiro mais confiável e promissor ao longos dos próximos anos, precisamos trabalhar com empresas que tenham suas operações padronizadas e sigam algumas regras de negócios que nos permitam ser ágeis e facilitadores. Portanto, gostaríamos de agradecer novamente o interesse em trabalhar com a MVP Invest.</p>
+          <p>Esperamos poder contribuir em breve com mais empresas de todos os setores.</p>
+          <p>Bons negócios,</p>
+          <p>Equipe <strong>MVP Invest</strong>.</p>
+
+      </div>
+      <!-- TODO: put space so that the client can send us a message -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

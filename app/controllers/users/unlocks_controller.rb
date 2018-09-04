@@ -3,6 +3,7 @@
 class Users::UnlocksController < Devise::UnlocksController
   skip_before_action :require_active
   skip_before_action :require_not_rejected
+  skip_before_action :require_not_on_going
   layout "sessions_layout"
   # GET /resource/unlock/new
   # def new
