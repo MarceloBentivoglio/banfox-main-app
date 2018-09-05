@@ -9,7 +9,9 @@
       <div class="row">
         <div class="col-xs-12 col-md-5 col-md-offset-3">
           <%= link_to root_path do %>
-            <div id="login-logo" class="login-logo"></div>
+            <div class="devise-logo">
+              <%= image_tag "logo.png" %>
+            </div>
           <% end %>
           <div class="login-form">
             <%= yield %>
