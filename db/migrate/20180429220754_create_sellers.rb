@@ -3,6 +3,8 @@ class CreateSellers < ActiveRecord::Migration[5.1]
     create_table :sellers do |t|
       t.string :full_name
       t.string :cpf
+      t.string :rf_full_name
+      t.string :rf_sit_cad
       t.string :birth_date
       t.string :mobile
       t.string :company_name
@@ -29,6 +31,8 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.monetize :debt
       t.string :full_name_partner
       t.string :cpf_partner
+      t.string :rf_full_name_partner
+      t.string :rf_sit_cad_partner
       t.string :birth_date_partner
       t.string :mobile_partner
       t.string :email_partner
