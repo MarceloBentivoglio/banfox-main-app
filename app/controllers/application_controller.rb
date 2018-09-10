@@ -3,6 +3,7 @@
   before_action :authenticate_user!
   before_action :require_active
   before_action :require_not_rejected
+  before_action :require_not_on_going
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   include Pundit
@@ -48,6 +49,15 @@
       if seller.rejected?
         flash[:alert] = "Infelizmente não conseguimos operar com você no momento"
         redirect_to unfortune_path
+      end
+    end
+  end
+
+  def require_not_on_going
+    if (seller = current_user.seller)
+      if seller.on_going?
+        flash[:alert] = "Ainda estamos analisando seus dados. Entraremos em contato em breve"
+        redirect_to takeabreath_path
       end
     end
   end

@@ -76,6 +76,7 @@ class Seller < ApplicationRecord
 
   enum rej_motive: {
     insuficient_revenue: 0,
+    no_match_w_rf: 1,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
@@ -142,6 +143,8 @@ class Seller < ApplicationRecord
       id: self.id,
       full_name: self.full_name,
       cpf: self.cpf,
+      rf_full_name: self.rf_full_name,
+      rf_sit_cad: self.rf_sit_cad,
       birth_date: self.birth_date,
       email: self.try(:users).try(:first).try(:email),
       mobile: self.mobile,
@@ -169,6 +172,8 @@ class Seller < ApplicationRecord
       operation_limit_cents: self.operation_limit_cents,
       full_name_partner: self.full_name_partner,
       cpf_partner: self.cpf_partner,
+      rf_full_name_partner: self.rf_full_name_partner,
+      rf_sit_cad_partner: self.rf_sit_cad_partner,
       birth_date_partner: self.birth_date_partner,
       mobile_partner: self.mobile_partner,
       email_partner: self.email_partner,

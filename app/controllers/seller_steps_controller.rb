@@ -1,5 +1,6 @@
 class SellerStepsController < ApplicationController
   skip_before_action :require_active
+  skip_before_action :require_not_on_going
   before_action :check_not_fully_registered_seller
   before_action :set_user, only: [:show, :update]
   before_action :set_seller, only: [:show, :update, :finish_wizard_path]
