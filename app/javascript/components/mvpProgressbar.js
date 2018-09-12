@@ -3,16 +3,17 @@ const renderProgressbar = (value, progressbarElement) => {
 };
 
 const loadProgressbar = (progressbarElement) => {
-  const progressbarFinalWidth = progressbarElement.getAttribute("data-value")
-  if (progressbarFinalWidth === "0") {
-    renderProgressbar(progressbarFinalWidth, progressbarElement);
-  } else {
-    const t = setTimeout(() => {
-      renderProgressbar(t, progressbarElement)
-      loadProgressbar(progressbarElement);
-    }, 30);
-    if (t == progressbarElement.getAttribute("data-value")) { clearTimeout(t); }
-    console.log(t);
+  const progressbarFinalWidth = progressbarElement.getAttribute("data-value");
+  // To speed up or slow down the navbar complition change the number on the line below.
+  const id = setInterval(frame, 50);
+  let width = 0;
+  function frame() {
+    if (width >= progressbarFinalWidth) {
+      clearInterval(id);
+    } else {
+      width++;
+      renderProgressbar(width, progressbarElement);
+    }
   }
 }
 
