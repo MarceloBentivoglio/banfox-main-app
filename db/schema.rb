@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_03_162952) do
+ActiveRecord::Schema.define(version: 2018_05_17_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 2018_09_03_162952) do
   create_table "sellers", force: :cascade do |t|
     t.string "full_name"
     t.string "cpf"
+    t.string "rf_full_name"
+    t.string "rf_sit_cad"
     t.string "birth_date"
     t.string "mobile"
     t.string "company_name"
@@ -138,6 +140,8 @@ ActiveRecord::Schema.define(version: 2018_09_03_162952) do
     t.string "debt_currency", default: "BRL", null: false
     t.string "full_name_partner"
     t.string "cpf_partner"
+    t.string "rf_full_name_partner"
+    t.string "rf_sit_cad_partner"
     t.string "birth_date_partner"
     t.string "mobile_partner"
     t.string "email_partner"
@@ -148,10 +152,6 @@ ActiveRecord::Schema.define(version: 2018_09_03_162952) do
     t.integer "rej_motive"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "rf_full_name"
-    t.string "rf_sit_cad"
-    t.string "rf_full_name_partner"
-    t.string "rf_sit_cad_partner"
   end
 
   create_table "users", force: :cascade do |t|

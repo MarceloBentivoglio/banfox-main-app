@@ -21,7 +21,7 @@ class CpfCheckRF
     treat_rf_infos
     persist_rf_infos
     compare_input_w_rf
-    @seller.no_match_w_rf! unless @inputs_checks_w_rf
+    persist_analysis_conclusion
     return @inputs_checks_w_rf
   end
 
@@ -80,6 +80,13 @@ class CpfCheckRF
   def compare_str(names, rf)
     names.any? do |name|
       rf.include?(name)
+    end
+  end
+
+  def persist_analysis_conclusion
+    if !@rf_cpfs_valid || !@inputs_checks_w_rf
+      @seller.rejected!
+      @seller.no_match_w_rf!
     end
   end
 end
