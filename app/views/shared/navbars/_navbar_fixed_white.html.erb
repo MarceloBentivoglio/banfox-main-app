@@ -1,5 +1,5 @@
 <div class="navbar-parent">
-  <div id="navbar-sections-container">
+  <div class="navbar-sections-container">
     <div class="section-left">
       <!-- Logo -->
       <%= link_to root_path do %>
@@ -9,13 +9,11 @@
 
     <div class="section-middle hidden-xs hidden-sm">
       <!-- Links when logged in -->
-      <%= link_to sellers_dashboard_path, class: "navbar-section-item navbar-section-item-link" do %>
-        <i class="fa fa-laptop"></i>
+      <%= link_to sellers_dashboard_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
         <span>Minha área</span>
       <% end %>
 
-      <%= link_to store_invoices_path, class: "navbar-section-item navbar-section-item-link" do %>
-        <i class="fa fa-line-chart"></i>
+      <%= link_to store_invoices_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
         <span>Títulos</span>
       <% end %>
     </div>
@@ -39,11 +37,10 @@
         </div>
       </div>
     </div>
-
-
-
-
   </div> <!-- navbar-sections-container -->
+  <% if check_need_of_subnavbar(controller.controller_name.to_s, controller.action_name.to_s) %>
+    <%= render partial: "shared/navbars/sub_navbar_fixed_dark_blue"%>
+  <% end %>
 </div>
 
 <%= render partial: "shared/modals/modal_file_upload" %>

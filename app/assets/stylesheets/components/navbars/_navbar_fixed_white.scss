@@ -7,12 +7,11 @@
   width: 100%;
   z-index: 99;
 }
-#navbar-sections-container {
+.navbar-sections-container {
   background-color: $white;
   border-bottom: 2px solid #eff2fb;
   box-shadow: 0 1px 10px 0 #e5ebf3;
-  height: 70px;
-  padding: 0 30px;
+  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +27,7 @@
   }
 
   .navbar-section-item {
+    font-size: 0.8em;
     padding: 0 2px;
     margin: 0 18px;
   }
@@ -37,6 +37,10 @@
     &:hover {
       color: $orange;
     }
+  }
+
+  .navbar-current-page {
+    border-bottom: solid 2px $lightest-gray;
   }
 
   .section-right {

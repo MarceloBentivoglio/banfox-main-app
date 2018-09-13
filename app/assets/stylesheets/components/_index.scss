@@ -1,10 +1,13 @@
 // Object Index
+@import "buttons/index";
+@import "cards/index";
+@import "headers/index";
+@import "modals/index";
 @import "navbars/index";
+@import "pictures/index";
 
 // Import your components CSS files here.
 @import "flashes";
-@import "navbars/navbar_fixed_transparent_home";
-@import "navbars/navbar_fixed_white";
 @import "homenavbar";
 @import "footer";
 @import "login_form";
@@ -16,9 +19,3 @@
 @import "mvp_progressbar";
 @import "forms_for_registration";
 @import "steps_progress_bar";
-@import "buttons/btn_orange_transparent";
-@import "buttons/btn_rounded";
-@import "headers/header_section_w_opt_btn";
-@import "cards/cards_white_w_multiple_content";
-@import "modals/modal_show_wo_click";
-@import "pictures/avatars";
