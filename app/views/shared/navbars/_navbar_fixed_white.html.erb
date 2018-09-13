@@ -6,7 +6,7 @@
     <% end %>
     <div class="dash-mvp-right hidden-xs hidden-sm">
 
-      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: new_invoice_path, content: "Adicionar notas fiscais"}) %>
+      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>
 
       <!-- Links when logged in -->
       <%= link_to sellers_dashboard_path, class: "dash-mvp-item dash-mvp-link" do %>
@@ -17,11 +17,6 @@
       <%= link_to store_invoices_path, class: "dash-mvp-item dash-mvp-link" do %>
         <i class="fa fa-line-chart"></i>
         <span>Títulos</span>
-      <% end %>
-
-      <%= link_to documents_path, class: "dash-mvp-item dash-mvp-link" do %>
-        <i class="fa fa-folder"></i>
-        <span>Documentos</span>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -43,3 +38,5 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "shared/modals/modal_file_upload" %>
