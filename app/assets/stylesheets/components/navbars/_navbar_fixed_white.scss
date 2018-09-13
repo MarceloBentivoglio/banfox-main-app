@@ -1,5 +1,5 @@
 /* Parent for fixed navbar */
-.dash-parent {
+.navbar-parent {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,7 +7,7 @@
   width: 100%;
   z-index: 99;
 }
-#dashmenu-mvp {
+#navbar-sections-container {
   background-color: $white;
   border-bottom: 2px solid #eff2fb;
   box-shadow: 0 1px 10px 0 #e5ebf3;
@@ -17,39 +17,38 @@
   align-items: center;
   justify-content: space-between;
   transition: 0.7s;
-  // Basic navbar item
-  .dash-mvp-item {
-    cursor: pointer;
+
+  .logo-mvp-pic-name {
+    transition: 0.7s;
+    height: 50px;
+    width: 200px;
+    background-color: rgba(0,0,0,0);
+    background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/logo.png');
+    background-size: cover;
+  }
+
+  .navbar-section-item {
     padding: 0 2px;
     margin: 0 18px;
   }
-  .dash-mvp-link {
+
+  .navbar-section-item-link {
     color: $lightest-gray;
     &:hover {
       color: $orange;
     }
   }
-  p {
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
+
+  .section-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
   .profile-name {
     font-size: 1.2em;
   }
 }
-/* Right section */
-.dash-mvp-right {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo-dash {
-  transition: 0.7s;
-  height: 50px;
-  width: 200px;
-  background-color: rgba(0,0,0,0);
-  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1527270384/mvpinvest/logo.png');
-  background-size: cover;
-}
+
+
 
