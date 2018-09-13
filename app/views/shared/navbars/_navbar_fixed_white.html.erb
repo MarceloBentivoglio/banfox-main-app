@@ -1,28 +1,31 @@
-<div class="dash-parent">
-  <div id="dashmenu-mvp">
-    <!-- Logo -->
-    <%= link_to root_path, class: "navbar-mvp-brand" do %>
-      <div id="logo-dash" class="logo-dash"></div>
-    <% end %>
-    <div class="dash-mvp-right hidden-xs hidden-sm">
+<div class="navbar-parent">
+  <div id="navbar-sections-container">
+    <div class="section-left">
+      <!-- Logo -->
+      <%= link_to root_path do %>
+        <div class="logo-mvp-pic-name"></div>
+      <% end %>
+    </div>
 
-      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>
-
+    <div class="section-middle hidden-xs hidden-sm">
       <!-- Links when logged in -->
-      <%= link_to sellers_dashboard_path, class: "dash-mvp-item dash-mvp-link" do %>
+      <%= link_to sellers_dashboard_path, class: "navbar-section-item navbar-section-item-link" do %>
         <i class="fa fa-laptop"></i>
         <span>Minha área</span>
       <% end %>
 
-      <%= link_to store_invoices_path, class: "dash-mvp-item dash-mvp-link" do %>
+      <%= link_to store_invoices_path, class: "navbar-section-item navbar-section-item-link" do %>
         <i class="fa fa-line-chart"></i>
         <span>Títulos</span>
       <% end %>
+    </div>
 
+    <div class="section-right hidden-xs hidden-sm">
+      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>
       <!-- Avatar with dropdown menu -->
-      <div class="dash-mvp-item">
+      <div class="navbar-section-item">
         <div class="dropdown">
-          <a id="mvp-menu" href="#" data-toggle="dropdown" class="dash-mvp-link">
+          <a id="mvp-menu" href="#" data-toggle="dropdown" class="navbar-section-item-link">
             <i class="fa fa-user-circle"></i>
             <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name %> </span>
           </a>
@@ -36,7 +39,11 @@
         </div>
       </div>
     </div>
-  </div>
+
+
+
+
+  </div> <!-- navbar-sections-container -->
 </div>
 
 <%= render partial: "shared/modals/modal_file_upload" %>
