@@ -1,0 +1,24 @@
+.sub-navbar-container {
+  background-color: $medium-blue;
+  border-bottom: 2px solid #eff2fb;
+  box-shadow: 0 1px 10px 0 #e5ebf3;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.7s;
+
+  .sub-navbar-item {
+    padding: 0 2px;
+    margin: 0 18px;
+    font-size: 0.8em;
+    color: $white;
+    opacity: 0.5;
+
+  }
+
+  .sub-navbar-current-page {
+    opacity: 1;
+  }
+
+}

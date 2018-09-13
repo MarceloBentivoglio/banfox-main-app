@@ -1,0 +1,14 @@
+<div class="sub-navbar-container hidden-xs hidden-sm">
+  <%= link_to store_invoices_path, class: "sub-navbar-item #{check_current_page_subnavbar(store_invoices_path)}" do %>
+    <span>Antecipar</span>
+  <% end %>
+
+  <%= link_to opened_invoices_path, class: "sub-navbar-item #{check_current_page_subnavbar(opened_invoices_path)}" do %>
+    <span>Em andamento</span>
+  <% end %>
+
+  <%= link_to history_invoices_path, class: "sub-navbar-item #{check_current_page_subnavbar(history_invoices_path)}" do %>
+    <span>Finalizados</span>
+  <% end %>
+
+</div>
