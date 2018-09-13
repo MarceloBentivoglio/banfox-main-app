@@ -6,7 +6,7 @@
     <% end %>
     <div class="dash-mvp-right hidden-xs hidden-sm">
 
-      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: new_invoice_path, content: "Adicionar notas fiscais"}) %>
+      <%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>
 
       <!-- Links when logged in -->
       <%= link_to sellers_dashboard_path, class: "dash-mvp-item dash-mvp-link" do %>
@@ -43,3 +43,5 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "shared/modals/modal_file_upload" %>

@@ -5,7 +5,7 @@
   before_action :require_not_rejected
   before_action :require_not_on_going
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
-
+  before_action :set_invoice
   include Pundit
   after_action :verify_authorized, only: :destroy, unless: :skip_pundit?
   rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
@@ -69,5 +69,9 @@
   def action_not_authorized
     flash[:alert] = "Você não está autorizado a performar essa ação."
     redirect_back(fallback_location: root_path)
+  end
+
+  def set_invoice
+    @invoice = Invoice.new
   end
 end
