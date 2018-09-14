@@ -86,6 +86,12 @@ class Invoice < ApplicationRecord
     end
   end
 
+  def fee
+    fator = [seller.fator, seller.fator].max
+    advalorem = [seller.advalorem, seller.advalorem].max
+    fator + advalorem
+  end
+
   private
 
   def destroy_parent_if_void

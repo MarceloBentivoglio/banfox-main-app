@@ -39,11 +39,15 @@ seller1 = Seller.create!(
   validation_status: 5,
   analysis_status: 3,
   visited: false,
+  fator: 0.045,
+  advalorem: 0.005,
 )
 
 payer1 = Payer.create!(
     company_name: "Ficticio",
     cnpj:"23198636000195",
+    fator: 0.05,
+    advalorem: 0.01,
 )
 
 user1 = User.create!(

@@ -3,8 +3,8 @@
   <div class="detail-col-15 text-left"><%= item.due_date.strftime("%d %b %y") %></div>
   <div class="detail-col-5 text-center"><%= item.outstanding_days %></div>
   <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.value %></div>
-  <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.value %></div>
-  <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.value %></div>
+  <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.fee %></div>
+  <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.deposit_value %></div>
   <div class="detail-col-10 text-center"><%= render partial: "shared/tables/status_tag", locals: {status: item.status} %></div>
   <div class="detail-col-1 text-center">
     <%= render partial: "shared/tables/options_dropdown", locals: {item: item} %>
