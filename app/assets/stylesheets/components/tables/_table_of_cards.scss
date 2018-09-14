@@ -166,36 +166,29 @@
   }
 
   .status-tag {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    &:hover {
-      opacity: 1;
-    }
+    font-size: 1.2rem;
+    padding-left: 1.1rem;
+    font-style: italic;
   }
 
   .color-go {
     color: $green;
-    border-color: $green;
   }
 
   .color-attention {
     color: $yellow;
-    border-color: $yellow;
   }
 
   .color-danger {
     color: $red;
-    border-color: $red;
   }
 
   .color-good {
-    color: $blue;
-    border-color: $blue;
+    color: $gray;
   }
 
   .color-lost {
-    color: $black;
-    border-color: $black;
+    color: $gray;
   }
 
 }

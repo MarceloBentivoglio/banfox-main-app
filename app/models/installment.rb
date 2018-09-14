@@ -24,7 +24,7 @@ class Installment < ApplicationRecord
     "A vencer",
     "Vence hoje",
     "Em atraso",
-    "Paga",
+    "Liquidada",
     "Recomprada",
     "Perdida",
   ].freeze
