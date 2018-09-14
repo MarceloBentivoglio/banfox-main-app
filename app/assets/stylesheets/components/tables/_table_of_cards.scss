@@ -19,7 +19,7 @@
     background: $near-white;
 
     .t-r-bundle {
-      flex: 1 1 8%;
+      flex: 1 1 3%;
       border-bottom: solid;
       border-color: $light-gray;
       border-width: thin;
@@ -60,7 +60,7 @@
     }
 
     .t-r-content {
-      flex: 1 1 92%;
+      flex: 1 1 97%;
 
       .t-item {
         display: flex;
@@ -166,7 +166,7 @@
   }
 
   .status-tag {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     opacity: 0.6;
     &:hover {
       opacity: 1;
