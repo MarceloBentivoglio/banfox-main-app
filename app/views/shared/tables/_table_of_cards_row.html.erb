@@ -1,0 +1,23 @@
+<div class="t-r-wrapper">
+  <!-- For when we have @operations on Invoices controller -->
+  <% if bundle %>
+    <div class="t-r-bundle">
+      <div class="bundle-content content-next-to-options">
+        <span>#</span>
+        <span><%= item.id %></span>
+      </div>
+      <div class="options-dropdown">
+        <%= render partial: "shared/tables/options_dropdown", locals: {item: item} %>
+      </div>
+    </div>
+    <div class="t-r-content">
+      <!-- Be careful with the send method. It doesn't show the queries on the console, however i tested without the send method before and I checked that calling, for example, opened_invoices does not create more queries and thus it prevents the N+1 query problem -->
+      <%= render partial: "shared/tables/table_of_cards_row_content", collection: item.send(query), as: :item %>
+    </div>
+  <!-- For when we have @invoices on Invoices controller -->
+  <% else %>
+    <div class="t-r-content">
+      <%= render partial: "shared/tables/table_of_cards_row_content", locals: {item: item} %>
+    </div>
+  <% end %>
+</div>

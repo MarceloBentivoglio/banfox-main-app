@@ -1,13 +1,7 @@
-<%= render partial: "shared/header", locals: {
-  title: "Títulos à venda",
-  sub_title: "Gerencie os títulos que quer vender",
-  company_name: "",
-} %>
-
-<%= render partial: "shared/menus/invoices_menu", locals: {menu_in: :store} %>
-
-<%= render partial: "shared/card_table/card_table_container", locals: {items: @operations, query: :in_store_invoices}%>
-
+<div class="wrapper-page-w-subnavbar">
+  <%= render partial: "shared/tables/table_of_cards_header", locals: {bundle: false } %>
+  <%= render partial: "shared/tables/table_of_cards_container", locals: {items: @invoices, query_opt: "", bundle: false }%>
+</div>
 
 
 

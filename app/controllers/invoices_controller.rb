@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history, :show, :new, :create]
 
   def store
-    @operations = Operation.preload_scope(:in_store, @seller).paginate(page: params[:page]).order(created_at: :asc)
+    @invoices = Invoice.in_store_from_seller(@seller).paginate(page: params[:page]).order(created_at: :asc)
     respond_to do |format|
       format.html
       format.js
