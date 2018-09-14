@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="table-of-cards">
+    <%= render partial: "shared/tables/table_of_cards_row", collection: items, as: :item, locals: {query: query_opt, bundle: bundle } %>
+  </div>
+  <div id="infinite-scrolling">
+    <%= will_paginate items %>
+  </div>
+</div>
+
+

@@ -1,0 +1,202 @@
+#infinite-scrolling {
+  display: flex;
+  justify-content: center;
+}
+
+.table-of-cards.header {
+  margin-bottom: 10px;
+  box-shadow: none;
+  font-weight: bold;
+}
+
+.table-of-cards {
+  margin-bottom: 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+
+  .t-r-wrapper {
+    display: flex;
+    background: $near-white;
+
+    .t-r-bundle {
+      flex: 1 1 8%;
+      border-bottom: solid;
+      border-color: $light-gray;
+      border-width: thin;
+      display: flex;
+
+      .bundle-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Overpass;
+        font-size: 1.5em;
+        font-weight: 100;
+        font-style: italic;
+      }
+    }
+
+    .t-r-bundle.header {
+      border: none;
+    }
+
+    .content-next-to-options {
+      flex: 1 1 80%;
+    }
+
+    .options-dropdown {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      font-size: 1.3vw;
+    }
+
+    .dropdown {
+      a {
+        color: $gray;
+      }
+    }
+
+    .t-r-content {
+      flex: 1 1 92%;
+
+      .t-item {
+        display: flex;
+
+        .item-card {
+          flex: 1 1 30%;
+          border-bottom: solid;
+          border-color: $light-gray;
+          border-width: thin;
+          padding: .3em;
+          display: flex;
+
+          .item-card-content {
+            display: flex;
+            flex-direction: column;
+            font-size: 1.3vw;
+
+            .item-card-id {
+              flex: 0 0 auto;
+              font-size: 1vw;
+              text-align: left;
+              font-style: italic;
+              width: 100%;
+            }
+
+            .item-card-description {
+              flex: 1 0 auto;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 0.3em;
+              text-align: center;
+            }
+          }
+        }
+
+        .item-card.header {
+          border: none;
+          justify-content: center;
+        }
+
+        .item-details {
+          flex: 1 1 70%;
+          border-bottom: solid;
+          border-color: $light-gray;
+          border-width: thin;
+
+          .detail-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .3em;
+            font-size: 1.3vw;
+
+            .detail-col-35 {
+              flex: 1 1 35%;
+            }
+
+            .detail-col-30 {
+              flex: 1 1 30%;
+            }
+
+            .detail-col-25 {
+              flex: 1 1 25%;
+            }
+
+            .detail-col-20 {
+              flex: 1 1 20%;
+            }
+
+            .detail-col-18 {
+              flex: 1 1 18%;
+            }
+
+            .detail-col-15 {
+              flex: 1 1 15%;
+            }
+
+            .detail-col-10 {
+              flex: 1 1 10%;
+            }
+
+            .detail-col-5 {
+              flex: 1 1 5%;
+            }
+
+            .detail-col-1 {
+              flex: 1 1 1%;
+            }
+          }
+        }
+
+        .item-details.header {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .dropdown-menu-mvp {
+    min-width: inherit;
+  }
+
+  .status-tag {
+    font-size: 0.8em;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .color-go {
+    color: $green;
+    border-color: $green;
+  }
+
+  .color-attention {
+    color: $yellow;
+    border-color: $yellow;
+  }
+
+  .color-danger {
+    color: $red;
+    border-color: $red;
+  }
+
+  .color-good {
+    color: $blue;
+    border-color: $blue;
+  }
+
+  .color-lost {
+    color: $black;
+    border-color: $black;
+  }
+
+}
+

@@ -1,9 +1,4 @@
-<%= render partial: "shared/header", locals: {
-  title: "Títulos em andamento",
-  sub_title: "Acompanhe os títulos atrasados e a serem liquidados",
-  company_name: "",
-} %>
-
-<%= render partial: "shared/menus/invoices_menu", locals: {menu_in: :opened} %>
-
-<%= render partial: "shared/card_table/card_table_container", locals: {items: @operations, query: :opened_invoices}%>
+<div class="wrapper-page-w-subnavbar">
+  <%= render partial: "shared/tables/table_of_cards_header", locals: {bundle: true } %>
+  <%= render partial: "shared/tables/table_of_cards_container", locals: {items: @operations, query_opt: :opened_invoices, bundle: true}%>
+</div>

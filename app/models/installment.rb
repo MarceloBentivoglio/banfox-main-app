@@ -50,6 +50,12 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
+  def outstanding_days
+    days = (due_date - Date.current).to_i
+    return days if days >= 0
+    return 0 if days < 0
+  end
+
   private
 
   def destroy_parent_if_void
