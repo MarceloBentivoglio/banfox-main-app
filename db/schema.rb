@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_17_164743) do
+ActiveRecord::Schema.define(version: 2018_09_14_185848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
     t.string "import_ref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "fator"
+    t.decimal "advalorem"
   end
 
   create_table "rebuys", force: :cascade do |t|
@@ -152,6 +154,8 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
     t.integer "rej_motive"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "fator"
+    t.decimal "advalorem"
   end
 
   create_table "users", force: :cascade do |t|

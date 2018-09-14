@@ -56,6 +56,14 @@ class Installment < ApplicationRecord
     return 0 if days < 0
   end
 
+  def fee
+    value * invoice.fee
+  end
+
+  def deposit_value
+    value - fee
+  end
+
   private
 
   def destroy_parent_if_void
