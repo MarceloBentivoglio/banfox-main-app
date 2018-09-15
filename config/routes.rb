@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   resources :installments, only: [:destroy]
   resources :operations, only: [:destroy]
   resources :documents, only: [:index, :new, :create, :destroy]
+  resources :orders, only: [:create]
 end

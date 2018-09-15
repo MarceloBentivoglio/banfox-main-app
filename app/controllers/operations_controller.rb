@@ -6,4 +6,5 @@ class OperationsController < ApplicationController
     @operation.destroy
     redirect_to store_invoices_path
   end
+
 end
