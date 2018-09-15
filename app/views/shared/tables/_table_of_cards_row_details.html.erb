@@ -5,7 +5,20 @@
   <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.value %></div>
   <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.fee %></div>
   <div class="detail-col-18 text-right"><%= humanized_money_with_symbol item.deposit_value %></div>
-  <div class="detail-col-10 text-left"><%= render partial: "shared/tables/status_tag", locals: {status: item.status} %></div>
+  <% if "#{current_controller_name}.#{current_action_name}" == "invoices.store" %>
+    <div class="detail-col-10 text-center">
+      <input
+      type="checkbox"
+      name="order[installment_ids][]"
+      value="<%= item.id %>"
+      data-installment="<%= item.to_json(methods: [:fee, :deposit_value]) %>"
+      checked>
+    </div>
+  <% else %>
+    <div class="detail-col-10 text-left">
+      <%= render partial: "shared/tables/status_tag", locals: {status: item.status} %>
+    </div>
+  <% end %>
   <div class="detail-col-1 text-center">
     <%= render partial: "shared/tables/options_dropdown", locals: {item: item} %>
   </div>

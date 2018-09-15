@@ -1,6 +1,7 @@
 class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :rebuy, optional: true
+  belongs_to :order, optional: true
   monetize :value_cents, with_model_currency: :currency
   after_destroy :destroy_parent_if_void
 

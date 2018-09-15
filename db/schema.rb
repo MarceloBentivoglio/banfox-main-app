@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_185848) do
+ActiveRecord::Schema.define(version: 2018_09_14_235118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,9 @@ ActiveRecord::Schema.define(version: 2018_09_14_185848) do
     t.bigint "rebuy_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
+    t.index ["order_id"], name: "index_installments_on_order_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
 
@@ -71,6 +73,11 @@ ActiveRecord::Schema.define(version: 2018_09_14_185848) do
 
   create_table "operations", force: :cascade do |t|
     t.string "import_ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -179,6 +186,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_185848) do
   end
 
   add_foreign_key "installments", "invoices"
+  add_foreign_key "installments", "orders"
   add_foreign_key "installments", "rebuys"
   add_foreign_key "invoices", "operations"
   add_foreign_key "invoices", "payers"
