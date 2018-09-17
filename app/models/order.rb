@@ -1,3 +1,13 @@
 class Order < ApplicationRecord
-  has_many :invoices
+  before_destroy :uncouple_installments
+  has_many :installments
+
+  private
+
+  def uncouple_installments
+    installments.each do |installment|
+      installment.order = nil
+      installment.save!
+    end
+  end
 end
