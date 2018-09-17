@@ -1,11 +1,11 @@
-.btn-orange-transparent {
+.btn-blue-transparent {
   float: right;
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
-  border: 0.1em solid $orange;
+  border: 0.1em solid $blue;
   border-radius: 0.3em;
-  color: $orange;
+  color: $blue;
   cursor: pointer;
   display: flex;
   align-self: center;
@@ -20,26 +20,26 @@
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   &:hover,
   &:focus {
-    box-shadow: 0 0 40px 40px $orange inset;
+    box-shadow: 0 0 40px 40px $blue inset;
     color: #fff;
     outline: 0;
     text-decoration: none;
   }
 }
 
-.btn-orange-transparent-clicked {
-  box-shadow: 0 0 40px 40px $orange inset;
+.btn-blue-transparent-clicked {
+  box-shadow: 0 0 40px 40px $blue inset;
   color: #fff;
 }
 
-.btn-orange-transparent-inactive {
+.btn-blue-transparent-inactive {
   float: right;
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
-  border: 0.1em solid $orange;
+  border: 0.1em solid $blue;
   border-radius: 0.3em;
-  color: $orange;
+  color: $blue;
   cursor: pointer;
   display: flex;
   align-self: center;
@@ -52,5 +52,3 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
-
-
