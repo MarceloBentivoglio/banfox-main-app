@@ -1,17 +1,24 @@
 .login-form {
   background: $near-white;
-  color: $near-black;
+  color: $dark-blue;
   padding: 10px 20px;
   // margin: 50px 0;
   border-radius: 3px;
   -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   h2 {
-    color: $orange;
-    font-size: 40px;
+    color: $dark-blue;
+    font-size: 2em;
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+  }
+  a {
+    color: $dark-blue;
+    &:hover {
+      transition: all 0.6s ease;
+      color: $blue;
+    }
   }
 }
 .btn-sessions {
@@ -19,21 +26,24 @@
   margin: 15px auto;
   color: white;
   padding: 10px 15px;
-  border-radius: 4px;
+  border-radius: 10em;
   font-weight: bold;
-  background: #9B51E0;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  background: $blue;
+  transition: all 0.6s ease;
   &:hover {
-    opacity: 1;
+    transition: all 0.6s ease;
+    border: 1px solid $blue;
     text-decoration: none;
-    color: white;
+    color: $blue;
+    background-color: $white;
   }
 }
 
 .devise-logo {
   text-align: center;
+  margin: 5em 0 2em 0;
   img {
-    width: 50vmin;
+    height: 3em;
+    width: auto;
   }
 }
