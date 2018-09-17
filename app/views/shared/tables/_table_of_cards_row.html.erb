@@ -2,12 +2,9 @@
   <!-- For when we have @operations on Invoices controller -->
   <% if bundle %>
     <div class="t-r-bundle">
-      <div class="bundle-content content-next-to-options">
+      <div class="bundle-content">
         <span>#</span>
         <span><%= item.id %></span>
-      </div>
-      <div class="options-dropdown">
-        <%= render partial: "shared/tables/options_dropdown", locals: {item: item} %>
       </div>
     </div>
     <div class="t-r-content">

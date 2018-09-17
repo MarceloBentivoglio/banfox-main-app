@@ -24,14 +24,15 @@
       border-color: $light-gray;
       border-width: thin;
       display: flex;
+      justify-content: center;
+      align-items: center;
 
       .bundle-content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         font-family: Overpass;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 100;
         font-style: italic;
       }
@@ -41,9 +42,6 @@
       border: none;
     }
 
-    .content-next-to-options {
-      flex: 1 1 80%;
-    }
 
     .options-dropdown {
       flex: 0 0 auto;
@@ -70,29 +68,31 @@
           border-bottom: solid;
           border-color: $light-gray;
           border-width: thin;
-          padding: .3em;
-          display: flex;
 
           .item-card-content {
             display: flex;
-            flex-direction: column;
             font-size: 1.3rem;
 
             .item-card-id {
-              flex: 0 0 auto;
-              font-size: 1rem;
+              flex: 1 1 25%;
               text-align: left;
-              font-style: italic;
-              width: 100%;
+              padding: 0.3em;
+              padding-right: 0em;
+            }
+
+            .item-card-option {
+              flex: 1 1 5%;
+              text-align: left;
+              padding: 0.3em 0;
             }
 
             .item-card-description {
-              flex: 1 0 auto;
+              flex: 1 1 70%;
               display: flex;
               flex-direction: column;
-              align-items: center;
-              justify-content: center;
+              align-items: baseline;
               padding: 0.3em;
+              padding-left: 1em;
               text-align: center;
             }
           }
@@ -100,7 +100,6 @@
 
         .item-card.header {
           border: none;
-          justify-content: center;
         }
 
         .item-details {
@@ -111,8 +110,6 @@
 
           .detail-card {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: .3em;
             font-size: 1.3rem;
 
