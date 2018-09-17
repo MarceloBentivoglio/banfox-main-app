@@ -22,7 +22,7 @@ seller1 = Seller.create!(
   inscr_mun: "",
   nire: "",
   company_type: 0,
-  operation_limit: Money.new(1000000000),
+  operation_limit: Money.new(25000000),
   monthly_revenue: Money.new(10000000),
   monthly_fixed_cost: Money.new(20000000),
   monthly_units_sold: 3000,
@@ -70,6 +70,15 @@ i1 = Invoice.create!(
   operation: operation1,
   backoffice_status: "deposited",
 )
+
+i6 = Invoice.create!(
+  invoice_type: "traditional_invoice",
+  number: "000004901",
+  seller: seller1,
+  payer: payer1,
+  operation: operation1,
+  backoffice_status: "deposited",
+)
 # em aberto
 i2 = Invoice.create!(
   invoice_type: "traditional_invoice",
@@ -97,7 +106,22 @@ i4 = Invoice.create!(
   operation: operation1,
   backoffice_status: "deposited",
 )
+# disponível para compra
+i5 = Invoice.create!(
+  invoice_type: "traditional_invoice",
+  number: "000004852",
+  seller: seller1,
+  payer: payer1,
+  backoffice_status: "registred",
+  )
 
+i7 = Invoice.create!(
+  invoice_type: "traditional_invoice",
+  number: "000004902",
+  seller: seller1,
+  payer: payer1,
+  backoffice_status: "registred",
+  )
 # Creating installments
 
 # for i1 liquidada
@@ -122,7 +146,7 @@ Installment.create!(
  invoice: i2,
  number: "004.849/01",
  value: Money.new(3530000),
- due_date: Date.new(2018,5,10),
+ due_date: Date.current - 10.days,
  liquidation_status: "paid",
 )
 
@@ -130,7 +154,15 @@ Installment.create!(
  invoice: i2,
  number: "004.849/02",
  value: Money.new(3630000),
- due_date: Date.new(2018,12,6),
+ due_date: Date.current + 60.days,
+ liquidation_status: "opened",
+)
+
+Installment.create!(
+ invoice: i2,
+ number: "004.849/03",
+ value: Money.new(3730000),
+ due_date: Date.current + 90.days,
  liquidation_status: "opened",
 )
 
@@ -138,16 +170,16 @@ Installment.create!(
 Installment.create!(
  invoice: i3,
  number: "004.850/01",
- value: Money.new(3730000),
- due_date: Date.new(2018,5,10),
+ value: Money.new(1000000),
+ due_date: Date.current - 33.days,
  liquidation_status: "paid",
 )
 
 Installment.create!(
  invoice: i3,
  number: "004.850/02",
- value: Money.new(3830000),
- due_date: Date.new(2018,6,6),
+ value: Money.new(1500000),
+ due_date: Date.current - 3.days,
  liquidation_status: "opened",
 )
 
@@ -156,7 +188,7 @@ Installment.create!(
  invoice: i4,
  number: "004.851/01",
  value: Money.new(3930000),
- due_date: Date.new(2018,6,6),
+ due_date: Date.current - 5.days,
  liquidation_status: "opened",
 )
 
@@ -164,9 +196,127 @@ Installment.create!(
  invoice: i4,
  number: "004.851/02",
  value: Money.new(4030000),
- due_date: Date.new(2018,12,6),
+ due_date: Date.current + 25.days,
  liquidation_status: "opened",
 )
+
+# For i5 disponivel para compra
+  # parcela vencida
+  Installment.create!(
+    invoice: i5,
+    number: "004.852/01",
+    value: Money.new(2000000),
+    due_date: Date.current - 30.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i5,
+    number: "004.852/02",
+    value: Money.new(1800000),
+    due_date: Date.current + 30.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i5,
+    number: "004.852/03",
+    value: Money.new(1600000),
+    due_date: Date.current + 60.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i5,
+    number: "004.852/04",
+    value: Money.new(1400000),
+    due_date: Date.current + 90.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i5,
+    number: "004.852/05",
+    value: Money.new(1200000),
+    due_date: Date.current + 120.days,
+    liquidation_status: "opened",
+  )
+
+# For i7 disponivel para compra
+  # parcela vencida
+  Installment.create!(
+    invoice: i7,
+    number: "004.902/01",
+    value: Money.new(1000000),
+    due_date: Date.current - 30.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i7,
+    number: "004.902/02",
+    value: Money.new(800000),
+    due_date: Date.current + 30.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i7,
+    number: "004.902/03",
+    value: Money.new(600000),
+    due_date: Date.current + 60.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i7,
+    number: "004.902/04",
+    value: Money.new(400000),
+    due_date: Date.current + 90.days,
+    liquidation_status: "opened",
+  )
+  # parcela a vencer
+  Installment.create!(
+    invoice: i7,
+    number: "004.902/05",
+    value: Money.new(200000),
+    due_date: Date.current + 120.days,
+    liquidation_status: "opened",
+  )
+
+# for i6 apenas algummas parcelas operadas
+Installment.create!(
+ invoice: i6,
+ number: "004.901/01",
+ value: Money.new(530000),
+ due_date: Date.current - 60.days,
+ liquidation_status: "opened",
+)
+
+Installment.create!(
+ invoice: i6,
+ number: "004.901/02",
+ value: Money.new(630000),
+ due_date: Date.current - 30.days,
+ liquidation_status: "paid",
+)
+
+Installment.create!(
+ invoice: i6,
+ number: "004.901/03",
+ value: Money.new(730000),
+ due_date: Date.current,
+ liquidation_status: "opened",
+)
+
+Installment.create!(
+ invoice: i6,
+ number: "004.901/03",
+ value: Money.new(730000),
+ due_date: Date.current + 30.days,
+ liquidation_status: "opened",
+)
+
 
 puts "............ seed ended"
 puts "Users:"
