@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+
   def create
     order = Order.new(order_params)
     order.save!
-    redirect_to invoices_store_path
+    redirect_to store_invoices_path
   end
 
   private
