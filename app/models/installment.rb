@@ -98,6 +98,7 @@ class Installment < ApplicationRecord
     days = (due_date - Date.current).to_i
   end
 
+  # Fix logic
   def fee
     value * invoice.fee
   end

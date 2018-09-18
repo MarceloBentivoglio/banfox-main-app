@@ -3,7 +3,7 @@
   <div class="content-col content-col-16 text-left"><%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
   <div class="content-col content-col-10 text-left"><%= item.number %></div>
   <div class="content-col content-col-10 text-left"><%= item.due_date.strftime("%d %b %y") %></div>
-  <div class="content-col content-col-4 text-center"><%= item.outstanding_days %></div>
+  <div class="content-col content-col-4  text-center"><%= item.outstanding_days %></div>
   <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.fee %></div>
   <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.deposit_value %></div>

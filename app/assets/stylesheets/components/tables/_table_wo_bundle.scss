@@ -25,7 +25,6 @@
     @for $i from 1 through 100 {
       .content-col-#{$i} {
         flex: 1 1 (100 * $i * 1%);
-
       }
     }
 

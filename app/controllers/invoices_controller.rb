@@ -5,6 +5,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
+  # Review this part
   def create
     if params[:invoice]
       extract = ExtractDataFromXml.new
