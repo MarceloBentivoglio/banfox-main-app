@@ -8,7 +8,7 @@ module Navbars::NavbarsHelper
   end
 
   def check_need_of_subnavbar(controller, action)
-    return true if ["invoices.store", "invoices.opened", "invoices.history"].include?("#{controller}.#{action}")
+    return true if ["installments.store", "installments.opened", "installments.history"].include?("#{controller}.#{action}")
     return false
   end
 
@@ -16,6 +16,6 @@ module Navbars::NavbarsHelper
 
   def define_position (controller, action)
     return "left" if ["sellers.dashboard"].include?("#{controller}.#{action}")
-    return "right" if ["invoices.store", "invoices.opened", "invoices.history"].include?("#{controller}.#{action}")
+    return "right" if ["installments.store", "installments.opened", "installments.history"].include?("#{controller}.#{action}")
   end
 end

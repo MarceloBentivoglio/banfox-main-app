@@ -1,0 +1,28 @@
+<div class="t-r-content-wo-bundle">
+  <div class="content-col content-col-11 text-left"><%= item.invoice.number %></div>
+  <div class="content-col content-col-16 text-left"><%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
+  <div class="content-col content-col-10 text-left"><%= item.number %></div>
+  <div class="content-col content-col-10 text-left"><%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="content-col content-col-4  text-center"><%= item.outstanding_days %></div>
+  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.deposit_value %></div>
+  <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" %>
+    <div class="content-col content-col-4 text-center">
+      <input
+      type="checkbox"
+      name="operation[installment_ids][]"
+      value="<%= item.id %>"
+      data-installment="<%= item.to_json(methods: [:fee, :deposit_value]) %>"
+      checked>
+    </div>
+    <div class="content-col content-col-3 text-center">
+      <%= render partial: "shared/tables/table_wo_bundle/options", locals: {item: item} %>
+    </div>
+  <% else %>
+    <div class="content-col content-col-7 text-left extra-space-left">
+      <%= render partial: "shared/tables/table_wo_bundle/status_tag", locals: {status: item.status} %>
+    </div>
+  <% end %>
+</div>
+

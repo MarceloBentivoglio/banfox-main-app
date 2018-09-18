@@ -1,0 +1,5 @@
+<% if policy(item).destroy? %>
+  <%= link_to({controller: "#{item.class.name.downcase}s", action: "destroy", id: item}, {method: :delete, "data-confirm" => "Tem certeza?", class: "cancel-option"} ) do %>
+    <i class="fa fa-trash"></i>
+  <% end %>
+<% end %>

@@ -1,6 +1,6 @@
 class InstallmentPolicy < ApplicationPolicy
 
   def destroy?
-    !record.invoice.deposited?
+    !record.deposited?
   end
 end

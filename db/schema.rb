@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_235118) do
+ActiveRecord::Schema.define(version: 2018_09_14_185848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,43 +41,38 @@ ActiveRecord::Schema.define(version: 2018_09_14_235118) do
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
     t.date "due_date"
+    t.date "order_date"
+    t.date "deposit_date"
     t.date "receipt_date"
-    t.integer "liquidation_status", default: 0
+    t.integer "backoffice_status"
+    t.integer "liquidation_status"
+    t.integer "unavailability"
+    t.integer "rej_motive"
     t.string "import_ref"
     t.bigint "invoice_id"
     t.bigint "rebuy_id"
+    t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
-    t.index ["order_id"], name: "index_installments_on_order_id"
+    t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "invoice_type"
     t.string "number"
-    t.date "sale_date"
-    t.date "deposit_date"
-    t.integer "backoffice_status", default: 0
     t.string "import_ref"
     t.bigint "seller_id"
     t.bigint "payer_id"
-    t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["operation_id"], name: "index_invoices_on_operation_id"
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
 
   create_table "operations", force: :cascade do |t|
     t.string "import_ref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -186,9 +181,8 @@ ActiveRecord::Schema.define(version: 2018_09_14_235118) do
   end
 
   add_foreign_key "installments", "invoices"
-  add_foreign_key "installments", "orders"
+  add_foreign_key "installments", "operations"
   add_foreign_key "installments", "rebuys"
-  add_foreign_key "invoices", "operations"
   add_foreign_key "invoices", "payers"
   add_foreign_key "invoices", "sellers"
   add_foreign_key "rebuys", "operations"

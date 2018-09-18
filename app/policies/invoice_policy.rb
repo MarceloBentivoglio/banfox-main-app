@@ -1,6 +1,6 @@
 class InvoicePolicy < ApplicationPolicy
 
   def destroy?
-    !record.deposited?
+    !record.installments.any? {|installment| installment.deposited?}
   end
 end

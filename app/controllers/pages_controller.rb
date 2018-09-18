@@ -14,7 +14,7 @@ class PagesController < ApplicationController
       if (seller = current_user.seller)
         if seller.active?
           @redirection_options[:situation] = "active"
-          @redirection_options[:path] = store_invoices_path
+          @redirection_options[:path] = store_installments_path
         else
           @redirection_options[:situation] = "incomplete"
           @redirection_options[:path] = "#{seller_steps_path}/#{seller.next_step}"

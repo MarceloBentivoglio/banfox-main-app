@@ -1,34 +1,11 @@
 class InvoicesController < ApplicationController
-  before_action :set_seller, only: [:store, :opened, :history, :show, :new, :create]
-
-  def store
-    @invoices = Invoice.in_store_from_seller(@seller).paginate(page: params[:page]).order(created_at: :asc)
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  def opened
-    @operations = Operation.preload_scope(:opened, @seller).paginate(page: params[:page]).order(created_at: :asc)
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  def history
-    @operations = Operation.preload_scope(:finished, @seller).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
+  before_action :set_seller, only: [:new, :create]
 
   def new
     @invoice = Invoice.new
   end
 
+  # Review this part
   def create
     if params[:invoice]
       extract = ExtractDataFromXml.new

@@ -234,7 +234,7 @@ class Seller < ApplicationRecord
   end
 
   def used_limit
-    Invoice.total(:opened_all, self)
+    Installment.total(:used_limit, self)
   end
 
   def set_initial_limit
@@ -277,11 +277,5 @@ class Seller < ApplicationRecord
     end
     links.join("\n")
   end
-
-  # def correct_document_mime_type
-  #   if proof_of_address.attached? && !proof_of_address.content_type.in?(%w(application/msword application/pdf))
-  #     errors.add(:proof_of_address, 'Must be a PDF or a DOC file')
-  #   end
-  # end
 
 end
