@@ -1,0 +1,9 @@
+<% tag_color = "color-go" if [Installment::INSTALLMENT_STATUS[4]].include? status %>
+<% tag_color = "color-attention" if [Installment::INSTALLMENT_STATUS[5]].include? status %>
+<% tag_color = "color-danger" if [Installment::INSTALLMENT_STATUS[6]].include? status %>
+<% tag_color = "color-good" if [Installment::INSTALLMENT_STATUS[7], Installment::INSTALLMENT_STATUS[8]].include? status%>
+<% tag_color = "color-lost" if [Installment::INSTALLMENT_STATUS[9]].include? status%>
+<div class="<%= "#{tag_color} status-tag"%>">
+  <span><%= status %></span>
+</div>
+

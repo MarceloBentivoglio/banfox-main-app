@@ -25,15 +25,14 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks',
   }
   resources :seller_steps
-  resources :invoices, only: [:new, :create, :destroy, :show] do
+  resources :invoices, only: [:new, :create, :destroy, :show]
+  resources :installments, only: [:destroy] do
     collection do
       get :store
       get :opened
       get :history
     end
   end
-  resources :installments, only: [:destroy]
-  resources :operations, only: [:destroy]
+  resources :operations, only: [:create, :destroy]
   resources :documents, only: [:index, :new, :create, :destroy]
-  resources :orders, only: [:create]
 end

@@ -1,0 +1,10 @@
+document.querySelector('.card-table').insertAdjacentHTML('beforeend', '<%= j render partial: "shared/tables/table_wo_bundle/table_of_cards_row", collection: @installments, as: :item %>');
+<% if @installments.next_page %>
+  document.querySelector('.pagination').innerHTML = '<%= j will_paginate @installments %>';
+<% else %>
+  document.querySelector('.pagination').remove();
+<% end %>
+<%#= sleep 10 %>
+
+
+
