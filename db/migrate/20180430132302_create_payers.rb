@@ -17,6 +17,8 @@ class CreatePayers < ActiveRecord::Migration[5.1]
       t.string :city
       t.string :zip_code
       t.string :import_ref
+      t.decimal :fator
+      t.decimal :advalorem
 
       t.timestamps
     end

@@ -24,6 +24,8 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string :nire
       t.integer :company_type
       t.monetize :operation_limit
+      t.decimal :fator
+      t.decimal :advalorem
       t.monetize :monthly_revenue
       t.monetize :monthly_fixed_cost
       t.bigint :monthly_units_sold
