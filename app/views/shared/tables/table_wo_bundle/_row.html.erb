@@ -6,14 +6,14 @@
   <div class="content-col content-col-4  text-center"><%= item.outstanding_days %></div>
   <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.fee %></div>
-  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.deposit_value %></div>
+  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.net_value %></div>
   <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && !@operation_in_analysis %>
     <div class="content-col content-col-4 text-center">
       <input
       type="checkbox"
       name="operation[installment_ids][]"
       value="<%= item.id %>"
-      data-installment="<%= item.to_json(methods: [:fee, :deposit_value]) %>"
+      data-installment="<%= item.to_json(methods: [:fee, :net_value]) %>"
       <%= "checked" if item.available? %>
       <%= "disabled" if item.unavailable? %>>
     </div>

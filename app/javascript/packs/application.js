@@ -12,6 +12,7 @@ import { addressAutocomplete } from "../components/addressAutocomplete";
 import { collapseForm } from "../components/collapseForm";
 import { rememberOptionsBetweenSteps } from "../components/rememberOptionsBetweenSteps"
 import { showModalOnFirstAccess } from "../components/showModalOnFirstAccess"
+import { operationTotalValuesAccordingToCheck } from "../components/operationTotalValuesAccordingToCheck"
 
 
 selectTagOnClick();
@@ -27,3 +28,4 @@ addressAutocomplete();
 collapseForm();
 rememberOptionsBetweenSteps();
 showModalOnFirstAccess();
+operationTotalValuesAccordingToCheck();

@@ -1,15 +1,45 @@
-<div id="status_bottom_bar" class="cointainer-fluid">
-  <div class="operation-finantials">
-    <span>Valor Bruto</span>
-    <span>Taxa MVP</span>
-    <span>Proteção (10%)</span>
-    <span>Valor Líquido</span>
+<div id="status_bottom_bar">
+  <div class="container-fluid">
+    <div class="content">
+      <div class="operation-finantials">
+          <div class="content-col">
+            <span>Valor Bruto</span>
+            <span id="total" class="big-number"></span>
+          </div>
+          <div class="content-col">
+            <span>Taxa MVP</span>
+            <span id="fee" class="big-number"></span>
+          </div>
+          <div class="content-col">
+            <span>Proteção (10%)</span>
+            <span id="protection" class="big-number"></span>
+          </div>
+          <div class="content-col result">
+            <span class="line">Depositamos para você:</span>
+            <div class="line line-w-2-cols">
+              <span class="line-text">Hoje</span>
+              <span id="deposit_today"></span>
+            </div>
+            <div class="line line-w-2-cols">
+              <span class="line-text">Na liquidação</span>
+              <span id="deposit_after"></span>
+            </div>
+            <div class="line line-w-2-cols last-line">
+              <span class="line-text">Total</span>
+              <span id="net_value" class="big-number"></span>
+            </div>
+          </div>
+      </div>
+      <div class="operation-status">
+        <div class="top-content">
+            <span>Parabens sua operação foi aprovada</span>
+        </div>
+        <div class="bottom-content">
+          <span>Cancelar</span>
+          <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="operation-status">
-    <span>Parabens sua operação foi aprovada</span>
-    <span>Cancelar</span>
-    <%= f.submit "Enviar para análise", class: "btn-rounded blue" %>
-  </div>
-
 </div>
 
