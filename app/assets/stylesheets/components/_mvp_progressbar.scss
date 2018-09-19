@@ -1,5 +1,5 @@
 #mvp-progressbar-fill-wrapper {
-  background-color: $light-gray;
+  background-color: $background-blue;
   border-radius: 13px;
 
   #mvp-progressbar-fill {
@@ -26,12 +26,11 @@
   }
 
   .gray {
-    color: $light-gray;
+    color: $medium-blue;
+    opacity: 0.4;
   }
 
   .green {
     color: $dark-green-progressbar;
   }
 }
-
-

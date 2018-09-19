@@ -1,7 +1,6 @@
 .card-white-w-multiple-content-clickable {
   box-shadow: 0 0 20px 0 rgba(207,219,232,.3);
-  color: $gray;
-
+  color: $medium-blue;
   &:hover {
     text-decoration: none;
     transition: 0.7s;
@@ -15,23 +14,22 @@
   padding: 1em;
   margin: 0.5em 0;
   font-weight: 400;
-
+  color: $medium-blue;
   .card-title {
     font-size: 0.9em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .card-icon-gray {
-      color:$light-gray;
+      color: $medium-blue;
+      opacity: 0.4;
     }
     .card-icon-blue {
-      color:$other-blue;
+      color: $blue;
     }
-
     .card-checked-icon {
       color: $dark-green-progressbar;
     }
-
     .card-tag {
     font-size: 0.7em;
     background-color: $neon-blue;
@@ -41,23 +39,20 @@
     font-weight: bold;
     }
   }
-
   .card-content {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
     // align-items: center;
     line-height: normal;
-
     .primary-content {
       font-size: 1.6em;
     }
-
     .secondary-content {
       font-size: 1.2em;
-      color:$light-gray;
+      color: $medium-blue;
+      opacity: 0.4;
     }
-
     .aux-content {
       font-size: 0.8em;
     }
@@ -66,5 +61,3 @@
     }
   }
 }
-
-
