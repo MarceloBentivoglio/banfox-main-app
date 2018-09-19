@@ -1,0 +1,20 @@
+.table-wo-bundle-row-content {
+  display: flex;
+  // background: $near-white;
+  font-size: 1.3rem;
+
+  .content-col {
+    padding: 0.3em;
+  }
+
+  @for $i from 1 through 100 {
+    .content-col-#{$i} {
+      flex: 1 1 (100 * $i * 1%);
+    }
+  }
+
+  .extra-space-left {
+    padding-left: 1.5em;
+  }
+}
+
