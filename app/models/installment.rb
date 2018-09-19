@@ -104,7 +104,7 @@ class Installment < ApplicationRecord
     value * invoice.fee
   end
 
-  def deposit_value
+  def net_value
     value - fee
   end
 

@@ -9,6 +9,8 @@ class OperationsController < ApplicationController
       end
     end
     redirect_to store_installments_path
+  rescue
+   redirect_to store_installments_path
   end
 
   def destroy
@@ -21,7 +23,7 @@ class OperationsController < ApplicationController
   private
 
   def operation_params
-    params.require(:operation).permit(installment_ids: [])
+    params.require(:operation).permit(:consent, installment_ids: [])
   end
 
 

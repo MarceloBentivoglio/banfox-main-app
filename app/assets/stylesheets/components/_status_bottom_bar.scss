@@ -1,0 +1,70 @@
+#status_bottom_bar {
+    background-color: $white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+
+    .content {
+      padding: 2em 1em;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.3rem;
+    }
+
+    .operation-finantials {
+      display: flex;
+
+      .content-col {
+        padding-right: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+
+      .result {
+        padding-left: 2em;
+        padding-top: 0em;
+        padding-bottom: 0em;
+        border-left: solid 2px $lightest-gray;
+
+        .line {
+          padding: 0.1em 0;
+        }
+
+        .line-w-2-cols {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+
+          .line-text {
+            margin-right: 2em;
+          }
+        }
+
+        .last-line {
+          padding-top: 0.2;
+          font-weight: bold;
+        }
+      }
+
+      .big-number {
+        font-size: 1.5rem;
+      }
+    }
+
+    .operation-status {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .bottom-content {
+        display: flex;
+        justify-content: space-between;
+      }
+
+    }
+}

@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_164743) do
   end
 
   create_table "operations", force: :cascade do |t|
+    t.boolean "consent", default: false, null: false
     t.string "import_ref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

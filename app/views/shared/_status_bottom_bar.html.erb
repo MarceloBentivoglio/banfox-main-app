@@ -1,0 +1,48 @@
+<div id="status_bottom_bar">
+  <div class="container-fluid">
+    <div class="content">
+      <div class="operation-finantials">
+          <div class="content-col">
+            <span>Valor Bruto</span>
+            <span id="total" class="big-number"></span>
+          </div>
+          <div class="content-col">
+            <span>Taxa MVP</span>
+            <span id="fee" class="big-number"></span>
+          </div>
+          <div class="content-col">
+            <span>Proteção (10%)</span>
+            <span id="protection" class="big-number"></span>
+          </div>
+          <div class="content-col result">
+            <span class="line">Depositamos para você:</span>
+            <div class="line line-w-2-cols">
+              <span class="line-text">Hoje</span>
+              <span id="deposit_today"></span>
+            </div>
+            <div class="line line-w-2-cols">
+              <span class="line-text">Na liquidação</span>
+              <span id="deposit_after"></span>
+            </div>
+            <div class="line line-w-2-cols last-line">
+              <span class="line-text">Total</span>
+              <span id="net_value" class="big-number"></span>
+            </div>
+          </div>
+      </div>
+      <div class="operation-status">
+        <div class="top-content">
+            <input name="operation[consent]" type="hidden" value="0">
+            <input type="checkbox" name="operation[consent]" id="operation_consent">
+            <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.downcase.titleize %>, CNPJ <%= @seller.cnpj %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
+            <%= f.error :consent, class: "invalid-feedback" %>
+        </div>
+        <div class="bottom-content">
+          <span>Cancelar</span>
+          <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
