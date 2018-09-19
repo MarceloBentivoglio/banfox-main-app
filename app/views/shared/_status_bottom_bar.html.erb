@@ -32,7 +32,10 @@
       </div>
       <div class="operation-status">
         <div class="top-content">
-            <span>Parabens sua operação foi aprovada</span>
+            <input name="operation[consent]" type="hidden" value="0">
+            <input type="checkbox" name="operation[consent]" id="operation_consent">
+            <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.downcase.titleize %>, CNPJ <%= @seller.cnpj %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
+            <%= f.error :consent, class: "invalid-feedback" %>
         </div>
         <div class="bottom-content">
           <span>Cancelar</span>
