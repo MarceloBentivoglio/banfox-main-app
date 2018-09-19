@@ -9,7 +9,7 @@
       <div class="content-col content-col-14 text-right"><span>Valor Bruto</span></div>
       <div class="content-col content-col-14 text-right"><span>Taxa</span></div>
       <div class="content-col content-col-14 text-right"><span>Valor Líquido</span></div>
-      <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" %>
+      <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && !@operation_in_analysis %>
         <div class="content-col content-col-4  text-center"><span> </span></div>
         <div class="content-col content-col-3  text-center"><span> </span></div>
       <% else %>

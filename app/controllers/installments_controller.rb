@@ -2,7 +2,12 @@ class InstallmentsController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history]
 
   def store
-    @installments = Installment.in_store(@seller).paginate(page: params[:page])
+    @installments = Installment.ordered_in_analysis(@seller).paginate(page: params[:page])
+    @operation_in_analysis = true
+    if @installments.empty?
+      @installments = Installment.in_store(@seller).paginate(page: params[:page])
+      @operation_in_analysis = false
+    end
     respond_to do |format|
       format.html
       format.js
