@@ -15,6 +15,7 @@ layout "homelayout"
     @contact.request = request
     if @contact.deliver
       flash.now[:notice] = 'Obrigado pela mensagem, entraremos em contato em breve.'
+      redirect_to root_path
     else
       flash.now[:error] = 'Não foi possível enviar a sua mensagem.'
       render :new
