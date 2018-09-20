@@ -1,4 +1,5 @@
 class OperationsController < ApplicationController
+  before_action :no_operation_in_analysis, only: [:create]
 
   def create
     operation = Operation.new(operation_params)
@@ -24,6 +25,10 @@ class OperationsController < ApplicationController
 
   def operation_params
     params.require(:operation).permit(:consent, installment_ids: [])
+  end
+
+  def no_operation_in_analysis
+    Installment.ordered_in_analysis(current_user.seller).empty?
   end
 
 

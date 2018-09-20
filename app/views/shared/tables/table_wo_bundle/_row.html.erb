@@ -1,13 +1,13 @@
 <div class="table-wo-bundle-row-content">
-  <div class="content-col content-col-11 text-left"><%= item.invoice.number %></div>
-  <div class="content-col content-col-16 text-left"><%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
-  <div class="content-col content-col-10 text-left"><%= item.number %></div>
-  <div class="content-col content-col-10 text-left"><%= item.due_date.strftime("%d %b %y") %></div>
-  <div class="content-col content-col-4  text-center"><%= item.outstanding_days %></div>
-  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.value %></div>
-  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.fee %></div>
-  <div class="content-col content-col-14 text-right"><%= humanized_money_with_symbol item.net_value %></div>
-  <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && !@operation_in_analysis %>
+  <div class="content-col content-col-11 text-left">                      <%= item.invoice.number %></div>
+  <div class="content-col content-col-16 text-left">                      <%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
+  <div class="content-col content-col-10 text-left">                      <%= item.number %></div>
+  <div class="content-col content-col-10 text-left">                      <%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="content-col content-col-4  text-center outstanding_days">   <%= item.outstanding_days %></div>
+  <div class="content-col content-col-14 text-right  installment_value">  <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-14 text-right  fee">                <%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-14 text-right  net_value">          <%= humanized_money_with_symbol item.net_value %></div>
+  <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && @no_operation_in_analysis %>
     <div class="content-col content-col-4 text-center">
       <input
       type="checkbox"

@@ -3,10 +3,10 @@ class InstallmentsController < ApplicationController
 
   def store
     @installments = Installment.ordered_in_analysis(@seller).paginate(page: params[:page])
-    @operation_in_analysis = true
+    @no_operation_in_analysis = false
     if @installments.empty?
       @installments = Installment.in_store(@seller).paginate(page: params[:page])
-      @operation_in_analysis = false
+      @no_operation_in_analysis = true
     end
     respond_to do |format|
       format.html
