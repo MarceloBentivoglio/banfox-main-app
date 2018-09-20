@@ -68,6 +68,9 @@ gem 'postmark-rails'
 # This gem enable API calls from Mashape
 gem 'unirest'
 
+# This gem allows mails from contact forms, by plataformatec
+gem 'mail_form'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   # This gem is used to open the email in development in a browser tab

@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'sellers/dashboard'
   get 'sellers/analysis'
 
-
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions',
@@ -35,4 +34,7 @@ Rails.application.routes.draw do
   end
   resources :operations, only: [:create, :destroy]
   resources :documents, only: [:index, :new, :create, :destroy]
+
+  match '/contacts', to: 'contacts#new', via: 'get'
+  resources :contacts, only: [:new, :create]
 end
