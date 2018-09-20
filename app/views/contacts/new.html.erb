@@ -1,0 +1,34 @@
+<div class="contact-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="contact-page-title">
+          <h2>Vamos começar?</h2>
+          <h4>Ligue para nossa equipe <span>(011) 9.3800.8131</span> ou nós ligamos pra você.</h4>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <%= simple_form_for @contact, :html => {:class => 'form-horizontal contact-form' } do |f| %>
+      <%= f.input :name, label: "Nome", :required => true %>
+      <%= f.input :email, label: "Email", :required => true %>
+      <%= f.input :phone, label: "Telefone", :required => true %>
+      <%= f.input :message, label: "Digite sua Mensagem", :as => :text, :required => true %>
+      <div class= "hidden">
+        <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+      </div>
+      <div>
+      </br>
+      <%= f.button :submit, 'Enviar Mensagem', :class=> "contact-button" %>
+    </div>
+    <% end %>
+  </div>
+  </div>
+</div>
+
+
+<%= render 'shared/footer' %>

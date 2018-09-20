@@ -767,6 +767,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    mail_form (1.7.1)
+      actionmailer (>= 3.2, < 6)
+      activemodel (>= 3.2, < 6)
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
     memoist (0.16.0)
@@ -978,6 +981,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)
+  mail_form
   mini_magick
   money-rails
   pg (~> 0.21)
