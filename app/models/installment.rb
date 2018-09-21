@@ -22,10 +22,12 @@ class Installment < ApplicationRecord
   scope :quant,               -> (scope, seller) { __send__(scope, seller).count }
 
   # For the tables of cards
-  scope :in_store,            -> (seller) { from_seller(seller).merge(available.or(unavailable)).preload(invoice: [:payer]) }
-  scope :ordered_in_analysis, -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
+  scope :in_store,            -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]) }
   scope :currently_opened,    -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]) }
   scope :finished,            -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(rebought).or(pdd))).preload(invoice: [:payer]) }
+
+  # For creating operations
+  scope :ordered_in_analysis, -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
 
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model
@@ -74,7 +76,7 @@ class Installment < ApplicationRecord
   def status
     return INSTALLMENT_STATUS[0] if ordered?
     return INSTALLMENT_STATUS[1] if approved?
-    return INSTALLMENT_STATUS[2] if rejected?
+    return INSTALLMENT_STATUS[2] if rejected? || rejected_consent?
     return INSTALLMENT_STATUS[3] if cancelled?
     return INSTALLMENT_STATUS[4] if on_date?
     return INSTALLMENT_STATUS[5] if due_today?
