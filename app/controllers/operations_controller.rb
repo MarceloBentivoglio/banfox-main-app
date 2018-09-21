@@ -3,10 +3,12 @@ class OperationsController < ApplicationController
 
   def create
     operation = Operation.new(operation_params)
-    ActiveRecord::Base.transaction do
-      operation.save!
-      operation.installments.each do |i|
-        i.ordered!
+    if operation.installments.all? { |i| i.available? }
+      ActiveRecord::Base.transaction do
+        operation.save!
+        operation.installments.each do |i|
+          i.ordered!
+        end
       end
     end
     redirect_to store_installments_path
