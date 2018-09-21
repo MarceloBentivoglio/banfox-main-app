@@ -11,7 +11,7 @@ class Contact < MailForm::Base
     {
       :subject => "Contato MVP Invest Website",
       :to => "marcelo.bentivoglio@mvpinvest.com.br",
-      :from => %("#{name}" <#{email}>)
+      :from => "joaquim.oliveira@mvpinvest.com.br"
     }
   end
 end
