@@ -1,8 +1,8 @@
-<% tag_color = "table-wo-bundle-row-content-color-go" if [Installment::INSTALLMENT_STATUS[4]].include? status %>
-<% tag_color = "table-wo-bundle-row-content-color-attention" if [Installment::INSTALLMENT_STATUS[5]].include? status %>
-<% tag_color = "table-wo-bundle-row-content-color-danger" if [Installment::INSTALLMENT_STATUS[6]].include? status %>
-<% tag_color = "table-wo-bundle-row-content-color-good" if [Installment::INSTALLMENT_STATUS[7], Installment::INSTALLMENT_STATUS[8]].include? status%>
-<% tag_color = "table-wo-bundle-row-content-color-lost" if [Installment::INSTALLMENT_STATUS[9]].include? status%>
+<% tag_color = "table-wo-bundle-row-content-color-go" if status[0] == :on_date %>
+<% tag_color = "table-wo-bundle-row-content-color-attention" if status[0] == :due_date %>
+<% tag_color = "table-wo-bundle-row-content-color-danger" if status[0] == :overdue %>
+<% tag_color = "table-wo-bundle-row-content-color-good" if status[0] == :paid || status[0] == :rebought %>
+<% tag_color = "table-wo-bundle-row-content-color-lost" if status[0] == :pdd %>
 <div class="<%= "#{tag_color} table-wo-bundle-row-content-status-tag"%>">
-  <span><%= status %></span>
+  <span><%= status[1] %></span>
 </div>

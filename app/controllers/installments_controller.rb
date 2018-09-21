@@ -41,7 +41,7 @@ class InstallmentsController < ApplicationController
 
   def set_status
     @operation = Operation.last_from_seller(@seller)
-    @status = @operation.status
+    @status = @operation.status[0]
   end
 
   def set_installments(seller, operation, status)

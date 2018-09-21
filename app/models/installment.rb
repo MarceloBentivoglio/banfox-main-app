@@ -28,7 +28,7 @@ class Installment < ApplicationRecord
 
   # For creating operations
   scope :ordered_in_analysis, -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
-
+  include Trackable
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model
   enum liquidation_status: {
@@ -60,30 +60,23 @@ class Installment < ApplicationRecord
     payer_low_rated:  1,
   }
 
-  INSTALLMENT_STATUS = [
-    "Em análise",
-    "Aprovada",
-    "Rejeitada",
-    "Cancelada",
-    "A vencer",
-    "Vence hoje",
-    "Em atraso",
-    "Liquidada",
-    "Recomprada",
-    "Perdida",
-  ].freeze
+  def statuses
+    {
+      ordered: "Em análise",
+      approved: "Aprovada",
+      rejected_aux: "Rejeitada",
+      cancelled: "Cancelada",
+      on_date: "A vencer",
+      due_today: "Vence hoje",
+      overdue: "Em atraso",
+      paid: "Liquidada",
+      rebought: "Recomprada",
+      pdd: "Perdida",
+    }
+  end
 
-  def status
-    return INSTALLMENT_STATUS[0] if ordered?
-    return INSTALLMENT_STATUS[1] if approved?
-    return INSTALLMENT_STATUS[2] if rejected? || rejected_consent?
-    return INSTALLMENT_STATUS[3] if cancelled?
-    return INSTALLMENT_STATUS[4] if on_date?
-    return INSTALLMENT_STATUS[5] if due_today?
-    return INSTALLMENT_STATUS[6] if overdue?
-    return INSTALLMENT_STATUS[7] if paid?
-    return INSTALLMENT_STATUS[8] if rebought?
-    return INSTALLMENT_STATUS[9] if pdd?
+  def rejected_aux?
+    rejected? || rejected_consent?
   end
 
   def overdue?
