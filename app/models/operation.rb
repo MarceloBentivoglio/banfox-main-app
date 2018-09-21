@@ -1,6 +1,6 @@
 class Operation < ApplicationRecord
-  has_many :installments
-  has_many :rebuys, dependent: :destroy
+  has_many :installments, dependent: :nullify
+  has_many :rebuys
   validates :consent, acceptance: {message: "é necessário dar o seu aval para a operação"}
   default_scope { order(created_at: :asc) }
   scope :last_from_seller, -> (seller) { joins(installments: [invoice: [:seller]]).where("sellers.id": seller.id).distinct.last }
