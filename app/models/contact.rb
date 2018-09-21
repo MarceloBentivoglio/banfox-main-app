@@ -10,7 +10,7 @@ class Contact < MailForm::Base
   def headers
     {
       :subject => "Contato MVP Invest Website",
-      :to => "marcelo.bentivoglio@mvpinvest.com.br",
+      :to => "marcelo.bentivoglio@mvpinvest.com.br; joaquim.oliveira@mvpinvest.com.br; joão.conte@mvpinvest.com.br",
       :from => "joaquim.oliveira@mvpinvest.com.br"
     }
   end
