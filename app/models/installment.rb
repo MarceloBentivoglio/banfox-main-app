@@ -37,13 +37,14 @@ class Installment < ApplicationRecord
   }
 
   enum backoffice_status: {
-    unavailable:  0,
-    available:    1,
-    approved:     2,
-    rejected:     3,
-    cancelled:    4,
-    ordered:      5,
-    deposited:    6,
+    unavailable:      0,
+    available:        1,
+    approved:         2,
+    rejected:         3,
+    rejected_consent: 4,
+    cancelled:        5,
+    ordered:          6,
+    deposited:        7,
   }
 
   enum unavailability: {
