@@ -31,7 +31,7 @@
           </div>
       </div>
       <div class="operation-status">
-        <% if @no_operation_in_analysis %>
+        <% if @no_operation_in_analysis && !@operation_analysis_finished %>
           <div class="top-content">
               <input name="operation[consent]" type="hidden" value="0">
               <input type="checkbox" name="operation[consent]" id="operation_consent">
@@ -42,6 +42,32 @@
             <span>Cancelar</span>
             <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue" %>
           </div>
+        <% elsif @operation_analysis_finished %>
+          <% if @operation_completely_approved %>
+            <div class="top-content">
+                <span>Parabéns! Sua operação foi aprovada.</span>
+            </div>
+            <div class="bottom-content">
+              <span>Cancelar</span>
+              <%= link_to "Assinar documentos", "#", class: "btn-rounded blue" %>
+            </div>
+          <% elsif @operation_completely_rejected %>
+            <div class="top-content">
+                <span>Que pena, sua operação não foi aprovada.</span>
+            </div>
+            <div class="bottom-content">
+              <span>Cancelar</span>
+              <%= link_to "Ok, quero enviar outras notas fiscais", "#", class: "btn-rounded blue" %>
+            </div>
+          <% else %>
+            <div class="top-content">
+                <span>Sua operação foi aprovada parcialmente.</span>
+            </div>
+            <div class="bottom-content">
+              <span>Cancelar</span>
+              <%= link_to "Estou ciente, quero assinar os documentos", "#", class: "btn-rounded blue" %>
+            </div>
+          <% end %>
         <% else %>
           <div class="top-content">
               <span>Você tem 1 operação em análise.</span>
