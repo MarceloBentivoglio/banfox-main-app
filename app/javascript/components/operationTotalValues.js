@@ -18,7 +18,14 @@ const showTotalsOnStatusBar = (total, fee, protection, deposit_today, net_value)
 }
 
 const operationTotalValuesAccordingToCheck = () => {
-  $("[data-installment]").change(() => {
+  // $( "[data-installment]" ).on( "click", function(event) {
+  //   event.preventDefault();
+  //   console.log( $( this ).toArray().map(el => JSON.parse(el.dataset.installment))[0]["value_cents"] );
+  //   console.log( $( this ));
+  //   console.log( event);
+  // });
+  $("[data-installment]").change((event) => {
+    // console.log( event);
     const installments = $("[data-installment]:checked").toArray().map(el => JSON.parse(el.dataset.installment));
     const total = installments.reduce((sum, installment) => sum + installment.value_cents, 0);
     const fee = installments.reduce((sum, installment) => sum + Number(installment.fee.fractional), 0);
