@@ -60,7 +60,7 @@ class Installment < ApplicationRecord
     payer_low_rated:  1,
   }
 
-  INSTALLMENT_STATUS = {
+  STATUS = {
     ordered: "Em análise",
     approved: "Aprovada",
     rejected_aux: "Rejeitada",
@@ -74,7 +74,7 @@ class Installment < ApplicationRecord
   }.freeze
 
   def status
-    INSTALLMENT_STATUS.each do |method_name, written_status|
+    STATUS.each do |method_name, written_status|
       return [method_name, written_status] if self.__send__("#{method_name}?")
     end
   end

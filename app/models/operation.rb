@@ -6,17 +6,17 @@ class Operation < ApplicationRecord
   # dar um preload das installemnts aqui
   scope :last_from_seller, -> (seller) { joins(installments: [invoice: [:seller]]).where("sellers.id": seller.id).distinct.last }
 
-  OPERATION_STATUS = [
-    :no_on_going_operation,
-    :in_analysis,
-    :completely_approved,
-    :completely_rejected,
-    :partially_approved,
-  ].freeze
+  STATUS = {
+    no_on_going_operation: "Nenhuma operação",
+    in_analysis: "Em análise",
+    completely_approved: "Completamente aprovada",
+    completely_rejected: "Completamente rejeitada",
+    partially_approved: "Parcialmente aprovada",
+  }.freeze
 
   def status
-    OPERATION_STATUS.each do |operation_status|
-      return operation_status if self.__send__("#{operation_status}?")
+    STATUS.each do |method_name, written_status|
+      return [method_name, written_status] if self.__send__("#{method_name}?")
     end
   end
 
