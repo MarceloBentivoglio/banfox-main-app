@@ -11,16 +11,17 @@
 .mvp-progressbar-content {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.8em;
+  margin-top: 0.5em;
+  font-size: 0.7em;
 
   .mvp-progressbar-content-left {
-    font-size: 0.8em;
+    // font-size: 0.8em;
     display: flex;
     flex-direction: column;
   }
 
   .mvp-progressbar-content-right {
-    font-size: 0.8em;
+    // font-size: 0.8em;
     display: flex;
     flex-direction: column;
   }
