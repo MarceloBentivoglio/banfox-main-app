@@ -1,21 +1,42 @@
 <div class="wrapper-page-w-subnavbar">
   <div class="container-fluid">
-   <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <%= render partial: "shared/cards/card_w_progressbar", locals: {
-          title: "Limite operacional",
-          left_data: @seller.used_limit,
-          right_data: @seller.operation_limit,
-          left_legend: "Utilizado",
-          right_legend: "Disponível",
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Limites",
+          optional_button: "",
         } %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/card_w_title_progressbar", locals: {
+              title: "Limite operacional",
+              left_data: @seller.used_limit,
+              right_data: @seller.operation_limit,
+              left_legend: "Utilizado",
+              right_legend: "Disponível",
+            } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Títulos",
+          optional_button: "",
+        } %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= render partial: "shared/tables/table_wo_bundle/header" %>
+            <%= simple_form_for Operation.new do |f| %>
+              <input type="hidden" name="operation[installment_ids][]">
+              <%= render partial: "shared/tables/table_wo_bundle/container", locals: {items: @installments}%>
+            <%= render partial: "shared/status_bottom_bar", locals: {f: f} %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <%= render partial: "shared/tables/table_wo_bundle/header" %>
-  <%= simple_form_for Operation.new do |f| %>
-    <input type="hidden" name="operation[installment_ids][]">
-    <%= render partial: "shared/tables/table_wo_bundle/container", locals: {items: @installments}%>
-  <%= render partial: "shared/status_bottom_bar", locals: {f: f} %>
-  <% end %>
 </div>

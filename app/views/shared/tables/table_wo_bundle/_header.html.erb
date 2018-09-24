@@ -1,20 +1,19 @@
-<div class="container-fluid">
-  <div class="table-wo-bundle header">
-    <div class="table-wo-bundle-row-content">
-      <div class="content-col content-col-11 text-left"><span>Nota</span></div>
-      <div class="content-col content-col-16 text-left"><span>Cliente</span></div>
-      <div class="content-col content-col-10 text-left"><span>Parcela</span></div>
-      <div class="content-col content-col-10 text-left"><span>Vencimento</span></div>
-      <div class="content-col content-col-4  text-center"><span>Dias</span></div>
-      <div class="content-col content-col-14 text-right"><span>Valor Bruto</span></div>
-      <div class="content-col content-col-14 text-right"><span>Taxa</span></div>
-      <div class="content-col content-col-14 text-right"><span>Valor Líquido</span></div>
-      <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && @status == :no_on_going_operation %>
-        <div class="content-col content-col-4  text-center"><span> </span></div>
-        <div class="content-col content-col-3  text-center"><span> </span></div>
-      <% else %>
-        <div class="content-col content-col-7 text-left extra-space-left"><span>Status</span></div>
-      <% end %>
-    </div>
+<div class="table-wo-bundle header">
+  <div class="table-wo-bundle-row-content">
+    <div class="content-col content-col-11 text-left"><span>Nota</span></div>
+    <div class="content-col content-col-16 text-left"><span>Cliente</span></div>
+    <div class="content-col content-col-10 text-left"><span>Parcela</span></div>
+    <div class="content-col content-col-10 text-left"><span>Vencimento</span></div>
+    <div class="content-col content-col-4  text-center"><span>Dias</span></div>
+    <div class="content-col content-col-14 text-right"><span>Valor Bruto</span></div>
+    <div class="content-col content-col-14 text-right"><span>Taxa</span></div>
+    <div class="content-col content-col-14 text-right"><span>Valor Líquido</span></div>
+    <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && @status == :no_on_going_operation %>
+      <div class="content-col content-col-4  text-center"><span> </span></div>
+      <div class="content-col content-col-3  text-center"><span> </span></div>
+    <% else %>
+      <div class="content-col content-col-7 text-left extra-space-left"><span>Status</span></div>
+    <% end %>
   </div>
 </div>
+
