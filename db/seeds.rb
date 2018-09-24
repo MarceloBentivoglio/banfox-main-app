@@ -22,7 +22,7 @@ seller1 = Seller.create!(
   inscr_mun: "",
   nire: "",
   company_type: 0,
-  operation_limit: Money.new(25000000),
+  operation_limit: Money.new(20000000),
   monthly_revenue: Money.new(10000000),
   monthly_fixed_cost: Money.new(20000000),
   monthly_units_sold: 3000,

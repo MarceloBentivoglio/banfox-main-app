@@ -233,8 +233,13 @@ class Seller < ApplicationRecord
     DOCUMENTS.length
   end
 
+  # TODO: rever esse método
   def used_limit
     Installment.total(:used_limit, self)
+  end
+
+  def available_limit
+    operation_limit - used_limit
   end
 
   def set_initial_limit

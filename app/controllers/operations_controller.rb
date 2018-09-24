@@ -1,12 +1,15 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
+  before_action :set_seller, only: [:create]
 
   def create
     operation = Operation.new(operation_params)
-    ActiveRecord::Base.transaction do
-      operation.save!
-      operation.installments.each do |i|
-        i.ordered!
+    if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
+      ActiveRecord::Base.transaction do
+        operation.save!
+        operation.installments.each do |i|
+          i.ordered!
+        end
       end
     end
     redirect_to store_installments_path
@@ -29,6 +32,10 @@ class OperationsController < ApplicationController
 
   def no_operation_in_analysis
     Installment.ordered_in_analysis(current_user.seller).empty?
+  end
+
+  def set_seller
+    @seller = current_user.seller
   end
 
 
