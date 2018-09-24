@@ -239,7 +239,7 @@ class Seller < ApplicationRecord
   end
 
   def available_limit
-    operation_limit - Installment.total(:used_limit, self)
+    operation_limit - used_limit
   end
 
   def set_initial_limit
