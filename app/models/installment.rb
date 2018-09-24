@@ -14,6 +14,7 @@ class Installment < ApplicationRecord
   scope :opened_today,        -> (seller) { from_seller(seller).merge(opened.where(due_date: Date.current)) }
   scope :opened_week,         -> (seller) { from_seller(seller).merge(opened.where("due_date > :today AND due_date <= :end_week", {today: Date.current, end_week: Date.current.end_of_week})) }
   scope :opened_month,        -> (seller) { from_seller(seller).merge(opened.where("due_date > :end_week AND due_date <= :end_month", {end_week: Date.current.end_of_week, end_month: Date.current.end_of_month})) }
+  scope :overdue,             -> (seller) { from_seller(seller).merge(opened.where("due_date < :today", {today: Date.current})) }
   scope :overdue_upto_7,      -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date})) }
   scope :overdue_upto_30,     -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date})) }
   scope :overdue_30_plus,     -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date})) }
