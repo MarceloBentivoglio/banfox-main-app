@@ -1,10 +1,1 @@
-<%= link_to button_path, target: :_blank do %>
-  <div class="card-white-w-multiple-content card-white-w-multiple-content-clickable">
-    <div class="card-title">
-      <span><%= title %></span>
-      <div class="card-icon-blue">
-        <i class="fa fa-info-circle"></i>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>

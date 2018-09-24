@@ -7,14 +7,28 @@
     box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 3px 20px 0 rgba(89,105,128,.3), 0 1px 2px 0 rgba(0,0,0,.05);
   }
 }
+
+.card-white-w-multiple-content.card-h-small {
+  min-height: 40px;
+}
+
+.card-white-w-multiple-content.card-h-medium {
+  min-height: 100px;
+}
+
 .card-white-w-multiple-content {
   background: $white;
   box-shadow: 0 1px 3px rgba(240, 240, 240, 1);
   border-radius: 5px;
-  padding: 1em;
+  padding: 0.5em 1em;
   margin: 0.5em 0;
   font-weight: 400;
   color: $medium-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
   .card-title {
     font-size: 0.9em;
     display: flex;
@@ -30,20 +44,11 @@
     .card-checked-icon {
       color: $dark-green-progressbar;
     }
-    .card-tag {
-    font-size: 0.7em;
-    background-color: $neon-blue;
-    color: $white;
-    border-radius: 1em;
-    padding: 0.2em 1em;
-    font-weight: bold;
-    }
   }
   .card-content {
-    margin-top: 1em;
+    margin-top: 0.5em;
     display: flex;
     flex-direction: column;
-    // align-items: center;
     line-height: normal;
     .primary-content {
       font-size: 1.6em;

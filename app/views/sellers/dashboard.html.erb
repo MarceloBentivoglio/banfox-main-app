@@ -4,53 +4,60 @@
   <% end %>
 </div>
 
-<!-- TODO: Adjust Css so that we don't need this header -->
-<%= render partial: "shared/header", locals: {
-  title: "",
-  sub_title: "",
-  company_name: "",
-} %>
-
-<div class="container-fluid">
-  <% if !@seller.visited? %>
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <% if !@seller.visited? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Mensagens",
+          optional_button: "",
+          } %>
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <%= render partial: "shared/cards/card_w_info_icon_clickable", locals: {
+                title: "Marcar visita da MVP Invest",
+                button_path: "https://mvpinvest.calendrier.com.br"
+              } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-        title: "Mensagens",
-        optional_button: "",
+          title: "Limites",
+          optional_button: "",
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_text_icon_clickable", locals: {
-              title: "Marcar visita da MVP Invest",
-              button_path: "https://mvpinvest.calendrier.com.br"
+            <%= render partial: "shared/cards/card_w_title_progressbar", locals: {
+              title: "Limite operacional",
+              left_data: @seller.used_limit,
+              right_data: @seller.operation_limit,
+              left_legend: "Utilizado",
+              right_legend: "Disponível",
+            } %>
+          </div>
+           <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+              icon: render(partial: "shared/icons/lightbulb"),
+              primary_content: Installment.total(:opened_today, @seller),
+              title: "Vencimentos hoje",
+            } %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+              icon: render(partial: "shared/icons/lightbulb"),
+              title: "Vencimentos esse mês",
+              primary_content: Installment.total(:opened_month, @seller),
             } %>
           </div>
         </div>
       </div>
     </div>
-  <% end %>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-        title: "Limites",
-        optional_button: "",
-      } %>
-      <div class="row">
-        <div class="col-sm-12 col-md-4">
-          <%= render partial: "shared/cards/card_w_progressbar", locals: {
-            title: "Limite operacional",
-            left_data: @seller.used_limit,
-            right_data: @seller.operation_limit,
-            left_legend: "Utilizado",
-            right_legend: "Disponível",
-          } %>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <% if @seller.approved? %>
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
@@ -59,101 +66,32 @@
         } %>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Títulos em análise",
-              primary_content: Installment.total(:in_analysis, @seller),
-              secondary_content: Installment.quant(:in_analysis, @seller),
-              aux_content: "",
+            <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+              icon: render(partial: "shared/icons/dolar"),
+              primary_content: Installment.total(:currently_opened, @seller),
+              title: "Em Andamento",
+            } %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <% if @installments_in_analysis == Money.new(0) %>
+              <%= render partial: "shared/cards/card_w_text_icon_clickable" %>
+            <% else %>
+              <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+                icon: render(partial: "shared/icons/cog"),
+                primary_content: @installments_in_analysis,
+                title: "Em Análise",
+              } %>
+            <% end %>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+              icon: render(partial: "shared/icons/times"),
+              primary_content: Installment.total(:overdue, @seller),
+              title: "Em Atraso",
             } %>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Títulos a vencer",
-          optional_button: nil,
-        } %>
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Hoje",
-              primary_content: Installment.total(:opened_today, @seller),
-              secondary_content: Installment.quant(:opened_today, @seller),
-              aux_content: "",
-            } %>
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Essa semana",
-              primary_content: Installment.total(:opened_week, @seller),
-              secondary_content: Installment.quant(:opened_week, @seller),
-              aux_content: "",
-            } %>
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Esse mês",
-              primary_content: Installment.total(:opened_month, @seller),
-              secondary_content: Installment.quant(:opened_month, @seller),
-              aux_content: "",
-            } %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Títulos atrasados",
-          optional_button: nil,
-        } %>
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Há menos de 7 dias",
-              primary_content: Installment.total(:overdue_upto_7, @seller),
-              secondary_content: Installment.quant(:overdue_upto_7, @seller),
-              aux_content: "",
-            } %>
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Há mais de 7 dias e menos de 1 mês",
-              primary_content: Installment.total(:overdue_upto_30, @seller),
-              secondary_content: Installment.quant(:overdue_upto_30, @seller),
-              aux_content: "",
-            } %>
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Há mais de 1 mês",
-              primary_content: Installment.total(:overdue_30_plus, @seller),
-              secondary_content: Installment.quant(:overdue_30_plus, @seller),
-              aux_content: "",
-            } %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Títulos liquidados",
-          optional_button: nil,
-        } %>
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_money_info", locals: {
-              title: "Histórico",
-              primary_content: Installment.total(:settled, @seller),
-              secondary_content: Installment.quant(:settled, @seller),
-              aux_content: "",
-            } %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  </div>
 </div>

@@ -1,0 +1,27 @@
+// other classes in base.scss
+.card-w-icon-info-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .big-icon {
+    font-size: 3em;
+    padding-right: 0.5em;
+    color: $background-blue;
+    line-height: 0em;
+  }
+
+  .card-content {
+    .primary-content {
+      font-size: 1em;
+      padding-bottom: 0.1em;
+    }
+
+    .secondary-content {
+      font-size: 1em;
+      padding-top: 0.1em;
+      padding-bottom: 0.4em;
+    }
+
+  }
+}
