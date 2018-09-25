@@ -31,6 +31,7 @@ class ExtractDataFromXml
   end
 
   def extract_installments (doc, invoice)
+    ninety_days = 90.days.since.to_date
     doc.search('dup').each do |xml_installments_info|
       i = Installment.new
       i.number = xml_installments_info.search('nDup').text.strip
@@ -38,6 +39,7 @@ class ExtractDataFromXml
       i.value = Money.new(xml_installments_info.search('vDup').text.delete("\n ."))
       i.due_date = xml_installments_info.search('dVenc').text.strip
       i.invoice = invoice
+      i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 0 : 1
       invoice.installments.push(i)
     end
     return invoice
