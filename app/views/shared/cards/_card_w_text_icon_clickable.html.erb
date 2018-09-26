@@ -1,1 +1,13 @@
-<%= render(partial: "shared/buttons/btn_rounded_upload_invoice", locals: {button_path: "#", content: "Adicionar notas fiscais"}) %>
+<%= link_to '#' do %>
+  <div class="card-white-w-multiple-content card-h-medium card-blue" data-toggle="modal" data-target="#modal-file-upload">
+  <div class="card-w-icon-info-title-container">
+    <div class="big-icon">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </div>
+    <div class="card-content">
+      <div class="primary-content">Você ainda não possui operações</div>
+      <div class="secondary-content">Clique para adicionar Notas Fiscais</div>
+    </div>
+  </div>
+</div>
+<% end %>

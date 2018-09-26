@@ -37,6 +37,4 @@ class OperationsController < ApplicationController
   def set_seller
     @seller = current_user.seller
   end
-
-
 end
