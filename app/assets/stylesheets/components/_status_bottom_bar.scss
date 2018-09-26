@@ -11,14 +11,15 @@
       padding: 2em 1em;
       display: flex;
       justify-content: space-between;
-      font-size: 1.3rem;
+      font-size: 0.7em;
     }
 
     .operation-finantials {
+      flex: 1 1 60%;
       display: flex;
+      justify-content: space-between;
 
       .content-col {
-        padding-right: 2em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -27,7 +28,8 @@
       }
 
       .result {
-        padding-left: 2em;
+        padding-right: 3em;
+        padding-left: 3em;
         padding-top: 0em;
         padding-bottom: 0em;
         border-left: solid 2px $lightest-gray;
@@ -53,18 +55,36 @@
       }
 
       .big-number {
-        font-size: 1.5rem;
+        font-size: 1.3em;
       }
     }
 
     .operation-status {
+      flex: 1 1 40%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
+      .top-content.with-checkbox {
+        display: flex;
+        input[type='checkbox'] {
+          margin-right: 0.5em;
+        }
+      }
+
+      .top-content.big-letters {
+        font-size: 1.6em;
+        color: $blue;
+        font-weight: bold;
+        text-align: right;
+      }
+
       .bottom-content {
         display: flex;
         justify-content: space-between;
+        .button {
+          font-size: 1.1em;
+        }
       }
 
     }
