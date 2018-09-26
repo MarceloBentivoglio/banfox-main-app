@@ -32,43 +32,43 @@
       </div>
       <div class="operation-status">
         <% if @status == :no_on_going_operation %>
-          <div class="top-content">
+          <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">
               <input type="checkbox" name="operation[consent]" id="operation_consent">
               <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.downcase.titleize %>, CNPJ <%= @seller.cnpj %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
               <%= f.error :consent, class: "invalid-feedback" %>
           </div>
           <div class="bottom-content">
-            <span>Cancelar</span>
-            <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue" %>
+            <span> </span>
+            <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue button" %>
           </div>
         <% elsif @status == :in_analysis %>
-          <div class="top-content">
+          <div class="top-content big-letters">
               <span>Você tem 1 operação em análise.</span>
           </div>
         <% elsif @status == :completely_approved %>
-          <div class="top-content">
+          <div class="top-content big-letters">
               <span>Parabéns! Sua operação foi aprovada.</span>
           </div>
           <div class="bottom-content">
-            <span>Cancelar</span>
-            <%= link_to "Assinar documentos", "#", class: "btn-rounded blue" %>
+            <span> </span>
+            <%= link_to "Assinar documentos", "#", class: "btn-rounded blue button" %>
           </div>
         <% elsif @status == :completely_rejected %>
-          <div class="top-content">
+          <div class="top-content big-letters">
               <span>Que pena, sua operação não foi aprovada.</span>
           </div>
           <div class="bottom-content">
-            <span>Cancelar</span>
-            <%= link_to "Ok, quero enviar outras notas fiscais", "#", class: "btn-rounded blue" %>
+            <span> </span>
+            <%= link_to "Ok, quero enviar outras notas fiscais", "#", class: "btn-rounded blue button" %>
           </div>
         <% elsif @status == :partially_approved %>
-          <div class="top-content">
+          <div class="top-content big-letters">
               <span>Sua operação foi aprovada parcialmente.</span>
           </div>
           <div class="bottom-content">
-            <span>Cancelar</span>
-            <%= link_to "Estou ciente, quero assinar os documentos", "#", class: "btn-rounded blue" %>
+            <span> </span>
+            <%= link_to "Estou ciente, quero assinar os documentos", "#", class: "btn-rounded blue button" %>
           </div>
         <% else %>
         <% end %>
