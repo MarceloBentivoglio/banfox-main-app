@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks',
   }
   resources :seller_steps
-  resources :invoices, only: [:new, :create, :destroy, :show]
+  resources :invoices, only: [:create, :destroy, :show]
   resources :installments, only: [:destroy] do
     collection do
       get :store

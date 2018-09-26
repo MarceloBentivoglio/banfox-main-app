@@ -1,10 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_seller, only: [:new, :create]
 
-  def new
-    @invoice = Invoice.new
-  end
-
   # Review this part
   def create
     if params[:invoice]
@@ -23,7 +19,7 @@ class InvoicesController < ApplicationController
       redirect_to store_installments_path
     else
       flash[:alert] = "É necessário ao menos subir uma nota fiscal em XML"
-      redirect_to new_invoice_path
+      redirect_to store_installments_path
     end
   end
 
