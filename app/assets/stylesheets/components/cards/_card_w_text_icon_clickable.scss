@@ -1,0 +1,21 @@
+.card-white-w-multiple-content.card-blue {
+  background: $blue;
+  color: $white;
+
+  .card-w-icon-info-title-container {
+    .big-icon {
+      color: $white;
+    }
+  }
+
+  .card-content {
+    .primary-content {
+      font-size: 0.9em;
+    }
+    .secondary-content {
+      font-size: 0.9em;
+      opacity: 1;
+      color: $white;
+    }
+  }
+}
