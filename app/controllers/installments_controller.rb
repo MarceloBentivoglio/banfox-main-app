@@ -40,7 +40,7 @@ class InstallmentsController < ApplicationController
   end
 
   def set_status
-    @operation = Operation.last_from_seller(@seller)
+    @operation = Operation.last_from_seller(@seller).last || Operation.new
     @status = @operation.status[0]
   end
 

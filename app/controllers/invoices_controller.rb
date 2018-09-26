@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_seller, only: [:new, :create]
+  before_action :set_seller, only: [:create]
 
   # Review this part
   def create

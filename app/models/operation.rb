@@ -4,7 +4,7 @@ class Operation < ApplicationRecord
   validates :consent, acceptance: {message: "é necessário dar o seu aval para a operação"}
   default_scope { order(created_at: :asc) }
   # dar um preload das installemnts aqui
-  scope :last_from_seller, -> (seller) { joins(installments: [invoice: [:seller]]).where("sellers.id": seller.id).distinct.last }
+  scope :last_from_seller, -> (seller) { joins(installments: [invoice: [:seller]]).where("sellers.id": seller.id).distinct }
   include Trackable
 
   def statuses
