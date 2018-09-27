@@ -32,7 +32,11 @@ Rails.application.routes.draw do
       get :history
     end
   end
-  resources :operations, only: [:create, :destroy]
+  resources :operations, only: [:create, :destroy] do
+    collection do
+      get :consent
+    end
+  end
   resources :documents, only: [:index, :new, :create, :destroy]
 
   match '/contacts', to: 'contacts#new', via: 'get'

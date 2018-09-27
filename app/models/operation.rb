@@ -37,6 +37,10 @@ class Operation < ApplicationRecord
     installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
   end
 
+  def consent_rejection!
+    installments.each { |i| i.rejected_consent! }
+  end
+
   def total_value
     installments.reduce(Money.new(0)){|total, i| total + i.value}
   end

@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create]
+  before_action :set_seller, only: [:create, :consent]
 
   def create
     operation = Operation.new(operation_params)
@@ -16,6 +16,14 @@ class OperationsController < ApplicationController
     redirect_to store_installments_path
   rescue
    redirect_to store_installments_path
+  end
+
+  def consent
+    operation = Operation.last_from_seller(@seller).last
+    if operation.completely_rejected?
+      operation.consent_rejection!
+      redirect_to store_installments_path
+    end
   end
 
   def destroy
