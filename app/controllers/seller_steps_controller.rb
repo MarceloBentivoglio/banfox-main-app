@@ -23,10 +23,7 @@ class SellerStepsController < ApplicationController
   def update
     @seller.validation_status = step.to_s
     if @seller.update_attributes(seller_params)
-      if wizard_steps.last == step
-        @seller.active!
-        SellerMailer.welcome(@user, @seller).deliver_now
-      end
+      @seller.active! if wizard_steps.last == step
     end
     if step == :basic
       @user.seller = @seller

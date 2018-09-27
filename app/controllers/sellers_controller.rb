@@ -17,6 +17,7 @@ class SellersController < ApplicationController
       redirect_to unfortune_path and return
     end
     @seller.pre_approved!
+    SellerMailer.welcome(@user, @seller).deliver_now
     redirect_to sellers_dashboard_path
   rescue Timeout::Error
     redirect_to takeabreath_path and return
