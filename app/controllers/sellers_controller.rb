@@ -12,8 +12,10 @@ class SellersController < ApplicationController
   end
 
   def analysis
-    redirect_to unfortune_path and return unless CpfCheckRF.new(@seller).analyze
-    redirect_to unfortune_path and return unless check_revenue
+    if !CpfCheckRF.new(@seller).analyze || !check_revenue
+      SellerMailer.rejected(@user, @seller).deliver_now
+      redirect_to unfortune_path and return
+    end
     @seller.pre_approved!
     redirect_to sellers_dashboard_path
   rescue Timeout::Error
