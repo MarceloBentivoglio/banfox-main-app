@@ -1,7 +1,6 @@
 class InstallmentsController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history]
   before_action :set_status, only: [:store]
-  before_action :set_status, only: [:store]
   before_action :verify_need_immediate_upload, only: [:store]
 
   def store
