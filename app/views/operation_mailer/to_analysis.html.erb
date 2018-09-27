@@ -1,0 +1,120 @@
+<span class="preheader">Abaixo você encontrará algumas informações úteis a respeito da sua operação.</span>
+<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center">
+      <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="email-masthead">
+            <a href="https://www.mvpinvest.com.br" class="email-masthead_name">
+              <img alt="Icon" src="https://res.cloudinary.com/dbzg4txla/image/upload/v1538073420/logo.png" width="225" height="55"  />
+            </a>
+          </td>
+        </tr>
+        <!-- Email Body -->
+        <tr>
+          <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
+              <!-- Body content -->
+              <tr>
+                <td class="content-cell">
+                  <h1>Olá <%= @seller.full_name.split.first %>,</h1>
+                  <p>A operação que você nos mandou já está sendo analisada. Em menos de 2h você receberá um e-mail com o nosso posicionamento.</p>
+                  <table class="attribute-list" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="attribute-list-container">
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td class="attribute-list-item"><strong>Valor bruto:</strong> <%= humanized_money_with_symbol @operation.total_value %></td>
+                          </tr>
+                          <tr>
+                            <td class="attribute-list-item"><strong>Valor líquido:</strong> <%= humanized_money_with_symbol @operation.net_value %></td>
+                          </tr>
+                          <tr>
+                            <td class="attribute-list-item"><span>Depósito na assinatura:</span> <%= humanized_money_with_symbol @operation.deposit_today %></td>
+                          </tr>
+                          <tr>
+                            <td class="attribute-list-item"><span>Depósito na liquidação:</span> <%= humanized_money_with_symbol @operation.protection %></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Action -->
+                  <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center">
+                        <!-- Border based button
+                   https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center">
+                              <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td>
+                                    <a href="https://www.mvpinvest.com.br/installments/store" class="button button--blue" target="_blank">Ver Operação Completa</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <h1>Resumo da operação</h1>
+
+                  <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th class="purchase_heading"><p>Sacado</p></th>
+                      <th class="purchase_heading"><p>Data de vencimento</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
+                    </tr>
+                    <% @installments.each do |i| %>
+                      <tr>
+                        <td class="purchase_item"><%= i.invoice.payer.company_name.split.first %></td>
+                        <td class="purchase_item"><%= i.due_date %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Total Bruto</p></td>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total Líquido</p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p></td>
+                    </tr>
+                  </table>
+                  <br>
+
+                  <p>Em caso de dúvidas basta responder este e-mail!</p>
+                  <p>Até breve,
+                    <br>Time <strong>MVP Invest</strong></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="content-cell" align="center">
+                  <p class="sub align-center">&copy; 2018 MVP Invest. Todos os direitos reservados.</p>
+                  <p class="sub align-center">
+                    MVP Invest
+                    Avenida Angélica, 2529 - InovaBra Habitat
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
