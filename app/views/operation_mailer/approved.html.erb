@@ -42,57 +42,46 @@
                     </tr>
                   </table>
                   <h1>Resumo da operação</h1>
-                  <!-- <table class="purchase" width="100%" cellpadding="0" cellspacing="0"> -->
-                    <!-- <tr>
-                      <td><h3>Sacado</h3></td>
-                      <td><h3>Data de vencimento</h3></td>
-                      <td><h3 class="align-right">Valor</h3></td>
-                    </tr> -->
-                    <!-- <tr> -->
-                      <!-- <td colspan="2"> -->
-                        <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <th class="purchase_heading"><p>Sacado</p></th>
-                            <th class="purchase_heading"><p>Data de vencimento</p></th>
-                            <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
-                            <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
-                            <th class="purchase_heading"><p class="align-right">Status</p></th>
-                          </tr>
-                          <% @installments.each do |i| %>
-                            <tr>
-                              <td class="purchase_item"><%= i.invoice.payer.company_name.split.first %></td>
-                              <td class="purchase_item"><%= i.due_date %></td>
-                              <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
-                              <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
-                              <td class="purchase_item align-right"><%=  i.status[1] %></td>
-                            </tr>
-                          <% end %>
-                        </table>
-                        <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Total Bruto</p></td>
-                            <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
-                          </tr>
-                          <tr>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total Líquido</p></td>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p></td>
-                          </tr>
-                          <tr>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total bruto aprovado</p></td>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value_approved %></p></td>
-                          </tr>
-                          <tr>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total líquido aprovado</p></td>
-                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value_approved %></p></td>
-                          </tr>
-                        </table>
-                        <br>
-                      <!-- </td> -->
-                    <!-- </tr> -->
-                  <!-- </table> -->
+                  <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th class="purchase_heading"><p>Sacado</p></th>
+                      <th class="purchase_heading"><p>Data de vencimento</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
+                      <th class="purchase_heading"><p class="align-right">Status</p></th>
+                    </tr>
+                    <% @installments.each do |i| %>
+                      <tr>
+                        <td class="purchase_item"><%= i.invoice.payer.company_name.split.first %></td>
+                        <td class="purchase_item"><%= i.due_date %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
+                        <td class="purchase_item align-right"><%=  i.status[1] %></td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Total Bruto</p></td>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total Líquido</p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p></td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total bruto aprovado</p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value_approved %></p></td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total líquido aprovado</p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value_approved %></p></td>
+                    </tr>
+                  </table>
+                  <br>
                   <p>Em caso de dúvidas basta responder este e-mail!</p>
                   <p>Até breve,
-                    <br>Time MVP Invest</p>
+                    <br>Time <strong>MVP Invest</strong></p>
                 </td>
               </tr>
             </table>

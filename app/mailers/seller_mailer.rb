@@ -10,4 +10,14 @@ class SellerMailer < ApplicationMailer
       subject: 'Bem vindo à MVP Invest'
       )
   end
+
+  def rejected(user, seller)
+    user = user
+    @seller = seller
+
+    mail(
+      to: [user.email, @seller.email_partner],
+      subject: 'Ainda não conseguimos te ajudar'
+      )
+  end
 end
