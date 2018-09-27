@@ -17,6 +17,9 @@ class SellersController < ApplicationController
       redirect_to unfortune_path and return
     end
     @seller.pre_approved!
+    @seller.fator = 0.045
+    @seller.advalorem = 0.005
+    @seller.save!
     SellerMailer.welcome(@user, @seller).deliver_now
     redirect_to sellers_dashboard_path
   rescue Timeout::Error

@@ -64,6 +64,8 @@ class ExtractDataFromXml
         payer.zip_code = xml_payer_info.search('CEP').text.strip
         payer.inscr_est = xml_payer_info.search('IE').text.strip
         payer.inscr_mun = xml_payer_info.search('IM').text.strip
+        payer.fator = 0.045
+        payer.advalorem = 0.005
       end
       invoice.payer = payer
       return invoice
