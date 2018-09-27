@@ -1,0 +1,19 @@
+<div class="modal fade modal-in-plan-A" id="modal-show-wo-click">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-header-avatar-name">Faça o upload do XML das suas notas fiscais</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @invoice do |f| %>
+          <%= render partial: "shared/files_input", locals: {f: f, description: "Selecionar arquivos XML", upload: :xmls} %>
+        <%= f.submit 'Subir arquivos', class: "btn btn-rounded blue"%>
+        <% end %>
+      </div>
+      <!-- TODO: put space so that the client can send us a message -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class InstallmentsController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history]
   before_action :set_status, only: [:store]
+  before_action :verify_need_immediate_upload, only: [:store]
 
   def store
     @installments = set_installments(@seller, @operation, @status).paginate(page: params[:page])
@@ -50,6 +51,14 @@ class InstallmentsController < ApplicationController
         Installment.in_store(@seller)
       else
         operation.installments
+    end
+  end
+
+  def verify_need_immediate_upload
+    @show_message = false
+    if session["accessed"] == "operations.consent"
+      session["accessed"] = "installments.store"
+      @show_message = true
     end
   end
 end
