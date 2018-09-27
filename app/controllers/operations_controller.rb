@@ -22,6 +22,7 @@ class OperationsController < ApplicationController
     operation = Operation.last_from_seller(@seller).last
     if operation.completely_rejected?
       operation.consent_rejection!
+      session["accessed"] = "operations.consent"
       redirect_to store_installments_path
     end
   end
