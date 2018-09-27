@@ -12,5 +12,42 @@ class OperationMailer < ApplicationMailer
       subject: 'Sua operação já está em análise'
       )
   end
+
+  def rejected(operation, user, seller)
+    @operation = operation
+    @installments = operation.installments
+    user = user
+    @seller = seller
+
+    mail(
+      to: [user.email, @seller.email_partner],
+      subject: 'Infelizmente sua operação foi rejeitada'
+      )
+  end
+
+  def approved(operation, user, seller)
+    @operation = operation
+    @installments = operation.installments
+    user = user
+    @seller = seller
+
+    mail(
+      to: [user.email, @seller.email_partner],
+      subject: 'Infelizmente sua operação foi rejeitada'
+      )
+  end
+
+  def partially_approved(operation, user, seller)
+    @operation = operation
+    @installments = operation.installments
+    user = user
+    @seller = seller
+
+    mail(
+      to: [user.email, @seller.email_partner],
+      subject: 'Sua operação foi aprovada!'
+      )
+
+  end
 end
 

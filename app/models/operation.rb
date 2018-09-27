@@ -41,12 +41,20 @@ class Operation < ApplicationRecord
     installments.reduce(Money.new(0)){|total, i| total + i.value}
   end
 
+  def total_value_approved
+    installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.value : Money.new(0))}
+  end
+
   def fee
     installments.reduce(Money.new(0)){|total, i| total + i.fee}
   end
 
   def net_value
     installments.reduce(Money.new(0)){|total, i| total + i.net_value}
+  end
+
+  def net_value_approved
+    installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.net_value : Money.new(0))}
   end
 
   def protection

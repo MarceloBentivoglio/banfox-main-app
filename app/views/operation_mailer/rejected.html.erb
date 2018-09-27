@@ -1,4 +1,4 @@
-<span class="preheader">Abaixo você encontrará algumas informações úteis a respeito da sua operação.</span>
+<span class="preheader">Infelizmente sua operação não foi aprovada</span>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
@@ -18,27 +18,7 @@
               <tr>
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.split.first %>,</h1>
-                  <p>A operação que você nos mandou já está sendo analisada. Em menos de 2h você receberá um e-mail com o nosso posicionamento.</p>
-                  <table class="attribute-list" width="100%" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td class="attribute-list-container">
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td class="attribute-list-item"><strong>Valor bruto:</strong> <%= humanized_money_with_symbol @operation.total_value %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><strong>Valor líquido:</strong> <%= humanized_money_with_symbol @operation.net_value %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><span>Depósito na assinatura:</span> <%= humanized_money_with_symbol @operation.deposit_today %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><span>Depósito na liquidação:</span> <%= humanized_money_with_symbol @operation.protection %></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                  <p>A operação que você nos mandou foi analisada e infelizmente não foi aprovada. Mas não se preocupe você pode mandar outros titulos para análise.</p>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -51,7 +31,7 @@
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <a href="https://www.mvpinvest.com.br/installments/store" class="button button--blue" target="_blank">Ver Operação Completa</a>
+                                    <a href="https://www.mvpinvest.com.br/installments/store" class="button button--blue" target="_blank">Enviar novos títulos</a>
                                   </td>
                                 </tr>
                               </table>
@@ -76,6 +56,7 @@
                             <th class="purchase_heading"><p>Data de vencimento</p></th>
                             <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
                             <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
+                            <th class="purchase_heading"><p class="align-right">Status</p></th>
                           </tr>
                           <% @installments.each do |i| %>
                             <tr>
@@ -83,15 +64,18 @@
                               <td class="purchase_item"><%= i.due_date %></td>
                               <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
                               <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
+                              <td class="purchase_item align-right"><%=  i.status[1] %></td>
                             </tr>
                           <% end %>
                           <tr>
+                            <td class="purchase_footer" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Total Bruto</p></td>
                             <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
                           </tr>
                           <tr>
+                            <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"></p></td>
                             <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total Líquido</p></td>
@@ -129,3 +113,4 @@
     </td>
   </tr>
 </table>
+
