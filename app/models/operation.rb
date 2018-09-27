@@ -36,4 +36,24 @@ class Operation < ApplicationRecord
   def partially_approved?
     installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
   end
+
+  def total_value
+    installments.reduce(Money.new(0)){|total, i| total + i.value}
+  end
+
+  def fee
+    installments.reduce(Money.new(0)){|total, i| total + i.fee}
+  end
+
+  def net_value
+    installments.reduce(Money.new(0)){|total, i| total + i.net_value}
+  end
+
+  def protection
+    0.1 * total_value
+  end
+
+  def deposit_today
+    net_value - protection
+  end
 end

@@ -10,6 +10,7 @@ class OperationsController < ApplicationController
         operation.installments.each do |i|
           i.ordered!
         end
+        OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
       end
     end
     redirect_to store_installments_path
