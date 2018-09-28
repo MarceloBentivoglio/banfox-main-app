@@ -19,11 +19,11 @@ const recordOption = (btn) => {
 
 const unselectOtherOption = (btn) => {
   forgetOption(btn);
-  btn.classList.remove("btn-orange-transparent-clicked");
+  btn.classList.remove("btn-blue-transparent-clicked");
 }
 
 const keepButtonClicked = (btn) => {
-  btn.classList.add("btn-orange-transparent-clicked");
+  btn.classList.add("btn-blue-transparent-clicked");
 }
 
 const recordOptionsOnClick = (btnYes, btnNo) => {
