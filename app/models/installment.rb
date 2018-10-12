@@ -104,6 +104,45 @@ class Installment < ApplicationRecord
     value - fee
   end
 
+  def installment_attributes
+    {
+      operation_id: self.operation_id,
+      invoice_id: self.invoice_id,
+      payer_id: self.invoice.payer_id,
+      payer_name: self.invoice.payer.company_name,
+      payer_cnpj: self.invoice.payer.cnpj,
+      id: self.id,
+      rebuy_id: self.rebuy_id,
+      number: self.number,
+      value_cents: self.value_cents,
+      value_currency: self.value_currency,
+      due_date: self.due_date.try(:strftime),
+      order_date: self.order_date.try(:strftime),
+      deposit_date: self.deposit_date.try(:strftime),
+      receipt_date: self.receipt_date.try(:strftime),
+      backoffice_status: self.backoffice_status,
+      liquidation_status: self.liquidation_status,
+      unavailability: self.unavailability,
+      rej_motive: self.rej_motive,
+    }.stringify_keys
+  end
+
+  def async_update_spreadsheet
+    SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, self.row, self.installment_attributes)
+  end
+
+  def spreadsheet_id
+    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+  end
+
+  def worksheet_name
+    Rails.application.credentials[:google][:google_installment_worksheet_name]
+  end
+
+  def self.number_of_new_row
+    (row_number = self.maximum(:row)) ? row_number + 1 : 2
+  end
+
   private
 
   def destroy_parent_if_void

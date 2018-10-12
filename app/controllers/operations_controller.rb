@@ -8,7 +8,9 @@ class OperationsController < ApplicationController
       ActiveRecord::Base.transaction do
         operation.save!
         operation.installments.each do |i|
+          i.row = Installment.number_of_new_row
           i.ordered!
+          i.async_update_spreadsheet
         end
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
       end

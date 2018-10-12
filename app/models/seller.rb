@@ -169,6 +169,8 @@ class Seller < ApplicationRecord
       cost_per_unit_cents: self.cost_per_unit_cents,
       debt_cents: self.debt_cents,
       operation_limit_cents: self.operation_limit_cents,
+      fator: self.fator,
+      advalorem: self.advalorem,
       full_name_partner: self.full_name_partner,
       cpf_partner: self.cpf_partner,
       rf_full_name_partner: self.rf_full_name_partner,
