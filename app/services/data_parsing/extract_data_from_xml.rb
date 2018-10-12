@@ -14,7 +14,7 @@ class ExtractDataFromXml
       invoice = check_invoice_seller(doc, invoice, seller)
       invoice = extract_invoice_general_info(doc, invoice)
       invoice = extract_installments(doc, invoice)
-      invoice = extract_payer_info(doc, invoice)
+      invoice = extract_payer_info(doc, invoice, seller)
       @new_invoices << invoice
       rescue RuntimeError => e
         @new_invoices << e
@@ -46,7 +46,7 @@ class ExtractDataFromXml
   end
 
   #TODO: split this method it is too big
-  def extract_payer_info (doc, invoice)
+  def extract_payer_info (doc, invoice, seller)
     doc.search('dest').each do |xml_payer_info|
       cnpj = xml_payer_info.search('CNPJ').text.strip
       if Payer.exists?(cnpj: cnpj)
@@ -64,8 +64,8 @@ class ExtractDataFromXml
         payer.zip_code = xml_payer_info.search('CEP').text.strip
         payer.inscr_est = xml_payer_info.search('IE').text.strip
         payer.inscr_mun = xml_payer_info.search('IM').text.strip
-        payer.fator = 0.045
-        payer.advalorem = 0.005
+        payer.fator = seller.fator
+        payer.advalorem = seller.advalorem
       end
       invoice.payer = payer
       return invoice
