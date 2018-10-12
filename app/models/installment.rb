@@ -4,7 +4,6 @@ class Installment < ApplicationRecord
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
   after_destroy :destroy_parent_if_void
-  after_save :async_update_spreadsheet
 
   # Helper for other scopes
   scope :from_seller,         -> (seller) { joins(:invoice).where(invoices: {seller: seller}) }
@@ -107,9 +106,12 @@ class Installment < ApplicationRecord
 
   def installment_attributes
     {
-      id: self.id,
       operation_id: self.operation_id,
       invoice_id: self.invoice_id,
+      payer_id: self.invoice.payer_id,
+      payer_name: self.invoice.payer.company_name,
+      payer_cnpj: self.invoice.payer.cnpj,
+      id: self.id,
       rebuy_id: self.rebuy_id,
       number: self.number,
       value_cents: self.value_cents,
@@ -126,7 +128,7 @@ class Installment < ApplicationRecord
   end
 
   def async_update_spreadsheet
-    SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.installment_attributes)
+    SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, self.row, self.installment_attributes)
   end
 
   def spreadsheet_id
@@ -135,6 +137,10 @@ class Installment < ApplicationRecord
 
   def worksheet_name
     Rails.application.credentials[:google][:google_installment_worksheet_name]
+  end
+
+  def self.number_of_new_row
+    (row_number = self.maximum(:row)) ? row_number + 1 : 2
   end
 
   private
