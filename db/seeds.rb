@@ -126,6 +126,7 @@ Installment.create!(
  operation: operation1,
  number: "004.848/01",
  value: Money.new(3330000),
+ order_date: Date.new(2018,2,10),
  due_date: Date.new(2018,5,10),
  backoffice_status: "deposited",
  liquidation_status: "paid",

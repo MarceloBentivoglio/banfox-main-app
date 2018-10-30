@@ -9,6 +9,7 @@ class OperationsController < ApplicationController
         operation.save!
         operation.installments.each do |i|
           i.row = Installment.number_of_new_row
+          i.order_date = Date.current
           i.ordered!
           i.async_update_spreadsheet
         end

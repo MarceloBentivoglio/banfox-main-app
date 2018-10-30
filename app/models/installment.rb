@@ -93,7 +93,7 @@ class Installment < ApplicationRecord
   end
 
   def outstanding_days
-    days = (due_date - Date.current).to_i
+    days = (due_date - (order_date || Date.current)).to_i
   end
 
   def fee
