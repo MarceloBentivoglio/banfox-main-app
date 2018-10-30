@@ -6,13 +6,12 @@ class OperationsController < ApplicationController
     operation = Operation.new(operation_params)
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
       ActiveRecord::Base.transaction do
-        operation.save!
         operation.installments.each do |i|
           i.row = Installment.number_of_new_row
           i.order_date = Date.current
           i.ordered!
-          i.async_update_spreadsheet
         end
+        operation.save!
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
       end
     end

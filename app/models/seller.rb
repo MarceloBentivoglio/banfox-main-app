@@ -1,6 +1,4 @@
 class Seller < ApplicationRecord
-  after_save :async_update_spreadsheet
-
   monetize :monthly_revenue_cents, with_model_currency: :currency
   monetize :monthly_fixed_cost_cents, with_model_currency: :currency
   monetize :cost_per_unit_cents, with_model_currency: :currency
@@ -22,6 +20,7 @@ class Seller < ApplicationRecord
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
 
+  after_save :async_update_spreadsheet
 # validate :correct_document_mime_type
 
 # Through this constatants we are linking the name of the selllers table column

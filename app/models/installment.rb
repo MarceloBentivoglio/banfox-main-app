@@ -3,7 +3,9 @@ class Installment < ApplicationRecord
   belongs_to :rebuy, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
+
   after_destroy :destroy_parent_if_void
+  after_update :async_update_spreadsheet
 
   # Helper for other scopes
   scope :from_seller,         -> (seller) { joins(:invoice).where(invoices: {seller: seller}) }
@@ -73,6 +75,7 @@ class Installment < ApplicationRecord
       paid: "Liquidada",
       rebought: "Recomprada",
       pdd: "Perdida",
+      available: "Disponível",
     }
   end
 
@@ -113,6 +116,7 @@ class Installment < ApplicationRecord
       payer_cnpj: self.invoice.payer.cnpj,
       id: self.id,
       rebuy_id: self.rebuy_id,
+      status: self.status[1],
       number: self.number,
       value_cents: self.value_cents,
       value_currency: self.value_currency,
