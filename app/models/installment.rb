@@ -97,10 +97,11 @@ class Installment < ApplicationRecord
 
   def outstanding_days
     days = (due_date - (order_date || Date.current)).to_i
+    return days.positive? ? days : 0
   end
 
   def fee
-    value * (((1 + invoice.fee) ** (outstanding_days / 30)) - 1)
+    value * (((1 + invoice.fee) ** (outstanding_days / 30.0)) - 1)
   end
 
   def net_value
