@@ -15,5 +15,4 @@ class Invoice < ApplicationRecord
     advalorem = [seller.advalorem, seller.advalorem].max
     fator + advalorem
   end
-
 end
