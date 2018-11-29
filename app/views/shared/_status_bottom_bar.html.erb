@@ -52,7 +52,7 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= link_to "Assinar documentos", "#", class: "btn-rounded blue button" %>
+            <%= link_to "Assinar documentos", view_contract_operations_path, class: "btn-rounded blue button" %>
           </div>
         <% elsif @status == :completely_rejected %>
           <div class="top-content big-letters">
@@ -68,7 +68,7 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= link_to "Estou ciente, quero assinar os documentos", "#", class: "btn-rounded blue button" %>
+            <%= link_to "Estou ciente, quero assinar os documentos", view_contract_operations_path, class: "btn-rounded blue button" %>
           </div>
         <% else %>
         <% end %>

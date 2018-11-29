@@ -37,8 +37,20 @@ class Operation < ApplicationRecord
     installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
   end
 
+  def ready_to_sign?
+    completely_approved? || partially_approved?
+  end
+
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }
+  end
+
+  def deposit_money
+    installments.each do |i|
+        #In fact here we would have another step where we have to confirm that we have deposited the money before changing the status to deposited
+        i.opened!
+        i.deposited!
+    end
   end
 
   def total_value

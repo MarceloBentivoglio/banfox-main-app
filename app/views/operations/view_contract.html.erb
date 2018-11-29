@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="content-view-contract">
+        <iframe src="https://res.cloudinary.com/dbzg4txla/image/upload/v1543521912/RECIBO_ELIAS_mtu4lz.pdf" width="600" height="780" style="border: none;"> </iframe>
+      </div>
+      <div class="content">
+        <%= simple_form_for @operation do |f| %>
+          <%= f.input :signed %>
+          <%= f.label "Li e aceito os termos do contrato" %>
+          <%= f.submit "Assinar Contrato", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
