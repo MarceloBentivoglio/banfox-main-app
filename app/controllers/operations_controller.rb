@@ -38,14 +38,14 @@ class OperationsController < ApplicationController
   def view_contract
     # TODO: This method was created only for the demo, the business logic is not correct
     @operation = Operation.last_from_seller(@seller).last
-    if @operation.ready_to_sign?
-      @operation.deposit_money
-    end
   end
 
   def update
     operation = Operation.last_from_seller(@seller).last
-    operation.update(signed_operation_params)
+    if operation.ready_to_sign?
+      operation.update(signed_operation_params)
+      operation.deposit_money
+    end
     redirect_to opened_installments_path
   end
 
