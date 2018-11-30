@@ -40,6 +40,7 @@ class ExtractDataFromXml
       i.due_date = xml_installments_info.search('dVenc').text.strip
       i.invoice = invoice
       i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 0 : 1
+      i.unavailability = set_unavailability(i.due_date, ninety_days)
       invoice.installments.push(i)
     end
     return invoice
@@ -94,5 +95,11 @@ class ExtractDataFromXml
     payer = Payer.new
     @new_payers << payer
     return payer
+  end
+
+  def set_unavailability (due_date, ninety_days)
+    return 0 if due_date <= Date.current
+    return 1 if due_date > ninety_days
+    return nil
   end
 end
