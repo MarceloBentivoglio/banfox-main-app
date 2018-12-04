@@ -16,7 +16,7 @@
             <span class="point active">4</span>
             <span class="point future">5</span>
           </div>
-          <div class="input-file-box">
+
             <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
               <div class="wrapper-btn-options-form form-group">
                 <label for="">Você tem poderes para assinar pela empresa? </label>
@@ -41,7 +41,7 @@
                 <%= f.submit 'Continuar', class: "btn-blue-transparent"%>
               </div>
             <% end %>
-          </div>
+
         </div>
       </div>
     </div>

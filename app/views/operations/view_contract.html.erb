@@ -1,17 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="content-view-contract">
-        <iframe src="https://res.cloudinary.com/dbzg4txla/image/upload/v1543521912/RECIBO_ELIAS_mtu4lz.pdf" width="600" height="780" style="border: none;"> </iframe>
-      </div>
-      <div class="content">
-        <%= simple_form_for @operation do |f| %>
-          <%= f.input :signed %>
-          <%= f.label "Li e aceito os termos do contrato" %>
-          <%= f.submit "Assinar Contrato", class: "btn btn-primary" %>
-        <% end %>
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Contrato da operação",
+          optional_button: "",
+          } %>
+        <div class="content-view-contract">
+          <iframe src="https://res.cloudinary.com/dbzg4txla/image/upload/v1543938206/Contrato_v1ixws.pdf" width="600" height="780" style="border: none;"> </iframe>
+        </div>
+        <div class="content-view-contract-buttons">
+          <%= simple_form_for @operation do |f| %>
+          <div class="tag-choices-consent">
+              <input name="operation[signed]" type="hidden" value="0" />
+              <input class="hidden" type="checkbox" value="1" name="operation[signed]" id="operation_signed"/>
+              <label class="tag-choice tag-consent" for="operation_signed">
+                Li e aceito os termos do contrato
+                <i class="fa fa-check"></i>
+              </label>
+          </div>
+          <%= f.submit "Assinar Contrato", class: "btn-rounded blue" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
