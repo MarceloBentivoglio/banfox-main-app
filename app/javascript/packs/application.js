@@ -13,6 +13,7 @@ import { collapseForm } from "../components/collapseForm";
 import { rememberOptionsBetweenSteps } from "../components/rememberOptionsBetweenSteps"
 import { showModalOnFirstAccess } from "../components/showModalOnFirstAccess"
 import { operationTotalValuesAccordingToCheck, operationInAnalysisTotalValues } from "../components/operationTotalValues"
+import { bindSweetAlertButton } from '../components/sweetAlert';
 
 
 selectTagOnClick();
@@ -30,3 +31,4 @@ rememberOptionsBetweenSteps();
 showModalOnFirstAccess();
 operationTotalValuesAccordingToCheck();
 operationInAnalysisTotalValues();
+bindSweetAlertButton();
