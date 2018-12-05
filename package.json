@@ -6,7 +6,8 @@
     "bootstrap": "3",
     "jquery": "^3.3.1",
     "jquery-mask-plugin": "^1.14.15",
-    "simple-mask-money": "^1.0.0"
+    "simple-mask-money": "^1.0.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

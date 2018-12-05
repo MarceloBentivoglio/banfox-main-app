@@ -46,6 +46,7 @@ class OperationsController < ApplicationController
       operation.update(signed_operation_params)
       operation.deposit_money
     end
+    sleep(4.0)
     redirect_to opened_installments_path
   end
 
