@@ -1,5 +1,5 @@
 class SellerMailer < ApplicationMailer
-  default from: 'marcelo.bentivoglio@mvpinvest.com.br'
+  default from: 'marcelo.bentivoglio@banfox.com.br'
 
   def welcome(user, seller)
     user = user
@@ -7,7 +7,7 @@ class SellerMailer < ApplicationMailer
 
     mail(
       to: set_recipients(user.email, @seller.email_partner),
-      subject: 'Bem vindo à MVP Invest'
+      subject: 'Bem vindo à Banfox'
       )
   end
 
