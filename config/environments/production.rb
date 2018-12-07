@@ -2,7 +2,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method     = :postmark
   config.action_mailer.postmark_settings   = { api_key: Rails.application.credentials[:production][:postmark_api_key] }
-  config.action_mailer.default_url_options = { host: "https://www.mvpinvest.com.br" }
+  config.action_mailer.default_url_options = { host: "https://www.banfox.com.br" }
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
 
@@ -102,4 +102,4 @@ Rails.application.configure do
 
 end
 # Comand needed to create the attachement links - Joaquim
-Rails.application.routes.default_url_options[:host] = "https://www.mvpinvest.com.br"
+Rails.application.routes.default_url_options[:host] = "https://www.banfox.com.br"

@@ -10,8 +10,8 @@ class Contact < MailForm::Base
   def headers
     {
       :subject => "Contato Banfox Website",
-      :to => "marcelo.bentivoglio@banfox.com.br; joaquim.oliveira@mvpinvest.com.br",
-      :from => "joaquim.oliveira@mvpinvest.com.br"
+      :to => "marcelo.bentivoglio@banfox.com.br; joaquim@banfox.com.br",
+      :from => "joaquim@banfox.com.br"
     }
   end
 end
