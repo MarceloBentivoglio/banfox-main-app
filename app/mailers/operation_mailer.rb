@@ -1,5 +1,5 @@
 class OperationMailer < ApplicationMailer
-  default from: 'marcelo.bentivoglio@banfox.com.br'
+  default from: 'marcelo@banfox.com.br'
 
   def to_analysis(operation, user, seller)
     @operation = operation
