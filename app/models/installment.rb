@@ -110,10 +110,12 @@ class Installment < ApplicationRecord
 
   def installment_attributes
     {
+      seller_name: self.invoice.seller.company_name,
+      seller_id: self.invoice.seller_id,
       operation_id: self.operation_id,
       invoice_id: self.invoice_id,
-      payer_id: self.invoice.payer_id,
       payer_name: self.invoice.payer.company_name,
+      payer_id: self.invoice.payer_id,
       payer_cnpj: self.invoice.payer.cnpj,
       id: self.id,
       rebuy_id: self.rebuy_id,
