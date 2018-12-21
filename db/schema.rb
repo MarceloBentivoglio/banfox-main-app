@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_204229) do
+ActiveRecord::Schema.define(version: 2018_05_17_164743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,24 +44,23 @@ ActiveRecord::Schema.define(version: 2018_11_29_204229) do
     t.date "order_date"
     t.date "deposit_date"
     t.date "receipt_date"
-    t.integer "backoffice_status"
-    t.integer "liquidation_status"
-    t.integer "unavailability"
-    t.integer "rejection_motive"
+    t.integer "backoffice_status", default: 0
+    t.integer "liquidation_status", default: 0
+    t.integer "unavailability", default: 0
+    t.integer "rejection_motive", default: 0
     t.string "import_ref"
     t.bigint "invoice_id"
     t.bigint "rebuy_id"
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "row"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer "invoice_type"
+    t.integer "invoice_type", default: 0
     t.string "number"
     t.string "import_ref"
     t.bigint "seller_id"
@@ -75,9 +74,9 @@ ActiveRecord::Schema.define(version: 2018_11_29_204229) do
   create_table "operations", force: :cascade do |t|
     t.boolean "consent", default: false, null: false
     t.string "import_ref"
+    t.boolean "signed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "signed", default: false
   end
 
   create_table "payers", force: :cascade do |t|
@@ -158,7 +157,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_204229) do
     t.integer "validation_status"
     t.boolean "visited", default: false, null: false
     t.integer "analysis_status", default: 0
-    t.integer "rejection_motive"
+    t.integer "rejection_motive", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
