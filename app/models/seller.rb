@@ -47,11 +47,12 @@ class Seller < ApplicationRecord
   }.freeze
 
   enum company_type: {
-    ltda: 0,
-    sa: 1,
-    me: 2,
-    mei: 3,
-    epp: 4,
+    company_type_not_set: 0,
+    ltda:                 1,
+    sa:                   1,
+    me:                   2,
+    mei:                  3,
+    epp:                  4,
   }
 
 # If this enum is changed the steps in SellerStepsController must change as well
@@ -72,9 +73,10 @@ class Seller < ApplicationRecord
     approved: 3,
   }
 
-  enum rej_motive: {
-    insuficient_revenue: 0,
-    no_match_w_rf: 1,
+  enum rejection_motive: {
+    rejection_motive_not_set: 0,
+    insuficient_revenue:      1,
+    no_match_w_rf:            2,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
@@ -181,7 +183,7 @@ class Seller < ApplicationRecord
       validation_status: self.validation_status,
       visited: self.visited,
       analysis_status: self.analysis_status,
-      rej_motive: self.rej_motive,
+      rejection_motive: self.rejection_motive,
       social_contracts: get_documents_link(self.social_contracts),
       update_on_social_contracts: get_documents_link(self.update_on_social_contracts),
       address_proofs: get_documents_link(self.address_proofs),

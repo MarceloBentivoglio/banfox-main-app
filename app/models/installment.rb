@@ -35,32 +35,36 @@ class Installment < ApplicationRecord
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model
   enum liquidation_status: {
-    opened:     0,
-    paid:       1,
-    rebought:   2,
-    pdd:        3,
+    liquidation_status_not_set: 0,
+    opened:                     1,
+    paid:                       2,
+    rebought:                   3,
+    pdd:                        4,
   }
 
   enum backoffice_status: {
-    unavailable:      0,
-    available:        1,
-    approved:         2,
-    rejected:         3,
-    rejected_consent: 4,
-    cancelled:        5,
-    ordered:          6,
-    deposited:        7,
+    backoffice_status_not_set: 0,
+    unavailable:               1,
+    available:                 2,
+    approved:                  3,
+    rejected:                  4,
+    rejected_consent:          5,
+    cancelled:                 6,
+    ordered:                   7,
+    deposited:                 8,
   }
 
   enum unavailability: {
-    due_date_past:              0,
-    due_date_later_than_limit:  1,
-    already_operated:           2,
+    unavailability_not_set:    0,
+    due_date_past:             1,
+    due_date_later_than_limit: 2,
+    already_operated:          3,
   }
 
-  enum rej_motive: {
-    fake:             0,
-    payer_low_rated:  1,
+  enum rejection_motive: {
+    rejectiom_motive_not_set: 0,
+    fake:                     1,
+    payer_low_rated:          2,
   }
 
   def statuses
@@ -130,7 +134,7 @@ class Installment < ApplicationRecord
       backoffice_status: self.backoffice_status,
       liquidation_status: self.liquidation_status,
       unavailability: self.unavailability,
-      rej_motive: self.rej_motive,
+      rejection_motive: self.rejection_motive,
     }.stringify_keys
   end
 
