@@ -111,12 +111,16 @@ i7 = Invoice.create!(
 # Creating operations
 operation1 = Operation.create!(
   consent: true,
+  signed: true,
+
 )
 operation2 = Operation.create!(
   consent: true,
+  signed: true,
 )
 operation3 = Operation.create!(
   consent: true,
+  signed: true,
 )
 
 # Creating installments

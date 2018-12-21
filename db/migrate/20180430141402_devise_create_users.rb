@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.datetime :locked_at
 
       # Added by Joaquim
-      t.boolean :admin, null: false, default: false
+      t.boolean    :admin, null: false, default: false
       t.references :seller, index: true, foreign_key: true
 
       t.timestamps null: false
