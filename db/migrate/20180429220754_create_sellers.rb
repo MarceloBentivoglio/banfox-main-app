@@ -42,7 +42,7 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.integer  :validation_status
       t.boolean  :visited, null: false, default: false
       t.integer  :analysis_status, default: 0
-      t.integer  :rej_motive
+      t.integer  :rejection_motive
 
       t.timestamps
     end

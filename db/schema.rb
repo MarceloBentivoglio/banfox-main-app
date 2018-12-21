@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_204229) do
     t.integer "backoffice_status"
     t.integer "liquidation_status"
     t.integer "unavailability"
-    t.integer "rej_motive"
+    t.integer "rejection_motive"
     t.string "import_ref"
     t.bigint "invoice_id"
     t.bigint "rebuy_id"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_204229) do
     t.integer "validation_status"
     t.boolean "visited", default: false, null: false
     t.integer "analysis_status", default: 0
-    t.integer "rej_motive"
+    t.integer "rejection_motive"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

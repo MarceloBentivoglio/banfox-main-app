@@ -10,7 +10,7 @@ class CreateInstallments < ActiveRecord::Migration[5.1]
       t.integer    :backoffice_status
       t.integer    :liquidation_status
       t.integer    :unavailability
-      t.integer    :rej_motive
+      t.integer    :rejection_motive
       t.string     :import_ref
       t.references :invoice, index: true, foreign_key: true
       t.references :rebuy, index: true, foreign_key: true
