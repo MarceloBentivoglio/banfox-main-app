@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   has_many_attached :xmls, dependent: :purge
 
   enum invoice_type: {
-    not_setted:           0,
+    invoice_type_not_set: 0,
     contract:             1,
     traditional_invoice:  2,
     check:                3,
