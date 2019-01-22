@@ -37,26 +37,18 @@ class CpfCheckRF
   end
 
   def fetch_rf_info(cpf)
-    url = "https://consulta-situacao-cpf-cnpj.p.mashape.com/consultaSituacaoCPF?cpf={#{cpf}}"
+    url = "https://consulta-situacao-cpf-cnpj.p.rapidapi.com/consultaSituacaoCPF?cpf={#{cpf}}"
     Timeout::timeout(5) do
-      response = Unirest.get(url,
-        headers= {
-          'X-Mashape-Key' => Rails.application.credentials[Rails.env.to_sym][:mashape_key],
-          'Accept' => 'application/json'
-      })
+      headers = { "X-RapidAPI-Key" => Rails.application.credentials[Rails.env.to_sym][:rapidapi_key] }
+      serialized_rf_info = RestClient.get(url, headers)
+      rf_info = JSON.parse(serialized_rf_info)
     end
   end
 
   def treat_rf_infos
     @rf_infos.each do |rf_info|
-      if rf_info.body.is_a?(RestClient::Response)
-        @rf_names << rf_info.body.body.downcase
-        @rf_sit_cad << rf_info.body.body.downcase
-        @rf_cpfs_valid = false
-      else
-        @rf_names << rf_info.body['nome'].downcase
-        @rf_sit_cad << rf_info.body['situacaoCadastral'].downcase
-      end
+      @rf_names << rf_info['nome'].downcase
+      @rf_sit_cad << rf_info['situacaoCadastral'].downcase
     end
   end
 
