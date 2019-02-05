@@ -39,7 +39,7 @@ class ExtractDataFromXml
       i.value = Money.new(xml_installments_info.search('vDup').text.delete("\n ."))
       i.due_date = xml_installments_info.search('dVenc').text.strip
       i.invoice = invoice
-      i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 0 : 1
+      i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 1 : 2
       i.unavailability = set_unavailability(i.due_date, ninety_days)
       invoice.installments.push(i)
     end
@@ -98,8 +98,8 @@ class ExtractDataFromXml
   end
 
   def set_unavailability (due_date, ninety_days)
-    return 0 if due_date <= Date.current
-    return 1 if due_date > ninety_days
+    return 1 if due_date <= Date.current
+    return 2 if due_date > ninety_days
     return nil
   end
 end
