@@ -15,6 +15,7 @@ class ExtractDataFromXml
       invoice = extract_invoice_general_info(doc, invoice)
       invoice = extract_installments(doc, invoice)
       invoice = extract_payer_info(doc, invoice, seller)
+      invoice.xmls.attach(io: File.open(file.tempfile.path), filename: file.original_filename)
       @new_invoices << invoice
       rescue RuntimeError => e
         @new_invoices << e
