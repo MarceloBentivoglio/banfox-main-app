@@ -1,27 +1,23 @@
 class ExtractDataFromXml
-  def initialize
-    @new_invoices = []
-    @new_payers = []
-  end
+  def initialize(file, seller)
+    @file = file
+    @seller = seller
 
-  def invoice(files, seller)
-    files.each do |file|
-      begin
-      check_file_is_xml(file)
-      doc = Nokogiri::XML(file.read)
-      file.rewind
-      invoice = Invoice.new
-      invoice = check_invoice_seller(doc, invoice, seller)
-      invoice = extract_invoice_general_info(doc, invoice)
-      invoice = extract_installments(doc, invoice)
-      invoice = extract_payer_info(doc, invoice, seller)
-      invoice.document.attach(io: File.open(file.tempfile.path), filename: file.original_filename)
-      @new_invoices << invoice
-      rescue RuntimeError => e
-        @new_invoices << e
-      end
+    begin
+    doc = Nokogiri::XML(@file.read)
+    @file.rewind
+    invoice = Invoice.new
+    invoice = check_invoice_seller(doc, invoice, @seller)
+    invoice = extract_invoice_general_info(doc, invoice)
+    invoice = extract_installments(doc, invoice)
+    invoice = extract_payer_info(doc, invoice, @seller)
+    invoice.document.attach(io: File.open(@file.tempfile.path), filename: @file.original_filename)
+    invoice.save!
+    invoice.traditional_invoice!
+    rescue RuntimeError => e
+      return e
     end
-    return @new_invoices
+    return invoice
   end
 
   private
@@ -54,7 +50,7 @@ class ExtractDataFromXml
       if Payer.exists?(cnpj: cnpj)
         payer = Payer.find_by_cnpj(cnpj)
       else
-        payer = payer_just_imported(cnpj) || create_new_payer
+        payer = Payer.new
         payer.cnpj = cnpj
         payer.company_name = xml_payer_info.search('xNome').text.strip
         payer.address = xml_payer_info.search('xLgr').text.strip
@@ -68,6 +64,7 @@ class ExtractDataFromXml
         payer.inscr_mun = xml_payer_info.search('IM').text.strip
         payer.fator = seller.fator
         payer.advalorem = seller.advalorem
+        payer.save!
       end
       invoice.payer = payer
       return invoice
@@ -81,21 +78,6 @@ class ExtractDataFromXml
       invoice.seller = seller
       return invoice
     end
-  end
-
-  def check_file_is_xml (file)
-    raise RuntimeError, 'File is not a xml type' unless file.content_type == "text/xml"
-  end
-
-  def payer_just_imported(cnpj)
-    payer = @new_payers.select { |payer| payer.cnpj == cnpj }
-    return payer.empty? ? nil : payer.first
-  end
-
-  def create_new_payer
-    payer = Payer.new
-    @new_payers << payer
-    return payer
   end
 
   def set_unavailability (due_date, ninety_days)
