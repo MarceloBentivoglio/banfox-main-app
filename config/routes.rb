@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   }
   resources :seller_steps
   resources :invoices, only: [:create, :destroy, :show]
+  resources :invoices_documents_bundles, only: [:create]
   resources :installments, only: [:destroy] do
     collection do
       get :store

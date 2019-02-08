@@ -5,7 +5,7 @@
   before_action :require_not_rejected
   before_action :require_not_on_going
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
-  before_action :set_invoice
+  before_action :set_invoices_documents_bundle
   include Pundit
   after_action :verify_authorized, only: :destroy, unless: :skip_pundit?
   rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
@@ -71,7 +71,7 @@
     redirect_back(fallback_location: root_path)
   end
 
-  def set_invoice
-    @invoice = Invoice.new
+  def set_invoices_documents_bundle
+    @invoices_documents_bundle = InvoicesDocumentsBundle.new
   end
 end

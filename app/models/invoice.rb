@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
   belongs_to :payer, optional: true
   belongs_to :seller, optional: true
   has_many :installments, dependent: :destroy
-  has_many_attached :xmls, dependent: :purge
+  has_one_attached :document, dependent: :purge
 
   enum invoice_type: {
     invoice_type_not_set: 0,
