@@ -3,6 +3,8 @@ class InstallmentsController < ApplicationController
   before_action :set_status, only: [:store]
   before_action :verify_need_immediate_upload, only: [:store]
 
+  layout "application_w_flashes"
+
   def store
     @installments = set_installments(@seller, @operation, @status).paginate(page: params[:page])
     respond_to do |format|
