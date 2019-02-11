@@ -2,6 +2,8 @@ class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
   before_action :set_seller, only: [:create, :consent, :view_contract, :update]
 
+  layout "application_w_flashes"
+
   def create
     operation = Operation.new(operation_params)
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
