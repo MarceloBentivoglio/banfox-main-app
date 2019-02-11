@@ -3,10 +3,10 @@ class InvoicesDocumentsBundlesController < ApplicationController
 
   # Review this part
   def create
-    files = params[:invoices_documents_bundle][:documents]
-    if files
+    documents = params[:invoices_documents_bundle][:documents]
+    if documents
       flash[:alert] = []
-      invoices = CreateInvocesFromFiles.new(files, @seller)
+      invoices = CreateInvoicesFromDocuments.new(documents, @seller).invoices
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
           flash[:alert] << 'Uma das notas que você subiu contem um CNPJ que não confere com o seu' if invoice.message == "Invoice do not belongs to seller"
