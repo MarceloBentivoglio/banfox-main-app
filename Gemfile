@@ -71,6 +71,9 @@ gem 'unirest'
 # This gem allows mails from contact forms, by plataformatec
 gem 'mail_form'
 
+#This gem creates a token so that other app like DocParser can communicate with our app
+gem "simple_token_authentication"
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   # This gem is used to open the email in development in a browser tab

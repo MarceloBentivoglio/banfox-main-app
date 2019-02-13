@@ -40,6 +40,11 @@ Rails.application.routes.draw do
     end
   end
   resources :documents, only: [:index, :new, :create, :destroy]
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :pdf_parsed_invoices, only: [ :create ]
+    end
+  end
 
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
