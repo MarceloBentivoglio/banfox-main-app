@@ -11,7 +11,7 @@ class CreateInvoicesFromDocuments
       if file_is_xml?(file)
         @invoices << ExtractDataFromXml.new(file, @seller)
       elsif file_is_pdf?(file)
-        @invoices <<  ExtractDataFromPdf.new(file, @seller).invoice
+        @invoices <<  ExtractDataFromPdf.new(file, @seller)
       else
         raise RuntimeError, 'File has not a valid type: xml, PDF'
       end

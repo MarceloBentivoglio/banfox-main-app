@@ -72,6 +72,6 @@
   end
 
   def set_invoices_documents_bundle
-    @invoices_documents_bundle = InvoicesDocumentsBundle.new
+    @invoices_documents_bundle = InvoicesDocumentsBundle.new()
   end
 end

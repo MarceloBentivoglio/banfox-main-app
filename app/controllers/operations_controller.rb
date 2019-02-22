@@ -17,8 +17,8 @@ class OperationsController < ApplicationController
       end
     end
     redirect_to store_installments_path
-  rescue
-   redirect_to store_installments_path
+    rescue
+      redirect_to store_installments_path
   end
 
   def consent
