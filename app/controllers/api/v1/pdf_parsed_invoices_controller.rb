@@ -5,9 +5,7 @@ class Api::V1::PdfParsedInvoicesController < Api::V1::BaseController
     puts "\n----> Pdf Parsed Começa aqui\n\n"
     invoice_data = JSON.parse(request.body.read)
     @invoice = ExtractDataFromJson.new(invoice_data).invoice
-    puts invoice_data
     puts "\n----> Pdf Parsed Termina aqui\n\n"
-    @invoice = Invoice.new()
     authorize @invoice
     render body: {ok: "You got here!"}.to_json, status: :created
   end
