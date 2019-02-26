@@ -3,8 +3,10 @@ class ExtractDataFromJson
 
   def initialize(invoice_data)
     @data = invoice_data
-    # @invoice = Invoice.find_by_doc_parser_ref(@data["document_id"])
-    @invoice = Invoice.last
+    @invoice = Invoice.find_by_doc_parser_ref(@data["document_id"])
+    unless @invoice.seller
+      @invoice.seller = Seller.find_by_cnpj(@data["seller_cnpj"])
+    end
 
     invoice_attributes = {
       number: @data["number"],

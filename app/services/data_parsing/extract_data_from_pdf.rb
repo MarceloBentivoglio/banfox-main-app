@@ -29,7 +29,7 @@ class ExtractDataFromPdf
   def send_pdf_to_doc_parser
     doc_parser_ticket = JSON.parse(doc_parser_request.execute.body)
     @invoice.doc_parser_ticket = doc_parser_ticket
-    @invoice.doc_parser_ref = doc_parser_ticket[:id]
+    @invoice.doc_parser_ref = doc_parser_ticket["id"]
   end
 
   def doc_parser_request
