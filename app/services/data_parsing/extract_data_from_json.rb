@@ -3,7 +3,6 @@ class ExtractDataFromJson
 
   DATA_TEMPLATE = {
     # "id" : "2a73f08c34da2caa8902f5545b9624db",
-    # "remote_id" : "",
     "authenticity_code" => "343T.8671.0842.2932099-S",
     "number" => "000245",
     "issue_date" => "2019-02-05",
