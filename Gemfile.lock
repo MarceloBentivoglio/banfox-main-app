@@ -673,6 +673,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.7.2)
+      devise (>= 4.5)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     enum_help (0.0.17)
@@ -978,6 +980,7 @@ DEPENDENCIES
   cpf_cnpj
   creek
   devise
+  devise-i18n
   enum_help
   font-awesome-sass (~> 5.0.13)
   forest_liana
