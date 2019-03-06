@@ -83,12 +83,4 @@ class ExtractDataFromJson
   end
 end
 
-# @installment.attributes = installment_attributes
-    # installment_attributes = {
-    #   number: "#{@data["number"]}/01"
-    #   due_date: Date.parse(@data["issue_date"]) + @data["days_until_due"].to_i.days
-    #   backoffice_status: ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 1 : 2
-    #   unavailability: set_unavailability(i.due_date, ninety_days)
-    # }
-
 

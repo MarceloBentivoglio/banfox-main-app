@@ -9,17 +9,14 @@ class ExtractDataFromPdf
     attach_pdf_invoice
     @invoice.save!
     # fazer callback no model quando doc_parser_data for creado
-    attempt = 1
-    while attempt < 11 do
-      if @invoice.doc_parser_data?
-        attempt = 11
-      end
-        attempt += 1
-        sleep(1)
-    end
-    # receive json
-    # create and save invoice
-    # return invoice
+    # attempt = 1
+    # while attempt < 11 do
+    #   if @invoice.doc_parser_data?
+    #     attempt = 11
+    #   end
+    #     attempt += 1
+    #     sleep(1)
+    # end
   end
 
   def attach_pdf_invoice
@@ -51,7 +48,7 @@ class ExtractDataFromPdf
   end
 
   def parser_id
-    Rails.application.credentials[:doc_parser][:barueri_parser_id]
+    Rails.application.credentials[Rails.env.to_sym][:doc_parser][:barueri_parser_id]
   end
 
   def secret_api_key
