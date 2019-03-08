@@ -1,5 +1,6 @@
 class InvoicesDocumentsBundlesController < ApplicationController
-  before_action :set_seller, only: [:create]
+  before_action :set_seller, only: [:create, :analysis]
+  before_action :set_last_pdf_invoice, only: [:analysis]
 
   # Review this part
   def create
@@ -16,12 +17,29 @@ class InvoicesDocumentsBundlesController < ApplicationController
     else
       flash[:alert] = "É necessário ao menos subir uma nota fiscal"
     end
-    redirect_to store_installments_path
+    invoices_being_parsed = invoices.any? do |invoice|
+      !invoice.doc_parser_data? && invoice.document.content_type  == "application/pdf"
+    end
+    if invoices_being_parsed
+      redirect_to analysis_invoices_documents_bundles_path and return
+    else
+      redirect_to store_installments_path and return
+    end
+  end
+
+  def analysis
+   @countdown_time = @invoice.created_at
   end
 
   private
 
   def set_seller
     @seller = current_user.seller
+  end
+
+  def set_last_pdf_invoice
+    @invoice = @seller.invoices.order(created_at: :desc).find do |invoice|
+      invoice.document.content_type == "application/pdf"
+    end
   end
 end

@@ -14,6 +14,8 @@ import { rememberOptionsBetweenSteps } from "../components/rememberOptionsBetwee
 import { showModalOnFirstAccess } from "../components/showModalOnFirstAccess"
 import { operationTotalValuesAccordingToCheck, operationInAnalysisTotalValues } from "../components/operationTotalValues"
 import { bindSweetAlertButton } from '../components/sweetAlert';
+import { countdownClock } from '../components/countdown';
+
 
 
 selectTagOnClick();
@@ -32,3 +34,4 @@ showModalOnFirstAccess();
 operationTotalValuesAccordingToCheck();
 operationInAnalysisTotalValues();
 bindSweetAlertButton();
+countdownClock();
