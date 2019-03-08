@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates :email, email: true
   validates :email, corporate_email: true
   # validates_with CorporateEmailValidator
-
   after_save :async_update_spreadsheet
+  acts_as_token_authenticatable
 
   def user_attributes
     {

@@ -59,6 +59,7 @@ class Installment < ApplicationRecord
     due_date_past:             1,
     due_date_later_than_limit: 2,
     already_operated:          3,
+    non_applicable:            4,
   }
 
   enum rejection_motive: {

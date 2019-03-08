@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   }
   resources :seller_steps
   resources :invoices, only: [:destroy, :show]
-  resources :invoices_documents_bundles, only: [:create]
+  resources :invoices_documents_bundles, only: [:create] do
+    collection do
+      get :analysis
+    end
+  end
   resources :installments, only: [:destroy] do
     collection do
       get :store
@@ -40,6 +44,12 @@ Rails.application.routes.draw do
     end
   end
   resources :documents, only: [:index, :new, :create, :destroy]
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :pdf_parsed_invoices, only: [ :create ]
+      resources :mobile_inputed_invoices, only: [ :create ]
+    end
+  end
 
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
