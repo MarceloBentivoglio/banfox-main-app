@@ -28,7 +28,8 @@ class InvoicesDocumentsBundlesController < ApplicationController
   end
 
   def analysis
-   @countdown_time = @invoice.created_at
+    @countdown_time = @invoice.created_at
+    @redirection_url = store_installments_url
   end
 
   private

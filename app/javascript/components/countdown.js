@@ -29,7 +29,8 @@ const countdownClock = () => {
       if (distance <= 0) {
         clearInterval(x);
         // countdownElement.innerHTML = "Você será redirecionado";
-        window.location.href = "http://localhost:3000/installments/store"
+        const redirectionUrl = countdownElement.getAttribute("data-redirection-url");
+        window.location.href = redirectionUrl
       }
     }, 1000);
   }
