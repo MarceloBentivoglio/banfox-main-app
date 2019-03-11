@@ -1,52 +1,51 @@
 class ExtractDataFromXml
+  attr_reader :invoice
+
   def initialize(file, seller)
     @file = file
     @seller = seller
+    @invoice = Invoice.new
+    @doc = Nokogiri::XML(@file.read)
 
     begin
-    doc = Nokogiri::XML(@file.read)
     @file.rewind
-    invoice = Invoice.new
-    invoice = check_invoice_seller(doc, invoice, @seller)
-    invoice = extract_invoice_general_info(doc, invoice)
-    invoice = extract_installments(doc, invoice)
-    invoice = extract_payer_info(doc, invoice, @seller)
-    invoice.document.attach(io: File.open(@file.tempfile.path), filename: @file.original_filename)
-    invoice.save!
-    invoice.traditional_invoice!
+    check_invoice_seller
+    extract_invoice_general_info
+    extract_installments
+    extract_payer_info
+    @invoice.document.attach(io: File.open(@file.tempfile.path), filename: @file.original_filename)
+    @invoice.save!
+    @invoice.traditional_invoice!
     rescue RuntimeError => e
-      return e
+      @invoice = e
     end
-    return invoice
   end
 
   private
 
-  def extract_invoice_general_info (doc, invoice)
-    invoice.number = doc.search('fat nFat').text.strip
-    return invoice
+  def extract_invoice_general_info
+    @invoice.number = @doc.search('fat nFat').text.strip
   end
 
-  def extract_installments (doc, invoice)
+  def extract_installments
     ninety_days = 90.days.since.to_date
-    doc.search('dup').each do |xml_installments_info|
+    @doc.search('dup').each do |xml_installments_info|
       i = Installment.new
       i.number = xml_installments_info.search('nDup').text.strip
       # delete("\n .")): takes out blanks spaces, points and paragraphs, otherwise Money class will read "1000.00" as 1000 and convert to 10.00
       i.value = Money.new(xml_installments_info.search('vDup').text.delete("\n ."))
       i.due_date = xml_installments_info.search('dVenc').text.strip
-      i.invoice = invoice
+      i.invoice = @invoice
       # TODO: change 1 and 2 for the status
       i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 1 : 2
       i.unavailability = set_unavailability(i.due_date, ninety_days)
-      invoice.installments.push(i)
+      @invoice.installments.push(i)
     end
-    return invoice
   end
 
   #TODO: split this method it is too big
-  def extract_payer_info (doc, invoice, seller)
-    doc.search('dest').each do |xml_payer_info|
+  def extract_payer_info
+    @doc.search('dest').each do |xml_payer_info|
       cnpj = xml_payer_info.search('CNPJ').text.strip
       if Payer.exists?(cnpj: cnpj)
         payer = Payer.find_by_cnpj(cnpj)
@@ -63,21 +62,19 @@ class ExtractDataFromXml
         payer.zip_code = xml_payer_info.search('CEP').text.strip
         payer.inscr_est = xml_payer_info.search('IE').text.strip
         payer.inscr_mun = xml_payer_info.search('IM').text.strip
-        payer.fator = seller.fator
-        payer.advalorem = seller.advalorem
+        payer.fator = @seller.fator
+        payer.advalorem = @seller.advalorem
         payer.save!
       end
-      invoice.payer = payer
-      return invoice
+      @invoice.payer = payer
     end
   end
 
-  def check_invoice_seller (doc, invoice, seller)
-    doc.search('emit').each do |xml_seller_info|
+  def check_invoice_seller
+    @doc.search('emit').each do |xml_seller_info|
       cnpj = xml_seller_info.search('CNPJ').text.strip
-      raise RuntimeError, 'Invoice do not belongs to seller' unless cnpj == seller.cnpj
-      invoice.seller = seller
-      return invoice
+      raise RuntimeError, 'Invoice do not belongs to seller' unless cnpj == @seller.cnpj
+      @invoice.seller = @seller
     end
   end
 

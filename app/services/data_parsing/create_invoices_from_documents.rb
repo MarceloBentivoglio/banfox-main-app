@@ -9,7 +9,7 @@ class CreateInvoicesFromDocuments
     @files.each do |file|
       begin
       if file_is_xml?(file)
-        @invoices << ExtractDataFromXml.new(file, @seller)
+        @invoices << ExtractDataFromXml.new(file, @seller).invoice
       elsif file_is_pdf?(file)
         @invoices <<  ExtractDataFromPdf.new(file, @seller).invoice
       else
