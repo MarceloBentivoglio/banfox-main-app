@@ -77,6 +77,7 @@ class Seller < ApplicationRecord
     rejection_motive_not_set: 0,
     insuficient_revenue:      1,
     no_match_w_rf:            2,
+    rejected_on_commitee:     3,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
