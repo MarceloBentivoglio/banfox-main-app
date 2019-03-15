@@ -21,8 +21,10 @@ class SellersController < ApplicationController
     @seller.advalorem = 0.005
     @seller.save!
     SellerMailer.welcome(@user, @seller).deliver_now
+    SendSlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar")
     redirect_to sellers_dashboard_path
   rescue Timeout::Error
+    SendSlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis")
     redirect_to takeabreath_path and return
   end
 
