@@ -50,6 +50,10 @@ Rails.application.routes.draw do
       resources :mobile_inputed_invoices, only: [ :create ]
     end
   end
+  namesapce :ops_admin do
+    resource :operations, only: [:index]
+    resource :installments, only: [:index]
+  end
 
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
