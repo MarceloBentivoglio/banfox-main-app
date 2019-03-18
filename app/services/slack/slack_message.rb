@@ -1,8 +1,11 @@
-class SendSlackMessage
+class SlackMessage
 
   def initialize(channel, content)
     @channel = channel
-    @content = content
+    @content = prefix + content
+  end
+
+  def send_now
     response = RestClient.post(url, payload, headers)
   end
 
@@ -30,5 +33,11 @@ class SendSlackMessage
   def secret_api_key
     Rails.application.credentials[:slack][:oauth_access_token]
   end
+
+  def prefix
+    "---- Isso é apenas um teste ---- \n" if Rails.env.development?
+  end
+
+
 
 end

@@ -14,7 +14,7 @@ class OperationsController < ApplicationController
         end
         operation.save!
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
-        SendSlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} subiu uma operação nova")
+        SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} subiu uma operação nova").send_now
       end
     end
     redirect_to store_installments_path
