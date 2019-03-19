@@ -6,7 +6,16 @@ Rails.application.routes.draw do
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
+    namespace :ops_admin do
+      resources :installments, only: [:index] do
+        member do
+          get 'approve'
+          get 'reject'
+        end
+      end
+    end
   end
+
   root to: 'pages#home'
   get "howitworks", to: "pages#howitworks"
   get "about_us", to: "pages#about_us"
@@ -50,10 +59,8 @@ Rails.application.routes.draw do
       resources :mobile_inputed_invoices, only: [ :create ]
     end
   end
-  namesapce :ops_admin do
-    resource :operations, only: [:index]
-    resource :installments, only: [:index]
-  end
+
+
 
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]

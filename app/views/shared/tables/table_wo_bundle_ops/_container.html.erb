@@ -1,0 +1,7 @@
+<div class="table-wo-bundle">
+  <%= render partial: "shared/tables/table_wo_bundle_ops/row", collection: items, as: :item %>
+</div>
+<div id="infinite-scrolling">
+  <%= will_paginate items %>
+</div>
+
