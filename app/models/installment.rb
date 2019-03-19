@@ -113,6 +113,10 @@ class Installment < ApplicationRecord
     value - fee
   end
 
+  # def operation_elapsed_time
+
+  # end
+
   def installment_attributes
     {
       seller_name: self.invoice.seller.company_name,
