@@ -1,8 +1,0 @@
-<% tag_color = "table-wo-bundle-row-content-color-go" if status[0] == :on_date %>
-<% tag_color = "table-wo-bundle-row-content-color-attention" if status[0] == :due_date %>
-<% tag_color = "table-wo-bundle-row-content-color-danger" if status[0] == :overdue %>
-<% tag_color = "table-wo-bundle-row-content-color-good" if status[0] == :paid || status[0] == :rebought %>
-<% tag_color = "table-wo-bundle-row-content-color-lost" if status[0] == :pdd %>
-<div class="<%= "#{tag_color} table-wo-bundle-row-content-status-tag"%>">
-  <span><%= status[1] %></span>
-</div>
