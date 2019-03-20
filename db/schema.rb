@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_202224) do
+ActiveRecord::Schema.define(version: 2019_03_20_003714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,6 @@ ActiveRecord::Schema.define(version: 2019_02_18_202224) do
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
     t.date "due_date"
-    t.date "order_date"
-    t.date "deposit_date"
-    t.date "receipt_date"
     t.integer "backoffice_status", default: 0
     t.integer "liquidation_status", default: 0
     t.integer "unavailability", default: 0
@@ -54,6 +51,9 @@ ActiveRecord::Schema.define(version: 2019_02_18_202224) do
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "order_date"
+    t.datetime "deposit_date"
+    t.datetime "receipt_date"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
