@@ -41,6 +41,19 @@ class Operation < ApplicationRecord
     completely_approved? || partially_approved?
   end
 
+  def notify_seller(seller)
+    #TO DO: Create a logic to select the user when we have multiple users
+    user = seller.users.first
+    if completely_approved?
+      OperationMailer.approved(self, user, seller).deliver_now
+    elsif completely_rejected?
+      OperationMailer.rejected(self, user, seller).deliver_now
+    elsif partially_approved?
+      OperationMailer.partially_approved(self, user, seller).deliver_now
+    end
+
+  end
+
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }
   end
@@ -74,7 +87,7 @@ class Operation < ApplicationRecord
   end
 
   def protection
-    0.1 * total_value
+    0.15 * total_value
   end
 
   def deposit_today
