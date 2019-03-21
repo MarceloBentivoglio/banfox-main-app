@@ -33,7 +33,7 @@ class OperationMailer < ApplicationMailer
 
     mail(
       to: set_recipients(user.email, @seller.email_partner),
-      subject: 'Infelizmente sua operação foi rejeitada'
+      subject: 'Sua operação foi aprovada!'
       )
   end
 
@@ -45,7 +45,7 @@ class OperationMailer < ApplicationMailer
 
     mail(
       to: set_recipients(user.email, @seller.email_partner),
-      subject: 'Sua operação foi aprovada!'
+      subject: 'Sua operação foi aprovada parcialmente!'
       )
   end
 

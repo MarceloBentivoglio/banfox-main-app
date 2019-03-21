@@ -1,17 +1,6 @@
 class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
-
-  def approve
-    installment = Installment.find(params[:id])
-    installment.approved!
-    redirect_to ops_admin_installments_path
-  end
-
-  def reject
-    installment = Installment.find(params[:id])
-    installment.rejected!
-    installment.payer_low_rated!
-    redirect_to ops_admin_installments_path
-  end
+  before_action :set_installment, only: [:approve, :reject]
+  before_action :set_seller, only: [:approve, :reject]
 
   def index
     @seller = current_user.seller
@@ -20,5 +9,28 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
       format.html
       format.js
     end
+  end
+
+  def approve
+    @installment.approved!
+    @installment.operation.notify_seller(@seller)
+    redirect_to ops_admin_installments_path
+  end
+
+  def reject
+    @installment.rejected!
+    @installment.payer_low_rated!
+    @installment.operation.notify_seller(@seller)
+    redirect_to ops_admin_installments_path
+  end
+
+  private
+
+  def set_installment
+    @installment = Installment.find(params[:id])
+  end
+
+  def set_seller
+    @seller = @installment.invoice.seller
   end
 end
