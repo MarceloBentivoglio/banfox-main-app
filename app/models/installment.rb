@@ -106,7 +106,8 @@ class Installment < ApplicationRecord
   end
 
   def fee
-    value * (((1 + invoice.fee) ** ((outstanding_days + 3) / 30.0)) - 1)
+    # value * (((1 + invoice.fee) ** ((outstanding_days + 3) / 30.0)) - 1)
+    value * (1 - 1/(1 + invoice.fee)**((outstanding_days + 3) / 30.0))
   end
 
   def net_value
