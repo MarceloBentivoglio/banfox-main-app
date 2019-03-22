@@ -87,7 +87,7 @@ class Operation < ApplicationRecord
   end
 
   def protection
-    0.15 * total_value
+    0.20 * total_value
   end
 
   def deposit_today
