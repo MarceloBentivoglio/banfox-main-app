@@ -1,0 +1,32 @@
+.card-w-table-inside {
+  padding: 0.5em;
+  margin-top: 1em;
+  box-shadow: 0 1px 3px #f0f0f0;
+  background-color: $white;
+  border-radius: 0.5em;
+
+  .card-w-table-inside-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card-w-table-inside-summary {
+    color: $medium-blue;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-around;
+
+    .summary-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    .summary-right {
+      padding-left: 1em;
+    }
+  }
+
+}

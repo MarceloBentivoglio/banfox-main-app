@@ -2,26 +2,17 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   before_action :set_installment, only: [:approve, :reject]
   before_action :set_seller, only: [:approve, :reject]
 
-  def index
-    @seller = current_user.seller
-    @installments = Installment.ordered.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
   def approve
     @installment.approved!
     @installment.operation.notify_seller(@seller)
-    redirect_to ops_admin_installments_path
+    redirect_to ops_admin_operations_path
   end
 
   def reject
     @installment.rejected!
     @installment.payer_low_rated!
     @installment.operation.notify_seller(@seller)
-    redirect_to ops_admin_installments_path
+    redirect_to ops_admin_operations_path
   end
 
   private
