@@ -1,16 +1,23 @@
 <div class="table-wo-bundle-row-content">
   <div class="content-col content-col-6  text-left">                      <%= item.invoice.number %></div>
-  <div class="content-col content-col-10 text-left">                      <%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
-  <div class="content-col content-col-11 text-left">                      <%= item.invoice.seller.company_name.mb_chars.downcase.titleize %></div>
-  <div class="content-col content-col-10 text-left">                      <%= item.number %></div>
-  <div class="content-col content-col-10 text-left">                      <%= item.due_date.strftime("%d %b %y") %></div>
-  <div class="content-col content-col-4  text-center outstanding_days">   <%= item.outstanding_days %></div>
-  <div class="content-col content-col-13 text-right  installment_value">  <%= humanized_money_with_symbol item.value %></div>
-  <div class="content-col content-col-13 text-right  fee">                <%= humanized_money_with_symbol item.fee %></div>
-  <div class="content-col content-col-13 text-right  net_value">          <%= humanized_money_with_symbol item.net_value %></div>
+  <div class="content-col content-col-9 text-left">                       <%= item.invoice.payer.company_name.mb_chars.downcase.titleize %></div>
+  <div class="content-col content-col-8 text-left">                       <%= item.number %></div>
+  <div class="content-col content-col-8 text-left">                       <%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="content-col content-col-3 text-center outstanding_days">    <%= item.outstanding_days %></div>
+  <div class="content-col content-col-9 text-right  installment_value">   <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-6 text-center">                     <%= percentage(item.invoice.fee) %></div>
+  <div class="content-col content-col-8 text-right  fee">                 <%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-5 text-center">                     <%= percentage(@seller.protection) %> </div>
+  <div class="content-col content-col-9 text-right">                      <%= humanized_money_with_symbol(item.protection) %></div>
+  <div class="content-col content-col-9 text-right  net_value">           <%= humanized_money_with_symbol item.net_value %></div>
+  <div class="content-col content-col-9 text-right">                      <%= humanized_money_with_symbol item.first_deposit_amount %></div>
   <div class="content-col content-col-10 text-right">
+  <% if item.ordered? %>
     <%= link_to "Aprovar", approve_ops_admin_installment_path(item)  %>
     <%= link_to "Rejeitar", reject_ops_admin_installment_path(item) %>
+  <% else %>
+    <%= render partial: "shared/tables/table_wo_bundle/status_tag", locals: {status: item.status} %>
+  <% end %>
   </div>
 
 </div>

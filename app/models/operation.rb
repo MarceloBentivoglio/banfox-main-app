@@ -51,7 +51,6 @@ class Operation < ApplicationRecord
     elsif partially_approved?
       OperationMailer.partially_approved(self, user, seller).deliver_now
     end
-
   end
 
   def consent_rejection!
@@ -78,6 +77,10 @@ class Operation < ApplicationRecord
     installments.reduce(Money.new(0)){|total, i| total + i.fee}
   end
 
+  def fee_approved
+    installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.fee : Money.new(0))}
+  end
+
   def net_value
     installments.reduce(Money.new(0)){|total, i| total + i.net_value}
   end
@@ -87,10 +90,43 @@ class Operation < ApplicationRecord
   end
 
   def protection
-    0.20 * total_value
+    protection_rate * total_value
+  end
+
+  def protection_approved
+    protection_rate * total_value_approved
   end
 
   def deposit_today
     net_value - protection
   end
+
+  def deposit_today_approved
+    net_value_approved - protection_approved
+  end
+
+  def seller_name
+    installments.first.invoice.seller.company_name
+  end
+
+  def order_elapsed_time
+    seconds_diff = (Time.current - created_at).to_i
+
+    hours = seconds_diff / 3600
+    seconds_diff -= hours * 3600
+
+    minutes = seconds_diff / 60
+    seconds_diff -= minutes * 60
+
+    seconds = seconds_diff
+
+    '%02d horas e %02d minutos' % [hours, minutes]
+  end
+
+  private
+
+  def protection_rate
+    installments.first.invoice.seller.protection
+  end
+
 end

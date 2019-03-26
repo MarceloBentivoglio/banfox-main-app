@@ -41,6 +41,7 @@ seller1 = Seller.create!(
   visited: false,
   fator: 0.05,
   advalorem: 0.003,
+  protection: 0.2,
 )
 
 payer1 = Payer.create!(

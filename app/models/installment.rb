@@ -106,12 +106,19 @@ class Installment < ApplicationRecord
   end
 
   def fee
-    # value * (((1 + invoice.fee) ** ((outstanding_days + 3) / 30.0)) - 1)
     value * (1 - 1/(1 + invoice.fee)**((outstanding_days + 3) / 30.0))
   end
 
   def net_value
     value - fee
+  end
+
+  def protection
+    value * invoice.protection_rate
+  end
+
+  def first_deposit_amount
+    net_value - protection
   end
 
   # def operation_elapsed_time

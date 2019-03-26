@@ -12,8 +12,12 @@ class Invoice < ApplicationRecord
   }
 
   def fee
-    fator = [seller.fator, seller.fator].max
-    advalorem = [seller.advalorem, seller.advalorem].max
+    fator = [seller.fator, payer.fator].max
+    advalorem = [seller.advalorem, payer.advalorem].max
     fator + advalorem
+  end
+
+  def protection_rate
+    seller.protection
   end
 end
