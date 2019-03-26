@@ -101,7 +101,7 @@ class Installment < ApplicationRecord
   end
 
   def outstanding_days
-    days = (due_date - (order_date.try(:to_date) || Date.current)).to_i
+    days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
     return days.positive? ? days : 0
   end
 
@@ -141,9 +141,9 @@ class Installment < ApplicationRecord
       value_cents: self.value_cents,
       value_currency: self.value_currency,
       due_date: self.due_date.try(:strftime),
-      order_date: self.order_date.try(:to_s),
-      deposit_date: self.deposit_date.try(:to_s),
-      receipt_date: self.receipt_date.try(:to_s),
+      ordered_at: self.ordered_at.try(:to_s),
+      deposited_at: self.deposited_at.try(:to_s),
+      received_at: self.received_at.try(:to_s),
       backoffice_status: self.backoffice_status,
       liquidation_status: self.liquidation_status,
       unavailability: self.unavailability,

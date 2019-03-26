@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_215205) do
+ActiveRecord::Schema.define(version: 2019_03_26_181536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2019_03_25_215205) do
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "order_date"
-    t.datetime "deposit_date"
-    t.datetime "receipt_date"
+    t.datetime "ordered_at"
+    t.datetime "deposited_at"
+    t.datetime "received_at"
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"

@@ -9,7 +9,7 @@ class OperationsController < ApplicationController
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
       ActiveRecord::Base.transaction do
         operation.installments.each do |i|
-          i.order_date = Time.current
+          i.ordered_at = Time.current
           i.ordered!
         end
         operation.save!

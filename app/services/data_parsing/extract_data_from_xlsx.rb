@@ -23,7 +23,7 @@ class ExtractDataFromXlsx
       installment_attributes = {
         number: cols[0],
         due_date: paid_flag ? define_date(cols[6]) : define_date(cols[7]),
-        receipt_date: paid_flag ? define_date(cols[7]) : nil,
+        received_at: paid_flag ? define_date(cols[7]) : nil,
         value: paid_flag ? Money.new(treat_currency_from_file(cols[10])) : Money.new(treat_currency_from_file(cols[11])),
         liquidation_status: paid_flag ? define_liquidation_status(paid_flag, cols[17]) : 0,
         import_ref: paid_flag ? cols[16] : cols[9],
