@@ -113,6 +113,14 @@ class Installment < ApplicationRecord
     value - fee
   end
 
+  def protection
+    value * invoice.protection_rate
+  end
+
+  def first_deposit_amount
+    net_value - protection
+  end
+
   # def operation_elapsed_time
 
   # end

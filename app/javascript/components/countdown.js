@@ -3,7 +3,7 @@ const countdownClock = () => {
 
   if (countdownElement) {
     // Set the time we're counting down to, which is the time the invoice was created plus 3 minutes
-    const countDownTime = new Date(countdownElement.getAttribute("data-countdown-time")).getTime() + 80000;
+    const countDownTime = new Date(countdownElement.getAttribute("data-countdown-time")).getTime() + 120000;
     // The line below is used to test
     // const countDownTime = new Date().getTime() + 180000;
 

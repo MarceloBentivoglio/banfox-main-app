@@ -90,11 +90,11 @@ class Operation < ApplicationRecord
   end
 
   def protection
-    0.20 * total_value
+    protection_rate * total_value
   end
 
   def protection_approved
-    0.20 * total_value_approved
+    protection_rate * total_value_approved
   end
 
   def deposit_today
@@ -121,6 +121,12 @@ class Operation < ApplicationRecord
     seconds = seconds_diff
 
     '%02d horas e %02d minutos' % [hours, minutes]
+  end
+
+  private
+
+  def protection_rate
+    installments.first.invoice.seller.protection
   end
 
 end
