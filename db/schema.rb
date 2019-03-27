@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_181536) do
+ActiveRecord::Schema.define(version: 2019_03_26_224209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2019_03_26_181536) do
     t.datetime "ordered_at"
     t.datetime "deposited_at"
     t.datetime "received_at"
+    t.bigint "final_net_value_cents", default: 0, null: false
+    t.string "final_net_value_currency", default: "BRL", null: false
+    t.bigint "final_fator_cents", default: 0, null: false
+    t.string "final_fator_currency", default: "BRL", null: false
+    t.bigint "final_advalorem_cents", default: 0, null: false
+    t.string "final_advalorem_currency", default: "BRL", null: false
+    t.bigint "final_protection_cents", default: 0, null: false
+    t.string "final_protection_currency", default: "BRL", null: false
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"

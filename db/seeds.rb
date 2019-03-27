@@ -126,7 +126,7 @@ operation3 = Operation.create!(
 
 # Creating installments
 # for i1 liquidada
-Installment.create!(
+i = Installment.create!(
  invoice: i1,
  operation: operation1,
  number: "004.848/01",
@@ -136,8 +136,14 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "paid",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+
+i = Installment.create!(
  invoice: i1,
  operation: operation1,
  number: "004.848/02",
@@ -146,9 +152,14 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "paid",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
 # for i2 em aberto
-Installment.create!(
+i = Installment.create!(
  invoice: i2,
  operation: operation1,
  number: "004.849/01",
@@ -157,8 +168,13 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "paid",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+i = Installment.create!(
  invoice: i2,
  operation: operation1,
  number: "004.849/02",
@@ -167,8 +183,13 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "opened",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+i = Installment.create!(
  invoice: i2,
  operation: operation1,
  number: "004.849/03",
@@ -177,9 +198,14 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "opened",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
 # for i3 atrasada com um installment pago
-Installment.create!(
+i = Installment.create!(
  invoice: i3,
  operation: operation2,
  number: "004.850/01",
@@ -188,8 +214,13 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "paid",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+i = Installment.create!(
  invoice: i3,
  operation: operation2,
  number: "004.850/02",
@@ -198,9 +229,14 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "opened",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
 # for i4 atrasada com um installment aberto
-Installment.create!(
+i = Installment.create!(
  invoice: i4,
  operation: operation2,
  number: "004.851/01",
@@ -209,8 +245,13 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "opened",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+i = Installment.create!(
  invoice: i4,
  operation: operation2,
  number: "004.851/02",
@@ -219,6 +260,11 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "opened",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
 # For i5 disponivel para compra
   # parcela vencida
@@ -327,7 +373,7 @@ Installment.create!(
  unavailability: "already_operated",
 )
 
-Installment.create!(
+i = Installment.create!(
  invoice: i6,
  operation: operation3,
  number: "004.901/03",
@@ -336,8 +382,13 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "rebought",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
-Installment.create!(
+i = Installment.create!(
  invoice: i6,
  operation: operation3,
  number: "004.901/03",
@@ -346,6 +397,11 @@ Installment.create!(
  backoffice_status: "deposited",
  liquidation_status: "pdd",
 )
+ i.final_net_value = i.net_value
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.save!
 
 
 puts "............ seed ended"

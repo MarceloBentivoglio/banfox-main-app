@@ -11,9 +11,15 @@ class Invoice < ApplicationRecord
     check:                3,
   }
 
+  def fator
+    [seller.fator, payer.fator].max
+  end
+
+  def advalorem
+    [seller.advalorem, payer.advalorem].max
+  end
+
   def fee
-    fator = [seller.fator, payer.fator].max
-    advalorem = [seller.advalorem, payer.advalorem].max
     fator + advalorem
   end
 
