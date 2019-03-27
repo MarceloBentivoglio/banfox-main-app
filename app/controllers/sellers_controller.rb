@@ -19,6 +19,7 @@ class SellersController < ApplicationController
     @seller.pre_approved!
     @seller.fator = 0.045
     @seller.advalorem = 0.005
+    @seller.protection = 0.2
     @seller.save!
     SellerMailer.welcome(@user, @seller).deliver_now
     SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar").send_now
