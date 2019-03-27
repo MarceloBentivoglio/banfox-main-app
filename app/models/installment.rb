@@ -3,6 +3,10 @@ class Installment < ApplicationRecord
   belongs_to :rebuy, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
+  monetize :final_net_value_cents, with_model_currency: :currency
+  monetize :final_fator_cents, with_model_currency: :currency
+  monetize :final_advalorem_cents, with_model_currency: :currency
+  monetize :final_protection_cents, with_model_currency: :currency
 
   after_destroy :destroy_parent_if_void
   after_save :async_update_spreadsheet
@@ -100,30 +104,38 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
+  def analysed?
+    approved? || rejected? || rejected_consent? || deposited? || cancelled?
+  end
+
   def outstanding_days
     days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
     return days.positive? ? days : 0
   end
 
   def fee
-    value * (1 - 1/(1 + invoice.fee)**((outstanding_days + 3) / 30.0))
+    fator + advalorem
+  end
+
+  def fator
+    analysed? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+  end
+
+  def advalorem
+    analysed? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
   end
 
   def net_value
-    value - fee
+    analysed? ? final_net_value : (value - fee)
   end
 
   def protection
-    value * invoice.protection_rate
+    analysed? ? final_protection : value * invoice.protection_rate
   end
 
   def first_deposit_amount
     net_value - protection
   end
-
-  # def operation_elapsed_time
-
-  # end
 
   def installment_attributes
     {

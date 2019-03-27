@@ -13,8 +13,7 @@ class OperationsController < ApplicationController
           i.ordered!
         end
         operation.save!
-        # TODO: Undo this comment
-        # OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
+        OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
         SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} subiu uma operação nova").send_now
       end
     end
