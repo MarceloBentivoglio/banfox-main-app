@@ -15,6 +15,7 @@ import { showModalOnFirstAccess } from "../components/showModalOnFirstAccess"
 import { operationTotalValuesAccordingToCheck, operationInAnalysisTotalValues } from "../components/operationTotalValues"
 import { bindSweetAlertButton } from '../components/sweetAlert';
 import { countdownClock } from '../components/countdown';
+import { signDocument } from '../components/signDocument';
 
 
 
@@ -35,3 +36,4 @@ operationTotalValuesAccordingToCheck();
 operationInAnalysisTotalValues();
 bindSweetAlertButton();
 countdownClock();
+signDocument();
