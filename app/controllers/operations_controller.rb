@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create, :consent, :view_contract, :update]
+  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document, :update]
 
   layout "application_w_flashes"
 
@@ -38,9 +38,18 @@ class OperationsController < ApplicationController
     redirect_to store_installments_path
   end
 
-  def view_contract
+  def create_document
     # TODO: This method was created only for the demo, the business logic is not correct
     @operation = Operation.last_from_seller(@seller).last
+    sign_documents = SignDocuments.new(@operation, @seller)
+    @operation.signature_keys = sign_documents.signature_keys
+    @operation.save!
+    redirect_to sign_document_operations_path
+  end
+
+  def sign_document
+    operation = Operation.last_from_seller(@seller).last
+    @signature_key = operation.signature_keys["signature_keys"][0]["signature_key"]
   end
 
   def update

@@ -50,7 +50,8 @@ Rails.application.routes.draw do
   resources :operations, only: [:create, :update, :destroy] do
     collection do
       get :consent
-      get :view_contract
+      get :create_document
+      get :sign_document
     end
   end
   resources :documents, only: [:index, :new, :create, :destroy]
