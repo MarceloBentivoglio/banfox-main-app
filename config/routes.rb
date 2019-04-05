@@ -11,9 +11,13 @@ Rails.application.routes.draw do
         member do
           get 'approve'
           get 'reject'
+          get 'deposit'
         end
       end
-      resources :operations, only: [:index]
+      namespace :operations do
+        get 'analyse'
+        get 'deposit'
+      end
     end
   end
 
@@ -59,6 +63,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pdf_parsed_invoices, only: [ :create ]
       resources :mobile_inputed_invoices, only: [ :create ]
+      namespace :operations do
+        post "sign_document_status"
+      end
     end
   end
 

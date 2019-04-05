@@ -1,11 +1,14 @@
 class SignDocuments
   attr_reader :signature_keys
+  attr_reader :sign_document_key
 
   def initialize(operation, seller)
     @operation = operation
     @seller = seller
-    signature_keys_serialized = RestClient.post(url, body, headers)
-    @signature_keys = JSON.parse(signature_keys_serialized).deep_symbolize_keys
+    response_serialized = RestClient.post(url, body, headers)
+    response = JSON.parse(response_serialized).deep_symbolize_keys
+    @signature_keys = response.slice(:signature_keys)
+    @sign_document_key = response[:document_key]
   end
 
   private

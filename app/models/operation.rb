@@ -50,6 +50,9 @@ class Operation < ApplicationRecord
       OperationMailer.rejected(self, user, seller).deliver_now
     elsif partially_approved?
       OperationMailer.partially_approved(self, user, seller).deliver_now
+      #TODO: create a method that has a better name for completely deposited
+    elsif no_on_going_operation?
+      OperationMailer.deposited(self, user, seller).deliver_now
     end
   end
 
@@ -57,12 +60,14 @@ class Operation < ApplicationRecord
     installments.each { |i| i.rejected_consent! }
   end
 
-  def deposit_money
-    installments.each do |i|
-        #In fact here we would have another step where we have to confirm that we have deposited the money before changing the status to deposited
-        i.opened!
-        i.deposited!
-    end
+  #TODO Understand why this doesn't work
+  # def signed!
+  #   signed = true
+  #   save!
+  # end
+
+  def signed?
+    signed
   end
 
   def total_value
@@ -79,6 +84,10 @@ class Operation < ApplicationRecord
 
   def fee_approved
     installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.fee : Money.new(0))}
+  end
+
+  def final_fee
+    installments.reduce(Money.new(0)){|total, i| total + i.final_fator + i.final_advalorem}
   end
 
   def final_fator
@@ -120,6 +129,11 @@ class Operation < ApplicationRecord
   def deposit_today_approved
     net_value_approved - protection_approved
   end
+
+  def final_deposit_today
+    final_net_value - final_protection
+  end
+
 
   def seller_name
     installments.first.invoice.seller.company_name

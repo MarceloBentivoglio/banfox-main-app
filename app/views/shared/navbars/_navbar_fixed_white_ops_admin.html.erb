@@ -1,0 +1,40 @@
+<div class="navbar-parent">
+  <div class="navbar-sections-container">
+    <div class="section-left">
+      <!-- Logo -->
+      <%= link_to root_path do %>
+        <div class="logo-mvp-pic-name"></div>
+      <% end %>
+    </div>
+
+    <div class="section-middle hidden-xs hidden-sm">
+      <!-- Links when logged in -->
+      <%= link_to ops_admin_operations_analyse_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
+        <span>Operações para análise</span>
+      <% end %>
+
+      <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+        <span>Operações para depósito</span>
+      <% end %>
+    </div>
+
+    <div class="section-right hidden-xs hidden-sm">
+      <!-- Avatar with dropdown menu -->
+      <div class="navbar-section-item">
+        <div class="dropdown">
+          <a id="mvp-menu" href="#" data-toggle="dropdown" class="navbar-section-item-link">
+            <i class="fa fa-user-circle"></i>
+            <span class="profile-name"> Admin </span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> <!-- navbar-sections-container -->
+</div>

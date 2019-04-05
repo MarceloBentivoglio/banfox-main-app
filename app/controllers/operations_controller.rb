@@ -39,10 +39,10 @@ class OperationsController < ApplicationController
   end
 
   def create_document
-    # TODO: This method was created only for the demo, the business logic is not correct
     @operation = Operation.last_from_seller(@seller).last
     sign_documents = SignDocuments.new(@operation, @seller)
     @operation.signature_keys = sign_documents.signature_keys
+    @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!
     redirect_to sign_document_operations_path
   end
@@ -50,26 +50,13 @@ class OperationsController < ApplicationController
   def sign_document
     operation = Operation.last_from_seller(@seller).last
     @signature_key = operation.signature_keys["signature_keys"][0]["signature_key"]
-  end
-
-  def update
-    operation = Operation.last_from_seller(@seller).last
-    if operation.ready_to_sign?
-      operation.update(signed_operation_params)
-      operation.deposit_money
-    end
-    sleep(4.0)
-    redirect_to opened_installments_path
+    @redirection_url = store_installments_url
   end
 
   private
 
   def operation_params
     params.require(:operation).permit(:consent, installment_ids: [])
-  end
-
-  def signed_operation_params
-    params.require(:operation).permit(:signed)
   end
 
   def no_operation_in_analysis
