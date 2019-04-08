@@ -32,8 +32,8 @@ function Clicksign(o) {
 const signDocument = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
     const documentContainer = document.getElementById('document-container');
-    const signatureKey = documentContainer.getAttribute('data-signature-key')
     if (documentContainer) {
+      const signatureKey = documentContainer.getAttribute('data-signature-key')
       // Carrega o widget embedded com a request_signature_key
       let widget = new Clicksign(signatureKey);
       // Define o endpoint https://sandbox.clicksign.com ou https://app.clicksign.com
@@ -44,6 +44,19 @@ const signDocument = () => {
 
       // Monta o widget no div
       widget.mount('document-container');
+
+      //Callback que será disparado quando o documento for carregado
+      widget.on('loaded', function (ev) {
+        console.log('loaded!');
+      });
+
+      //Callback que será disparado quando o documento for assinado
+      const redirectionUrl = documentContainer.getAttribute("data-redirection-url");
+      widget.on('signed', function (ev) {
+        console.log('signed!');
+        window.location.href = redirectionUrl;
+        return location.assign(redirectionUrl);
+      });
     };
   });
 };

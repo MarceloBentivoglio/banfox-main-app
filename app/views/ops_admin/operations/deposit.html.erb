@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Operações para análise",
+          title: "Operações para depósito",
           optional_button: "",
         } %>
 
@@ -19,27 +19,17 @@
             </div>
             <div class="card-w-table-inside-summary">
               <div class="summary-column">
-                <strong>Requerido</strong>
-                <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
-                <span>Taxa total: <%= humanized_money_with_symbol operation.fee %> </span>
-                <span>Retenção: <%= humanized_money_with_symbol operation.protection %> </span>
-                <span>Impostos: </span>
-                <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
-                <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
-              </div>
-              <div class="summary-column summary-right">
-                <strong>Aprovado</strong>
+                <strong>Resumo da operação</strong>
                 <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
-                <span>Taxa total: <%= humanized_money_with_symbol operation.fee_approved %> </span>
-                <span>Retenção: <%= humanized_money_with_symbol operation.protection_approved %> </span>
+                <span>Taxa total: <%= humanized_money_with_symbol operation.final_fee %> </span>
+                <span>Retenção: <%= humanized_money_with_symbol operation.final_protection %> </span>
                 <span>Impostos: </span>
-                <span>Total líquido: <%= humanized_money_with_symbol operation.net_value_approved %> </span>
-                <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
+                <span>Total líquido: <%= humanized_money_with_symbol operation.final_net_value %> </span>
+                <span>Total depósito: <%= humanized_money_with_symbol operation.final_deposit_today %> </span>
               </div>
-
             </div>
             <%= render partial: "shared/tables/table_wo_bundle_ops/header" %>
-            <%= render partial: "shared/tables/table_wo_bundle_ops/container", locals: {items: operation.installments}%>
+            <%= render partial: "shared/tables/table_wo_bundle_ops/deposit/container", locals: {items: operation.installments}%>
           </div>
         <% end %>
         <%# TODO: test the paginate with @operations. I don't know if the code below is working %>

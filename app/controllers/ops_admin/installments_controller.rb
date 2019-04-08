@@ -1,6 +1,6 @@
 class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
-  before_action :set_installment, only: [:approve, :reject]
-  before_action :set_seller, only: [:approve, :reject]
+  before_action :set_installment, only: [:approve, :reject, :deposit]
+  before_action :set_seller, only: [:approve, :reject, :deposit]
 
   def approve
     ActiveRecord::Base.transaction do
@@ -13,15 +13,23 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
       @installment.approved!
     end
     @installment.operation.notify_seller(@seller)
-    redirect_to ops_admin_operations_path
+    redirect_to ops_admin_operations_analyse_path
   end
 
   def reject
     @installment.rejected!
     @installment.payer_low_rated!
     @installment.operation.notify_seller(@seller)
-    redirect_to ops_admin_operations_path
+    redirect_to ops_admin_operations_analyse_path
   end
+
+  def deposit
+    @installment.opened!
+    @installment.deposited!
+    @installment.operation.notify_seller(@seller)
+    redirect_to ops_admin_operations_deposit_path
+  end
+
 
   private
 

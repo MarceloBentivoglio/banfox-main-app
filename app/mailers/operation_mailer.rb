@@ -49,6 +49,18 @@ class OperationMailer < ApplicationMailer
       )
   end
 
+  def deposited(operation, user, seller)
+    @operation = operation
+    @installments = operation.installments
+    user = user
+    @seller = seller
+
+    mail(
+      to: set_recipients(user.email, @seller.email_partner),
+      subject: 'Seu dinheiro já está a caminho!'
+      )
+  end
+
   private
 
   def set_recipients(contact_email, partner_email)

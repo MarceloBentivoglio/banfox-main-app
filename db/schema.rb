@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_160055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "signature_keys"
+    t.string "sign_document_key"
   end
 
   create_table "payers", force: :cascade do |t|
