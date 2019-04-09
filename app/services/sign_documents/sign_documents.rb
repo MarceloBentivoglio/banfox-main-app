@@ -33,7 +33,7 @@ class SignDocuments
 
   def host
     #TODO Inserir dominio do heroku em produção
-    Rails.env.development? ? "https://03df5ffc.ngrok.io" : ""
+    Rails.env.development? ? "https://a71cacc1.ngrok.io" : ""
   end
 
   def seller_content

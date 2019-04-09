@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "takeabreath", to: "pages#take_a_breath"
   get 'sellers/dashboard'
   get 'sellers/analysis'
+  get "signature/:signature_key", to: "signatures#joint_debtor"
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
