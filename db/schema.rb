@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_160055) do
+ActiveRecord::Schema.define(version: 2019_04_09_142126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(version: 2019_04_03_160055) do
   create_table "invoices_documents_bundles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "joint_debtors", force: :cascade do |t|
+    t.string "name"
+    t.date "birthdate"
+    t.string "mobile"
+    t.string "documentation"
+    t.string "email"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seller_id"], name: "index_joint_debtors_on_seller_id"
   end
 
   create_table "operations", force: :cascade do |t|
@@ -209,6 +221,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_160055) do
   add_foreign_key "installments", "rebuys"
   add_foreign_key "invoices", "payers"
   add_foreign_key "invoices", "sellers"
+  add_foreign_key "joint_debtors", "sellers"
   add_foreign_key "rebuys", "operations"
   add_foreign_key "users", "sellers"
 end

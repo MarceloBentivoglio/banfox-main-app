@@ -41,15 +41,20 @@ class OperationsController < ApplicationController
   def create_document
     @operation = Operation.last_from_seller(@seller).last
     sign_documents = SignDocuments.new(@operation, @seller)
-    @operation.signature_keys = sign_documents.signature_keys
+    @operation.signature_keys = sign_documents.signer_signature_keys
     @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!
+    @operation.notify_joint_debtors(@seller)
     redirect_to sign_document_operations_path
   end
 
   def sign_document
     operation = Operation.last_from_seller(@seller).last
-    @signature_key = operation.signature_keys["signature_keys"][0]["signature_key"]
+    signer_signature_keys = operation.signer_signature_keys
+    main_signer_signature_key = signer_signature_keys.find do |signer_signature_key|
+      signer_signature_key[:email] == @seller.email_partner
+    end
+    @signature_key = main_signer_signature_key[:signature_key]
     @redirection_url = store_installments_url
   end
 

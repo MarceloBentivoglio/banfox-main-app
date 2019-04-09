@@ -16,7 +16,7 @@ class Api::V1::OperationsController < Api::V1::BaseController
     puts "----- doc_key: #{document_data[:document][:key]} -----------"
     @operation = Operation.new
 
-    if request.headers["Event"] == "sign"
+    if request.headers["Event"] == "auto_close"
       puts "------ entrei ------"
       #TODO Understand why the signature key is coming different from what we expected
       @operation = Operation.find_by_sign_document_key(document_data[:document][:key])

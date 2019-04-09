@@ -41,6 +41,11 @@ class Operation < ApplicationRecord
     completely_approved? || partially_approved?
   end
 
+  def signer_signature_keys
+    signature_keys.deep_symbolize_keys[:signer_signature_keys]
+  end
+
+
   def notify_seller(seller)
     #TO DO: Create a logic to select the user when we have multiple users
     user = seller.users.first
@@ -55,6 +60,19 @@ class Operation < ApplicationRecord
       OperationMailer.deposited(self, user, seller).deliver_now
     end
   end
+
+  def notify_joint_debtors(seller)
+    signer_signature_keys.each do |signer_signature_key|
+      joint_debtor = seller.joint_debtors.find do |joint_debtor|
+        joint_debtor.email == signer_signature_key[:email]
+      end
+      if joint_debtor
+        SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key]  ).deliver_now
+      end
+    end
+
+  end
+
 
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }

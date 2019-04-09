@@ -1,5 +1,5 @@
 class SellerMailer < ApplicationMailer
-  default from: 'marcelo@banfox.com.br'
+  default from: 'joao@banfox.com.br'
 
   def welcome(user, seller)
     user = user

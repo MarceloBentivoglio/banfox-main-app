@@ -1,5 +1,5 @@
 class SignDocuments
-  attr_reader :signature_keys
+  attr_reader :signer_signature_keys
   attr_reader :sign_document_key
 
   def initialize(operation, seller)
@@ -7,7 +7,7 @@ class SignDocuments
     @seller = seller
     response_serialized = RestClient.post(url, body, headers)
     response = JSON.parse(response_serialized).deep_symbolize_keys
-    @signature_keys = response.slice(:signature_keys)
+    @signer_signature_keys = response.slice(:signer_signature_keys)
     @sign_document_key = response[:document_key]
   end
 
@@ -87,18 +87,37 @@ class SignDocuments
   end
 
   def signers_content
-    #TODO This part has to me remande when we'll have more than one signer
     #TODO Whatch out because inject is destructive, so i have to refactor this
-    birthdate = @seller.birth_date_partner
-    [
-      {
-        name: @seller.full_name_partner,
-        birthdate: birthdate.insert(2, '-').insert(5, '-').to_date.strftime("%Y-%m-%d"),
-        mobile: @seller.mobile_partner,
-        documentation: CPF.new(@seller.cpf_partner).formatted,
-        email: @seller.email_partner,
-        sign_as: ["sign", "joint_debtor"]
-      }
-    ]
+    @signers = []
+    add_main_signer_to_signers
+    add_joint_debtors_to_signers
+    return @signers
   end
+
+  def add_main_signer_to_signers
+    birthdate = @seller.birth_date_partner
+    @signers << {
+      name: @seller.full_name_partner,
+      birthdate: birthdate.insert(2, '-').insert(5, '-').to_date.strftime("%Y-%m-%d"),
+      mobile: @seller.mobile_partner,
+      documentation: CPF.new(@seller.cpf_partner).formatted,
+      email: @seller.email_partner,
+      sign_as: ["sign", "joint_debtor"]
+    }
+  end
+
+  def add_joint_debtors_to_signers
+    @seller.joint_debtors.each do |joint_debtor|
+      @signers << {
+        name: joint_debtor.name,
+        birthdate: joint_debtor.birthdate.strftime("%Y-%m-%d"),
+        mobile: joint_debtor.mobile,
+        documentation: CPF.new(joint_debtor.documentation).formatted,
+        email: joint_debtor.email,
+        sign_as: ["joint_debtor"]
+      }
+    end
+  end
+
+
 end

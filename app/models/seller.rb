@@ -6,6 +6,7 @@ class Seller < ApplicationRecord
   monetize :operation_limit_cents, with_model_currency: :currency
   has_many :users, dependent: :destroy
   has_many :invoices, dependent: :destroy
+  has_many :joint_debtors, dependent: :destroy
   has_many_attached :social_contracts, dependent: :purge
   has_many_attached :update_on_social_contracts, dependent: :purge
   has_many_attached :address_proofs, dependent: :purge
