@@ -34,13 +34,24 @@ const signDocument = () => {
     const documentContainer = document.getElementById('document-container');
     if (documentContainer) {
       const signatureKey = documentContainer.getAttribute('data-signature-key')
+      const environement = documentContainer.getAttribute('data-environement');
+      console.log(environement)
+      // Uncomment this two lines if the redirect stop working
+      // let widget;
+      // if (widget) { widget.umount(); }
+
       // Carrega o widget embedded com a request_signature_key
       let widget = new Clicksign(signatureKey);
+
       // Define o endpoint https://sandbox.clicksign.com ou https://app.clicksign.com
-      widget.endpoint = 'https://sandbox.clicksign.com';
+      if (environement == "development") {
+        widget.endpoint = 'https://sandbox.clicksign.com';
+      } else {
+        widget.endpoint = "https://app.clicksign.com";
+      }
 
       // Define a URL de origem (parametro necessário para utilizar através de WebView)
-      widget.origin = 'https://2c78364b.ngrok.io/operations/sign_document';
+      // widget.origin = 'https://2c78364b.ngrok.io/operations/sign_document';
 
       // Monta o widget no div
       widget.mount('document-container');
@@ -54,7 +65,6 @@ const signDocument = () => {
       const redirectionUrl = documentContainer.getAttribute("data-redirection-url");
       widget.on('signed', function (ev) {
         console.log('signed!');
-        window.location.href = redirectionUrl;
         return location.assign(redirectionUrl);
       });
     };
