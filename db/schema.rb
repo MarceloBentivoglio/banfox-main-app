@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.boolean "signed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "signature_keys"
+    t.jsonb "sign_document_info"
     t.string "sign_document_key"
   end
 

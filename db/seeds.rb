@@ -545,6 +545,7 @@ puts "............ seed ended"
 puts "Users:"
 puts "ADMIN: email: #{user1.email} \npassword: #{user1.password}"
 puts "XML: email: #{user2.email} \npassword: #{user2.password}"
+puts "PDF: email: #{user3.email} \npassword: #{user3.password}"
 
 # Real data
 # fluidtec = Seller.create!(
