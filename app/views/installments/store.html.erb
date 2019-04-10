@@ -37,7 +37,7 @@
             <%= render partial: "shared/tables/table_wo_bundle/header" %>
             <%= simple_form_for Operation.new do |f| %>
               <input type="hidden" name="operation[installment_ids][]">
-              <%= render partial: "shared/tables/table_wo_bundle/container", locals: {items: @installments}%>
+              <%= render partial: "shared/tables/table_wo_bundle/container", locals: {items: @installments} %>
             <%= render partial: "shared/status_bottom_bar", locals: {f: f} %>
             <% end %>
           </div>

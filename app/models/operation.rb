@@ -14,6 +14,7 @@ class Operation < ApplicationRecord
       completely_approved: "Completamente aprovada",
       completely_rejected: "Completamente rejeitada",
       partially_approved: "Parcialmente aprovada",
+      signing_process: "Em processo de assinatura"
     }
   end
 
@@ -26,19 +27,20 @@ class Operation < ApplicationRecord
   end
 
   def completely_approved?
-    installments.all? { |i| i.approved? }
+    !sign_document_key? && installments.all? { |i| i.approved? }
   end
 
   def completely_rejected?
     installments.all? { |i| i.rejected? }
   end
 
+  # Keep this first part !sign_document_key? only until the rejections in oprations are treated
   def partially_approved?
-    installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
+    !sign_document_key? && installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
   end
 
-  def ready_to_sign?
-    completely_approved? || partially_approved?
+  def signing_process?
+    sign_document_key?
   end
 
   def signer_signature_keys
@@ -70,9 +72,7 @@ class Operation < ApplicationRecord
         SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key]  ).deliver_now
       end
     end
-
   end
-
 
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }
@@ -84,9 +84,9 @@ class Operation < ApplicationRecord
   #   save!
   # end
 
-  def signed?
-    signed
-  end
+  # def signed?
+  #   signed
+  # end
 
   def total_value
     installments.reduce(Money.new(0)){|total, i| total + i.value}

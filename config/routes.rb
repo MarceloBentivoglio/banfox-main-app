@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       get :history
     end
   end
-  resources :operations, only: [:create, :update, :destroy] do
+  resources :operations, only: [:create, :destroy] do
     collection do
       get :consent
       get :create_document

@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document, :update]
+  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document]
 
   layout "application_w_flashes"
 
