@@ -26,7 +26,7 @@ class Api::V1::OperationsController < Api::V1::BaseController
       @operation.signed = true
       @operation.save!
       puts @operation.signed
-      SlackMessage.new("CHQFGD43Y", "<!channel> o contrato da *Operação #{@operation.id}* foi assinado").send_now
+      SlackMessage.new("CHQFGD43Y", "<!channel> o contrato da *Operação #{@operation.id}* foi completamente assinado").send_now
     end
     puts "------ outra coisa antes do authorize ------"
     authorize @operation

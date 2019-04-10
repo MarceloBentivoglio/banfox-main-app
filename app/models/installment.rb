@@ -104,8 +104,13 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
-  def analysed?
-    approved? || rejected? || rejected_consent? || deposited? || cancelled?
+  # Is the same of final price set but considering de the rejected. Erase after treating the rejections.
+  # def analysed?
+  #   approved? || rejected? || rejected_consent? || deposited? || cancelled?
+  # end
+
+  def final_price_set?
+    approved? || deposited?
   end
 
   def outstanding_days
@@ -113,24 +118,24 @@ class Installment < ApplicationRecord
     return days.positive? ? days : 0
   end
 
+  def fator
+    final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+  end
+
+  def advalorem
+    final_price_set? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+  end
+
   def fee
     fator + advalorem
   end
 
-  def fator
-    analysed? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
-  end
-
-  def advalorem
-    analysed? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
-  end
-
   def net_value
-    analysed? ? final_net_value : (value - fee)
+    final_price_set? ? final_net_value : (value - fee)
   end
 
   def protection
-    analysed? ? final_protection : value * invoice.protection_rate
+    final_price_set? ? final_protection : value * invoice.protection_rate
   end
 
   def first_deposit_amount
