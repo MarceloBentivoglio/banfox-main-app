@@ -75,7 +75,15 @@
               <span>Sua operação está em processo de assinatura</span>
           </div>
           <div class="bottom-content">
-            <%= link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "btn-rounded blue button" %>
+            <ul>
+              <% @operation.signer_signature_keys.each do |signer_signature_key| %>
+                <% if signer_signature_key[:email] == @seller.email_partner %>
+                  <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "btn-rounded blue button") %></li>
+                <% end %>
+                  <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : "Pendente de assinatura" %></li>
+              <% end %>
+            </ul>
+            <%#= link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "btn-rounded blue button" %>
           </div>
         <% else %>
         <% end %>

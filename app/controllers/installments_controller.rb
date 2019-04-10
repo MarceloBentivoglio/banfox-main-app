@@ -1,6 +1,6 @@
 class InstallmentsController < ApplicationController
   before_action :set_seller, only: [:store, :opened, :history]
-  before_action :set_status, only: [:store]
+  before_action :set_operation_and_status, only: [:store]
   before_action :verify_need_immediate_upload, only: [:store]
 
   layout "application_w_flashes"
@@ -42,7 +42,7 @@ class InstallmentsController < ApplicationController
     @seller = current_user.seller
   end
 
-  def set_status
+  def set_operation_and_status
     @operation = Operation.last_from_seller(@seller).last || Operation.new
     @status = @operation.status[0]
   end

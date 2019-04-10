@@ -44,7 +44,7 @@ class Operation < ApplicationRecord
   end
 
   def signer_signature_keys
-    signature_keys.deep_symbolize_keys[:signer_signature_keys]
+    sign_document_info.deep_symbolize_keys[:signer_signature_keys]
   end
 
 

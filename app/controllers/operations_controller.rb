@@ -41,7 +41,7 @@ class OperationsController < ApplicationController
   def create_document
     @operation = Operation.last_from_seller(@seller).last
     sign_documents = SignDocuments.new(@operation, @seller)
-    @operation.signature_keys = sign_documents.signer_signature_keys
+    @operation.sign_document_info = sign_documents.sign_document_info
     @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!
     @operation.notify_joint_debtors(@seller)
