@@ -14,7 +14,8 @@ class Operation < ApplicationRecord
       completely_approved: "Completamente aprovada",
       completely_rejected: "Completamente rejeitada",
       partially_approved: "Parcialmente aprovada",
-      signing_process: "Em processo de assinatura"
+      signing_process: "Em processo de assinatura",
+      deposit_pending: "Se dinheiro está a caminho"
     }
   end
 
@@ -40,7 +41,11 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    sign_document_key?
+    sign_document_key? && !signed
+  end
+
+  def deposit_pending?
+    signed && installments.any? { |i| i.approved? }
   end
 
   def signer_signature_keys

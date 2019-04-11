@@ -78,13 +78,19 @@
             <ul>
               <% @operation.signer_signature_keys.each do |signer_signature_key| %>
                 <% if signer_signature_key[:email] == @seller.email_partner %>
-                  <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "btn-rounded blue button") %></li>
+                  <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "") %></li>
                 <% else %>
                   <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : "Pendente de assinatura" %></li>
                 <% end %>
               <% end %>
             </ul>
-            <%#= link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "btn-rounded blue button" %>
+          </div>
+        <% elsif @status == :deposit_pending %>
+          <div class="top-content big-letters">
+              <span>Estamos preparando o depósito do seu dinheiro</span>
+          </div>
+          <div class="bottom-content">
+            <span> Devido ao sistema bancário brasileiro seu dinheiro pode demorar algumas horas para aparecer em sua conta</span>
           </div>
         <% else %>
         <% end %>
