@@ -1,0 +1,18 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table">
+        <h1> <%= @seller.company_name %> </h1>
+        <h3> <%= @seller.cnpj %> </h3>
+        <%= simple_form_for [:ops_admin, @seller] do |f| %>
+          <%= f.input :fator %>
+          <%= f.input :advalorem %>
+          <%= f.input :protection %>
+          <%= f.submit "Atualizar", class: "btn btn-rounded blue" %>
+          <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Cnpj</th>
+              <th>Fator</th>
+              <th>Advalorem</th>
+              <th>Proteção</th>
+              <th>Devedor solidário</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sellers.each do |seller| %>
+              <tr>
+                <td> <%= seller.id %> </td>
+                <td> <%= seller.company_name %> </td>
+                <td> <%= seller.cnpj %> </td>
+                <td> <%= seller.fator %> </td>
+                <td> <%= seller.advalorem %> </td>
+                <td> <%= seller.protection %> </td>
+                <td> <%= seller.joint_debtors.count %> </td>
+                <td> <%= link_to "editar valores", edit_ops_admin_seller_path(seller) %> | <%= link_to "editar devedores solidários", ops_admin_seller_joint_debtors_path(seller) %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table">
+        <h1> Editar devedor solidário </h1>
+        <%= simple_form_for [:ops_admin, @seller, @joint_debtor] do |f| %>
+          <%= f.input :name %>
+          <%= f.input :birthdate, start_year: Date.current.year - 90, end_year: Date.current.year %>
+          <%= f.error :date_validator, class: "invalid-feedback"  %>
+          <%= f.input :mobile, input_html: { class: 'mobile' } %>
+          <%= f.input :documentation, input_html: { class: 'cpf' } %>
+          <%= f.error :cpf_validator, class: "invalid-feedback"  %>
+          <%= f.input :email %>
+          <%= f.submit "Atualizar", class: "btn btn-rounded blue" %>
+          <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

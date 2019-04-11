@@ -14,6 +14,9 @@ Rails.application.routes.draw do
           get 'deposit'
         end
       end
+      resources :sellers, only: [:index, :edit, :update] do
+        resources :joint_debtors, only: [:index, :new, :create, :edit, :update, :destroy]
+      end
       namespace :operations do
         get 'analyse'
         get 'deposit'

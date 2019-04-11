@@ -1,9 +1,12 @@
 class DateValidator < ActiveModel::Validator
   def validate(record)
     date = record.__send__(options[:attr])
-    record.errors.add(:date_validator, "data não válida") if Date.strptime(date, '%d%m%Y') > Date.current
+    if date.instance_of?(String)
+      date = Date.strptime(date, '%d%m%Y')
+    end
+    record.errors.add(:date_validator, "necessário ser maior de 16 anos") if date >= (Date.current - 16.years)
     rescue ArgumentError
-      record.errors.add(:date_validator, "data não válida")
+      record.errors.add(:date_validator, "necessário ser maior de 16 anos")
   end
 end
 

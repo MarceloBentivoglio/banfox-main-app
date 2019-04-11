@@ -1,0 +1,34 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= link_to "Adicionar devedor solidário", new_ops_admin_seller_joint_debtor_path(@seller) , class: "btn btn-rounded blue" %>
+        <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nascimento</th>
+              <th>Mobile</th>
+              <th>Documentação</th>
+              <th>Email</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @joint_debtors.each do |joint_debtor| %>
+              <tr>
+                <td> <%= joint_debtor.name %> </td>
+                <td> <%= joint_debtor.birthdate %> </td>
+                <td> <%= joint_debtor.mobile %> </td>
+                <td> <%= joint_debtor.documentation %> </td>
+                <td> <%= joint_debtor.email %> </td>
+                <td> <%= link_to "editar",  edit_ops_admin_seller_joint_debtor_path(@seller,joint_debtor) %> | <%= link_to "deletar", ops_admin_seller_joint_debtor_path(@seller, joint_debtor), method: :delete, data: { confirm: "Are you sure?" } %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

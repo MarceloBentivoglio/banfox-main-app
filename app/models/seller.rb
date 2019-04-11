@@ -102,9 +102,12 @@ class Seller < ApplicationRecord
   validates :email_partner, corporate_email: true, if: :active_or_partner?
   validates :full_name_partner, :cpf_partner, :mobile_partner, :birth_date_partner, :email_partner, presence: { message: "precisa ser informado" }, if: :active_or_partner?
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
+  validates :fator, numericality: {greater_than_or_equal_to: 0.01, less_than_or_equal_to: 0.07, allow_nil: true}
+  validates :advalorem, numericality: {greater_than_or_equal_to: 0.001, less_than_or_equal_to: 0.01, allow_nil: true}
+  validates :protection, numericality: {greater_than_or_equal_to: 0.05, less_than_or_equal_to: 0.3, allow_nil: true}
 
   # TODO: Refactor this block of code
-  before_validation :clean_inputs
+  before_validation :clean_inputs, :downcase_words
   before_update :strip_cnpj, if: :cnpj_changed?
   before_update :strip_cpf, if: :cpf_changed?
   before_create :strip_cnpj
@@ -257,6 +260,12 @@ class Seller < ApplicationRecord
   def clean_inputs
     %i{mobile mobile_partner phone zip_code phone cpf cpf_partner cnpj birth_date birth_date_partner}.each do |attr|
       self.__send__(attr).gsub!(/[^0-9A-Za-z]/, '') unless self.__send__(attr).nil?
+    end
+  end
+
+  def downcase_words
+    %i{full_name company_name company_nickname website address address_number address_comp neighborhood state city nire full_name_partner email_partner }.each do |attr|
+      self.__send__(attr).downcase! unless self.__send__(attr).nil?
     end
   end
 

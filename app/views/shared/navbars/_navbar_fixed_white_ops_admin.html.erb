@@ -8,11 +8,12 @@
     </div>
 
     <div class="section-middle hidden-xs hidden-sm">
-      <!-- Links when logged in -->
+      <%= link_to ops_admin_sellers_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
+        <span>Clientes</span>
+      <% end %>
       <%= link_to ops_admin_operations_analyse_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
         <span>Operações para análise</span>
       <% end %>
-
       <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
         <span>Operações para depósito</span>
       <% end %>
