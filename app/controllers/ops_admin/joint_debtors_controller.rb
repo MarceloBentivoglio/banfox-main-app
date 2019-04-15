@@ -1,5 +1,5 @@
 class OpsAdmin::JointDebtorsController < OpsAdmin::BaseController
-  before_action :set_seller, only: [:index, :new, :create, :edit, :update]
+  before_action :set_seller, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :set_joint_debtor, only: [:edit, :update, :destroy]
 
   def index
@@ -32,6 +32,7 @@ class OpsAdmin::JointDebtorsController < OpsAdmin::BaseController
   end
 
   def destroy
+    authorize @joint_debtor
     @joint_debtor.destroy
     redirect_to ops_admin_seller_joint_debtors_path(@seller)
   end
