@@ -922,6 +922,8 @@ GEM
       actionmailer (>= 3.2.6, < 6)
       actionpack (>= 3.2.6, < 6)
       devise (>= 3.2, < 6)
+    sitemap_generator (6.0.2)
+      builder (~> 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -1006,6 +1008,7 @@ DEPENDENCIES
   sidekiq-failures (~> 1.0)
   simple_form
   simple_token_authentication
+  sitemap_generator
   spring
   spring-watcher-listen (~> 2.0.0)
   uglifier
