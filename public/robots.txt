@@ -1,1 +1,1 @@
-Sitemap: http://www.example.com/sitemap.xml.gz
+Sitemap: https://www.banfox.com.br/sitemap.xml.gz
