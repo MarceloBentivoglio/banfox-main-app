@@ -23,8 +23,8 @@ class SellersController < ApplicationController
     SellerMailer.welcome(@user, @seller).deliver_now
     SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar").send_now
     redirect_to sellers_dashboard_path
-  rescue Timeout::Error
-    SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis").send_now
+  rescue StandardError => e
+    SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
     redirect_to takeabreath_path and return
   end
 
