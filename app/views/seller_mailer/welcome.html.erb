@@ -18,7 +18,7 @@
               <tr>
                 <td class="content-cell">
                   <h1>Bem vindo à Banfox!</h1>
-                  <h3>Olá <%= @seller.full_name.split.first %>, </h3>
+                  <h3>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>, </h3>
                   <p>Nós estamos felizes que você queira fazer negócios conosco!</p>
                   <p>O cadastro da <%= @seller.company_name.mb_chars.titleize %> já está ativo! Sua empresa já foi pré-aprovada com um limite de <strong>R$ 20.000,00</strong>. Lembrando que esse limite pode ser ainda maior.
                   <p>O próximo passo é <strong>escolher uma data e horário</strong> para que possamos ligar na sua empresa e te conhecer melhor!</p>

@@ -10,7 +10,7 @@
       <div class="modal-body">
         <h4 class="modal-body-title-icon"><i class="fa fa-hourglass-half" aria-hidden="true"></i></h4>
         <h4 class="modal-body-title-message">Estamos quase lá!</h4>
-          <p>Olá <%= seller.full_name.split.first %>,</p>
+          <p>Olá <%= seller.full_name.mb_chars.titleize.split.first %>,</p>
           <p>Obrigado por fazer o seu cadastro em nossa plataforma!</p>
           <p>Estamos analisando seus dados e vamos te dar uma posição por e-mail em menos de 2 horas.</p>
           <p>Equipe <strong>Banfox</strong>.</p>

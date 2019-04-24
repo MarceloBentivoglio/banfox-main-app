@@ -17,7 +17,7 @@
               <!-- Body content -->
               <tr>
                 <td class="content-cell">
-                  <h1>Olá <%= @seller.full_name.split.first %>, </h1>
+                  <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>, </h1>
                   <p>Nós vislumbramos parcerias de longo prazo e por isso sempre oferecemos diversas ferramentas sem custo para nossos clientes e parceiros melhorarem a gestão financeira de suas empresas.</p>
                   <p>Infelizmente não conseguiremos oferecer limites de antecipação para <strong><%= @seller.company_name.mb_chars.titleize %></strong>.</p>
                   <p>Para tornarmos o mercado brasileiro mais confiável e promissor ao longos dos próximos anos, precisamos trabalhar com empresas que tenham suas operações padronizadas e sigam algumas regras de negócios que nos permitam ser ágeis e facilitadores. Portanto, gostaríamos de agradecer novamente o interesse em trabalhar com a Banfox.</p>

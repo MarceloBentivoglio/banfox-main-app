@@ -17,7 +17,7 @@
               <!-- Body content -->
               <tr>
                 <td class="content-cell">
-                  <h1>Olá <%= @seller.full_name.split.first %>,</h1>
+                  <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>A operação que você nos mandou foi analisada e aprovada parcilmente. Para continuar com a operação clique no botão abaixo</p>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">

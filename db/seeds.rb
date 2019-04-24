@@ -541,6 +541,13 @@ user3 = User.create!(
   admin: false,
 )
 
+user4 = User.create!(
+  email: "DOCparser@docparser.com",
+  password: 123123,
+  authentication_token: "dm1__xFcs7ebSjKUPYro",
+  admin: false
+)
+
 puts "............ seed ended"
 puts "Users:"
 puts "ADMIN: email: #{user1.email} \npassword: #{user1.password}"
