@@ -4,7 +4,6 @@ class SellersController < ApplicationController
   skip_before_action :require_not_on_going, only: [:analysis]
 
   def dashboard
-    @seller.set_initial_limit
     @show_message = false
     verify_first_access
     @installments_in_analysis = Installment.total(:in_analysis, @seller)
@@ -13,15 +12,13 @@ class SellersController < ApplicationController
   def analysis
     if !CpfCheckRF.new(@seller).analyze || !check_revenue
       SellerMailer.rejected(@user, @seller).deliver_now
+      SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado*").send_now
       redirect_to unfortune_path and return
     end
     @seller.pre_approved!
-    @seller.fator = 0.045
-    @seller.advalorem = 0.005
-    @seller.protection = 0.2
-    @seller.save!
+    @seller.set_pre_approved_initial_standard_settings
     SellerMailer.welcome(@user, @seller).deliver_now
-    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar").send_now
+    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
     redirect_to sellers_dashboard_path
   rescue StandardError => e
     SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now

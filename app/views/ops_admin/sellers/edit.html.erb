@@ -9,6 +9,7 @@
           <%= f.input :fator %>
           <%= f.input :advalorem %>
           <%= f.input :protection %>
+          <%= f.input :operation_limit, input_html: {id: "monthly_revenue"} %>
           <%= f.submit "Atualizar", class: "btn btn-rounded blue" %>
           <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
         <% end %>

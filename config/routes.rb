@@ -15,6 +15,11 @@ Rails.application.routes.draw do
         end
       end
       resources :sellers, only: [:index, :edit, :update] do
+        member do
+          get 'pre_approve'
+          get 'reject'
+          get 'approve'
+        end
         resources :joint_debtors, only: [:index, :new, :create, :edit, :update, :destroy]
       end
       namespace :operations do

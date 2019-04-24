@@ -250,8 +250,11 @@ class Seller < ApplicationRecord
     operation_limit - used_limit
   end
 
-  def set_initial_limit
-    self.operation_limit = Money.new("2000000") if self.operation_limit == Money.new(0) && self.active?
+  def set_pre_approved_initial_standard_settings
+    self.fator = 0.045
+    self.advalorem = 0.005
+    self.protection = 0.2
+    self.operation_limit = Money.new("2000000")
     self.save!
   end
 

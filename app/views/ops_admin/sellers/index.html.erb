@@ -11,7 +11,9 @@
               <th>Fator</th>
               <th>Advalorem</th>
               <th>Proteção</th>
+              <th>Limite</th>
               <th>Devedor solidário</th>
+              <th>Status</th>
               <th>Ação</th>
             </tr>
           </thead>
@@ -24,8 +26,10 @@
                 <td> <%= seller.fator %> </td>
                 <td> <%= seller.advalorem %> </td>
                 <td> <%= seller.protection %> </td>
+                <td> <%= humanized_money_with_symbol seller.operation_limit %> </td>
                 <td> <%= seller.joint_debtors.count %> </td>
-                <td> <%= link_to "editar valores", edit_ops_admin_seller_path(seller) %> | <%= link_to "editar devedores solidários", ops_admin_seller_joint_debtors_path(seller) %> </td>
+                <td> <%= seller.analysis_status %> </td>
+                <td> <%= ops_admin_actions(seller) %> </td>
               </tr>
             <% end %>
           </tbody>
