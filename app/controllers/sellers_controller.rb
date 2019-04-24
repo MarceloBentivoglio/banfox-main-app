@@ -8,7 +8,6 @@ class SellersController < ApplicationController
     @show_message = false
     verify_first_access
     @installments_in_analysis = Installment.total(:in_analysis, @seller)
-
   end
 
   def analysis

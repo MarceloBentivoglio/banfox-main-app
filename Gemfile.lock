@@ -731,6 +731,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -987,6 +988,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.0.13)
   forest_liana
   google-api-client (~> 0.23.4)
+  jaro_winkler
   jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)

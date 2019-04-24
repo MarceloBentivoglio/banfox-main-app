@@ -80,6 +80,9 @@ gem 'devise-i18n'
 # This gem is used to create our site map
 gem 'sitemap_generator'
 
+# This gem used the Jaro Winkler algorithm to compare two strings
+gem 'jaro_winkler'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   # This gem is used to open the email in development in a browser tab

@@ -1,24 +1,25 @@
 class CpfCheckRF
+  @@minimum_similarity_accepted = 0.7
+
   # TODO: this is a horrible code! Refactor
   def initialize(seller)
     @applicant_cpf = seller.cpf
-    @applicant_name = seller.full_name.downcase.split
+    @applicant_name = seller.full_name
     @partner_cpf = seller.cpf_partner
-    @partner_name = seller.full_name_partner.downcase.split
+    @partner_name = seller.full_name_partner
     @same_person = @applicant_cpf == @partner_cpf
     @seller = seller
     @cpfs = []
     @rf_infos = []
     @rf_names = []
     @rf_sit_cad =[]
-    @rf_cpfs_valid = true
     @inputs_checks_w_rf = false
   end
 
   def analyze
     define_cpfs_to_check
     set_rf_infos
-    treat_rf_infos
+    split_rf_infos
     persist_rf_infos
     compare_input_w_rf
     persist_analysis_conclusion
@@ -37,18 +38,16 @@ class CpfCheckRF
   end
 
   def fetch_rf_info(cpf)
-    url = "https://consulta-situacao-cpf-cnpj.p.rapidapi.com/consultaSituacaoCPF?cpf={#{cpf}}"
-    Timeout::timeout(5) do
-      headers = { "X-RapidAPI-Key" => Rails.application.credentials[Rails.env.to_sym][:rapidapi_key] }
-      serialized_rf_info = RestClient.get(url, headers)
-      rf_info = JSON.parse(serialized_rf_info)
+    Timeout::timeout(10) do
+      rf_cpf_info = BigBoostCpfInfo.new(cpf)
+      return rf_cpf_info.treated_cpf_info
     end
   end
 
-  def treat_rf_infos
+  def split_rf_infos
     @rf_infos.each do |rf_info|
-      @rf_names << rf_info['nome'].downcase
-      @rf_sit_cad << rf_info['situacaoCadastral'].downcase
+      @rf_names << rf_info[:name]
+      @rf_sit_cad << rf_info[:taxIdStatus]
     end
   end
 
@@ -63,20 +62,21 @@ class CpfCheckRF
   end
 
   def compare_input_w_rf
-    if @rf_cpfs_valid
+    if @same_person
       @inputs_checks_w_rf = compare_str(@applicant_name, @rf_names.first)
-      @inputs_checks_w_rf = compare_str(@partner_name, @rf_names.last) unless @same_person
+    else
+      @inputs_checks_w_rf = compare_str(@applicant_name, @rf_names.first) && compare_str(@partner_name, @rf_names.last)
     end
   end
 
-  def compare_str(names, rf)
-    names.any? do |name|
-      rf.include?(name)
-    end
+  def compare_str(str1, str2)
+    str1 = I18n.transliterate(str1)
+    str2 = I18n.transliterate(str2)
+    return JaroWinkler.distance(str1, str2) >= @@minimum_similarity_accepted ? true : false
   end
 
   def persist_analysis_conclusion
-    if !@rf_cpfs_valid || !@inputs_checks_w_rf
+    if !@inputs_checks_w_rf
       @seller.rejected!
       @seller.no_match_w_rf!
     end
