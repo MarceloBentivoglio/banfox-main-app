@@ -21,7 +21,7 @@
             <% @sellers.each do |seller| %>
               <tr>
                 <td> <%= seller.id %> </td>
-                <td> <%= seller.company_name %> </td>
+                <td> <%= seller.company_name.mb_chars.titleize %> </td>
                 <td> <%= seller.cnpj %> </td>
                 <td> <%= seller.fator %> </td>
                 <td> <%= seller.advalorem %> </td>

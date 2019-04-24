@@ -20,7 +20,7 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
     # There is no problem using @seller.users.first because this action only makes sense when the seller is not yet approved and thus only have one user
     @seller.pre_approved!
     SellerMailer.welcome(@seller.users.first, @seller).deliver_now
-    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} foi *manualmente pré-aprovado*").send_now
+    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} foi *manualmente pré-aprovado*").send_now
     redirect_to ops_admin_sellers_path
   end
 
@@ -29,13 +29,13 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
     @seller.rejected!
     @seller.rejected_on_commitee!
     SellerMailer.rejected(@seller.users.first, @seller).deliver_now
-    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} foi *manualmente rejeitado*").send_now
+    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} foi *manualmente rejeitado*").send_now
     redirect_to ops_admin_sellers_path
   end
 
   def approve
     @seller.approved!
-    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name} \n cnpj: #{@seller.cnpj} foi *manualmente aprovado*").send_now
+    SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} foi *manualmente aprovado*").send_now
     redirect_to ops_admin_sellers_path
   end
 

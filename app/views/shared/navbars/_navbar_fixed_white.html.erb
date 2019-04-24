@@ -25,7 +25,7 @@
         <div class="dropdown">
           <a id="mvp-menu" href="#" data-toggle="dropdown" class="navbar-section-item-link">
             <i class="fa fa-user-circle"></i>
-            <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name.slice(0,33) %> </span>
+            <span class="profile-name"> <%= @seller.company_nickname || @seller.company_name.mb_chars.titleize.slice(0,33) %> </span>
           </a>
           <ul class="dropdown-menu dropdown-menu-right mvp-dropdown-menu">
             <li>

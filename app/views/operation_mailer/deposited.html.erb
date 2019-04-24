@@ -52,7 +52,7 @@
                     </tr>
                     <% @installments.each do |i| %>
                       <tr>
-                        <td class="purchase_item"><%= i.invoice.payer.company_name.split.first %></td>
+                        <td class="purchase_item"><%= i.invoice.payer.company_name.mb_chars.titleize.split.first %></td>
                         <td class="purchase_item"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.final_net_value %></td>

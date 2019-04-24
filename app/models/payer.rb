@@ -1,5 +1,7 @@
 class Payer < ApplicationRecord
   has_many  :invoices, dependent: :destroy
+  include UserInputProcessing
+  before_validation :clean_inputs, :downcase_words
   validates :cnpj,  uniqueness: true
 
   enum company_type: {
@@ -9,5 +11,4 @@ class Payer < ApplicationRecord
     mei: 3,
     epp: 4,
   }
-
 end

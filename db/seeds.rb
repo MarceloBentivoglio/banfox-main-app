@@ -46,7 +46,7 @@ seller1 = Seller.create!(
 )
 
 payer1 = Payer.create!(
-    company_name: "Ficticio",
+    company_name: "FICTÍCIO",
     cnpj:"23198636000195",
     fator: 0.05,
     advalorem: 0.001,
@@ -475,7 +475,7 @@ user2 = User.create!(
 puts "Creating second seller, nota PDF ......."
 
 seller3 = Seller.create!(
-  full_name: "antonio bena da silva",
+  full_name: "AntONIO Bena DA silva",
   cpf: "14369680387",
   rf_full_name: "antonio bena da silva",
   rf_sit_cad: "regular",

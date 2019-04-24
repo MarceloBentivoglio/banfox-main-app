@@ -20,6 +20,7 @@ class Seller < ApplicationRecord
   has_many_attached :partners_rgs, dependent: :purge
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
+  include UserInputProcessing
 
   after_save :async_update_spreadsheet
 # validate :correct_document_mime_type
@@ -259,26 +260,6 @@ class Seller < ApplicationRecord
   end
 
   private
-
-  def clean_inputs
-    %i{mobile mobile_partner phone zip_code phone cpf cpf_partner cnpj birth_date birth_date_partner}.each do |attr|
-      self.__send__(attr).gsub!(/[^0-9A-Za-z]/, '') unless self.__send__(attr).nil?
-    end
-  end
-
-  def downcase_words
-    %i{full_name company_name company_nickname website address address_number address_comp neighborhood state city nire full_name_partner email_partner }.each do |attr|
-      self.__send__(attr).downcase! unless self.__send__(attr).nil?
-    end
-  end
-
-  def strip_cnpj
-    self.cnpj = CNPJ::Formatter.strip(self.cnpj, strict: true)
-  end
-
-  def strip_cpf
-    self.cpf = CPF::Formatter.strip(self.cpf, strict: true)
-  end
 
   def async_update_spreadsheet
     SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)
