@@ -44,10 +44,11 @@ const signDocument = () => {
       let widget = new Clicksign(signatureKey);
 
       // Define o endpoint https://sandbox.clicksign.com ou https://app.clicksign.com
+      // TODO: trocar depois do teste
       if (environement == "development") {
         widget.endpoint = 'https://sandbox.clicksign.com';
       } else {
-        widget.endpoint = "https://app.clicksign.com";
+        widget.endpoint = "https://sandbox.clicksign.com";
       }
 
       // Define a URL de origem (parametro necessário para utilizar através de WebView)
