@@ -27,13 +27,15 @@ class SignDocuments
   end
 
   def headers
-    { "Content-Type" => "application/json", "X-User-Email" => "joaquim@banfox.com.br", "X-User-Token" => "dx3zDP3cY4FXs8qV12W3" }
+    { "Content-Type" => "application/json",
+      "X-User-Email" => Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_id],
+      "X-User-Token" => Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_token]
+    }
   end
 
 
   def host
-    #TODO Inserir dominio do heroku em produção
-    Rails.env.development? ? "https://a71cacc1.ngrok.io" : ""
+    Rails.env.development? ? "https://a71cacc1.ngrok.io" : Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
   end
 
   def seller_content
