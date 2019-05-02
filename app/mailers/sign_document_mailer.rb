@@ -11,4 +11,15 @@ class SignDocumentMailer < ApplicationMailer
       subject: "Assinar documento de aditivo de operação"
       )
   end
+
+  def banfox_signer(email, signature_key, operation_id)
+    @signature_key = signature_key
+    @operation_id = operation_id
+
+    mail(
+    to: email,
+    subject: "Assinar documento de aditivo da operação \# #{@operation_id}"
+    )
+  end
+
 end

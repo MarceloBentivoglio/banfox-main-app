@@ -74,10 +74,19 @@ class Operation < ApplicationRecord
         joint_debtor.email == signer_signature_key[:email]
       end
       if joint_debtor
-        SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key]  ).deliver_now
+        SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key]).deliver_now
       end
     end
   end
+
+  def notify_banfox_signer
+    signer_signature_keys.each do |signer_signature_key|
+      if signer_signature_key[:email] == "joao@banfox.com.br"
+        SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:signature_key], id).deliver_now
+      end
+    end
+  end
+
 
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }

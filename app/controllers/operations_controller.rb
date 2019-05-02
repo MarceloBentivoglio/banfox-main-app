@@ -45,6 +45,7 @@ class OperationsController < ApplicationController
     @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!
     @operation.notify_joint_debtors(@seller)
+    @operation.notify_banfox_signer
     redirect_to sign_document_operations_path
   end
 

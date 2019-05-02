@@ -91,12 +91,13 @@ class SignDocuments
   def signers_content
     #TODO Whatch out because inject is destructive, so i have to refactor this
     @signers = []
-    add_main_signer_to_signers
-    add_joint_debtors_to_signers
+    add_client_main_signer_to_signers
+    add_client_joint_debtors_to_signers
+    add_banfox_to_signers
     return @signers
   end
 
-  def add_main_signer_to_signers
+  def add_client_main_signer_to_signers
     birthdate = @seller.birth_date_partner
     @signers << {
       name: @seller.full_name_partner,
@@ -108,7 +109,7 @@ class SignDocuments
     }
   end
 
-  def add_joint_debtors_to_signers
+  def add_client_joint_debtors_to_signers
     @seller.joint_debtors.each do |joint_debtor|
       @signers << {
         name: joint_debtor.name,
@@ -120,6 +121,18 @@ class SignDocuments
       }
     end
   end
+
+  def add_banfox_to_signers
+    @signers << {
+      name: "João Vicente Conte",
+      birthdate: "1991-02-05",
+      mobile: "11955550188",
+      documentation: "339.430.918-13",
+      email: "joao@banfox.com.br",
+      sign_as: ["sign"]
+    }
+  end
+
 
 
 end
