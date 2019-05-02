@@ -48,11 +48,8 @@ const signDocument = () => {
       if (environement == "development") {
         widget.endpoint = 'https://sandbox.clicksign.com';
       } else {
-        widget.endpoint = "https://sandbox.clicksign.com";
+        widget.endpoint = "https://app.clicksign.com";
       }
-
-      // Define a URL de origem (parametro necessário para utilizar através de WebView)
-      // widget.origin = 'https://2c78364b.ngrok.io/operations/sign_document';
 
       // Monta o widget no div
       widget.mount('document-container');

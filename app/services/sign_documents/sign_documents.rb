@@ -35,7 +35,7 @@ class SignDocuments
 
 
   def host
-    Rails.env.development? ? "https://a71cacc1.ngrok.io" : Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
+    Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
   end
 
   def seller_content
