@@ -26,6 +26,8 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   def deposit
     @installment.opened!
     @installment.deposited!
+    @installment.deposited_at = Time.current
+    @installment.save!
     @installment.operation.notify_seller(@seller)
     redirect_to ops_admin_operations_deposit_path
   end

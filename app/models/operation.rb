@@ -182,7 +182,7 @@ class Operation < ApplicationRecord
 
     seconds = seconds_diff
 
-    '%02d horas e %02d minutos' % [hours, minutes]
+    '%02d horas, %02d minutos e %02d segundos' % [hours, minutes, seconds]
   end
 
   private

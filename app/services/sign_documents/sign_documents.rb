@@ -57,32 +57,29 @@ class SignDocuments
       id: @operation.id,
       time: @operation.created_at.iso8601,
       gross_value: @operation.total_value_approved.format(symbol: ''),
-      fator: @operation.final_fator.format(symbol: ''),
-      advalorem: @operation.final_advalorem.format(symbol: ''),
-      iof: "20,65",
-      iof_adicional: "60,17",
-      fee: "0",
-      net_value: @operation.final_net_value.format(symbol: '')
+      fee: @operation.final_fee.format(symbol: ''),
+      net_value: @operation.final_net_value.format(symbol: ''),
+      first_deposit: @operation.final_deposit_today.format(symbol: ''),
+      protection: @operation.final_protection.format(symbol: ''),
     }
   end
 
   def installments_content
     installments = []
     @operation.installments.each do |installment|
-      invoice = installment.invoice
-      payer = invoice.payer
+      payer = installment.invoice.payer
       i = {
         payer_company_name: payer.company_name,
         registration: CNPJ.new(payer.cnpj).formatted,
         type: "DMR",
-        invoice_number: invoice.number,
         number: installment.number,
         due_date: installment.due_date.strftime("%d/%m/%Y"),
         outstanding_days: installment.outstanding_days,
         value: installment.value.format(symbol: ''),
-        fator_advalorem: installment.final_fator.format(symbol: ''),
-        iof: "23,66",
+        fee: installment.fee.format(symbol: ''),
         net_value: installment.final_net_value.format(symbol: ''),
+        first_deposit: installment.first_deposit_amount.format(symbol: ''),
+        protection: installment.protection.format(symbol: ''),
       }
       installments << i
     end
@@ -127,13 +124,10 @@ class SignDocuments
     @signers << {
       name: "João Vicente Conte",
       birthdate: "1991-02-05",
-      mobile: "11955550188",
+      mobile: Rails.env.development? ? "11998308090" : "11955550188",
       documentation: "339.430.918-13",
       email: "joao@banfox.com.br",
       sign_as: ["sign"]
     }
   end
-
-
-
 end
