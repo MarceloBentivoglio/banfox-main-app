@@ -7,8 +7,9 @@ class Invoice < ApplicationRecord
   enum invoice_type: {
     invoice_type_not_set: 0,
     contract:             1,
-    traditional_invoice:  2,
-    check:                3,
+    merchandise_invoice:  2,
+    service_invoice:      3,
+    check:                4,
   }
 
   def fator

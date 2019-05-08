@@ -134,7 +134,7 @@ class ExtractDataFromXlsx
       when "CHQ"
         invoice.check!
       when "DMR"
-        invoice.traditional_invoice!
+        invoice.merchandise_invoice!
       else
         invoice.contract!
     end
