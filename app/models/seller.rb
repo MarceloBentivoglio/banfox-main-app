@@ -48,13 +48,15 @@ class Seller < ApplicationRecord
     "consent" => "Li e aceito os termos do site"
   }.freeze
 
+  # For more information on company types: http://www.sebrae.com.br/sites/PortalSebrae/ufs/sp/conteudo_uf/quais-sao-os-tipos-de-empresas,af3db28a582a0610VgnVCM1000004c00210aRCRD
   enum company_type: {
     company_type_not_set: 0,
-    ltda:                 1,
-    sa:                   1,
-    me:                   2,
-    mei:                  3,
-    epp:                  4,
+    ei:                   1,
+    mei:                  2,
+    eireli:               3,
+    ltda:                 4,
+    sa:                   5,
+    ss:                   6,
   }
 
 # If this enum is changed the steps in SellerStepsController must change as well
@@ -77,9 +79,10 @@ class Seller < ApplicationRecord
 
   enum rejection_motive: {
     rejection_motive_not_set: 0,
-    insuficient_revenue:      1,
-    no_match_w_rf:            2,
-    rejected_on_commitee:     3,
+    non_applicable:           1,
+    insuficient_revenue:      2,
+    no_match_w_rf:            3,
+    rejected_on_commitee:     4,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)

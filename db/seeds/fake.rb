@@ -62,49 +62,49 @@ user1 = User.create!(
 # Creating invoices
 # liquidado
 i1 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004848",
   seller: seller1,
   payer: payer1,
 )
 
 i6 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004901",
   seller: seller1,
   payer: payer1,
 )
 # em aberto
 i2 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004849",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment pago
 i3 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004850",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment aberto
 i4 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004851",
   seller: seller1,
   payer: payer1,
 )
 # disponível para compra
 i5 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004852",
   seller: seller1,
   payer: payer1,
   )
 
 i7 = Invoice.create!(
-  invoice_type: "traditional_invoice",
+  invoice_type: "merchandise_invoice",
   number: "000004902",
   seller: seller1,
   payer: payer1,
@@ -541,10 +541,12 @@ user3 = User.create!(
   admin: false,
 )
 
+puts "Creating Doc Parser user, nota PDF ......."
+
 user4 = User.create!(
-  email: "DOCparser@docparser.com",
-  password: 123123,
-  authentication_token: "dm1__xFcs7ebSjKUPYro",
+  email: Rails.application.credentials[:development][:doc_parser][:user_mail],
+  password: rand.to_s[2..11],
+  authentication_token: Rails.application.credentials[:development][:doc_parser][:user_token],
   admin: false
 )
 
@@ -553,118 +555,6 @@ puts "Users:"
 puts "ADMIN: email: #{user1.email} \npassword: #{user1.password}"
 puts "XML: email: #{user2.email} \npassword: #{user2.password}"
 puts "PDF: email: #{user3.email} \npassword: #{user3.password}"
+puts "DOCParser: email: #{user4.email} \npassword: #{user4.password}"
 
-# Real data
-# fluidtec = Seller.create!(
-#   full_name: "antonio bena da silva",
-#   cpf: "14369680387",
-#   rf_full_name: "antonio bena da silva",
-#   rf_sit_cad: "REGULAR",
-#   birth_date: "12111956",
-#   mobile: "11963235090",
-#   company_name: "Fluidtec Sistemas de Automação Eirelli",
-#   company_nickname: "Fluidtec",
-#   cnpj: "15028515000177",
-#   phone: "1134555080",
-#   website: "www.fluidtec.com.br",
-#   address: "Alameda Rio Negro",
-#   address_number: "1030",
-#   address_comp: "escritorio 206",
-#   neighborhood: "Alphaville Centro Industrial e Empresarial/Alphavi...",
-#   state: "SP",
-#   city: "Barueri",
-#   zip_code: "06454000",
-#   inscr_est: "",
-#   inscr_mun: "",
-#   nire: "",
-#   company_type: "company_type_not_set",
-#   operation_limit_cents: 30000000,
-#   operation_limit_currency: "BRL",
-#   fator: 0.039,
-#   advalorem: 0.001,
-#   monthly_revenue_cents: 50000000,
-#   monthly_revenue_currency: "BRL",
-#   monthly_fixed_cost_cents: 35000000,
-#   monthly_fixed_cost_currency: "BRL",
-#   monthly_units_sold: 10500,
-#   cost_per_unit_cents: 3300,
-#   cost_per_unit_currency: "BRL",
-#   debt_cents: 3800000,
-#   debt_currency: "BRL",
-#   full_name_partner: "antonio bena da silva",
-#   cpf_partner: "14369680387",
-#   rf_full_name_partner: "antonio bena da silva",
-#   rf_sit_cad_partner: "REGULAR",
-#   birth_date_partner: "12111956",
-#   mobile_partner: "11963235090",
-#   email_partner: "bena.silva@fluidtec.com.br",
-#   consent: true,
-#   validation_status: "active",
-#   visited: true,
-#   analysis_status: "approved",
-#   rejection_motive: "rejection_motive_not_set",
-#   protection: 0.2,
-# )
 
-# fluidtec_user = User.create!(
-#   email: "bena.silva@fluidtec.com.br",
-#   admin: false,
-#   seller: fluidtec
-# )
-
-# biocath = Seller.create!(
-#   full_name: "Livia",
-#   cpf: "34514993808",
-#   rf_full_name: "livia bergamo anselmo",
-#   rf_sit_cad: "regular",
-#   birth_date: "04041986",
-#   mobile: "11982924204",
-#   company_name: "BioCath Comercio de Produtos Hospitalares LTDA",
-#   company_nickname: "",
-#   cnpj: "05964709000120",
-#   phone: "1150703670",
-#   website: "www.biocath.com.br",
-#   address: "Rua Santa Cruz",
-#   address_number: "1040",
-#   address_comp: "até 1450 - lado par",
-#   neighborhood: "Vila Mariana",
-#   state: "SP",
-#   city: "São Paulo",
-#   zip_code: "04122000",
-#   inscr_est: "",
-#   inscr_mun: "",
-#   nire: "",
-#   company_type: "company_type_not_set",
-#   operation_limit_cents: 2000000,
-#   operation_limit_currency: "BRL",
-#   fator: 0.045,
-#   advalorem: 0.005,
-#   monthly_revenue_cents: 500005000,
-#   monthly_revenue_currency: "BRL",
-#   monthly_fixed_cost_cents: 100000000,
-#   monthly_fixed_cost_currency: "BRL",
-#   monthly_units_sold: 6500,
-#   cost_per_unit_cents: 220000000,
-#   cost_per_unit_currency: "BRL",
-#   debt_cents: 450000000,
-#   debt_currency: "BRL",
-#   full_name_partner: "Livia",
-#   cpf_partner: "34514993808",
-#   rf_full_name_partner: "livia bergamo anselmo",
-#   rf_sit_cad_partner: "regular",
-#   birth_date_partner: "04041986",
-#   mobile_partner: "11982924204",
-#   email_partner: "livia.anselmo@biocath.com.br",
-#   consent: true,
-#   validation_status: "active",
-#   visited: false,
-#   analysis_status: "pre_approved",
-#   rejection_motive: "rejection_motive_not_set",
-#   protection: 0.2,
-# )
-
-# biocath_user = User.create!(
-#   email: "livia.anselmo@biocath.com.br",
-#   admin: false,
-#   seller: biocath,
-# )

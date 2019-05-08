@@ -28,7 +28,7 @@ class ExtractDataFromJson
     end
     invoice_attributes = {
       number: @data["number"],
-      invoice_type: :traditional_invoice,
+      invoice_type: :service_invoice,
       issue_date: Date.parse(@data["issue_date"]),
       doc_parser_data: @data,
     }
