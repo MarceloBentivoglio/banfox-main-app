@@ -380,21 +380,6 @@ i = Installment.create!(
   operation: operation3,
   number: "004.901/03",
   value: Money.new(730000),
-  due_date: Date.current - 30.days,
-  backoffice_status: "deposited",
-  liquidation_status: "rebought",
-)
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
-
-i = Installment.create!(
-  invoice: i6,
-  operation: operation3,
-  number: "004.901/03",
-  value: Money.new(730000),
   due_date: Date.current - 20.days,
   backoffice_status: "deposited",
   liquidation_status: "pdd",

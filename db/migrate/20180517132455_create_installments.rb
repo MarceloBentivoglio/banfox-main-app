@@ -17,7 +17,6 @@ class CreateInstallments < ActiveRecord::Migration[5.1]
       t.integer    :rejection_motive, default: 0
       t.string     :import_ref
       t.references :invoice, index: true, foreign_key: true
-      t.references :rebuy, index: true, foreign_key: true
       t.references :operation, index: true, foreign_key: true
 
       t.timestamps

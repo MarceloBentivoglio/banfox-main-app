@@ -1,6 +1,5 @@
 class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
-  belongs_to :rebuy, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
   monetize :final_net_value_cents, with_model_currency: :currency
@@ -24,14 +23,14 @@ class Installment < ApplicationRecord
   scope :overdue_upto_7,      -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date})) }
   scope :overdue_upto_30,     -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date})) }
   scope :overdue_30_plus,     -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date})) }
-  scope :settled,             -> (seller) { from_seller(seller).merge(paid.or(rebought).or(pdd)) }
+  scope :settled,             -> (seller) { from_seller(seller).merge(paid.or(pdd)) }
   scope :total,               -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents)) }
   scope :quant,               -> (scope, seller) { __send__(scope, seller).count }
 
   # For the tables of cards
   scope :in_store,            -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]) }
   scope :currently_opened,    -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]) }
-  scope :finished,            -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(rebought).or(pdd))).preload(invoice: [:payer]) }
+  scope :finished,            -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(pdd))).preload(invoice: [:payer]) }
 
   # For creating operations
   scope :ordered_in_analysis, -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
@@ -42,8 +41,7 @@ class Installment < ApplicationRecord
     liquidation_status_not_set: 0,
     opened:                     1,
     paid:                       2,
-    rebought:                   3,
-    pdd:                        4,
+    pdd:                        3,
   }
 
   enum backoffice_status: {
@@ -83,7 +81,6 @@ class Installment < ApplicationRecord
       due_today: "Vence hoje",
       overdue: "Em atraso",
       paid: "Liquidada",
-      rebought: "Recomprada",
       pdd: "Perdida",
       available: "Disponível",
     }
@@ -153,7 +150,6 @@ class Installment < ApplicationRecord
       payer_id: self.invoice.payer_id,
       payer_cnpj: self.invoice.payer.cnpj,
       id: self.id,
-      rebuy_id: self.rebuy_id,
       status: self.status[1],
       number: self.number,
       value_cents: self.value_cents,

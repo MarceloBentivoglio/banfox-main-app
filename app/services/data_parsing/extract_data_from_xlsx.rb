@@ -57,22 +57,7 @@ class ExtractDataFromXlsx
       end
       invoice.operation = operation
       invoice.save!
-      if installment.rebought?
-        rebuy = Rebuy.new(import_ref: cols[18])
-        rebuy.save!
-        installment.rebuy = rebuy
-        installment.save!
-      end
       puts "<........................line: #{row_number + 1} finished"
-    end
-    if paid_flag
-      puts "Adjusting rebuys:....................>"
-      Rebuy.where("created_at > ?", 10.minutes.ago).each do |rebuy|
-        puts "Rebuy ref id: #{rebuy.import_ref}"
-        rebuy.operation = Operation.find_by_import_ref(rebuy.import_ref)
-        rebuy.save!
-      end
-      puts "<........................rebuys adjusted"
     end
   end
 

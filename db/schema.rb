@@ -58,13 +58,11 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.integer "rejection_motive", default: 0
     t.string "import_ref"
     t.bigint "invoice_id"
-    t.bigint "rebuy_id"
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
-    t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -131,14 +129,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.decimal "advalorem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "rebuys", force: :cascade do |t|
-    t.string "import_ref"
-    t.bigint "operation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["operation_id"], name: "index_rebuys_on_operation_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -218,10 +208,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
 
   add_foreign_key "installments", "invoices"
   add_foreign_key "installments", "operations"
-  add_foreign_key "installments", "rebuys"
   add_foreign_key "invoices", "payers"
   add_foreign_key "invoices", "sellers"
   add_foreign_key "joint_debtors", "sellers"
-  add_foreign_key "rebuys", "operations"
   add_foreign_key "users", "sellers"
 end
