@@ -40,7 +40,18 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.string "number"
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
+    t.bigint "final_net_value_cents", default: 0, null: false
+    t.string "final_net_value_currency", default: "BRL", null: false
+    t.bigint "final_fator_cents", default: 0, null: false
+    t.string "final_fator_currency", default: "BRL", null: false
+    t.bigint "final_advalorem_cents", default: 0, null: false
+    t.string "final_advalorem_currency", default: "BRL", null: false
+    t.bigint "final_protection_cents", default: 0, null: false
+    t.string "final_protection_currency", default: "BRL", null: false
     t.date "due_date"
+    t.datetime "ordered_at"
+    t.datetime "deposited_at"
+    t.datetime "received_at"
     t.integer "backoffice_status", default: 0
     t.integer "liquidation_status", default: 0
     t.integer "unavailability", default: 0
@@ -51,17 +62,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "ordered_at"
-    t.datetime "deposited_at"
-    t.datetime "received_at"
-    t.bigint "final_net_value_cents", default: 0, null: false
-    t.string "final_net_value_currency", default: "BRL", null: false
-    t.bigint "final_fator_cents", default: 0, null: false
-    t.string "final_fator_currency", default: "BRL", null: false
-    t.bigint "final_advalorem_cents", default: 0, null: false
-    t.string "final_advalorem_currency", default: "BRL", null: false
-    t.bigint "final_protection_cents", default: 0, null: false
-    t.string "final_protection_currency", default: "BRL", null: false
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
     t.index ["rebuy_id"], name: "index_installments_on_rebuy_id"
@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.boolean "consent", default: false, null: false
     t.string "import_ref"
     t.boolean "signed", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.jsonb "sign_document_info"
     t.string "sign_document_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "payers", force: :cascade do |t|
@@ -164,10 +164,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.string "inscr_mun"
     t.string "nire"
     t.integer "company_type"
-    t.bigint "operation_limit_cents", default: 0, null: false
-    t.string "operation_limit_currency", default: "BRL", null: false
-    t.decimal "fator"
-    t.decimal "advalorem"
     t.bigint "monthly_revenue_cents", default: 0, null: false
     t.string "monthly_revenue_currency", default: "BRL", null: false
     t.bigint "monthly_fixed_cost_cents", default: 0, null: false
@@ -185,13 +181,17 @@ ActiveRecord::Schema.define(version: 2019_04_09_142126) do
     t.string "mobile_partner"
     t.string "email_partner"
     t.boolean "consent"
+    t.decimal "fator"
+    t.decimal "advalorem"
+    t.decimal "protection"
+    t.bigint "operation_limit_cents", default: 0, null: false
+    t.string "operation_limit_currency", default: "BRL", null: false
     t.integer "validation_status"
     t.boolean "visited", default: false, null: false
     t.integer "analysis_status", default: 0
     t.integer "rejection_motive", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "protection"
   end
 
   create_table "users", force: :cascade do |t|

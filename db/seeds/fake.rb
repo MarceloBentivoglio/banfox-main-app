@@ -473,18 +473,18 @@ user2 = User.create!(
   admin: false,
 )
 
-puts "Creating second seller, nota PDF ......."
+puts "Creating third seller, nota PDF ......."
 
 seller3 = Seller.create!(
   full_name: "AntONIO Bena DA silva",
-  cpf: "14369680387",
+  cpf: "20477293000",
   rf_full_name: "antonio bena da silva",
   rf_sit_cad: "regular",
   birth_date: "21041989",
   mobile: "11998308090",
   company_name: "FLUIDTEC SISTEMAS DE AUTOMACAO EIRELI EPP",
-  company_nickname: "",
-  cnpj: "15028515000177",
+  company_nickname: "fluidtec fake",
+  cnpj: "99293918000133",
   phone: "3432355572",
   website: "dfghjk",
   address: "Avenida Angélica",
@@ -512,7 +512,7 @@ seller3 = Seller.create!(
   debt_cents: 23456,
   debt_currency: "BRL",
   full_name_partner: "antonio bena da silva",
-  cpf_partner: "14369680387",
+  cpf_partner: "20477293000",
   rf_full_name_partner: "antonio bena da silva",
   rf_sit_cad_partner: "regular",
   birth_date_partner: "21041989",

@@ -23,9 +23,6 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string   :inscr_mun
       t.string   :nire
       t.integer  :company_type
-      t.monetize :operation_limit
-      t.decimal  :fator
-      t.decimal  :advalorem
       t.monetize :monthly_revenue
       t.monetize :monthly_fixed_cost
       t.bigint   :monthly_units_sold
@@ -39,6 +36,10 @@ class CreateSellers < ActiveRecord::Migration[5.1]
       t.string   :mobile_partner
       t.string   :email_partner
       t.boolean  :consent
+      t.decimal  :fator
+      t.decimal  :advalorem
+      t.decimal  :protection
+      t.monetize :operation_limit
       t.integer  :validation_status
       t.boolean  :visited, null: false, default: false
       t.integer  :analysis_status, default: 0
