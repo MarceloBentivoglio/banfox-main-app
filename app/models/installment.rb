@@ -59,18 +59,18 @@ class Installment < ApplicationRecord
   }
 
   enum unavailability: {
-    unavailability_not_set:    0,
-    non_applicable:            1,
-    due_date_past:             2,
-    due_date_later_than_limit: 3,
-    already_operated:          4,
+    unavailability_not_set:        0,
+    unavailability_non_applicable: 1,
+    due_date_past:                 2,
+    due_date_later_than_limit:     3,
+    already_operated:              4,
   }
 
   enum rejection_motive: {
-    rejectiom_motive_not_set: 0,
-    non_applicable:           1,
-    fake:                     2,
-    payer_low_rated:          3,
+    rejection_motive_not_set:        0,
+    rejection_motive_non_applicable: 1,
+    fake:                            2,
+    payer_low_rated:                 3,
   }
 
   def statuses

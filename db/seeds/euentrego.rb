@@ -47,13 +47,13 @@ euentrego = Seller.create!(
   validation_status: "active",
   visited: true,
   analysis_status: "approved",
-  rejection_motive: "non_applicable",
+  rejection_motive: "rejection_motive_non_applicable",
   protection: 0.2,
 )
 
 euentrego_user = User.create!(
   email: "financeiro@euentrego.com",
-  password: "euentrego"
+  password: "euentrego",
   admin: false,
   seller: euentrego,
 )

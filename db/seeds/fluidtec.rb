@@ -1,13 +1,3 @@
-puts "Starting seed with real client data............"
-puts "Creating doc parser user......."
-
-user1 = User.create!(
-  email: Rails.application.credentials[:production][:doc_parser][:user_mail],
-  password: rand.to_s[2..11],
-  authentication_token: Rails.application.credentials[:production][:doc_parser][:user_token],
-  admin: false
-)
-
 puts "Creating Fluidtec..........."
 
 fluidtec = Seller.create!(
@@ -58,7 +48,7 @@ fluidtec = Seller.create!(
   validation_status: "active",
   visited: true,
   analysis_status: "approved",
-  rejection_motive: "non_applicable",
+  rejection_motive: "rejection_motive_non_applicable",
 )
 
 fluidtec_user = User.create!(
@@ -164,6 +154,8 @@ Installment.create!(
  final_fator: Money.new(226361),
  final_advalorem: Money.new(5802),
  final_protection: Money.new(926219),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 i2 = Invoice.create!(
@@ -188,6 +180,8 @@ Installment.create!(
  final_fator: Money.new(114355),
  final_advalorem: Money.new(2948),
  final_protection: Money.new(486475),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 821 ........"
@@ -214,6 +208,8 @@ Installment.create!(
  final_fator: Money.new(246524),
  final_advalorem: Money.new(6804),
  final_protection: Money.new(914478),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 i2 = Invoice.create!(
@@ -238,6 +234,8 @@ Installment.create!(
  final_fator: Money.new(431036),
  final_advalorem: Money.new(11938),
  final_protection: Money.new(1463000),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 823 ........"
@@ -264,6 +262,8 @@ Installment.create!(
  final_fator: Money.new(113416),
  final_advalorem: Money.new(3017),
  final_protection: Money.new(377400),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 i2 = Invoice.create!(
@@ -288,6 +288,8 @@ Installment.create!(
  final_fator: Money.new(21847),
  final_advalorem: Money.new(570),
  final_protection: Money.new(262470),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 831 ........"
@@ -314,6 +316,8 @@ Installment.create!(
  final_fator: Money.new(23068),
  final_advalorem: Money.new(588),
  final_protection: Money.new(170864),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 844 ........"
@@ -340,6 +344,8 @@ Installment.create!(
  final_fator: Money.new(247644),
  final_advalorem: Money.new(6373),
  final_protection: Money.new(1092120),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 848 ........"
@@ -366,6 +372,8 @@ Installment.create!(
  final_fator: Money.new(55612),
  final_advalorem: Money.new(1431),
  final_protection: Money.new(245220),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Operation 850 ........"
@@ -392,6 +400,8 @@ Installment.create!(
  final_fator: Money.new(92063),
  final_advalorem: Money.new(2369),
  final_protection: Money.new(406000),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 i2 = Invoice.create!(
@@ -416,6 +426,8 @@ Installment.create!(
  final_fator: Money.new(177549),
  final_advalorem: Money.new(4655),
  final_protection: Money.new(430000),
+ unavailability: "unavailability_non_applicable",
+ rejection_motive: "rejection_motive_non_applicable",
 )
 
 puts "Joint debtors ......"

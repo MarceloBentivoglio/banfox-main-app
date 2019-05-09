@@ -52,37 +52,39 @@ class Seller < ApplicationRecord
   enum company_type: {
     company_type_not_set: 0,
     ei:                   1,
-    mei:                  2,
-    eireli:               3,
-    ltda:                 4,
-    sa:                   5,
-    ss:                   6,
+    eireli:               2,
+    me:                   3,
+    mei:                  4,
+    epp:                  5,
+    ltda:                 6,
+    sa:                   7,
+    ss:                   8,
   }
 
 # If this enum is changed the steps in SellerStepsController must change as well
   enum validation_status: {
-    basic: 0,
-    company: 1,
+    basic:     0,
+    company:   1,
     finantial: 2,
-    partner: 3,
-    consent: 4,
-    active: 5,
+    partner:   3,
+    consent:   4,
+    active:    5,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
   enum analysis_status: {
-    on_going: 0,
-    rejected: 1,
+    on_going:     0,
+    rejected:     1,
     pre_approved: 2,
-    approved: 3,
+    approved:     3,
   }
 
   enum rejection_motive: {
-    rejection_motive_not_set: 0,
-    non_applicable:           1,
-    insuficient_revenue:      2,
-    no_match_w_rf:            3,
-    rejected_on_commitee:     4,
+    rejection_motive_not_set:        0,
+    rejection_motive_non_applicable: 1,
+    insuficient_revenue:             2,
+    no_match_w_rf:                   3,
+    rejected_on_commitee:            4,
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)

@@ -37,9 +37,10 @@ seller1 = Seller.create!(
   mobile_partner: "11998308090",
   email_partner: "santini@biort.com.br",
   consent: true,
-  validation_status: 5,
-  analysis_status: 3,
-  visited: false,
+  validation_status: "active",
+  analysis_status: "approved",
+  rejection_motive: "rejection_motive_non_applicable",
+  visited: true,
   fator: 0.05,
   advalorem: 0.003,
   protection: 0.2,
@@ -452,7 +453,7 @@ seller2 = Seller.create!(
   validation_status: "active",
   visited: true,
   analysis_status: "approved",
-  rejection_motive: "rejection_motive_not_set",
+  rejection_motive: "rejection_motive_non_applicable",
   protection: 0.15,
 )
 
@@ -521,7 +522,7 @@ seller3 = Seller.create!(
   validation_status: "active",
   visited: true,
   analysis_status: "approved",
-  rejection_motive: "rejection_motive_not_set",
+  rejection_motive: "rejection_motive_non_applicable",
   protection: 0.2,
 )
 

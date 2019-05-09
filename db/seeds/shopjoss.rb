@@ -47,13 +47,13 @@ shopjoss = Seller.create!(
   validation_status: "active",
   visited: true,
   analysis_status: "approved",
-  rejection_motive: "non_applicable",
+  rejection_motive: "rejection_motive_non_applicable",
   protection: 0.2,
 )
 
 shopjoss_user = User.create!(
   email: "financeiro@shopjoss.com.br",
-  password: "shopjoss"
+  password: "shopjoss",
   admin: false,
   seller: shopjoss,
 )
