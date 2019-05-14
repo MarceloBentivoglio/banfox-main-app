@@ -45,10 +45,11 @@ class SignDocuments
     {
       company_name: @seller.company_name,
       cnpj: CNPJ.new(@seller.cnpj).formatted,
-      address: "#{@seller.address} #{@seller.address_number}" ,
+      address: "#{@seller.address} #{@seller.address_number}",
       city: @seller.city,
       state: @seller.state,
       zip_code: zipcode.insert(5, '-'),
+      email: @seller.email_partner
     }
   end
 
