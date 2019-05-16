@@ -5,10 +5,14 @@ class Payer < ApplicationRecord
   validates :cnpj,  uniqueness: true
 
   enum company_type: {
-    ltda: 0,
-    sa: 1,
-    me: 2,
-    mei: 3,
-    epp: 4,
+    company_type_not_set: 0,
+    ei:                   1,
+    eireli:               2,
+    me:                   3,
+    mei:                  4,
+    epp:                  5,
+    ltda:                 6,
+    sa:                   7,
+    ss:                   8,
   }
 end

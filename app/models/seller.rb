@@ -257,8 +257,8 @@ class Seller < ApplicationRecord
   end
 
   def set_pre_approved_initial_standard_settings
-    self.fator = 0.045
-    self.advalorem = 0.005
+    self.fator = 0.039
+    self.advalorem = 0.001
     self.protection = 0.2
     self.operation_limit = Money.new("2000000")
     self.save!
