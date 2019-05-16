@@ -63,49 +63,49 @@ user1 = User.create!(
 # Creating invoices
 # liquidado
 i1 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004848",
   seller: seller1,
   payer: payer1,
 )
 
 i6 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004901",
   seller: seller1,
   payer: payer1,
 )
 # em aberto
 i2 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004849",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment pago
 i3 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004850",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment aberto
 i4 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004851",
   seller: seller1,
   payer: payer1,
 )
 # disponível para compra
 i5 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004852",
   seller: seller1,
   payer: payer1,
   )
 
 i7 = Invoice.create!(
-  invoice_type: "merchandise_invoice",
+  invoice_type: "merchandise",
   number: "000004902",
   seller: seller1,
   payer: payer1,

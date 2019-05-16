@@ -7,8 +7,8 @@ class Invoice < ApplicationRecord
   enum invoice_type: {
     invoice_type_not_set: 0,
     contract:             1,
-    merchandise_invoice:  2,
-    service_invoice:      3,
+    merchandise:          2,
+    service:              3,
     check:                4,
   }
 

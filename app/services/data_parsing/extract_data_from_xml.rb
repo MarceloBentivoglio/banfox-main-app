@@ -15,7 +15,7 @@ class ExtractDataFromXml
     extract_payer_info
     @invoice.document.attach(io: File.open(@file.tempfile.path), filename: @file.original_filename)
     @invoice.save!
-    @invoice.merchandise_invoice!
+    @invoice.merchandise!
     rescue RuntimeError => e
       @invoice = e
     end

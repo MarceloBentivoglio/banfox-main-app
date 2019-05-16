@@ -15,7 +15,7 @@ cbd00 = Payer.create!(
 )
 
 i4127 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4127",
   seller: euentrego,
   payer: cbd00,
@@ -58,7 +58,7 @@ cbd57 = Payer.create!(
 )
 
 i4128 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4128",
   seller: euentrego,
   payer: cbd57,
@@ -101,7 +101,7 @@ cbd37 = Payer.create!(
 )
 
 i4129 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4129",
   seller: euentrego,
   payer: cbd37,
@@ -144,7 +144,7 @@ cbd06 = Payer.create!(
 )
 
 i4130 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4130",
   seller: euentrego,
   payer: cbd06,
@@ -187,7 +187,7 @@ cbd71 = Payer.create!(
 )
 
 i4131 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4131",
   seller: euentrego,
   payer: cbd71,
@@ -230,7 +230,7 @@ cbd21 = Payer.create!(
 )
 
 i4132 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "4132",
   seller: euentrego,
   payer: cbd21,
