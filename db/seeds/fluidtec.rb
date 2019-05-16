@@ -133,7 +133,7 @@ operation850 = Operation.create!(
 puts "Operation 781 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "245",
   seller: fluidtec,
   payer: gme,
@@ -159,7 +159,7 @@ Installment.create!(
 )
 
 i2 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "244",
   seller: fluidtec,
   payer: gme,
@@ -187,7 +187,7 @@ Installment.create!(
 puts "Operation 821 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "293",
   seller: fluidtec,
   payer: comau,
@@ -213,7 +213,7 @@ Installment.create!(
 )
 
 i2 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "298",
   seller: fluidtec,
   payer: comau,
@@ -241,7 +241,7 @@ Installment.create!(
 puts "Operation 823 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "299",
   seller: fluidtec,
   payer: comau56,
@@ -267,7 +267,7 @@ Installment.create!(
 )
 
 i2 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "296",
   seller: fluidtec,
   payer: motoman,
@@ -295,7 +295,7 @@ Installment.create!(
 puts "Operation 831 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "306",
   seller: fluidtec,
   payer: motoman,
@@ -323,7 +323,7 @@ Installment.create!(
 puts "Operation 844 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "323",
   seller: fluidtec,
   payer: abb,
@@ -351,7 +351,7 @@ Installment.create!(
 puts "Operation 848 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "328",
   seller: fluidtec,
   payer: tunkers,
@@ -379,7 +379,7 @@ Installment.create!(
 puts "Operation 850 ........"
 
 i1 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "330",
   seller: fluidtec,
   payer: gme,
@@ -405,7 +405,7 @@ Installment.create!(
 )
 
 i2 = Invoice.create!(
-  invoice_type: "service_invoice",
+  invoice_type: "service",
   number: "329",
   seller: fluidtec,
   payer: gme,
