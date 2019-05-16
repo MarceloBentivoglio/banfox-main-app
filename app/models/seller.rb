@@ -87,6 +87,14 @@ class Seller < ApplicationRecord
     rejected_on_commitee:            4,
   }
 
+  enum tax_regime: {
+    tax_regime_not_set: 0,
+    simples:            1,
+    presumido:          2,
+    real:               3,
+    real_ou_presumido:  4,
+  }
+
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
   validates_with CpfValidator, attr: :cpf, if: :active_or_basic?
   validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
