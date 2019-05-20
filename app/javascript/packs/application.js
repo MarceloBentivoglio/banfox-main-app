@@ -16,6 +16,7 @@ import { operationTotalValuesAccordingToCheck, operationInAnalysisTotalValues } 
 import { bindSweetAlertButton } from '../components/sweetAlert';
 import { countdownClock } from '../components/countdown';
 import { signDocument } from '../components/signDocument';
+import { enablePopover } from "../components/popover";
 
 
 
@@ -37,3 +38,4 @@ operationInAnalysisTotalValues();
 bindSweetAlertButton();
 countdownClock();
 signDocument();
+enablePopover();

@@ -7,7 +7,10 @@
             <span id="total" class="big-number"></span>
           </div>
           <div class="content-col">
-            <span>Taxa Banfox</span>
+            <span>
+              Taxa Banfox (<%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %> )
+              <a href="#" data-container="body" data-toggle="popover" data-placement="top" title="Entenda sua taxa" data-content="O Brasil tem suas peculiariadas, uma delas é que para questões de impostos precisamos quebrar sua taxa de <%= percentage(@seller.fator + @seller.advalorem) %> em duas de <%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %>. Não se preocupe, estamos lutando para que isso mude! "> <i class="fa fa-info-circle blue"></i> </a>
+            </span>
             <span id="fee" class="big-number"></span>
           </div>
           <div class="content-col">
