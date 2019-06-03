@@ -1,4 +1,6 @@
+#TODO cahnge to receita federal
 class CpfCheckRF
+  #ATTENTION This variable maybe should be in a db so that we can change it easily
   @@minimum_similarity_accepted = 0.7
 
   # TODO: this is a horrible code! Refactor
@@ -7,6 +9,7 @@ class CpfCheckRF
     @applicant_name = seller.full_name
     @partner_cpf = seller.cpf_partner
     @partner_name = seller.full_name_partner
+    #todo this is a behavior change it for the model
     @same_person = @applicant_cpf == @partner_cpf
     @seller = seller
     @cpfs = []
@@ -16,6 +19,7 @@ class CpfCheckRF
     @inputs_checks_w_rf = false
   end
 
+  # This sis a facade
   def analyze
     define_cpfs_to_check
     set_rf_infos
@@ -39,6 +43,8 @@ class CpfCheckRF
 
   def fetch_rf_info(cpf)
     Timeout::timeout(10) do
+      #TODO explicit this code
+      #TOOO BigBoostCpfInfo.fetch_information(cpf)
       rf_cpf_info = BigBoostCpfInfo.new(cpf)
       return rf_cpf_info.treated_cpf_info
     end
@@ -52,6 +58,7 @@ class CpfCheckRF
   end
 
   def persist_rf_infos
+    #TODO Take this transaction out
     ActiveRecord::Base.transaction do
       @seller.rf_full_name = @rf_names.first
       @seller.rf_sit_cad = @rf_sit_cad.first
@@ -75,6 +82,7 @@ class CpfCheckRF
     return JaroWinkler.distance(str1, str2) >= @@minimum_similarity_accepted ? true : false
   end
 
+  #ATTENTION Maybe it could be a good ideia to make this update in one transaction only
   def persist_analysis_conclusion
     if !@inputs_checks_w_rf
       @seller.rejected!

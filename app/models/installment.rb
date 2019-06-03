@@ -44,6 +44,7 @@ class Installment < ApplicationRecord
     pdd:                        3,
   }
 
+  #TODO implement event sourcing
   enum backoffice_status: {
     backoffice_status_not_set: 0,
     unavailable:               1,
@@ -116,6 +117,7 @@ class Installment < ApplicationRecord
     return days.positive? ? days : 0
   end
 
+  # TODO change the name to fator_absolute
   def fator
     final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
   end
