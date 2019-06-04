@@ -2,7 +2,7 @@ class InvoicesDocumentsBundlesController < ApplicationController
   before_action :set_seller, only: [:create, :analysis]
   before_action :set_last_pdf_invoice, only: [:analysis]
 
-  # Review this part
+  # TODO Review this part
   def create
     documents_params = params[:invoices_documents_bundle]
     invoices_being_parsed = false
@@ -27,6 +27,7 @@ class InvoicesDocumentsBundlesController < ApplicationController
     end
   end
 
+  #TODO Create a pool request and ajax solution to substitute this implementation
   def analysis
     @countdown_time = @invoice.created_at
     @redirection_url = store_installments_url

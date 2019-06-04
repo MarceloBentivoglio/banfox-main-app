@@ -1,6 +1,7 @@
 class Api::V1::OperationsController < Api::V1::BaseController
   before_action :authenticate_hmac
 
+  # TODO use the clicksign hash
   def sign_document_status
     puts "------ JSON que veio ------"
     document_data = JSON.parse(request.body.read)

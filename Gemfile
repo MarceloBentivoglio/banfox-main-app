@@ -25,7 +25,7 @@ gem 'wicked'
 # This gem is used to enable enum to become a selection in simple_form
 gem 'enum_help'
 
-#   This gem treats money as cents in integer with the respective currency
+# his gem treats money as cents in integer with the respective currency
 gem 'money-rails' #https://github.com/RubyMoney/money-rails
 
 # These two gems are used for validating the CPF and the CNPJ

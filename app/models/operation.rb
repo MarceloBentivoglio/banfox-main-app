@@ -14,7 +14,7 @@ class Operation < ApplicationRecord
       completely_rejected: "Completamente rejeitada",
       partially_approved: "Parcialmente aprovada",
       signing_process: "Em processo de assinatura",
-      deposit_pending: "Se dinheiro está a caminho"
+      deposit_pending: "Seu dinheiro está a caminho"
     }
   end
 
@@ -36,7 +36,10 @@ class Operation < ApplicationRecord
 
   # Keep this first part !sign_document_key? only until the rejections in oprations are treated
   def partially_approved?
-    !sign_document_key? && installments.any? { |i| i.approved? } && installments.any? { |i| i.rejected? || i.rejected_consent? } && installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
+    !sign_document_key? &&
+    installments.any? { |i| i.approved? } &&
+    installments.any? { |i| i.rejected? || i.rejected_consent? } &&
+    installments.all? { |i| i.approved? || i.rejected? || i.rejected_consent?}
   end
 
   def signing_process?

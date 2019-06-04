@@ -2,6 +2,7 @@ class SignDocuments
   attr_reader :sign_document_info
   attr_reader :sign_document_key
 
+  #TODO inplement logger
   def initialize(operation, seller)
     @operation = operation
     @seller = seller
@@ -39,6 +40,7 @@ class SignDocuments
     Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
   end
 
+  #TODO Create serializers
   def seller_content
     #TODO Whatch out because inject is destructive, so i have to refactor this
     zipcode = @seller.zip_code

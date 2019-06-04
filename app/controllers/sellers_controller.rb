@@ -9,6 +9,7 @@ class SellersController < ApplicationController
     @installments_in_analysis = Installment.total(:in_analysis, @seller)
   end
 
+  #TODO refactor with service layers
   def analysis
     if !CpfCheckRF.new(@seller).analyze || !check_revenue
       SellerMailer.rejected(@user, @seller).deliver_now
