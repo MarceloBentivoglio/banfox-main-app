@@ -13,11 +13,11 @@ class Invoice < ApplicationRecord
   }
 
   def fator
-    [seller.fator, payer.fator].max
+    seller.fator
   end
 
   def advalorem
-    [seller.advalorem, payer.advalorem].max
+    seller.advalorem
   end
 
   def fee

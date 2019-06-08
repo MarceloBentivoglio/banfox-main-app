@@ -113,33 +113,80 @@ class Installment < ApplicationRecord
   end
 
   def outstanding_days
-    days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
+    if on_date?
+      return (due_date - Date.current).to_i
+    elsif overdue?
+      return 0
+    else
+      days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
+      return days.positive? ? days : 0
+    end
+  end
+
+  def overdue_days
+    days = (Date.current - due_date).to_i
     return days.positive? ? days : 0
+  end
+
+  def operation_total_days
+    (Date.current - ordered_at.to_date).to_i
   end
 
   # TODO change the name to fator_absolute
   def fator
-    final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+    if overdue?
+      final_fator + delta_fator
+    else
+      final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+    end
+  end
+
+  def delta_fator
+    value * (1 - 1/(1 + invoice.fator)**((operation_total_days + 3) / 30.0)) - final_fator
   end
 
   def advalorem
-    final_price_set? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+    if overdue?
+      final_advalorem + delta_advalorem
+    else
+      final_price_set? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+    end
+  end
+
+  def delta_advalorem
+    value * (1 - 1/(1 + invoice.advalorem)**((operation_total_days + 3) / 30.0)) - final_advalorem
   end
 
   def fee
     fator + advalorem
   end
 
+  def delta_fee
+    delta_fator + delta_advalorem
+  end
+
   def net_value
-    final_price_set? ? final_net_value : (value - fee)
+    if overdue?
+      final_net_value - delta_fee
+    else
+      final_price_set? ? final_net_value : (value - fee)
+    end
   end
 
   def protection
-    final_price_set? ? final_protection : value * invoice.protection_rate
+    if overdue?
+      final_protection - delta_fee
+    else
+      final_price_set? ? final_protection : value * invoice.protection_rate
+    end
   end
 
   def first_deposit_amount
-    net_value - protection
+    if overdue?
+      final_net_value - final_protection
+    else
+      net_value - protection
+    end
   end
 
   def installment_attributes

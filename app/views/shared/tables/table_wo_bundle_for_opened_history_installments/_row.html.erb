@@ -1,0 +1,22 @@
+<div class="table-wo-bundle-row-content">
+  <div class="content-col content-col-9  text-left">                                 <%= invoice_installment_number_mask(item.invoice.number, item.number) %></div>
+  <div class="content-col content-col-13 text-left">                                 <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
+  <div class="content-col content-col-7  text-left">                                 <%= l(item.ordered_at, format: "%d %b %y") %></div>
+  <div class="content-col content-col-7  text-left">                                 <%= l(item.due_date, format: "%d %b %y") %></div>
+  <div class="content-col content-col-5  text-center">                               <%= item.outstanding_days %></div>
+  <div class="content-col content-col-5  text-center <%= "red" if item.overdue? %>"> <%= item.overdue_days %></div>
+  <div class="content-col content-col-9 text-right">                                 <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-9 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-9 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.net_value %></div>
+  <div class="content-col content-col-9 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-11 text-right">
+    <span><%= humanized_money_with_symbol item.final_protection %></span>
+    <% if item.overdue? %>
+      <span class="red"><%= " -#{humanized_money item.delta_fee}"  %></span>
+    <% end %>
+  </div>
+  <div class="content-col content-col-7  text-left extra-space-left">
+    <%= render partial: "shared/tables/table_wo_bundle_for_opened_history_installments/status_tag", locals: {status: item.status} %>
+  </div>
+</div>
+
