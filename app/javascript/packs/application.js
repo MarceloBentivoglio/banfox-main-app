@@ -17,6 +17,7 @@ import { bindSweetAlertButton } from '../components/sweetAlert';
 import { countdownClock } from '../components/countdown';
 import { signDocument } from '../components/signDocument';
 import { enablePopover } from "../components/popover";
+import { enableTooltip } from "../components/tooltip";
 
 
 
@@ -39,3 +40,4 @@ bindSweetAlertButton();
 countdownClock();
 signDocument();
 enablePopover();
+enableTooltip();

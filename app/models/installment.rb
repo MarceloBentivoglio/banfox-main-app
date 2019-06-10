@@ -161,6 +161,11 @@ class Installment < ApplicationRecord
     fator + advalorem
   end
 
+  def final_fee
+    final_fator + final_advalorem
+  end
+
+
   def delta_fee
     delta_fator + delta_advalorem
   end
