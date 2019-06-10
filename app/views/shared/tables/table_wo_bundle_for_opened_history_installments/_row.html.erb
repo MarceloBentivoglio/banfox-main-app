@@ -3,16 +3,21 @@
   <div class="content-col content-col-13 text-left">                                 <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
   <div class="content-col content-col-7  text-left">                                 <%= l(item.ordered_at, format: "%d %b %y") %></div>
   <div class="content-col content-col-7  text-left">                                 <%= l(item.due_date, format: "%d %b %y") %></div>
-  <div class="content-col content-col-5  text-center">                               <%= item.outstanding_days %></div>
-  <div class="content-col content-col-5  text-center <%= "red" if item.overdue? %>"> <%= item.overdue_days %></div>
-  <div class="content-col content-col-9 text-right">                                 <%= humanized_money_with_symbol item.value %></div>
-  <div class="content-col content-col-9 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.fee %></div>
-  <div class="content-col content-col-9 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.net_value %></div>
-  <div class="content-col content-col-9 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
-  <div class="content-col content-col-11 text-right">
-    <span><%= humanized_money_with_symbol item.final_protection %></span>
+  <div class="content-col content-col-4  text-center <%= "red" if item.overdue? %>">
     <% if item.overdue? %>
-      <span class="red"><%= " -#{humanized_money item.delta_fee}"  %></span>
+      <%= item.overdue_days %>
+    <% else %>
+      <%= item.outstanding_days %>
+    <% end %>
+  </div>
+  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-9 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-10 text-right <%= "red" if item.overdue? %>">   <%= humanized_money_with_symbol item.net_value %></div>
+  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.final_protection %></div>
+  <div class="content-col content-col-4 text-left <%= "red" if item.overdue? %>">
+    <% if item.overdue? %>
+      <%= " - #{humanized_money item.delta_fee}"%>
     <% end %>
   </div>
   <div class="content-col content-col-7  text-left extra-space-left">
