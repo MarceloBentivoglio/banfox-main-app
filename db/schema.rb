@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_211603) do
+ActiveRecord::Schema.define(version: 2019_06_11_125707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(version: 2019_05_16_211603) do
     t.string "number"
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
-    t.bigint "final_net_value_cents", default: 0, null: false
-    t.string "final_net_value_currency", default: "BRL", null: false
-    t.bigint "final_fator_cents", default: 0, null: false
-    t.string "final_fator_currency", default: "BRL", null: false
-    t.bigint "final_advalorem_cents", default: 0, null: false
-    t.string "final_advalorem_currency", default: "BRL", null: false
-    t.bigint "final_protection_cents", default: 0, null: false
-    t.string "final_protection_currency", default: "BRL", null: false
+    t.bigint "initial_net_value_cents", default: 0, null: false
+    t.string "initial_net_value_currency", default: "BRL", null: false
+    t.bigint "initial_fator_cents", default: 0, null: false
+    t.string "initial_fator_currency", default: "BRL", null: false
+    t.bigint "initial_advalorem_cents", default: 0, null: false
+    t.string "initial_advalorem_currency", default: "BRL", null: false
+    t.bigint "initial_protection_cents", default: 0, null: false
+    t.string "initial_protection_currency", default: "BRL", null: false
     t.date "due_date"
     t.datetime "ordered_at"
     t.datetime "deposited_at"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 2019_05_16_211603) do
     t.bigint "operation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "final_fator_cents", default: 0, null: false
+    t.string "final_fator_currency", default: "BRL", null: false
+    t.bigint "final_advalorem_cents", default: 0, null: false
+    t.string "final_advalorem_currency", default: "BRL", null: false
+    t.bigint "final_net_value_cents", default: 0, null: false
+    t.string "final_net_value_currency", default: "BRL", null: false
+    t.bigint "final_protection_cents", default: 0, null: false
+    t.string "final_protection_currency", default: "BRL", null: false
     t.index ["invoice_id"], name: "index_installments_on_invoice_id"
     t.index ["operation_id"], name: "index_installments_on_operation_id"
   end

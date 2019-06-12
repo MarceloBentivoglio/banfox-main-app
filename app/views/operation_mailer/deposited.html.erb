@@ -55,7 +55,7 @@
                         <td class="purchase_item"><%= i.invoice.payer.company_name.mb_chars.titleize.split.first %></td>
                         <td class="purchase_item"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
-                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.final_net_value %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.initial_net_value %></td>
                         <td class="purchase_item align-right"><%=  i.status[1] %></td>
                       </tr>
                     <% end %>
@@ -67,11 +67,11 @@
                     </tr>
                     <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Montante que você recebe agora</p></td>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.final_deposit_today %></p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.initial_deposit_today %></p></td>
                     </tr>
                     <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Proteção que você recebe na liquidação</p></td>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.final_protection %></p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.initial_protection %></p></td>
                     </tr>
                   </table>
                   <br>

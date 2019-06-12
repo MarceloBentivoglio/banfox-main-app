@@ -21,4 +21,13 @@ class OpsAdmin::OperationsController < OpsAdmin::BaseController
     end
   end
 
+  def follow_up
+    @operations = Operation.joins(:installments).where(signed: true).where(installments: {backoffice_status: :deposited, liquidation_status: :opened}).preload(:installments).distinct.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
 end

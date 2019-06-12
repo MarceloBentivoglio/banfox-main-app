@@ -60,10 +60,10 @@ class SignDocuments
       id: @operation.id,
       time: @operation.created_at.iso8601,
       gross_value: @operation.total_value_approved.format(symbol: ''),
-      fee: @operation.final_fee.format(symbol: ''),
-      net_value: @operation.final_net_value.format(symbol: ''),
-      first_deposit: @operation.final_deposit_today.format(symbol: ''),
-      protection: @operation.final_protection.format(symbol: ''),
+      fee: @operation.initial_fee.format(symbol: ''),
+      net_value: @operation.initial_net_value.format(symbol: ''),
+      first_deposit: @operation.initial_deposit_today.format(symbol: ''),
+      protection: @operation.initial_protection.format(symbol: ''),
     }
   end
 
@@ -80,7 +80,7 @@ class SignDocuments
         outstanding_days: installment.outstanding_days,
         value: installment.value.format(symbol: ''),
         fee: installment.fee.format(symbol: ''),
-        net_value: installment.final_net_value.format(symbol: ''),
+        net_value: installment.initial_net_value.format(symbol: ''),
         first_deposit: installment.first_deposit_amount.format(symbol: ''),
         protection: installment.protection.format(symbol: ''),
       }

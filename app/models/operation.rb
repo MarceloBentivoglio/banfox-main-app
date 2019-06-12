@@ -120,16 +120,16 @@ class Operation < ApplicationRecord
     installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.fee : Money.new(0))}
   end
 
-  def final_fee
-    installments.reduce(Money.new(0)){|total, i| total + i.final_fator + i.final_advalorem}
+  def initial_fee
+    installments.reduce(Money.new(0)){|total, i| total + i.initial_fator + i.initial_advalorem}
   end
 
-  def final_fator
-    installments.reduce(Money.new(0)){|total, i| total + i.final_fator}
+  def initial_fator
+    installments.reduce(Money.new(0)){|total, i| total + i.initial_fator}
   end
 
-  def final_advalorem
-    installments.reduce(Money.new(0)){|total, i| total + i.final_advalorem}
+  def initial_advalorem
+    installments.reduce(Money.new(0)){|total, i| total + i.initial_advalorem}
   end
 
   def net_value
@@ -140,8 +140,8 @@ class Operation < ApplicationRecord
     installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.net_value : Money.new(0))}
   end
 
-  def final_net_value
-    installments.reduce(Money.new(0)){|total, i| total + i.final_net_value}
+  def initial_net_value
+    installments.reduce(Money.new(0)){|total, i| total + i.initial_net_value}
   end
 
   def protection
@@ -152,8 +152,8 @@ class Operation < ApplicationRecord
     protection_rate * total_value_approved
   end
 
-  def final_protection
-    installments.reduce(Money.new(0)){|total, i| total + i.final_protection}
+  def initial_protection
+    installments.reduce(Money.new(0)){|total, i| total + i.initial_protection}
   end
 
   def deposit_today
@@ -164,10 +164,9 @@ class Operation < ApplicationRecord
     net_value_approved - protection_approved
   end
 
-  def final_deposit_today
-    final_net_value - final_protection
+  def initial_deposit_today
+    initial_net_value - initial_protection
   end
-
 
   def seller_name
     installments.first.invoice.seller.company_name

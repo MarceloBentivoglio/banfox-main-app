@@ -137,10 +137,10 @@ i = Installment.create!(
  due_date: Date.new(2018,5,10),
  liquidation_status: "paid",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
 
 
@@ -150,12 +150,14 @@ i = Installment.create!(
  number: "2",
  value: Money.new(3430000),
  due_date: Time.new(2018,6,6),
+ ordered_at: Date.current - 30.days,
+ deposited_at: Time.new(2018,6,6),
  liquidation_status: "paid",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
 
 
@@ -169,10 +171,10 @@ i = Installment.create!(
  due_date: Date.current - 10.days,
  liquidation_status: "paid",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
 
 
@@ -184,10 +186,10 @@ i = Installment.create!(
  ordered_at: Date.current - 30.days,
  due_date: Date.current + 30.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
  i.opened!
 
@@ -200,10 +202,10 @@ i = Installment.create!(
  ordered_at: Date.current - 30.days,
  due_date: Date.current + 60.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
  i.opened!
 
@@ -218,10 +220,10 @@ i = Installment.create!(
  due_date: Date.current - 33.days,
  liquidation_status: "paid",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
 
 
@@ -233,10 +235,10 @@ i = Installment.create!(
  ordered_at: Date.current - 60.days,
  due_date: Date.current - 3.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
  i.opened!
 
@@ -250,10 +252,10 @@ i = Installment.create!(
  ordered_at: Date.current - 25.days,
  due_date: Date.current - 5.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
  i.opened!
 
@@ -266,10 +268,10 @@ i = Installment.create!(
  ordered_at: Date.current - 25.days,
  due_date: Date.current + 25.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.deposited!
  i.opened!
 
@@ -390,10 +392,10 @@ i = Installment.create!(
   backoffice_status: "deposited",
   liquidation_status: "pdd",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
+ i.initial_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.save!
 
 puts "Creating second seller, nota XML ......."

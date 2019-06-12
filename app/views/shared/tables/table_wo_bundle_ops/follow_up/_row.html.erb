@@ -11,7 +11,7 @@
     <% end %>
   </div>
   <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.value %></div>
-  <div class="content-col content-col-10 text-right">
+  <div class="content-col content-col-9 text-right">
     <% if item.overdue? %>
       <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_fee %> + [<%= humanized_money item.delta_fee %>]" class="red">
         <%= humanized_money_with_symbol item.fee %>
@@ -33,8 +33,8 @@
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
-  <div class="content-col content-col-10 text-right">
+  <div class="content-col content-col-9 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-9 text-right">
     <% if item.overdue? %>
       <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_protection %> - [<%= humanized_money item.delta_fee %>]" class="red">
         <%= humanized_money_with_symbol item.protection %>
@@ -45,8 +45,13 @@
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-7  text-left extra-space-left">
+  <div class="content-col content-col-5  text-left">
     <%= render partial: "shared/tables/table_wo_bundle_for_opened_history_installments/status_tag", locals: {status: item.status} %>
   </div>
+  <div class="content-col content-col-5 text-left">
+    <span> <%= link_to "Paga", report_paid_ops_admin_installment_path(item) %> | <%= link_to "Perdida", report_pdd_ops_admin_installment_path(item) %></span>
+  </div>
+
+
 </div>
 

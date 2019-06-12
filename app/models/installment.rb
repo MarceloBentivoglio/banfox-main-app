@@ -2,6 +2,10 @@ class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
+  monetize :initial_net_value_cents, with_model_currency: :currency
+  monetize :initial_fator_cents, with_model_currency: :currency
+  monetize :initial_advalorem_cents, with_model_currency: :currency
+  monetize :initial_protection_cents, with_model_currency: :currency
   monetize :final_net_value_cents, with_model_currency: :currency
   monetize :final_fator_cents, with_model_currency: :currency
   monetize :final_advalorem_cents, with_model_currency: :currency
@@ -103,12 +107,12 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
-  # Is the same of final price set but considering de the rejected. Erase after treating the rejections.
+  # Is the same of initial price set but considering de the rejected. Erase after treating the rejections.
   # def analysed?
   #   approved? || rejected? || rejected_consent? || deposited? || cancelled?
   # end
 
-  def final_price_set?
+  def initial_price_set?
     approved? || deposited?
   end
 
@@ -135,34 +139,34 @@ class Installment < ApplicationRecord
   # TODO change the name to fator_absolute
   def fator
     if overdue?
-      final_fator + delta_fator
+      initial_fator + delta_fator
     else
-      final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+      initial_price_set? ? initial_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
     end
   end
 
   def delta_fator
-    value * (1 - 1/(1 + invoice.fator)**((operation_total_days + 3) / 30.0)) - final_fator
+    value * (1 - 1/(1 + invoice.fator)**((operation_total_days + 3) / 30.0)) - initial_fator
   end
 
   def advalorem
     if overdue?
-      final_advalorem + delta_advalorem
+      initial_advalorem + delta_advalorem
     else
-      final_price_set? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+      initial_price_set? ? initial_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
     end
   end
 
   def delta_advalorem
-    value * (1 - 1/(1 + invoice.advalorem)**((operation_total_days + 3) / 30.0)) - final_advalorem
+    value * (1 - 1/(1 + invoice.advalorem)**((operation_total_days + 3) / 30.0)) - initial_advalorem
   end
 
   def fee
     fator + advalorem
   end
 
-  def final_fee
-    final_fator + final_advalorem
+  def initial_fee
+    initial_fator + initial_advalorem
   end
 
 
@@ -172,23 +176,23 @@ class Installment < ApplicationRecord
 
   def net_value
     if overdue?
-      final_net_value - delta_fee
+      initial_net_value - delta_fee
     else
-      final_price_set? ? final_net_value : (value - fee)
+      initial_price_set? ? initial_net_value : (value - fee)
     end
   end
 
   def protection
     if overdue?
-      final_protection - delta_fee
+      initial_protection - delta_fee
     else
-      final_price_set? ? final_protection : value * invoice.protection_rate
+      initial_price_set? ? initial_protection : value * invoice.protection_rate
     end
   end
 
   def first_deposit_amount
     if overdue?
-      final_net_value - final_protection
+      initial_net_value - initial_protection
     else
       net_value - protection
     end

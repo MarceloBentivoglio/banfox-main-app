@@ -12,6 +12,8 @@ Rails.application.routes.draw do
           get 'approve'
           get 'reject'
           get 'deposit'
+          get 'report_paid'
+          get 'report_pdd'
         end
       end
       resources :sellers, only: [:index, :edit, :update] do
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
       namespace :operations do
         get 'analyse'
         get 'deposit'
+        get 'follow_up'
       end
     end
   end
