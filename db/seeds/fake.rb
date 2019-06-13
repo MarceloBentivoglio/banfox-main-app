@@ -137,7 +137,6 @@ i = Installment.create!(
  due_date: Date.new(2018,5,10),
  liquidation_status: "paid",
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -157,7 +156,6 @@ i = Installment.create!(
  deposited_at: Time.new(2018,6,6),
  liquidation_status: "paid",
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -176,7 +174,6 @@ i = Installment.create!(
  due_date: Date.current - 10.days,
  liquidation_status: "paid",
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -193,7 +190,6 @@ i = Installment.create!(
  ordered_at: Time.current - 30.days,
  due_date: Date.current + 30.days,
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -211,7 +207,6 @@ i = Installment.create!(
  ordered_at: Time.current - 30.days,
  due_date: Date.current + 60.days,
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -231,7 +226,6 @@ i = Installment.create!(
  due_date: Date.current - 33.days,
  liquidation_status: "paid",
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -248,7 +242,6 @@ i = Installment.create!(
  ordered_at: Time.current - 60.days,
  due_date: Date.current - 3.days,
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -267,7 +260,6 @@ i = Installment.create!(
  ordered_at: Time.current - 25.days,
  due_date: Date.current - 5.days,
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -285,7 +277,6 @@ i = Installment.create!(
  ordered_at: Time.current - 25.days,
  due_date: Date.current + 25.days,
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
@@ -411,7 +402,6 @@ i = Installment.create!(
   backoffice_status: "deposited",
   liquidation_status: "pdd",
 )
- i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection

@@ -2,11 +2,9 @@ class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
-  monetize :initial_net_value_cents, with_model_currency: :currency
   monetize :initial_fator_cents, with_model_currency: :currency
   monetize :initial_advalorem_cents, with_model_currency: :currency
   monetize :initial_protection_cents, with_model_currency: :currency
-  monetize :final_net_value_cents, with_model_currency: :currency
   monetize :final_fator_cents, with_model_currency: :currency
   monetize :final_advalorem_cents, with_model_currency: :currency
   monetize :final_protection_cents, with_model_currency: :currency

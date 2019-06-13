@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_225721) do
+ActiveRecord::Schema.define(version: 2019_06_13_203754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_225721) do
     t.string "number"
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
-    t.bigint "initial_net_value_cents", default: 0, null: false
-    t.string "initial_net_value_currency", default: "BRL", null: false
     t.bigint "initial_fator_cents", default: 0, null: false
     t.string "initial_fator_currency", default: "BRL", null: false
     t.bigint "initial_advalorem_cents", default: 0, null: false
@@ -65,8 +63,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_225721) do
     t.string "final_fator_currency", default: "BRL", null: false
     t.bigint "final_advalorem_cents", default: 0, null: false
     t.string "final_advalorem_currency", default: "BRL", null: false
-    t.bigint "final_net_value_cents", default: 0, null: false
-    t.string "final_net_value_currency", default: "BRL", null: false
     t.bigint "final_protection_cents", default: 0, null: false
     t.string "final_protection_currency", default: "BRL", null: false
     t.datetime "veredict_at"
