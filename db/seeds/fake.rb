@@ -141,7 +141,10 @@ i = Installment.create!(
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.new(2018,2,10)
+ i.deposited_at = Time.new(2018,2,10)
  i.deposited!
+
 
 
 i = Installment.create!(
@@ -150,7 +153,7 @@ i = Installment.create!(
  number: "2",
  value: Money.new(3430000),
  due_date: Time.new(2018,6,6),
- ordered_at: Date.current - 30.days,
+ ordered_at: Time.current - 30.days,
  deposited_at: Time.new(2018,6,6),
  liquidation_status: "paid",
 )
@@ -158,6 +161,8 @@ i = Installment.create!(
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.new(2018,2,10)
+ i.deposited_at = Time.new(2018,2,10)
  i.deposited!
 
 
@@ -167,7 +172,7 @@ i = Installment.create!(
  operation: operation1,
  number: "1",
  value: Money.new(3530000),
- ordered_at: Date.current - 30.days,
+ ordered_at: Time.current - 30.days,
  due_date: Date.current - 10.days,
  liquidation_status: "paid",
 )
@@ -175,6 +180,8 @@ i = Installment.create!(
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 30.days
+ i.deposited_at = Time.current - 30.days
  i.deposited!
 
 
@@ -183,13 +190,15 @@ i = Installment.create!(
  operation: operation1,
  number: "2",
  value: Money.new(3630000),
- ordered_at: Date.current - 30.days,
+ ordered_at: Time.current - 30.days,
  due_date: Date.current + 30.days,
 )
  i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 30.days
+ i.deposited_at = Time.current - 30.days
  i.deposited!
  i.opened!
 
@@ -199,13 +208,15 @@ i = Installment.create!(
  operation: operation1,
  number: "3",
  value: Money.new(3730000),
- ordered_at: Date.current - 30.days,
+ ordered_at: Time.current - 30.days,
  due_date: Date.current + 60.days,
 )
  i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 30.days
+ i.deposited_at = Time.current - 30.days
  i.deposited!
  i.opened!
 
@@ -216,7 +227,7 @@ i = Installment.create!(
  operation: operation2,
  number: "1",
  value: Money.new(1000000),
- ordered_at: Date.current - 60.days,
+ ordered_at: Time.current - 60.days,
  due_date: Date.current - 33.days,
  liquidation_status: "paid",
 )
@@ -224,6 +235,8 @@ i = Installment.create!(
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 60.days
+ i.deposited_at = Time.current - 60.days
  i.deposited!
 
 
@@ -232,13 +245,15 @@ i = Installment.create!(
  operation: operation2,
  number: "2",
  value: Money.new(1500000),
- ordered_at: Date.current - 60.days,
+ ordered_at: Time.current - 60.days,
  due_date: Date.current - 3.days,
 )
  i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 60.days
+ i.deposited_at = Time.current - 60.days
  i.deposited!
  i.opened!
 
@@ -249,13 +264,15 @@ i = Installment.create!(
  operation: operation2,
  number: "1",
  value: Money.new(3930000),
- ordered_at: Date.current - 25.days,
+ ordered_at: Time.current - 25.days,
  due_date: Date.current - 5.days,
 )
  i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 25.days
+ i.deposited_at = Time.current - 25.days
  i.deposited!
  i.opened!
 
@@ -265,13 +282,15 @@ i = Installment.create!(
  operation: operation2,
  number: "2",
  value: Money.new(4030000),
- ordered_at: Date.current - 25.days,
+ ordered_at: Time.current - 25.days,
  due_date: Date.current + 25.days,
 )
  i.initial_net_value = i.net_value
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 25.days
+ i.deposited_at = Time.current - 25.days
  i.deposited!
  i.opened!
 
@@ -387,7 +406,7 @@ i = Installment.create!(
   operation: operation3,
   number: "3",
   value: Money.new(730000),
-  ordered_at: Date.current - 90.days,
+  ordered_at: Time.current - 90.days,
   due_date: Date.current - 20.days,
   backoffice_status: "deposited",
   liquidation_status: "pdd",
@@ -396,6 +415,8 @@ i = Installment.create!(
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
  i.save!
 
 puts "Creating second seller, nota XML ......."

@@ -27,6 +27,7 @@ class Installment < ApplicationRecord
   scope :overdue_upto_7,      -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date})) }
   scope :overdue_upto_30,     -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date})) }
   scope :overdue_30_plus,     -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date})) }
+  # scope settled is note used anywhere right now
   scope :settled,             -> (seller) { from_seller(seller).merge(paid.or(pdd)) }
   scope :total,               -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents)) }
   scope :quant,               -> (scope, seller) { __send__(scope, seller).count }
@@ -76,6 +77,7 @@ class Installment < ApplicationRecord
     payer_low_rated:                 3,
   }
 
+  # This method and the method status are used to display the current status of the installment in the view.
   def statuses
     {
       ordered: "Em análise",
@@ -107,58 +109,84 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
-  # Is the same of initial price set but considering de the rejected. Erase after treating the rejections.
+  # Is the same of analysis_completed? but considering de the rejected. Erase after treating the rejections.
   # def analysed?
   #   approved? || rejected? || rejected_consent? || deposited? || cancelled?
   # end
 
-  def initial_price_set?
-    approved? || deposited?
+  def analysis_requested?
+    ordered_at.present?
+  end
+
+  def analysis_completed?
+    veredict_at.present?
+  end
+
+  def operation_started?
+    deposited_at.present?
+  end
+
+  def operation_ended?
+    received_at.present?
   end
 
   def outstanding_days
-    if on_date?
-      return (due_date - Date.current).to_i
-    elsif overdue?
-      return 0
+    if overdue?
+      0
+    elsif analysis_requested? && !analysis_completed?
+      (due_date - ordered_at.to_date).to_i
     else
-      days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
-      return days.positive? ? days : 0
+      (due_date - Date.current).to_i
     end
   end
 
   def overdue_days
-    days = (Date.current - due_date).to_i
-    return days.positive? ? days : 0
+    if overdue?
+      (Date.current - due_date).to_i
+    else
+      0
+    end
   end
 
-  def operation_total_days
+  def overdue_operation_total_days
     (Date.current - ordered_at.to_date).to_i
   end
 
   # TODO change the name to fator_absolute
   def fator
-    if overdue?
-      initial_fator + delta_fator
+    if operation_ended?
+      final_fator
+    elsif analysis_completed?
+      if overdue?
+        initial_fator + delta_fator
+      else
+        initial_fator
+      end
     else
-      initial_price_set? ? initial_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+      value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
     end
   end
 
   def delta_fator
-    value * (1 - 1/(1 + invoice.fator)**((operation_total_days + 3) / 30.0)) - initial_fator
+    value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days + 3) / 30.0)) - initial_fator
   end
 
   def advalorem
-    if overdue?
-      initial_advalorem + delta_advalorem
+    if operation_ended?
+      final_advalorem
+    elsif analysis_completed?
+      if overdue?
+        initial_advalorem + delta_advalorem
+      else
+        initial_advalorem
+      end
     else
-      initial_price_set? ? initial_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
     end
   end
 
   def delta_advalorem
-    value * (1 - 1/(1 + invoice.advalorem)**((operation_total_days + 3) / 30.0)) - initial_advalorem
+    value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days + 3) / 30.0)) - initial_advalorem
   end
 
   def fee
@@ -169,33 +197,34 @@ class Installment < ApplicationRecord
     initial_fator + initial_advalorem
   end
 
-
   def delta_fee
     delta_fator + delta_advalorem
   end
 
   def net_value
-    if overdue?
-      initial_net_value - delta_fee
-    else
-      initial_price_set? ? initial_net_value : (value - fee)
-    end
+    value - fee
+  end
+
+  def initial_net_value
+    value - initial_fee
   end
 
   def protection
-    if overdue?
-      initial_protection - delta_fee
+    if operation_ended?
+      final_protection
+    elsif analysis_completed?
+      if overdue?
+        initial_protection - delta_fee
+      else
+        initial_protection
+      end
     else
-      initial_price_set? ? initial_protection : value * invoice.protection_rate
+      value * invoice.protection_rate
     end
   end
 
   def first_deposit_amount
-    if overdue?
-      initial_net_value - initial_protection
-    else
       net_value - protection
-    end
   end
 
   def installment_attributes
