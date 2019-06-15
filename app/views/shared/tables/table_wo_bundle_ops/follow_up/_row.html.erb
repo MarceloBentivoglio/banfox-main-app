@@ -50,7 +50,7 @@
     <% end %>
   </div>
   <div class="content-col content-col-5  text-left">
-    <%= render partial: "shared/tables/table_wo_bundle_for_opened_history_installments/status_tag", locals: {status: item.status} %>
+    <%= render partial: "shared/tables/table_wo_bundle_ops/status_tag", locals: {status: item.status} %>
   </div>
   <div class="content-col content-col-5 text-left">
     <span> <%= link_to "Paga", report_paid_ops_admin_installment_path(item) %> | <%= link_to "Perdida", report_pdd_ops_admin_installment_path(item) %></span>

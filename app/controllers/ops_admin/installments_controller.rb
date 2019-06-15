@@ -5,7 +5,6 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   #TODO refactor all thesses method and put them on service
   def approve
     # TODO: This values should be in fact inputs from the ops_admin/operations so that the admin can customize the operation
-    @installment.initial_net_value = @installment.net_value
     @installment.initial_fator = @installment.fator
     @installment.initial_advalorem = @installment.advalorem
     @installment.initial_protection = @installment.protection
@@ -16,7 +15,6 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   end
 
   def reject
-    @installment.initial_net_value = @installment.net_value
     @installment.initial_fator = @installment.fator
     @installment.initial_advalorem = @installment.advalorem
     @installment.initial_protection = @installment.protection

@@ -4,9 +4,9 @@
         <%= invoice_installment_partial_number_mask(item.invoice.number, item.number) %>
     </span>
   </div>
-  <div class="content-col content-col-20 text-left">                                 <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
-  <div class="content-col content-col-7  text-left">                                 <%= l(item.ordered_at, format: "%d %b %y") %></div>
-  <div class="content-col content-col-7  text-left">                                 <%= l(item.due_date, format: "%d %b %y") %></div>
+  <div class="content-col content-col-20 text-left"> <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
+  <div class="content-col content-col-7  text-left"> <%= l(item.ordered_at, format: "%d %b %y") %></div>
+  <div class="content-col content-col-7  text-left"> <%= l(item.due_date, format: "%d %b %y") %></div>
   <div class="content-col content-col-4  text-center <%= "red" if item.overdue? %>">
     <% if item.overdue? %>
       <%= item.overdue_days %>
@@ -14,7 +14,7 @@
       <%= item.outstanding_days %>
     <% end %>
   </div>
-  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
       <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_fee %> + [<%= humanized_money item.delta_fee %>]" class="red">
@@ -37,7 +37,7 @@
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-10 text-right">                                 <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.first_deposit_amount %></div>
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
       <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_protection %> - [<%= humanized_money item.delta_fee %>]" class="red">
@@ -50,7 +50,7 @@
     <% end %>
   </div>
   <div class="content-col content-col-7  text-left extra-space-left">
-    <%= render partial: "shared/tables/table_wo_bundle_for_opened_history_installments/status_tag", locals: {status: item.status} %>
+    <%= render partial: "shared/tables/table_wo_bundle/opened/status_tag", locals: {status: item.status} %>
   </div>
 </div>
 

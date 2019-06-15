@@ -272,6 +272,11 @@ class Seller < ApplicationRecord
     self.save!
   end
 
+  def fee
+    fator + advalorem
+  end
+
+
   private
 
   def async_update_spreadsheet

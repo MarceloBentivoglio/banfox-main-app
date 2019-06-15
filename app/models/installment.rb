@@ -142,6 +142,8 @@ class Installment < ApplicationRecord
       0
     elsif analysis_requested? && !analysis_completed?
       (due_date - ordered_at.to_date).to_i
+    elsif due_date_past? || already_operated?
+      0
     else
       (due_date - Date.current).to_i
     end
