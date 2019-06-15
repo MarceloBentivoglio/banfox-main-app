@@ -14,8 +14,11 @@
       <%= link_to ops_admin_operations_analyse_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
         <span>Operações para análise</span>
       <% end %>
-      <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+      <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
         <span>Operações para depósito</span>
+      <% end %>
+      <%= link_to ops_admin_operations_follow_up_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+        <span>Operações para acompanhamento</span>
       <% end %>
     </div>
 

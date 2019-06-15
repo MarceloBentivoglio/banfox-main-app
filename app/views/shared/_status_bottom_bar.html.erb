@@ -7,9 +7,9 @@
             <span id="total" class="big-number"></span>
           </div>
           <div class="content-col">
-            <span>
+            <span data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" title="Entenda sua taxa" data-content="O Brasil tem suas peculiaridades, uma delas é que para questões de impostos precisamos quebrar sua taxa de <%= percentage(@seller.fee) %> em duas de <%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %>. Além disso, como os bancos podem demorar até três dias para liquidar um boleto em nossa conta, precisamos considerar esses três dias no cálculo da sua taxa. Não se preocupe estamos lutando para mudar isso! ">
               Taxa Banfox (<%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %> )
-              <a href="#" data-container="body" data-toggle="popover" data-placement="top" title="Entenda sua taxa" data-content="O Brasil tem suas peculiariadas, uma delas é que para questões de impostos precisamos quebrar sua taxa de <%= percentage(@seller.fator + @seller.advalorem) %> em duas de <%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %>. Não se preocupe, estamos lutando para que isso mude! "> <i class="fa fa-info-circle blue"></i> </a>
+              <i class="fa fa-info-circle blue"></i>
             </span>
             <span id="fee" class="big-number"></span>
           </div>
@@ -38,7 +38,7 @@
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">
               <input type="checkbox" name="operation[consent]" id="operation_consent">
-              <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.titleize %>, CNPJ <%= @seller.cnpj %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
+              <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.titleize %>, CNPJ <%= CNPJ.new(@seller.cnpj).formatted %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
               <%= f.error :consent, class: "invalid-feedback" %>
           </div>
           <div class="bottom-content">

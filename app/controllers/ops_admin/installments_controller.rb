@@ -1,22 +1,24 @@
 class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
-  before_action :set_installment, only: [:approve, :reject, :deposit]
-  before_action :set_seller, only: [:approve, :reject, :deposit]
+  before_action :set_installment, only: [:approve, :reject, :deposit, :report_paid, :report_pdd]
+  before_action :set_seller, only: [:approve, :reject, :deposit, :report_paid, :report_pdd]
 
+  #TODO refactor all thesses method and put them on service
   def approve
-    ActiveRecord::Base.transaction do
-      # TODO: This values should be in fact inputs from the ops_admin/operations so that the admin can customize the operation
-      @installment.final_net_value = @installment.net_value
-      @installment.final_fator = @installment.fator
-      @installment.final_advalorem = @installment.advalorem
-      @installment.final_protection = @installment.protection
-      @installment.save!
-      @installment.approved!
-    end
+    # TODO: This values should be in fact inputs from the ops_admin/operations so that the admin can customize the operation
+    @installment.initial_fator = @installment.fator
+    @installment.initial_advalorem = @installment.advalorem
+    @installment.initial_protection = @installment.protection
+    @installment.veredict_at = Time.current
+    @installment.approved!
     @installment.operation.notify_seller(@seller)
     redirect_to ops_admin_operations_analyse_path
   end
 
   def reject
+    @installment.initial_fator = @installment.fator
+    @installment.initial_advalorem = @installment.advalorem
+    @installment.initial_protection = @installment.protection
+    @installment.veredict_at = Time.current
     @installment.rejected!
     @installment.payer_low_rated!
     @installment.operation.notify_seller(@seller)
@@ -24,14 +26,30 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   end
 
   def deposit
-    @installment.opened!
-    @installment.deposited!
     @installment.deposited_at = Time.current
-    @installment.save!
+    @installment.deposited!
+    @installment.opened!
     @installment.operation.notify_seller(@seller)
     redirect_to ops_admin_operations_deposit_path
   end
 
+  def report_paid
+    @installment.final_fator = @installment.fator
+    @installment.final_advalorem = @installment.advalorem
+    @installment.final_protection = @installment.protection
+    @installment.finished_at = Time.current
+    @installment.paid!
+    redirect_to  ops_admin_operations_follow_up_path
+  end
+
+  def report_pdd
+    @installment.final_fator = @installment.fator
+    @installment.final_advalorem = @installment.advalorem
+    @installment.final_protection = @installment.protection
+    @installment.finished_at = Time.current
+    @installment.pdd!
+    redirect_to  ops_admin_operations_follow_up_path
+  end
 
   private
 

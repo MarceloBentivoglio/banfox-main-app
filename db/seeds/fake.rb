@@ -64,49 +64,49 @@ user1 = User.create!(
 # liquidado
 i1 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004848",
+  number: "4848",
   seller: seller1,
   payer: payer1,
 )
 
 i6 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004901",
+  number: "4901",
   seller: seller1,
   payer: payer1,
 )
 # em aberto
 i2 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004849",
+  number: "4849",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment pago
 i3 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004850",
+  number: "4850",
   seller: seller1,
   payer: payer1,
 )
 # atrasada com um installment aberto
 i4 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004851",
+  number: "4851",
   seller: seller1,
   payer: payer1,
 )
 # disponível para compra
 i5 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004852",
+  number: "4852",
   seller: seller1,
   payer: payer1,
   )
 
 i7 = Invoice.create!(
   invoice_type: "merchandise",
-  number: "000004902",
+  number: "4902",
   seller: seller1,
   payer: payer1,
   )
@@ -127,152 +127,192 @@ operation3 = Operation.create!(
 )
 
 # Creating installments
-# for i1 liquidada
+# for i1 paid on day
 i = Installment.create!(
  invoice: i1,
  operation: operation1,
- number: "004.848/01",
+ number: "1",
  value: Money.new(3330000),
- ordered_at: Time.new(2018,2,10),
- due_date: Date.new(2018,5,10),
- backoffice_status: "deposited",
- liquidation_status: "paid",
+ ordered_at: Time.current - 150.days,
+ due_date: Date.current - 90.days,
 )
- i.final_net_value = i.net_value
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
  i.final_fator = i.fator
  i.final_advalorem = i.advalorem
  i.final_protection = i.protection
- i.save!
+ i.veredict_at = Time.current - 150.days
+ i.deposited_at = Time.current - 150.days
+ i.finished_at = Time.current - 90.days
+ i.deposited!
+ i.paid!
 
 
+# for i1 paid with delay
 i = Installment.create!(
  invoice: i1,
  operation: operation1,
- number: "004.848/02",
+ number: "2",
  value: Money.new(3430000),
- due_date: Time.new(2018,6,6),
- backoffice_status: "deposited",
- liquidation_status: "paid",
+ due_date: Date.current - 30.days,
+ ordered_at: Time.current - 90.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((70 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((70 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 20.days
+ i.deposited!
+ i.paid!
+
 
 # for i2 em aberto
+# for installment paid with delay
 i = Installment.create!(
  invoice: i2,
  operation: operation1,
- number: "004.849/01",
+ number: "1",
  value: Money.new(3530000),
- due_date: Date.current - 10.days,
- backoffice_status: "deposited",
- liquidation_status: "paid",
+ due_date: Date.current - 30.days,
+ ordered_at: Time.current - 90.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((70 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((70 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 20.days
+ i.deposited!
+ i.paid!
+
 
 i = Installment.create!(
  invoice: i2,
  operation: operation1,
- number: "004.849/02",
+ number: "2",
  value: Money.new(3630000),
- due_date: Date.current + 60.days,
- backoffice_status: "deposited",
- liquidation_status: "opened",
+ ordered_at: Time.current - 30.days,
+ due_date: Date.current + 30.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.veredict_at = Time.current - 30.days
+ i.deposited_at = Time.current - 30.days
+ i.deposited!
+ i.opened!
+
 
 i = Installment.create!(
  invoice: i2,
  operation: operation1,
- number: "004.849/03",
+ number: "3",
  value: Money.new(3730000),
- due_date: Date.current + 90.days,
- backoffice_status: "deposited",
- liquidation_status: "opened",
+ ordered_at: Time.current - 30.days,
+ due_date: Date.current + 60.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.veredict_at = Time.current - 30.days
+ i.deposited_at = Time.current - 30.days
+ i.deposited!
+ i.opened!
+
 
 # for i3 atrasada com um installment pago
-i = Installment.create!(
+# installment pago em atraso
+ i = Installment.create!(
  invoice: i3,
  operation: operation2,
- number: "004.850/01",
+ number: "1",
  value: Money.new(1000000),
- due_date: Date.current - 33.days,
- backoffice_status: "deposited",
- liquidation_status: "paid",
+ due_date: Date.current - 60.days,
+ ordered_at: Time.current - 90.days,
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((60 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((60 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 30.days
+ i.deposited!
+ i.paid!
+
 
 i = Installment.create!(
  invoice: i3,
  operation: operation2,
- number: "004.850/02",
+ number: "2",
  value: Money.new(1500000),
+ ordered_at: Time.current - 60.days,
  due_date: Date.current - 3.days,
- backoffice_status: "deposited",
- liquidation_status: "opened",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.veredict_at = Time.current - 60.days
+ i.deposited_at = Time.current - 60.days
+ i.deposited!
+ i.opened!
+
 
 # for i4 atrasada com um installment aberto
 i = Installment.create!(
  invoice: i4,
  operation: operation2,
- number: "004.851/01",
+ number: "1",
  value: Money.new(3930000),
+ ordered_at: Time.current - 25.days,
  due_date: Date.current - 5.days,
- backoffice_status: "deposited",
- liquidation_status: "opened",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.veredict_at = Time.current - 25.days
+ i.deposited_at = Time.current - 25.days
+ i.deposited!
+ i.opened!
+
 
 i = Installment.create!(
  invoice: i4,
  operation: operation2,
- number: "004.851/02",
+ number: "2",
  value: Money.new(4030000),
+ ordered_at: Time.current - 25.days,
  due_date: Date.current + 25.days,
- backoffice_status: "deposited",
- liquidation_status: "opened",
 )
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.veredict_at = Time.current - 25.days
+ i.deposited_at = Time.current - 25.days
+ i.deposited!
+ i.opened!
 
 # For i5 disponivel para compra
   # parcela vencida
   Installment.create!(
     invoice: i5,
-    number: "004.852/01",
+    number: "1",
     value: Money.new(2000000),
     due_date: Date.current - 30.days,
     backoffice_status: "unavailable",
@@ -281,7 +321,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i5,
-    number: "004.852/02",
+    number: "2",
     value: Money.new(1800000),
     due_date: Date.current + 30.days,
     backoffice_status: "available",
@@ -289,7 +329,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i5,
-    number: "004.852/03",
+    number: "3",
     value: Money.new(1600000),
     due_date: Date.current + 60.days,
     backoffice_status: "available",
@@ -297,7 +337,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i5,
-    number: "004.852/04",
+    number: "4",
     value: Money.new(1400000),
     due_date: Date.current + 90.days,
     backoffice_status: "available",
@@ -305,7 +345,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i5,
-    number: "004.852/05",
+    number: "5",
     value: Money.new(1200000),
     due_date: Date.current + 120.days,
     backoffice_status: "unavailable",
@@ -316,7 +356,7 @@ i = Installment.create!(
   # parcela vencida
   Installment.create!(
     invoice: i7,
-    number: "004.902/01",
+    number: "1",
     value: Money.new(1000000),
     due_date: Date.current - 30.days,
     backoffice_status: "unavailable",
@@ -325,7 +365,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i7,
-    number: "004.902/02",
+    number: "2",
     value: Money.new(800000),
     due_date: Date.current + 30.days,
     backoffice_status: "available",
@@ -333,7 +373,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i7,
-    number: "004.902/03",
+    number: "3",
     value: Money.new(600000),
     due_date: Date.current + 60.days,
     backoffice_status: "available",
@@ -341,7 +381,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i7,
-    number: "004.902/04",
+    number: "4",
     value: Money.new(400000),
     due_date: Date.current + 90.days,
     backoffice_status: "available",
@@ -349,7 +389,7 @@ i = Installment.create!(
   # parcela a vencer
   Installment.create!(
     invoice: i7,
-    number: "004.902/05",
+    number: "5",
     value: Money.new(200000),
     due_date: Date.current + 120.days,
     backoffice_status: "unavailable",
@@ -359,7 +399,7 @@ i = Installment.create!(
 # for i6 apenas algummas parcelas operadas
 Installment.create!(
   invoice: i6,
-  number: "004.901/01",
+  number: "1",
   value: Money.new(530000),
   due_date: Date.current - 60.days,
   backoffice_status: "unavailable",
@@ -368,27 +408,12 @@ Installment.create!(
 
 Installment.create!(
   invoice: i6,
-  number: "004.901/02",
+  number: "2",
   value: Money.new(630000),
   due_date: Date.current - 45.days,
   backoffice_status: "unavailable",
   unavailability: "already_operated",
 )
-
-i = Installment.create!(
-  invoice: i6,
-  operation: operation3,
-  number: "004.901/03",
-  value: Money.new(730000),
-  due_date: Date.current - 20.days,
-  backoffice_status: "deposited",
-  liquidation_status: "pdd",
-)
- i.final_net_value = i.net_value
- i.final_fator = i.fator
- i.final_advalorem = i.advalorem
- i.final_protection = i.protection
- i.save!
 
 puts "Creating second seller, nota XML ......."
 seller2 = Seller.create!(

@@ -1,0 +1,29 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Operações para acompanhamento",
+          optional_button: "",
+        } %>
+
+        <% @operations.each do |operation| %>
+          <div class="card-w-table-inside">
+            <div class="card-w-table-inside-header">
+              <div class="header-column">
+                <span># <%= operation.id %> <%= operation.seller_name.mb_chars.downcase.titleize %></span>
+              </div>
+            </div>
+            <%= render partial: "shared/tables/table_wo_bundle_ops/follow_up/header" %>
+            <%= render partial: "shared/tables/table_wo_bundle_ops/follow_up/container", locals: {items: operation.installments.opened}%>
+          </div>
+        <% end %>
+        <%# TODO: test the paginate with @operations. I don't know if the code below is working %>
+        <div id="infinite-scrolling">
+          <%#= will_paginate @operations %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

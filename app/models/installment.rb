@@ -2,7 +2,9 @@ class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :operation, optional: true
   monetize :value_cents, with_model_currency: :currency
-  monetize :final_net_value_cents, with_model_currency: :currency
+  monetize :initial_fator_cents, with_model_currency: :currency
+  monetize :initial_advalorem_cents, with_model_currency: :currency
+  monetize :initial_protection_cents, with_model_currency: :currency
   monetize :final_fator_cents, with_model_currency: :currency
   monetize :final_advalorem_cents, with_model_currency: :currency
   monetize :final_protection_cents, with_model_currency: :currency
@@ -23,6 +25,7 @@ class Installment < ApplicationRecord
   scope :overdue_upto_7,      -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: Date.current, seven_days_ago: 7.days.ago.to_date})) }
   scope :overdue_upto_30,     -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: 7.days.ago.to_date, thirty_days_ago: 30.days.ago.to_date})) }
   scope :overdue_30_plus,     -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago: 30.days.ago.to_date})) }
+  # scope settled is note used anywhere right now
   scope :settled,             -> (seller) { from_seller(seller).merge(paid.or(pdd)) }
   scope :total,               -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents)) }
   scope :quant,               -> (scope, seller) { __send__(scope, seller).count }
@@ -72,6 +75,7 @@ class Installment < ApplicationRecord
     payer_low_rated:                 3,
   }
 
+  # This method and the method status are used to display the current status of the installment in the view.
   def statuses
     {
       ordered: "Em análise",
@@ -95,6 +99,15 @@ class Installment < ApplicationRecord
     opened? && due_date < Date.current
   end
 
+  def finished_overdue?
+    if operation_ended?
+      finished_at.to_date > due_date
+    else
+      false
+    end
+  end
+
+
   def on_date?
     opened? && due_date > Date.current
   end
@@ -103,43 +116,124 @@ class Installment < ApplicationRecord
     opened? && due_date == Date.current
   end
 
-  # Is the same of final price set but considering de the rejected. Erase after treating the rejections.
+  # Is the same of analysis_completed? but considering de the rejected. Erase after treating the rejections.
   # def analysed?
   #   approved? || rejected? || rejected_consent? || deposited? || cancelled?
   # end
 
-  def final_price_set?
-    approved? || deposited?
+  def analysis_requested?
+    ordered_at.present?
+  end
+
+  def analysis_completed?
+    veredict_at.present?
+  end
+
+  def operation_started?
+    deposited_at.present?
+  end
+
+  def operation_ended?
+    finished_at.present?
   end
 
   def outstanding_days
-    days = (due_date - (ordered_at.try(:to_date) || Date.current)).to_i
-    return days.positive? ? days : 0
+    if overdue? || operation_ended?
+      0
+    elsif analysis_requested? && !analysis_completed?
+      (due_date - ordered_at.to_date).to_i
+    elsif due_date_past? || already_operated?
+      0
+    else
+      (due_date - Date.current).to_i
+    end
+  end
+
+  def overdue_days
+    if overdue?
+      (Date.current - due_date).to_i
+    else
+      0
+    end
+  end
+
+  def overdue_operation_total_days
+    (Date.current - ordered_at.to_date).to_i
   end
 
   # TODO change the name to fator_absolute
   def fator
-    final_price_set? ? final_fator : value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+    if operation_ended?
+      final_fator
+    elsif analysis_completed?
+      if overdue?
+        initial_fator + delta_fator
+      else
+        initial_fator
+      end
+    else
+      value * (1 - 1/(1 + invoice.fator)**((outstanding_days + 3) / 30.0))
+    end
+  end
+
+  def delta_fator
+    value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days + 3) / 30.0)) - initial_fator
   end
 
   def advalorem
-    final_price_set? ? final_advalorem : value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+    if operation_ended?
+      final_advalorem
+    elsif analysis_completed?
+      if overdue?
+        initial_advalorem + delta_advalorem
+      else
+        initial_advalorem
+      end
+    else
+      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days + 3) / 30.0))
+    end
+  end
+
+  def delta_advalorem
+    value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days + 3) / 30.0)) - initial_advalorem
   end
 
   def fee
     fator + advalorem
   end
 
+  def initial_fee
+    initial_fator + initial_advalorem
+  end
+
+  def delta_fee
+    delta_fator + delta_advalorem
+  end
+
   def net_value
-    final_price_set? ? final_net_value : (value - fee)
+    value - fee
+  end
+
+  def initial_net_value
+    value - initial_fee
   end
 
   def protection
-    final_price_set? ? final_protection : value * invoice.protection_rate
+    if operation_ended?
+      final_protection
+    elsif analysis_completed?
+      if overdue?
+        initial_protection - delta_fee
+      else
+        initial_protection
+      end
+    else
+      value * invoice.protection_rate
+    end
   end
 
   def first_deposit_amount
-    net_value - protection
+      net_value - protection
   end
 
   def installment_attributes
@@ -159,7 +253,7 @@ class Installment < ApplicationRecord
       due_date: self.due_date.try(:strftime),
       ordered_at: self.ordered_at.try(:to_s),
       deposited_at: self.deposited_at.try(:to_s),
-      received_at: self.received_at.try(:to_s),
+      received_at: self.finished_at.try(:to_s),
       backoffice_status: self.backoffice_status,
       liquidation_status: self.liquidation_status,
       unavailability: self.unavailability,

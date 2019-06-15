@@ -1,0 +1,34 @@
+<div class="table-wo-bundle-row-content">
+  <div class="content-col content-col-4  text-left">
+    <span data-toggle="tooltip" title="" data-original-title="<%= invoice_installment_complete_number_mask(item.invoice.number, item.number) %>">
+        <%= invoice_installment_partial_number_mask(item.invoice.number, item.number) %>
+    </span>
+  </div>
+  <div class="content-col content-col-20 text-left">                      <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
+  <div class="content-col content-col-10 text-left">                      <%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="content-col content-col-4  text-center outstanding_days">   <%= item.outstanding_days %></div>
+  <div class="content-col content-col-11 text-right  installment_value">  <%= humanized_money_with_symbol item.value %></div>
+  <div class="content-col content-col-11 text-right  fee">                <%= humanized_money_with_symbol item.fee %></div>
+  <div class="content-col content-col-11 text-right  net_value">          <%= humanized_money_with_symbol item.net_value %></div>
+  <div class="content-col content-col-11 text-right">                     <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-11 text-right">                     <%= humanized_money_with_symbol item.protection %></div>
+  <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && @status == :no_on_going_operation %>
+    <div class="content-col content-col-4 text-center">
+      <input
+      type="checkbox"
+      name="operation[installment_ids][]"
+      value="<%= item.id %>"
+      data-installment="<%= item.to_json(methods: [:fee, :net_value]) %>"
+      <%= "checked" if item.available? %>
+      <%= "disabled" if item.unavailable? %>>
+    </div>
+    <div class="content-col content-col-3 text-center">
+      <%= render partial: "shared/tables/table_wo_bundle/store/options", locals: {item: item} %>
+    </div>
+  <% else %>
+    <div class="content-col content-col-7 text-left extra-space-left">
+      <%= render partial: "shared/tables/table_wo_bundle/store/status_tag", locals: {status: item.status} %>
+    </div>
+  <% end %>
+</div>
+
