@@ -36,21 +36,19 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
   end
 
   def report_paid
-    @installment.final_net_value = @installment.net_value
     @installment.final_fator = @installment.fator
     @installment.final_advalorem = @installment.advalorem
     @installment.final_protection = @installment.protection
-    @installment.received_at = Time.current
+    @installment.finished_at = Time.current
     @installment.paid!
     redirect_to  ops_admin_operations_follow_up_path
   end
 
   def report_pdd
-    @installment.final_net_value = @installment.net_value
     @installment.final_fator = @installment.fator
     @installment.final_advalorem = @installment.advalorem
     @installment.final_protection = @installment.protection
-    @installment.received_at = Time.current
+    @installment.finished_at = Time.current
     @installment.pdd!
     redirect_to  ops_admin_operations_follow_up_path
   end

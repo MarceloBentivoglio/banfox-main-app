@@ -99,6 +99,15 @@ class Installment < ApplicationRecord
     opened? && due_date < Date.current
   end
 
+  def finished_overdue?
+    if operation_ended?
+      finished_at.to_date > due_date
+    else
+      false
+    end
+  end
+
+
   def on_date?
     opened? && due_date > Date.current
   end
@@ -125,11 +134,11 @@ class Installment < ApplicationRecord
   end
 
   def operation_ended?
-    received_at.present?
+    finished_at.present?
   end
 
   def outstanding_days
-    if overdue?
+    if overdue? || operation_ended?
       0
     elsif analysis_requested? && !analysis_completed?
       (due_date - ordered_at.to_date).to_i
@@ -242,7 +251,7 @@ class Installment < ApplicationRecord
       due_date: self.due_date.try(:strftime),
       ordered_at: self.ordered_at.try(:to_s),
       deposited_at: self.deposited_at.try(:to_s),
-      received_at: self.received_at.try(:to_s),
+      received_at: self.finished_at.try(:to_s),
       backoffice_status: self.backoffice_status,
       liquidation_status: self.liquidation_status,
       unavailability: self.unavailability,

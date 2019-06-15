@@ -127,59 +127,75 @@ operation3 = Operation.create!(
 )
 
 # Creating installments
-# for i1 liquidada
+# for i1 paid on day
 i = Installment.create!(
  invoice: i1,
  operation: operation1,
  number: "1",
  value: Money.new(3330000),
- ordered_at: Time.new(2018,2,10),
- due_date: Date.new(2018,5,10),
- liquidation_status: "paid",
+ ordered_at: Time.current - 150.days,
+ due_date: Date.current - 90.days,
 )
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
- i.veredict_at = Time.new(2018,2,10)
- i.deposited_at = Time.new(2018,2,10)
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.veredict_at = Time.current - 150.days
+ i.deposited_at = Time.current - 150.days
+ i.finished_at = Time.current - 90.days
  i.deposited!
+ i.paid!
 
 
-
+# for i1 paid with delay
 i = Installment.create!(
  invoice: i1,
  operation: operation1,
  number: "2",
  value: Money.new(3430000),
- due_date: Time.new(2018,6,6),
- ordered_at: Time.current - 30.days,
- deposited_at: Time.new(2018,6,6),
- liquidation_status: "paid",
+ due_date: Date.current - 30.days,
+ ordered_at: Time.current - 90.days,
 )
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
- i.veredict_at = Time.new(2018,2,10)
- i.deposited_at = Time.new(2018,2,10)
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((70 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((70 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 20.days
  i.deposited!
+ i.paid!
 
 
 # for i2 em aberto
+# for installment paid with delay
 i = Installment.create!(
  invoice: i2,
  operation: operation1,
  number: "1",
  value: Money.new(3530000),
- ordered_at: Time.current - 30.days,
- due_date: Date.current - 10.days,
- liquidation_status: "paid",
+ due_date: Date.current - 30.days,
+ ordered_at: Time.current - 90.days,
 )
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
- i.veredict_at = Time.current - 30.days
- i.deposited_at = Time.current - 30.days
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((70 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((70 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 20.days
  i.deposited!
+ i.paid!
 
 
 i = Installment.create!(
@@ -217,21 +233,28 @@ i = Installment.create!(
 
 
 # for i3 atrasada com um installment pago
-i = Installment.create!(
+# installment pago em atraso
+ i = Installment.create!(
  invoice: i3,
  operation: operation2,
  number: "1",
  value: Money.new(1000000),
- ordered_at: Time.current - 60.days,
- due_date: Date.current - 33.days,
- liquidation_status: "paid",
+ due_date: Date.current - 60.days,
+ ordered_at: Time.current - 90.days,
 )
  i.initial_fator = i.fator
  i.initial_advalorem = i.advalorem
  i.initial_protection = i.protection
- i.veredict_at = Time.current - 60.days
- i.deposited_at = Time.current - 60.days
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((60 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((60 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 30.days
  i.deposited!
+ i.paid!
 
 
 i = Installment.create!(
@@ -391,23 +414,6 @@ Installment.create!(
   backoffice_status: "unavailable",
   unavailability: "already_operated",
 )
-
-i = Installment.create!(
-  invoice: i6,
-  operation: operation3,
-  number: "3",
-  value: Money.new(730000),
-  ordered_at: Time.current - 90.days,
-  due_date: Date.current - 20.days,
-  backoffice_status: "deposited",
-  liquidation_status: "pdd",
-)
- i.initial_fator = i.fator
- i.initial_advalorem = i.advalorem
- i.initial_protection = i.protection
- i.veredict_at = Time.current - 90.days
- i.deposited_at = Time.current - 90.days
- i.save!
 
 puts "Creating second seller, nota XML ......."
 seller2 = Seller.create!(

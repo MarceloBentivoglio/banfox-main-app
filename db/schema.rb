@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_203754) do
+ActiveRecord::Schema.define(version: 2019_06_15_214944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_203754) do
     t.date "due_date"
     t.datetime "ordered_at"
     t.datetime "deposited_at"
-    t.datetime "received_at"
+    t.datetime "finished_at"
     t.integer "backoffice_status", default: 0
     t.integer "liquidation_status", default: 0
     t.integer "unavailability", default: 0
