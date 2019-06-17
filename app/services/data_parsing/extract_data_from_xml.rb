@@ -24,14 +24,14 @@ class ExtractDataFromXml
   private
 
   def extract_invoice_general_info
-    @invoice.number = @doc.search('fat nFat').text.strip
+    @invoice.number = @doc.search('nNF').text.strip
   end
 
   def extract_installments
     ninety_days = 90.days.since.to_date
     @doc.search('dup').each do |xml_installments_info|
       i = Installment.new
-      i.number = xml_installments_info.search('nDup').text.strip
+      i.number = xml_installments_info.search('nDup').text.strip.to_i.to_s
       # delete("\n .")): takes out blanks spaces, points and paragraphs, otherwise Money class will read "1000.00" as 1000 and convert to 10.00
       i.value = Money.new(xml_installments_info.search('vDup').text.delete("\n ."))
       i.due_date = xml_installments_info.search('dVenc').text.strip
