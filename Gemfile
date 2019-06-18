@@ -83,6 +83,9 @@ gem 'sitemap_generator'
 # This gem used the Jaro Winkler algorithm to compare two strings
 gem 'jaro_winkler'
 
+# This gem helpes us create rake tasks that are needed when we modifie our db and need to modify the data as well
+gem 'data_migrate'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   # This gem is used to open the email in development in a browser tab
