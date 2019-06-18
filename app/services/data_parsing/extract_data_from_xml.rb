@@ -79,8 +79,8 @@ class ExtractDataFromXml
   end
 
   def set_unavailability (due_date, ninety_days)
-    return 1 if due_date <= Date.current
-    return 2 if due_date > ninety_days
-    return nil
+    return :due_date_past if due_date <= Date.current
+    return :due_date_later_than_limit if due_date > ninety_days
+    return :unavailability_non_applicable
   end
 end

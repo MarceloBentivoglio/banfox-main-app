@@ -17,6 +17,7 @@ class Api::V1::OperationsController < Api::V1::BaseController
 
     if request.headers["Event"] == "auto_close"
       @operation = Operation.find_by_sign_document_key(document_data[:document][:key])
+      @operation.signed_at = Time.current
       @operation.signed = true
       @operation.save!
       SlackMessage.new("CHQFGD43Y", "<!channel> o contrato da *Operação #{@operation.id}* foi completamente assinado").send_now

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_214944) do
+ActiveRecord::Schema.define(version: 2019_06_18_210459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 2019_06_15_214944) do
     t.string "sign_document_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "sign_document_requested_at"
+    t.datetime "signed_at"
   end
 
   create_table "payers", force: :cascade do |t|

@@ -43,15 +43,15 @@
            <div class="col-sm-12 col-md-4">
             <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
               icon: render(partial: "shared/icons/lightbulb"),
-              primary_content: Installment.total(:opened_today, @seller),
-              title: "Vencimentos hoje",
+              primary_content: Installment.total(:liquidation_expected_today, @seller),
+              title: "Liquidação hoje",
             } %>
           </div>
           <div class="col-sm-12 col-md-4">
             <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
               icon: render(partial: "shared/icons/lightbulb"),
-              title: "Vencimentos esse mês",
-              primary_content: Installment.total(:opened_month, @seller),
+              title: "Liquidação esse mês",
+              primary_content: Installment.total(:liquidation_expected_month, @seller),
             } %>
           </div>
         </div>
