@@ -98,8 +98,20 @@ class Installment < ApplicationRecord
     }
   end
 
+  def analysis_requested?
+    ordered_at.present?
+  end
+
+  def analysis_completed?
+    veredict_at.present?
+  end
+
   def rejected_aux?
     rejected? || rejected_consent?
+  end
+
+  def operation_started?
+    deposited_at.present?
   end
 
   def on_date?
@@ -121,23 +133,6 @@ class Installment < ApplicationRecord
   # The concept of overdue is not related to when the installment is due, but when it is expected to be liquidated
   def overdue?
     opened? && expected_liquidation_date < Date.current
-  end
-
-  # Is the same of analysis_completed? but considering de the rejected. Erase after treating the rejections.
-  # def analysed?
-  #   approved? || rejected? || rejected_consent? || deposited? || cancelled?
-  # end
-
-  def analysis_requested?
-    ordered_at.present?
-  end
-
-  def analysis_completed?
-    veredict_at.present?
-  end
-
-  def operation_started?
-    deposited_at.present?
   end
 
   def operation_ended?
@@ -181,6 +176,8 @@ class Installment < ApplicationRecord
   def overdue_days
     if overdue?
       (Date.current - expected_liquidation_date).to_i
+    elsif operation_ended_overdue?
+      (finished_at.to_date - expected_liquidation_date).to_i
     else
       0
     end
@@ -189,6 +186,8 @@ class Installment < ApplicationRecord
   def overdue_operation_total_days
     if overdue?
       (Date.current - ordered_at.to_date).to_i
+    elsif operation_ended_overdue?
+      (finished_at.to_date - ordered_at.to_date).to_i
     else
       0
     end
