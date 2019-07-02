@@ -16,16 +16,22 @@
     font-size: 1.3rem;
     display: flex;
     flex-direction: row;
-    // justify-content: space-around;
 
     .summary-column {
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
     }
 
-    .summary-right {
+    .summary-w-padding-left {
       padding-left: 1em;
+    }
+
+    .extended-column {
+      display: flex;
+
+      .file-link {
+        padding-right: 1em;
+      }
     }
   }
 

@@ -26,13 +26,21 @@
                 <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
                 <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
               </div>
-              <div class="summary-column summary-right">
+              <div class="summary-column summary-w-padding-left">
                 <strong>Aprovado</strong>
                 <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
                 <span>Taxa total: <%= humanized_money_with_symbol operation.fee_approved %> </span>
                 <span>Retenção: <%= humanized_money_with_symbol operation.protection_approved %> </span>
                 <span>Total líquido: <%= humanized_money_with_symbol operation.net_value_approved %> </span>
                 <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
+              </div>
+              <div class="summary-column summary-w-padding-left">
+                <strong>Arquivos de notas</strong>
+                <div class="extended-column">
+                  <% operation.invoices.distinct.each do |invoice| %>
+                    <%= link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link"} %>
+                  <% end %>
+                </div>
               </div>
 
             </div>

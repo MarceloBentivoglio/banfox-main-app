@@ -1,5 +1,6 @@
 class Operation < ApplicationRecord
   has_many :installments, dependent: :nullify
+  has_many :invoices, through: :installments
   validates :consent, acceptance: {message: "é necessário dar o seu aval para a operação"}
   default_scope { order(created_at: :asc) }
   # dar um preload das installemnts aqui
