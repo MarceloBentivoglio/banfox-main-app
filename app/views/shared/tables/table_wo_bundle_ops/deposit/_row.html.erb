@@ -4,8 +4,8 @@
         <%= invoice_installment_partial_number_mask(item.invoice.number, item.number) %>
     </span>
   </div>
-  <div class="content-col content-col-19 text-left">                       <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
-  <div class="content-col content-col-8 text-left">                       <%= item.due_date.strftime("%d %b %y") %></div>
+  <div class="content-col content-col-19 text-left">                      <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
+  <div class="content-col content-col-8 text-left">                       <%= l(item.due_date, format: "%d %b %y") %></div>
   <div class="content-col content-col-3 text-center outstanding_days">    <%= item.outstanding_days %></div>
   <div class="content-col content-col-9 text-right  installment_value">   <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-6 text-center">                     <%= percentage(item.invoice.fee) %></div>
