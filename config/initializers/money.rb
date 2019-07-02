@@ -5,7 +5,7 @@ MoneyRails.configure do |config|
   # To set the default currency
   #
   # Added this line to make the thousands separators be as especified on register_currency - Joaquim
-  Money.use_i18n = false
+  Money.locale_backend = :currency
 
   config.default_currency = :brl
   config.no_cents_if_whole = false
@@ -82,7 +82,7 @@ MoneyRails.configure do |config|
   # Example:
   #
   config.default_format = {
-    symbol_before_without_space: false,
+      format: '%u %n'
   #   no_cents_if_whole: false,
   #   symbol: nil,
   #   sign_before_symbol: nil
