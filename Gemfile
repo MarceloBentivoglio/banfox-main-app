@@ -83,7 +83,7 @@ gem 'sitemap_generator'
 # This gem used the Jaro Winkler algorithm to compare two strings
 gem 'jaro_winkler'
 
-# This gem helpes us create rake tasks that are needed when we modifie our db and need to modify the data as well
+# This gem helps us create rake tasks that are needed when we modifie our db and need to modify the data as well
 gem 'data_migrate'
 
 group :development do
@@ -99,4 +99,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'mocha'
+
+  # This gem creates ENV variables in the local environment. We need ENV cariables to diferentiate the staging and production
+  gem 'dotenv-rails'
 end
