@@ -9,7 +9,7 @@ test:
 
 amazon:
   service: S3
-  access_key_id: <%= Rails.application.credentials.production[:aws][:access_key_id] %>
-  secret_access_key: <%= Rails.application.credentials.production[:aws][:secret_access_key] %>
-  region: <%= Rails.application.credentials.production[:aws][:region] %>
-  bucket: <%= Rails.application.credentials.production[:aws][:bucket] %>
+  access_key_id: <%= ENV['BUCKETEER_AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['BUCKETEER_AWS_SECRET_ACCESS_KEY'] %>
+  region: <%= ENV['BUCKETEER_AWS_REGION'] %>
+  bucket: <%= ENV['BUCKETEER_BUCKET_NAME'] %>
