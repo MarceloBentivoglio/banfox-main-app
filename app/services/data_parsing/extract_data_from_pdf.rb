@@ -40,7 +40,7 @@ class ExtractDataFromPdf
   end
 
   def parser_id
-    Rails.application.credentials[Rails.env.to_sym][:doc_parser][:barueri_parser_id]
+    ENV['BARUERI_PARSER_ID']
   end
 
   def secret_api_key
