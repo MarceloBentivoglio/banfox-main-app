@@ -5,8 +5,8 @@ class ExtractDataFromPdf
     @file = file
     @seller = seller
     @invoice = Invoice.new(seller: @seller)
-    send_pdf_to_doc_parser
     attach_pdf_invoice
+    send_pdf_to_doc_parser
     @invoice.save!
     # fazer callback no model quando doc_parser_data for creado
   end
@@ -40,7 +40,15 @@ class ExtractDataFromPdf
   end
 
   def parser_id
-    ENV['BARUERI_PARSER_ID']
+    case @seller.city
+    when "são paulo"
+      ENV['SAOPAULO_PARSER_ID']
+    when "barueri"
+      ENV['BARUERI_PARSER_ID']
+    else
+      SlackMessage.new("CH1KSHZ2T", "Seller id #{@seller.id} uploaded an invoice that doesn't have parser").send_now
+      raise RuntimeError, 'Parser non existent'
+    end
   end
 
   def secret_api_key

@@ -13,30 +13,31 @@ class Installment < ApplicationRecord
   after_save :async_update_spreadsheet
 
   # Helper for other scopes
-  scope :from_seller,                -> (seller) { joins(:invoice).where(invoices: {seller: seller}) }
+  scope :from_seller,                  -> (seller) { joins(:invoice).where(invoices: {seller: seller}) }
 
   # For the dashboard
-  scope :used_limit,                 -> (seller) { from_seller(seller).merge(ordered.or(deposited.opened)) }
-  scope :in_analysis,                -> (seller) { from_seller(seller).merge(ordered) }
-  scope :liquidation_expected_today, -> (seller) { from_seller(seller).merge(opened.where(due_date: (Date.current - 3.days))) }
-  scope :liquidation_expected_week,  -> (seller) { from_seller(seller).merge(opened.where("due_date > :today AND due_date <= :end_week", {today: (Date.current - 3.days), end_week: (Date.current - 3.days).end_of_week})) }
-  scope :liquidation_expected_month, -> (seller) { from_seller(seller).merge(opened.where("due_date > :end_week AND due_date <= :end_month", {end_week: (Date.current - 3.days).end_of_week, end_month: (Date.current - 3.days).end_of_month})) }
-  scope :overdue,                    -> (seller) { from_seller(seller).merge(opened.where("due_date < :today", {today: (Date.current - 3.days)})) }
-  scope :overdue_upto_7,             -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: (Date.current - 3.days), seven_days_ago: (7.days.ago.to_date - 3.days)})) }
-  scope :overdue_upto_30,            -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: (7.days.ago.to_date - 3.days), thirty_days_ago:  (30.days.ago.to_date - 3.days)})) }
-  scope :overdue_30_plus,            -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago:  (30.days.ago.to_date - 3.days)})) }
+  scope :used_limit,                   -> (seller) { from_seller(seller).merge(ordered.or(deposited.opened)) }
+  scope :in_analysis,                  -> (seller) { from_seller(seller).merge(ordered) }
+  scope :liquidation_expected_today,   -> (seller) { from_seller(seller).merge(opened.where(due_date: (Date.current - 3.days))) }
+  scope :liquidation_expected_week,    -> (seller) { from_seller(seller).merge(opened.where("due_date > :today AND due_date <= :end_week", {today: (Date.current - 3.days), end_week: (Date.current - 3.days).end_of_week})) }
+  scope :liquidation_expected_month,   -> (seller) { from_seller(seller).merge(opened.where("due_date > :end_week AND due_date <= :end_month", {end_week: (Date.current - 3.days).end_of_week, end_month: (Date.current - 3.days).end_of_month})) }
+  scope :overdue,                      -> (seller) { from_seller(seller).merge(opened.where("due_date < :today", {today: (Date.current - 3.days)})) }
+  scope :overdue_upto_7,               -> (seller) { from_seller(seller).merge(opened.where("due_date >= :seven_days_ago AND due_date < :today", {today: (Date.current - 3.days), seven_days_ago: (7.days.ago.to_date - 3.days)})) }
+  scope :overdue_upto_30,              -> (seller) { from_seller(seller).merge(opened.where("due_date >= :thirty_days_ago AND due_date <= :seven_days_ago", {seven_days_ago: (7.days.ago.to_date - 3.days), thirty_days_ago:  (30.days.ago.to_date - 3.days)})) }
+  scope :overdue_30_plus,              -> (seller) { from_seller(seller).merge(opened.where("due_date < :thirty_days_ago", {thirty_days_ago:  (30.days.ago.to_date - 3.days)})) }
   # scope settled is note used anywhere right now
-  scope :settled,                    -> (seller) { from_seller(seller).merge(paid.or(pdd)) }
-  scope :total,                      -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents)) }
-  scope :quant,                      -> (scope, seller) { __send__(scope, seller).count }
+  scope :settled,                      -> (seller) { from_seller(seller).merge(paid.or(pdd)) }
+  scope :total,                        -> (scope, seller) { Money.new(__send__(scope, seller).sum(:value_cents)) }
+  scope :quant,                        -> (scope, seller) { __send__(scope, seller).count }
 
   # For the tables of cards
-  scope :in_store,                   -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]) }
-  scope :currently_opened,           -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]) }
-  scope :finished,                   -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(pdd))).preload(invoice: [:payer]) }
+  scope :in_store,                     -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]) }
+  scope :in_store_lacking_information, -> (seller) { from_seller(seller).lacking_information.preload(invoice: [:payer]) }
+  scope :currently_opened,             -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]) }
+  scope :finished,                     -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(pdd))).preload(invoice: [:payer]) }
 
   # For creating operations
-  scope :ordered_in_analysis,        -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
+  scope :ordered_in_analysis,          -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }
   include Trackable
 
 # Any change in this enum must be reflected on the sql querry in Invoice Model
@@ -58,6 +59,7 @@ class Installment < ApplicationRecord
     cancelled:                 6,
     ordered:                   7,
     deposited:                 8,
+    lacking_information:       9,
   }
 
   enum unavailability: {

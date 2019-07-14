@@ -19,7 +19,7 @@ i4127 = Invoice.create!(
   number: "4127",
   seller: euentrego,
   payer: cbd00,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(
@@ -61,7 +61,7 @@ i4128 = Invoice.create!(
   number: "4128",
   seller: euentrego,
   payer: cbd57,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(
@@ -103,7 +103,7 @@ i4129 = Invoice.create!(
   number: "4129",
   seller: euentrego,
   payer: cbd37,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(
@@ -145,7 +145,7 @@ i4130 = Invoice.create!(
   number: "4130",
   seller: euentrego,
   payer: cbd06,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(
@@ -187,7 +187,7 @@ i4131 = Invoice.create!(
   number: "4131",
   seller: euentrego,
   payer: cbd71,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(
@@ -229,7 +229,7 @@ i4132 = Invoice.create!(
   number: "4132",
   seller: euentrego,
   payer: cbd21,
-  issue_date: Time.new(2019,4,25)
+  issued_at: Time.new(2019,4,25)
 )
 
 Installment.create!(

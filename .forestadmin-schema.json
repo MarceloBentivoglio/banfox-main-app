@@ -541,7 +541,8 @@
         "rejected_consent",
         "cancelled",
         "ordered",
-        "deposited"
+        "deposited",
+        "lacking_information"
       ],
       "integration": null,
       "is_filterable": true,
@@ -937,7 +938,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "issue_date",
+      "field": "issued_at",
       "type": "Date",
       "default_value": null,
       "enums": null,

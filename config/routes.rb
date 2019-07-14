@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       get :analysis
     end
   end
-  resources :installments, only: [:destroy] do
+  resources :installments, only: [:update, :destroy] do
     collection do
       get :store
       get :opened

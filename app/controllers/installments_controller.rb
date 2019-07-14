@@ -6,6 +6,7 @@ class InstallmentsController < ApplicationController
   layout "application_w_flashes"
 
   def store
+    @installments_lacking_information = Installment.in_store_lacking_information(@seller)
     @installments = set_installments(@seller, @operation, @status).paginate(page: params[:page])
     respond_to do |format|
       format.html
@@ -28,6 +29,18 @@ class InstallmentsController < ApplicationController
       format.js
     end
   end
+
+  def update
+    Installment.update(installment_params)
+    @i = Installment.find(params[:id])
+    ninety_days = 90.days.since.to_date
+    @i.backoffice_status = ((@i.due_date <= Date.current) || (@i.due_date > ninety_days)) ? :unavailable : :available
+    @i.unavailability = set_unavailability(@i.due_date, ninety_days)
+    @i.save!
+    redirect_to store_installments_path
+
+  end
+
 
   def destroy
     @installment = Installment.find(params[:id])
@@ -63,4 +76,15 @@ class InstallmentsController < ApplicationController
       @show_message = true
     end
   end
+
+  def installment_params
+    params.require(:installment).permit(:due_date)
+  end
+
+  def set_unavailability (due_date, ninety_days)
+    return :due_date_past if due_date <= Date.current
+    return :due_date_later_than_limit if due_date > ninety_days
+    return :unavailability_non_applicable
+  end
+
 end

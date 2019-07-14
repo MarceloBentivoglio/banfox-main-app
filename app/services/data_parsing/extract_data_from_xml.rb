@@ -24,6 +24,7 @@ class ExtractDataFromXml
   private
 
   def extract_invoice_general_info
+    #TODO insert issued_at from XML
     @invoice.number = @doc.search('nNF').text.strip
   end
 
@@ -36,8 +37,7 @@ class ExtractDataFromXml
       i.value = Money.new(xml_installments_info.search('vDup').text.delete("\n ."))
       i.due_date = xml_installments_info.search('dVenc').text.strip
       i.invoice = @invoice
-      # TODO: change 1 and 2 for the status
-      i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? 1 : 2
+      i.backoffice_status = ((i.due_date <= Date.current) || (i.due_date > ninety_days)) ? :unavailable : :available
       i.unavailability = set_unavailability(i.due_date, ninety_days)
       @invoice.installments.push(i)
     end

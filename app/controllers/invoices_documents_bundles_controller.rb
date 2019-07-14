@@ -11,8 +11,9 @@ class InvoicesDocumentsBundlesController < ApplicationController
       invoices = CreateInvoicesFromDocuments.new(documents_params[:documents], @seller).invoices
       invoices.each do |invoice|
         if invoice.instance_of?(RuntimeError)
-          flash[:alert] << 'Uma das notas que você subiu contem um CNPJ que não confere com o seu' if invoice.message == "Invoice do not belongs to seller"
-          flash[:alert] << 'Um dos arquivos que você subiu não é xml nem PDF' if invoice.message == "File has not a valid type: xml, PDF"
+          flash[:alert] << 'Uma das notas contem um CNPJ que não confere com o seu' if invoice.message == "Invoice do not belongs to seller"
+          flash[:alert] << 'Um dos arquivos não é xml nem PDF' if invoice.message == "File has not a valid type: xml, PDF"
+          flash[:alert] << 'Uma das notas precisa de uma atenção especial do nosso time. Aguarde que logo entraremos em contato' if invoice.message == "Parser non existent"
         elsif (!invoice.doc_parser_data? && invoice.document.content_type  == "application/pdf")
           invoices_being_parsed = true
         end

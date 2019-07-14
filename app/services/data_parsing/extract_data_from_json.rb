@@ -10,17 +10,21 @@ class ExtractDataFromJson
     invoice_attributes = {
       number: @data["number"],
       invoice_type: :service,
-      issue_date: Date.parse(@data["issue_date"]),
+      issued_at: Time.parse(@data["issued_at"]),
       doc_parser_data: @data,
     }
 
     @i = Installment.new()
     ninety_days = 90.days.since.to_date
     @i.value = Money.new(@data["total_value"])
-    @i.number = "01"
-    @i.due_date = Date.parse(@data["issue_date"]) + @data["days_until_due"].to_i.days
-    @i.backoffice_status = ((@i.due_date <= Date.current) || (@i.due_date > ninety_days)) ? :unavailable : :available
-    @i.unavailability = set_unavailability(@i.due_date, ninety_days)
+    @i.number = "1"
+    if @data["days_until_due"].present?
+      @i.due_date = Time.parse(@data["issued_at"]) + @data["days_until_due"].to_i.days
+      @i.backoffice_status = ((@i.due_date <= Date.current) || (@i.due_date > ninety_days)) ? :unavailable : :available
+      @i.unavailability = set_unavailability(@i.due_date, ninety_days)
+    else
+      @i.backoffice_status = :lacking_information
+    end
 
     payer_cnpj = @data["payer_cnpj"]
     if Payer.exists?(cnpj: payer_cnpj)

@@ -25,4 +25,27 @@
   .tooltip-inner {
     font-size: 1.3rem;
   }
+
+  .form-group {
+    margin: 0px !important;
+
+    .form-control {
+      font-size: 1.3rem;
+      display: inline;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  .table-row-button {
+    font-size: 1.3rem;
+    padding: 0px;
+    border: none;
+    color: $blue;
+    opacity: 0.85;
+
+     &:hover {
+       opacity: 1;
+     }
+  }
 }

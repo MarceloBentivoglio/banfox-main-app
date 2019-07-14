@@ -1,0 +1,14 @@
+<%= simple_form_for item do |f| %>
+  <div class="table-wo-bundle-row-content">
+    <div class="content-col content-col-4  text-left">
+      <span data-toggle="tooltip" title="" data-original-title="<%= invoice_installment_complete_number_mask(item.invoice.number, item.number) %>">
+          <%= invoice_installment_partial_number_mask(item.invoice.number, item.number) %>
+      </span>
+    </div>
+    <div class="content-col content-col-20 text-left">                      <%= item.invoice.payer.company_name.mb_chars.titleize %></div>
+    <div class="content-col content-col-50 text-left">                      <%= f.input :due_date, label: false, as: :date, start_year: Date.today.year, end_year: Date.today.year + 1  %></div>
+    <div class="content-col content-col-11 text-right  installment_value">  <%= humanized_money_with_symbol item.value %></div>
+    <div class="content-col content-col-15 text-left extra-space-left">     <%= f.submit "Salvar atualização", class: "table-row-button" %></div>
+
+  </div>
+<% end %>

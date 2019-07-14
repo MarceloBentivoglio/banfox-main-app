@@ -26,6 +26,23 @@
       </div>
     </div>
 
+    <% unless @installments_lacking_information.empty? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+            title: "Complete as informações dos seguintes títulos",
+            optional_button: "",
+          } %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= render partial: "shared/tables/table_wo_bundle/store/header_for_row_w_edit" %>
+              <%= render partial: "shared/tables/table_wo_bundle/store/container_for_row_w_edit", locals: {items: @installments_lacking_information} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
@@ -44,5 +61,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
