@@ -118,7 +118,7 @@ class Seller < ApplicationRecord
   validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
   validates :fator, numericality: {greater_than_or_equal_to: 0.01, less_than_or_equal_to: 0.07, allow_nil: true}
   validates :advalorem, numericality: {greater_than_or_equal_to: 0.001, less_than_or_equal_to: 0.01, allow_nil: true}
-  validates :protection, numericality: {greater_than_or_equal_to: 0.05, less_than_or_equal_to: 0.3, allow_nil: true}
+  validates :protection, numericality: {greater_than_or_equal_to: 0.0, less_than_or_equal_to: 0.3, allow_nil: true}
 
   # TODO: Refactor this block of code
   before_validation :clean_inputs, :downcase_words
