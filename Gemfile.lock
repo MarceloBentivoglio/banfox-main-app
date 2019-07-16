@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/ctran/annotate_models.git
+  revision: 111640d077836ced23cfffb882c93e40968ab9d9
+  specs:
+    annotate (2.7.5)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 13.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -849,6 +857,11 @@ GEM
       activesupport (>= 3.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
+    factory_bot (5.0.2)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.0.2)
+      factory_bot (~> 5.0.2)
+      railties (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
@@ -1157,6 +1170,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate!
   autoprefixer-rails
   aws-sdk
   aws-sdk-s3
@@ -1168,9 +1182,12 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   enum_help
+  factory_bot
+  factory_bot_rails
   font-awesome-sass (~> 5.0.13)
   forest_liana
   google-api-client (~> 0.23.4)
+  httparty
   jaro_winkler
   jbuilder (~> 2.0)
   letter_opener

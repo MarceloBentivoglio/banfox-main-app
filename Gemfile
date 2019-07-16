@@ -86,6 +86,12 @@ gem 'jaro_winkler'
 # This gem helps us create rake tasks that are needed when we modifie our db and need to modify the data as well
 gem 'data_migrate'
 
+# Used to create comments on active-record models with it's database mirrored attributes
+gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
+
+# Used as a http client
+gem 'httparty'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   # This gem is used to open the email in development in a browser tab
@@ -99,6 +105,8 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'mocha'
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
 
   # This gem creates ENV variables in the local environment. We need ENV cariables to diferentiate the staging and production
   gem 'dotenv-rails'
