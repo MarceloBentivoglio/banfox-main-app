@@ -1,0 +1,22 @@
+{
+  "quantidade_pendencias_financeiras": 45,
+  "quantidade_ultima_ocorrencia": 5,
+  "data_ocorrencia": "07/12/2018",
+  "titulo_ocorrencia": "DUPLICATA",
+  "avalista": "N",
+  "valor": 42000,
+  "contrato": "RNX",
+  "origem": "RNX FACTORING",
+  "filial": "",
+  "mensagem": "",
+  "praca_subjudice": "DP I",
+  "distrito_subjudice": "PZ",
+  "vara_subjudice": "0V",
+  "data_subjudice": "04988665",
+  "processo_subjudice": "54044281038",
+  "codigo_natureza_subjudice": "",
+  "reservado_serasa": "",
+  "mensagem_subjudice": "0000000189005A",
+  "valor_total": ""
+},
+

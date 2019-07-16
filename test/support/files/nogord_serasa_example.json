@@ -1,0 +1,3568 @@
+{
+  "result": {
+    "value": {}
+  },
+  "info": {
+    "external_sources": [
+      {
+        "step": "BUREAU",
+        "source_type": "SERASA",
+        "data": {
+          "dados_controle_empresa": {
+            "tipo_relatorio": "Analítico",
+            "cod_situacao_cadastral": "ATIVA",
+            "codigo_situacao_empresa": "02",
+            "descricao": "",
+            "cnpj_consultado": "044281038",
+            "indicador_ficha": "",
+            "transacao_contabilizada": "RHC",
+            "codigo_mensagem_reciprocidade": "",
+            "dt_ultima_remessa_reciprocidade": "",
+            "transacao_contabilizada_desmembrada_02": "NRCH",
+            "transacao_contabilizada_desmembrada_03": "",
+            "transacao_contabilizada_desmembrada_04": "",
+            "transacao_contabilizada_desmembrada_05": "",
+            "transacao_contabilizada_desmembrada_06": "",
+            "transacao_contabilizada_desmembrada_07": "",
+            "transacao_contabilizada_desmembrada_08": "",
+            "transacao_contabilizada_desmembrada_09": "",
+            "transacao_contabilizada_desmembrada_10": "",
+            "tem_reciprocidade": "S",
+            "tipo_rel_cob": "1",
+            "dias_restantes_lib_auto_visao_analitica": null,
+            "desc_situacao_cadastral": "SITUACAO DO CNPJ EM 29/04/2019: ATIVA"
+          },
+          "identificacao": {
+            "razao_social": "DIADEMA AGRO INDUSTRIAL LTDA",
+            "nome_fantasia": "",
+            "cnpj_empresa": "044281038",
+            "nr_inscricao_registro_empresas": "35200911537",
+            "descricao_tipo_sociedade": "SOCIEDADE EMPRESARIA LIMITADA",
+            "opcao_tributaria": "LUCRO REAL"
+          },
+          "endereco": {
+            "endereco_com_bairro": "ARY DOMINGUES MANDU 1399 - EMBU MIRIM",
+            "bairro": "EMBU MIRIM",
+            "endereco": "ARY DOMINGUES MANDU 1399"
+          },
+          "localizacao": {
+            "uf": "SP",
+            "cep": "006855000",
+            "cod_ddd": "0011",
+            "nr_tel1": "046673309",
+            "nr_fax1": "046665461",
+            "area_reservada": "",
+            "home_page": "",
+            "cidade": "ITAPECERICA DA SERRA"
+          },
+          "atividade": {
+            "ramo_atividade": "IND DE ADUBOS E FERTILIZANTES QUIMICOS",
+            "codigo_serasa_completo": "I080500",
+            "qtde_empregado": 38,
+            "percentual_compra": 1,
+            "percentual_venda": 30,
+            "nr_filiais": 0,
+            "qtde_filiais": 0,
+            "cnae": "2019399",
+            "dt_ultima_manutencao_tvcg": "04/06/2019",
+            "data_inscricao_cnpj": "16/09/1971",
+            "data_fundacao_empresa": "16/09/1971"
+          },
+          "filiais": [],
+          "controle_societario_capital_social": {
+            "data_ultima_atualizacao": "09/12/2018",
+            "valor_capital_realizado": 651000,
+            "valor_capital_autorizado": 0,
+            "descricao_nacionalidade": "BRASIL",
+            "descricao_origem": "PRIVADO",
+            "descricao_natureza": "FECHADO",
+            "monto_controle_societario_junta_comercial": "",
+            "situacao_capital_total": "F",
+            "valor_capital_social": 651000
+          },
+          "controle_societario": [
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "041063598",
+              "indicador_restricao": "S",
+              "perc_capital": 37.5,
+              "perc_capital_votante": 0,
+              "codigo_serasa": "",
+              "codigo_situacao_socio": "02",
+              "data_entrada": "30/09/1971",
+              "codigo_socio_consistido": "C",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "71",
+              "nome_socio": "MARIA DE LOURDES CASTELLO BRANCO",
+              "nacionalidade": "BRASIL"
+            },
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "508218908",
+              "indicador_restricao": "S",
+              "perc_capital": 37.5,
+              "perc_capital_votante": 0,
+              "codigo_serasa": "",
+              "codigo_situacao_socio": "09",
+              "data_entrada": "30/09/1971",
+              "codigo_socio_consistido": "C",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "59",
+              "nome_socio": "ESPOLIO DE HAROLDO CASTELLO BRANCO",
+              "nacionalidade": "BRASIL"
+            },
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "079119868",
+              "indicador_restricao": "S",
+              "perc_capital": 25,
+              "perc_capital_votante": 0,
+              "codigo_serasa": "",
+              "codigo_situacao_socio": "02",
+              "data_entrada": "11/02/1985",
+              "codigo_socio_consistido": "C",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "51",
+              "nome_socio": "HAROLDO CASTELLO BRANCO JUNIOR",
+              "nacionalidade": "BRASIL"
+            }
+          ],
+          "detalhes_controle_societario": [
+            {
+              "cpf": "041063598",
+              "filial_do_documento": "0000",
+              "digito_do_documento": "71",
+              "data_de_atualizacao": "09/12/2018",
+              "nome": "MARIA DE LOURDES CASTELLO BRANCO",
+              "rg": "00003395113",
+              "nascimento": "08/06/1933",
+              "vinculo": "D",
+              "cidade_de_nascimento": "",
+              "estado_de_nascimento": "",
+              "ddd": "0011",
+              "fone": "046664100",
+              "ramal": "0000",
+              "logradouro": "AV DR GUILHERME DUMONT VILLARES AP 101 1741",
+              "bairro": "JD LONDRINA",
+              "cidade": "SAO PAULO",
+              "estado": "SP",
+              "cep": "005640003",
+              "tempo_de_residencia": "0000"
+            },
+            {
+              "cpf": "508218908",
+              "filial_do_documento": "0000",
+              "digito_do_documento": "59",
+              "data_de_atualizacao": "09/12/2018",
+              "nome": "ESPOLIO DE HAROLDO CASTELLO BRANCO",
+              "rg": "00003451052",
+              "nascimento": "17/03/1933",
+              "vinculo": "D",
+              "cidade_de_nascimento": "",
+              "estado_de_nascimento": "",
+              "ddd": "0011",
+              "fone": "046664100",
+              "ramal": "0000",
+              "logradouro": "AV DR GUILHERME DUMONT VILLARES AP 101 1741",
+              "bairro": "JD LONDRINA",
+              "cidade": "SAO PAULO",
+              "estado": "SP",
+              "cep": "005640003",
+              "tempo_de_residencia": "0000"
+            },
+            {
+              "cpf": "079119868",
+              "filial_do_documento": "0000",
+              "digito_do_documento": "51",
+              "data_de_atualizacao": "09/12/2018",
+              "nome": "HAROLDO CASTELLO BRANCO JUNIOR",
+              "rg": "00049798467",
+              "nascimento": "02/12/1962",
+              "vinculo": "D",
+              "cidade_de_nascimento": "",
+              "estado_de_nascimento": "",
+              "ddd": "0011",
+              "fone": "046664100",
+              "ramal": "0000",
+              "logradouro": "EST ARY DOMINGUES MANDU C 1399",
+              "bairro": "EMBU MIRIM",
+              "cidade": "ITAPECERICA DA SERRA",
+              "estado": "SP",
+              "cep": "006855000",
+              "tempo_de_residencia": "0000"
+            }
+          ],
+          "participacao_societaria": [],
+          "informacoes_adicionais_dos_socios": [
+            {
+              "codigo_profissao": "CONTADOR",
+              "renda_mensal": 0,
+              "outras_rendas": 0,
+              "codigo_periodo_outras_rendas": "",
+              "origem_outras_rendas": "",
+              "cpf_conjuge": "000000000",
+              "digito_cpf_conjuge": "00",
+              "nome_conjuge": "",
+              "rg_conjuge": "00000000000",
+              "renda_mensal_conjuge": 0
+            },
+            {
+              "codigo_profissao": "ADVOGADO",
+              "renda_mensal": 0,
+              "outras_rendas": 0,
+              "codigo_periodo_outras_rendas": "",
+              "origem_outras_rendas": "",
+              "cpf_conjuge": "000000000",
+              "digito_cpf_conjuge": "00",
+              "nome_conjuge": "",
+              "rg_conjuge": "00000000000",
+              "renda_mensal_conjuge": 0
+            },
+            {
+              "codigo_profissao": "ENGENHEIRO",
+              "renda_mensal": 0,
+              "outras_rendas": 0,
+              "codigo_periodo_outras_rendas": "",
+              "origem_outras_rendas": "",
+              "cpf_conjuge": "000000000",
+              "digito_cpf_conjuge": "00",
+              "nome_conjuge": "",
+              "rg_conjuge": "00000000000",
+              "renda_mensal_conjuge": 0
+            }
+          ],
+          "quadro_administrativo": {
+            "montou_quadro_adm_com_base_junta_comercial": "",
+            "data_ultima_atualizacao": "09/12/2018"
+          },
+          "quadro_administrativo_detalhes": [
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "508218908",
+              "codigo_situacao_administrador": "09",
+              "data_entrada": "30/09/1971",
+              "codigo_socio_consistido": "7",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "59",
+              "nome_administrador": "ESPOLIO DE HAROLDO CASTELLO BRANCO",
+              "cargo": "DIRETOR",
+              "nacionalidade": "BRASIL",
+              "estado_civil": "CASADO",
+              "data_inicio_mandato": "30/09/1971",
+              "data_fim_mandato": "99999999",
+              "indicador_restricao": "S",
+              "codigo_cargo": "022"
+            },
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "041063598",
+              "codigo_situacao_administrador": "02",
+              "data_entrada": "30/09/1971",
+              "codigo_socio_consistido": "7",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "71",
+              "nome_administrador": "MARIA DE LOURDES CASTELLO BRANCO",
+              "cargo": "DIRETOR",
+              "nacionalidade": "BRASIL",
+              "estado_civil": "CASADO",
+              "data_inicio_mandato": "30/09/1971",
+              "data_fim_mandato": "99999999",
+              "indicador_restricao": "S",
+              "codigo_cargo": "022"
+            },
+            {
+              "identificacao": "F",
+              "cnpj_cpf_socio": "079119868",
+              "codigo_situacao_administrador": "02",
+              "data_entrada": "11/02/1985",
+              "codigo_socio_consistido": "8",
+              "cnpj_sequencia": "0000",
+              "digito_cpf": "51",
+              "nome_administrador": "HAROLDO CASTELLO BRANCO JUNIOR",
+              "cargo": "DIRETOR",
+              "nacionalidade": "BRASIL",
+              "estado_civil": "CASADO",
+              "data_inicio_mandato": "11/02/1985",
+              "data_fim_mandato": "99999999",
+              "indicador_restricao": "S",
+              "codigo_cargo": "022"
+            }
+          ],
+          "participacoes": null,
+          "antecessoras": [],
+          "principais_fornecedores_data_ultima_atualizacao": null,
+          "principais_fornecedores": [],
+          "relacionamento_fornecedores_por_periodo": [],
+          "historico_pagamentos": [
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 19,
+              "mes_prf": 4,
+              "mes_desp": "ABR",
+              "val": 1498,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 19,
+              "mes_prf": 1,
+              "mes_desp": "JAN",
+              "val": 3708,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 18,
+              "mes_prf": 11,
+              "mes_desp": "NOV",
+              "val": 1344,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 18,
+              "mes_prf": 9,
+              "mes_desp": "SET",
+              "val": 1137,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 18,
+              "mes_prf": 8,
+              "mes_desp": "AGO",
+              "val": 456,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 18,
+              "mes_prf": 7,
+              "mes_desp": "JUL",
+              "val": 424,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PONTUAL",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "8-15",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "16-30",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "31-60",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "+60",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "PMA",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 0,
+              "per": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "des_per": "A VISTA",
+              "ano_prf": 18,
+              "mes_prf": 6,
+              "mes_desp": "JUN",
+              "val": 511,
+              "per": 0,
+              "reservado_serasa": "000"
+            }
+          ],
+          "referenciais_negocios": [],
+          "historico_pagamentos_qtde_titulos": [
+            {
+              "descricao": "PONTUAL",
+              "quantidade": 0,
+              "percentual": 0
+            },
+            {
+              "descricao": "8-15",
+              "quantidade": 0,
+              "percentual": 0
+            },
+            {
+              "descricao": "16-30",
+              "quantidade": 0,
+              "percentual": 0
+            },
+            {
+              "descricao": "31-60",
+              "quantidade": 0,
+              "percentual": 0
+            },
+            {
+              "descricao": "+60",
+              "quantidade": 0,
+              "percentual": 0
+            },
+            {
+              "descricao": "A VISTA",
+              "quantidade": 12,
+              "percentual": 0
+            }
+          ],
+          "referenciais_negocios_analitico": [],
+          "historico_pagamentos_factorings": [],
+          "evolucao_compromissos_factoring_sacado": [],
+          "referenciais_de_negocio_segmento_consolidado": [],
+          "historico_pagamentos_visao_cedente": [
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 38292,
+              "percentual": 88,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 5457,
+              "percentual": 12,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 12.8,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 120211,
+              "percentual": 81,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 15016,
+              "percentual": 10,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 12720,
+              "percentual": 9,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 2.4,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 16927,
+              "percentual": 38,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 5710,
+              "percentual": 13,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 17,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 21917,
+              "percentual": 49,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 0,
+              "percentual": 60.3,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 4,
+              "mes": "ABR",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 57160,
+              "percentual": 52,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 7430,
+              "percentual": 7,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 45576,
+              "percentual": 41,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 0,
+              "percentual": 8.7,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 3,
+              "mes": "MAR",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 115389,
+              "percentual": 35,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 144494,
+              "percentual": 44,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 67229,
+              "percentual": 21,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 0,
+              "percentual": 9.1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 2,
+              "mes": "FEV",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 179197,
+              "percentual": 92,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 1255,
+              "percentual": 1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 1055,
+              "percentual": 1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 8050,
+              "percentual": 4,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 5193,
+              "percentual": 2,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 0,
+              "percentual": 7.3,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 19,
+              "mes_do_pagamento": 1,
+              "mes": "JAN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 305125,
+              "percentual": 88,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 40367,
+              "percentual": 12,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 2187,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 0,
+              "percentual": 2.3,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 12,
+              "mes": "DEZ",
+              "valor": 456,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 433863,
+              "percentual": 87,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 1023,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 21800,
+              "percentual": 4,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 40190,
+              "percentual": 9,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 0,
+              "percentual": 16.4,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 11,
+              "mes": "NOV",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 467473,
+              "percentual": 88,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 11982,
+              "percentual": 2,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 50352,
+              "percentual": 10,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 0,
+              "percentual": 16.9,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 10,
+              "mes": "OUT",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 309421,
+              "percentual": 89,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 36824,
+              "percentual": 11,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 0,
+              "percentual": 17.4,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 9,
+              "mes": "SET",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 136514,
+              "percentual": 92,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 11474,
+              "percentual": 8,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 0,
+              "percentual": 1.3,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 8,
+              "mes": "AGO",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 226881,
+              "percentual": 100,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 7,
+              "mes": "JUL",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 310026,
+              "percentual": 100,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 1060,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0.1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 6,
+              "mes": "JUN",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PONTUAL",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 255911,
+              "percentual": 96,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "8-15",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "16-30",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 3482,
+              "percentual": 1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "31-60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 4200,
+              "percentual": 2,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "+60",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 2390,
+              "percentual": 1,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "PMA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 1.3,
+              "reservado_serasa": "000"
+            },
+            {
+              "descricao_do_periodo": "A VISTA",
+              "ano_do_pagamento": 18,
+              "mes_do_pagamento": 5,
+              "mes": "MAI",
+              "valor": 0,
+              "percentual": 0,
+              "reservado_serasa": "000"
+            }
+          ],
+          "evolucao_compromissos_visao_cedente": [
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 6,
+              "descricao_mes_compromisso": "JUN",
+              "valor_dos_compromissos_vencidos": 1346431,
+              "valor_dos_compromissos_a_vencer": 858256,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 5,
+              "descricao_mes_compromisso": "MAI",
+              "valor_dos_compromissos_vencidos": 1417035,
+              "valor_dos_compromissos_a_vencer": 896548,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 4,
+              "descricao_mes_compromisso": "ABR",
+              "valor_dos_compromissos_vencidos": 1250049,
+              "valor_dos_compromissos_a_vencer": 640354,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 3,
+              "descricao_mes_compromisso": "MAR",
+              "valor_dos_compromissos_vencidos": 1150346,
+              "valor_dos_compromissos_a_vencer": 253602,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 2,
+              "descricao_mes_compromisso": "FEV",
+              "valor_dos_compromissos_vencidos": 968466,
+              "valor_dos_compromissos_a_vencer": 362570,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 19,
+              "mes_do_compromisso": 1,
+              "descricao_mes_compromisso": "JAN",
+              "valor_dos_compromissos_vencidos": 879957,
+              "valor_dos_compromissos_a_vencer": 595997,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 12,
+              "descricao_mes_compromisso": "DEZ",
+              "valor_dos_compromissos_vencidos": 783203,
+              "valor_dos_compromissos_a_vencer": 535953,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 11,
+              "descricao_mes_compromisso": "NOV",
+              "valor_dos_compromissos_vencidos": 745069,
+              "valor_dos_compromissos_a_vencer": 765993,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 10,
+              "descricao_mes_compromisso": "OUT",
+              "valor_dos_compromissos_vencidos": 791581,
+              "valor_dos_compromissos_a_vencer": 850320,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 9,
+              "descricao_mes_compromisso": "SET",
+              "valor_dos_compromissos_vencidos": 812368,
+              "valor_dos_compromissos_a_vencer": 636467,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 8,
+              "descricao_mes_compromisso": "AGO",
+              "valor_dos_compromissos_vencidos": 823993,
+              "valor_dos_compromissos_a_vencer": 493705,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 7,
+              "descricao_mes_compromisso": "JUL",
+              "valor_dos_compromissos_vencidos": 813093,
+              "valor_dos_compromissos_a_vencer": 250153,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 6,
+              "descricao_mes_compromisso": "JUN",
+              "valor_dos_compromissos_vencidos": 807899,
+              "valor_dos_compromissos_a_vencer": 299811,
+              "reservado_serasa": "000"
+            },
+            {
+              "ano_do_compromisso": 18,
+              "mes_do_compromisso": 5,
+              "descricao_mes_compromisso": "MAI",
+              "valor_dos_compromissos_vencidos": 797312,
+              "valor_dos_compromissos_a_vencer": 311119,
+              "reservado_serasa": "000"
+            }
+          ],
+          "total_historico_pagamentos": [
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "PONTUAL",
+              "valor_pagamento": 0,
+              "seg_info": 0,
+              "sub_grupo": 0
+            },
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "8-15",
+              "valor_pagamento": 0,
+              "seg_info": 0,
+              "sub_grupo": 0
+            },
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "16-30",
+              "valor_pagamento": 0,
+              "seg_info": 0,
+              "sub_grupo": 0
+            },
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "31-60",
+              "valor_pagamento": 0,
+              "seg_info": 0,
+              "sub_grupo": 0
+            },
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "+60",
+              "valor_pagamento": 0,
+              "seg_info": 0,
+              "sub_grupo": 0
+            },
+            {
+              "tipo_de_informacao": "05",
+              "identificacao_da_coluna": "A VISTA",
+              "valor_pagamento": 9078,
+              "seg_info": 0,
+              "sub_grupo": 0
+            }
+          ],
+          "evolucao_compromissos_no_mercado": [],
+          "consultas_serasa": [
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 6,
+              "descricao_mes_consulta": "JUN",
+              "quantidade_consulta_por_empresa": 2,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 5,
+              "descricao_mes_consulta": "MAI",
+              "quantidade_consulta_por_empresa": 10,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 4,
+              "descricao_mes_consulta": "ABR",
+              "quantidade_consulta_por_empresa": 17,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 3,
+              "descricao_mes_consulta": "MAR",
+              "quantidade_consulta_por_empresa": 15,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 2,
+              "descricao_mes_consulta": "FEV",
+              "quantidade_consulta_por_empresa": 20,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 19,
+              "mes_consulta": 1,
+              "descricao_mes_consulta": "JAN",
+              "quantidade_consulta_por_empresa": 22,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 12,
+              "descricao_mes_consulta": "DEZ",
+              "quantidade_consulta_por_empresa": 8,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 11,
+              "descricao_mes_consulta": "NOV",
+              "quantidade_consulta_por_empresa": 20,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 10,
+              "descricao_mes_consulta": "OUT",
+              "quantidade_consulta_por_empresa": 12,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 9,
+              "descricao_mes_consulta": "SET",
+              "quantidade_consulta_por_empresa": 15,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 8,
+              "descricao_mes_consulta": "AGO",
+              "quantidade_consulta_por_empresa": 21,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 7,
+              "descricao_mes_consulta": "JUL",
+              "quantidade_consulta_por_empresa": 11,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 6,
+              "descricao_mes_consulta": "JUN",
+              "quantidade_consulta_por_empresa": 17,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            },
+            {
+              "ano_consulta": 18,
+              "mes_consulta": 5,
+              "descricao_mes_consulta": "MAI",
+              "quantidade_consulta_por_empresa": 4,
+              "quantidade_consulta_por_financeira": 0,
+              "indicador_banco_ou_empresa": "A",
+              "reservado": ""
+            }
+          ],
+          "ultimas_consultas_serasa": [
+            {
+              "data_consulta": "06/06/2019",
+              "nome_consultante": "SINCOPLASTIC IND E COM DE PLASTICOS",
+              "quantidade_consultas_no_dia": 1,
+              "cnpj_consultante": "000632761",
+              "reservado": "S"
+            },
+            {
+              "data_consulta": "04/06/2019",
+              "nome_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas_no_dia": 1,
+              "cnpj_consultante": "023198636",
+              "reservado": "S"
+            },
+            {
+              "data_consulta": "29/05/2019",
+              "nome_consultante": "ADIANTA PAGAMENTOS LTDA ME",
+              "quantidade_consultas_no_dia": 1,
+              "cnpj_consultante": "024879870",
+              "reservado": "S"
+            },
+            {
+              "data_consulta": "24/05/2019",
+              "nome_consultante": "CESCE BRASIL SERVICOS E GESTAO DE R",
+              "quantidade_consultas_no_dia": 1,
+              "cnpj_consultante": "007901421",
+              "reservado": "S"
+            },
+            {
+              "data_consulta": "23/05/2019",
+              "nome_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas_no_dia": 1,
+              "cnpj_consultante": "023198636",
+              "reservado": "S"
+            }
+          ],
+          "consultas_sinteticas_serasa": [
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/05/2019",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/04/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/03/2019",
+              "quantidade_consultas": 4,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/02/2019",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/01/2019",
+              "quantidade_consultas": 4,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/12/2018",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/11/2018",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/10/2018",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/09/2018",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/07/2018",
+              "quantidade_consultas": 4,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/06/2018",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "2",
+              "descricao_segmento": "INDUSTRIA",
+              "data_consulta": "01/05/2018",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/04/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/03/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/02/2019",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/01/2019",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/11/2018",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "3",
+              "descricao_segmento": "COMERCIO",
+              "data_consulta": "01/08/2018",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/06/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/05/2019",
+              "quantidade_consultas": 8,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/04/2019",
+              "quantidade_consultas": 15,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/03/2019",
+              "quantidade_consultas": 8,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/02/2019",
+              "quantidade_consultas": 14,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/01/2019",
+              "quantidade_consultas": 14,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/12/2018",
+              "quantidade_consultas": 6,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/11/2018",
+              "quantidade_consultas": 14,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/10/2018",
+              "quantidade_consultas": 9,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/09/2018",
+              "quantidade_consultas": 14,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/08/2018",
+              "quantidade_consultas": 16,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/07/2018",
+              "quantidade_consultas": 7,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/06/2018",
+              "quantidade_consultas": 13,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "4",
+              "descricao_segmento": "SERVICOS",
+              "data_consulta": "01/05/2018",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/03/2019",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/02/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/01/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/11/2018",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/10/2018",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/08/2018",
+              "quantidade_consultas": 2,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "5",
+              "descricao_segmento": "FINANCEIRO",
+              "data_consulta": "01/06/2018",
+              "quantidade_consultas": 3,
+              "tipo_consulta": "T"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/06/2019",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/05/2019",
+              "quantidade_consultas": 5,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/04/2019",
+              "quantidade_consultas": 7,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/03/2019",
+              "quantidade_consultas": 8,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/02/2019",
+              "quantidade_consultas": 11,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/01/2019",
+              "quantidade_consultas": 11,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/12/2018",
+              "quantidade_consultas": 6,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/11/2018",
+              "quantidade_consultas": 15,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/10/2018",
+              "quantidade_consultas": 10,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/09/2018",
+              "quantidade_consultas": 9,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/08/2018",
+              "quantidade_consultas": 13,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/07/2018",
+              "quantidade_consultas": 4,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo__segmento": "028",
+              "descricao_segmento": "FACTORINGS",
+              "data_consulta": "01/06/2018",
+              "quantidade_consultas": 10,
+              "tipo_consulta": "G"
+            }
+          ],
+          "frases_de_alerta": [],
+          "ultimas_consultas_sinteticas_serasa": [
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "06/06/2019",
+              "cnpj_consultante": "00632761",
+              "filial_consultante": "0001",
+              "digito_consultante": "66",
+              "razao_social_consultante": "SINCOPLASTIC IND E COM DE PLASTICOS LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "04/06/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "29/05/2019",
+              "cnpj_consultante": "24879870",
+              "filial_consultante": "0001",
+              "digito_consultante": "40",
+              "razao_social_consultante": "ADIANTA PAGAMENTOS LTDA ME",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "24/05/2019",
+              "cnpj_consultante": "07901421",
+              "filial_consultante": "0001",
+              "digito_consultante": "32",
+              "razao_social_consultante": "CESCE BRASIL SERVICOS E GESTAO DE RISCOS LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "23/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "22/05/2019",
+              "cnpj_consultante": "19886331",
+              "filial_consultante": "0001",
+              "digito_consultante": "07",
+              "razao_social_consultante": "G. FIN FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "20/05/2019",
+              "cnpj_consultante": "04076904",
+              "filial_consultante": "0001",
+              "digito_consultante": "51",
+              "razao_social_consultante": "PHIBRO SAUDE ANIMAL INTERNACIONAL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "17/05/2019",
+              "cnpj_consultante": "05562649",
+              "filial_consultante": "0001",
+              "digito_consultante": "10",
+              "razao_social_consultante": "LUANI FACTORING E FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "14/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "09/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "07/05/2019",
+              "cnpj_consultante": "19886331",
+              "filial_consultante": "0001",
+              "digito_consultante": "07",
+              "razao_social_consultante": "G. FIN FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "06/05/2019",
+              "cnpj_consultante": "72930332",
+              "filial_consultante": "0001",
+              "digito_consultante": "86",
+              "razao_social_consultante": "ASHLAND POLIMEROS DO BRASIL S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "30/04/2019",
+              "cnpj_consultante": "18001764",
+              "filial_consultante": "0001",
+              "digito_consultante": "67",
+              "razao_social_consultante": "TRATHO METAL QUIMICA LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "29/04/2019",
+              "cnpj_consultante": "04018620",
+              "filial_consultante": "0001",
+              "digito_consultante": "09",
+              "razao_social_consultante": "CICOR FACTORING FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "29/04/2019",
+              "cnpj_consultante": "06344125",
+              "filial_consultante": "0001",
+              "digito_consultante": "15",
+              "razao_social_consultante": "VILLA REAL FACTORING FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "29/04/2019",
+              "cnpj_consultante": "08949764",
+              "filial_consultante": "0001",
+              "digito_consultante": "30",
+              "razao_social_consultante": "LN FACTORING FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "29/04/2019",
+              "cnpj_consultante": "29118969",
+              "filial_consultante": "0001",
+              "digito_consultante": "43",
+              "razao_social_consultante": "COBRAVEL SECURITIZADORA S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "23/04/2019",
+              "cnpj_consultante": "19886331",
+              "filial_consultante": "0001",
+              "digito_consultante": "07",
+              "razao_social_consultante": "G. FIN FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "18/04/2019",
+              "cnpj_consultante": "03347400",
+              "filial_consultante": "0001",
+              "digito_consultante": "66",
+              "razao_social_consultante": "DUMAC FACTORING LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "17/04/2019",
+              "cnpj_consultante": "03306344",
+              "filial_consultante": "0001",
+              "digito_consultante": "11",
+              "razao_social_consultante": "COMETA SERVICOS DE ANALISE LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "17/04/2019",
+              "cnpj_consultante": "03347400",
+              "filial_consultante": "0001",
+              "digito_consultante": "66",
+              "razao_social_consultante": "DUMAC FACTORING LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "12/04/2019",
+              "cnpj_consultante": "15195729",
+              "filial_consultante": "0001",
+              "digito_consultante": "38",
+              "razao_social_consultante": "JPAMERICA FACTORY E FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "10/04/2019",
+              "cnpj_consultante": "24487501",
+              "filial_consultante": "0001",
+              "digito_consultante": "02",
+              "razao_social_consultante": "GOLF CAPITAL SECURITIZADORA S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "10/04/2019",
+              "cnpj_consultante": "29980158",
+              "filial_consultante": "0001",
+              "digito_consultante": "57",
+              "razao_social_consultante": "HDI SEGUROS S/A",
+              "quantidade_consultas": 2,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "10/04/2019",
+              "cnpj_consultante": "33164021",
+              "filial_consultante": "0001",
+              "digito_consultante": "00",
+              "razao_social_consultante": "TOKIO MARINE SEGURADORA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "10/04/2019",
+              "cnpj_consultante": "61383493",
+              "filial_consultante": "0001",
+              "digito_consultante": "80",
+              "razao_social_consultante": "SOMPO SEGUROS S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "08/04/2019",
+              "cnpj_consultante": "04076904",
+              "filial_consultante": "0001",
+              "digito_consultante": "51",
+              "razao_social_consultante": "PHIBRO SAUDE ANIMAL INTERNACIONAL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "08/04/2019",
+              "cnpj_consultante": "10709952",
+              "filial_consultante": "0001",
+              "digito_consultante": "32",
+              "razao_social_consultante": "PORTO SECURITIZADORA S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "04/04/2019",
+              "cnpj_consultante": "02647408",
+              "filial_consultante": "0001",
+              "digito_consultante": "85",
+              "razao_social_consultante": "FEDERAL INVEST LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "",
+              "descricao": "",
+              "data_consulta": "28/03/2019",
+              "cnpj_consultante": "18695067",
+              "filial_consultante": "0001",
+              "digito_consultante": "53",
+              "razao_social_consultante": "SIZE SECURITIZADORA S/A",
+              "quantidade_consultas": 1,
+              "tipo_consulta": ""
+            },
+            {
+              "codigo_segmento": "028",
+              "descricao": "FACTORINGS",
+              "data_consulta": "04/06/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo_segmento": "028",
+              "descricao": "FACTORINGS",
+              "data_consulta": "23/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo_segmento": "028",
+              "descricao": "FACTORINGS",
+              "data_consulta": "22/05/2019",
+              "cnpj_consultante": "19886331",
+              "filial_consultante": "0001",
+              "digito_consultante": "07",
+              "razao_social_consultante": "G FIN FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo_segmento": "028",
+              "descricao": "FACTORINGS",
+              "data_consulta": "14/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            },
+            {
+              "codigo_segmento": "028",
+              "descricao": "FACTORINGS",
+              "data_consulta": "09/05/2019",
+              "cnpj_consultante": "23198636",
+              "filial_consultante": "0001",
+              "digito_consultante": "95",
+              "razao_social_consultante": "MVP FOMENTO MERCANTIL LTDA",
+              "quantidade_consultas": 1,
+              "tipo_consulta": "G"
+            }
+          ],
+          "pendencias_financeiras_pefin": [
+            {
+              "quantidade_pendencias_financeiras": 45,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "21/01/2019",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 407,
+              "contrato": "279717-8",
+              "origem": "TRANSPORTADORA EMBOR",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0V",
+              "data_subjudice": "05888771",
+              "processo_subjudice": "84044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000189005A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_pendencias_financeiras": 45,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "07/12/2018",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 42000,
+              "contrato": "RNX",
+              "origem": "RNX FACTORING",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0V",
+              "data_subjudice": "04988665",
+              "processo_subjudice": "54044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000189005A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_pendencias_financeiras": 45,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/02/2018",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 7056,
+              "contrato": "530194/003",
+              "origem": "BANDEIRANTE QUIMICA",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0V",
+              "data_subjudice": "03345623",
+              "processo_subjudice": "62044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000189005A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_pendencias_financeiras": 45,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "16/02/2018",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 4913,
+              "contrato": "529153/003",
+              "origem": "BANDEIRANTE QUIMICA",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0V",
+              "data_subjudice": "03345822",
+              "processo_subjudice": "46044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000189005A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_pendencias_financeiras": 45,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "16/02/2018",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 4458,
+              "contrato": "529138/003",
+              "origem": "BANDEIRANTE QUIMICA",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0V",
+              "data_subjudice": "03345822",
+              "processo_subjudice": "35044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000189005A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_pendencias_financeiras": 1,
+              "quantidade_ultima_ocorrencia": 1,
+              "data_ocorrencia": "07/12/2018",
+              "titulo_ocorrencia": "DUPLICATA",
+              "avalista": "N",
+              "valor": 42000,
+              "contrato": "RNX",
+              "origem": "RNX FACTORING",
+              "filial": "",
+              "mensagem": "",
+              "praca_subjudice": "DP I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "1V",
+              "data_subjudice": "04988465",
+              "processo_subjudice": "35079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000042000A",
+              "valor_total": ""
+            }
+          ],
+          "pendencias_financeiras_refin": [
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "N",
+              "valor": 12857,
+              "contrato": "000000247364227",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "0I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "93044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000461496A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "N",
+              "valor": 6402,
+              "contrato": "000000247364250",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "0I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "96044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000461496A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "N",
+              "valor": 342707,
+              "contrato": "000000247364268",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "0I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "99044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000461496A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "16/11/2018",
+              "titulo": "CREDITO E FI",
+              "avalista": "N",
+              "valor": 23338,
+              "contrato": "00880240427234",
+              "origem": "BRADESCO FINANC.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FIFI",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "0I",
+              "data_subjudice": "04868178",
+              "processo_subjudice": "31044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000461496A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "29/09/2018",
+              "titulo": "FINANCIAMENT",
+              "avalista": "N",
+              "valor": 8416,
+              "contrato": "000000470550666",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FI I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "0I",
+              "data_subjudice": "05145260",
+              "processo_subjudice": "85044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000461496A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 7,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 12857,
+              "contrato": "000000247364227",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "94041063598",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000406463A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 7,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 6402,
+              "contrato": "000000247364250",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "97041063598",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000406463A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 7,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 342707,
+              "contrato": "000000247364268",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419428",
+              "processo_subjudice": "00041063598",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000406463A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 7,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "29/09/2018",
+              "titulo": "FINANCIAMENT",
+              "avalista": "S",
+              "valor": 8416,
+              "contrato": "000000470550666",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FI I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05145260",
+              "processo_subjudice": "86041063598",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000406463A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 7,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "29/09/2018",
+              "titulo": "FINANCIAMENT",
+              "avalista": "S",
+              "valor": 5579,
+              "contrato": "000000470550856",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FI I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05145260",
+              "processo_subjudice": "89041063598",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000406463A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 1,
+              "quantidade_ultima_ocorrencia": 1,
+              "data_ocorrencia": "30/05/2016",
+              "titulo": "CRED.CARTAO",
+              "avalista": "N",
+              "valor": 15693,
+              "contrato": "002625788250000",
+              "origem": "BANCO ITAUCARD S/A",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "CT I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05545360",
+              "processo_subjudice": "72508218908",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000015693A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 12857,
+              "contrato": "000000247364227",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "95079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000430714A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 6402,
+              "contrato": "000000247364250",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419427",
+              "processo_subjudice": "98079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000430714A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "22/11/2018",
+              "titulo": "OPER AJUIZAD",
+              "avalista": "S",
+              "valor": 342707,
+              "contrato": "000000247364268",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "OJ I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05419428",
+              "processo_subjudice": "01079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000430714A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "16/11/2018",
+              "titulo": "CREDITO E FI",
+              "avalista": "S",
+              "valor": 23338,
+              "contrato": "00880240427234",
+              "origem": "BRADESCO FINANC.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FIFI",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "04868178",
+              "processo_subjudice": "32079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000430714A",
+              "valor_total": ""
+            },
+            {
+              "quantidade_refinanciamento": 9,
+              "quantidade_ultima_ocorrencia": 5,
+              "data_ocorrencia": "29/09/2018",
+              "titulo": "FINANCIAMENT",
+              "avalista": "S",
+              "valor": 8416,
+              "contrato": "000000470550666",
+              "origem": "ITAU UNIBANCO S.A.",
+              "filial": "SPO",
+              "mensagem": "",
+              "praca_subjudice": "FI I",
+              "distrit_subjudice": "PZ",
+              "vara_subjudice": "1I",
+              "data_subjudice": "05145260",
+              "processo_subjudice": "87079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": "0000000430714A",
+              "valor_total": ""
+            }
+          ],
+          "informacoes_concentre_grafias": [
+            {
+              "grafia": "DIADEMA AGRO IND LTDA"
+            },
+            {
+              "grafia": "DIADEMA AGRO INDUSTRIAL LTDA"
+            },
+            {
+              "grafia": "DIADEMA AGRO INDUSTRIAL LTDA"
+            },
+            {
+              "grafia": "DIADEMA AGRO INDL LTDA"
+            },
+            {
+              "grafia": "OUTRAS"
+            },
+            {
+              "grafia": "HAROLDO CASTELLO BRANCO JUNIOR"
+            }
+          ],
+          "informacoes_concentre_resumo": [
+            {
+              "quantidade_ocorrencias": 2,
+              "grupo_de_ocorrencia": "DIVIDA VENCIDA",
+              "descricao_mes_inicial": "MAR",
+              "mes_inicial": null,
+              "ano_inicial": 19,
+              "descricao_mes_final": "MAR",
+              "mes_final": null,
+              "ano_final": 19,
+              "moeda": "R$",
+              "valor": 270,
+              "origem": "ABMGAZ COMERCIO",
+              "agencia": "",
+              "valor_total": 644,
+              "natureza": "07"
+            },
+            {
+              "quantidade_ocorrencias": 2,
+              "grupo_de_ocorrencia": "ACAO JUDICIAL",
+              "descricao_mes_inicial": "ABR",
+              "mes_inicial": null,
+              "ano_inicial": 17,
+              "descricao_mes_final": "MAI",
+              "mes_final": null,
+              "ano_final": 18,
+              "moeda": "R$",
+              "valor": 129759,
+              "origem": "ITAPECERICA DA",
+              "agencia": "ICS",
+              "valor_total": 762505,
+              "natureza": "04"
+            },
+            {
+              "quantidade_ocorrencias": 276,
+              "grupo_de_ocorrencia": "PROTESTO",
+              "descricao_mes_inicial": "AGO",
+              "mes_inicial": null,
+              "ano_inicial": 16,
+              "descricao_mes_final": "MAI",
+              "mes_final": null,
+              "ano_final": 19,
+              "moeda": "R$",
+              "valor": 1560,
+              "origem": "ITAPECERICA DA",
+              "agencia": "ICS",
+              "valor_total": 1301155,
+              "natureza": "03"
+            },
+            {
+              "quantidade_ocorrencias": 12,
+              "grupo_de_ocorrencia": "CHEQUE",
+              "descricao_mes_inicial": "JUN",
+              "mes_inicial": null,
+              "ano_inicial": 18,
+              "descricao_mes_final": "JUN",
+              "mes_final": null,
+              "ano_final": 18,
+              "moeda": "",
+              "valor": 0,
+              "origem": "B DO BRASIL",
+              "agencia": "2168",
+              "valor_total": 0,
+              "natureza": "09"
+            },
+            {
+              "quantidade_ocorrencias": 1,
+              "grupo_de_ocorrencia": "PROTESTO",
+              "descricao_mes_inicial": "DEZ",
+              "mes_inicial": null,
+              "ano_inicial": 18,
+              "descricao_mes_final": "DEZ",
+              "mes_final": null,
+              "ano_final": 18,
+              "moeda": "R$",
+              "valor": 23863,
+              "origem": "ITAPECERICA DA",
+              "agencia": "ICS",
+              "valor_total": 23863,
+              "natureza": "03"
+            }
+          ],
+          "informacoes_concentre_protestos": [
+            {
+              "quantidade_ocorrencias": 276,
+              "data_protesto": "09/05/2019",
+              "moeda": "R$",
+              "valor_protesto": 1560,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0A",
+              "data_subjudice": "",
+              "processo_subjudice": "26044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 276,
+              "data_protesto": "08/05/2019",
+              "moeda": "R$",
+              "valor_protesto": 2982,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0A",
+              "data_subjudice": "",
+              "processo_subjudice": "80044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 276,
+              "data_protesto": "02/05/2019",
+              "moeda": "R$",
+              "valor_protesto": 1560,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0A",
+              "data_subjudice": "",
+              "processo_subjudice": "84044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 276,
+              "data_protesto": "01/05/2019",
+              "moeda": "R$",
+              "valor_protesto": 2982,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0A",
+              "data_subjudice": "",
+              "processo_subjudice": "78044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 276,
+              "data_protesto": "25/04/2019",
+              "moeda": "R$",
+              "valor_protesto": 1560,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0A",
+              "data_subjudice": "",
+              "processo_subjudice": "50044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 1,
+              "data_protesto": "24/12/2018",
+              "moeda": "R$",
+              "valor_protesto": 23863,
+              "cartorio": "01",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "Z1 I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "1A",
+              "data_subjudice": "",
+              "processo_subjudice": "38079119868",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "tipo_carta_anuencia": "",
+              "data_recebimento_carta_anuencia": "",
+              "mensagem_subjudice": ""
+            }
+          ],
+          "informacoes_concentre_acoes_judiciais": [
+            {
+              "quantidade_ocorrencias": 2,
+              "data_acao_judicial": "28/05/2018",
+              "natureza": "FISCAL ESTADUAL",
+              "avalalista": "",
+              "moeda": "R$",
+              "valor_acao": 129759,
+              "distrito": null,
+              "vara": "0001",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "FE I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0C",
+              "data_subjudice": "00227609",
+              "processo_subjudice": "88044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": ""
+            },
+            {
+              "quantidade_ocorrencias": 2,
+              "data_acao_judicial": "07/04/2017",
+              "natureza": "FISCAL FEDERAL",
+              "avalalista": "",
+              "moeda": "R$",
+              "valor_acao": 632745,
+              "distrito": null,
+              "vara": "0002",
+              "cidade": "OSASCO",
+              "uf": "SP",
+              "mensagem": "",
+              "praca_subjudice": "JF I",
+              "distrito_subjudice": "PZ",
+              "vara_subjudice": "0C",
+              "data_subjudice": "00202842",
+              "processo_subjudice": "38044281038",
+              "codigo_natureza_subjudice": "",
+              "reservado_serasa": "",
+              "mensagem_subjudice": ""
+            }
+          ],
+          "informacoes_concentre_dividas_vencidas": [
+            {
+              "quantidade_ocorrencias": 2,
+              "ocorrencia": "29/03/2019",
+              "modalidade": "DEV",
+              "moeda": "R$",
+              "valor": 270,
+              "titulo": "15797475233",
+              "intutuicao_financeira": "ABMGAZ COMERCIO",
+              "local": "",
+              "codigo_natureza": "DMI",
+              "reservado_serasa": "IPZ050572434580044281038",
+              "mensage": "",
+              "praca_subjudice": "",
+              "distrito_subjudice": "",
+              "vara_subjudice": "",
+              "data_subjudice": "",
+              "processo_subjudice": "",
+              "mensagem_subjudice": "A"
+            },
+            {
+              "quantidade_ocorrencias": 2,
+              "ocorrencia": "12/03/2019",
+              "modalidade": "DEV",
+              "moeda": "R$",
+              "valor": 374,
+              "titulo": "10900026767",
+              "intutuicao_financeira": "TRANSANTOS",
+              "local": "",
+              "codigo_natureza": "DV",
+              "reservado_serasa": "IPZ050576526435044281038",
+              "mensage": "",
+              "praca_subjudice": "",
+              "distrito_subjudice": "",
+              "vara_subjudice": "",
+              "data_subjudice": "",
+              "processo_subjudice": "",
+              "mensagem_subjudice": "A"
+            }
+          ],
+          "informacoes_recheque_cheque_sem_fundo": [],
+          "informacoes_recheque_cheque_sem_fundo_ccf": [
+            {
+              "quantidade_ocorrencias": 12,
+              "data": "26/06/2018",
+              "cheque": "CCF-BB",
+              "quantidade_no_banco": 12,
+              "banco": "B DO BRASIL",
+              "agencia": "2168",
+              "cidade": "ITAPECERICA DA SERRA",
+              "uf": "SP",
+              "codigo_natureza": "",
+              "reservado_serasa": "IPZ0O0125894697044281038"
+            }
+          ],
+          "informacoes_recheque_qtd_ultima_ocorrencia": [],
+          "informacoes_recheque_detalhes": [],
+          "comportamento_empresas_pagamentos_em_atraso": [],
+          "comportamento_empresas_vencimentos_futuros": [],
+          "historico_de_pagamentos_visao_cedente_com_cliente_valor": [],
+          "historico_de_pagamentos_visao_cedente_com_demais_factorings_valor": [],
+          "informacoes_risk_scoring": {
+            "data": "06062019",
+            "hora": "14:05:26",
+            "risk_scoring": 2000,
+            "fator_prinad": 10000,
+            "reservado": "0000"
+          },
+          "risk_scoring_classe_e_texto_explicativo": {
+            "classe": "D2",
+            "texto_explicativo_da_classe_de_riskscoring": "ESTE PERFIL DE RISCO, E PRATICA DE MERCADO VENDER SOMENTE A VISTA."
+          },
+          "string_original": "#INI0138IP20RTOKN2        04428103822N            23SE 000000000000000                                                                    #BLC3627#L01000002                                                                               044281038 NRHC           NRCH                                1S1  2SITUACAO DO CNPJ EM 29/04/2019: ATIVA                                                      #L010101PRODUCAO                                                    2019060614:05:26  CNPJ: 44.281.038/0001-5520190529 0044643314720141105#L010102DIADEMA AGRO INDUSTRIAL LTDA                                          044281038                                                            35200911537SOCIEDADE EMPRESARIA LIMITADA                               LUCRO REAL                    0206#L010103ARY DOMINGUES MANDU 1399 - EMBU MIRIM                                 EMBU MIRIM                    ARY DOMINGUES MANDU 1399                                                        #L010104ITAPECERICA DA SERRA          SP0068550000011046673309046665461                                                                          DIADEMAAGRO@TERRA.COM.BR                                              #L0101051971091619710916IND DE ADUBOS E FERTILIZANTES QUIMICOS                I08050000038001030000000000201939920190604#L571001000370005714115#L0701090606201914:05:262000100000000 #L0701060606201914:05:26DEFAULT-DIVIDAS VENC INST FIN, CESTA EVENTOS.                                   #L070114D2A CLASSE DE RISCO D2 REPRESENTA QUE A EMPRESA JA ESTA INADIMPLENTE NO  MERCADO.  PARA  EMPRESAS  COM#L070114D2ESTE PERFIL DE RISCO, E PRATICA DE MERCADO VENDER SOMENTE A VISTA.                                  #L01010820181209000000065100000000006510000000000000000BRASIL      PRIVADO     FECHADO      F#L010109F041063598000071MARIA DE LOURDES CASTELLO BRANCO                                 BRASIL      037519710930S000002       C#L010109F508218908000059ESPOLIO DE HAROLDO CASTELLO BRANCO                               BRASIL      037519710930S000009       C#L010109F079119868000051HAROLDO CASTELLO BRANCO JUNIOR                                   BRASIL      025019850211S000002       C#L01011020181209 #L010111F508218908000059ESPOLIO DE HAROLDO CASTELLO BRANCO                        DIRETOR     BRASIL      CASADO   1971093099999999S0220919710930C#L010111F041063598000071MARIA DE LOURDES CASTELLO BRANCO                          DIRETOR     BRASIL      CASADO   1971093099999999S0220219710930C#L010111F079119868000051HAROLDO CASTELLO BRANCO JUNIOR                            DIRETOR     BRASIL      CASADO   1985021199999999S0220219850211C#L0301011906JUN002000A               #L0301011905MAI010000A               #L0301011904ABR017000A               #L0301011903MAR015000A               #L0301011902FEV020000A               #L0301011901JAN022000A               #L0301011812DEZ008000A               #L0301011811NOV020000A               #L0301011810OUT012000A               #L0301011809SET015000A               #L0301011808AGO021000A               #L0301011807JUL011000A               #L0301011806JUN017000A               #L0301011805MAI004000A               #L03010220190606SINCOPLASTIC IND E COM DE PLASTICOS0001000632761 S#L03010220190604MVP FOMENTO MERCANTIL LTDA         0001023198636 S#L03010220190529ADIANTA PAGAMENTOS LTDA ME         0001024879870 S#L03010220190524CESCE BRASIL SERVICOS E GESTAO DE R0001007901421 S#L03010220190523MVP FOMENTO MERCANTIL LTDA         0001023198636 S#L03039906.06.2019                                                                                                                                 #L030303                             2019060600632761000166SINCOPLASTIC IND E COM DE PLASTICOS LTDA                              00000001          #BLC3683#L030303                             2019060423198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001          #L030303                             2019052924879870000140ADIANTA PAGAMENTOS LTDA ME                                            00000001          #L030303                             2019052407901421000132CESCE BRASIL SERVICOS E GESTAO DE RISCOS LTDA                         00000001          #L030303                             2019052323198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001          #L030303                             2019052219886331000107G. FIN FOMENTO MERCANTIL LTDA                                         00000001          #L030303                             2019052004076904000151PHIBRO SAUDE ANIMAL INTERNACIONAL LTDA                                00000001          #L030303                             2019051705562649000110LUANI FACTORING E FOMENTO MERCANTIL LTDA                              00000001          #L030303                             2019051423198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001          #L030303                             2019050923198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001          #L030303                             2019050719886331000107G. FIN FOMENTO MERCANTIL LTDA                                         00000001          #L030303                             2019050672930332000186ASHLAND POLIMEROS DO BRASIL S/A                                       00000001          #L030303                             2019043018001764000167TRATHO METAL QUIMICA LTDA                                             00000001          #L030303                             2019042904018620000109CICOR FACTORING FOMENTO MERCANTIL LTDA                                00000001          #L030303                             2019042906344125000115VILLA REAL FACTORING FOMENTO MERCANTIL LTDA                           00000001          #L030303                             2019042908949764000130LN FACTORING FOMENTO MERCANTIL LTDA                                   00000001          #L030303                             2019042929118969000143COBRAVEL SECURITIZADORA S/A                                           00000001          #L030303                             2019042319886331000107G. FIN FOMENTO MERCANTIL LTDA                                         00000001          #L030303                             2019041803347400000166DUMAC FACTORING LTDA                                                  00000001          #L030303                             2019041703306344000111COMETA SERVICOS DE ANALISE LTDA                                       00000001          #L030303                             2019041703347400000166DUMAC FACTORING LTDA                                                  00000001          #L030303                             2019041215195729000138JPAMERICA FACTORY E FOMENTO MERCANTIL LTDA                            00000001          #L030303                             2019041024487501000102GOLF CAPITAL SECURITIZADORA S/A                                       00000001          #L030303                             2019041029980158000157HDI SEGUROS S/A                                                       00000002          #L030303                             2019041033164021000100TOKIO MARINE SEGURADORA                                               00000001          #L030303                             2019041061383493000180SOMPO SEGUROS S/A                                                     00000001          #BLC3683#L030303                             2019040804076904000151PHIBRO SAUDE ANIMAL INTERNACIONAL LTDA                                00000001          #L030303                             2019040810709952000132PORTO SECURITIZADORA S/A                                              00000001          #L030303                             2019040402647408000185FEDERAL INVEST LTDA                                                   00000001          #L030303                             2019032818695067000153SIZE SECURITIZADORA S/A                                               00000001          #L03039905.06.2019                                                                                                                                 #L0303012   INDUSTRIA                2019050100000002T                                                                                             #L0303012   INDUSTRIA                2019040100000001T                                                                                             #L0303012   INDUSTRIA                2019030100000004T                                                                                             #L0303012   INDUSTRIA                2019020100000002T                                                                                             #L0303012   INDUSTRIA                2019010100000004T                                                                                             #L0303012   INDUSTRIA                2018120100000002T                                                                                             #L0303012   INDUSTRIA                2018110100000002T                                                                                             #L0303012   INDUSTRIA                2018100100000002T                                                                                             #L0303012   INDUSTRIA                2018090100000001T                                                                                             #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                      #L0303012   IN                                                                                                             #L0303013   COMERCIO                 2019020100000003T                                                                                             #L0303013   COMERCIO                 2019010100000003T                                                                                             #L0303013   COMERCIO                 2018110100000001T                                                                                             #L0303013   COMERCIO                 2018080100000003T                                                                                             #L0303014   SERVICOS                 2019060100000001T                                                                                             #L0303014   SERVICOS                 2019050100000008T                                                                                             #BLC3683#L0303014   SERVICOS                 2019040100000015T                                                                                             #L0303014   SERVICOS                 2019030100000008T                                                                                             #L0303014   SERVICOS                 2019020100000014T                                                                                             #L0303014   SERVICOS                 2019010100000014T                                                                                             #L0303014   SERVICOS                 2018120100000006T                                                                                             #L0303014   SERVICOS                 2018110100000014T                                                                                             #L0303014   SERVICOS                 2018100100000009T                                                                                             #L0303014   SERVICOS                 2018090100000014T                                                                                             #L0303014   SERVICOS                 2018080100000016T                                                                                             #L0303014   SERVICOS                 2018070100000007T                                                                                             #L0303014   SERVICOS                 2018060100000013T                                                                                             #L0303014   SERVICOS                 2018050100000003T                                                                                             #L0303015   FINANCEIRO               2019030100000002T                                                                                             #L0303015   FINANCEIRO               2019020100000001T                                                                                             #L0303015   FINANCEIRO               2019010100000001T                                                                                             #L0303015   FINANCEIRO               2018110100000003T                                                                                             #L0303015   FINANCEIRO               2018100100000001T                                                                                             #L0303015   FINANCEIRO               2018080100000002T                                                                                             #L0303015   FINANCEIRO               2018060100000003T                                                                                             #L03039905.06.2019                                                                                                                                 #L030302028 FACTORINGS               2019060100000001G                                                                                             #L030302028 FACTORINGS               2019050100000005G                                                                                             #L030302028 FACTORINGS               2019040100000007G                                                                                             #L030302028 FACTORINGS               2019030100000008G                                                                                             #L030302028 FACTORINGS               2019020100000011G                                                                                             #BLC3662#L030302028 FACTORINGS               2019010100000011G                                                                                             #L030302028 FACTORINGS               2018120100000006G                                                                                             #L030302028 FACTORINGS               2018110100000015G                                                                                             #L030302028 FACTORINGS               2018100100000010G                                                                                             #L030302028 FACTORINGS               2018090100000009G                                                                                             #L030302028 FACTORINGS               2018080100000013G                                                                                             #L030302028 FACTORINGS               2018070100000004G                                                                                             #L030302028 FACTORINGS               2018060100000010G                                                                                             #L03039905.06.2019                                                                                                                                 #L030304028 FACTORINGS               2019060423198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001G         #L030304028 FACTORINGS               2019052323198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001G         #L030304028 FACTORINGS               2019052219886331000107G FIN FOMENTO MERCANTIL LTDA                                          00000001G         #L030304028 FACTORINGS               2019051423198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001G         #L030304028 FACTORINGS               2019050923198636000195MVP FOMENTO MERCANTIL LTDA                                            00000001G         #L020105PONTUAL       1904ABR0000000000000000000020190606#L0201058-15          1904ABR0000000000000000000020190606#L02010516-30         1904ABR0000000000000000000020190606#L02010531-60         1904ABR0000000000000000000020190606#L020105+60           1904ABR0000000000000000000020190606#L020105PMA           1904ABR0000000000000000000020190606#L020105A VISTA       1904ABR0000000001498000000020190606#L020105PONTUAL       1901JAN0000000000000000000020190606#L0201058-15          1901JAN0000000000000000000020190606#L02010516-30         1901JAN0000000000000000000020190606#L02010531-60         1901JAN0000000000000000000020190606#L020105+60           1901JAN0000000000000000000020190606#L020105PMA           1901JAN0000000000000000000020190606#L020105A VISTA       1901JAN0000000003708000000020190606#L020105PONTUAL       1811NOV0000000000000000000020190606#L0201058-15          1811NOV0000000000000000000020190606#L02010516-30         1811NOV0000000000000000000020190606#L02010531-60         1811NOV0000000000000000000020190606#L020105+60           1811NOV0000000000000000000020190606#L020105PMA           1811NOV0000000000000000000020190606#L020105A VISTA       1811NOV0000000001344000000020190606#L020105PONTUAL       1809SET0000000000000000000020190606#L0201058-15          1809SET0000000000000000000020190606#L02010516-30         1809SET0000000000000000000020190606#L02010531-60         1809SET0000000000000000000020190606#L020105+60           1809SET0000000000000000000020190606#L020105PMA           1809SET0000000000000000000020190606#L020105A VISTA       1809SET0000000001137000000020190606#BLC3689#L020105PONTUAL       1808AGO0000000000000000000020190606#L0201058-15          1808AGO0000000000000000000020190606#L02010516-30         1808AGO0000000000000000000020190606#L02010531-60         1808AGO0000000000000000000020190606#L020105+60           1808AGO0000000000000000000020190606#L020105PMA           1808AGO0000000000000000000020190606#L020105A VISTA       1808AGO0000000000456000000020190606#L020105PONTUAL       1807JUL0000000000000000000020190606#L0201058-15          1807JUL0000000000000000000020190606#L02010516-30         1807JUL0000000000000000000020190606#L02010531-60         1807JUL0000000000000000000020190606#L020105+60           1807JUL0000000000000000000020190606#L020105PMA           1807JUL0000000000000000000020190606#L020105A VISTA       1807JUL0000000000424000000020190606#L020105PONTUAL       1806JUN0000000000000000000020190606#L0201058-15          1806JUN0000000000000000000020190606#L02010516-30         1806JUN0000000000000000000020190606#L02010531-60         1806JUN0000000000000000000020190606#L020105+60           1806JUN0000000000000000000020190606#L020105PMA           1806JUN0000000000000000000020190606#L020105A VISTA       1806JUN0000000000511000000020190606#L020405PONTUAL       00000000000000000000#L0204058-15          00000000000000000000#L02040516-30         00000000000000000000#L02040531-60         00000000000000000000#L020405+60           00000000000000000000#L020405A VISTA       00000000090780000000#L020108PONTUAL       000000000020190606#L0201088-15          000000000020190606#L02010816-30         000000000020190606#L02010831-60         000000000020190606#L020108+60           000000000020190606#L020108A VISTA       000012000020190606#L04010100000004500000000520190121DUPLICATA   N0000000000407279717-8        TRANSPORTADORA EMBOR                                    DP IPZ0V0588877184044281038                                                                            0000000189005A#L04010100000004500000000520181207DUPLICATA   N0000000042000RNX             RNX FACTORING                                           DP IPZ0V0498866554044281038                                                                            0000000189005A#L04010100000004500000000520180222DUPLICATA   N0000000007056530194/003      BANDEIRANTE QUIMICA                                     DP IPZ0V0334562362044281038                                                                            0000000189005A#L04010100000004500000000520180216DUPLICATA   N0000000004913529153/003      BANDEIRANTE QUIMICA                                     DP IPZ0V0334582246044281038                                                                            0000000189005A#L04010100000004500000000520180216DUPLICATA   N0000000004458529138/003      BANDEIRANTE QUIMICA                                     DP IPZ0V0334582235044281038                                                                            0000000189005A#L04010200000000900000000520181122OPER AJUIZADN0000000012857000000247364227 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ0I0541942793044281038                                                                            0000000461496A#L04010200000000900000000520181122OPER AJUIZADN0000000006402000000247364250 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ0I0541942796044281038                                                                            0000000461496A#L04010200000000900000000520181122OPER AJUIZADN0000000342707000000247364268 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ0I0541942799044281038                                                                            0000000461496A#BLC3634#L04010200000000900000000520181116CREDITO E FIN000000002333800880240427234  BRADESCO FINANC.    SPO                                 FIFIPZ0I0486817831044281038                                                                            0000000461496A#L04010200000000900000000520180929FINANCIAMENTN0000000008416000000470550666 ITAU UNIBANCO S.A.  SPO                                 FI IPZ0I0514526085044281038                                                                            0000000461496A#L040201DIADEMA AGRO IND LTDA                                                 #L040201DIADEMA AGRO INDUSTRIAL LTDA                                          #L040201DIADEMA AGRO INDUSTRIAL LTDA                                          #L040201DIADEMA AGRO INDL LTDA                                                #L040201OUTRAS                                                                #L040202000000002DIVIDA VENCIDA             MAR0319MAR0319R$ 0000000000270ABMGAZ COMERCIO         000000000064407 #L040202000000002ACAO JUDICIAL              ABR0417MAI0518R$ 0000000129759ITAPECERICA DA      ICS 000000076250504 #L040202000000276PROTESTO                   AGO0816MAI0519R$ 0000000001560ITAPECERICA DA      ICS 000000130115503 #L040202000000012CHEQUE                     JUN0618JUN0618   0000000000000B DO BRASIL         2168000000000000009 #L04070100000000220190329DEV            R$ 000000000027015797475233    ABMGAZ COMERCIO   DMIIPZ050572434580044281038                                                                                                            A#L04070100000000220190312DEV            R$ 000000000037410900026767    TRANSANTOS        DV IPZ050576526435044281038                                                                                                            A#L04040100000000220180528FISCAL ESTADUAL      R$ 0000000129759010001ITAPECERICA DA SERRA          SP                                FE IPZ0C0022760988044281038                                                                             #L04040100000000220170407FISCAL FEDERAL       R$ 0000000632745010002OSASCO                        SP                                JF IPZ0C0020284238044281038                                                                             #L04030100000027620190509R$ 000000000156001ITAPECERICA DA SERRA          SP                                Z1 IPZ0A0283976926044281038                                                                                      #L04030100000027620190508R$ 000000000298201ITAPECERICA DA SERRA          SP                                Z1 IPZ0A0283976780044281038                                                                                      #L04030100000027620190502R$ 000000000156001ITAPECERICA DA SERRA          SP                                Z1 IPZ0A0283616884044281038                                                                                      #L04030100000027620190501R$ 000000000298201ITAPECERICA DA SERRA          SP                                Z1 IPZ0A0283616678044281038                                                                                      #L04030100000027620190425R$ 000000000156001ITAPECERICA DA SERRA          SP                                Z1 IPZ0A0283380450044281038                                                                                      #L04090100000001220180626CCF-BB00012B DO BRASIL     2168ITAPECERICA DA SERRA          SP   IPZ0O0125894697044281038 #L041099=== NADA CONSTA PARA O CNPJ CONSULTADO ===                                     #L020125PONTUAL       1906JUN00000000382920880000        #BLC3656#L0201258-15          1906JUN00000000000000000000        #L02012516-30         1906JUN00000000000000000000        #L02012531-60         1906JUN00000000000000000000        #L020125+60           1906JUN00000000054570120000        #L020125PMA           1906JUN00000000000000128000        #L020125A VISTA       1906JUN00000000000000000000        #L020125PONTUAL       1905MAI00000001202110810000        #L0201258-15          1905MAI00000000150160100000        #L02012516-30         1905MAI00000000127200090000        #L02012531-60         1905MAI00000000000000000000        #L020125+60           1905MAI00000000000000000000        #L020125PMA           1905MAI00000000000000024000        #L020125A VISTA       1905MAI00000000000000000000        #L020125PONTUAL       1904ABR00000000169270380000        #L0201258-15          1904ABR00000000000000000000        #L02012516-30         1904ABR00000000057100130000        #L02012531-60         1904ABR00000000000170000000        #L020125+60           1904ABR00000000219170490000        #L020125PMA           1904ABR00000000000000603000        #L020125A VISTA       1904ABR00000000000000000000        #L020125PONTUAL       1903MAR00000000571600520000        #L0201258-15          1903MAR00000000074300070000        #L02012516-30         1903MAR00000000455760410000        #L02012531-60         1903MAR00000000000000000000        #L020125+60           1903MAR00000000000000000000        #L020125PMA           1903MAR00000000000000087000        #L020125A VISTA       1903MAR00000000000000000000        #L020125PONTUAL       1902FEV00000001153890350000        #L0201258-15          1902FEV00000001444940440000        #L02012516-30         1902FEV00000000672290210000        #L02012531-60         1902FEV00000000000000000000        #L020125+60           1902FEV00000000000000000000        #L020125PMA           1902FEV00000000000000091000        #L020125A VISTA       1902FEV00000000000000000000        #L020125PONTUAL       1901JAN00000001791970920000        #L0201258-15          1901JAN00000000012550010000        #L02012516-30         1901JAN00000000010550010000        #L02012531-60         1901JAN00000000080500040000        #L020125+60           1901JAN00000000051930020000        #L020125PMA           1901JAN00000000000000073000        #L020125A VISTA       1901JAN00000000000000000000        #L020125PONTUAL       1812DEZ00000003051250880000        #L0201258-15          1812DEZ00000000403670120000        #L02012516-30         1812DEZ00000000000000000000        #L02012531-60         1812DEZ00000000000000000000        #L020125+60           1812DEZ00000000021870000000        #L020125PMA           1812DEZ00000000000000023000        #L020125A VISTA       1812DEZ00000000004560000000        #L020125PONTUAL       1811NOV00000004338630870000        #L0201258-15          1811NOV00000000010230000000        #L02012516-30         1811NOV00000000000000000000        #L02012531-60         1811NOV00000000218000040000        #L020125+60           1811NOV00000000401900090000        #L020125PMA           1811NOV00000000000000164000        #L020125A VISTA       1811NOV00000000000000000000        #L020125PONTUAL       1810OUT00000004674730880000        #L0201258-15          1810OUT00000000119820020000        #L02012516-30         1810OUT00000000000000000000        #L02012531-60         1810OUT00000000000000000000        #L020125+60           1810OUT00000000503520100000        #L020125PMA           1810OUT00000000000000169000        #L020125A VISTA       1810OUT00000000000000000000        #L020125PONTUAL       1809SET00000003094210890000        #L0201258-15          1809SET00000000000000000000        #BLC3774#L02012516-30         1809SET00000000000000000000        #L02012531-60         1809SET00000000000000000000        #L020125+60           1809SET00000000368240110000        #L020125PMA           1809SET00000000000000174000        #L020125A VISTA       1809SET00000000000000000000        #L020125PONTUAL       1808AGO00000001365140920000        #L0201258-15          1808AGO00000000000000000000        #L02012516-30         1808AGO00000000114740080000        #L02012531-60         1808AGO00000000000000000000        #L020125+60           1808AGO00000000000000000000        #L020125PMA           1808AGO00000000000000013000        #L020125A VISTA       1808AGO00000000000000000000        #L020125PONTUAL       1807JUL00000002268811000000        #L0201258-15          1807JUL00000000000000000000        #L02012516-30         1807JUL00000000000000000000        #L02012531-60         1807JUL00000000000000000000        #L020125+60           1807JUL00000000000000000000        #L020125PMA           1807JUL00000000000000000000        #L020125A VISTA       1807JUL00000000000000000000        #L020125PONTUAL       1806JUN00000003100261000000        #L0201258-15          1806JUN00000000000000000000        #L02012516-30         1806JUN00000000000000000000        #L02012531-60         1806JUN00000000010600000000        #L020125+60           1806JUN00000000000000000000        #L020125PMA           1806JUN00000000000000001000        #L020125A VISTA       1806JUN00000000000000000000        #L020125PONTUAL       1805MAI00000002559110960000        #L0201258-15          1805MAI00000000000000000000        #L02012516-30         1805MAI00000000034820010000        #L02012531-60         1805MAI00000000042000020000        #L020125+60           1805MAI00000000023900010000        #L020125PMA           1805MAI00000000000000013000        #L020125A VISTA       1805MAI00000000000000000000        #L020425PONTUAL       00000029723900000000#L0204258-15          00000002215670000000#L02042516-30         00000001472460000000#L02042531-60         00000000351270000000#L020425+60           00000001645100000000#L020425A VISTA       00000000004560000000#L0201261906JUN00000013464310000000858256000        #L0201261905MAI00000014170350000000896548000        #L0201261904ABR00000012500490000000640354000        #L0201261903MAR00000011503460000000253602000        #L0201261902FEV00000009684660000000362570000        #L0201261901JAN00000008799570000000595997000        #L0201261812DEZ00000007832030000000535953000        #L0201261811NOV00000007450690000000765993000        #L0201261810OUT00000007915810000000850320000        #L0201261809SET00000008123680000000636467000        #L0201261808AGO00000008239930000000493705000        #L0201261807JUL00000008130930000000250153000        #L0201261806JUN00000008078990000000299811000        #L0201261805MAI00000007973120000000311119000        #L020127ULTIMA COMPRA 2019053000000000299200000000014202000        #L020127MAIOR FATURA  2019051300000001049800000000034940000        #L020127MAIOR ACUMULO 2019053000000013793050000000193141000        #L01011704106359800007120181209MARIA DE LOURDES CASTELLO BRANCO                            0000339511319330608D                                00110466641000000AV DR GUILHERME DUMONT VILLARES AP 101 1741                           JD LONDRINA         SAO PAULO                     SP0056400030000C#L010118CONTADOR    0000000000000000000000                        00000000000                                                            0000000000000000000000#L04010200000000700000000520181122OPER AJUIZADS0000000012857000000247364227 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942794041063598                                                                            0000000406463A#BLC3756#L04010200000000700000000520181122OPER AJUIZADS0000000006402000000247364250 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942797041063598                                                                            0000000406463A#L04010200000000700000000520181122OPER AJUIZADS0000000342707000000247364268 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942800041063598                                                                            0000000406463A#L04010200000000700000000520180929FINANCIAMENTS0000000008416000000470550666 ITAU UNIBANCO S.A.  SPO                                 FI IPZ1I0514526086041063598                                                                            0000000406463A#L04010200000000700000000520180929FINANCIAMENTS0000000005579000000470550856 ITAU UNIBANCO S.A.  SPO                                 FI IPZ1I0514526089041063598                                                                            0000000406463A#L040299=== NADA CONSTA PARA O CPF CONSULTADO ===                                      #L041099=== NADA CONSTA PARA O CPF CONSULTADO ===                                      #L01011750821890800005920181209ESPOLIO DE HAROLDO CASTELLO BRANCO                          0000345105219330317D                                00110466641000000AV DR GUILHERME DUMONT VILLARES AP 101 1741                           JD LONDRINA         SAO PAULO                     SP0056400030000C#L010118ADVOGADO    0000000000000000000000                        00000000000                                                            0000000000000000000000#L04010200000000100000000120160530CRED.CARTAO N0000000015693002625788250000 BANCO ITAUCARD S/A  SPO                                 CT IPZ1I0554536072508218908                                                                            0000000015693A#L040299=== NADA CONSTA PARA O CPF CONSULTADO ===                                      #L041099=== NADA CONSTA PARA O CPF CONSULTADO ===                                      #L01011707911986800005120181209HAROLDO CASTELLO BRANCO JUNIOR                              0004979846719621202D                                00110466641000000EST ARY DOMINGUES MANDU C 1399                                        EMBU MIRIM          ITAPECERICA DA SERRA          SP0068550000000C#L010118ENGENHEIRO  0000000000000000000000                        00000000000                                                            0000000000000000000000#L04010100000000100000000120181207DUPLICATA   N0000000042000RNX             RNX FACTORING                                           DP IPZ1V0498846535079119868                                                                            0000000042000A#L04010200000000900000000520181122OPER AJUIZADS0000000012857000000247364227 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942795079119868                                                                            0000000430714A#L04010200000000900000000520181122OPER AJUIZADS0000000006402000000247364250 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942798079119868                                                                            0000000430714A#L04010200000000900000000520181122OPER AJUIZADS0000000342707000000247364268 ITAU UNIBANCO S.A.  SPO                                 OJ IPZ1I0541942801079119868                                                                            0000000430714A#L04010200000000900000000520181116CREDITO E FIS000000002333800880240427234  BRADESCO FINANC.    SPO                                 FIFIPZ1I0486817832079119868                                                                            0000000430714A#BLC0756#L04010200000000900000000520180929FINANCIAMENTS0000000008416000000470550666 ITAU UNIBANCO S.A.  SPO                                 FI IPZ1I0514526087079119868                                                                            0000000430714A#L040201HAROLDO CASTELLO BRANCO JUNIOR                                        #L040202000000001PROTESTO                   DEZ1218DEZ1218R$ 0000000023863ITAPECERICA DA      ICS 000000002386303 #L04030100000000120181224R$ 000000002386301ITAPECERICA DA SERRA          SP                                Z1 IPZ1A0280338938079119868                                                                                      #L041099=== NADA CONSTA PARA O CPF CONSULTADO ===                                      #FIM9999\u0003\u0003\u0003\u0003\n",
+          "url": "https://sitenet43.serasa.com.br/Prod/consultahttps?p=83412301XXXXXXXXXXXX++++++++IP20NRRFN2+++++++004428103822N++++++++++++233E++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++C56M++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++H+++++N%0A"
+        }
+      }
+    ],
+    "step_history": [
+      "START",
+      "f5737bf74537bd45c2ee4579164599d8d13fb153",
+      "END"
+    ],
+    "env": "DEVELOPMENT",
+    "type": "rule",
+    "process_name": "relato-mais-test",
+    "version": "1",
+    "process_execution_id": "853374e8-3b9b-4af8-b508-68b476b5a10b",
+    "process_execution_time": "00:00:02.432",
+    "process_execution_time_millis": 2432,
+    "process_execution_date": 1559840729064,
+    "was_needed_to_deploy": true,
+    "start_time": "06/06/2019 14:05:26.632",
+    "end_time": "06/06/2019 14:05:29.064",
+    "output_size_bytes": 107837,
+    "compiler_version": "v3"
+  }
+}
