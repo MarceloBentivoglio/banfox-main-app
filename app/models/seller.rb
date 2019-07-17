@@ -204,19 +204,6 @@ class Seller < ApplicationRecord
       visited: self.visited,
       analysis_status: self.analysis_status,
       rejection_motive: self.rejection_motive,
-      social_contracts: get_documents_link(self.social_contracts),
-      update_on_social_contracts: get_documents_link(self.update_on_social_contracts),
-      address_proofs: get_documents_link(self.address_proofs),
-      irpjs: get_documents_link(self.irpjs),
-      revenue_proofs: get_documents_link(self.revenue_proofs),
-      financial_statements: get_documents_link(self.financial_statements),
-      cash_flows: get_documents_link(self.cash_flows),
-      abc_clients: get_documents_link(self.abc_clients),
-      sisbacens: get_documents_link(self.sisbacens),
-      partners_cpfs: get_documents_link(self.partners_cpfs),
-      partners_rgs: get_documents_link(self.partners_rgs),
-      partners_irpfs: get_documents_link(self.partners_irpfs),
-      partners_address_proofs: get_documents_link(self.partners_address_proofs),
     }.stringify_keys
   end
 
@@ -289,14 +276,6 @@ class Seller < ApplicationRecord
 
   def worksheet_name
     Rails.application.credentials[:google][:google_seller_worksheet_name]
-  end
-
-  def get_documents_link(attachments)
-    links = []
-    attachments.each do |attachment|
-      links << Rails.application.routes.url_helpers.rails_blob_url(attachment)
-    end
-    links.join("\n")
   end
 
 end
