@@ -173,6 +173,7 @@ class Seller < ApplicationRecord
       phone: self.phone,
       website: self.website,
       company_type: self.company_type,
+      tax_regime: self.tax_regime,
       inscr_est: self.inscr_est,
       inscr_mun: self.inscr_mun,
       nire: self.nire,
@@ -204,6 +205,7 @@ class Seller < ApplicationRecord
       visited: self.visited,
       analysis_status: self.analysis_status,
       rejection_motive: self.rejection_motive,
+      created_at: self.created_at.try(:to_s),
     }.stringify_keys
   end
 
