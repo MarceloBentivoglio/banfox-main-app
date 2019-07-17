@@ -7,51 +7,61 @@
           optional_button: "",
         } %>
 
-        <% @operations.each do |operation| %>
-          <div class="card-w-table-inside">
-            <div class="card-w-table-inside-header">
-              <div class="header-column">
-                <span># <%= operation.id %> <%= operation.seller_name.mb_chars.downcase.titleize %></span>
-              </div>
-              <div class="header-column">
-                <span> Aberta a: <%= operation.order_elapsed_time %></span>
-              </div>
+      <% @operations.each do |operation| %>
+        <div class="card-w-table-inside">
+          <div class="card-w-table-inside-header">
+            <div class="header-column">
+              <span># <%= operation.id %> <%= operation.seller_name.mb_chars.downcase.titleize %></span>
             </div>
-            <div class="card-w-table-inside-summary">
-              <div class="summary-column">
-                <strong>Requerido</strong>
-                <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
-                <span>Taxa total: <%= humanized_money_with_symbol operation.fee %> </span>
-                <span>Retenção: <%= humanized_money_with_symbol operation.protection %> </span>
-                <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
-                <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
-              </div>
-              <div class="summary-column summary-w-padding-left">
-                <strong>Aprovado</strong>
-                <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
-                <span>Taxa total: <%= humanized_money_with_symbol operation.fee_approved %> </span>
-                <span>Retenção: <%= humanized_money_with_symbol operation.protection_approved %> </span>
-                <span>Total líquido: <%= humanized_money_with_symbol operation.net_value_approved %> </span>
-                <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
-              </div>
-              <div class="summary-column summary-w-padding-left">
-                <strong>Arquivos de notas</strong>
-                <div class="extended-column">
-                  <% operation.invoices.distinct.each do |invoice| %>
-                    <%= link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
-                  <% end %>
-                </div>
-              </div>
-
+            <div class="header-column">
+              <span> Aberta a: <%= operation.order_elapsed_time %></span>
             </div>
-            <%= render partial: "shared/tables/table_wo_bundle_ops/header" %>
-            <%= render partial: "shared/tables/table_wo_bundle_ops/analyse/container", locals: {items: operation.installments}%>
           </div>
-        <% end %>
-        <%# TODO: test the paginate with @operations. I don't know if the code below is working %>
-        <div id="infinite-scrolling">
-          <%= will_paginate @operations %>
+          <div class="card-w-table-inside-summary">
+            <div class="summary-column">
+              <strong>Requerido</strong>
+              <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
+              <span>Taxa total: <%= humanized_money_with_symbol operation.fee %> </span>
+              <span>Retenção: <%= humanized_money_with_symbol operation.protection %> </span>
+              <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
+              <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
+            </div>
+            <div class="summary-column summary-w-padding-left">
+              <strong>Aprovado</strong>
+              <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
+              <span>Taxa total: <%= humanized_money_with_symbol operation.fee_approved %> </span>
+              <span>Retenção: <%= humanized_money_with_symbol operation.protection_approved %> </span>
+              <span>Total líquido: <%= humanized_money_with_symbol operation.net_value_approved %> </span>
+              <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
+            </div>
+            <div class="summary-column summary-w-padding-left">
+              <strong>Arquivos de notas</strong>
+              <div class="extended-column">
+                <% operation.invoices.distinct.each do |invoice| %>
+                  <%= link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+          <%= render partial: "shared/tables/table_wo_bundle_ops/header" %>
+          <%= render partial: "shared/tables/table_wo_bundle_ops/analyse/container", locals: {items: operation.installments}%>
+          <hr />
+
+          <div id="credit-modeling">
+            <div class="header">
+            </div>
+            <%= link_to 'Analisar Risco da Operação',
+              ops_admin_key_indicator_reports_path(operation_id: operation.id),
+              method: :create
+            %>
+          </div>
         </div>
+      <% end %>
+      <%# TODO: test the paginate with @operations. I don't know if the code below is working %>
+      <div id="infinite-scrolling">
+        <%= will_paginate @operations %>
+      </div>
 
       </div>
     </div>
