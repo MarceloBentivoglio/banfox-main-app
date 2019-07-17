@@ -1,3 +1,61 @@
+# == Schema Information
+#
+# Table name: sellers
+#
+#  id                          :bigint           not null, primary key
+#  full_name                   :string
+#  cpf                         :string
+#  rf_full_name                :string
+#  rf_sit_cad                  :string
+#  birth_date                  :string
+#  mobile                      :string
+#  company_name                :string
+#  company_nickname            :string
+#  cnpj                        :string
+#  phone                       :string
+#  website                     :string
+#  address                     :string
+#  address_number              :string
+#  address_comp                :string
+#  neighborhood                :string
+#  state                       :string
+#  city                        :string
+#  zip_code                    :string
+#  inscr_est                   :string
+#  inscr_mun                   :string
+#  nire                        :string
+#  company_type                :integer
+#  monthly_revenue_cents       :bigint           default(0), not null
+#  monthly_revenue_currency    :string           default("BRL"), not null
+#  monthly_fixed_cost_cents    :bigint           default(0), not null
+#  monthly_fixed_cost_currency :string           default("BRL"), not null
+#  monthly_units_sold          :bigint
+#  cost_per_unit_cents         :bigint           default(0), not null
+#  cost_per_unit_currency      :string           default("BRL"), not null
+#  debt_cents                  :bigint           default(0), not null
+#  debt_currency               :string           default("BRL"), not null
+#  full_name_partner           :string
+#  cpf_partner                 :string
+#  rf_full_name_partner        :string
+#  rf_sit_cad_partner          :string
+#  birth_date_partner          :string
+#  mobile_partner              :string
+#  email_partner               :string
+#  consent                     :boolean
+#  fator                       :decimal(, )
+#  advalorem                   :decimal(, )
+#  protection                  :decimal(, )
+#  operation_limit_cents       :bigint           default(0), not null
+#  operation_limit_currency    :string           default("BRL"), not null
+#  validation_status           :integer
+#  visited                     :boolean          default(FALSE), not null
+#  analysis_status             :integer          default("on_going")
+#  rejection_motive            :integer          default("rejection_motive_not_set")
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  tax_regime                  :integer
+#
+
 class Seller < ApplicationRecord
   monetize :monthly_revenue_cents, with_model_currency: :currency
   monetize :monthly_fixed_cost_cents, with_model_currency: :currency

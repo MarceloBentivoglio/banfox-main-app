@@ -6,8 +6,7 @@ module Risk
       end
 
       def call
-        fetcher = Risk::Fetcher::Serasa.new(@key_indicator_report)
-        external_data = Risk::Service::ExternalDatum.new(fetcher, @key_indicator_report).call
+        external_data = Risk::Service::ExternalDatum.new(Risk::Fetcher::Serasa, @key_indicator_report).call
 
         parsed_data = external_data.map do |datum|
           Risk::Parser::Serasa.new(datum.raw_data).call

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id                :bigint           not null, primary key
+#  invoice_type      :integer          default("invoice_type_not_set")
+#  number            :string
+#  import_ref        :string
+#  seller_id         :bigint
+#  payer_id          :bigint
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  issue_date        :date
+#  doc_parser_ref    :string
+#  doc_parser_ticket :jsonb
+#  doc_parser_data   :jsonb
+#
+
 class Invoice < ApplicationRecord
   belongs_to :payer, optional: true
   belongs_to :seller, optional: true

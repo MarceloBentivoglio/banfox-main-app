@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: joint_debtors
+#
+#  id            :bigint           not null, primary key
+#  name          :string
+#  birthdate     :date
+#  mobile        :string
+#  documentation :string
+#  email         :string
+#  seller_id     :bigint
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class JointDebtor < ApplicationRecord
   belongs_to :seller, optional: true
   validates :name, :birthdate, :mobile, :documentation, :email, presence: true

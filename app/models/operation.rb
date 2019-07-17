@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: operations
+#
+#  id                         :bigint           not null, primary key
+#  consent                    :boolean          default(FALSE), not null
+#  import_ref                 :string
+#  signed                     :boolean          default(FALSE)
+#  sign_document_info         :jsonb
+#  sign_document_key          :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  sign_document_requested_at :datetime
+#  signed_at                  :datetime
+#
+
 class Operation < ApplicationRecord
   has_many :installments, dependent: :nullify
   has_many :invoices, through: :installments
@@ -54,7 +70,6 @@ class Operation < ApplicationRecord
   def signer_signature_keys
     sign_document_info.deep_symbolize_keys[:signer_signature_keys]
   end
-
 
   def notify_seller(seller)
     #TO DO: Create a logic to select the user when we have multiple users
@@ -168,9 +183,18 @@ class Operation < ApplicationRecord
   def initial_deposit_today
     initial_net_value - initial_protection
   end
+  
+  def payers
+    invoices.map {|invoice| invoice.payer }
+            .uniq
+  end
+
+  def seller
+    installments&.first&.invoice&.seller
+  end
 
   def seller_name
-    installments.first.invoice.seller.company_name
+    seller&.company_name
   end
 
   def order_elapsed_time

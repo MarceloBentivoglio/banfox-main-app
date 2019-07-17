@@ -7,7 +7,6 @@ module Risk
         def pipeline_list(*pipelines)
           @pipelines = pipelines
         end
-
       end
 
       def fetchers_required
