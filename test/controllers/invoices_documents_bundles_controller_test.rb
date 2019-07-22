@@ -57,7 +57,24 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
     assert_equal ["Um dos arquivos que você subiu não é xml nem PDF"], flash[:alert]
   end
 
-  test '.create only parses the bundle when everything is ok' do
-    
+  test '.create redirect to analysis when everything is ok' do
+    document_mock = mock()
+    document_mock.stubs(:content_type).returns('application/pdf')
+
+    mocked_params = {
+      invoices_documents_bundle: { documents: [document_mock] }
+    }
+
+    InvoicesDocumentsBundlesController.any_instance.stubs(:params).returns(mocked_params)
+
+    invoice_mock = mock()
+    invoice_mock.expects(:doc_parser_data?).returns(false)
+    invoice_mock.expects(:document).returns(document_mock)
+
+    CreateInvoicesFromDocuments.any_instance.expects(:invoices).returns([invoice_mock])
+
+    post invoices_documents_bundles_path
+
+    assert_redirected_to analysis_invoices_documents_bundles_path
   end
 end
