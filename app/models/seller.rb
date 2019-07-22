@@ -201,11 +201,16 @@ class Seller < ApplicationRecord
       mobile_partner: self.mobile_partner,
       email_partner: self.email_partner,
       consent: self.consent,
-      validation_status: self.validation_status,
       visited: self.visited,
+      validation_status: self.validation_status,
       analysis_status: self.analysis_status,
       rejection_motive: self.rejection_motive,
+      allowed_to_operate: self.allowed_to_operate&.to_s,
       created_at: self.created_at.try(:to_s),
+      created_at_month: self.created_at.try(:month).try(:to_s),
+      auto_veredict_at: self.auto_veredict_at.try(:to_s),
+      veredict_at: self.veredict_at.try(:to_s),
+      forbad_to_operate_at: self.forbad_to_operate_at.try(:to_s),
     }.stringify_keys
   end
 

@@ -46,7 +46,7 @@
 
   def require_not_rejected
     if (seller = current_user.seller)
-      if seller.rejected?
+      if seller.rejected? || !seller.allowed_to_operate
         flash[:alert] = "Infelizmente não conseguimos operar com você no momento"
         redirect_to unfortune_path
       end

@@ -309,7 +309,7 @@ class Installment < ApplicationRecord
       final_protection_cents: self.final_protection_cents,
       final_protection_currency: self.final_protection_currency,
       due_date: self.due_date.try(:strftime),
-      due_date_month: self.due_date.try(:strftime).try(:month),
+      due_date_month: self.due_date.try(:month).try(:to_s),
       ordered_at: self.ordered_at.try(:to_s),
       ordered_at_month: self.ordered_at.try(:month).try(:to_s),
       veredict_at: self.veredict_at.try(:to_s),
