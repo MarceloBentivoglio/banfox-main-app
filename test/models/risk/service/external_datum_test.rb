@@ -5,11 +5,11 @@ class Risk::Service::ExternalDatumTest < ActiveSupport::TestCase
     def initialize(key_indicator_report)
     end
 
-    def self.name
+    def name
       'test_source'
     end
 
-    def self.call(*)
+    def call(*)
       {
         very_important_data: 1
       }
@@ -39,7 +39,7 @@ class Risk::Service::ExternalDatumTest < ActiveSupport::TestCase
     expired_external_datum = FactoryBot.create(:external_datum, :expired_ttl)
     key_indicator_report = FactoryBot.create(:key_indicator_report)
 
-    TestFetcher.expects(:call).returns({ very_important_data: 1})
+    TestFetcher.any_instance.expects(:call).returns({ very_important_data: 1})
 
     assert_difference 'Risk::ExternalDatum.count' do
       external_datum = Risk::Service::ExternalDatum.new(

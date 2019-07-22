@@ -18,10 +18,10 @@ module Risk
 
 
         if external_data.any? && external_data.first.ttl < DateTime.now || external_data.empty?
-          new_external_data = @fetcher.call
+          @fetcher.call
           new_external_datum = Risk::ExternalDatum.create(source: @fetcher.class.name,
                                                           query: @query,
-                                                          raw_data: new_external_data,
+                                                          raw_data: @fetcher.data,
                                                           ttl: @ttl,
                                                          )
 
@@ -36,8 +36,7 @@ module Risk
                                                          else
                                                            external_datum.raw_data
                                                          end
-
-        external_data.last
+        @key_indicator_report
       end
     end
   end

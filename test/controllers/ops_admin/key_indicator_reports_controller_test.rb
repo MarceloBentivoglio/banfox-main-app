@@ -11,18 +11,34 @@ class OpsAdmin::KeyIndicatorReportsControllerTest < ActionDispatch::IntegrationT
       payers: @operation.payers.map {|payer| payer.cnpj},
       seller: @seller.cnpj,
     }
+
+    #Do not allow HTTP calls
+    Risk::Fetcher::Serasa.any_instance
+                         .stubs(:call)
+                         .returns(serasa_external_data)
   end
   
   def post_operation
     post ops_admin_key_indicator_reports_path(operation_id: @operation.id, kind: 'recurrent_operation')
   end
 
-  test '.create calls Service::KeyIndicatorReport' do
-    key_indicator_report = FactoryBot.create(:key_indicator_report)
-    Risk::KeyIndicatorReport.stubs(:create).returns(key_indicator_report)
+  def serasa_external_data
+    File.open("#{Rails.root}/test/support/files/serasa_example_1.txt").read
+  end
 
+  test '.create calls Service::KeyIndicatorReport' do
     Risk::Service::KeyIndicatorReport.any_instance.expects(:call)
 
+    post_operation
+  end
+
+  test '.create correctly calls RecurrentOperationStrategy' do
+    Risk::Service::RecurrentOperationStrategy.any_instance.expects(:call)
+
+    post_operation
+  end
+
+  test '.create' do
     post_operation
   end
 end

@@ -1,6 +1,8 @@
 module Risk
   module Service
     class KeyIndicatorReport
+      attr_reader :operation
+
       #ttl in minutes
       def initialize(input_data = {}, kind, ttl)
         @input_data = input_data
@@ -9,7 +11,7 @@ module Risk
       end
 
       #TODO add a new status to know if key_indicator_report is ready
-      def call
+      def call(operation)
         nonexpired_reports = Risk::KeyIndicatorReport.where(input_data: @input_data)
                                                      .where(kind: @kind)
                                                      .where('ttl >= ?', DateTime.now)
@@ -19,7 +21,8 @@ module Risk
         key_indicator_report = Risk::KeyIndicatorReport.create(
           input_data: @input_data,
           kind: @kind,
-          ttl: @ttl
+          ttl: @ttl,
+          operation_id: operation.id
         )
 
         service_strategy.call(key_indicator_report)
@@ -31,6 +34,8 @@ module Risk
         case @kind
         when 'operation_part'
           Risk::Service::OperationPartStrategy.new
+        when 'recurrent_operation'
+          Risk::Service::RecurrentOperationStrategy.new
         end
       end
     end

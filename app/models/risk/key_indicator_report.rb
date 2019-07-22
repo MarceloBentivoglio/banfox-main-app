@@ -17,5 +17,6 @@ module Risk
     self.table_name = 'key_indicator_reports'
 
     has_and_belongs_to_many :external_data
+    belongs_to :operation
   end
 end
