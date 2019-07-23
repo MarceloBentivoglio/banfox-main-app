@@ -4,12 +4,12 @@ module Risk
       include DeltaEvaluator
       # entities must be a chronological ordered array
       # entities must have @type Risk::Entity::Serasa::CompanySummary
-      def initialize(key_indicator_factory, company_summaries=[])
+      def initialize(evidences)
         @key_indicator_factory = key_indicator_factory
         @entities = company_summaries
-        @code = ''
-        @title = ''
-        @description = ''
+        @code = 'refin_value_delta'
+        @title = 'refin_value_delta'
+        @description = 'Calculate delta of the value of refin'
         @params = {green_limit: 0, yellow_limit: 0.5}
       end
 
@@ -18,7 +18,6 @@ module Risk
         current_value = @entities.last.refin[:value]
         evaluate_delta_for_negative_information(historic_value, current_value)
       end
-
     end
   end
 end
