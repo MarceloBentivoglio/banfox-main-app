@@ -12,8 +12,7 @@ module Risk
 
       #TODO add a new status to know if key_indicator_report is ready
       def call(operation)
-        nonexpired_reports = Risk::KeyIndicatorReport.where(input_data: @input_data)
-                                                     .where(kind: @kind)
+        nonexpired_reports = Risk::KeyIndicatorReport.where(operation_id: operation.id)
                                                      .where('ttl >= ?', DateTime.now)
 
         return nonexpired_reports.last if nonexpired_reports.any?

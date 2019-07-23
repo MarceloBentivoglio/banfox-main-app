@@ -19,8 +19,7 @@
           </div>
           <div class="card-w-table-inside-summary">
             <div class="summary-column">
-              <strong>Requerido</strong>
-              <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
+              <strong>Requerido</strong> <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
               <span>Taxa total: <%= humanized_money_with_symbol operation.fee %> </span>
               <span>Retenção: <%= humanized_money_with_symbol operation.protection %> </span>
               <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
@@ -51,10 +50,18 @@
           <div id="credit-modeling">
             <div class="header">
             </div>
-            <%= link_to 'Analisar Risco da Operação',
-              ops_admin_key_indicator_reports_path(operation_id: operation.id),
-              method: :create
-            %>
+            <% if operation.key_indicator_reports.any? %>
+              <% operation.key_indicator_reports.each do |key_indicator_report|%>
+                <% key_indicator_report.evidences['serasa_api'].each do |cnpj, evidence| %>
+                  <%= render partial: 'evidence', locals: { cnpj: cnpj, evidence: evidence } %>
+                <% end if key_indicator_report.evidences.any? %>
+              <% end %>
+            <% else %>
+             <%= link_to 'Analisar Risco da Operação',
+                ops_admin_key_indicator_reports_path(operation_id: operation.id, kind: 'recurrent_operation'),
+                method: :create
+              %>
+            <% end %>
           </div>
         </div>
       <% end %>

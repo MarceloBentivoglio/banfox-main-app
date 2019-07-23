@@ -15,8 +15,9 @@ class Risk::Service::SerasaTest < ActiveSupport::TestCase
   end
 
   test '.call' do
+    using_shared_operation
     Risk::Fetcher::NogordSerasa.expects(:call).returns(nogord_response)
-    key_indicator_report = FactoryBot.create(:key_indicator_report)
+    key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
 
     serasa_data = subject.call(key_indicator_report)
     assert_kind_of Risk::Entity::Serasa::CompanySummary, serasa_data[:summary]

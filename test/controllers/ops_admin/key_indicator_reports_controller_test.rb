@@ -27,7 +27,8 @@ class OpsAdmin::KeyIndicatorReportsControllerTest < ActionDispatch::IntegrationT
   end
 
   test '.create calls Service::KeyIndicatorReport' do
-    Risk::Service::KeyIndicatorReport.any_instance.expects(:call)
+    mocked_key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
+    Risk::Service::KeyIndicatorReport.any_instance.expects(:call).returns(mocked_key_indicator_report)
 
     post_operation
   end

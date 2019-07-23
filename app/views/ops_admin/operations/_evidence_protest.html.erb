@@ -1,0 +1,15 @@
+<% if evidence.any? %>
+  <ul>
+    <li>Valor Total: <%= evidence&.first['total_value']%></li>
+    <% evidence.each do |row| %>
+      <li>
+        Quantidade: <%= row['quantity']%><br />
+        Última Ocorrencia: <%= row['date']%><br />
+        Valor: <%= row['value']%><br />
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  Não consta 
+<% end %>
+

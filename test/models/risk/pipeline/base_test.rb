@@ -4,10 +4,14 @@ class Risk::Pipeline::BaseTest < ActiveSupport::TestCase
   class SpecificPipeline < Risk::Pipeline::Base
     required_params :cnpj
     fetch_from :serasa
+
+    def call
+    end
   end
 
   setup do
-    key_indicator_report = FactoryBot.create(:key_indicator_report)
+    using_shared_operation
+    key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
     @pipeline = SpecificPipeline.new(key_indicator_report)
   end
 
