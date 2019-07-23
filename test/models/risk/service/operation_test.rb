@@ -19,9 +19,6 @@ class Risk::Service::OperationTest < ActiveSupport::TestCase
     @subject.call(key_indicator_report)
   end
 
-  test '.call executes the determined pipelines' do
-  end
-
   test '.pipeline_list configures list of pipelines to be used' do
     assert_equal true, SpecificStrategy.pipelines.member?(Risk::Pipeline::Serasa)
   end
