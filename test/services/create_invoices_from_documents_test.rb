@@ -24,8 +24,7 @@ class CreateInvoicesFromDocumentsTest < ActiveSupport::TestCase
   end
 
   test "inform if a file is neither a xml nor a pdf" do
-    json_stub = mock()
-    json_stub.stubs(:content_type).returns('application/json')
+    json_stub = fixture_file_upload('files/json_stub.json','application/json')
     invoices = CreateInvoicesFromDocuments.new([json_stub], @seller).invoices
     assert_equal invoices.first.message, "File has not a valid type: xml, PDF"
   end
