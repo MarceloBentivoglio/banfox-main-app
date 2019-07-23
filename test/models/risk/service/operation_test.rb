@@ -9,10 +9,11 @@ class Risk::Service::OperationTest < ActiveSupport::TestCase
     Risk::Pipeline::Serasa.stubs(:fetchers).returns([Risk::Fetcher::Serasa])
 
     @subject = SpecificStrategy.new
+    using_shared_operation
   end
 
   test '.call executes Service::ExternalDatum' do
-    key_indicator_report = FactoryBot.create(:key_indicator_report)
+    key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
     Risk::Service::ExternalDatum.any_instance.expects(:call).once
 
     @subject.call(key_indicator_report)

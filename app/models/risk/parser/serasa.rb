@@ -3,8 +3,11 @@ module Risk
     class Serasa
       attr_accessor :pefin, :refin, :partner_data
 
-      def initialize(raw_data)
-        @raw_data = raw_data
+      def initialize
+        bootstrap_attributes
+      end
+
+      def bootstrap_attributes
         @company_data = {}
         @partner_data = []
         @pefin = []
@@ -21,28 +24,25 @@ module Risk
         @parsing_partner_data = false
       end
 
-      def call
-        tags = @raw_data.split('#L').map do |line|
-          [line[0...6], line[6..(line.length)]]
+      def call(external_datum)
+        return if external_datum.nil?
+
+        serialized = {}
+
+        @raw_data = external_datum.raw_data
+        @raw_data.each do |data|
+          tags = data.split('#L').map do |line|
+            [line[0...6], line[6..(line.length)]]
+          end
+
+          tags.each {|tag, value| classify(tag, value) }
+
+          serialized_data = serialize
+          serialized[@company_data[:cnpj]] = serialized_data
+          bootstrap_attributes
         end
 
-        tags.each {|tag, value| classify(tag, value) }
-
-        {
-          partner_data: @partner_data,
-          company_data: @company_data,
-          pefin: @pefin,
-          refin: @refin,
-          protest: @protest,
-          lawsuit: @lawsuit,
-          summary_occurrence: @summary_occurrece,
-          debt_overdue: @debt_overdue,
-          bankruptcy_participation: @bankruptcy_participation,
-          bankruptcy: @bankruptcy,
-          bad_check: @bad_check,
-          bad_check_ccf: @bad_check_ccf,
-          lost_check: @lost_check,
-        }
+        serialized
       end
 
       def classify(tag, value)
@@ -84,6 +84,24 @@ module Risk
         end
       end
 
+      def serialize
+        {
+          partner_data: @partner_data,
+          company_data: @company_data,
+          pefin: @pefin,
+          refin: @refin,
+          protest: @protest,
+          lawsuit: @lawsuit,
+          summary_occurrence: @summary_occurrece,
+          debt_overdue: @debt_overdue,
+          bankruptcy_participation: @bankruptcy_participation,
+          bankruptcy: @bankruptcy,
+          bad_check: @bad_check,
+          bad_check_ccf: @bad_check_ccf,
+          lost_check: @lost_check,
+        }
+      end
+
       def parse_company_registration_data(data)
         @company_data[:line_of_business] = data[16..68]
         @company_data[:line_of_business_serasa_code] = data[70..76]
@@ -97,8 +115,8 @@ module Risk
       end
 
       def parse_company_address_1(data)
-        @company_data[:address] = data[70..99]
-        @company_data[:district] = data[100..179]
+        @company_data[:district] = data[70..99]
+        @company_data[:address] = data[100..179]
       end
 
       def parse_company_address_2(data)
@@ -165,10 +183,10 @@ module Risk
 
       def parse_pefin(data)
         parsed_data = {
-          value: data[39...52].to_i,
-          total_value: data[227..239].to_i,
+          value: data[39...52],
+          total_value: data[227..239],
           date: data[18..25],
-          quantity: data[1..8].to_i
+          quantity: data[1..8]
         }
 
         if @parsing_partner_data
@@ -180,10 +198,10 @@ module Risk
 
       def parse_refin(data)
         parsed_data ={
-          value: data[39...52].to_i,
-          total_value: data[227..239].to_i,
+          value: data[39...52],
+          total_value: data[227..239],
           date: data[18..25],
-          quantity: data[1..8].to_i
+          quantity: data[1..8]
         }
 
         if @parsing_partner_data

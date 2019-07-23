@@ -1,0 +1,121 @@
+<h2>Relato Mais: <%= cnpj %><h2 />
+<h3>Identificação/Localização</h3>
+<ul>
+  <li>CNPJ: <%= evidence['company_data']['cnpj'] %></li>
+  <li>Razão Social: <%= evidence['company_data']['company_name'] %></li>
+  <li>Nome Fantasia: <%= evidence['company_data']['company_nickname'] %></li>
+  <li>Tipo Sociedade: <%= evidence['company_data']['company_type'] %></li>
+  <li>Website<%= evidence['company_data']['website'] %></li>
+  <li>CNAE: <%= evidence['company_data']['cnae'] %></li>
+  <li>Ramo: <%= evidence['company_data']['line_of_business'] %></li>
+  <li>Endereço: <%= evidence['company_data']['address'] %></li>
+  <li>Bairro: <%= evidence['company_data']['district'] %></li>
+  <li>Cidade: <%= evidence['company_data']['city'] %></li>
+  <li>Estado: <%= evidence['company_data']['state'] %></li>
+</ul>
+<ul>
+  <li>Pefin:
+    <%= render partial: 'evidence_protest', locals: { evidence: evidence['pefin'] } %>
+  </li>
+</ul>
+
+<ul>
+  <li>Refin:
+    <%= render partial: 'evidence_protest', locals: { evidence: evidence['refin'] } %>
+  </li>
+</ul>
+
+<ul>
+  <li>Protesto:
+    <%= render partial: 'evidence_protest', locals: { evidence: evidence['protest'] } %>
+  </li>
+</ul>
+
+<ul>
+  <li>Ações:
+    <%= render partial: 'evidence_protest', locals: { evidence: evidence['lawsuit'] } %>
+  </li>
+</ul>
+
+<ul>
+  <li>Recuperações/Falências/Concordatas:
+    <% if evidence['bankruptcy'].any? %>
+      <ul>
+        <% evidence['bankruptcy'].each do |bankruptcy| %>
+          <li>
+            Quantidade: <%= bankruptcy['quantity']%><br />
+            Última Ocorrencia: <%= bankruptcy['date']%><br />
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      Não consta 
+    <% end %>
+  </li>
+</ul>
+
+<ul>
+  <li>Participação em Falência:
+    <% if evidence['bankruptcy_participation'].any? %>
+      <ul>
+        <% evidence['bankruptcy_participation'].each do |bankruptcy_participation| %>
+          <li>
+            Quantidade: <%= bankruptcy_participation['quantity']%><br />
+            Última Ocorrencia: <%= bankruptcy_participation['date']%><br />
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      Não consta 
+    <% end %>
+  </li>
+</ul>
+<hr />
+
+<ul>
+  <li>Sócios:
+    <% if evidence['partner_data'].any? %>
+      <ul>
+        <% evidence['partner_data'].each do |partner| %>
+          <li>
+            Nome: <%= partner['name']%><br />
+            CPF: <%= partner['cpf']%><br />
+            RG: <%= partner['rg'] %><br />
+            Telefone: (<%= partner['phone_ddd'] %>) <%= partner['phone'] %><br />
+            Pefin:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['pefin'] } %>
+            </ul>
+            Refin:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['refin'] } %>
+            </ul>
+            Ações:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['lawsuit'] } %>
+            </ul>
+            Protestos:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['protest'] } %>
+            </ul>
+            Recuperações/Falências/Concordatas:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['bankruptcy'] } %>
+            </ul>
+            Participação em Falência:
+            <ul>
+              <%= render partial: 'evidence_protest', locals: { evidence: partner['bankruptcy_participation'] } %>
+            </ul>
+          </li>
+          <hr />
+        <% end %>
+      </ul>
+    <% else %>
+      Não consta 
+    <% end %>
+  </li>
+</ul>
+<hr />
+
+
+

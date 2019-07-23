@@ -26,6 +26,10 @@ module Risk
       def require_fetcher?
         self.class.fetchers.any?
       end
+
+      def call
+        raise 'Must implement .call'
+      end
     end
   end
 end

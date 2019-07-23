@@ -13,16 +13,15 @@ module Risk
       end
 
       def http_call(_payload, _target, _headers)
-
         _payload ||= payload
         _target  ||= target
         _headers ||= headers
 
         data << RestClient::Request.execute(method: http_method,
-                                    url: _target,
-                                    payload: _payload,
-                                    headers: _headers
-                                   )
+                                            url: _target,
+                                            payload: _payload,
+                                            headers: _headers
+                                           )
       end
       
       def name
