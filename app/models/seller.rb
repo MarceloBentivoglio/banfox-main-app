@@ -159,13 +159,13 @@ class Seller < ApplicationRecord
 
   def seller_attributes
     {
-      id: self.id,
+      id: self.id.to_s,
       full_name: self.full_name,
       cpf: self.cpf,
       rf_full_name: self.rf_full_name,
       rf_sit_cad: self.rf_sit_cad,
       birth_date: self.birth_date,
-      email: self.try(:users).try(:first).try(:email),
+      email: self&.users&.first&.email,
       mobile: self.mobile,
       company_name: self.company_name,
       company_nickname: self.company_nickname,
@@ -200,17 +200,16 @@ class Seller < ApplicationRecord
       birth_date_partner: self.birth_date_partner,
       mobile_partner: self.mobile_partner,
       email_partner: self.email_partner,
-      consent: self.consent,
-      visited: self.visited,
+      consent: self.consent.to_s,
+      visited: self.visited.to_s,
       validation_status: self.validation_status,
       analysis_status: self.analysis_status,
       rejection_motive: self.rejection_motive,
-      allowed_to_operate: self.allowed_to_operate&.to_s,
-      created_at: self.created_at.try(:to_s),
-      created_at_month: self.created_at.try(:month).try(:to_s),
-      auto_veredict_at: self.auto_veredict_at.try(:to_s),
-      veredict_at: self.veredict_at.try(:to_s),
-      forbad_to_operate_at: self.forbad_to_operate_at.try(:to_s),
+      allowed_to_operate: self.allowed_to_operate.to_s,
+      created_at: self.created_at&.to_s,
+      auto_veredict_at: self.auto_veredict_at&.to_s,
+      veredict_at: self.veredict_at&.to_s,
+      forbad_to_operate_at: self.forbad_to_operate_at&.to_s,
     }.stringify_keys
   end
 

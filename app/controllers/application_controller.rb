@@ -2,7 +2,7 @@
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :require_active
-  before_action :require_not_rejected
+  before_action :require_permission_to_operate
   before_action :require_not_on_going
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
   before_action :set_invoices_documents_bundle
@@ -44,9 +44,9 @@
       end
   end
 
-  def require_not_rejected
-    if (seller = current_user.seller)
-      if seller.rejected? || !seller.allowed_to_operate
+  def require_permission_to_operate
+    if (current_user.seller)
+      if current_user.seller.rejected? || (current_user.seller.allowed_to_operate == false)
         flash[:alert] = "Infelizmente não conseguimos operar com você no momento"
         redirect_to unfortune_path
       end
@@ -54,11 +54,9 @@
   end
 
   def require_not_on_going
-    if (seller = current_user.seller)
-      if seller.on_going?
-        flash[:alert] = "Ainda estamos analisando seus dados. Entraremos em contato em breve"
-        redirect_to takeabreath_path
-      end
+    if (current_user&.seller&.on_going?)
+      flash[:alert] = "Ainda estamos analisando seus dados. Entraremos em contato em breve"
+      redirect_to takeabreath_path
     end
   end
 
