@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def spreadsheet_id
-    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+    ENV['GOOGLE_SPREADSHEET_ID']
   end
 
   def worksheet_name
