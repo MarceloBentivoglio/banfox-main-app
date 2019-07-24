@@ -12,10 +12,10 @@ class User < ApplicationRecord
 
   def user_attributes
     {
-      id: self.id,
-      seller_id: self.seller_id,
+      id: self.id.to_s,
+      seller_id: self.seller_id.to_s,
       email: self.email,
-      admin: self.admin,
+      admin: self.admin.to_s,
     }.stringify_keys
   end
 
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def spreadsheet_id
-    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+    ENV['GOOGLE_SPREADSHEET_ID']
   end
 
   def worksheet_name

@@ -283,21 +283,36 @@ class Installment < ApplicationRecord
   def installment_attributes
     {
       seller_name: self.invoice.seller.company_name,
-      seller_id: self.invoice.seller_id,
-      operation_id: self.operation_id,
-      invoice_id: self.invoice_id,
+      seller_id: self.invoice.seller_id.to_s,
+      seller_cnpj: self.invoice.seller.cnpj,
+      operation_id: self.operation_id.to_s,
+      invoice_id: self.invoice_id.to_s,
       payer_name: self.invoice.payer.company_name,
-      payer_id: self.invoice.payer_id,
+      payer_id: self.invoice.payer_id.to_s,
       payer_cnpj: self.invoice.payer.cnpj,
-      id: self.id,
+      id: self.id.to_s,
       status: self.status[1],
+      invoice_number: self.invoice.number,
       number: self.number,
       value_cents: self.value_cents,
       value_currency: self.value_currency,
-      due_date: self.due_date.try(:strftime),
-      ordered_at: self.ordered_at.try(:to_s),
-      deposited_at: self.deposited_at.try(:to_s),
-      received_at: self.finished_at.try(:to_s),
+      initial_fator_cents: self.initial_fator_cents,
+      initial_fator_currency: self.initial_fator_currency,
+      initial_advalorem_cents: self.initial_advalorem_cents,
+      initial_advalorem_currency: self.initial_advalorem_currency,
+      initial_protection_cents: self.initial_protection_cents,
+      initial_protection_currency: self.initial_protection_currency,
+      final_fator_cents: self.final_fator_cents,
+      final_fator_currency: self.final_fator_currency,
+      final_advalorem_cents: self.final_advalorem_cents,
+      final_advalorem_currency: self.final_advalorem_currency,
+      final_protection_cents: self.final_protection_cents,
+      final_protection_currency: self.final_protection_currency,
+      due_date: self.due_date&.strftime,
+      ordered_at: self.ordered_at&.to_s,
+      veredict_at: self.veredict_at&.to_s,
+      deposited_at: self.deposited_at&.to_s,
+      finished_at: self.finished_at&.to_s,
       backoffice_status: self.backoffice_status,
       liquidation_status: self.liquidation_status,
       unavailability: self.unavailability,
@@ -310,7 +325,7 @@ class Installment < ApplicationRecord
   end
 
   def spreadsheet_id
-    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+    ENV['GOOGLE_SPREADSHEET_ID']
   end
 
   def worksheet_name
@@ -320,6 +335,6 @@ class Installment < ApplicationRecord
   private
 
   def destroy_parent_if_void
-    invoice.destroy if invoice.try(:installments).try(:count) == 0
+    invoice.destroy if invoice&.installments&.count == 0
   end
 end

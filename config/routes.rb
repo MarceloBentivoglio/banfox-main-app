@@ -21,6 +21,7 @@ Rails.application.routes.draw do
           get 'pre_approve'
           get 'reject'
           get 'approve'
+          get 'forbid_to_operate'
         end
         resources :joint_debtors, only: [:index, :new, :create, :edit, :update, :destroy]
       end

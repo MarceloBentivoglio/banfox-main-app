@@ -159,13 +159,13 @@ class Seller < ApplicationRecord
 
   def seller_attributes
     {
-      id: self.id,
+      id: self.id.to_s,
       full_name: self.full_name,
       cpf: self.cpf,
       rf_full_name: self.rf_full_name,
       rf_sit_cad: self.rf_sit_cad,
       birth_date: self.birth_date,
-      email: self.try(:users).try(:first).try(:email),
+      email: self&.users&.first&.email,
       mobile: self.mobile,
       company_name: self.company_name,
       company_nickname: self.company_nickname,
@@ -173,6 +173,7 @@ class Seller < ApplicationRecord
       phone: self.phone,
       website: self.website,
       company_type: self.company_type,
+      tax_regime: self.tax_regime,
       inscr_est: self.inscr_est,
       inscr_mun: self.inscr_mun,
       nire: self.nire,
@@ -199,24 +200,16 @@ class Seller < ApplicationRecord
       birth_date_partner: self.birth_date_partner,
       mobile_partner: self.mobile_partner,
       email_partner: self.email_partner,
-      consent: self.consent,
+      consent: self.consent.to_s,
+      visited: self.visited.to_s,
       validation_status: self.validation_status,
-      visited: self.visited,
       analysis_status: self.analysis_status,
       rejection_motive: self.rejection_motive,
-      social_contracts: get_documents_link(self.social_contracts),
-      update_on_social_contracts: get_documents_link(self.update_on_social_contracts),
-      address_proofs: get_documents_link(self.address_proofs),
-      irpjs: get_documents_link(self.irpjs),
-      revenue_proofs: get_documents_link(self.revenue_proofs),
-      financial_statements: get_documents_link(self.financial_statements),
-      cash_flows: get_documents_link(self.cash_flows),
-      abc_clients: get_documents_link(self.abc_clients),
-      sisbacens: get_documents_link(self.sisbacens),
-      partners_cpfs: get_documents_link(self.partners_cpfs),
-      partners_rgs: get_documents_link(self.partners_rgs),
-      partners_irpfs: get_documents_link(self.partners_irpfs),
-      partners_address_proofs: get_documents_link(self.partners_address_proofs),
+      allowed_to_operate: self.allowed_to_operate.to_s,
+      created_at: self.created_at&.to_s,
+      auto_veredict_at: self.auto_veredict_at&.to_s,
+      veredict_at: self.veredict_at&.to_s,
+      forbad_to_operate_at: self.forbad_to_operate_at&.to_s,
     }.stringify_keys
   end
 
@@ -284,19 +277,11 @@ class Seller < ApplicationRecord
   end
 
   def spreadsheet_id
-    Rails.application.credentials[Rails.env.to_sym][:google_spreadsheet_id]
+    ENV['GOOGLE_SPREADSHEET_ID']
   end
 
   def worksheet_name
     Rails.application.credentials[:google][:google_seller_worksheet_name]
-  end
-
-  def get_documents_link(attachments)
-    links = []
-    attachments.each do |attachment|
-      links << Rails.application.routes.url_helpers.rails_blob_url(attachment)
-    end
-    links.join("\n")
   end
 
 end

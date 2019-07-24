@@ -85,7 +85,6 @@ class CpfCheckRF
   #ATTENTION Maybe it could be a good ideia to make this update in one transaction only
   def persist_analysis_conclusion
     if !@inputs_checks_w_rf
-      @seller.rejected!
       @seller.no_match_w_rf!
     end
   end
