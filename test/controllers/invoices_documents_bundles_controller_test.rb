@@ -77,4 +77,24 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to analysis_invoices_documents_bundles_path
   end
+
+  test '.create informs that the xml is duplicated' do
+    xml_stub = fixture_file_upload('files/xml_stub.xml','text/xml')
+
+    stub_error = [RuntimeError.new("Duplicated xml")]
+    mocked_return = mock()
+    mocked_return.stubs(:invoices).returns(stub_error)
+
+    mocked_params = {
+      invoices_documents_bundle: { documents: [xml_stub] }
+    }
+
+    InvoicesDocumentsBundlesController.any_instance.stubs(:params).returns(mocked_params)
+
+    CreateInvoicesFromDocuments.stubs(:new).with([xml_stub], @seller).returns(mocked_return)
+
+    post invoices_documents_bundles_path
+
+    assert_equal ["O xml enviado é duplicado"], flash[:alert]
+  end
 end
