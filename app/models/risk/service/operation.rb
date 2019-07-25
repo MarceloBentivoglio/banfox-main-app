@@ -19,6 +19,7 @@ module Risk
       def call(key_indicator_report)
         @key_indicator_report = key_indicator_report
 
+        persist_analyzed_parts
         call_fetchers
         call_pipelines
       end
@@ -30,14 +31,22 @@ module Risk
       end
 
       def call_pipelines
-        before_pipeline
         self.class.pipelines.each do |pipeline_class|
           pipeline_class.new(@key_indicator_report).call
         end
       end
 
-      #called after fetchers have done their work 
-      def before_pipeline
+      def persist_analyzed_parts
+        AnalyzedPart.create(
+          key_indicator_report_id: @key_indicator_report.id,
+          cnpj: @key_indicator_report.operation.seller.cnpj
+        )
+        @key_indicator_report.operation.payers.each do |payer|
+          AnalyzedPart.create(
+            key_indicator_report_id: @key_indicator_report.id,
+            cnpj: payer.cnpj
+          )
+        end
       end
     end
   end

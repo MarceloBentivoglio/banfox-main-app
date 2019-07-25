@@ -3,24 +3,27 @@ module Risk
     module DeltaEvaluator
 
       def evaluate_delta_for_negative_information(historic, current)
-        if @entities.size < 2
-          @key_indicator_factory.build(self).gray!
+        if historic.nil?
+          return Risk::KeyIndicatorReport::GRAY_FLAG
         else
+          current ||= 0
+          historic ||= 0
+
           absolute_delta = (current - historic).to_f
           if historic == 0
             if absolute_delta == 0
-              @key_indicator_factory.build(self).green!
+              return Risk::KeyIndicatorReport::GREEN_FLAG
             else
-              @key_indicator_factory.build(self).yellow!
+              return Risk::KeyIndicatorReport::YELLOW_FLAG
             end
           else
             relative_delta = absolute_delta / historic
             if relative_delta <= @params[:green_limit]
-              @key_indicator_factory.build(self).green!
+              Risk::KeyIndicatorReport::GREEN_FLAG
             elsif relative_delta <= @params[:yellow_limit]
-              @key_indicator_factory.build(self).yellow!
+              Risk::KeyIndicatorReport::YELLOW_FLAG
             else
-              @key_indicator_factory.build(self).red!
+              Risk::KeyIndicatorReport::RED_FLAG
             end
           end
         end
