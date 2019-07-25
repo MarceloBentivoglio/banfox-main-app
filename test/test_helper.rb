@@ -1,8 +1,11 @@
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'capybara/rails'
+require 'capybara/minitest'
 
 class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
+  include Warden::Test::Helpers
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #fixtures :all
@@ -37,5 +40,16 @@ class ActiveSupport::TestCase
 
     @operation
   end
+
+  Warden.test_mode!
 end
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    'chromeOptions' => { args: %w(headless disable-gpu) + [ 'window-size=1280,800' ] })
+  Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
+end
+Capybara.save_path = Rails.root.join('tmp/capybara')
+Capybara.javascript_driver = :headless_chrome
+
 require 'mocha/minitest'
