@@ -103,6 +103,25 @@ comau56 = Payer.create!(
 operation781 = Operation.create!(
   consent: true,
   signed: true,
+  sign_document_info: {
+    "signer_signature_keys": [
+      {
+        "email": "bena.silva@fluidtec.com.br",
+        "status": "signed",
+        "signature_key": "2dc5386d-b5bb-4a80-8bd7-767e9c8ed0a8"
+      },
+      {
+        "email": "anderson.cruzado@fluidtec.com.br",
+        "status": "signed",
+        "signature_key": "fe615d27-341e-4d4c-9365-80067305cbc3"
+      },
+      {
+        "email": "joao@banfox.com.br",
+        "status": "signed",
+        "signature_key": "ec211739-763a-43f6-9722-5cad39324e34"
+      }
+    ]
+  }
 )
 operation821 = Operation.create!(
   consent: true,

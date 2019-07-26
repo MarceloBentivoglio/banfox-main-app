@@ -937,7 +937,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "issued_at",
+      "field": "issue_date",
       "type": "Date",
       "default_value": null,
       "enums": null,
