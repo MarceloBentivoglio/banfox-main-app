@@ -38,7 +38,7 @@ module Risk
           tags.each {|tag, value| classify(tag, value) }
 
           serialized_data = serialize
-          serialized[@company_data[:cnpj]] = serialized_data
+          serialized[CNPJ.new(@company_data[:cnpj]).stripped] = serialized_data
           bootstrap_attributes
         end
 

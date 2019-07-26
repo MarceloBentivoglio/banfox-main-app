@@ -14,9 +14,15 @@
 module Risk
   #TODO change the name for analysis
   class KeyIndicatorReport < ApplicationRecord
+    GRAY_FLAG=-1
+    GREEN_FLAG=0
+    YELLOW_FLAG=1
+    RED_FLAG=2
+
     self.table_name = 'key_indicator_reports'
 
-    has_and_belongs_to_many :external_data
+    has_and_belongs_to_many :external_data, class_name: 'Risk::ExternalDatum'
+    has_many :analyzed_parts
     belongs_to :operation
   end
 end

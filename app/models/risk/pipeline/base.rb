@@ -1,12 +1,14 @@
 module Risk
   module Pipeline
     class Base
+      attr_accessor :key_indicator_report, :evidences
+
       def initialize(key_indicator_report)
         @key_indicator_report = key_indicator_report
       end
 
       class << self
-        attr_reader :params, :fetchers
+        attr_reader :params, :fetchers, :referees
 
         def required_params(*params)
           @params = params
@@ -14,6 +16,10 @@ module Risk
 
         def fetch_from(*fetchers)
           @fetchers = fetchers
+        end
+
+        def run_referees(*referees)
+          @referees = referees
         end
       end
       
@@ -28,7 +34,24 @@ module Risk
       end
 
       def call
-        raise 'Must implement .call'
+        self.class.referees.each do |referee_klass|
+          decorated_evidences = decorate_evidences(@key_indicator_report.evidences)
+
+          decorated_evidences.each_cnpj do |cnpj, evidences|
+            referee = referee_klass.new(evidences)
+            @key_indicator_report.key_indicators[cnpj][referee.code] = {
+              title: referee.title,
+              description: referee.description,
+              flag: referee.call
+            }
+          end
+
+          @key_indicator_report.save
+        end
+      end
+
+      def decorate_evidences(evidences)
+        raise 'Must implement decorate_evidences'
       end
     end
   end

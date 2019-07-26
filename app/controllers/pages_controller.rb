@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   skip_before_action :require_active, only: [:home, :unfortune, :take_a_breath]
-  skip_before_action :require_not_rejected, only: [:home, :unfortune, :take_a_breath]
+  skip_before_action :require_permission_to_operate, only: [:home, :unfortune, :take_a_breath]
   skip_before_action :require_not_on_going, only: [:home, :unfortune, :take_a_breath]
   before_action :require_on_going, only: [:take_a_breath]
   before_action :require_rejected, only: [:unfortune]
