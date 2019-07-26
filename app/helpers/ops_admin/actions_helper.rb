@@ -16,9 +16,11 @@ module OpsAdmin::ActionsHelper
 
   def set_analysis_links(seller)
     if seller.on_going?
-      return pre_approve_link(seller) + "|" + reject_link(seller)
+      return pre_approve_link(seller)
     elsif seller.pre_approved?
-      return approve_link(seller)
+      return approve_link(seller) + "|" + reject_link(seller)
+    elsif seller.approved?
+      return forbid_to_operate(seller)
     else
       return ""
     end
@@ -35,5 +37,10 @@ module OpsAdmin::ActionsHelper
   def approve_link(seller)
     link_to "aprovar", approve_ops_admin_seller_path(seller)
   end
+
+  def forbid_to_operate(seller)
+    link_to "parar de operar", forbid_to_operate_ops_admin_seller_path(seller), {"data-confirm" => "Tem certeza?"}
+  end
+
 
 end

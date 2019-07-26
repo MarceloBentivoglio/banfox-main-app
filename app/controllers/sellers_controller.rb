@@ -12,12 +12,18 @@ class SellersController < ApplicationController
   #TODO refactor with service layers
   def analysis
     if !CpfCheckRF.new(@seller).analyze || !check_revenue
+      @seller.rejected!
+      @seller.auto_veredict_at = Time.current
+      @seller.save!
       SellerMailer.rejected(@user, @seller).deliver_now
-      SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado*").send_now
+      SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado* automaticamente por #{@seller.rejection_motive}").send_now
       redirect_to unfortune_path and return
     end
     @seller.pre_approved!
     @seller.set_pre_approved_initial_standard_settings
+    @seller.auto_veredict_at = Time.current
+    @seller.allowed_to_operate = true
+    @seller.save!
     SellerMailer.welcome(@user, @seller).deliver_now
     SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
     redirect_to sellers_dashboard_path
@@ -38,7 +44,6 @@ class SellersController < ApplicationController
 
   def check_revenue
     if @seller.active? && @seller.monthly_revenue < Money.new(10000000)
-      @seller.rejected!
       @seller.insuficient_revenue!
       return false
     end

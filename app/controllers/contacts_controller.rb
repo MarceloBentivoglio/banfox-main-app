@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
   skip_before_action :require_active, only: [:new, :create]
-  skip_before_action :require_not_rejected, only: [:new, :create]
+  skip_before_action :require_permission_to_operate, only: [:new, :create]
   skip_before_action :require_not_on_going, only: [:new, :create]
 
 layout "homelayout"
