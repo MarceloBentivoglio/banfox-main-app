@@ -1,33 +1,39 @@
 module Risk
   module Decorator
     class Serasa
-      attr_accessor :data
+      attr_accessor :evidences
 
-      def initialize(data = {})
-        @data = data
+      def initialize(evidences = {})
+        @evidences = evidences.with_indifferent_access
       end
 
       def refin_value
-        @data.dig(:refin, :value) || 0
+        @evidences.dig(:refin)&.last&.dig(:value) || 0
       end
 
       def refin_historic_value
-        if @data.dig(:historic).any?
-          @data.dig(:historic)&.last&.dig(:refin, :value) || 0
+        if @evidences.dig(:historic)&.any?
+          @evidences.dig(:historic)&.last&.dig(:refin)&.last&.dig(:value) || 0
         else
           nil
         end
       end
 
       def refin_quantity
-        @data.dig(:refin, :quantity)
+        @evidences&.dig(:refin).last&.dig(:quantity)
       end
 
       def refin_historic_quantity
-        if @data.dig(:historic).any?
-          @data.dig(:historic)&.last&.dig(:refin, :quantity) || 0
+        if @evidences.dig(:historic).any?
+          @evidences.dig(:historic)&.last&.dig(:refin)&.last&.dig(:quantity) || 0
         else
           nil
+        end
+      end
+
+      def each_cnpj
+        @evidences['serasa_api'].keys.each do |cnpj|
+          yield cnpj, self.class.new(@evidences['serasa_api'][cnpj]) if cnpj != 'historic'
         end
       end
     end

@@ -5,7 +5,6 @@ module Risk
 
       def initialize(key_indicator_report)
         @key_indicator_report = key_indicator_report
-        @evidences = @key_indicator_report.evidences
       end
 
       class << self
@@ -23,7 +22,6 @@ module Risk
           @referees = referees
         end
       end
-
       
       def valid_input_data?
         self.class.params.reduce(false)  do |valid, key|
@@ -37,15 +35,24 @@ module Risk
 
       def call
         self.class.referees.each do |referee_klass|
-          referee = referee_klass.new(@evidences)
-          key_indicator_report.key_indicators[referee.code] = {
-            title: referee.title,
-            description: referee.description,
-            flag: referee.call
-          }
+          decorated_evidences = decorate_evidences(@key_indicator_report.evidences)
+
+          decorated_evidences.each_cnpj do |cnpj, evidences|
+            referee = referee_klass.new(evidences)
+            @key_indicator_report.key_indicators[cnpj][referee.code] = {
+              title: referee.title,
+              description: referee.description,
+              flag: referee.call
+            }
+          end
+
+          @key_indicator_report.save
         end
       end
 
+      def decorate_evidences(evidences)
+        raise 'Must implement decorate_evidences'
+      end
     end
   end
 end

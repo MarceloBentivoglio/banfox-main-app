@@ -52,8 +52,20 @@
             </div>
             <% if operation.key_indicator_reports.any? %>
               <% operation.key_indicator_reports.each do |key_indicator_report|%>
-                <% key_indicator_report.evidences['serasa_api'].each do |cnpj, evidence| %>
-                  <%= render partial: 'evidence', locals: { cnpj: cnpj, evidence: evidence } %>
+                <% key_indicator_report&.key_indicators.each do |cnpj, risk_indicators| %>
+                  <h3>Indicadores de Risco do CNPJ <%= CNPJ.new(cnpj).formatted %></h3>
+                  <% risk_indicators.each do |name, indicator| %>
+                      <%- i = Risk::Presenter::KeyIndicator.new(indicator) %>
+                      <ul>
+                        <li>
+                          <%= i.title %>: <br />
+                          <%= i.flag %>
+                        </li>
+                      </ul>
+                  <% end %>
+                <% end %>
+                <% key_indicator_report&.evidences&.dig('serasa_api')&.each do |cnpj, evidence| %>
+                  <%= render partial: 'evidence', locals: { cnpj: cnpj, evidence: evidence } if evidence.any? %>
                 <% end if key_indicator_report.evidences.any? %>
               <% end %>
             <% else %>

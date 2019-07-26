@@ -6,15 +6,15 @@ module Risk
       # entities must have @type Risk::Entity::Serasa::CompanySummary
       def initialize(evidences)
         @evidences = evidences
-        @code = ''
-        @title = ''
+        @code = 'refin_quantity_delta'
+        @title = 'Refin Quantity Delta'
         @description = ''
         @params = {green_limit: 0, yellow_limit: 0.5}
       end
 
       def call
-        historic_quantity = @evidences.refin_quantity
-        current_quantity = @evidences.refin_historic_quantity
+        historic_quantity = @evidences.refin_historic_quantity
+        current_quantity = @evidences.refin_quantity
         evaluate_delta_for_negative_information(historic_quantity, current_quantity)
       end
     end

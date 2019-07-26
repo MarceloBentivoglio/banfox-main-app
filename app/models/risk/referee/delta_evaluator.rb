@@ -1,7 +1,6 @@
 module Risk
   module Referee
     module DeltaEvaluator
-
       def evaluate_delta_for_negative_information(historic, current)
         if historic.nil?
           return Risk::KeyIndicatorReport::GRAY_FLAG

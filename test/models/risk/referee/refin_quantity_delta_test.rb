@@ -46,71 +46,62 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
   end
 
   test '.call should create a green flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      refin: {
+        quantity: 1000
+      },
+      historic: [
+        {
+          refin: {
+            quantity: 1000
+          }
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:green!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::GREEN_FLAG
 
-    Risk::Referee::RefinQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create a yellow flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      refin: {
+        quantity: 15
+      },
+      historic: [
+        {
+          refin: {
+            quantity: 10
+          }
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 15,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:yellow!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::YELLOW_FLAG
 
-    Risk::Referee::RefinQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create a red flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      refin: {
+        quantity: 16
+      },
+      historic: [
+        {
+          refin: {
+            quantity: 10
+          }
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        refin: {
-          quantity: 16,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ]
+    }
+    
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::RED_FLAG
 
-    Risk::KeyIndicator.any_instance.expects(:red!)
-
-    Risk::Referee::RefinQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
   end
 end
