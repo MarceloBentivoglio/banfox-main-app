@@ -1,4 +1,5 @@
 module Risk
+
   module Referee
     class RefinValueDelta < Base
       include DeltaEvaluator
@@ -7,7 +8,7 @@ module Risk
       def initialize(evidences)
         @evidences = evidences
         @code = 'refin_value_delta'
-        @title = 'refin_value_delta'
+        @title = 'Refin Value Delta'
         @description = 'Calculate delta of the value of refin'
         @params = {green_limit: 0, yellow_limit: 0.5}
       end

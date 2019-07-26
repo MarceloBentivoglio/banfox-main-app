@@ -6,8 +6,8 @@ module Risk
       # entities must have @type Risk::Entity::Serasa::CompanySummary
       def initialize(evidences)
         @evidences = evidences
-        @code = ''
-        @title = ''
+        @code = 'lawsuit_quantity_delta'
+        @title = 'Lawsuit Quantity Delta'
         @description = ''
         @params = {green_limit: 0, yellow_limit: 0.5}
       end
