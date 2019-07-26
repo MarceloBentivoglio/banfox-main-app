@@ -102,15 +102,38 @@ class UsersTest < ApplicationSystemTestCase
     commit_and_assert_step(5)
   end
 
-  # test 'confirm terms of service to conclude the process' do
-  #   seller = mock_seller(3)
-  #   sign_in FactoryBot.create(:user, seller: seller)
-  #   visit seller_steps_path + "/consent"
-  #   find('label', :text => 'Li e aceito os termos do site').click
-  #   click_button :commit
-  #   #TODO fix nil :nogord on
-  #   #Rails.application.credentials[Rails.env.to_sym][:nogord][:cpf_info_fetch_url]
+  test 'confirm terms of service to conclude the process as pre-approved' do
+    seller = mock_seller(3)
+    mocked_cpf_check = mock()
+    mocked_cpf_check.stubs(:analyze).returns(true)
+    mocked_slack = mock()
+    mocked_slack.stubs(:send_now).returns(true)
+    CpfCheckRF.stubs(:new).with(seller).returns(mocked_cpf_check)
+    SlackMessage.stubs(:new).returns(mocked_slack)
+    sign_in FactoryBot.create(:user, seller: seller)
 
-  #   assert_selector "h4", text: "Bem vindo à Banfox!"
-  # end
+    visit seller_steps_path + "/consent"
+    find('label', :text => 'Li e aceito os termos do site').click
+
+    click_button :commit
+    assert_selector "h4", text: "Bem vindo à Banfox!"
+  end
+
+  test 'confirm terms of service to conclude the process as rejected' do
+    seller = mock_seller(3)
+    mocked_cpf_check = mock()
+    mocked_cpf_check.stubs(:analyze).returns(false)
+    mocked_slack = mock()
+    mocked_slack.stubs(:send_now).returns(true)
+    CpfCheckRF.stubs(:new).with(seller).returns(mocked_cpf_check)
+    SlackMessage.stubs(:new).returns(mocked_slack)
+    #SellersController.any_instance.stubs(:check_revenue).returns(false)
+    sign_in FactoryBot.create(:user, seller: seller)
+
+    visit seller_steps_path + "/consent"
+    find('label', :text => 'Li e aceito os termos do site').click
+
+    click_button :commit
+    assert_selector "h4", text: "Ainda não conseguimos te ajudar"
+  end
 end

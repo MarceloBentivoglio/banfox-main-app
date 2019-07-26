@@ -22,11 +22,7 @@ class SellersController < ApplicationController
     SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
     redirect_to sellers_dashboard_path
   rescue StandardError => e
-    if Rails.env.test?
-      raise e.message
-    else
-      SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
-    end
+    SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
     redirect_to takeabreath_path and return
   end
 
