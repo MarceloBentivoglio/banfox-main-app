@@ -23,7 +23,6 @@ class Risk::Service::OperationTest < ActiveSupport::TestCase
   end
 
   test '.call persists AnalyzedPart' do
-    Risk::Referee::RefinValueDelta.any_instance.expects(:call).returns(Risk::KeyIndicatorReport::GRAY_FLAG)
     key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
     @subject.call(key_indicator_report)
 

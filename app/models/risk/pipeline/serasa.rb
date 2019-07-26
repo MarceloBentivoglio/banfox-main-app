@@ -3,7 +3,13 @@ module Risk
     class Serasa < Risk::Pipeline::Base
       fetch_from Risk::Fetcher::Serasa
       run_referees Risk::Referee::RefinValueDelta,
-                   Risk::Referee::RefinQuantityDelta
+                   Risk::Referee::RefinQuantityDelta,
+                   Risk::Referee::LawsuitQuantityDelta,
+                   Risk::Referee::LawsuitValueDelta,
+                   Risk::Referee::PefinValueDelta,
+                   Risk::Referee::PefinQuantityDelta,
+                   Risk::Referee::ProtestValueDelta,
+                   Risk::Referee::ProtestQuantityDelta
 
       def call
         build_evidences_with_historic
@@ -23,7 +29,7 @@ module Risk
                                        .order('created_at DESC')
 
           historic = analyzed_parts.map do |analyzed_part|
-            analyzed_part.key_indicator_report.evidences[cnpj]
+            analyzed_part.key_indicator_report.evidences['serasa_api'][cnpj]
           end
 
           @key_indicator_report.evidences['serasa_api'][cnpj]['historic'] = historic

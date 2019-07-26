@@ -3,12 +3,14 @@ require 'test_helper'
 class Risk::Decorator::SerasaTest < ActiveSupport::TestCase
   test 'refin' do
     sample_data = {
-      refin: {},
+      refin: [],
       historic: [
         {
-          refin: {
-            value: 1000
-          }
+          refin: [
+            {
+              value: 1000
+            }
+          ]
         }
       ]
     }

@@ -9,46 +9,85 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
     @cnpj_3 = '28.153.804/0001-40'
 
     historic_evidence_1 = {
-      @cnpj_1 => {
-        'refin': {
-          value: 1000,
-          quantity: 0
+      'serasa_api' => {
+        @cnpj_1 => {
+          'refin': [
+            {
+              value: 1000,
+              quantity: 0
+            }
+          ],
+          'lawsuit': []
         },
-      },
-      @cnpj_2 => {
-        'refin': {
-          value: 1000,
-          quantity: 10
+        @cnpj_2 => {
+          'refin': [
+            {
+              value: 1000,
+              quantity: 10
+            }
+          ],
+          'lawsuit': [
+            {
+              quantity: 10
+            }
+          ]
         }
       }
     }
 
     historic_evidence_2 = {
-      @cnpj_1 => {
-        refin: {
-          value: 2000,
-          quantity: 10
-        }
-      },
-      @cnpj_3 => {
-        refin: {
-          value: 3000,
-          quantity: 15
+      'serasa_api' => {
+        @cnpj_1 => {
+          refin: [
+            {
+              value: 2000,
+              quantity: 10
+            }
+          ]
+        },
+        @cnpj_3 => {
+          refin: [
+            {
+              value: 3000,
+              quantity: 15
+            }
+          ],
+          lawsuit: [
+            {
+              quantity: 10
+            }
+          ]
         }
       }
     }
 
     current_evidence = {
-      @cnpj_2 => {
-        refin: {
-          value: 1001,
-          quantity: 16
-        }
-      },
-      @cnpj_3 => {
-        refin: {
-          value: 1002,
-          quantity: 5
+      'serasa_api' => {
+        @cnpj_2 => {
+          refin: [
+            {
+              value: 1001,
+              quantity: 16
+            }
+          ],
+          lawsuit: [
+            {
+              quantity: 10
+            }
+          ]
+        },
+        @cnpj_3 => {
+          refin: [
+            {
+              value: 1002,
+              quantity: 5
+            }
+          ],
+          lawsuit: [
+            {
+              quantity: 16
+            }
+          ]
         }
       }
     }
@@ -68,37 +107,66 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
   end
 
   test '.build_evidences_with_historic' do
-
     pipeline = Risk::Pipeline::Serasa.new(@current_kir)
 
     expected = {
-      @cnpj_2 => {
-        'refin' => {
-          'value' => 1001,
-          'quantity' => 16
-        },
-        'historic' => [
-          {
-            'refin' => {
-              'value' => 1000,
-              'quantity' => 10
+      "serasa_api"=> {
+        "15.310.278/0001-32"=> {
+          "refin"=> [
+             {
+               "value"=>1001,
+               "quantity"=>16
+             }
+          ],
+          "lawsuit"=> [
+            {
+              "quantity"=>10
             }
-          }
-        ]
-      },
-      @cnpj_3 => {
-        'refin' => {
-          'value' => 1002,
-          'quantity' => 5
-        },
-        'historic' => [
-          {
-            'refin' => {
-              'value' => 3000,
-              'quantity' => 15
+          ],
+          "historic"=> [
+            {
+              "refin"=>[
+                {
+                  "value"=>1000,
+                  "quantity"=>10
+                }
+              ],
+              "lawsuit"=> [
+                {
+                  "quantity"=>10
+                }
+              ]
             }
-          }
-        ]
+          ]
+        },
+        "28.153.804/0001-40"=> {
+          "refin"=> [
+            {
+              "value"=>1002,
+              "quantity"=>5
+            }
+          ],
+          "lawsuit"=> [
+            {
+              "quantity"=>16
+            }
+          ], 
+          "historic"=> [
+            {
+              "refin"=> [
+                {
+                  "value"=>3000,
+                  "quantity"=>15
+                }
+              ],
+              "lawsuit"=> [
+                {
+                  "quantity"=>10
+                }
+              ]
+            }
+          ]
+        }
       }
     }
 

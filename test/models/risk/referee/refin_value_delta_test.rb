@@ -4,7 +4,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create a gray flag if there is no historic' do
     evidences = {
-      refin: {},
+      refin: [],
       historic: []
     }
 
@@ -16,12 +16,10 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
-      refin: {
-      },
+      refin: [],
       historic: [
         {
-          refin: {
-          }
+          refin: []
         }
       ]
     }
@@ -33,14 +31,16 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create yellow flag when the historic value is 0 and the entity is growing' do
     evidences = {
-      refin: {
-        quantity: 10,
-        value: 1000,
-        date: Date.new(2019,1,21)
-      },
+      refin: [
+        {
+          quantity: 10,
+          value: 1000,
+          date: Date.new(2019,1,21)
+        }
+      ],
       historic: [
         {
-          refin: {}
+          refin: []
         }
       ]
     }
@@ -52,16 +52,23 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create a green flag' do
     evidences = {
-      refin: {
-        quantity: 10,
-        value: 1000,
-        date: Date.new(2019,1,21)
-      },
-      historic: [
-        refin: {
+      refin: [
+        {
           quantity: 10,
           value: 1000,
-          date: Date.new(2018,12,21)
+          date: Date.new(2019,1,21)
+        }
+      ],
+      historic: [
+        {
+          refin: [
+            {
+              quantity: 10,
+              value: 1000,
+              date: Date.new(2018,12,21)
+            }
+
+          ]
         }
       ]
     }
@@ -74,17 +81,21 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create a yellow flag' do
     evidences = {
-       refin: {
-        quantity: 9,
-        value: 1500,
-        date: Date.new(2019,1,21)
-      },
-      historic: [
-        refin: {
-          quantity: 10,
-          value: 1000,
-          date: Date.new(2018,12,21)
+      refin: [
+        {
+          quantity: 9,
+          value: 1500,
+          date: Date.new(2019,1,21)
         }
+      ],
+      historic: [
+        refin: [
+          {
+            quantity: 10,
+            value: 1000,
+            date: Date.new(2018,12,21)
+          }
+        ],
       ]
     }
 
@@ -96,16 +107,22 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.call should create a red flag' do
     evidences = {
-       refin: {
-        quantity: 10,
-        value: 1600,
-        date: Date.new(2019,1,21)
-      },
+      refin: [
+        {
+          quantity: 10,
+          value: 1600,
+          date: Date.new(2019,1,21)
+        }
+      ],
       historic: [
-        refin: {
-          quantity: 9,
-          value: 1000,
-          date: Date.new(2018,12,21)
+        {
+          refin: [
+            {
+              quantity: 9,
+              value: 1000,
+              date: Date.new(2018,12,21)
+            }
+          ]
         }
       ]
     }

@@ -1,139 +1,118 @@
 require 'test_helper'
 
 class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
-
-  setup do
-    @key_indicator_factory = Risk::KeyIndicatorFactory.new
-  end
-
   test '.call should create a gray flag if there is only one company_summary' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+    evidences = {
+      lawsuit: [],
+      historic: []
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:gray!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::GRAY_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create green flag when the historic quantity is 0 and the entity is stable' do
-     @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 0,
-          value: 0,
-          last_ocurrence: ''
+    evidences = {
+      lawsuit: [],
+      historic: [
+        {
+          lawsuit: []
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 0,
-          value: 0,
-          last_ocurrence: ''
-        }
-      ),
-    ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:green!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::GREEN_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create yellow flag when the historic quantity is 0 and the entity is growing' do
-     @company_summaries = [
-       Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 0,
-          value: 0,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      lawsuit: [
+        {
+          quantity: 10
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ],
+      historic: [
+        lawsuit: [
+          {
+          }
+        ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:yellow!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::YELLOW_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create a green flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      lawsuit: [
+        {
+          quantity: 10
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ],
+      historic: [
+        lawsuit: [
+          {
+            quantity: 10
+          }
+        ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:green!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::GREEN_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create a yellow flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      lawsuit: [
+        {
+          quantity: 15
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 15,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ],
+      historic: [
+        lawsuit: [
+          {
+            quantity: 10
+          }
+        ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:yellow!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::YELLOW_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 
   test '.call should create a red flag' do
-    @company_summaries = [
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 10,
-          value: 1000,
-          last_ocurrence: Date.new(2019, 1, 21)
+    evidences = {
+      lawsuit: [
+        {
+          quantity: 16
         }
-      ),
-      Risk::Entity::Serasa::CompanySummary.new(
-        lawsuit: {
-          quantity: 16,
-          value: 1000,
-          last_ocurrence: Date.new(2018, 12, 21)
-        }
-      ),
-    ]
+      ],
+      historic: [
+        lawsuit: [
+          {
+            quantity: 10
+          }
+        ]
+      ]
+    }
 
-    Risk::KeyIndicator.any_instance.expects(:red!)
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::RED_FLAG
 
-    Risk::Referee::LawsuitQuantityDelta.new(@key_indicator_factory, @company_summaries).call
+    assert_equal expected, Risk::Referee::LawsuitQuantityDelta.new(decorated_evidences).call
   end
 end
