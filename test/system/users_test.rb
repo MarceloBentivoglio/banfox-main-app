@@ -18,7 +18,7 @@ class UsersTest < ApplicationSystemTestCase
 
   def commit_and_assert_step(step_number)
     click_button :commit
-    assert_selector "span.pont.active", text: step_number
+    assert_selector "span.point.active", text: step_number
   end
 
   test "create an user" do
