@@ -4,8 +4,11 @@ module Risk
       include DeltaEvaluator
       # entities must be a chronological ordered array
       # entities must have @type Risk::Entity::Serasa::CompanySummary
-      def initialize(evidences)
-        @evidences = evidences
+      def initialize(evidence)
+        @evidence = {
+          historic_quantity: evidence.lawsuit_historic_quantity,
+          current_quantity:  evidence.lawsuit_quantity
+        }
         @code = 'lawsuit_quantity_delta'
         @title = 'Lawsuit Quantity Delta'
         @description = ''
@@ -13,9 +16,10 @@ module Risk
       end
 
       def call
-        historic_quantity = @evidences.lawsuit_historic_quantity
-        current_quantity  = @evidences.lawsuit_quantity
-        evaluate_delta_for_negative_information(historic_quantity, current_quantity)
+        evaluate_delta_for_negative_information(
+          @evidence[:historic_quantity],
+          @evidence[:current_quantity]
+        )
       end
     end
   end

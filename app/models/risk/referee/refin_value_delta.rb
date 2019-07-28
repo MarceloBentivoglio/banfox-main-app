@@ -5,8 +5,11 @@ module Risk
       include DeltaEvaluator
 
       # entities must be a chronological ordered array
-      def initialize(evidences)
-        @evidences = evidences
+      def initialize(evidence)
+        @evidence = {
+          current_value:  evidence.refin_value,
+          historic_value: evidence.refin_historic_value
+        }
         @code = 'refin_value_delta'
         @title = 'Refin Value Delta'
         @description = 'Calculate delta of the value of refin'
@@ -14,9 +17,10 @@ module Risk
       end
 
       def call
-        current_value = @evidences.refin_value
-        historic_value = @evidences.refin_historic_value
-        evaluate_delta_for_negative_information(historic_value, current_value)
+        evaluate_delta_for_negative_information(
+          @evidence[:historic_value], 
+          @evidence[:current_value]
+        )
       end
     end
   end

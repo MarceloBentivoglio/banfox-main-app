@@ -42,7 +42,9 @@ module Risk
             @key_indicator_report.key_indicators[cnpj][referee.code] = {
               title: referee.title,
               description: referee.description,
-              flag: referee.call
+              params: referee.params,
+              evidence: referee.evidence,
+              flag: referee.call,
             }
           end
 
