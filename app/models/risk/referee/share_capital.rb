@@ -1,22 +1,27 @@
 module Risk
   module Referee
     class ShareCapital < Base
-      def initialize(key_indicator_factory, corporate_control)
-        @key_indicator_factory = key_indicator_factory
-        @corporate_control = corporate_control
+      def initialize(evidence)
+        @evidence = {
+          share_capital: evidence.share_capital
+        }
         @code = ''
         @title = ''
         @description = ''
+        @params = {
+          red_limit: 10_000,
+          yellow_limit: 50_000
+        }
       end
 
       def call
-        share_capital = @corporate_control.share_capital
-        if share_capital < 10_000
-          @key_indicator_factory.build(self).red!
-        elsif share_capital >= 10_000 && share_capital < 50_000
-          @key_indicator_factory.build(self).yellow!
+        share_capital = @evidence[:share_capital]
+        if share_capital < @params[:red_limit]
+          Risk::KeyIndicatorReport::RED_FLAG
+        elsif share_capital >= @params[:red_limit] && share_capital < @params[:yellow_limit]
+          Risk::KeyIndicatorReport::YELLOW_FLAG
         else
-          @key_indicator_factory.build(self).green!
+          Risk::KeyIndicatorReport::GREEN_FLAG
         end
       end
     end
