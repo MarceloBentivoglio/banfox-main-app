@@ -47,9 +47,9 @@ module Risk
               flag: referee.call,
             }
           end
-
-          @key_indicator_report.save
         end
+
+        @key_indicator_report.save
       end
 
       def decorate_evidences(evidences)
