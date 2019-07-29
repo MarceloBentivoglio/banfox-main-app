@@ -41,6 +41,22 @@
                 <% end %>
               </div>
             </div>
+            <div class="summary-column summary-w-padding-left">
+              <strong>Análise de crédito</strong>
+              <% if operation.key_indicator_reports.any? %>
+              <%#= Faz zentido ter essa linha? Uma operação pode ter mais de um Key Indicador report? %>
+                <% operation.key_indicator_reports.each do |key_indicator_report|%>
+                  <% key_indicator_report&.key_indicators.each do |cnpj, key_indicators| %>
+                    <span><%= CNPJ.new(cnpj).formatted %>: </span>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to 'Analisar Risco da Operação',
+                    ops_admin_key_indicator_reports_path(operation_id: operation.id, kind: 'recurrent_operation'),
+                    method: :create
+                  %>
+              <% end %>
+            </div>
 
           </div>
           <%= render partial: "shared/tables/table_wo_bundle_ops/header" %>

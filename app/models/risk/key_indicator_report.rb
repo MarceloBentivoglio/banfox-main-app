@@ -24,5 +24,20 @@ module Risk
     has_and_belongs_to_many :external_data, class_name: 'Risk::ExternalDatum'
     has_many :analyzed_parts
     belongs_to :operation
+
+    def indicators_quantity
+      @indicators_quantity ||= {}
+      key_indicators.keys.each do |cnpj|
+        @indicators_quantity = {
+          :"#{cnpj}" => {
+            gray: 0,
+            green: 0,
+            yellow: 0,
+            red: 0,
+          }
+        }
+      end
+    end
+
   end
 end
