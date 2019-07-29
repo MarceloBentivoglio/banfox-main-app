@@ -19,7 +19,7 @@ module Risk
 
         if external_data.any? && external_data.first.ttl < DateTime.now || external_data.empty?
           @fetcher.call
-          new_external_datum = Risk::ExternalDatum.create(source: @fetcher.class.name,
+          new_external_datum = Risk::ExternalDatum.create(source: @fetcher.name,
                                                           query: @query,
                                                           raw_data: @fetcher.data,
                                                           ttl: @ttl,
