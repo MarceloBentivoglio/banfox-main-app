@@ -10,7 +10,7 @@ class ExtractDataFromXml
     begin
     @file.rewind
     check_invoice_seller
-    check_if_duplicated_chNFe
+    #check_if_duplicated_chNFe
     extract_invoice_general_info
     extract_installments
     extract_payer_info

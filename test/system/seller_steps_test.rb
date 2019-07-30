@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class UsersTest < ApplicationSystemTestCase
+class SellerStepsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   def mock_seller(validation_status)
@@ -13,7 +13,12 @@ class UsersTest < ApplicationSystemTestCase
                                     validation_status: validation_status
                                   }
                                )
-    seller
+  end
+
+  def active_seller
+    seller = mock_seller(5)
+    sign_in FactoryBot.create(:user, seller: seller)
+    visit sellers_dashboard_path
   end
 
   def commit_and_assert_step(step_number)
@@ -127,7 +132,6 @@ class UsersTest < ApplicationSystemTestCase
     mocked_slack.stubs(:send_now).returns(true)
     CpfCheckRF.stubs(:new).with(seller).returns(mocked_cpf_check)
     SlackMessage.stubs(:new).returns(mocked_slack)
-    #SellersController.any_instance.stubs(:check_revenue).returns(false)
     sign_in FactoryBot.create(:user, seller: seller)
 
     visit seller_steps_path + "/consent"
@@ -136,4 +140,47 @@ class UsersTest < ApplicationSystemTestCase
     click_button :commit
     assert_selector "h4", text: "Ainda não conseguimos te ajudar"
   end
+
+  test 'login when seller is already created' do
+    active_seller
+    assert_selector "div.primary-content", text: "Você ainda não possui operações"
+  end
+
+  test 'adding a single xml file to analyze' do
+    seller = FactoryBot.create(:seller)
+    sign_in FactoryBot.create(:user, seller: seller)
+    visit sellers_dashboard_path
+
+    find('span', :text => 'Adicionar notas fiscais').click
+    find('p', :text => 'Selecionar arquivos').click
+    attach_file('invoices_documents_bundle[documents][]', "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", visible: :all)
+    click_button :commit, value: "Subir arquivos"
+    assert_selector "span", text: "980/01"
+    assert_selector "span", text: "980/02"
+    assert_selector "span", text: "980/03"
+  end
+
+  test 'adding a multiple xml files to analyze' do
+    seller = FactoryBot.create(:seller)
+    sign_in FactoryBot.create(:user, seller: seller)
+    visit sellers_dashboard_path
+    find('span', :text => 'Adicionar notas fiscais').click
+    find('p', :text => 'Selecionar arquivos').click
+
+    attach_file('invoices_documents_bundle[documents][]',
+                [
+                  "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", 
+                  "#{Rails.root}/test/fixtures/files/notaDeTeste2.xml"
+                ], 
+                visible: :all)
+
+    click_button :commit, value: "Subir arquivos"
+    assert_selector "span", text: "980/01"
+    assert_selector "span", text: "980/02"
+    assert_selector "span", text: "980/03"
+    assert_selector "span", text: "967/01"
+    assert_selector "span", text: "967/02"
+    assert_selector "span", text: "967/03"
+  end
+
 end
