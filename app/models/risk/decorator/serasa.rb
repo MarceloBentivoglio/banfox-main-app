@@ -8,96 +8,96 @@ module Risk
       end
 
       def refin_value
-        @evidences.dig(:refin)&.last&.dig(:value) || 0
+        @evidences.dig(:refin)&.first&.dig(:value) || 0
       end
 
       def refin_historic_value
         if @evidences.dig(:historic)&.any?
-          @evidences.dig(:historic)&.last&.dig(:refin)&.last&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:value) || 0
         else
           nil
         end
       end
 
       def refin_quantity
-        @evidences&.dig(:refin)&.last&.dig(:quantity) || 0
+        @evidences&.dig(:refin)&.first&.dig(:quantity) || 0
       end
 
       def refin_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:refin)&.last&.dig(:quantity) || 0
+          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def lawsuit_quantity
-        @evidences&.dig(:lawsuit)&.last&.dig(:quantity) || 0
+        @evidences&.dig(:lawsuit)&.first&.dig(:quantity) || 0
       end
 
       def lawsuit_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:lawsuit)&.last&.dig(:quantity) || 0
+          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def lawsuit_value
-        @evidences&.dig(:lawsuit)&.last&.dig(:value) || 0
+        @evidences&.dig(:lawsuit)&.first&.dig(:value) || 0
       end
 
       def lawsuit_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:lawsuit)&.last&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:value) || 0
         else
           nil
         end
       end
 
       def pefin_quantity
-        @evidences&.dig(:pefin)&.last&.dig(:quantity) || 0
+        @evidences&.dig(:pefin)&.first&.dig(:quantity) || 0
       end
 
       def pefin_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:pefin)&.last&.dig(:quantity) || 0
+          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def pefin_value
-        @evidences&.dig(:pefin)&.last&.dig(:value) || 0
+        @evidences&.dig(:pefin)&.first&.dig(:value) || 0
       end
 
       def pefin_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:pefin)&.last&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:value) || 0
         else
           nil
         end
       end
 
       def protest_quantity
-        @evidences&.dig(:protest)&.last&.dig(:quantity) || 0
+        @evidences&.dig(:protest)&.first&.dig(:quantity) || 0
       end
 
       def protest_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:protest)&.last&.dig(:quantity) || 0
+          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def protest_value
-        @evidences&.dig(:protest)&.last&.dig(:value) || 0
+        @evidences&.dig(:protest)&.first&.dig(:value) || 0
       end
 
       def protest_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.last&.dig(:protest)&.last&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:value) || 0
         else
           nil
         end
