@@ -1,0 +1,17 @@
+<% if evidence.is_a?(String) %>
+  <%= evidence %>
+<% elsif evidence.is_a?(Array) %>
+  <ul>
+    <% evidence.each do |e| %>
+      <li><%= render partial: 'evidence_recursive', locals: { evidence: e } %></li>
+    <% end %>
+  </ul>
+<% elsif evidence.is_a?(Hash) %>
+  <% evidence.each do |key, value| %>
+    <li>
+    <%= key %>: 
+    <%= value %>
+    </li>
+  <% end %>
+<% else %>
+<% end %>

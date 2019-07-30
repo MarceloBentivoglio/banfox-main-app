@@ -16,5 +16,10 @@ module OpsAdmin
 
       redirect_to ops_admin_operations_analyse_path
     end
+
+    def show
+      @key_indicator_report = Risk::KeyIndicatorReport.find(params[:id])
+      @cnpj = params[:cnpj]
+    end
   end
 end

@@ -213,6 +213,10 @@ class Operation < ApplicationRecord
     '%02d horas, %02d minutos e %02d segundos' % [hours, minutes, seconds]
   end
 
+  def present_key_indicator_report
+    @key_indicator_report ||= Risk::Presenter::KeyIndicatorReport.new(key_indicator_reports.last)
+  end
+
   private
 
   def protection_rate
