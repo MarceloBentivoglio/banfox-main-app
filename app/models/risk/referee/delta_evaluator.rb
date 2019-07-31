@@ -16,7 +16,7 @@ module Risk
               return Risk::KeyIndicatorReport::YELLOW_FLAG
             end
           else
-            relative_delta = absolute_delta / historic
+            relative_delta = absolute_delta / historic.to_i
             if relative_delta <= @params[:green_limit]
               Risk::KeyIndicatorReport::GREEN_FLAG
             elsif relative_delta <= @params[:yellow_limit]
