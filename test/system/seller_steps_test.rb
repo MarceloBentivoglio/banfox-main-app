@@ -15,8 +15,8 @@ class SellerStepsTest < ApplicationSystemTestCase
                                )
   end
 
-  def active_seller
-    seller = mock_seller(5)
+  def seller_dashboard_login
+    seller = FactoryBot.create(:seller)
     sign_in FactoryBot.create(:user, seller: seller)
     visit sellers_dashboard_path
   end
@@ -142,39 +142,36 @@ class SellerStepsTest < ApplicationSystemTestCase
   end
 
   test 'login when seller is already created' do
-    active_seller
+    seller_dashboard_login
     assert_selector "div.primary-content", text: "Você ainda não possui operações"
   end
 
   test 'adding a single xml file to analyze' do
-    seller = FactoryBot.create(:seller)
-    sign_in FactoryBot.create(:user, seller: seller)
-    visit sellers_dashboard_path
+    seller_dashboard_login
 
     find('span', :text => 'Adicionar notas fiscais').click
     find('p', :text => 'Selecionar arquivos').click
     attach_file('invoices_documents_bundle[documents][]', "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", visible: :all)
     click_button :commit, value: "Subir arquivos"
+
     assert_selector "span", text: "980/01"
     assert_selector "span", text: "980/02"
     assert_selector "span", text: "980/03"
   end
 
   test 'adding a multiple xml files to analyze' do
-    seller = FactoryBot.create(:seller)
-    sign_in FactoryBot.create(:user, seller: seller)
-    visit sellers_dashboard_path
+    seller_dashboard_login
+
     find('span', :text => 'Adicionar notas fiscais').click
     find('p', :text => 'Selecionar arquivos').click
-
     attach_file('invoices_documents_bundle[documents][]',
                 [
                   "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", 
                   "#{Rails.root}/test/fixtures/files/notaDeTeste2.xml"
                 ], 
                 visible: :all)
-
     click_button :commit, value: "Subir arquivos"
+
     assert_selector "span", text: "980/01"
     assert_selector "span", text: "980/02"
     assert_selector "span", text: "980/03"
@@ -182,5 +179,24 @@ class SellerStepsTest < ApplicationSystemTestCase
     assert_selector "span", text: "967/02"
     assert_selector "span", text: "967/03"
   end
+
+  # test 'sending installments to analisys' do
+  #   seller = FactoryBot.create(:seller)
+
+  #   payer = FactoryBot.create(:payer)
+
+  #   invoice = FactoryBot.create(
+  #     :invoice,
+  #     payer: payer,
+  #     seller: seller
+  #   )
+
+  #   installment = FactoryBot.create(:installment, invoice: invoice)
+
+  #   sign_in FactoryBot.create(:user, seller: seller)
+  #   visit store_installments_path
+  #   byebug
+
+  # end
 
 end
