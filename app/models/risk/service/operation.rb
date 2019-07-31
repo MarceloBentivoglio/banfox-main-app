@@ -1,6 +1,7 @@
 module Risk
   module Service
     class Operation
+      include CNPJFormatter
       class << self
         attr_reader :pipelines
 
@@ -39,12 +40,12 @@ module Risk
       def persist_analyzed_parts
         AnalyzedPart.create(
           key_indicator_report_id: @key_indicator_report.id,
-          cnpj: @key_indicator_report.operation.seller.cnpj
+          cnpj: cnpj_root_format(@key_indicator_report.operation.seller.cnpj)
         )
         @key_indicator_report.operation.payers.each do |payer|
           AnalyzedPart.create(
             key_indicator_report_id: @key_indicator_report.id,
-            cnpj: payer.cnpj
+            cnpj: cnpj_root_format(payer.cnpj)
           )
         end
       end
