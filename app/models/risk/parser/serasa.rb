@@ -2,6 +2,7 @@ module Risk
   module Parser
     class Serasa
       attr_accessor :pefin, :refin, :partner_data
+      include CNPJFormatter
 
       def initialize
         bootstrap_attributes
@@ -21,6 +22,7 @@ module Risk
         @bad_check = []
         @bad_check_ccf = []
         @lost_check = []
+        @injuction = false
         @parsing_partner_data = false
       end
 
@@ -38,7 +40,7 @@ module Risk
           tags.each {|tag, value| classify(tag, value) }
 
           serialized_data = serialize
-          serialized[CNPJ.new(@company_data[:cnpj]).stripped] = serialized_data
+          serialized[cnpj_root_format(@company_data[:cnpj])] = serialized_data
           bootstrap_attributes
         end
 
@@ -81,6 +83,10 @@ module Risk
           parse_company_address_2(value)
         when '010105'
           parse_company_registration_data(value)
+        when '040198'
+          parse_injuction(value)
+        when '040298'
+          parse_injuction(value)
         end
       end
 
@@ -99,7 +105,12 @@ module Risk
           bad_check: @bad_check,
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
+          injunction: @injuction
         }
+      end
+
+      def parse_injuction
+
       end
 
       def parse_company_registration_data(data)
