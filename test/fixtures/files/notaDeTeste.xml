@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
   <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-    <infNFe versao="4.00" Id="NFe43190216532989000114550010000009671205396148">
+    <infNFe versao="4.00" Id="NFe43190216532989000114550010000009671205396149">
       <ide>
         <cUF>43</cUF>
         <cNF>20539614</cNF>
@@ -208,7 +208,7 @@
     <infProt>
       <tpAmb>1</tpAmb>
       <verAplic>RS201812100936</verAplic>
-      <chNFe>43190216532989000114550010000009671205396148</chNFe>
+      <chNFe>43190216532989000114550010000009671205396149</chNFe>
       <dhRecbto>2019-02-12T11:46:14-02:00</dhRecbto>
       <nProt>143190026183716</nProt>
       <digVal>jyIeVa851NrOSb3yXIPjA1eJVD8=</digVal>

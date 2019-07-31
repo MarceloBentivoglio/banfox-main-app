@@ -13,7 +13,8 @@ class InvoicesDocumentsBundlesController < ApplicationController
         if invoice.instance_of?(RuntimeError)
           flash[:alert] << 'Uma das notas que você subiu contem um CNPJ que não confere com o seu' if invoice.message == "Invoice do not belongs to seller"
           flash[:alert] << 'Um dos arquivos que você subiu não é xml nem PDF' if invoice.message == "File has not a valid type: xml, PDF"
-          flash[:alert] << 'O xml enviado é duplicado' if invoice.message == "Duplicated xml"
+          flash[:alert] << 'O arquivo enviado está duplicado' if invoice.message == "Duplicated xml"
+          flash[:alert] << 'O arquivo enviado não é valido. Chave da NF não foi encontrada' if invoice.message == "Nf key not found"
         elsif (!invoice.doc_parser_data? && invoice.document.content_type  == "application/pdf")
           invoices_being_parsed = true
         end

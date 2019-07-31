@@ -10,7 +10,7 @@ class ExtractDataFromXml
     begin
     @file.rewind
     check_invoice_seller
-    #check_if_duplicated_chNFe
+    check_if_duplicated_chNFe
     extract_invoice_general_info
     extract_installments
     extract_payer_info
@@ -25,8 +25,12 @@ class ExtractDataFromXml
   private
 
   def check_if_duplicated_chNFe
-    nfe_key = @doc.search('chNFe').text.strip
-    raise RuntimeError, 'Duplicated xml' if Invoice.find_by_nfe_key(nfe_key)
+    unless @doc.search('chNFe').text.blank?
+      nfe_key = @doc.search('chNFe').text.strip
+      raise RuntimeError, 'Duplicated xml' if Invoice.find_by_nfe_key(nfe_key)
+    else
+      raise RuntimeError, 'Nf key not found'
+    end
   end
 
   def extract_invoice_general_info
