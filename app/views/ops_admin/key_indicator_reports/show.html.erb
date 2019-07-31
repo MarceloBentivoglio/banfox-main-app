@@ -77,7 +77,7 @@
                     <% evidences.each do |name, evidence|%>
                       <tr>
                         <td><%= name %></td>
-                        <% unless evidence.is_a?(Array) %>
+                        <% unless evidence.is_a?(Array) && evidence %>
                           <td>
                             <ul>
                             <% evidence&.each do |k, v| %>
