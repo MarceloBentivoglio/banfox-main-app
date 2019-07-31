@@ -82,7 +82,7 @@
                             <ul>
                             <% evidence&.each do |k, v| %>
                               <li><%= k %>: <%= v%></li>
-                            <% end %>
+                            <% end if evidence %>
                             </ul>
                           </td>
                         <% else %>
