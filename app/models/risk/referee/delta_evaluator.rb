@@ -8,7 +8,7 @@ module Risk
           current ||= 0
           historic ||= 0
 
-          absolute_delta = (current - historic).to_f
+          absolute_delta = (current.to_i - historic.to_i).to_f
           if historic == 0
             if absolute_delta == 0
               return Risk::KeyIndicatorReport::GREEN_FLAG
@@ -27,7 +27,6 @@ module Risk
           end
         end
       end
-
     end
   end
 end
