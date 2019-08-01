@@ -368,6 +368,19 @@ class Installment < ApplicationRecord
     Rails.application.credentials[:google][:google_installment_worksheet_name]
   end
 
+  def notify_seller(seller)
+    user = seller.users.first
+    if operation_ended_overdue? && final_protection == 0
+      InstallmentMailer.paid_overdue_without_protection(self, user, seller).deliver_now
+    elsif operation_ended_overdue? && final_protection != 0
+      InstallmentMailer.paid_overdue(self, user, seller).deliver_now
+    elsif final_protection == 0
+      InstallmentMailer.paid_without_protection(self, user, seller).deliver_now
+    elsif final_pretection != 0
+      InstallmentMailer.paid(self, user, seller).deliver_now
+    end
+  end
+
   private
 
   def destroy_parent_if_void
