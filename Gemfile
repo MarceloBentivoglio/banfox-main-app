@@ -110,4 +110,9 @@ group :development, :test do
 
   # This gem creates ENV variables in the local environment. We need ENV cariables to diferentiate the staging and production
   gem 'dotenv-rails'
+
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'launchy'
+  gem 'webdrivers', '~> 4.0'
 end
