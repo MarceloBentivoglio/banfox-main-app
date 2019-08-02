@@ -30,6 +30,8 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
   def reject
     # There is no problem using @seller.users.first because this action only makes sense when the seller is not yet approved and thus only have one user
     @seller.rejected!
+    @seller.allowed_to_operate = false
+    @seller.forbad_to_operate_at = Time.current
     @seller.rejected_on_commitee!
     @seller.veredict_at = Time.current
     @seller.save!
