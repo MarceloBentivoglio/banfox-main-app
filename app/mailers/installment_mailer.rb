@@ -3,9 +3,38 @@ class InstallmentMailer < ApplicationMailer
 
   def paid(installment, user, seller)
     @seller = seller
+    @installment = installment
     mail(
       to: set_recipients(user.email, @seller.email_partner),
-      subject: 'Sua parcela foi liquidada!'
+      subject: "Recebemos o pagamento do título  #{@installment&.invoice&.number}/#{@installment.number} da operação #{@installment&.operation&.id}"
+      )
+  end
+
+  def paid_overdue(installment, user, seller)
+    @seller = seller
+    @installment = installment
+    mail(
+      to: set_recipients(user.email, @seller.email_partner),
+      subject: "Recebemos o pagamento do título  #{@installment&.invoice&.number}/#{@installment.number} da operação #{@installment&.operation&.id}"
+      )
+  end
+
+
+  def paid_without_protection(installment, user, seller)
+    @seller = seller
+    @installment = installment
+    mail(
+      to: set_recipients(user.email, @seller.email_partner),
+      subject: "Recebemos o pagamento do título  #{@installment&.invoice&.number}/#{@installment.number} da operação #{@installment&.operation&.id}"
+      )
+  end
+
+  def paid_overdue_without_protection(installment, user, seller)
+    @seller = seller
+    @installment = installment
+    mail(
+      to: set_recipients(user.email, @seller.email_partner),
+      subject: "Recebemos o pagamento do título  #{@installment&.invoice&.number}/#{@installment.number} da operação #{@installment&.operation&.id}"
       )
   end
 
