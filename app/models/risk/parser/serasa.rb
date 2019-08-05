@@ -9,7 +9,9 @@ module Risk
       end
 
       def bootstrap_attributes
-        @company_data = {}
+        @company_data = {
+          injuction: false
+        }
         @partner_data = []
         @pefin = []
         @refin = []
@@ -22,7 +24,7 @@ module Risk
         @bad_check = []
         @bad_check_ccf = []
         @lost_check = []
-        @injuction = false
+
         @parsing_partner_data = false
       end
 
@@ -105,12 +107,11 @@ module Risk
           bad_check: @bad_check,
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
-          injunction: @injuction
         }
       end
 
-      def parse_injuction
-
+      def parse_injuction(value)
+        @company_data[:injuction] = true
       end
 
       def parse_company_registration_data(data)
