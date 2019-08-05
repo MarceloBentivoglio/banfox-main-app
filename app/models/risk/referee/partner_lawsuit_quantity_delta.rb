@@ -39,6 +39,10 @@ module Risk
           @evidence[:current]
         )
       end
+
+      def multiple_assertions?
+        true
+      end
     end
   end
 end
