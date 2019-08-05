@@ -9,7 +9,8 @@ module Risk
                    Risk::Referee::PefinValueDelta,
                    Risk::Referee::PefinQuantityDelta,
                    Risk::Referee::ProtestValueDelta,
-                   Risk::Referee::ProtestQuantityDelta
+                   Risk::Referee::ProtestQuantityDelta,
+                   Risk::Referee::SerasaInjuction
 
       def call
         build_evidences_with_historic
@@ -24,9 +25,9 @@ module Risk
         cnpjs = @key_indicator_report.evidences['serasa_api'].keys
         cnpjs.each do |cnpj|
           analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj)
-                                       .where.not(key_indicator_report_id: @key_indicator_report.id)
-                                       .includes(:key_indicator_report)
-                                       .order('created_at DESC')
+                                             .where.not(key_indicator_report_id: @key_indicator_report.id)
+                                             .includes(:key_indicator_report)
+                                             .order('created_at DESC')
 
           historic = analyzed_parts.map do |analyzed_part|
             analyzed_part.key_indicator_report.evidences['serasa_api'][cnpj]

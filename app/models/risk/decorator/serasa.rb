@@ -7,6 +7,10 @@ module Risk
         @evidences = evidences.with_indifferent_access
       end
 
+      def injuction
+        @evidences.dig(:company_data, :injuction)
+      end
+
       def refin_value
         @evidences.dig(:refin)&.first&.dig(:value) || 0
       end
