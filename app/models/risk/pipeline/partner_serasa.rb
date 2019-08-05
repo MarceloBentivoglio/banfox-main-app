@@ -19,12 +19,15 @@ module Risk
             .includes(:key_indicator_report)
             .order('created_at DESC')
 
-          historic = analyzed_parts.first.key_indicator_report.evidences['serasa_api'][cnpj]
+          historic = analyzed_parts.map do |analyzed_part|
+            analyzed_part.key_indicator_report.evidences['serasa_api'][cnpj]
+          end
+
           build_partner_historic(
             @key_indicator_report.evidences['serasa_api'][cnpj]['partner_data'],
             historic
           )
-          @key_indicator_report.key_indicators[cnpj] = {}
+          @key_indicator_report.key_indicators[cnpj] ||= {}
           @key_indicator_report.save
         end
 
@@ -32,17 +35,21 @@ module Risk
       end
 
       def build_partner_historic(current_partner_data, historic_data)
-        historic = {
-        }
+        historic = {}
 
-        historic_data['partner_data'].each do |historic_partner_data|
-          historic[historic_partner_data['cpf']] = historic_partner_data
+        historic_data.each do |company|
+          company['partner_data'].each do |partner|
+            historic[partner['cpf']] ||= []
+            historic[partner['cpf']] << partner
+          end
         end
 
-        current_partner_data.each do |partner_data|
-          partner_data['historic'] = [ 
-            historic[partner_data['cpf']]
-          ]
+        current_partner_data.each do |current_partner|
+          if historic[current_partner['cpf']]
+            current_partner['historic'] = historic[current_partner['cpf']]
+          else
+            current_partner['historic'] = []
+          end
         end
 
         current_partner_data
