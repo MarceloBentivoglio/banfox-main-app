@@ -1,5 +1,6 @@
 module Risk
   module Service
+    #Anti Corruption Layer
     class ExternalDatum
 
       def initialize(fetcher_class, key_indicator_report)
@@ -10,12 +11,12 @@ module Risk
       end
 
       def call
+        #TTL = Time to live
         external_data = Risk::ExternalDatum.where(source: @fetcher.name)
                                            .where(query: @query)
                                            .where('ttl >= ?', DateTime.now)
                                            .order('created_at DESC')
                                            .to_a
-
 
         if external_data.any? && external_data.first.ttl < DateTime.now || external_data.empty?
           @fetcher.call
