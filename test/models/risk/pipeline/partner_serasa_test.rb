@@ -168,6 +168,11 @@ class Risk::Pipeline::PartnerSerasaTest < ActiveSupport::TestCase
                       'value' => 1000 
                     }
                   ]
+                },
+                {
+                  'cpf' => @cpf_3,
+                  'refin' => [
+                  ]
                 }
               ]
             }
