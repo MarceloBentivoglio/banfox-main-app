@@ -18,6 +18,7 @@ module Risk
           @fetchers = fetchers
         end
 
+        #TODO change name to referees_list
         def run_referees(*referees)
           @referees = referees
         end
@@ -39,13 +40,7 @@ module Risk
 
           decorated_evidences.each_cnpj do |cnpj, evidences|
             referee = referee_klass.new(evidences)
-            @key_indicator_report.key_indicators[cnpj][referee.code] = {
-              title: referee.title,
-              description: referee.description,
-              params: referee.params,
-              evidence: referee.evidence,
-              flag: referee.call,
-            }
+            @key_indicator_report.key_indicators[cnpj][referee.code] = referee.call
           end
         end
 
