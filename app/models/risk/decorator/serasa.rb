@@ -7,6 +7,14 @@ module Risk
         @evidences = evidences.with_indifferent_access
       end
 
+      def partner_cpf
+        @evidences[:cpf]
+      end
+
+      def partner_name
+        @evidences[:name]
+      end
+
       def injuction
         @evidences.dig(:company_data, :injuction)
       end
@@ -28,7 +36,7 @@ module Risk
       end
 
       def refin_historic_quantity
-        if @evidences.dig(:historic).any?
+        if @evidences.dig(:historic)&.any?
           @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:quantity) || 0
         else
           nil

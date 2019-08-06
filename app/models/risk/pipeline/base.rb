@@ -18,6 +18,7 @@ module Risk
           @fetchers = fetchers
         end
 
+        #TODO change name to referees_list
         def run_referees(*referees)
           @referees = referees
         end
@@ -37,15 +38,16 @@ module Risk
         self.class.referees.each do |referee_klass|
           decorated_evidences = decorate_evidences(@key_indicator_report.evidences)
 
-          decorated_evidences.each_cnpj do |cnpj, decorated_evidence|
-            referee = referee_klass.new(decorated_evidence)
-            @key_indicator_report.key_indicators[cnpj][referee.code] = {
-              title: referee.title,
-              description: referee.description,
-              params: referee.params,
-              evidence: referee.evidence,
-              flag: referee.call,
-            }
+          decorated_evidences.each_cnpj do |cnpj, evidences|
+            referee = referee_klass.new(evidences)
+            if referee.multiple_assertions?
+              key_indicators = referee.call
+              key_indicators.each do |key_indicator|
+                @key_indicator_report.key_indicators[cnpj][key_indicator[:code]] = key_indicator
+              end
+            else
+              @key_indicator_report.key_indicators[cnpj][referee.code] = referee.call
+            end
           end
         end
 

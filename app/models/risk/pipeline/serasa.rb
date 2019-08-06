@@ -35,7 +35,7 @@ module Risk
           end
 
           @key_indicator_report.evidences['serasa_api'][cnpj]['historic'] = historic
-          @key_indicator_report.key_indicators[cnpj] = {}
+          @key_indicator_report.key_indicators[cnpj] ||= {}
           @key_indicator_report.save
         end
 

@@ -1,5 +1,4 @@
 module Risk
-
   module Referee
     class RefinValueDelta < Base
       include DeltaEvaluator
@@ -16,7 +15,7 @@ module Risk
         @params = {green_limit: 0, yellow_limit: 0.5}
       end
 
-      def call
+      def assert
         evaluate_delta_for_negative_information(
           @evidence[:historic_value], 
           @evidence[:current_value]
