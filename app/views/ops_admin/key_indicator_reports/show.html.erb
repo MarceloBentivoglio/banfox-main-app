@@ -30,7 +30,7 @@
                   <% key_indicators.each do |key_indicator|%>
                   <tr>
                     <td><%= key_indicator.last['title'] %></td>
-                    <td><%= translate "key-indicators.#{key_indicator.last['title'].parameterize}" %></td>
+                    <td><%= key_indicator.last['description']%> : <%= translate "key-indicators.#{key_indicator.last['title'].parameterize}" %></td>
                     <td>
                       <ul>
                       <% key_indicator.last['evidence'].each do |key, value| %>
