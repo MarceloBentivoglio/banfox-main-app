@@ -1,6 +1,7 @@
 module Risk
   module Pipeline
     class Serasa < Risk::Pipeline::Base
+      #Interface Enforcement
       fetch_from Risk::Fetcher::Serasa
       run_referees Risk::Referee::RefinValueDelta,
                    Risk::Referee::RefinQuantityDelta,

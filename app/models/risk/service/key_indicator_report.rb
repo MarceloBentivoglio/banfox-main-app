@@ -24,6 +24,7 @@ module Risk
           operation_id: operation.id
         )
 
+        #This will become a asynchronous worker
         service_strategy.call(key_indicator_report)
 
         key_indicator_report
