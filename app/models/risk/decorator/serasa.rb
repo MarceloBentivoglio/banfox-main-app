@@ -15,6 +15,10 @@ module Risk
         @evidences[:name]
       end
 
+      def injuction
+        @evidences.dig(:company_data, :injuction)
+      end
+
       def refin_value
         @evidences.dig(:refin)&.first&.dig(:value) || 0
       end

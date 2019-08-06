@@ -9,5 +9,6 @@ FactoryBot.define do
     doc_parser_ref { nil }
     doc_parser_ticket { nil }
     doc_parser_data { nil }
+    nfe_key { "43190216532989000114550010000009671205396148" }
   end
 end

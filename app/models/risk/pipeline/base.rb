@@ -23,7 +23,7 @@ module Risk
           @referees = referees
         end
       end
-      
+
       def valid_input_data?
         self.class.params.reduce(false)  do |valid, key|
           @key_indicator_report.input_data.has_key?(key.to_s)
