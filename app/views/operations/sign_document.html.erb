@@ -7,7 +7,7 @@
           optional_button: "",
           } %>
         <div id='document-container' data-signature-key="<%= @signature_key %>" data-redirection-url="<%= @redirection_url %>" data-environement="<%= Rails.env %>"></div>
-        <%= link_to "Ver status da minha operação", opened_installments_path, class: "btn-rounded blue button text-center" %>
+        <%= link_to "Ver status da minha operação", opened_installments_path, class: "btn-rounded blue button text-center", id: "opened-installments-button" %>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
     sign_in FactoryBot.create(:user, seller: @seller)
   end
 
-  test ".cancel_operation delete the operation and return all the installments to their previous situation" do
+  test ".cancel_operation delete the operation and return all the installments to their original situation" do
     installment_id = @operation.installments.first.id
     assert_difference 'Operation.count', -1 do
       put cancel_operation_operations_path(id: @operation.id)

@@ -51,13 +51,13 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-              <%= link_to "Cancelar Operação",
-                cancel_operation_operations_path(id: @installments.first.operation_id),
-                method: :put,
-                class: "btn-rounded blue button",
-                id: "cancel-operation-button",
-                data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
-              %>
+            <%= link_to "Cancelar Operação",
+              cancel_operation_operations_path(id: @operation.id),
+              method: :put,
+              class: "btn-rounded blue button",
+              id: "cancel-operation-button",
+              data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
+            %>
           </div>
         <% elsif @status == :completely_approved %>
           <div class="top-content big-letters">
@@ -65,7 +65,14 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+            <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+            <%= link_to "Cancelar Operação",
+              cancel_operation_operations_path(id: @operation.id),
+              method: :put,
+              class: "btn-rounded blue button",
+              id: "cancel-operation-button",
+              data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
+            %>
           </div>
         <% elsif @status == :completely_rejected %>
           <div class="top-content big-letters">
@@ -82,6 +89,13 @@
           <div class="bottom-content">
             <span> </span>
             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+            <%= link_to "Cancelar Operação",
+              cancel_operation_operations_path(id: @operation.id),
+              method: :put,
+              class: "btn-rounded blue button",
+              id: "cancel-operation-button",
+              data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
+            %>
           </div>
         <% elsif @status == :signing_process %>
           <div class="top-content big-letters">
