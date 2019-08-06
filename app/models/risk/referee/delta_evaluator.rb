@@ -9,8 +9,8 @@ module Risk
           historic ||= 0
 
           absolute_delta = (current.to_i - historic.to_i).to_f
-          if historic == 0
-            if absolute_delta == 0
+          if historic.to_f.zero?
+            if absolute_delta.zero?
               return Risk::KeyIndicatorReport::GREEN_FLAG
             else
               return Risk::KeyIndicatorReport::YELLOW_FLAG
