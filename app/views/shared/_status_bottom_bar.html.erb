@@ -43,11 +43,21 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue button" %>
+            <%= f.submit "Confirmar e Enviar para análise", class: "btn-rounded blue button", id: "create-operation-button" %>
           </div>
         <% elsif @status == :in_analysis %>
           <div class="top-content big-letters">
               <span>Você tem 1 operação em análise.</span>
+          </div>
+          <div class="bottom-content">
+            <span> </span>
+              <%= link_to "Cancelar Operação",
+                cancel_operation_operations_path(id: @installments.first.operation_id),
+                method: :put,
+                class: "btn-rounded blue button",
+                id: "cancel-operation-button",
+                data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
+              %>
           </div>
         <% elsif @status == :completely_approved %>
           <div class="top-content big-letters">

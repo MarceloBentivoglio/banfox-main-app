@@ -62,6 +62,20 @@ class OperationsController < ApplicationController
     @redirection_url = store_installments_url
   end
 
+  def cancel_operation
+    flash[:alert] = []
+    operation = Operation.find params[:id]
+    installments = Installment.where(operation_id: operation.id)
+    installments.each do |installment|
+      installment.ordered_at = nil
+      installment.operation = nil
+      installment.available!
+    end
+    operation.destroy
+    flash[:alert] << "Operação cancelada com sucesso!"
+    redirect_to store_installments_path
+  end
+
   private
 
   def operation_params
