@@ -8,7 +8,7 @@ module Risk
         }
         @code = 'injuction'
         @title = 'Injuction'
-        @description = 'Verify if there is a injuction at Serasa'
+        @description = 'Verify if there is an injuction at Serasa'
         @params = {}
       end
 
@@ -16,7 +16,7 @@ module Risk
         {
           code: @code,
           title: @title,
-          description: evidence.partner_cpf,
+          description: @description,
           params: @params,
           evidence: @evidence,
           flag: assert
