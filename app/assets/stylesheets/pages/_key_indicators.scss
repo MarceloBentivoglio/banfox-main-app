@@ -1,39 +1,30 @@
-span.gray_flag {
+.risk-flag {
   display: block;
   float: left;
+  padding: 2px 4px;
+  border-radius: 12px;
+  margin: 0px 2px;
+}
+
+.gray-flag {
   background-color: #969595;
-  padding: 2px 4px;
   color: white;
-  border-radius: 12px;
-  margin: 0px 2px;
 }
 
-span.green_flag {
-  display: block;
-  float: left;
+.green-flag {
+
   background-color: #a6f398;
-  padding: 2px 4px;
   color: #0e8e14;
-  border-radius: 12px;
-  margin: 0px 2px;
 }
 
-span.yellow_flag {
-  display: block;
-  float: left;
+.yellow-flag {
+
   background-color: #f1ea0a;
-  padding: 2px 4px;
   color: #a59727;
-  border-radius: 12px;
-  margin: 0px 2px;
 }
 
-span.red_flag {
-  display: block;
-  float: left;
+.red-flag {
+
   background-color: #ff0000;
-  padding: 2px 4px;
   color: #e6a9a9;
-  border-radius: 12px;
-  margin: 0px 2px;
 }
