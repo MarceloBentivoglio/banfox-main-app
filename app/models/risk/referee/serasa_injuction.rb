@@ -8,11 +8,22 @@ module Risk
         }
         @code = 'injuction'
         @title = 'Injuction'
-        @description = 'Verifica se há liminar no Serasa'
+        @description = 'Verify if there is a injuction at Serasa'
         @params = {}
       end
 
       def call
+        {
+          code: @code,
+          title: @title,
+          description: evidence.partner_cpf,
+          params: @params,
+          evidence: @evidence,
+          flag: assert
+        }
+      end
+
+      def assert
         if @evidence[:injuction]
           Risk::KeyIndicatorReport::YELLOW_FLAG
         else
