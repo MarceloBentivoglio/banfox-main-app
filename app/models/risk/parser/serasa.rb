@@ -164,7 +164,10 @@ module Risk
 
       def parse_partner_data(data)
         @partner_documents << {
-          entry_date: data[97..104]
+          entry_date: data[97..104],
+          name: data[16..80],
+          pf_or_pj: data[0],
+          cpf_or_cnpj: data[1..9]
         }
       end
 
