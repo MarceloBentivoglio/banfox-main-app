@@ -1,0 +1,41 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= link_to "Adicionar conta corrente", new_ops_admin_seller_checking_account_path(@seller) , class: "btn btn-rounded blue" , id: "new-checking-account" %>
+        <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Seller</th>
+              <th>CPF/CNPJ</th>
+              <th>Nome</th>
+              <th>Nº da Conta</th>
+              <th>Agência</th>
+              <th>Banco</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @checking_accounts.each do |account| %>
+              <tr>
+                <td><%= account.id %></td>
+                <td><%= account.seller_name %></td>
+                <td><%= account.document %></td>
+                <td><%= account.name %></td>
+                <td><%= account.account_number %></td>
+                <td><%= account.branch %></td>
+                <td><%= account.bank_info %></td>
+                <td>
+                  <%= link_to "editar",  edit_ops_admin_seller_checking_account_path(@seller, account) %> | 
+                  <%= link_to "deletar", ops_admin_seller_checking_account_path(@seller, account), method: :delete, data: { confirm: "Are you sure?" } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

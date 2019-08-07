@@ -1,7 +1,7 @@
 module OpsAdmin::ActionsHelper
 
   def ops_admin_actions(seller)
-    edit_link(seller) + "|" + joint_debtor_link(seller) + "|" + set_analysis_links(seller)
+    edit_link(seller) + "|" + joint_debtor_link(seller) + "|" + checking_account_link(seller) + "|" + set_analysis_links(seller)
   end
 
   private
@@ -12,6 +12,10 @@ module OpsAdmin::ActionsHelper
 
   def joint_debtor_link(seller)
     link_to "editar devedores solidários", ops_admin_seller_joint_debtors_path(seller)
+  end
+
+  def checking_account_link(seller)
+    link_to "editar contas correntes", ops_admin_seller_checking_accounts_path(seller), id: "manage-checking-account"
   end
 
   def set_analysis_links(seller)

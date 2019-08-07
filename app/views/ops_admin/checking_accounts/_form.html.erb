@@ -1,0 +1,9 @@
+<%= simple_form_for [:ops_admin, @seller, @checking_account] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :document , label: "CPF/CNPJ"%>
+  <%= f.input :account_number %>
+  <%= f.input :branch %>
+  <%= f.input :bank_code, label: "Bank", collection: Bank.sorted_info %>
+  <%= f.submit "Salvar", class: "btn btn-rounded blue" %>
+  <%= link_to "Cancelar", url_for(:back), class: "btn btn-rounded blue" %>
+<% end %>
