@@ -6,7 +6,8 @@ module Risk
         @code = 'partner_entry_date'
         @title = 'Partner Entry Date'
         @params = {
-          green_limit: 2,
+          green_limit: 3,
+          yellow_limit: 2
         }
       end
 
@@ -40,8 +41,10 @@ module Risk
          
           if year_diff >= @params[:green_limit]
             Risk::KeyIndicatorReport::GREEN_FLAG
-          else
+          elsif year_diff  >= @params[:yellow_limit]
             Risk::KeyIndicatorReport::YELLOW_FLAG
+          else
+            Risk::KeyIndicatorReport::RED_FLAG
           end
         end
       end
