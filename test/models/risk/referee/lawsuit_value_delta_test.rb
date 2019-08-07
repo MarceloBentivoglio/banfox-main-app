@@ -121,4 +121,28 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
     assert_equal expected, Risk::Referee::LawsuitValueDelta.new(decorated_evidences).assert
   end
+
+  test '.assert should create a green flag with "0000000000000" for a value' do
+    evidences = {
+      lawsuit: [
+        {
+          value: "0000000000000"
+        }
+      ],
+      historic: [
+        {
+          lawsuit: [
+            {
+              value: "0000000000000"
+            }
+          ]
+        }
+      ]
+    }
+
+    decorated_evidences = Risk::Decorator::Serasa.new(evidences)
+    expected = Risk::KeyIndicatorReport::GREEN_FLAG
+
+    assert_equal expected, Risk::Referee::LawsuitValueDelta.new(decorated_evidences).assert
+  end
 end
