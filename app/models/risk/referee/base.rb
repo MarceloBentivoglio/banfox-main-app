@@ -25,6 +25,14 @@ module Risk
       def multiple_assertions?
         false
       end
+
+      def repr_date(date_object)
+        month = date_object&.month&.to_s&.rjust(2, '0')
+        day   = date_object&.day&.to_s&.rjust(2, '0')
+
+        "#{day}/#{month}/#{date_object&.year}"
+      end
+
     end
   end
 end

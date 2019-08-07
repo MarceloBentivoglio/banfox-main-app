@@ -7,7 +7,7 @@ module Risk
         }
         @code = 'founded_in'
         @title = 'Founded In'
-        @description = format_date(@evidence[:founded_in])
+        @description = repr_date(@evidence[:founded_in])
         @params = {
           yellow_limit: 3,
           red_limit: 2
@@ -28,13 +28,6 @@ module Risk
             Risk::KeyIndicatorReport::GREEN_FLAG
           end
         end
-      end
-
-      def format_date(founded_in)
-        month = founded_in&.month&.to_s&.rjust(2, '0')
-        day   = founded_in&.day&.to_s&.rjust(2, '0')
-
-        "#{day}/#{month}/#{founded_in&.year}"
       end
     end
   end
