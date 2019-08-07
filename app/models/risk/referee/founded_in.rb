@@ -7,7 +7,7 @@ module Risk
         }
         @code = 'founded_in'
         @title = 'Founded In'
-        @description = repr_date(@evidence[:founded_in])
+        @description = @evidence[:founded_in].strftime
         @params = {
           yellow_limit: 3,
           red_limit: 2
