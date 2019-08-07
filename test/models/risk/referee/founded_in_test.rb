@@ -22,8 +22,8 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
         founded_in: Date.new(2019,1,1)
       },
       params: {
-        yellow_limit: 3,
-        red_limit: 2
+        green_limit: 3,
+        yellow_limit: 2
       },
       flag: Risk::KeyIndicatorReport::RED_FLAG
     }
@@ -48,14 +48,14 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
         founded_in: Date.new(2017,1,1)
       },
       params: {
-        yellow_limit: 3,
-        red_limit: 2
+        green_limit: 3,
+        yellow_limit: 2
       },
       flag: Risk::KeyIndicatorReport::YELLOW_FLAG
     }
 
     actual = Risk::Referee::FoundedIn.new(decorated_evidence).call
-    
+
     assert_equal expected, Risk::Referee::FoundedIn.new(decorated_evidence).call
   end
 
@@ -76,14 +76,14 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
         founded_in: Date.new(2014,1,1)
       },
       params: {
-        yellow_limit: 3,
-        red_limit: 2
+        green_limit: 3,
+        yellow_limit: 2
       },
       flag: Risk::KeyIndicatorReport::GREEN_FLAG
     }
 
     actual = Risk::Referee::FoundedIn.new(decorated_evidence).call
-    
+
     assert_equal expected, Risk::Referee::FoundedIn.new(decorated_evidence).call
   end
 
@@ -104,14 +104,14 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
         founded_in: nil
       },
       params: {
-        yellow_limit: 3,
-        red_limit: 2
+        green_limit: 3,
+        yellow_limit: 2
       },
       flag: Risk::KeyIndicatorReport::GRAY_FLAG
     }
 
     actual = Risk::Referee::FoundedIn.new(decorated_evidence).call
-    
+
     assert_equal expected, Risk::Referee::FoundedIn.new(decorated_evidence).call
   end
 end
