@@ -15,6 +15,14 @@ module Risk
         @evidences[:name]
       end
 
+      def founded_in
+        begin
+          Date.parse(@evidences.dig(:company_data, :founded_in))
+        rescue
+          nil
+        end
+      end
+
       def injuction
         @evidences.dig(:company_data, :injuction)
       end
