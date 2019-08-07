@@ -13,7 +13,7 @@ class Risk::Referee::SerasaInjuctionTest < ActiveSupport::TestCase
     expected = {
       code: 'injuction',
       title: 'Injuction',
-      description: 'Verify if there is an injuction at Serasa',
+      description: '',
       params: {},
       evidence: {
         injuction: true
@@ -35,7 +35,7 @@ class Risk::Referee::SerasaInjuctionTest < ActiveSupport::TestCase
     expected = {
       code: 'injuction',
       title: 'Injuction',
-      description: 'Verify if there is an injuction at Serasa',
+      description: '',
       params: {},
       evidence: {
         injuction: false
