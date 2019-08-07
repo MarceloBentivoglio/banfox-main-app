@@ -45,7 +45,11 @@
                         <% end %>
                       </ul>
                     </td>
-                    <td><span class="risk-flag <%= span_flag(key_indicator.last['flag']) %>"><%= span_flag(key_indicator.last['flag'])%></span></td>
+                    <td>
+                      <div class="risk-flag <%= span_flag(key_indicator.last['flag']) %>">
+                        <span><i class="fa fa-flag"></i></span>
+                      </div>
+                    </td>
                   </tr>
                   <% end %>
                 </tbody>

@@ -1,9 +1,15 @@
 .risk-flag {
-  display: block;
   float: left;
-  padding: 2px 4px;
-  border-radius: 12px;
-  margin: 0px 2px;
+  border-radius: 50%;
+  width: 1.8em;
+  height: 1.8em;
+  margin: 0 0.1em;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
 .gray-flag {
