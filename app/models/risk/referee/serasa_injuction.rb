@@ -8,7 +8,7 @@ module Risk
         }
         @code = 'injuction'
         @title = 'Injuction'
-        @description = 'Verify if there is an injuction at Serasa'
+        @description = ''
         @params = {}
       end
 
