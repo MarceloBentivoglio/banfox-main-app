@@ -5,7 +5,7 @@ class Risk::Referee::PartnerEntryDateTest < ActiveSupport::TestCase
     Date.stubs(:today).returns(Date.new(2019, 7, 8))
   end
 
-  test '.assert returns a key_indicator with a yellow flag' do
+  test '.call returns a key_indicator with the correct flag' do
     evidences = {
       partner_documents: [
         {

@@ -40,11 +40,12 @@ class Risk::Parser::SerasaTest < ActiveSupport::TestCase
     @parser = Risk::Parser::Serasa.new
     data = @parser.call(external_data)
 
-    #Testing for founded_in
+    #Testing for Referee::FoundedIn
     expected = Date.new(2003, 8, 1)
     actual = Date.parse(data["05888701"][:company_data][:founded_in])
     assert_equal  expected, actual
 
+    #Testing for Referee::PartnerEntryDate
     expected = Date.new(2003, 9,3)
     actual = Date.parse(data["05888701"][:partner_documents].first[:entry_date])
     assert_equal expected, actual
