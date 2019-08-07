@@ -14,7 +14,7 @@ class InstallmentsController < ApplicationController
   end
 
   def opened
-    @installments = Installment.currently_opened(@seller).paginate(page: params[:page])
+    @installments = Installment.currently_opened(@seller).order('due_date ASC').paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
