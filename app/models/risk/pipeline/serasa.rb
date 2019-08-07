@@ -12,6 +12,7 @@ module Risk
                    Risk::Referee::ProtestValueDelta,
                    Risk::Referee::ProtestQuantityDelta,
                    Risk::Referee::SerasaInjuction,
+                   Risk::Referee::PartnerEntryDate,
                    Risk::Referee::FoundedIn
 
       def call
