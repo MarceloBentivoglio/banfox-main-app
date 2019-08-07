@@ -115,6 +115,7 @@ module Risk
       end
 
       def parse_company_registration_data(data)
+        @company_data[:founded_in] = data[0..7]
         @company_data[:line_of_business] = data[16..68]
         @company_data[:line_of_business_serasa_code] = data[70..76]
         @company_data[:cnae] = data[97..103]
