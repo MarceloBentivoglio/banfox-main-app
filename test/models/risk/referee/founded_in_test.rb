@@ -17,7 +17,7 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
     expected = {
       code: 'founded_in',
       title: 'Founded In',
-      description: '01/01/2019',
+      description: '2019-01-01',
       evidence: {
         founded_in: Date.new(2019,1,1)
       },
@@ -43,7 +43,7 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
     expected = {
       code: 'founded_in',
       title: 'Founded In',
-      description: '01/01/2017',
+      description: '2017-01-01',
       evidence: {
         founded_in: Date.new(2017,1,1)
       },
@@ -71,7 +71,7 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
     expected = {
       code: 'founded_in',
       title: 'Founded In',
-      description: '01/01/2014',
+      description: '2014-01-01',
       evidence: {
         founded_in: Date.new(2014,1,1)
       },
@@ -99,7 +99,7 @@ class Risk::Referee::FoundedInTest < ActiveSupport::TestCase
     expected = {
       code: 'founded_in',
       title: 'Founded In',
-      description: '//',
+      description: nil,
       evidence: {
         founded_in: nil
       },
