@@ -21,6 +21,7 @@
                   <tr>
                     <th>Código</th>
                     <th>Descrição</th>
+                    <th>Notas</th>
                     <th>Evidências</th>
                     <th>Configuração</th>
                     <th>Bandeira</th>
@@ -30,7 +31,8 @@
                   <% key_indicators.each do |key_indicator|%>
                   <tr>
                     <td><%= key_indicator.last['title'] %></td>
-                    <td><%= key_indicator.last['description'] %></td>
+                    <td><%= translate "key-indicators.#{key_indicator.last['title'].parameterize}" %></td>
+                    <td><%= key_indicator.last['description']%></td>
                     <td>
                       <ul>
                       <% key_indicator.last['evidence'].each do |key, value| %>
