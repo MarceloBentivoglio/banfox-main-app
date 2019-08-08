@@ -19,3 +19,4 @@ pt-BR:
     injuction: "Sinaliza se a empresa possui liminar na justiça, que impede o Serasa de apresentar as informações negativas da empresa. Empresa com liminar é considerado amarelo e empresa sem liminar é considerado verde."
     partner-entry-date: "Avalia a data de entrada do sócio na empresa. Entrada do sócio há mais de, ou com exatos 'green_limit' anos é considerado verde. Entrada do sócio entre (incluso) 'yellow_limit' e (excluso) 'green limit' anos atrás é considerado amarelo. Entrada do sócio há menos de 'yellow_limit' anos é considerado vermelho."
     founded-in: "Avalia a data de fundação da empresa. Empresa fundada há mais de, ou com exatos 'green_limit' anos é considerado verde. Empresa com idade entre (incluso) 'yellow_limit' e (excluso) 'green limit' anos é considerado amarela. Empresas com menos de 'yellow_limit' anos é considerado vermelho."
+    partner_link_admin: ""
