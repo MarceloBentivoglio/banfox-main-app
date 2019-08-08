@@ -16,10 +16,10 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
     end
     
     installment_ids.each do |i|
-      new_installment = Installment.find(i)
-      assert_nil new_installment.operation_id
-      assert_nil new_installment.ordered_at
-      assert_equal "available", new_installment.backoffice_status
+      installment = Installment.find(i)
+      assert_nil installment.operation_id
+      assert_nil installment.ordered_at
+      assert_equal "available", installment.backoffice_status
     end
   end
 end
