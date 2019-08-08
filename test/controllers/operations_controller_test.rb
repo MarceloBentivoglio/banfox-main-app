@@ -8,6 +8,7 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
     sign_in FactoryBot.create(:user, seller: @seller)
   end
 
+  #Check all the installments not only the first one
   test ".cancel_operation delete the operation and return all the installments to their original situation" do
     installment_id = @operation.installments.first.id
     assert_difference 'Operation.count', -1 do

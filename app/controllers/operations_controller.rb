@@ -65,7 +65,7 @@ class OperationsController < ApplicationController
   def cancel_operation
     flash[:alert] = []
     operation = Operation.find params[:id]
-    installments = Installment.where(operation_id: operation.id)
+    installments = operation.installments
     installments.each do |installment|
       installment.ordered_at = nil
       installment.operation = nil
