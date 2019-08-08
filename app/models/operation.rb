@@ -18,6 +18,7 @@ class Operation < ApplicationRecord
   has_many :installments, dependent: :nullify
   has_many :invoices, through: :installments
   has_many :key_indicator_reports, class_name: 'Risk::KeyIndicatorReport'
+  belongs_to :checking_account
 
   validates :consent, acceptance: {message: "é necessário dar o seu aval para a operação"}
   default_scope { order(created_at: :asc) }
