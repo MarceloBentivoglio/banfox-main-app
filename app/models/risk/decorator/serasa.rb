@@ -47,6 +47,10 @@ module Risk
         @evidences.dig(:company_data, :social_capital)
       end
 
+      def social_capital_realized
+        @evidences.dig(:company_data, :social_capital_realized)
+      end
+
       def founded_in
         begin
           Date.parse(@evidences.dig(:company_data, :founded_in))
