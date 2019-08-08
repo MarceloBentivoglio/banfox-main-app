@@ -43,6 +43,10 @@ module Risk
         @evidences[:cpf_or_cnpj]
       end
 
+      def social_capital
+        @evidences.dig(:company_data, :social_capital)
+      end
+
       def founded_in
         begin
           Date.parse(@evidences.dig(:company_data, :founded_in))
