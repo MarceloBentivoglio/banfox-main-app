@@ -11,7 +11,9 @@ module Risk
                    Risk::Referee::PefinQuantityDelta,
                    Risk::Referee::ProtestValueDelta,
                    Risk::Referee::ProtestQuantityDelta,
-                   Risk::Referee::SerasaInjuction
+                   Risk::Referee::SerasaInjuction,
+                   Risk::Referee::PartnerEntryDate,
+                   Risk::Referee::FoundedIn
 
       def call
         build_evidences_with_historic

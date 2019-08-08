@@ -31,9 +31,6 @@ gem 'money-rails' #https://github.com/RubyMoney/money-rails
 # These two gems are used for validating the CPF and the CNPJ
 gem 'cpf_cnpj'
 
-# This gem is used to create an admin interface
-gem 'forest_liana'
-
 # This gem is used to transform images that are uploaded by the user
 gem 'mini_magick'
 

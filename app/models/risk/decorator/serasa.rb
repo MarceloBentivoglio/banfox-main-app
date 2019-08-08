@@ -15,6 +15,42 @@ module Risk
         @evidences[:name]
       end
 
+      def partner_documents
+        documents = @evidences[:partner_documents]&.map do |partner_document|
+          Risk::Decorator::Serasa.new(partner_document)
+        end
+
+        documents || []
+      end
+
+      def partner_entry_date
+        begin
+          Date.parse(@evidences[:entry_date])
+        rescue
+          nil
+        end
+      end
+
+      def partner_name
+        @evidences[:name]
+      end
+
+      def partner_pf_or_pj
+        @evidences[:pf_or_pj]
+      end
+
+      def partner_cpf_or_cnpj
+        @evidences[:cpf_or_cnpj]
+      end
+
+      def founded_in
+        begin
+          Date.parse(@evidences.dig(:company_data, :founded_in))
+        rescue
+          nil
+        end
+      end
+
       def injuction
         @evidences.dig(:company_data, :injuction)
       end

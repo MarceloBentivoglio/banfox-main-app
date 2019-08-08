@@ -9,10 +9,11 @@ module Risk
 
       def build_key_indicator(evidence)
         {
+          code: self.code,
           title: self.title,
           description: self.description,
-          params: self.params,
           evidence: self.evidence,
+          params: self.params,
           flag: self.assert,
         }
       end
