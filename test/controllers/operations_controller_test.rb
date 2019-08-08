@@ -10,10 +10,7 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
 
   test ".cancel_operation delete the operation and return all the installments to their original situation" do
     ignore_slack_call
-    installment_ids = []
-    @operation.installments.each do |installment|
-      installment_ids << installment.id
-    end
+    installment_ids = @operation.installments.map { |installment| installment.id }
     assert_difference 'Operation.count', -1 do
       put cancel_operations_path(id: @operation.id)
     end
