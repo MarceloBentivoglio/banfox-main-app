@@ -40,6 +40,12 @@ class ActiveSupport::TestCase
     @operation
   end
 
+  def ignore_slack_call
+    mocked_slack = mock()
+    mocked_slack.stubs(:send_now).returns(true)
+    SlackMessage.stubs(:new).returns(mocked_slack)
+  end
+
   Warden.test_mode!
 end
 

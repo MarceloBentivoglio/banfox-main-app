@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       get :consent
       get :create_document
       get :sign_document
+      put :cancel
     end
   end
   resources :documents, only: [:index, :new, :create, :destroy]

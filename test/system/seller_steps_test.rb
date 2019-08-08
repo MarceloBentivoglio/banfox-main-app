@@ -150,7 +150,8 @@ class SellerStepsTest < ApplicationSystemTestCase
     seller_dashboard_login
 
     find('span', :text => 'Adicionar notas fiscais').click
-    find('p', :text => 'Selecionar arquivos').click
+    # Commenting this line so the Files popup doesnt show up
+    # find('p', :text => 'Selecionar arquivos').click
     attach_file('invoices_documents_bundle[documents][]', "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", visible: :all)
     click_button :commit, value: "Subir arquivos"
 
@@ -163,7 +164,8 @@ class SellerStepsTest < ApplicationSystemTestCase
     seller_dashboard_login
 
     find('span', :text => 'Adicionar notas fiscais').click
-    find('p', :text => 'Selecionar arquivos').click
+    # Commenting this line so the Files popup doesnt show up
+    # find('p', :text => 'Selecionar arquivos').click
     attach_file('invoices_documents_bundle[documents][]',
                 [
                   "#{Rails.root}/test/fixtures/files/notaDeTeste.xml", 
