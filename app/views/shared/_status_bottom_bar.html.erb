@@ -51,7 +51,6 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%#= TODO change de button design. make it look like a descreate link %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,
@@ -66,7 +65,6 @@
           <div class="bottom-content">
             <span> </span>
             <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
-            <%#= TODO change de button design. make it look like a descreate link %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,
