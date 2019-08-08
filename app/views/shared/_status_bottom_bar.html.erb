@@ -53,9 +53,8 @@
             <span> </span>
             <%#= TODO change de button design. make it look like a descreate link %>
             <%= link_to "Cancelar Operação",
-              cancel_operation_operations_path(id: @operation.id),
+              cancel_operations_path(id: @operation.id),
               method: :put,
-              class: "btn-rounded blue button",
               id: "cancel-operation-button",
               data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
             %>
@@ -69,9 +68,8 @@
             <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
             <%#= TODO change de button design. make it look like a descreate link %>
             <%= link_to "Cancelar Operação",
-              cancel_operation_operations_path(id: @operation.id),
+              cancel_operations_path(id: @operation.id),
               method: :put,
-              class: "btn-rounded blue button",
               id: "cancel-operation-button",
               data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
             %>
@@ -92,9 +90,8 @@
             <span> </span>
             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
             <%= link_to "Cancelar Operação",
-              cancel_operation_operations_path(id: @operation.id),
+              cancel_operations_path(id: @operation.id),
               method: :put,
-              class: "btn-rounded blue button",
               id: "cancel-operation-button",
               data: { confirm: 'Você tem certeza que deseja cancelar esta operação?' }
             %>

@@ -8,15 +8,21 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
     sign_in FactoryBot.create(:user, seller: @seller)
   end
 
-  #Check all the installments not only the first one
   test ".cancel_operation delete the operation and return all the installments to their original situation" do
-    installment_id = @operation.installments.first.id
-    assert_difference 'Operation.count', -1 do
-      put cancel_operation_operations_path(id: @operation.id)
+    ignore_slack_call
+    installment_ids = []
+    @operation.installments.each do |installment|
+      installment_ids << installment.id
     end
-    new_installment = Installment.find(installment_id)
-    assert_nil new_installment.operation_id
-    assert_nil new_installment.ordered_at
-    assert_equal "available", new_installment.backoffice_status
+    assert_difference 'Operation.count', -1 do
+      put cancel_operations_path(id: @operation.id)
+    end
+    
+    installment_ids.each do |i|
+      new_installment = Installment.find(i)
+      assert_nil new_installment.operation_id
+      assert_nil new_installment.ordered_at
+      assert_equal "available", new_installment.backoffice_status
+    end
   end
 end
