@@ -53,7 +53,8 @@
           <div class="top-content big-letters">
               <span>Parabéns! Sua operação foi aprovada.</span>
           </div>
-          <div class="bottom-content">
+          <%= f.input :checking_account_id, label: false, collection: @seller.checking_accounts.order(:bank_code), prompt: "Selecione sua Conta Corrente", id: "checking_account_select", :input_html => {onchange: 'show_create_document_button(this)'}, label_method: :bank_info %>
+          <div class="bottom-content" id="sign_button_container" style="display: none;">
             <span> </span>
             <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button" %>
           </div>
@@ -101,4 +102,3 @@
     </div>
   </div>
 </div>
-
