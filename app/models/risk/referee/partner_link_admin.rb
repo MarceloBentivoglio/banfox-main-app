@@ -36,6 +36,10 @@ module Risk
           return Risk::KeyIndicatorReport::YELLOW_FLAG
         end
       end
+
+      def multiple_assertions?
+        true
+      end
     end
   end
 end
