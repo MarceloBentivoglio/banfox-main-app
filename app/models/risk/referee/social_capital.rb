@@ -9,9 +9,9 @@ module Risk
         @code = 'social_capital'
         @title = 'Social Capital'
         @description = ''
-        @params = { 
+        @params = {
           green_limit: 50_000,
-          yellow_limit: 10_000 
+          yellow_limit: 10_000
         }
       end
 

@@ -4,7 +4,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
   test '.call returns a green flag' do
     evidences = {
       company_data: {
-        social_capital: 50_000
+        social_capital: "50000"
       }
     }
 
@@ -19,7 +19,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
       },
       params: {
         green_limit: 50_000,
-        yellow_limit: 10_000 
+        yellow_limit: 10_000
       },
       flag: Risk::KeyIndicatorReport::GREEN_FLAG
     }
@@ -30,7 +30,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
   test '.call returns a yellow flag' do
     evidences = {
       company_data: {
-        social_capital: 49_000
+        social_capital: "49000"
       }
     }
 
@@ -45,7 +45,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
       },
       params: {
         green_limit: 50_000,
-        yellow_limit: 10_000 
+        yellow_limit: 10_000
       },
       flag: Risk::KeyIndicatorReport::YELLOW_FLAG
     }
@@ -56,7 +56,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
   test '.call returns a red flag' do
     evidences = {
       company_data: {
-        social_capital: 9_000
+        social_capital: "9000"
       }
     }
 
@@ -71,7 +71,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
       },
       params: {
         green_limit: 50_000,
-        yellow_limit: 10_000 
+        yellow_limit: 10_000
       },
       flag: Risk::KeyIndicatorReport::RED_FLAG
     }
@@ -97,7 +97,7 @@ class Risk::Referee::SocialCapitalTest < ActiveSupport::TestCase
       },
       params: {
         green_limit: 50_000,
-        yellow_limit: 10_000 
+        yellow_limit: 10_000
       },
       flag: Risk::KeyIndicatorReport::GRAY_FLAG
     }

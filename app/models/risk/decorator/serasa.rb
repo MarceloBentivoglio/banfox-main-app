@@ -48,11 +48,11 @@ module Risk
       end
 
       def social_capital
-        @evidences.dig(:company_data, :social_capital)
+        @evidences.dig(:company_data, :social_capital)&.to_i
       end
 
       def social_capital_realized
-        @evidences.dig(:company_data, :social_capital_realized)
+        @evidences.dig(:company_data, :social_capital_realized)&.to_i
       end
 
       def founded_in
