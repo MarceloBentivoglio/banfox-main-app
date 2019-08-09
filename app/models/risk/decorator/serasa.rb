@@ -15,6 +15,10 @@ module Risk
         @evidences[:name]
       end
 
+      def partner_role
+        @evidences[:role]
+      end
+
       def partner_documents
         documents = @evidences[:partner_documents]&.map do |partner_document|
           Risk::Decorator::Serasa.new(partner_document)
