@@ -48,7 +48,7 @@ class Risk::Referee::PartnerLinkAdminTest < ActiveSupport::TestCase
         evidence: {
           partner_role: 'admin'
         },
-        flag: Risk::KeyIndicatorReport::GREEN_FLAG
+        flag: Risk::KeyIndicatorReport::YELLOW_FLAG
       },
       {
         code: 'partner_link_admin_333333333',
