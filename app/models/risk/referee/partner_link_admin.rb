@@ -30,7 +30,7 @@ module Risk
       def assert
         if @evidence[:partner_role] == nil
           return Risk::KeyIndicatorReport::GRAY_FLAG
-        elsif ['admin', 'admin/associate'].include? @evidence[:partner_role]
+        elsif @evidence[:partner_role] == 'admin/associate'
           return Risk::KeyIndicatorReport::GREEN_FLAG
         else
           return Risk::KeyIndicatorReport::YELLOW_FLAG
