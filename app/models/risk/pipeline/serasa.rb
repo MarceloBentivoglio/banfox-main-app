@@ -13,7 +13,9 @@ module Risk
                    Risk::Referee::ProtestQuantityDelta,
                    Risk::Referee::SerasaInjuction,
                    Risk::Referee::PartnerEntryDate,
-                   Risk::Referee::FoundedIn
+                   Risk::Referee::FoundedIn,
+                   Risk::Referee::SocialCapital,
+                   Risk::Referee::SocialCapitalRealized
 
       def call
         build_evidences_with_historic
