@@ -382,7 +382,7 @@ class Installment < ApplicationRecord
   end
 
   def initial_operation_days
-    (due_date - ordered_at.to_date).to_i
+    (expected_liquidation_date - ordered_at.to_date).to_i
   end
   private
 

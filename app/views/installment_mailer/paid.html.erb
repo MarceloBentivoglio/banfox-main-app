@@ -1,4 +1,4 @@
-<span class="preheader">Sua operação foi aprovada</span>
+<span class="preheader">Sua operação foi liquidada</span>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
@@ -43,9 +43,9 @@
                   </table>
                   <br>
                   <p>Por esse motivo, temos três notícias muito boas para você:</p>
-                  <p>1. Te transferimos o valor da sua proteção que é :  <strong><%= humanized_money_with_symbol @installment.final_protection %></strong>. Ela deve chegar na sua conta no máximo até amanhã.</p>
-                  <p>2. A cada liquidação de título em dia que você faz, seu histórico conosco aumenta e quanto mais informação e relacionamento tivermos, melhores taxas, proteções e limites operacionais podemos te oferecer!</p>
-                  <p>3. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
+                  <p class="align-justify">1. Te transferimos o valor da sua proteção que é :  <strong><%= humanized_money_with_symbol @installment.final_protection %></strong>. Ela deve chegar na sua conta no máximo até amanhã.</p>
+                  <p class="align-justify">2. A cada liquidação de título em dia que você faz, seu histórico conosco aumenta e quanto mais informação e relacionamento tivermos, melhores taxas, proteções e limites operacionais podemos te oferecer!</p>
+                  <p class="align-justify">3. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">

@@ -1,4 +1,4 @@
-<span class="preheader">Sua operação foi aprovada</span>
+<span class="preheader">Sua operação foi liquidada</span>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
@@ -42,10 +42,15 @@
                     </tr>
                   </table>
                   <br>
-                  <p>Por esse motivo, temos três notícias muito boas para você:</p>
-                  <p>1. Como houve um atraso na liquidação, sua operação que tinha a expectativa de durar <%= @installment.initial_operation_days %> efetivamente durou <strong><% @installment.overdue_operation_total_days %></strong> dias. Dessa maneira, visto que você não possui uma proteção conosco, você precisa nos pagar esse aluguel extra do dinheiro referente aos <%= @installment.overdue_days %> dias de atraso, mas note que isso não é uma muita nem juros de mora! Não é super legal e justo com você? Abaixo segue o valor e a conta para realizar o depósito:</p>
-                  <p><center><%= @installment.delta_fee %></center></p>
-                  <p>2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
+                  <p>Por esse motivo, temos duas notícias muito boas para você:</p>
+                  <p class="align-justify">1. Como houve um atraso na liquidação, sua operação, que tinha a expectativa de durar <%= @installment.initial_operation_days %> dias, efetivamente durou <strong><%= @installment.overdue_operation_total_days %></strong> dias. Dessa maneira, visto que você não possui uma proteção conosco, você precisa nos pagar esse "aluguel" extra do dinheiro referente aos <strong><%= @installment.overdue_days %> dias</strong> de atraso, mas note que isso não é uma multa nem juros de mora! É super legal e justo com você, não é mesmo? Abaixo segue o valor e a conta para realizar o depósito:</p>
+                  <p class="center m-b-0"><strong><%= humanized_money_with_symbol @installment.delta_fee %></strong></p>
+                  <p class="center m-b-0">MVP Fomento Mercantil Ltda.</p>
+                  <p class="center m-b-0">23.198.636/0001-95</p>
+                  <p class="center m-b-0">(237) Banco Bradesco S.A.</p>
+                  <p class="center m-b-0">Agencia: 0138</p>
+                  <p class="center">Conta: 70033-9 </p>
+                  <p class="align-justify">2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
