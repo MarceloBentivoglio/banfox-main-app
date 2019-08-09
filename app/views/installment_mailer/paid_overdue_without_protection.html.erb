@@ -34,6 +34,8 @@
                       <td class="purchase_item">
                         <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.first %>
                         <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.second %>
+                        <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.third %>
+                        <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.fourth %>
                       </td>
                       <td class="purchase_item align-right"><%= @installment.due_date %></td>
                       <td class="purchase_item align-right"><%= humanized_money_with_symbol @installment.value %></td>

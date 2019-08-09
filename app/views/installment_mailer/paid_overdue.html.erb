@@ -34,6 +34,8 @@
                       <td class="purchase_item">
                         <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.first %>
                         <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.second %>
+                        <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.third %>
+                        <%= @installment.invoice.payer.company_name.mb_chars.titleize.split.fourth %>
                       </td>
                       <td class="purchase_item align-right"><%= @installment.due_date %></td>
                       <td class="purchase_item align-right"><%= humanized_money_with_symbol @installment.value %></td>
@@ -41,8 +43,8 @@
                   </table>
                   <br>
                   <p>Por esse motivo, temos duas notícias muito boas para você:</p>
-                  <p>1. Te transferimos o valor remanescente da sua proteção. Como houve um atraso na liquidação, a proteção que seria devolvida de <%= @installment.initial_protection %> será no montante de <%= @installment.final_protection %>. Dessa maneira você não paga nem multa nem juros de mora, pois sua operação que tinha a expectativa de durar <%= @installment.initial_operation_days %> efetivamente durou <%= @installment.overdue_operation_total_days %> dias. Não é super legal e justo com você? Você paga pelo tempo que usou! O dinheiro deve chegar na sua conta no máximo até amanhã.</p>
-                  <p>2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
+                  <p>1. Te transferimos o valor remanescente da sua proteção. Como houve um atraso na liquidação, a proteção que seria devolvida de <%= humanized_money_with_symbol @installment.initial_protection %> será no montante de <strong><%= humanized_money_with_symbol @installment.final_protection %></strong>. Dessa maneira você não paga nem multa nem juros de mora, pois sua operação, que tinha a expectativa de durar <%= @installment.initial_operation_days %> dias, efetivamente durou  <strong> <%= @installment.overdue_operation_total_days %> </strong> dias. É super legal e justo com você, não é mesmo? Você paga pelo tempo que usou! O dinheiro deve chegar na sua conta no máximo até amanhã.</p>
+                  <p>2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
