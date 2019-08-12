@@ -7,7 +7,7 @@ seller1 = Seller.create!(
   rf_sit_cad: "seed",
   birth_date: "21/04/1989",
   mobile: "11998308090",
-  company_name: "Biort Limitada",
+  company_name: "Biort Materiais de Implantes Importação Limitada",
   company_nickname: "Biort",
   cnpj: "08588244000149",
   phone: "1132355572",
@@ -48,7 +48,7 @@ seller1 = Seller.create!(
 )
 
 payer1 = Payer.create!(
-    company_name: "FICTÍCIO",
+    company_name: "hospital cristovão da gama s.a	",
     cnpj:"23198636000195",
     fator: 0.05,
     advalorem: 0.001,
@@ -487,7 +487,6 @@ user2 = User.create!(
 )
 
 puts "Creating third seller, nota PDF ......."
-
 seller3 = Seller.create!(
   full_name: "AntONIO Bena DA silva",
   cpf: "20477293000",
@@ -557,9 +556,128 @@ user3 = User.create!(
   admin: false,
 )
 
-puts "Creating Doc Parser user, nota PDF ......."
+puts "Creating fourth seller without protection......."
+seller4 = Seller.create!(
+  full_name: "Felipe Almeida dos Santos",
+  cpf: "57161054087",
+  rf_full_name: "seed",
+  rf_sit_cad: "seed",
+  birth_date: "11121952",
+  mobile: "11998308090",
+  company_name: "Biort Implantes Sem Proteção Ltda",
+  company_nickname: "Biort Sem Proteção",
+  cnpj: "80694330000163",
+  phone: "11998308090",
+  website: "asdfg",
+  address: "Rua do Rocio",
+  address_number: "450",
+  address_comp: "",
+  neighborhood: "Vila Olímpia",
+  state: "SP",
+  city: "São Paulo",
+  zip_code: "04552000",
+  inscr_est: "",
+  inscr_mun: "",
+  nire: "",
+  company_type: "company_type_not_set",
+  operation_limit_cents: 10000000,
+  operation_limit_currency: "BRL",
+  fator: 0.045,
+  advalorem: 0.005,
+  monthly_revenue_cents: 12341234,
+  monthly_revenue_currency: "BRL",
+  monthly_fixed_cost_cents: 2341,
+  monthly_fixed_cost_currency: "BRL",
+  monthly_units_sold: 2345,
+  cost_per_unit_cents: 23451,
+  cost_per_unit_currency: "BRL",
+  debt_cents: 342,
+  debt_currency: "BRL",
+  full_name_partner: "Gustavo Campos",
+  cpf_partner: "66254380064",
+  rf_full_name_partner: "Gustavo campos",
+  rf_sit_cad_partner: "regular",
+  birth_date_partner: "11121952",
+  mobile_partner: "11998308090",
+  email_partner: "joaquim@banfox.com.br",
+  consent: true,
+  validation_status: "active",
+  visited: true,
+  analysis_status: "approved",
+  rejection_motive: "rejection_motive_non_applicable",
+  protection: 0,
+  allowed_to_operate: true,
+)
 
 user4 = User.create!(
+  email: "semprotecao@biort.com.br",
+  password: 123123,
+  seller: seller4,
+  admin: false,
+)
+
+#invoice
+i8 = Invoice.create!(
+  invoice_type: "merchandise",
+  number: "983496123",
+  seller: seller4,
+  payer: payer1,
+)
+
+operation4 = Operation.create!(
+  consent: true,
+  signed: true,
+)
+
+#Installments for i8 and operation4
+# Creating installments
+# for i8 paid on day
+i = Installment.create!(
+ invoice: i8,
+ operation: operation4,
+ number: "11",
+ value: Money.new(3330000),
+ ordered_at: Time.current - 150.days,
+ due_date: Date.current - 90.days,
+)
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ i.final_fator = i.fator
+ i.final_advalorem = i.advalorem
+ i.final_protection = i.protection
+ i.veredict_at = Time.current - 150.days
+ i.deposited_at = Time.current - 150.days
+ i.finished_at = Time.current - 90.days
+ i.deposited!
+ i.paid!
+
+# for i8 atrasada com um installment pago
+# installment pago em atraso
+ i = Installment.create!(
+ invoice: i8,
+ operation: operation4,
+ number: "12",
+ value: Money.new(1000000),
+ due_date: Date.current - 60.days,
+ ordered_at: Time.current - 90.days,
+)
+ i.initial_fator = i.fator
+ i.initial_advalorem = i.advalorem
+ i.initial_protection = i.protection
+ delta_fator = i.value * (1 - 1/(1 + i.invoice.fator)**((60 + 3) / 30.0)) - i.initial_fator
+ delta_advalorem = i.value * (1 - 1/(1 + i.invoice.advalorem)**((60 + 3) / 30.0)) - i.initial_advalorem
+ i.final_fator = i.initial_fator + delta_fator
+ i.final_advalorem = i.initial_advalorem + delta_advalorem
+ i.final_protection = i.initial_protection - (delta_fator + delta_advalorem)
+ i.veredict_at = Time.current - 90.days
+ i.deposited_at = Time.current - 90.days
+ i.finished_at = Time.current - 30.days
+ i.deposited!
+ i.paid!
+
+puts "Creating Doc Parser user, nota PDF ......."
+user5 = User.create!(
   email: Rails.application.credentials[:development][:doc_parser][:user_mail],
   password: rand.to_s[2..11],
   authentication_token: Rails.application.credentials[:development][:doc_parser][:user_token],

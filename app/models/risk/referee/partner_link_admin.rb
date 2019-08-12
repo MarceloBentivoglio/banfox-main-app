@@ -10,21 +10,25 @@ module Risk
 
       def call
         @collection_evidence.map do |evidence|
-          @evidence = {
-            partner_role: evidence.partner_role
-          }
+          if evidence.partner_role == 'admin'
+            nil
+          else
+            @evidence = {
+              partner_role: evidence.partner_role
+            }
 
-          code = "#{@code}_#{evidence.partner_cpf}"
+            code = "#{@code}_#{evidence.partner_cpf}"
 
-          {
-            code: code,
-            title: @title,
-            description: evidence.partner_cpf,
-            params: @params,
-            evidence: @evidence,
-            flag: assert
-          }
-        end
+            {
+              code: code,
+              title: @title,
+              description: evidence.partner_cpf,
+              params: @params,
+              evidence: @evidence,
+              flag: assert
+            }
+          end
+        end.select {|key_indicator| !key_indicator.nil? }
       end
 
       def assert
@@ -32,8 +36,10 @@ module Risk
           return Risk::KeyIndicatorReport::GRAY_FLAG
         elsif @evidence[:partner_role] == 'admin/associate'
           return Risk::KeyIndicatorReport::GREEN_FLAG
-        else
+        elsif @evidence[:partner_role] == 'associate'
           return Risk::KeyIndicatorReport::YELLOW_FLAG
+        else
+          return Risk::KeyIndicatorReport::GRAY_FLAG
         end
       end
 
