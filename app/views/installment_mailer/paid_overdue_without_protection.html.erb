@@ -18,7 +18,7 @@
               <tr>
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
-                  <p>Muito obrigado,  recebemos o pagamento do título:</p>
+                  <p>Confirmamos o pagamento dos títulos abaixo:</p>
                   <!-- Action -->
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -42,15 +42,15 @@
                     </tr>
                   </table>
                   <br>
-                  <p>Por esse motivo, temos duas notícias muito boas para você:</p>
-                  <p class="align-justify">1. Como houve um atraso na liquidação, sua operação, que tinha a expectativa de durar <%= @installment.initial_operation_days %> dias, efetivamente durou <strong><%= @installment.overdue_operation_total_days %></strong> dias. Dessa maneira, visto que você não possui uma proteção conosco, você precisa nos pagar esse "aluguel" extra do dinheiro referente aos <strong><%= @installment.overdue_days %> dias</strong> de atraso, mas note que isso não é uma multa nem juros de mora! É super legal e justo com você, não é mesmo? Abaixo segue o valor e a conta para realizar o depósito:</p>
+                  <p>Assim, temos duas notícias muito boas:</p>
+                  <p class="align-justify">1. Sua operação, que deveria durar <%= @installment.initial_operation_days %>, durou <strong><%= @installment.overdue_operation_total_days %></strong> dias. Assim, segue abaixo o valor da atualização referente aos <strong><%= @installment.overdue_days %> dias</strong> de atraso e conta para pagamento (você irá pagar somente pelo tempo que usou a Banfox, sem penalidades pelo atraso):</p>
                   <p class="center m-b-0"><strong><%= humanized_money_with_symbol @installment.delta_fee %></strong></p>
                   <p class="center m-b-0">MVP Fomento Mercantil Ltda.</p>
                   <p class="center m-b-0">23.198.636/0001-95</p>
                   <p class="center m-b-0">(237) Banco Bradesco S.A.</p>
                   <p class="center m-b-0">Agencia: 0138</p>
                   <p class="center">Conta: 70033-9 </p>
-                  <p class="align-justify">2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
+                  <p class="align-justify">2. Assim que o pagamento acima for efetuado, seu limite disponivel para operações será <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
@@ -62,7 +62,7 @@
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Faça uma nova operação</a>
+                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
                                   </td>
                                 </tr>
                               </table>

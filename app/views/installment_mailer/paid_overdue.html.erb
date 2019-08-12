@@ -18,7 +18,7 @@
               <tr>
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
-                  <p>Muito obrigado,  recebemos o pagamento do título:</p>
+                  <p>Confirmamos o pagamento dos títulos abaixo:</p>
                   <!-- Action -->
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -42,9 +42,9 @@
                     </tr>
                   </table>
                   <br>
-                  <p>Por esse motivo, temos duas notícias muito boas para você:</p>
-                  <p class="align-justify">1. Te transferimos o valor remanescente da sua proteção. Como houve um atraso na liquidação, a proteção, que seria devolvida de <%= humanized_money_with_symbol @installment.initial_protection %>, será no montante de <strong><%= humanized_money_with_symbol @installment.final_protection %></strong>. Dessa maneira você não paga nem multa nem juros de mora, pois sua operação, que tinha a expectativa de durar <%= @installment.initial_operation_days %> dias, efetivamente durou  <strong> <%= @installment.overdue_operation_total_days %> dias</strong>. É super legal e justo com você, não é mesmo? Você paga pelo tempo que usou! O dinheiro deve chegar na sua conta no máximo até amanhã.</p>
-                  <p class="align-justify">2. O seu limite foi liberado de <%= humanized_money_with_symbol @installment.value %>, assim você tem um total de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong> disponível para operar conosco. Se quiser fazer uma nova operação é só clicar no link abaixo:</p>
+                  <p>Assim, temos duas notícias muito boas:</p>
+                  <p class="align-justify">1. Autorizamos a transferência do Valor de Proteção, no montante de: <strong><%= humanized_money_with_symbol @installment.final_protection %></strong> - sua operação, que deveria durar <%= @installment.initial_operation_days %>, durou <strong><%= @installment.overdue_operation_total_days %> dias</strong>; dessa forma, o valor foi reduzido proporcionalmente e você irá pagar somente pelo tempo que usou a Banfox, sem penalidades pelo atraso.</p>
+                  <p class="align-justify">2. Seu limite disponivel para operações é <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
@@ -56,7 +56,7 @@
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Faça uma nova operação</a>
+                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
                                   </td>
                                 </tr>
                               </table>
