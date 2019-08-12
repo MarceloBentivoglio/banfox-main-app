@@ -1,15 +1,19 @@
 module Risk 
   module Parser
     class Serasa
-      attr_accessor :pefin, :refin, :partner_data
+      attr_accessor :pefin, :refin, :partner_data, :partner_documents
+      include CNPJFormatter
 
       def initialize
         bootstrap_attributes
       end
 
       def bootstrap_attributes
-        @company_data = {}
+        @company_data = {
+          injuction: false
+        }
         @partner_data = []
+        @partner_documents = []
         @pefin = []
         @refin = []
         @protest = []
@@ -21,6 +25,7 @@ module Risk
         @bad_check = []
         @bad_check_ccf = []
         @lost_check = []
+
         @parsing_partner_data = false
       end
 
@@ -38,7 +43,7 @@ module Risk
           tags.each {|tag, value| classify(tag, value) }
 
           serialized_data = serialize
-          serialized[CNPJ.new(@company_data[:cnpj]).stripped] = serialized_data
+          serialized[cnpj_root_format(@company_data[:cnpj])] = serialized_data
           bootstrap_attributes
         end
 
@@ -57,8 +62,14 @@ module Risk
           parse_protest(value)
         when '040401'
           parse_lawsuit(value)
-        when '010117'
+        when '010108'
+          parse_social_control(value)
+        when '010109'
           parse_partner_data(value)
+        when '010117'
+          parse_partner_pf_data(value)
+        when '010119'
+          parse_partner_pj_data(value)
         when '040501'
           parse_bankruptcy_participation(value)
         when '040601'
@@ -81,12 +92,17 @@ module Risk
           parse_company_address_2(value)
         when '010105'
           parse_company_registration_data(value)
+        when '040198'
+          parse_injuction(value)
+        when '040298'
+          parse_injuction(value)
         end
       end
 
       def serialize
         {
           partner_data: @partner_data,
+          partner_documents: @partner_documents,
           company_data: @company_data,
           pefin: @pefin,
           refin: @refin,
@@ -102,7 +118,17 @@ module Risk
         }
       end
 
+      def parse_social_control(value)
+        @company_data[:social_capital] = value[8..20]
+        @company_data[:social_capital_realized] = value[21..33]
+      end
+
+      def parse_injuction(value)
+        @company_data[:injuction] = true
+      end
+
       def parse_company_registration_data(data)
+        @company_data[:founded_in] = data[0..7]
         @company_data[:line_of_business] = data[16..68]
         @company_data[:line_of_business_serasa_code] = data[70..76]
         @company_data[:cnae] = data[97..103]
@@ -144,38 +170,51 @@ module Risk
       end
 
       def parse_partner_data(data)
+        @partner_documents << {
+          entry_date: data[97..104],
+          name: data[16..80],
+          pf_or_pj: data[0],
+          cpf_or_cnpj: data[1..9]
+        }
+      end
+
+      #TODO
+      def parse_partner_pj_data(data)
+      end
+
+      def parse_partner_pf_data(data)
         @parsing_partner_data = true
         @current_partner_data = {
-            cpf: data[0..8],
-            document_branch: data[9..12],
-            document_digit: data[13..14],
-            updated_at: data[15..22],
-            name: data[23..82],
-            rg: data[83..93],
-            born_at: data[94..101],
-            role: parse_role(data[102]),
-            city_birth: data[103..132],
-            state_birth: data[133..134],
-            phone_ddd: data[135..138],
-            phone: data[139..147],
-            branch_line: data[148..151],
-            street_name: data[152..221],
-            city: data[222..241],
-            district: data[242..271],
-            state: data[272..273],
-            zipcode: data[274..282],
-            residence_time: data[283..286],
-            situation_status: data[287],
-            refin: [],
-            pefin: [],
-            protest: [],
-            lawsuit: [],
-            bankruptcy_participation: [],
-            bankruptcy: [],
-            debt_overdue: [],
-            bad_check: [],
-            bad_check_ccf: [],
-            lost_check: []
+          cpf: data[0..8],
+          document_branch: data[9..12],
+          document_digit: data[13..14],
+          updated_at: data[15..22],
+          name: data[23..82],
+          rg: data[83..93],
+          born_at: data[94..101],
+          role: parse_role(data[102]),
+          city_birth: data[103..132],
+          state_birth: data[133..134],
+          phone_ddd: data[135..138],
+          phone: data[139..147],
+          branch_line: data[148..151],
+          street_name: data[152..221],
+          city: data[222..241],
+          district: data[242..271],
+          state: data[272..273],
+          zipcode: data[274..282],
+          residence_time: data[283..286],
+          situation_status: data[287],
+          refin: [],
+          pefin: [],
+          protest: [],
+          lawsuit: [],
+          bankruptcy_participation: [],
+          bankruptcy: [],
+          debt_overdue: [],
+          bad_check: [],
+          bad_check_ccf: [],
+          lost_check: []
         }
 
         @partner_data << @current_partner_data

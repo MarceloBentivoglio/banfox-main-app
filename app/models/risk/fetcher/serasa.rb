@@ -1,6 +1,7 @@
 module Risk
   module Fetcher
     class Serasa < Base
+      include CNPJFormatter
 
       def initialize(key_indicator_report)
         @key_indicator_report = key_indicator_report
@@ -57,11 +58,11 @@ module Risk
 
       def target(cnpj)
         return '' if cnpj.nil?
-        sliced_cnpj = cnpj[0...8]
+        cnpj_root = cnpj_root_format(cnpj)
         if Rails.env == 'production'
-          "https://sitenet43.serasa.com.br/Prod/consultahttps?p=#{serasa_request_string(sliced_cnpj)}"
+          "https://sitenet43.serasa.com.br/Prod/consultahttps?p=#{serasa_request_string(cnpj_root)}"
         else
-          "https://mqlinuxext.serasa.com.br/Homologa/consultahttps?p=#{serasa_request_string(sliced_cnpj)}"
+          "https://mqlinuxext.serasa.com.br/Homologa/consultahttps?p=#{serasa_request_string(cnpj_root)}"
         end
       end
     end

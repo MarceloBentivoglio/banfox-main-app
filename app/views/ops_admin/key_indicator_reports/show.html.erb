@@ -21,6 +21,7 @@
                   <tr>
                     <th>Código</th>
                     <th>Descrição</th>
+                    <th>Notas</th>
                     <th>Evidências</th>
                     <th>Configuração</th>
                     <th>Bandeira</th>
@@ -30,7 +31,8 @@
                   <% key_indicators.each do |key_indicator|%>
                   <tr>
                     <td><%= key_indicator.last['title'] %></td>
-                    <td><%= key_indicator.last['description'] %></td>
+                    <td><%= translate "key-indicators.#{key_indicator.last['title'].parameterize}" %></td>
+                    <td><%= key_indicator.last['description']%></td>
                     <td>
                       <ul>
                       <% key_indicator.last['evidence'].each do |key, value| %>
@@ -45,7 +47,11 @@
                         <% end %>
                       </ul>
                     </td>
-                    <td><span class="<%= span_flag(key_indicator.last['flag']) %>"><%= span_flag(key_indicator.last['flag'])%></span></td>
+                    <td>
+                      <div class="risk-flag <%= span_flag(key_indicator.last['flag']) %>">
+                        <span><i class="fa fa-flag"></i></span>
+                      </div>
+                    </td>
                   </tr>
                   <% end %>
                 </tbody>
@@ -77,12 +83,12 @@
                     <% evidences.each do |name, evidence|%>
                       <tr>
                         <td><%= name %></td>
-                        <% unless evidence.is_a?(Array) %>
+                        <% unless evidence.is_a?(Array) && evidence %>
                           <td>
                             <ul>
                             <% evidence&.each do |k, v| %>
                               <li><%= k %>: <%= v%></li>
-                            <% end %>
+                            <% end if evidence %>
                             </ul>
                           </td>
                         <% else %>

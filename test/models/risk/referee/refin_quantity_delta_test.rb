@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
-  test '.call should create a gray flag if there is only one company_summary' do
+  test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
       refin: [],
       historic: []
@@ -10,10 +10,10 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
     expected = Risk::KeyIndicatorReport::GRAY_FLAG
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 
-  test '.call should create green flag when the historic quantity is 0 and the entity is stable' do
+  test '.assert should create green flag when the historic quantity is 0 and the entity is stable' do
     evidences = {
       refin: [],
       historic: [
@@ -26,10 +26,10 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     expected = Risk::KeyIndicatorReport::GREEN_FLAG
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 
-  test '.call should create yellow flag when the historic quantity is 0 and the entity is growing' do
+  test '.assert should create yellow flag when the historic quantity is 0 and the entity is growing' do
     evidences = {
       refin: [
         {
@@ -46,10 +46,10 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     expected = Risk::KeyIndicatorReport::YELLOW_FLAG
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 
-  test '.call should create a green flag' do
+  test '.assert should create a green flag' do
     evidences = {
       refin: [
         {
@@ -70,10 +70,10 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
     expected = Risk::KeyIndicatorReport::GREEN_FLAG
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 
-  test '.call should create a yellow flag' do
+  test '.assert should create a yellow flag' do
     evidences = {
       refin: [
         {
@@ -94,10 +94,10 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
     expected = Risk::KeyIndicatorReport::YELLOW_FLAG
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 
-  test '.call should create a red flag' do
+  test '.assert should create a red flag' do
     evidences = {
       refin: [
         {
@@ -118,6 +118,6 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
     expected = Risk::KeyIndicatorReport::RED_FLAG
 
-    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).call
+    assert_equal expected, Risk::Referee::RefinQuantityDelta.new(decorated_evidences).assert
   end
 end

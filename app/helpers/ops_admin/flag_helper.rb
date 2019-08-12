@@ -2,13 +2,13 @@ module OpsAdmin::FlagHelper
   def span_flag(flag_code)
     case flag_code
     when -1
-      'gray_flag'
+      'gray-flag'
     when 0
-      'green_flag'
+      'green-flag'
     when 1
-      'yellow_flag'
+      'yellow-flag'
     when 2
-      'red_flag'
+      'red-flag'
     end
   end
 end

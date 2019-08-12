@@ -3,7 +3,7 @@ module OpsAdmin
     def create
       operation = Operation.find(params.dig :operation_id)
 
-      kind = params.dig(:kind)
+      kind = params.dig(:kind) #recurrent_operation
 
       input_data = {
         payers: operation.payers.map {|payer| payer.cnpj},

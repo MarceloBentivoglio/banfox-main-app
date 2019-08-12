@@ -14,7 +14,7 @@ module Risk
         }
       end
 
-      def call
+      def assert
         share_capital = @evidence[:share_capital]
         if share_capital < @params[:red_limit]
           Risk::KeyIndicatorReport::RED_FLAG
