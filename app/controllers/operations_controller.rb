@@ -41,7 +41,9 @@ class OperationsController < ApplicationController
   end
 
   def create_document
+    checking_account_params = params.require(:checking_account).permit(:id)
     @operation = Operation.last_from_seller(@seller).last
+    @operation.checking_account_id = checking_account_params[:id]
     @operation.sign_document_requested_at = Time.current
     sign_documents = SignDocuments.new(@operation, @seller)
     @operation.sign_document_info = sign_documents.sign_document_info

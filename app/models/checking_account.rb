@@ -8,4 +8,9 @@ class CheckingAccount < ApplicationRecord
   def bank_info
     "#{bank_code} - #{bank_name}"
   end
+
+  def bank_info_for_select
+    "#{bank_code} - #{bank_name} #{branch} #{account_number}"
+  end
+
 end
