@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document]
+  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document, :cancel]
 
   layout "application_w_flashes"
 
@@ -60,6 +60,22 @@ class OperationsController < ApplicationController
     end
     @signature_key = main_signer_signature_key[:signature_key]
     @redirection_url = store_installments_url
+  end
+
+  def cancel
+    flash[:alert] = []
+    operation_id = params[:id]
+    operation = Operation.find(operation_id)
+    installments = operation.installments
+    installments.each do |installment|
+      installment.ordered_at = nil
+      installment.operation = nil
+      installment.available!
+    end
+    operation.destroy
+    SlackMessage.new("CM0HURWU9", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} *cancelou* a operação *##{operation_id}*").send_now
+    flash[:alert] << "Operação cancelada com sucesso!"
+    redirect_to store_installments_path
   end
 
   private

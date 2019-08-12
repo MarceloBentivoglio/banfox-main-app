@@ -13,6 +13,8 @@ class SellersController < ApplicationController
   def analysis
     if !CpfCheckRF.new(@seller).analyze || !check_revenue
       @seller.rejected!
+      @seller.allowed_to_operate = false
+      @seller.forbad_to_operate_at = Time.current
       @seller.auto_veredict_at = Time.current
       @seller.save!
       SellerMailer.rejected(@user, @seller).deliver_now

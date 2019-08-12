@@ -8,15 +8,15 @@ module Risk
           current ||= 0
           historic ||= 0
 
-          absolute_delta = (current - historic).to_f
-          if historic == 0
-            if absolute_delta == 0
+          absolute_delta = (current.to_i - historic.to_i).to_f
+          if historic.to_f.zero?
+            if absolute_delta.zero?
               return Risk::KeyIndicatorReport::GREEN_FLAG
             else
               return Risk::KeyIndicatorReport::YELLOW_FLAG
             end
           else
-            relative_delta = absolute_delta / historic
+            relative_delta = absolute_delta / historic.to_i
             if relative_delta <= @params[:green_limit]
               Risk::KeyIndicatorReport::GREEN_FLAG
             elsif relative_delta <= @params[:yellow_limit]
@@ -27,7 +27,6 @@ module Risk
           end
         end
       end
-
     end
   end
 end

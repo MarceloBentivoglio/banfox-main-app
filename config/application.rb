@@ -30,5 +30,16 @@ module Mvpinvest
 
     #Joaquim: Setting portuguaise language for devise
     config.i18n.default_locale = :'pt-BR'
+
+  [
+    'app/services/credit_analysis',
+    'app/services/data_parsing',
+    'app/services/googlespreadsheets',
+    'app/services/sign_documents',
+    'app/services/slack',
+  ].each do |path|
+    config.autoload_paths << path
+  end
+
   end
 end

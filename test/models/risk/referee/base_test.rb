@@ -16,19 +16,7 @@ module Risk
         end
       end
 
-      test 'configure Risk title' do
-        expected = 'Very Specific Referee'
-        assert_equal expected, SpecificReferee.new.title
-      end
-
-      test 'configure Risk code' do
-        expected = 'Risk 0001'
-        assert_equal expected, SpecificReferee.new.code
-      end
-
-      test 'configure Risk description' do
-        expected = 'Very specific description'
-        assert_equal expected, SpecificReferee.new.description
+      test '.assertions' do
       end
     end
   end

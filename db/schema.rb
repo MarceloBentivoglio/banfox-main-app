@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_190930) do
+ActiveRecord::Schema.define(version: 2019_07_24_175940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,35 @@ ActiveRecord::Schema.define(version: 2019_07_18_190930) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  create_table "analyzed_parts", force: :cascade do |t|
+    t.bigint "key_indicator_report_id"
+    t.string "cnpj"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key_indicator_report_id"], name: "index_analyzed_parts_on_key_indicator_report_id"
+  end
+
+  create_table "evidences", force: :cascade do |t|
+    t.jsonb "input_data"
+    t.jsonb "collected_data"
+    t.string "referee_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "external_data", force: :cascade do |t|
+    t.string "source"
+    t.jsonb "raw_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "query"
+    t.datetime "ttl"
+  end
+
+  create_table "external_data_key_indicator_reports", id: false, force: :cascade do |t|
+    t.integer "external_datum_id"
+    t.integer "key_indicator_report_id"
+    t.index ["external_datum_id", "key_indicator_report_id"], name: "external_data_key_indicator_report"
   end
 
   create_table "installments", force: :cascade do |t|
@@ -81,10 +109,11 @@ ActiveRecord::Schema.define(version: 2019_07_18_190930) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "issued_at"
+    t.date "issue_date"
     t.string "doc_parser_ref"
     t.jsonb "doc_parser_ticket"
     t.jsonb "doc_parser_data"
+    t.string "nfe_key"
     t.index ["payer_id"], name: "index_invoices_on_payer_id"
     t.index ["seller_id"], name: "index_invoices_on_seller_id"
   end
@@ -104,6 +133,30 @@ ActiveRecord::Schema.define(version: 2019_07_18_190930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["seller_id"], name: "index_joint_debtors_on_seller_id"
+  end
+
+  create_table "key_indicator_reports", force: :cascade do |t|
+    t.jsonb "input_data"
+    t.string "pipeline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "ttl"
+    t.string "kind"
+    t.jsonb "evidences", default: {}
+    t.bigint "operation_id"
+    t.jsonb "key_indicators", default: {}
+    t.index ["operation_id"], name: "index_key_indicator_reports_on_operation_id"
+  end
+
+  create_table "key_indicators", force: :cascade do |t|
+    t.string "code"
+    t.string "title"
+    t.string "description"
+    t.integer "flag"
+    t.integer "scope"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "params"
   end
 
   create_table "operations", force: :cascade do |t|
@@ -221,6 +274,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_190930) do
     t.index ["seller_id"], name: "index_users_on_seller_id"
   end
 
+  add_foreign_key "analyzed_parts", "key_indicator_reports"
   add_foreign_key "installments", "invoices"
   add_foreign_key "installments", "operations"
   add_foreign_key "invoices", "payers"

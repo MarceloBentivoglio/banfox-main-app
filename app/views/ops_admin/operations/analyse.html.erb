@@ -46,20 +46,20 @@
                 <strong>Análise de crédito</strong>
                 <% operation.present_key_indicator_report&.conclusions.each do |key_indicators| %>
                   <span><%= link_to key_indicators[:cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report, cnpj: key_indicators[:cnpj])%></span>
-                  <span>
-                    <span class="gray_flag">
-                      <%= key_indicators[:flags][:gray] %>
-                    </span>
-                    <span class="green_flag">
-                      <%= key_indicators[:flags][:green] %>
-                    </span>
-                    <span class="yellow_flag">
-                      <%= key_indicators[:flags][:yellow] %>
-                    </span>
-                    <span class="red_flag">
-                      <%= key_indicators[:flags][:red] %>
-                    </span>
-                  </span>
+                  <div>
+                    <div class="risk-flag gray-flag">
+                      <span> <%= key_indicators[:flags][:gray] %></span>
+                    </div>
+                    <div class="risk-flag green-flag">
+                      <span> <%= key_indicators[:flags][:green] %></span>
+                    </div>
+                    <div class="risk-flag yellow-flag">
+                      <span> <%= key_indicators[:flags][:yellow] %></span>
+                    </div>
+                    <div class="risk-flag red-flag">
+                      <span> <%= key_indicators[:flags][:red] %></span>
+                    </div>
+                  </div>
                 <% end %>
               <% else %>
                 <%= link_to 'Analisar Risco da Operação',
