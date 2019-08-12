@@ -62,6 +62,8 @@ module Risk
           parse_protest(value)
         when '040401'
           parse_lawsuit(value)
+        when '010108'
+          parse_social_control(value)
         when '010109'
           parse_partner_data(value)
         when '010117'
@@ -114,6 +116,11 @@ module Risk
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
         }
+      end
+
+      def parse_social_control(value)
+        @company_data[:social_capital] = value[8..20]
+        @company_data[:social_capital_realized] = value[21..33]
       end
 
       def parse_injuction(value)

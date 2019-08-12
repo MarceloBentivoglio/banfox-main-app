@@ -15,6 +15,10 @@ module Risk
         @evidences[:name]
       end
 
+      def partner_role
+        @evidences[:role]
+      end
+
       def partner_documents
         documents = @evidences[:partner_documents]&.map do |partner_document|
           Risk::Decorator::Serasa.new(partner_document)
@@ -41,6 +45,14 @@ module Risk
 
       def partner_cpf_or_cnpj
         @evidences[:cpf_or_cnpj]
+      end
+
+      def social_capital
+        @evidences.dig(:company_data, :social_capital)&.to_i
+      end
+
+      def social_capital_realized
+        @evidences.dig(:company_data, :social_capital_realized)&.to_i
       end
 
       def founded_in
