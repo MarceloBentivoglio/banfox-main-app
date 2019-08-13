@@ -87,7 +87,7 @@
           <%= f.input :checking_account_id, label: false, collection: @seller.checking_accounts.order(:bank_code), prompt: "Selecione sua Conta Corrente", id: "partially_approved_checking_account_select", :input_html => {onchange: 'show_create_document_button_for_partially_approved(this)'}, label_method: :bank_info_for_select %>
           <div class="bottom-content" id="partially_approved_sign_button_container" style="display: none; text-align: right">
             <span> </span>
-            <%= f.submit "Estou ciente, quero vizualizar o contrato", class: "btn-rounded blue button", id: "partially_approved_create-document-button" %>
+            <%= f.submit "Estou ciente, quero vizualizar o contrato", class: "btn-rounded blue button", id: "partially-approved-create-document-button" %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,
