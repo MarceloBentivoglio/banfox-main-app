@@ -70,22 +70,24 @@ class SignDocuments
   def installments_content
     installments = []
     @operation.installments.each do |installment|
-      invoice = installment.invoice
-      payer = invoice.payer
-      i = {
-        payer_company_name: payer.company_name,
-        registration: CNPJ.new(payer.cnpj).formatted,
-        type: "DMR",
-        number: "#{invoice.number}/#{installment.number}",
-        due_date: installment.due_date.strftime("%d/%m/%Y"),
-        outstanding_days: installment.outstanding_days,
-        value: installment.value.format(symbol: ''),
-        fee: installment.initial_fee.format(symbol: ''),
-        net_value: installment.initial_net_value.format(symbol: ''),
-        first_deposit: installment.first_deposit_amount.format(symbol: ''),
-        protection: installment.initial_protection.format(symbol: ''),
-      }
-      installments << i
+      if installment.approved?
+        invoice = installment.invoice
+        payer = invoice.payer
+        i = {
+          payer_company_name: payer.company_name,
+          registration: CNPJ.new(payer.cnpj).formatted,
+          type: "DMR",
+          number: "#{invoice.number}/#{installment.number}",
+          due_date: installment.due_date.strftime("%d/%m/%Y"),
+          outstanding_days: installment.outstanding_days,
+          value: installment.value.format(symbol: ''),
+          fee: installment.initial_fee.format(symbol: ''),
+          net_value: installment.initial_net_value.format(symbol: ''),
+          first_deposit: installment.first_deposit_amount.format(symbol: ''),
+          protection: installment.initial_protection.format(symbol: ''),
+        }
+        installments << i
+      end
     end
     return installments
   end
