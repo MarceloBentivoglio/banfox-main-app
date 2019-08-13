@@ -33,11 +33,7 @@ module Risk
       end
 
       def call
-        cnpj_to_search = []
-        cnpj_to_search << @key_indicator_report&.input_data&.dig('seller')
-        cnpj_to_search << @key_indicator_report&.input_data&.dig('payers')
-
-        cnpj_to_search.flatten.uniq.each do |cnpj|
+        @key_indicator_report.input_data.each do |cnpj|
           http_call({}, target(cnpj), nil)
         end
 
