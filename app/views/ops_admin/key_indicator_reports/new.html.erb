@@ -10,11 +10,17 @@
           <div class="client-form">
             <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path(kind: 'recurrent_operation') do |f| %>
               <%= f.input :input_data, label: "CNPJs separados por vírgula" %>
-              <%= f.submit "Gerar Relatório", class: "btn btn-rounded blue"%>
+              <%= f.submit "Gerar Relatório", class: "btn btn-rounded blue", id: "wrapper-loader-btn"%>
             <% end %>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="wrapper-loader">
+  <div class="loader-content">
+    <%= image_tag "banfox_3.gif" %>
   </div>
 </div>
