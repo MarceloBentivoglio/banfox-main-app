@@ -15,7 +15,8 @@ module Risk
                    Risk::Referee::PartnerEntryDate,
                    Risk::Referee::FoundedIn,
                    Risk::Referee::SocialCapital,
-                   Risk::Referee::SocialCapitalRealized
+                   Risk::Referee::SocialCapitalRealized,
+                   Risk::Referee::CompanyStatus
 
       def call
         build_evidences_with_historic
