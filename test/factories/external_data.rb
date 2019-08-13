@@ -45,5 +45,13 @@ FactoryBot.define do
     trait :serasa_marka do
       raw_data { [File.open("#{Rails.root}/test/support/files/20190722_MARKA_ARTEFATOS.txt").read] }
     end
+
+    trait :serasa_nadir do
+      raw_data { [File.open("#{Rails.root}/test/support/files/20190809_NADIR.txt").read] }
+    end
+
+    trait :serasa_biort do
+      raw_data { [File.open("#{Rails.root}/test/support/files/20190705_BIORT.txt").read] }
+    end
   end
 end
