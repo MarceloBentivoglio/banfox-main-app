@@ -47,6 +47,10 @@ module Risk
         @evidences[:cpf_or_cnpj]
       end
 
+      def company_status
+        @evidences.dig(:company_data, :company_status)
+      end
+
       def social_capital
         @evidences.dig(:company_data, :social_capital)&.to_i
       end
