@@ -22,3 +22,4 @@ pt-BR:
     partner-link-admin: "Sinalisa se o sócio PF da empresa também é administrador da mesma. Se for, é considerado verde, se não for é considerado amarelo."
     social-capital: "Avalia o valor do capital social da empresa. Capital social maior ou igual a 'green_limit' é considerado verde. Capital social entre 'yellow_limit'(incluso) e 'green_limit'(excluso) é considerado amarelo. Capital social inferior a 'yellow_limit' é considerado vermelho."
     social-capital-realized: "Avalia o valor do capital social realizado da empresa. Capital social realizado maior ou igual a 'green_limit' é considerado verde. Capital social realizado entre 'yellow_limit'(incluso) e 'green_limit'(excluso) é considerado amarelo. Capital social realizado inferior a 'yellow_limit' é considerado vermelho."
+    company-status: ""
