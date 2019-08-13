@@ -50,4 +50,18 @@ class Risk::Parser::SerasaTest < ActiveSupport::TestCase
     actual = Date.parse(data["05888701"][:partner_documents].first[:entry_date])
     assert_equal expected, actual
   end
+
+  test '.call with nadir' do
+    external_data = FactoryBot.create(:external_datum, :serasa_nadir)
+
+    @parser = Risk::Parser::Serasa.new
+    data = @parser.call(external_data)
+  end
+
+  test '.call with biort' do
+    external_data = FactoryBot.create(:external_datum, :serasa_biort)
+
+    @parser = Risk::Parser::Serasa.new
+    data = @parser.call(external_data)
+  end
 end
