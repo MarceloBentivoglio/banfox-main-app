@@ -7,19 +7,24 @@ class OpsAdmin::KeyIndicatorReportsControllerTest < ActionDispatch::IntegrationT
     using_shared_operation
     sign_in FactoryBot.create(:user, :auth_admin, seller: @seller)
 
-    @input_data = {
-      payers: @operation.payers.map {|payer| payer.cnpj},
-      seller: @seller.cnpj,
-    }
+    @query = ["08728220000148", "16532989000114"]
 
     #Do not allow HTTP calls
+
     Risk::Fetcher::Serasa.any_instance
-                         .stubs(:call)
-                         .returns(serasa_external_data)
+      .stubs(:call)
+
+    Risk::Fetcher::Serasa.any_instance
+                         .stubs(:data)
+                         .returns([serasa_external_data])
   end
   
-  def post_operation
+  def post_with_operation
     post ops_admin_key_indicator_reports_path(operation_id: @operation.id, kind: 'recurrent_operation')
+  end
+
+  def post_with_query
+    @request = post ops_admin_key_indicator_reports_path(risk_key_indicator_report: { input_data: @query }, kind: 'recurrent_operation')
   end
 
   def serasa_external_data
@@ -30,16 +35,20 @@ class OpsAdmin::KeyIndicatorReportsControllerTest < ActionDispatch::IntegrationT
     mocked_key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
     Risk::Service::KeyIndicatorReport.any_instance.expects(:call).returns(mocked_key_indicator_report)
 
-    post_operation
+    post_with_operation
   end
 
   test '.create correctly calls RecurrentOperationStrategy' do
     Risk::Service::RecurrentOperationStrategy.any_instance.expects(:call)
 
-    post_operation
+    post_with_operation
   end
 
-  test '.create' do
-    post_operation
+  test '.create with query' do
+    post_with_query
+  end
+
+  test '.create with operation' do
+    post_with_operation
   end
 end
