@@ -23,7 +23,7 @@ module Risk
 
     has_and_belongs_to_many :external_data, class_name: 'Risk::ExternalDatum'
     has_many :analyzed_parts
-    belongs_to :operation
+    belongs_to :operation, optional: true
 
     def indicators_quantity
       @indicators_quantity ||= {}
@@ -38,6 +38,5 @@ module Risk
         }
       end
     end
-
   end
 end

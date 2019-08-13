@@ -1,37 +1,74 @@
 module Risk
   module Service
     class KeyIndicatorReport
-      attr_reader :operation
-
       #ttl in minutes
-      def initialize(input_data = {}, kind, ttl)
-        @input_data = input_data
-        @kind = kind
+      def initialize(params, ttl)
+        @params = params
         @ttl = ttl
+        @errors = []
       end
 
       #TODO add a new status to know if key_indicator_report is ready
-      def call(operation)
-        nonexpired_reports = Risk::KeyIndicatorReport.where(operation_id: operation.id)
-                                                     .where('ttl >= ?', DateTime.now)
+      def call
+        if operation.nil?
+          params = query_params
+        else
+          params = operation_params(operation)
+        end
 
-        return nonexpired_reports.last if nonexpired_reports.any?
+        if @errors.any?
+          key_indicator_report = Risk::KeyIndicatorReport.new
+          @errors.each do |error_message|
+            key_indicator_report.errors.add :input_data, message: error_message
+          end
+        else
+          key_indicator_report = Risk::KeyIndicatorReport.create(params)
 
-        key_indicator_report = Risk::KeyIndicatorReport.create(
-          input_data: @input_data,
-          kind: @kind,
-          ttl: @ttl,
-          operation_id: operation.id
-        )
-
-        #This will become a asynchronous worker
-        service_strategy.call(key_indicator_report)
+          #This will become a asynchronous worker
+          service_strategy.call(key_indicator_report)
+        end
 
         key_indicator_report
       end
 
+      def operation
+        return nil if @params[:operation_id].nil?
+        ::Operation.find @params[:operation_id]
+      end
+
+      def operation_params(operation)
+        input_data = []
+        input_data << operation.seller.cnpj
+        operation.payers.each do |payer|
+          input_data << payer.cnpj
+        end
+
+        {
+          input_data: input_data,
+          kind: @params[:kind],
+          ttl: @ttl,
+          operation_id: operation.id
+        }
+      end
+
+      def query_params
+        query = @params[:risk_key_indicator_report][:input_data].split(',')
+
+        query.each do |cnpj|
+          if !CNPJ.new(cnpj).valid?
+            @errors << cnpj
+          end
+        end
+
+        {
+          input_data: query,
+          kind: @params[:kind],
+          ttl: @ttl
+        }
+      end
+
       def service_strategy
-        case @kind
+        case @params[:kind]
         when 'operation_part'
           Risk::Service::OperationPartStrategy.new
         when 'recurrent_operation'

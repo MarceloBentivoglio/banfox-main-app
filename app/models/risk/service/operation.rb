@@ -19,14 +19,10 @@ module Risk
       end
 
       def persist_analyzed_parts
-        AnalyzedPart.create(
-          key_indicator_report_id: @key_indicator_report.id,
-          cnpj: cnpj_root_format(@key_indicator_report.operation.seller.cnpj)
-        )
-        @key_indicator_report.operation.payers.each do |payer|
-          AnalyzedPart.create(
+        @key_indicator_report.input_data.each do |cnpj|
+          Risk::AnalyzedPart.create(
             key_indicator_report_id: @key_indicator_report.id,
-            cnpj: cnpj_root_format(payer.cnpj)
+            cnpj: cnpj_root_format(cnpj)
           )
         end
       end
