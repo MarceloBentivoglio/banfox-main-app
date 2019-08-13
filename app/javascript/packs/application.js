@@ -18,6 +18,7 @@ import { countdownClock } from '../components/countdown';
 import { signDocument } from '../components/signDocument';
 import { enablePopover } from "../components/popover";
 import { enableTooltip } from "../components/tooltip";
+import { activateWrapperLoader } from "../components/wrapperLoader";
 
 
 
@@ -41,3 +42,4 @@ countdownClock();
 signDocument();
 enablePopover();
 enableTooltip();
+activateWrapperLoader();
