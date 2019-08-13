@@ -2,12 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <table class="table">
-        <h1> Novo devedor solidário </h1>
-        <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path(kind: 'recurrent_operation') do |f| %>
-          <%= f.input :input_data %>
-          <%= f.submit "Gerar Relatório" %>
-        <% end %>
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Análise de CNPJs",
+          optional_button: "",
+        } %>
+        <div class="client-form-box">
+          <div class="client-form">
+            <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path(kind: 'recurrent_operation') do |f| %>
+              <%= f.input :input_data, label: "CNPJs separados por vírgula" %>
+              <%= f.submit "Gerar Relatório", class: "btn btn-rounded blue"%>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
