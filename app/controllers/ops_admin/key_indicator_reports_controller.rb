@@ -1,25 +1,24 @@
 module OpsAdmin
   class KeyIndicatorReportsController < OpsAdmin::BaseController
     def create
-      operation = Operation.find(params.dig :operation_id)
-
-      kind = params.dig(:kind) #recurrent_operation
-
-      input_data = {
-        payers: operation.payers.map {|payer| payer.cnpj},
-        seller: operation.seller.cnpj,
-      }
-
-      key_indicator_report = Risk::Service::KeyIndicatorReport.new(input_data, kind, Time.now + 1.day)
-                                                              .call(operation)
-      key_indicator_report.save
-
-      redirect_to ops_admin_operations_analyse_path
+      @key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, Time.now + 1.day)
+                                                              .call
+      respond_to do |format|
+        if @key_indicator_report.errors.empty? && @key_indicator_report.save
+          format.html { redirect_to ops_admin_key_indicator_report_path(@key_indicator_report) }
+        else
+          format.html { render :new }
+        end
+      end
     end
 
     def show
       @key_indicator_report = Risk::KeyIndicatorReport.find(params[:id])
       @cnpj = params[:cnpj]
+    end
+
+    def new
+      @key_indicator_report = Risk::KeyIndicatorReport.new
     end
   end
 end
