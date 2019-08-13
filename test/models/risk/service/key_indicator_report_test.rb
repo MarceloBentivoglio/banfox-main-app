@@ -2,16 +2,25 @@ require 'test_helper'
 
 class Risk::Service::KeyIndicatorReportTest < ActiveSupport::TestCase
   setup do
+    using_shared_operation
     DateTime.stubs(:now).returns(DateTime.new(2019, 2, 3))
-    @input_data = { cnpj: "00310523911323" }
-    @kind = 'recurrent_operation'
+    @params = {
+      key_risk_indicator_report: {
+        input_data: [
+          "08728220000148",
+          "16532989000114",
+        ]
+      },
+      kind: 'recurrent_operation',
+      operation_id: @operation.id
+    }.with_indifferent_access
+
     @ttl = DateTime.new(2019,2,3)
 
-    @subject = Risk::Service::KeyIndicatorReport.new(@input_data, @kind, @ttl)
+    @subject = Risk::Service::KeyIndicatorReport.new(@params, @ttl)
 
     Risk::Fetcher::Serasa.any_instance.stubs(:http_call).returns('')
 
-    using_shared_operation
   end
 
   test '.call executes the correct strategy' do
@@ -21,6 +30,14 @@ class Risk::Service::KeyIndicatorReportTest < ActiveSupport::TestCase
 
     Risk::Service::RecurrentOperationStrategy.any_instance.expects(:call)
 
-    @subject.call(@operation)
+    @subject.call
+  end
+
+  test '.call executes operation_adapter when it receives a operation_id' do
+    key_indicator_report = FactoryBot.build(:key_indicator_report)
+    key_indicator_report.ttl = (@ttl - 1.day)
+    key_indicator_report.save
+
+    @subject.call
   end
 end

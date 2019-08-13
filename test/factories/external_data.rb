@@ -19,7 +19,8 @@ FactoryBot.define do
         payers: [
           "08728220000148"
         ],
-        seller:  "16532989000114"
+        seller:  "16532989000114",
+        kind: 'recurrent_operation'
       }
     end
 
