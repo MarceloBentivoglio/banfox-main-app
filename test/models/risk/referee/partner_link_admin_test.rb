@@ -38,17 +38,7 @@ class Risk::Referee::PartnerLinkAdminTest < ActiveSupport::TestCase
         evidence: {
           partner_role: 'not defined'
         },
-        flag: Risk::KeyIndicatorReport::YELLOW_FLAG
-      },
-      {
-        code: 'partner_link_admin_222222222',
-        title: 'Partner Link Admin',
-        description: '222222222',
-        params: {},
-        evidence: {
-          partner_role: 'admin'
-        },
-        flag: Risk::KeyIndicatorReport::YELLOW_FLAG
+        flag: Risk::KeyIndicatorReport::GRAY_FLAG
       },
       {
         code: 'partner_link_admin_333333333',

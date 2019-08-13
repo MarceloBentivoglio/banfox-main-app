@@ -39,6 +39,7 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
     @installment.paid!
+    @installment.notify_seller(@seller)
     redirect_to  ops_admin_operations_follow_up_path
   end
 
