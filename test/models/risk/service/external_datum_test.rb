@@ -40,12 +40,12 @@ class Risk::Service::ExternalDatumTest < ActiveSupport::TestCase
   end
 
   test '.call do not call fetcher if ttl is not expired' do
-    not_expired_external_datum = FactoryBot.create(:external_datum)
+    FactoryBot.create(:external_datum)
     key_indicator_report = FactoryBot.create(:key_indicator_report, operation_id: @operation.id)
 
     TestFetcher.any_instance.expects(:call).never
 
-    not_expired_external_datum = Risk::Service::ExternalDatum.new(
+    Risk::Service::ExternalDatum.new(
       TestFetcher,
       key_indicator_report
     ).call
