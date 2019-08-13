@@ -141,7 +141,6 @@ module Risk
                                          else
                                            nil
                                          end
-        byebug
       end
 
       def parse_social_control(value)
