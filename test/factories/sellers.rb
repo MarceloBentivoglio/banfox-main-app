@@ -51,5 +51,9 @@ FactoryBot.define do
     created_at { "2019-07-16 15:36:16" }
     updated_at { "2019-07-16 15:36:16" }
     tax_regime { nil }
+
+    trait :can_operate do
+      allowed_to_operate { true }
+    end
   end
 end

@@ -22,4 +22,18 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
       assert_equal "available", installment.backoffice_status
     end
   end
+
+  test ".create_document create a document to be signed and redirect to the sign page" do
+    checking_account = FactoryBot.create(:checking_account, seller: @seller)
+    mocked_doc_info = {"signer_signature_keys"=>
+                        []
+                      }
+    mocked_doc_key = "123"
+    mocked_document = mock()
+    mocked_document.expects(:sign_document_info).returns(mocked_doc_info)
+    mocked_document.expects(:sign_document_key).returns(mocked_doc_key)
+    SignDocuments.stubs(:new).returns(mocked_document)
+    post create_document_operations_path(operation: {checking_account_id: checking_account.id})
+    assert_redirected_to sign_document_operations_path
+  end
 end

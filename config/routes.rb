@@ -24,6 +24,7 @@ Rails.application.routes.draw do
           get 'forbid_to_operate'
         end
         resources :joint_debtors, only: [:index, :new, :create, :edit, :update, :destroy]
+        resources :checking_accounts
       end
       namespace :operations do
         get 'analyse'
@@ -67,7 +68,7 @@ Rails.application.routes.draw do
   resources :operations, only: [:create, :destroy] do
     collection do
       get :consent
-      get :create_document
+      post :create_document
       get :sign_document
       put :cancel
     end

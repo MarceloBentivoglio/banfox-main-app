@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class SellerDashboardTest < ApplicationSystemTestCase
+class InstallmentsStoreTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   def seller_create_and_login
@@ -28,6 +28,7 @@ class SellerDashboardTest < ApplicationSystemTestCase
   test 'sign an approved operation' do
     using_shared_operation
     ignore_slack_call
+    FactoryBot.create(:checking_account, seller: @seller)
     @operation.installments.each do |installment|
       installment.approved!
     end
@@ -45,7 +46,37 @@ class SellerDashboardTest < ApplicationSystemTestCase
     SignDocuments.stubs(:new).returns(mocked_document)
     sign_in FactoryBot.create(:user, seller: @seller)
     visit store_installments_path
-    find('a#create-document-button', :text => 'Vizualizar e assinar contrato').click
+    select "044", from: 'operation_checking_account_id'
+    click_button :'create-document-button'
+    assert_selector "span.section-title", text: "Contrato da operação"
+    assert_selector "a#opened-installments-button", text: "Ver status da minha operação"
+  end
+
+  test 'sign a partially approved operation' do
+    using_shared_operation
+    ignore_slack_call
+    FactoryBot.create(:checking_account, seller: @seller)
+    @operation.installments.each do |installment|
+      installment.approved!
+    end
+    @operation.installments.first.rejected!
+
+    mocked_doc_info = {"signer_signature_keys"=>
+                        [
+                          {"email"=>"joaquim@banfox.com.br", "signature_key"=>"c1bfec78-fdf4-4e13-8793-a89c24ed9d01"},
+                          {"email"=>"joaquim.oliveira.nt@gmail.com", "signature_key"=>"edc94fa1-964c-4341-9e30-bb854dba47a1"},
+                          {"email"=>"joao@banfox.com.br", "signature_key"=>"17f110da-2491-402a-bbd3-7ddc3bbd9b7d"}
+                        ]
+                      }
+    mocked_doc_key = "198900ef-021f-4371-8373-ac3699f3667d"
+    mocked_document = mock()
+    mocked_document.expects(:sign_document_info).returns(mocked_doc_info)
+    mocked_document.expects(:sign_document_key).returns(mocked_doc_key)
+    SignDocuments.stubs(:new).returns(mocked_document)
+    sign_in FactoryBot.create(:user, seller: @seller)
+    visit store_installments_path
+    select "044", from: 'operation_checking_account_id'
+    click_button :'partially-approved-create-document-button'
     assert_selector "span.section-title", text: "Contrato da operação"
     assert_selector "a#opened-installments-button", text: "Ver status da minha operação"
   end
@@ -64,11 +95,13 @@ class SellerDashboardTest < ApplicationSystemTestCase
   test 'cancel an approved operation' do
     using_shared_operation
     ignore_slack_call
+    FactoryBot.create(:checking_account, seller: @seller)
     @operation.installments.each do |installment|
       installment.approved!
     end
     sign_in FactoryBot.create(:user, seller: @seller)
     visit store_installments_path
+    select "044", from: 'operation_checking_account_id'
     accept_confirm do
       find('a#cancel-operation-button', :text => 'Cancelar Operação').click
     end
@@ -78,6 +111,7 @@ class SellerDashboardTest < ApplicationSystemTestCase
   test 'cancel a partially_approved operation' do
     using_shared_operation
     ignore_slack_call
+    FactoryBot.create(:checking_account, seller: @seller)
     @operation.installments.each do |installment|
       installment.approved!
     end
@@ -86,6 +120,7 @@ class SellerDashboardTest < ApplicationSystemTestCase
 
     sign_in FactoryBot.create(:user, seller: @seller)
     visit store_installments_path
+    select "044", from: 'operation_checking_account_id'
     accept_confirm do
       find('a#cancel-operation-button', :text => 'Cancelar Operação').click
     end

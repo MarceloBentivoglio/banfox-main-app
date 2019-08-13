@@ -44,6 +44,7 @@ seller1 = Seller.create!(
   fator: 0.05,
   advalorem: 0.003,
   protection: 0.2,
+  allowed_to_operate: true
 )
 
 payer1 = Payer.create!(
@@ -465,6 +466,8 @@ seller2 = Seller.create!(
   analysis_status: "approved",
   rejection_motive: "rejection_motive_non_applicable",
   protection: 0.15,
+  allowed_to_operate: true
+
 )
 
 joint_debtor2 = JointDebtor.create!(
@@ -533,6 +536,8 @@ seller3 = Seller.create!(
   analysis_status: "approved",
   rejection_motive: "rejection_motive_non_applicable",
   protection: 0.2,
+  allowed_to_operate: true
+
 )
 
 joint_debtor3 = JointDebtor.create!(
