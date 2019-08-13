@@ -64,7 +64,6 @@
           </div>
           <%= f.input :checking_account_id, label: false, collection: @seller.checking_accounts.order(:bank_code), prompt: "Selecione sua Conta Corrente", id: "checking_account_select", :input_html => {onchange: 'show_create_document_button(this)'}, label_method: :bank_info_for_select %>
           <div class="bottom-content" id="sign_button_container" style="display: none; text-align: right;">
-            <%# link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
             <%= f.submit "Vizualizar e assinar contrato", class: "btn-rounded blue button", id: "create-document-button" %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
@@ -85,9 +84,10 @@
           <div class="top-content big-letters">
               <span>Sua operação foi aprovada parcialmente.</span>
           </div>
-          <div class="bottom-content">
+          <%= f.input :checking_account_id, label: false, collection: @seller.checking_accounts.order(:bank_code), prompt: "Selecione sua Conta Corrente", id: "partially_approved_checking_account_select", :input_html => {onchange: 'show_create_document_button_for_partially_approved(this)'}, label_method: :bank_info_for_select %>
+          <div class="bottom-content" id="partially_approved_sign_button_container" style="display: none; text-align: right">
             <span> </span>
-            <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+            <%= f.submit "Estou ciente, quero vizualizar o contrato", class: "btn-rounded blue button", id: "partially_approved_create-document-button" %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,
