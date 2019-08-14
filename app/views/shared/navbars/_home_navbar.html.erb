@@ -1,8 +1,11 @@
 <!-- Navbar -->
 <nav class="new-navbar-white navbar navbar-expand-lg fixed-top new-lp-font cool-navbar">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand white-logo" href="#" >
       <%= image_tag("logo-banfox-white.png", alt: "Banfox Logo")%>
+    </a>
+    <a class="navbar-brand colored-logo" href="#" style="display: none;" >
+      <%= image_tag("Logo_banfox_color.png", alt: "Banfox Logo")%>
     </a>
     <div class="collapse navbar-collapse nav-list-links" id="navbarNav">
       <ul class="navbar-nav" style="display: none;">
@@ -17,9 +20,9 @@
 
     <form class="form-inline">
       <% if user_signed_in? %>
-        <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light" %>
+        <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
       <% else %>
-        <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light" %>
+        <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
       <% end %>
     </form>
   </div>

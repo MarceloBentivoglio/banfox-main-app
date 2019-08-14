@@ -34,3 +34,16 @@ document.addEventListener('scroll', debounce(storeScroll), { passive: true });
 
 // Update scroll position for first time
 storeScroll();
+
+
+function changeNavbar() {
+  element = document.getElementsByClassName("navbar-user-home")[0]
+  if(window.scrollY > 0) {
+    element.classList.remove("btn-outline-light");
+    element.classList.add("btn-outline-dark");
+  } else {
+    element.classList.remove("btn-outline-dark");
+    element.classList.add("btn-outline-light");
+  }
+}
+
