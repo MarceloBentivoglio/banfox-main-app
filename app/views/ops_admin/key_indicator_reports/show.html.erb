@@ -11,7 +11,27 @@
         <div class="card-w-table-inside">
           <div class="card-w-table-inside-header">
             <div class="header-column">
-              <h2>Análise: <%= @presenter.company_name(cnpj)&.capitalize %> - <%= cnpj%></h2>
+              <span>Análise: <%= @presenter.company_name(cnpj)&.titleize %> - <%= cnpj%></span>
+            </div>
+            <div class="header-column">
+                <% Risk::Presenter::KeyIndicatorReport.new(@key_indicator_report).conclusions.each do |conclusion| %>
+                  <% if conclusion[:cnpj] == cnpj %>
+                    <div>
+                      <div class="risk-flag gray-flag">
+                        <span> <%= conclusion[:flags][:gray] %></span>
+                      </div>
+                      <div class="risk-flag green-flag">
+                        <span> <%= conclusion[:flags][:green] %></span>
+                      </div>
+                      <div class="risk-flag yellow-flag">
+                        <span> <%= conclusion[:flags][:yellow] %></span>
+                      </div>
+                      <div class="risk-flag red-flag">
+                        <span> <%= conclusion[:flags][:red] %></span>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
             </div>
           </div>
           <div class="card-w-table-inside-summary">
@@ -65,13 +85,13 @@
           <div class="card-w-table-inside">
             <div class="card-w-table-inside-header">
               <div class="header-column">
-                <h2>Evidências Coletadas do <%= kind %></h2>
+                <span>Evidências Coletadas do <%= kind %></span>
               </div>
             </div>
             <div class="card-w-table-inside-summary">
               <div class="summary-column">
                 <% data.each do |cnpj, evidences| %>
-                  <h4>Evidências do CNPJ: <%= CNPJ.new(cnpj).formatted %></h4>
+                  <span>Evidências do CNPJ: <%= CNPJ.new(cnpj).formatted %></span>
                 <table class="table table-striped table-key-indicator-report">
                   <thead>
                     <tr>
