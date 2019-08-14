@@ -1,0 +1,7 @@
+div.new-lp-font h1, h2, h3, p, a{
+  font-family: 'Muli', sans-serif !important;
+}
+
+.navbar {
+  background-color: #5433ff;
+}
