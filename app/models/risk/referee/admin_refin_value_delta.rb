@@ -4,8 +4,8 @@ module Risk
       include DeltaEvaluator
 
       def initialize(evidence)
-        @collection_evidence = evidence.partner_data
-        @code = 'partner_refin_value_delta'
+        @collection_evidence = evidence.admin_data
+        @code = 'admin_refin_value_delta'
         @title = 'Admin Refin Value Delta'
         @description = ''
         @params = { green_limit: 0, yellow_limit: 0.5 }
