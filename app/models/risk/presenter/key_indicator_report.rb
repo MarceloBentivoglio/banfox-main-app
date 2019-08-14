@@ -18,7 +18,7 @@ module Risk
       end
 
       def company_name(cnpj)
-        @key_indicator_report.evidences.dig("serasa_api", cnpj[0..7], "company_data", "company_name")&.capitalize
+        @key_indicator_report.evidences.dig("serasa_api", cnpj[0..7], "company_data", "company_name")&.titleize
       end
 
       def conclusions
