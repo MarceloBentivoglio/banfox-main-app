@@ -3,6 +3,7 @@ module OpsAdmin
     def create
       @key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, Time.now + 1.day)
                                                               .call
+      sleep(3)
       respond_to do |format|
         if @key_indicator_report.errors.empty? && @key_indicator_report.save
           format.html { redirect_to ops_admin_key_indicator_report_path(@key_indicator_report) }
