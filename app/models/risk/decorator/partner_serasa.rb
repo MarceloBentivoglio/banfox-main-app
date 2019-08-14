@@ -8,7 +8,13 @@ module Risk
       def partner_data
         @evidences.with_indifferent_access['partner_data'].map do |partner_data|
           Risk::Decorator::Serasa.new(partner_data)
-        end
+        end.select {|partner| partner.partner_role != 'admin' }
+      end
+
+      def admin_data
+        @evidences.with_indifferent_access['partner_data'].map do |partner_data|
+          Risk::Decorator::Serasa.new(partner_data)
+        end.select {|partner| partner.partner_role == 'admin' }
       end
 
       def each_cnpj

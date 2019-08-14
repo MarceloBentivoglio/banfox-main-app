@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_175940) do
+ActiveRecord::Schema.define(version: 2019_08_12_181752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,7 +145,6 @@ ActiveRecord::Schema.define(version: 2019_07_24_175940) do
     t.jsonb "evidences", default: {}
     t.bigint "operation_id"
     t.jsonb "key_indicators", default: {}
-    t.index ["operation_id"], name: "index_key_indicator_reports_on_operation_id"
   end
 
   create_table "key_indicators", force: :cascade do |t|

@@ -52,6 +52,8 @@ module Risk
 
       def classify(tag, value)
         case tag
+        when '010000'
+          parse_company_status(value)
         when '040101'
           parse_pefin(value)
         when '040102'
@@ -116,6 +118,29 @@ module Risk
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
         }
+      end
+
+      def parse_company_status(value)
+        @company_data[:company_status] = case value[0..1]
+                                         when '02'
+                                           'ATIVA'
+                                         when '03'
+                                           'INATIVA'
+                                         when '00'
+                                           'INAPTA'
+                                         when '04'
+                                           'NÃO LOCALIZADA'
+                                         when '05'
+                                           'EM LIQUIDAÇÃO'
+                                         when '07'
+                                           'NÃO CADASTRADA'
+                                         when '06'
+                                           'SUSPENSO'
+                                         when '09'
+                                           'CANCELADO'
+                                         else
+                                           nil
+                                         end
       end
 
       def parse_social_control(value)

@@ -15,7 +15,7 @@ class OperationsController < ApplicationController
         operation.save!
         #TODO transform all deliver_now in deliver later
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
-        SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova").send_now
+        SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova de número *##{operation.id}*").send_now
       end
     end
     redirect_to store_installments_path
