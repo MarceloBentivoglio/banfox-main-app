@@ -14,6 +14,7 @@ module OpsAdmin
 
     def show
       @key_indicator_report = Risk::KeyIndicatorReport.find(params[:id])
+      @presenter = Risk::Presenter::KeyIndicatorReport.new(@key_indicator_report)
       @cnpj = params[:cnpj]
     end
 

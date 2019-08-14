@@ -11,7 +11,7 @@
         <div class="card-w-table-inside">
           <div class="card-w-table-inside-header">
             <div class="header-column">
-              <span>Análise do CNPJ: <%= cnpj %></span>
+              <span>Análise: <%= @presenter.company_name(cnpj)&.capitalize %> - <%= cnpj%></span>
             </div>
             <div class="header-column">
                 <% Risk::Presenter::KeyIndicatorReport.new(@key_indicator_report).conclusions.each do |conclusion| %>
