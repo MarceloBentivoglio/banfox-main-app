@@ -45,7 +45,7 @@
               <% if operation.key_indicator_reports.any? %>
                 <strong>Análise de crédito</strong>
                 <% operation.present_key_indicator_report&.conclusions.each do |key_indicators| %>
-                  <span><%= link_to key_indicators[:cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report, cnpj: key_indicators[:cnpj])%></span>
+                  <span><%= link_to key_indicators[:cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report, cnpj: key_indicators[:cnpj])%></span>
                   <div>
                     <div class="risk-flag gray-flag">
                       <span> <%= key_indicators[:flags][:gray] %></span>
@@ -66,7 +66,7 @@
                   ops_admin_key_indicator_reports_path(operation_id: operation.id, kind: 'recurrent_operation'),
                   method: :create
                 %>
-            <% end %>
+              <% end %>
             </div>
 
           </div>
