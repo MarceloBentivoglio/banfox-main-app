@@ -10,7 +10,8 @@ module Risk
 
       def bootstrap_attributes
         @company_data = {
-          injuction: false
+          injuction: false,
+          non_profit: false
         }
         @partner_data = []
         @partner_documents = []
@@ -54,6 +55,8 @@ module Risk
         case tag
         when '010000'
           parse_company_status(value)
+        when '010999'
+          parse_non_profit(value)
         when '040101'
           parse_pefin(value)
         when '040102'
@@ -141,6 +144,10 @@ module Risk
                                          else
                                            nil
                                          end
+      end
+
+      def parse_non_profit(value)
+        @company_data[:non_profit] = true
       end
 
       def parse_social_control(value)
