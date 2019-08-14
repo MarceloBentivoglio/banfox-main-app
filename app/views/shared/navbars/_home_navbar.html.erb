@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="new-navbar-white navbar navbar-expand-lg fixed-top new-lp-font">
+<nav class="new-navbar-white navbar navbar-expand-lg fixed-top new-lp-font cool-navbar">
   <div class="container">
     <a class="navbar-brand" href="#">
       <%= image_tag("logo-banfox-white.png", alt: "Banfox Logo")%>
@@ -17,7 +17,7 @@
 
     <form class="form-inline">
       <% if user_signed_in? %>
-        <%= link_to "Minha área",  sellers_dashboard_path, class: "mvp-item mvp-link" %>
+        <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light" %>
       <% else %>
         <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light" %>
       <% end %>

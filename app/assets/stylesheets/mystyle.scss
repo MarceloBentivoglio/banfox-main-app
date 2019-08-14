@@ -1,0 +1,11 @@
+.navbar {
+  background-color: #5433ff;
+}
+
+html:not([data-scroll='0']) {
+  .cool-navbar {
+    height: 50px;
+  }
+}
+
+
