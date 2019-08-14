@@ -17,10 +17,15 @@ module Risk
         end
       end
 
+      def company_name(cnpj)
+        @key_indicator_report.evidences.dig("serasa_api", cnpj[0..7], "company_data", "company_name")&.capitalize
+      end
+
       def conclusions
         @key_indicator_report.key_indicators.map do |cnpj, key_indicators|
           count_flags = {
-            cnpj: CNPJ.new(cnpj).formatted,
+            name_with_cnpj: "#{company_name(cnpj)} - #{CNPJ.new(cnpj).formatted}",
+            cnpj: cnpj,
             flags: {
               gray: 0,
               green: 0,

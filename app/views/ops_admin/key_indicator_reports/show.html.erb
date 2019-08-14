@@ -11,7 +11,7 @@
         <div class="card-w-table-inside">
           <div class="card-w-table-inside-header">
             <div class="header-column">
-              <h2>Análise do CNPJ: <%= cnpj %></h2>
+              <h2>Análise: <%= @presenter.company_name(cnpj)&.capitalize %> - <%= cnpj%></h2>
             </div>
           </div>
           <div class="card-w-table-inside-summary">
