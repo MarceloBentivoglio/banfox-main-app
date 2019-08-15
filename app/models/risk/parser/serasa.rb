@@ -222,6 +222,16 @@ module Risk
           company_nickname: data[101..130],
           role: parse_role(data[131]),
           consistency_code: data[132],
+          refin: [],
+          pefin: [],
+          protest: [],
+          lawsuit: [],
+          bankruptcy_participation: [],
+          bankruptcy: [],
+          debt_overdue: [],
+          bad_check: [],
+          bad_check_ccf: [],
+          lost_check: []
         }
 
         @partner_data << @current_partner_data
