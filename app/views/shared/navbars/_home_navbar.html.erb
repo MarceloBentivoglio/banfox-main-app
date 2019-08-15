@@ -18,15 +18,15 @@
       </ul>
     </div>
 
-    <form class="form-inline">
+
       <% if user_signed_in? %>
         <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
       <% else %>
-        <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
+        <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light navbar-user-home margin-right-xxs" %>
 
         <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
       <% end %>
-    </form>
+
   </div>
 </nav>
 
