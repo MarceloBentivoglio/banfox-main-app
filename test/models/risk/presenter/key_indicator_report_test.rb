@@ -12,7 +12,8 @@ class Risk::Presenter::KeyIndicatorReportTest < ActiveSupport::TestCase
 
     expected = [
       {
-        cnpj: "Company Name - 07.526.557/0001-00",
+        cnpj: "07526557000100",
+        name_with_cnpj: "Company Name - 07.526.557/0001-00",
         flags: {
           gray: 1,
           green: 1,
