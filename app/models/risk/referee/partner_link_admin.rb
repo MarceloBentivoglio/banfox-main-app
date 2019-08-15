@@ -17,12 +17,12 @@ module Risk
               partner_role: evidence.partner_role
             }
 
-            code = "#{@code}_#{evidence.partner_cpf}"
+            code = "#{@code}_#{evidence.partner_document}"
 
             {
               code: code,
               title: @title,
-              description: evidence.partner_cpf,
+              description: evidence.partner_document,
               params: @params,
               evidence: @evidence,
               flag: assert
