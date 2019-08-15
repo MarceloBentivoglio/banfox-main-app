@@ -45,7 +45,7 @@
               <% if operation.key_indicator_reports.any? %>
                 <strong>Análise de crédito</strong>
                 <% operation.present_key_indicator_report&.conclusions.each do |key_indicators| %>
-                  <span><%= link_to key_indicators[:cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report, cnpj: key_indicators[:cnpj])%></span>
+                  <span><%= link_to key_indicators[:name_with_cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report) %></span>
                   <div>
                     <div class="risk-flag gray-flag">
                       <span> <%= key_indicators[:flags][:gray] %></span>
@@ -64,9 +64,10 @@
               <% else %>
                 <%= link_to 'Analisar Risco da Operação',
                   ops_admin_key_indicator_reports_path(operation_id: operation.id, kind: 'recurrent_operation'),
-                  method: :create
+                  method: :create,
+                  id: "wrapper-loader-trigger"
                 %>
-            <% end %>
+              <% end %>
             </div>
 
           </div>
@@ -79,5 +80,11 @@
       </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="wrapper-loader">
+  <div class="loader-content">
+    <%= image_tag "banfox_3.gif" %>
   </div>
 </div>

@@ -27,5 +27,19 @@ FactoryBot.define do
         }
       end
     end
+
+    trait :with_evidences do
+      evidences do
+        {
+          'serasa_api' => {
+            "07526557" => {
+              "company_data" => {
+                "company_name" => "Company Name"
+              }
+            }
+          }
+        }
+      end
+    end
   end
 end
