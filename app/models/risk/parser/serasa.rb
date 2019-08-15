@@ -223,7 +223,6 @@ module Risk
           role: parse_role(data[131]),
           consistency_code: data[132],
         }
-        byebug
 
         @partner_data << @current_partner_data
       end
