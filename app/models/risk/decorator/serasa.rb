@@ -47,6 +47,10 @@ module Risk
         @evidences[:cpf_or_cnpj]
       end
 
+      def non_profit
+        @evidences.dig(:company_data, :non_profit)
+      end
+
       def company_status
         @evidences.dig(:company_data, :company_status)
       end
