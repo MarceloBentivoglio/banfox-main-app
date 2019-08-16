@@ -24,7 +24,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
           ]
         },
         {
-          cpf: '0000000002',
+          cnpj: '0000000002',
           name: 'Joane Doe',
           role: 'admin',
           lawsuit: [
@@ -55,7 +55,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
         evidence: {
           historic: 100,
           current: 200,
-          cpf: '0000000001',
+          document: '0000000001',
           name: 'John Doe' 
         },
         flag: Risk::KeyIndicatorReport::RED_FLAG
@@ -68,7 +68,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
         evidence: {
           historic: 125,
           current: 100,
-          cpf: '0000000002',
+          document: '0000000002',
           name: 'Joane Doe'
         },
         flag: Risk::KeyIndicatorReport::GREEN_FLAG

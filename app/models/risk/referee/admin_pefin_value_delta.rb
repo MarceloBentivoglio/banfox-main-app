@@ -16,7 +16,7 @@ module Risk
           @evidence = {
             historic: evidence.pefin_historic_value,
             current: evidence.pefin_value,
-            cpf: evidence.partner_document,
+            document: evidence.partner_document,
             name: evidence.partner_name
           }
 
