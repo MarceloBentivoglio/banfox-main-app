@@ -72,3 +72,15 @@
     text-decoration: none;
   }
 }
+
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-toggler-icon {
+  background-image: url("/assets/toggle-icon.svg")
+}

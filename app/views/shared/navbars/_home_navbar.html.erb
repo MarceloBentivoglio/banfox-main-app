@@ -1,32 +1,28 @@
 <!-- Navbar -->
-<nav class="new-navbar-white navbar navbar-expand-lg fixed-top new-lp-font cool-navbar">
+<nav class="new-navbar-white navbar navbar-expand-lg fixed-top new-lp-font">
   <div class="container">
     <a class="navbar-brand white-logo" href="#" >
       <%= image_tag("logo-banfox-white.png", alt: "Banfox Logo")%>
     </a>
-    <a class="navbar-brand colored-logo" href="#" style="display: none;" >
-      <%= image_tag("Logo_banfox_color.png", alt: "Banfox Logo")%>
-    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse nav-list-links" id="navbarNav">
-      <ul class="navbar-nav" style="display: none;">
-        <li class="nav-item">
-          <a class="nav-link" href="#">COMO FUNCIONA <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">QUEM SOMOS</a>
-        </li>
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light margin-right-xxs nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
-
-
-      <% if user_signed_in? %>
-        <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
-      <% else %>
-        <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light navbar-user-home margin-right-xxs" %>
-
-        <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
-      <% end %>
-
   </div>
 </nav>
 
