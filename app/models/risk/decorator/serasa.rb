@@ -19,6 +19,10 @@ module Risk
         @evidences[:role]
       end
 
+      def partner_document
+        @evidences[:cpf] || @evidences[:cnpj]
+      end
+
       def partner_documents
         documents = @evidences[:partner_documents]&.map do |partner_document|
           Risk::Decorator::Serasa.new(partner_document)

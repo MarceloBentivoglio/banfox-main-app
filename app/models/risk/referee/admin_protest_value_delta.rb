@@ -16,16 +16,16 @@ module Risk
           @evidence = {
             historic: evidence.protest_historic_value,
             current: evidence.protest_value,
-            cpf: evidence.partner_cpf,
+            cpf: evidence.partner_document,
             name: evidence.partner_name
           }
 
-          code = "#{@code}_#{evidence.partner_cpf}"
+          code = "#{@code}_#{evidence.partner_document}"
 
           {
             code: code,
             title: @title,
-            description: evidence.partner_cpf,
+            description: evidence.partner_document,
             params: @params,
             evidence: @evidence,
             flag: assert

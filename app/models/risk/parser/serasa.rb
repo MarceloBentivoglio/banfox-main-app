@@ -210,8 +210,31 @@ module Risk
         }
       end
 
-      #TODO
       def parse_partner_pj_data(data)
+        @parsing_partner_data = true
+        @current_partner_data = {
+          cnpj: data[0..8],
+          cnpj_detail: data[9..12],
+          cnpj_digit: data[13..14],
+          incorporation_year: data[15..22],
+          information_last_updated_at: data[23..30],
+          company_name: data[31..100],
+          company_nickname: data[101..130],
+          role: parse_role(data[131]),
+          consistency_code: data[132],
+          refin: [],
+          pefin: [],
+          protest: [],
+          lawsuit: [],
+          bankruptcy_participation: [],
+          bankruptcy: [],
+          debt_overdue: [],
+          bad_check: [],
+          bad_check_ccf: [],
+          lost_check: []
+        }
+
+        @partner_data << @current_partner_data
       end
 
       def parse_partner_pf_data(data)
