@@ -5,7 +5,7 @@ class Risk::Referee::PartnerRefinValueDeltaTest < ActiveSupport::TestCase
     collection_evidence = {
       partner_data: [
         {
-          cpf: '0000000001',
+          cnpj: '0000000001',
           name: 'John Doe',
           refin: [
             {
