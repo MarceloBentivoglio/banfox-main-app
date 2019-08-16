@@ -43,6 +43,10 @@ module Risk
         @evidences[:name]
       end
 
+      def bankruptcy?
+        @evidences[:bankruptcy]&.any?
+      end
+
       def partner_pf_or_pj
         @evidences[:pf_or_pj]
       end
