@@ -16,7 +16,7 @@ module Risk
           @evidence = {
             historic: evidence.lawsuit_historic_value,
             current: evidence.lawsuit_value,
-            cpf: evidence.partner_document,
+            document: evidence.partner_document,
             name: evidence.partner_name
           }
 
