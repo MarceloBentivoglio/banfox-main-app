@@ -1,7 +1,7 @@
 <div class="wrapper-page-wo-subnavbar">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Operações para análise",
           optional_button: "",
@@ -67,6 +67,7 @@
                   method: :create,
                   id: "wrapper-loader-trigger"
                 %>
+                <%= render partial: "shared/loaders/wrapper_loader" %>
               <% end %>
             </div>
 
@@ -80,11 +81,5 @@
       </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="wrapper-loader">
-  <div class="loader-content">
-    <%= image_tag "banfox_3.gif" %>
   </div>
 </div>

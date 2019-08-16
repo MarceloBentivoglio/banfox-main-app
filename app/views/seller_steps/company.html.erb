@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="col-12 col-md-8 offset-md-2">
       <div class="client-form-box">
         <div class="client-form-logo">
           <%= image_tag "porco.png", height: 100 %>
@@ -18,41 +18,41 @@
           </div>
           <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
             <div class="row">
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :company_name, label: "Qual o nome da sua Empresa?" %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :cnpj, label: "Digite o CNPJ da sua Empresa", input_html: { class: "cnpj"} %>
                 <%= f.error :cnpj_validator, class: "invalid-feedback"  %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :website, label: "Qual site da sua empresa?" %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :phone, label: "Qual o telefone da sua empresa?", input_html: {class: "phone"}%>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :zip_code, label: "Qual o CEP da sua Empresa?", input_html: {class: "zip_code", id: "zipcode"} %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :address_number, label: "Número" %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :address, label: "Endereço", input_html: { id: "address" }  %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :city, label: "Cidade", input_html: { id: "city" } %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :neighborhood, label: "Bairro", input_html: { id: "neighborhood" } %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :state, label: "Estado", input_html: { id: "state" } %>
               </div>
-              <div class="col-xs-12 col-sm-6">
+              <div class="col-12 col-sm-6">
                 <%= f.input :address_comp, label: "Complemento (Opcional)", input_html: { id: "address_comp" } %>
               </div>
-              <div class="col-xs-12 col-sm-6"></div>
+              <div class="col-12 col-sm-6"></div>
             </div>
             <div class="form-buttons">
               <%= link_to "Voltar", previous_wizard_path %>

@@ -4,7 +4,7 @@
   margin: 5px 10px;
   background-color: #fff;
   color: $dark-blue;
-  display: flex;
+  display: inline;
   align-items: center;
   justify-content: space-between;
   box-shadow: none !important;
@@ -16,9 +16,10 @@
     border-radius: 50%;
     font-weight: bold;
     font-size: 22px;
-    display: flex;
     align-items: center;
     justify-content: center;
+    padding: 5px 13px;
+    margin: 0px 35px;
   }
   .bar {
     width: 6rem;

@@ -7,7 +7,7 @@
 <div class="wrapper-page-w-subnavbar">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Limites",
           optional_button: "",
@@ -27,13 +27,13 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
           title: "Títulos",
           optional_button: "",
         } %>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-12">
             <%= render partial: "shared/tables/table_wo_bundle/store/header" %>
             <%= simple_form_for Operation.new do |f| %>
               <input type="hidden" name="operation[installment_ids][]">
