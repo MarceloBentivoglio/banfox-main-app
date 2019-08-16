@@ -32,3 +32,4 @@ pt-BR:
     admin-lawsuit-quantity-delta: "Avalia a evolução incremental da quantidade total de ações judiciais do administrador da empresa. Crescimento relativo inferior a, ou igual a 'green_limit' é considerado verde. Crescimento relativo entre 'green_limit' e (incluso) 'yellow_limit' é considerado amarelo. Crescimento maior que 'yellow_limit' é considerado vermelho."
     admin-lawsuit-value-delta: "Avalia a evolução incremental do valor total de ações judiciais do administrador da empresa. Crescimento relativo inferior a, ou igual a 'green_limit' é considerado verde. Crescimento relativo entre 'green_limit' e (incluso) 'yellow_limit' é considerado amarelo. Crescimento maior que 'yellow_limit' é considerado vermelho."
     non-profit-organization: "Avalia se a empresa é 'sem-fins-lucrativos'. Empresa 'com fins lucrativos' é considerado verde. Empresa 'sem-fins-lucrativos' é considerado vermelho."
+    partner-bankruptcy-participation: ""
