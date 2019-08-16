@@ -1,0 +1,22 @@
+<div class="card-w-table-inside">
+  <div class="card-w-table-inside-header">
+    <div class="header-column">
+      <span># <%= operation.id %> <%= operation.seller_name.mb_chars.downcase.titleize %></span>
+    </div>
+    <div class="header-column">
+      <span> Aberta a: <%= operation.order_elapsed_time %></span>
+    </div>
+  </div>
+  <div class="card-w-table-inside-summary">
+    <div class="summary-column">
+      <strong>Resumo da operação</strong>
+      <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
+      <span>Taxa total: <%= humanized_money_with_symbol operation.initial_fee %> </span>
+      <span>Retenção: <%= humanized_money_with_symbol operation.initial_protection %> </span>
+      <span>Total líquido: <%= humanized_money_with_symbol operation.initial_net_value %> </span>
+      <span>Total depósito: <%= humanized_money_with_symbol operation.initial_deposit_today %> </span>
+    </div>
+  </div>
+  <%= render partial: "shared/tables/table_wo_bundle_ops/header" %>
+  <%= render partial: "shared/tables/table_wo_bundle_ops/deposit/container", locals: {items: operation.installments}%>
+</div>

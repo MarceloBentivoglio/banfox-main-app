@@ -1,0 +1,9 @@
+<div class="card-w-table-inside">
+  <div class="card-w-table-inside-header">
+    <div class="header-column">
+      <span># <%= operation.id %> <%= operation.seller_name.mb_chars.downcase.titleize %></span>
+    </div>
+  </div>
+  <%= render partial: "shared/tables/table_wo_bundle_ops/follow_up/header" %>
+  <%= render partial: "shared/tables/table_wo_bundle_ops/follow_up/container", locals: {items: operation.installments.opened}%>
+</div>
