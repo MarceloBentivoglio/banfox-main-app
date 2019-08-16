@@ -10,6 +10,7 @@ module Risk
                    Risk::Referee::PartnerPefinValueDelta,
                    Risk::Referee::PartnerProtestQuantityDelta,
                    Risk::Referee::PartnerProtestValueDelta,
+                   Risk::Referee::PartnerBankruptcyParticipation,
                    Risk::Referee::AdminRefinQuantityDelta,
                    Risk::Referee::AdminRefinValueDelta,
                    Risk::Referee::AdminLawsuitQuantityDelta,
