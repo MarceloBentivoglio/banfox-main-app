@@ -5,11 +5,11 @@ class Risk::Referee::PartnerLinkAdminTest < ActiveSupport::TestCase
     evidences = {
       partner_data: [
         {
-          cpf: '111111111',
+          cnpj: '111111111',
           role: 'not defined'
         },
         {
-          cpf: '222222222',
+          cnpj: '222222222',
           role: 'admin'
         },
         {

@@ -16,7 +16,7 @@ module Risk
           @evidence = {
             historic: evidence.protest_historic_quantity,
             current: evidence.protest_quantity,
-            cpf: evidence.partner_document,
+            document: evidence.partner_document,
             name: evidence.partner_name
           }
 
