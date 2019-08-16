@@ -273,6 +273,9 @@
 .new-banner-hero {
   width: 100vw;
   height: calc(70vh + 100px);
+  @media screen and (max-width: 600px){
+    height: calc(88vh + 100px);
+  }
   background: rgb(84,51,255);
   background: linear-gradient(127deg, rgba(84,51,255,1) 45%, rgba(84,104,255,1) 100%);
   background-clip: content-box;
@@ -313,6 +316,9 @@
     img {
       width: 100%
     }
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
   }
 }
 
@@ -332,8 +338,12 @@
 }
 
 .new-banner-brands {
+  padding: 0px;
   width: 100vw;
   height: calc(30vh - 100px);
+  @media screen and (max-width: 600px){
+    height: calc(60vh - 100px);
+  }
   background-color: #DDE3E9;
   background-clip: content-box;
   border-bottom-right-radius: 150px 150px;
@@ -346,10 +356,18 @@
     height: calc(30vh - 100px);
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     img {
       height: 40px;
+    }
+    .brand-item {
+      @media screen and (max-width: 600px) {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
     }
   }
 }
