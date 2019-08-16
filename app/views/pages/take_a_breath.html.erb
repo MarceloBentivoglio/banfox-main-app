@@ -1,6 +1,38 @@
-<section id="unfortune-wrapper">
-  <div id="modal-show-wo-click-present">
-    <%= render partial: "shared/modals/modal_pre_analysing", locals: {seller: @seller, user: @user} %>
+<!-- Banner Hero -->
+<div class="new-banner-hero-wrapper new-lp-font">
+  <div class="new-banner-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="new-banner-hero-text">
+            <div class="text-break"></div>
+            <h1>Receba à vista, <br>sempre.</h1>
+            <h2>Antecipe suas notas fiscais à prazo.</h2>
+            <h4>A Banfox é a melhor plataforma para antecipar recebíveis do Brasil. Feita por empreendedores para empreendedores.</h4>
+            <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-lg btn-hero-banfox" %>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="new-banner-hero-img">
+            <%= image_tag("banfox-hero-img.png", alt: "Banfox Logo")%>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
-<%= render 'shared/footer' %>
+</div>
+
+<div class="new-banner-brands new-lp-font">
+  <div class="container">
+    <div class="brand-box">
+      <h3>EMPRESAS QUE <br> CONFIAM NA BANFOX</h3>
+      <%= image_tag("logo-ace.png", alt: "Banfox Logo")%>
+      <%= image_tag("logo-clicksign.png", alt: "Banfox Logo")%>
+      <%= image_tag("logo-emailage.png", alt: "Banfox Logo")%>
+      <%= image_tag("logo-inovabra.png", alt: "Banfox Logo")%>
+    </div>
+  </div>
+</div>
+<div id="modal-show-wo-click-present">
+  <%= render partial: "shared/modals/modal_pre_analysing", locals: {seller: @seller, user: @user} %>
+</div>
