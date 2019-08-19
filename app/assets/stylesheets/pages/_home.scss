@@ -271,7 +271,7 @@
   background-color: #DDE3E9;
 }
 .new-banner-hero {
-  width: 100vw;
+  width: 100%;
   height: calc(70vh + 100px);
   @media screen and (max-width: 600px){
     height: calc(88vh + 100px);
@@ -339,7 +339,7 @@
 
 .new-banner-brands {
   padding: 0px;
-  width: 100vw;
+  width: 100%;
   height: calc(30vh - 100px);
   @media screen and (max-width: 600px){
     height: calc(60vh - 100px);

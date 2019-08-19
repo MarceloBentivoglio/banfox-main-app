@@ -1,0 +1,48 @@
+.cta-transition-benefits {
+  border-radius: 100px 0px 0px 0px;
+  background-color: #EEF2F6;
+  height: 100px;
+}
+.section-transition-benefits {
+  border-radius: 0px 0px 100px 0px;
+  background-color: #EEF2F6;
+  height: 100px;
+}
+
+#our-benefits {
+  background-color: #EEF2F6;
+  .how-title1 {
+    padding-top: 150px;
+  }
+  .benefits-item {
+    margin-bottom: 50px;
+  }
+  .desktop-item {
+    display: flex;
+  }
+  .mobile-item {
+    display: none;
+  }
+  @media screen and (max-width: 720px) {
+    .desktop-item {
+      display: none;
+    }
+    .mobile-item {
+      display: flex;
+    }
+  }
+  .card-data-benefits {
+    padding: 60px 30px 25px;
+    margin-bottom: 20px;
+    min-height: 133px;
+    color: #000;
+    h4 {
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+  }
+  img {
+    padding: 30px 0px 0px;
+    width: 100%;
+  }
+}

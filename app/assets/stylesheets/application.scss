@@ -1,4 +1,4 @@
-// Graphical variables
+// Graphical variables 
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
@@ -14,3 +14,28 @@
 @import "components/index";
 @import "pages/index";
 @import "elements/index";
+
+.title-separator {
+  border-top: 5px solid #5433ff;
+  width: 65px;
+  margin-bottom: 50px;
+}
+
+.call-to-action {
+  position: relative;
+  z-index: 10;
+  margin: 150px 0px -100px;
+  .container {
+    background-color: #5433ff;
+    padding: 60px 25px 25px 60px;
+    border-radius: 80px 0px;
+  }
+  h2 {
+    color: #fff
+  }
+  .text-border {
+    border-top: 5px solid #fff;
+    width: 30px;
+    margin: 20px 0px 0px 15px;
+  }
+}

@@ -1,193 +1,38 @@
-/* How it Works Banner */
-// Header
-#how-header {
-  height: 70vh;
-  overflow: hidden;
-  position: relative;
-  transform-style: preserve-3d;
-  perspective: 100px;
-}
-#how-header:before {
-  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
-  background-image: linear-gradient(-225deg, rgba(0,101,168,0) 0%, rgba(0,36,61,0) 50%), url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530565900/imgmenu_1440px_1_lhcdcq.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: translateY(-10rem);
-  content: "";
-  position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  z-index: -1;
-}
-// banner
-.how-banner {
-  min-height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  h1 {
-    color: $near-white;
-  }
+#how-it-works {
+  padding-top: 150px;
 }
 // card post banner
 .card-data-howitworks {
   background: #fff;
-  box-shadow: 0 4px 20px 0 #eceffc;
-  border-radius: 5px;
   padding: 30px 30px 25px;
   margin-bottom: 20px;
   min-height: 133px;
   color: $dark-blue;
-}
-
-
-
-// how content
-.how-content {
-  hr {
-      border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba($orange, 0.75), rgba(0, 0, 0, 0));
+  .card-data-header {
+    img {
+      width: 100%;
+      height: 80px;
+    }
   }
-}
-// how content
-.how-title1 {
-  text-align: center;
-  color: #1C2E57;
-}
-.how-title2 {
-  text-align: center;
-  color: #1C2E57;
-  margin: 75px 0;
-}
-.card-title1-how {
-  height: 300px;
-  padding: 10px;
-  margin-bottom: 30px;
-  color: #1C2E57;
-  opacity: 0;
-  transform: translateY(4em);
-  transition: transform 4s .3s cubic-bezier(0,1,.3,1),
-              opacity .3s .3s ease-out;
-  will-change: transform, opacity;
-  img {
-    height: 75px;
-  }
-}
-.is-visible {
-  opacity: 1;
-}
-.img-title1 {
-  height: 125px;
-  width: 125px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.how-number {
-  color: $orange;
-  font-weight: bold;
-  p {
-    float: right;
-    margin: 0;
-    padding: 0;
-  }
-}
-.how-number-content {
-  color: #1C2E57;
-  margin-bottom: 50px;
-  h4 {
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    padding: 0;
-  }
-}
-.how-image-content {
-  height: 500px;
-  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530638273/mvpinvest/pessoamuitoprofissional.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-/* Quote Banner Intra Page */
-#content-banner {
-  height: 70vh;
-  overflow: hidden;
-  position: relative;
-  transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  p {
-    color: $near-white;
-    font-size: 3rem;
-    font-weight: lighter;
-    line-height: 65px;
-    letter-spacing: 0.1em;
-  }
-}
-#content-banner:before {
-  animation: no-transform 2s .5s cubic-bezier(0,.5,0,1) forwards;
-  background-image: url('https://res.cloudinary.com/mbentivoglio/image/upload/v1530626204/mvpinvest/imagemquote_1440px.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: translateY(-10rem);
-  content: "";
-  position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  z-index: -1;
-}
-
-#call-to-action {
-  padding-top: 1em;
-  padding-bottom: 3em;
-}
-
-/* Call to Action Intra Page */
-.call-to-action {
-  height: calc(30vh - 70px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  h2 {
-    margin-bottom: 30px;
-    color: #1C2E57;
-    span {
-      color: #9B51E0;
+  .card-data-body {
+    margin-top: 20px;
+    a {
+      font-weight: 700;
     }
   }
 }
-// button
-.intra-call-to-action {
-  color: white;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-  background: #9B51E0;
-  transition: opacity 0.3s ease;
-}
-.intra-call-to-action:hover {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  text-decoration: none;
-  color: white;
+
+// how content
+.how-title1 {
+  text-align: center;
+  color: #C1C4D1;
+  margin-bottom: 10px;
+  font-weight: 800;
+  font-size: 1.2rem;
 }
 
-/* Responsive CSS adjustments */
-@media screen and (max-width: 415px) {
-  #content-banner p {
-    font-size: 2rem;
-    line-height: 30px;
-  }
+.how-title2 {
+  text-align: center;
+  color: #1C2E57;
+  margin-bottom: 75px;
 }

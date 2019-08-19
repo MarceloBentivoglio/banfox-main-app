@@ -8,25 +8,23 @@
       <%= image_tag("Logo_banfox_color.png", alt: "Banfox Logo")%>
     </a>
     <div class="collapse navbar-collapse nav-list-links" id="navbarNav">
-      <ul class="navbar-nav" style="display: none;">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">COMO FUNCIONA <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#how-it-works">COMO FUNCIONA <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">QUEM SOMOS</a>
+          <a class="nav-link" href="#our-mission">QUEM SOMOS</a>
         </li>
       </ul>
     </div>
 
+    <% if user_signed_in? %>
+      <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
+    <% else %>
+      <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light navbar-user-home margin-right-xxs" %>
 
-      <% if user_signed_in? %>
-        <%= link_to "MINHA ÁREA",  sellers_dashboard_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
-      <% else %>
-        <%= link_to "LOGIN", new_user_session_path, class: "btn btn-sm btn-outline-light navbar-user-home margin-right-xxs" %>
-
-        <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
-      <% end %>
+      <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-sm btn-outline-light navbar-user-home" %>
+    <% end %>
 
   </div>
 </nav>
-
