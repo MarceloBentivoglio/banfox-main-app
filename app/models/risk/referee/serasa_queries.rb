@@ -28,7 +28,6 @@ module Risk
       def select_names_with_correspondent_keywords
         @evidence[:names].select do |name|
                             found = @params[:keywords].select {|keyword| name.downcase.include? keyword }
-
                             found.any?
                          end.reject do |name|
                            @params[:ignore_names].include? name
@@ -40,10 +39,10 @@ module Risk
       end
 
       def assert
-        if quantity_found > @params[:green_limit]
-          Risk::KeyIndicatorReport::YELLOW_FLAG
-        else
+        if quantity_found <= @params[:green_limit]
           Risk::KeyIndicatorReport::GREEN_FLAG
+        else
+          Risk::KeyIndicatorReport::YELLOW_FLAG
         end
       end
     end
