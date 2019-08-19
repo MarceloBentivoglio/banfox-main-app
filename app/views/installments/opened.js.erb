@@ -1,7 +1,6 @@
-document.querySelector('.table_wo_bundle').insertAdjacentHTML('beforeend', '<%= j render partial: "shared/tables/table_wo_bundle_for_opened_history_installments/row", collection: @installments, as: :item %>');
+document.querySelector('.table-wo-bundle.body').insertAdjacentHTML('beforeend', '<%= j render partial: "shared/tables/table_wo_bundle/opened/row", collection: @installments, as: :item %>');
 <% if @installments.next_page %>
   document.querySelector('.pagination').innerHTML = '<%= j will_paginate @installments %>';
 <% else %>
   document.querySelector('.pagination').remove();
 <% end %>
-<%#= sleep 10 %>

@@ -67,9 +67,9 @@ class Installment < ApplicationRecord
   scope :quant,                      -> (scope, seller) { __send__(scope, seller).count }
 
   # For the tables of cards
-  scope :in_store,                   -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]) }
-  scope :currently_opened,           -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]) }
-  scope :finished,                   -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(pdd))).preload(invoice: [:payer]) }
+  scope :in_store,                   -> (seller) { from_seller(seller).merge(unavailable.or(available)).preload(invoice: [:payer]).order('due_date ASC') }
+  scope :currently_opened,           -> (seller) { from_seller(seller).merge(deposited.opened).preload(invoice: [:payer]).order('due_date ASC') }
+  scope :finished,                   -> (seller) { from_seller(seller).merge(deposited.merge(paid.or(pdd))).preload(invoice: [:payer]).order('finished_at DESC') }
 
   # For creating operations
   scope :ordered_in_analysis,        -> (seller) { from_seller(seller).merge(ordered).preload(invoice: [:payer]) }

@@ -185,7 +185,7 @@ class Operation < ApplicationRecord
   def initial_deposit_today
     initial_net_value - initial_protection
   end
-  
+
   def payers
     invoices.map {|invoice| invoice.payer }
             .uniq

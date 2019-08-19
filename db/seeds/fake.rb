@@ -115,8 +115,8 @@ i7 = Invoice.create!(
 operation1 = Operation.create!(
   consent: true,
   signed: true,
-
 )
+
 operation2 = Operation.create!(
   consent: true,
   signed: true,

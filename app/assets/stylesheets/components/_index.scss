@@ -8,6 +8,7 @@
 @import "tables/index";
 @import "wrappers/index";
 @import "forms/index";
+@import "loaders/index";
 
 // Import your components CSS files here.
 @import "flashes";
@@ -22,4 +23,3 @@
 @import "status_bottom_bar";
 @import "steps_progress_bar";
 @import "credit_modeling";
-@import "wrapper_loader";
