@@ -27,6 +27,10 @@ module Risk
         @evidences[:cpf] || @evidences[:cnpj]
       end
 
+      def partner_bankruptcy_participation?
+        @evidences[:bankruptcy_participation]&.any?
+      end
+
       def partner_documents
         documents = @evidences[:partner_documents]&.map do |partner_document|
           Risk::Decorator::Serasa.new(partner_document)
@@ -45,6 +49,10 @@ module Risk
 
       def partner_name
         @evidences[:name]
+      end
+
+      def bankruptcy?
+        @evidences[:bankruptcy]&.any?
       end
 
       def partner_pf_or_pj
