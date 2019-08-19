@@ -62,6 +62,7 @@ class RunningRefereesTest < ActiveSupport::TestCase
       'social_capital',
       'social_capital_realized',
       'company_status',
+      'serasa_queries',
       'partner_refin_quantity_delta_326273108',
       'partner_refin_value_delta_326273108',
       'partner_lawsuit_quantity_delta_326273108',
