@@ -70,6 +70,7 @@ class RunningRefereesTest < ActiveSupport::TestCase
       'partner_pefin_value_delta_326273108',
       'partner_protest_quantity_delta_326273108',
       'partner_protest_value_delta_326273108',
+      'partner_bankruptcy_participation_326273108'
     ].each do |expected_key_indicator|
       assert actual_key_indicators.include? expected_key_indicator
     end

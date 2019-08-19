@@ -10,6 +10,7 @@ module Risk
                    Risk::Referee::PartnerPefinValueDelta,
                    Risk::Referee::PartnerProtestQuantityDelta,
                    Risk::Referee::PartnerProtestValueDelta,
+                   Risk::Referee::PartnerBankruptcyParticipation,
                    Risk::Referee::AdminRefinQuantityDelta,
                    Risk::Referee::AdminRefinValueDelta,
                    Risk::Referee::AdminLawsuitQuantityDelta,
@@ -17,7 +18,8 @@ module Risk
                    Risk::Referee::AdminPefinQuantityDelta,
                    Risk::Referee::AdminPefinValueDelta,
                    Risk::Referee::AdminProtestQuantityDelta,
-                   Risk::Referee::AdminProtestValueDelta
+                   Risk::Referee::AdminProtestValueDelta,
+                   Risk::Referee::AdminBankruptcyParticipation
 
       def build_evidences
         cnpjs = @key_indicator_report.evidences['serasa_api'].keys
