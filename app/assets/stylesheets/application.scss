@@ -24,18 +24,22 @@
 .call-to-action {
   position: relative;
   z-index: 10;
-  margin: 150px 0px -100px;
+  margin-bottom: -130px;
   .container {
     background-color: #5433ff;
-    padding: 60px 25px 25px 60px;
     border-radius: 80px 0px;
-  }
-  h2 {
-    color: #fff
-  }
-  .text-border {
-    border-top: 5px solid #fff;
-    width: 30px;
-    margin: 20px 0px 0px 15px;
+    h1 {
+      color: #fff
+    }
+    .cta-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text-border {
+      border-top: 5px solid #fff;
+      width: 30px;
+      margin: 20px 0px 20px 0px;
+    }
   }
 }

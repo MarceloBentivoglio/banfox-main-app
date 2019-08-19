@@ -1,4 +1,15 @@
+.cta-transition-footer {
+  border-radius: 100px 0px 0px 0px;
+  background-color: #333D47;
+  height: 130px;
+}
+
+.cta-padding-footer {
+  padding: 40px 50px 70px 70px;
+}
+
 #lp-footer {
+  padding-top: 50px;
   background-color: #333D47;
 }
 
@@ -6,7 +17,7 @@
   width: 100%;
   border-bottom: 1px solid #fff;
   img {
-    height: 80px;
+    height: 150px;
     text-align: left;
   }
 }
@@ -16,5 +27,12 @@
   padding-top: 20px;
   p {
     color: #fff;
+  }
+  .left-info {
+    padding-left: 0px;
+  }
+  .right-info {
+    padding-right: 0px;
+    text-align: right;
   }
 }

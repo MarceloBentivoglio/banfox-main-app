@@ -1,37 +1,69 @@
+<div class="call-to-action">
+  <div class="container cta-padding-mission">
+    <div class="text-border"></div>
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <h1>Sem tarifas, sem pegadinhas. E você ainda acumula pontos!</h1>
+      </div>
+      <div class="col-12 col-md-3 cta-button">
+        <%= link_to "CADASTRE-SE", new_user_registration_path, class: "btn btn-lg btn-hero-banfox" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cta-transition-mission"></div>
 <section id="our-mission">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="how-title1">
-          <h4>NOSSA MISSÃO</h4>
+          <p>NOSSA MISSÃO</p>
         </div>
       </div>
       <div class="col-12">
         <div class="how-title2">
-          <h2>A Banfox está transformando fundamentalmente a maneira de antecipar recebíveis no Brasil.</h2>
+          <h1>A Banfox está transformando fundamentalmente a</h1>
+          <h1>maneira de antecipar recebíveis no Brasil.</h1>
         </div>
       </div>
     </div>
+    <center><div class="title-separator"></div></center>
     <div class="row">
-      <div class="col-12 card-data-ourmission" >
-        <h4>O Brasil precisa de um produto justo.</h4>
-        <p>
+      <div class="col-12 card-data-ourmission main-card" >
+        <div class="card-data-header">
+          <h3>O Brasil precisa de um produto justo.</h3>
+        </div>
+        <div class="card-data-body">
+          <p>
           Em operações de crédito é comum aparecer cobranças inesperadas e quando questionamos o porque daqueles valores, a que recebemos é "Está previsto em contrato." Aprática de letra pequenas e escondidas acontece o tempo todo, e nós brasileiros é quem pagamos a conta no final do dia. Por isso, indignados pelo mal atendimento, decidimos revolucionar o mercado brasileiro com o melhor produto, livre de tarifas, cobranças extras ou penalidades abusivas.
-        </p>
+          </p>
+        </div>
       </div>
-      <div class="col-12 col-md-6 card-data-ourmission card-left" >
-        <h4>Quem Somos? Somos Inconformados.</h4>
-        <p>
+    </div><!-- row -->
+    <div class="row bottom-cards-container">
+      <div class="col-12 col-md-6 left-card" >
+        <div class="card-data-ourmission">
+          <div class="card-data-header">
+            <h3>Quem Somos?</h3>
+            <h3>Somos Inconformados.</h3>
+          </div>
+          <p>
           Inconformados com a maneira que instituições financeiras tradicionais cobram seus clientes e abusam do taxas e tarifas . Somos um time de profissionais de excelência determinados em lhe atender com o melhor produto. Sempre.
-        </p>
-        <a href="#">EU QUERO!</a>
+          </p>
+          <a href="<%= new_user_registration_path %>">EU QUERO!</a>
+        </div>
       </div>
-      <div class="col-12 col-md-6 card-data-ourmission right-card" >
-        <h4>Faça parte dessa história junto com a gente</h4>
-        <p>
+      <div class="col-12 col-md-6 right-card" >
+        <div class="card-data-ourmission">
+          <div class="card-data-header">
+            <h3>Faça parte dessa história</h3>
+            <h3>junto com a gente</h3>
+          </div>
+          <p>
           Estamos sempre em busca de pessoas engajadas com vontade de aprender e crescer junto conosco. Queremos revolucionar o mercado no Brasil e pra isso precisamos de pessoas revolucionárias. Vem conhecer nossa missão e tomar um café com a gente.
-        </p>
-        <a href="#">EU QUERO!</a>
+          </p>
+          <a href="<%= new_user_registration_path %>">EU QUERO!</a>
+        </div>
       </div>
     </div>
   </div>

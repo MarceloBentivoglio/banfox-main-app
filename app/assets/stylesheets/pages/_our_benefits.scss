@@ -1,19 +1,21 @@
 .cta-transition-benefits {
   border-radius: 100px 0px 0px 0px;
   background-color: #EEF2F6;
-  height: 100px;
+  height: 130px;
 }
 .section-transition-benefits {
   border-radius: 0px 0px 100px 0px;
   background-color: #EEF2F6;
-  height: 100px;
+  height: 280px;
+  margin-bottom: -130px;
 }
 
+.cta-padding-benefits {
+  padding: 70px 50px 40px 70px;
+}
 #our-benefits {
+  padding-top: 150px;
   background-color: #EEF2F6;
-  .how-title1 {
-    padding-top: 150px;
-  }
   .benefits-item {
     margin-bottom: 50px;
   }
@@ -39,6 +41,9 @@
     h4 {
       font-weight: 700;
       margin-bottom: 30px;
+    }
+    a {
+      font-weight: 700;
     }
   }
   img {
