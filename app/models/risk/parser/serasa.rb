@@ -26,6 +26,7 @@ module Risk
         @bad_check = []
         @bad_check_ccf = []
         @lost_check = []
+        @serasa_queries = []
 
         @parsing_partner_data = false
       end
@@ -97,6 +98,8 @@ module Risk
           parse_company_address_2(value)
         when '010105'
           parse_company_registration_data(value)
+        when '030102'
+          parse_serasa_queries(value)
         when '040198'
           parse_injuction(value)
         when '040298'
@@ -120,7 +123,19 @@ module Risk
           bad_check: @bad_check,
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
+          serasa_queries: @serasa_queries
         }
+      end
+
+      def parse_serasa_queries(value)
+        serasa_query = {
+          date: value[0..7],
+          name: value[8..42],
+          quantity: value[43..46],
+          cnpj: value[47..55]
+        }
+
+        @serasa_queries << serasa_query
       end
 
       def parse_company_status(value)

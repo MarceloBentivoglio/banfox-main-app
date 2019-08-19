@@ -7,6 +7,10 @@ module Risk
         @evidences = evidences.with_indifferent_access
       end
 
+      def serasa_query_names
+        evidences[:serasa_queries].map {|query| query[:name].strip }
+      end
+
       def partner_cpf
         @evidences[:cpf]
       end
