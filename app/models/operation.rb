@@ -84,7 +84,11 @@ class Operation < ApplicationRecord
       OperationMailer.partially_approved(self, user, seller).deliver_now
       #TODO: create a method that has a better name for completely deposited
     elsif no_on_going_operation?
-      OperationMailer.deposited(self, user, seller).deliver_now
+      if seller.available_limit.zero?
+        OperationMailer.deposited_without_limit(self, user, seller).deliver_now
+      else
+        OperationMailer.deposited(self, user, seller).deliver_now
+      end
     end
   end
 

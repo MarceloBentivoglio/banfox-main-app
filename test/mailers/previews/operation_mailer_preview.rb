@@ -7,6 +7,10 @@ class OperationMailerPreview < ActionMailer::Preview
     OperationMailer.deposited(Operation.last, User.first, Seller.first).deliver_now
   end
 
+  def deposited_without_limit
+    OperationMailer.deposited_without_limit(Operation.last, User.first, Seller.second).deliver_now
+  end
+
   def partially_approved
     OperationMailer.partially_approved(Operation.first, User.first, Seller.first).deliver_now
   end
