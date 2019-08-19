@@ -19,6 +19,7 @@
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>Estamos passando para avisar que seu dinheiro já está a caminho!</p>
+                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.initial_deposit_today %></strong>. À medida que os titulos forem sendo liquidados, você irá receber a proteção de cada um deles, totalizando ao final <%= humanized_money_with_symbol @operation.protection %></p>.
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -44,19 +45,26 @@
                   <h1>Resumo da operação</h1>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
+                      <th class="purchase_heading"><p>Título</p></th>
                       <th class="purchase_heading"><p>Sacado</p></th>
-                      <th class="purchase_heading"><p>Data de vencimento</p></th>
-                      <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
-                      <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
-                      <th class="purchase_heading"><p class="align-right">Status</p></th>
+                      <th class="purchase_heading"><p class="align-right">Vencimento</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor</p></th>
+                      <th class="purchase_heading"><p class="align-right">Depósito hoje</p></th>
+                      <th class="purchase_heading"><p class="align-right">Depósito liquidação</p></th>
                     </tr>
                     <% @installments.each do |i| %>
                       <tr>
-                        <td class="purchase_item"><%= i.invoice.payer.company_name.mb_chars.titleize.split.first %></td>
+                        <td class="purchase_item"><%= i.invoice.number %>/<%= i.number %></td>
+                        <td class="purchase_item">
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.first %>
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.second %>
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.third %>
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.fourth %>
+                        </td>
                         <td class="purchase_item"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
-                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.initial_net_value %></td>
-                        <td class="purchase_item align-right"><%=  i.status[1] %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.first_deposit_amount %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.protection %></td>
                       </tr>
                     <% end %>
                   </table>

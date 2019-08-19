@@ -4,7 +4,7 @@ class OperationMailerPreview < ActionMailer::Preview
   end
 
   def deposited
-    OperationMailer.deposited(Operation.first, User.first, Seller.first).deliver_now
+    OperationMailer.deposited(Operation.last, User.first, Seller.first).deliver_now
   end
 
   def partially_approved
