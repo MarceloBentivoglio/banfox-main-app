@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Risk::Referee::BankruptcyTest < ActiveSupport::TestCase
-  test '.call returns red flag if there is any' do
+  test '.call returns red flag if there is any information on backruptcy' do
     evidences = {
       bankruptcy: [
         {
@@ -28,7 +28,7 @@ class Risk::Referee::BankruptcyTest < ActiveSupport::TestCase
     assert_equal expected, Risk::Referee::Bankruptcy.new(decorated_evidences).call
   end
 
-  test '.call returns green flag if there is any' do
+  test '.call returns green flag if there is not information about bankruptcy' do
     evidences = {
       bankruptcy: [
       ]
