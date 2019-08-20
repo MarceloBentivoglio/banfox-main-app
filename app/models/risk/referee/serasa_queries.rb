@@ -14,7 +14,14 @@ module Risk
             'banco',
             'securitizadora',
             'fundo',
-            'fidc'
+            'fidc',
+            'gestao de risco',
+            'gestao de r',
+            'financeira',
+            'credito',
+            'financiame',
+            'financiamento',
+            'gestao riscos'
           ],
           ignore_names: [
             'MVP FOMENTO MERCANTIL LTDA',
@@ -26,19 +33,20 @@ module Risk
       end
 
       def select_names_with_correspondent_keywords
-        @evidence[:names].select do |name|
+        @evidence[:names]&.select do |name|
                             found = @params[:keywords].select {|keyword| name.downcase.include? keyword }
                             found.any?
-                         end.reject do |name|
+                         end&.reject do |name|
                            @params[:ignore_names].include? name
                          end
       end
 
       def quantity_found
-        @evidence[:found]&.uniq&.size || 0
+        @evidence[:found]&.uniq&.size
       end
 
       def assert
+        return Risk::KeyIndicatorReport::GRAY_FLAG if @evidence[:found].nil?
         if quantity_found <= @params[:green_limit]
           Risk::KeyIndicatorReport::GREEN_FLAG
         else

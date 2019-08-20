@@ -48,7 +48,14 @@ class Risk::Referee::SerasaQueriesTest < ActiveSupport::TestCase
           'banco',
           'securitizadora',
           'fundo',
-          'fidc'
+          'fidc',
+          'gestao de risco',
+          'gestao de r',
+          'financeira',
+          'credito',
+          'financiame',
+          'financiamento',
+          'gestao riscos'
         ],
         ignore_names: [
           'MVP FOMENTO MERCANTIL LTDA',
@@ -120,7 +127,14 @@ class Risk::Referee::SerasaQueriesTest < ActiveSupport::TestCase
           'banco',
           'securitizadora',
           'fundo',
-          'fidc'
+          'fidc',
+          'gestao de risco',
+          'gestao de r',
+          'financeira',
+          'credito',
+          'financiame',
+          'financiamento',
+          'gestao riscos'
         ],
         ignore_names: [
           'MVP FOMENTO MERCANTIL LTDA',

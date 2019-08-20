@@ -8,7 +8,7 @@ module Risk
       end
 
       def serasa_query_names
-        evidences[:serasa_queries].map {|query| query[:name].strip }
+        evidences[:serasa_queries]&.map {|query| query[:name].strip }
       end
 
       def partner_cpf
