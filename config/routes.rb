@@ -85,4 +85,7 @@ Rails.application.routes.draw do
 
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
+
+  #handling a possible attack
+  get "*missing" => redirect("/")
 end
