@@ -17,6 +17,10 @@
   padding-top: 150px;
   background-color: #EEF2F6;
   .benefits-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     margin-bottom: 50px;
   }
   .desktop-item {
@@ -34,8 +38,10 @@
     }
   }
   .card-data-benefits {
-    padding: 60px 30px 25px;
-    margin-bottom: 20px;
+    @media screen and (max-width: 500px) {
+      padding: 60px 30px 25px;
+      margin-bottom: 20px;
+    }
     min-height: 133px;
     color: #000;
     h4 {
