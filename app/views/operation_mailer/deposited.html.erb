@@ -20,7 +20,7 @@
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>Obrigado por confiar na banfox!</p>
                   <p>Estamos passando para avisar que seu dinheiro já está a caminho!</p>
-                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.initial_deposit_today %></strong>. À medida que os titulos forem sendo liquidados, você irá receber a proteção de cada um deles, totalizando ao final <strong><%= humanized_money_with_symbol @operation.protection %></strong>.</p>
+                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.initial_deposit_today %></strong>. À medida que os títulos forem sendo liquidados, você irá receber a proteção de cada um deles, totalizando ao final <strong><%= humanized_money_with_symbol @operation.protection %></strong>.</p>
                   <h1>Resumo da operação <%= @operation.id %></h1>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
