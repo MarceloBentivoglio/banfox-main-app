@@ -271,7 +271,7 @@
   background-color: #DDE3E9;
 }
 .new-banner-hero {
-  width: 100vw;
+  width: 100%;
   height: calc(70vh + 100px);
   @media screen and (max-width: 600px){
     height: calc(88vh + 100px);
@@ -339,7 +339,7 @@
 
 .new-banner-brands {
   padding: 0px;
-  width: 100vw;
+  width: 100%;
   height: calc(30vh - 100px);
   @media screen and (max-width: 600px){
     height: calc(60vh - 100px);
@@ -368,6 +368,35 @@
         text-align: center;
         padding: 10px;
       }
+    }
+  }
+}
+
+.title-separator {
+  border-top: 5px solid #5433ff;
+  width: 65px;
+  margin-bottom: 50px;
+}
+
+.call-to-action {
+  position: relative;
+  z-index: 10;
+  margin-bottom: -130px;
+  .container {
+    background-color: #5433ff;
+    border-radius: 80px 0px;
+    h1 {
+      color: #fff
+    }
+    .cta-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text-border {
+      border-top: 5px solid #fff;
+      width: 30px;
+      margin: 20px 0px 20px 0px;
     }
   }
 }

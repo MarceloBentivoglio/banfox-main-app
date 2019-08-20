@@ -72,3 +72,19 @@
     text-decoration: none;
   }
 }
+
+.new-navbar {
+  position: absolute;
+  background-color: #5433ff;
+  justify-content: space-between;
+  @media screen and (max-width: 800px){
+    .collapse {display: none;}
+  }
+  @media screen and (max-width: 500px) {
+    .btn-outline-light {
+      border: none;
+      padding-left: 0px;
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.cta-transition-benefits {
+  border-radius: 100px 0px 0px 0px;
+  background-color: #EEF2F6;
+  height: 130px;
+}
+.section-transition-benefits {
+  border-radius: 0px 0px 100px 0px;
+  background-color: #EEF2F6;
+  height: 280px;
+  margin-bottom: -130px;
+}
+
+.cta-padding-benefits {
+  padding: 70px 50px 40px 70px;
+}
+#our-benefits {
+  padding-top: 150px;
+  background-color: #EEF2F6;
+  .benefits-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 50px;
+  }
+  .desktop-item {
+    display: flex;
+  }
+  .mobile-item {
+    display: none;
+  }
+  @media screen and (max-width: 720px) {
+    .desktop-item {
+      display: none;
+    }
+    .mobile-item {
+      display: flex;
+    }
+  }
+  .card-data-benefits {
+    @media screen and (max-width: 500px) {
+      padding: 60px 30px 25px;
+      margin-bottom: 20px;
+    }
+    min-height: 133px;
+    color: #000;
+    h4 {
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    a {
+      font-weight: 700;
+    }
+  }
+  img {
+    padding: 30px 0px 0px;
+    width: 100%;
+  }
+}
