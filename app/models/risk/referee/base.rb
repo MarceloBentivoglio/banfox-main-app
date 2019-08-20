@@ -25,6 +25,11 @@ module Risk
       def multiple_assertions?
         false
       end
+
+      def ignore_key_indicator(code, key_indicators)
+        key_indicators[code]['ignored'] = true
+        key_indicators[code]['ignored_by'] = self.class.name
+      end
     end
   end
 end

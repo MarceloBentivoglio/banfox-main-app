@@ -25,8 +25,8 @@ module Risk
         super
       end
 
-      def decorate_evidences(evidences)
-        Risk::Decorator::Serasa.new(evidences)
+      def decorate_evidences(key_indicator_report)
+        Risk::Decorator::Serasa.new(key_indicator_report.evidences)
       end
 
       def build_evidences_with_historic

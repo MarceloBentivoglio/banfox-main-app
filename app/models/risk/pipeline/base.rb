@@ -35,9 +35,8 @@ module Risk
       end
 
       def call
+        decorated_evidences = decorate_evidences(@key_indicator_report)
         self.class.referees.each do |referee_klass|
-          decorated_evidences = decorate_evidences(@key_indicator_report.evidences)
-
           decorated_evidences.each_cnpj do |cnpj, evidences|
             referee = referee_klass.new(evidences)
             if referee.multiple_assertions?
