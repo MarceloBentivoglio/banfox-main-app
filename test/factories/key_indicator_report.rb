@@ -22,7 +22,12 @@ FactoryBot.define do
             },
             'pefin_quantity_delta' => {
               'flag' => -1
+            },
+            'refin_quantity_delta' => {
+              'flag' => 1,
+              'ignored' => true
             }
+
           }
         }
       end
