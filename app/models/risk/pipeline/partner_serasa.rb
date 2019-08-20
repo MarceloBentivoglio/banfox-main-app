@@ -71,8 +71,8 @@ module Risk
         super
       end
 
-      def decorate_evidences(evidences)
-        Risk::Decorator::PartnerSerasa.new(evidences)
+      def decorate_evidences(key_indicator_report)
+        Risk::Decorator::PartnerSerasa.new(key_indicator_report.evidences)
       end
     end
   end

@@ -4,7 +4,6 @@ module Risk
       include CNPJFormatter
       class << self
         attr_reader :pipelines
-
         def pipeline_list(*pipelines)
           @pipelines = pipelines
         end
@@ -28,10 +27,12 @@ module Risk
       end
 
       def fetchers_required
-        self.class.pipelines.map {|pipeline| pipeline.fetchers }
-                            .reduce([]) {|fetchers, fetcher| fetchers << fetcher }
-                            .uniq
-                            .flatten
+        self.class.pipelines
+                  .reject {|pipeline| pipeline.fetchers.nil?}
+                  .map {|pipeline| pipeline.fetchers }
+                  .reduce([]) {|fetchers, fetcher| fetchers << fetcher }
+                  .uniq
+                  .flatten
       end
 
       def call_fetchers
