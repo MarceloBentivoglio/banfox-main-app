@@ -18,7 +18,11 @@ class SellersController < ApplicationController
       @seller.auto_veredict_at = Time.current
       @seller.save!
       SellerMailer.rejected(@user, @seller).deliver_now
-      SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado* automaticamente por #{@seller.rejection_motive}").send_now
+      if @seller.rejection_motive == "insuficient_revenue"
+        SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado* automaticamente por #{@seller.rejection_motive} \n Receita: #{@seller.monthly_revenue_cents&.fdiv(100)} \n Nome: #{@seller.full_name}; Telefone: #{@seller.mobile}; Email: #{@seller.users.first.email} \n Partner: #{@seller.full_name_partner}; Telefone: #{@seller.mobile_partner}; Email: #{@seller.email_partner}").send_now
+      else
+        SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *rejeitado* automaticamente por #{@seller.rejection_motive}").send_now
+      end
       redirect_to unfortune_path and return
     end
     @seller.pre_approved!
