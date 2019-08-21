@@ -15,7 +15,8 @@ module Risk
       end
 
       def assert
-        refin_last_occurrence = Date.parse(@evidence[:refin]&.first['date'])
+        refin_last_occurrence = @evidence[:refin]&.first&.dig 'date'
+        refin_last_occurrence = Date.parse(refin_last_occurrence) unless refin_last_occurrence.nil?
 
         if @evidence[:refin].nil?
           Risk::KeyIndicatorReport::GRAY_FLAG
