@@ -36,6 +36,7 @@ pt-BR:
     bankruptcy: "Avalia se a empresa está falida. Empresa com nenhuma informação sobre falência é considerado verde. Empresa com alguma informação sobre falência é considerado vermelho."
     partner-bankruptcy-participation: "Avalia se o sócio tem participação em alguma empresa que faliu. Se não é considerado verde, se sim é considerado vermelho."
     admin-bankruptcy-participation: "Avalia se o administrador tem participação em alguma empresa que faliu. Se não é considerado verde, se sim é considerado vermelho."
+    refin-last-occurrence: ""
     cross-pefin-value: ""
     cross-pefin-quantity: ""
     pefin-last-occurrence: ""

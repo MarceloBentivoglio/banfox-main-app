@@ -95,6 +95,10 @@ module Risk
         @evidences.dig(:refin)&.first&.dig(:value) || 0
       end
 
+      def refin
+        @evidences.dig(:refin)
+      end
+
       def refin_historic_value
         if @evidences.dig(:historic)&.any?
           @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:value) || 0
