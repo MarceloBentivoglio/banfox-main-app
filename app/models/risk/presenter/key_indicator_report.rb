@@ -34,7 +34,8 @@ module Risk
             }
           }
 
-          key_indicators.each do |_, key_indicator|
+          key_indicators.reject {|code, key_indicator| key_indicator.include? 'ignored' }
+                        .each do |_, key_indicator|
             case key_indicator['flag']
             when -1
               count_flags[:flags][:gray] += 1
