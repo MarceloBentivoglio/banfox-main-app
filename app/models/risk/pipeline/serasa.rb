@@ -18,7 +18,8 @@ module Risk
                    Risk::Referee::SocialCapitalRealized,
                    Risk::Referee::CompanyStatus,
                    Risk::Referee::SerasaQueries,
-                   Risk::Referee::Bankruptcy
+                   Risk::Referee::Bankruptcy,
+                   Risk::Referee::RefinLastOccurrence
 
       def call
         build_evidences_with_historic
