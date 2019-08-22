@@ -3,6 +3,24 @@
   <head>
     <%= render partial: "shared/layouts/standard_html_head" %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-715362859"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-715362859');
+      function gtag_report_conversion() {
+        var callback = function () {
+          document.forms[0].submit()
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-715362859/De9aCPvfsqgBEKukjtUC',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
+
   </head>
   <body style="background-color: #eef1f6 !important;">
     <div class="container">
