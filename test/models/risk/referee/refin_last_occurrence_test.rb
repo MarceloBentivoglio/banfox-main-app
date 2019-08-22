@@ -11,7 +11,7 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
         {
           quantity: 10,
           value: 1000,
-          date: '20190520'
+          date: '20190816'
         }
       ]
     }
@@ -27,13 +27,13 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
           {
             'quantity' => 10,
             'value' => 1000,
-            'date' => '20190520'
+            'date' => '20190816'
           }
         ]
       },
       params: {
-        yellow_limit: 30,
-        green_limit: 5
+        green_limit: 30,
+        yellow_limit: 5
       },
       flag: Risk::KeyIndicatorReport::RED_FLAG
     }
@@ -47,7 +47,7 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
         {
           quantity: 10,
           value: 1000,
-          date: '20190814'
+          date: '20190805'
         }
       ]
     }
@@ -63,13 +63,13 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
           {
             'quantity' => 10,
             'value' => 1000,
-            'date' => '20190814'
+            'date' => '20190805'
           }
         ]
       },
       params: {
-        yellow_limit: 30,
-        green_limit: 5
+        green_limit: 30,
+        yellow_limit: 5
       },
       flag: Risk::KeyIndicatorReport::YELLOW_FLAG
     }
@@ -83,7 +83,7 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
         {
           quantity: 10,
           value: 1000,
-          date: '20190815'
+          date: '20190715'
         }
       ]
     }
@@ -99,13 +99,13 @@ class Risk::Referee::RefinLastOccurrenceTest < ActiveSupport::TestCase
           {
             'quantity' => 10,
             'value' => 1000,
-            'date' => '20190815'
+            'date' => '20190715'
           }
         ]
       },
       params: {
-        yellow_limit: 30,
-        green_limit: 5
+        green_limit: 30,
+        yellow_limit: 5
       },
       flag: Risk::KeyIndicatorReport::GREEN_FLAG
     }

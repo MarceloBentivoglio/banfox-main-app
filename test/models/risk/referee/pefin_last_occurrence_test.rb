@@ -11,7 +11,7 @@ class Risk::Referee::PefinLastOccurrenceTest < ActiveSupport::TestCase
         {
           quantity: 10,
           value: 1000,
-          date: '20190520'
+          date: '20190816'
         }
       ]
     }
@@ -27,13 +27,13 @@ class Risk::Referee::PefinLastOccurrenceTest < ActiveSupport::TestCase
           {
             'quantity' => 10,
             'value' => 1000,
-            'date' => '20190520'
+            'date' => '20190816'
           }
         ]
       },
       params: {
-        yellow_limit: 30,
-        green_limit: 5
+        green_limit: 30,
+        yellow_limit: 5
       },
       flag: Risk::KeyIndicatorReport::RED_FLAG
     }
@@ -42,42 +42,6 @@ class Risk::Referee::PefinLastOccurrenceTest < ActiveSupport::TestCase
   end
 
   test '.call creates a yellow flag' do
-    evidences = {
-      pefin: [
-        {
-          quantity: 10,
-          value: 1000,
-          date: '20190814'
-        }
-      ]
-    }
-
-    decorated_evidence = Risk::Decorator::Serasa.new(evidences)
-
-    expected = {
-      code: 'pefin_last_occurrence',
-      title: 'Pefin Last Occurrence',
-      description: '',
-      evidence: {
-        pefin: [
-          {
-            'quantity' => 10,
-            'value' => 1000,
-            'date' => '20190814'
-          }
-        ]
-      },
-      params: {
-        yellow_limit: 30,
-        green_limit: 5
-      },
-      flag: Risk::KeyIndicatorReport::YELLOW_FLAG
-    }
-
-    assert_equal expected, Risk::Referee::PefinLastOccurrence.new(decorated_evidence).call
-  end
-
-  test '.call creates a green flag' do
     evidences = {
       pefin: [
         {
@@ -104,8 +68,44 @@ class Risk::Referee::PefinLastOccurrenceTest < ActiveSupport::TestCase
         ]
       },
       params: {
-        yellow_limit: 30,
-        green_limit: 5
+        green_limit: 30,
+        yellow_limit: 5,
+      },
+      flag: Risk::KeyIndicatorReport::YELLOW_FLAG
+    }
+
+    assert_equal expected, Risk::Referee::PefinLastOccurrence.new(decorated_evidence).call
+  end
+
+  test '.call creates a green flag' do
+    evidences = {
+      pefin: [
+        {
+          quantity: 10,
+          value: 1000,
+          date: '20190720'
+        }
+      ]
+    }
+
+    decorated_evidence = Risk::Decorator::Serasa.new(evidences)
+
+    expected = {
+      code: 'pefin_last_occurrence',
+      title: 'Pefin Last Occurrence',
+      description: '',
+      evidence: {
+        pefin: [
+          {
+            'quantity' => 10,
+            'value' => 1000,
+            'date' => '20190720'
+          }
+        ]
+      },
+      params: {
+        green_limit: 30,
+        yellow_limit: 5,
       },
       flag: Risk::KeyIndicatorReport::GREEN_FLAG
     }
