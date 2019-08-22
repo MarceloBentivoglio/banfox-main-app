@@ -92,7 +92,7 @@ module Risk
       end
 
       def refin_value
-        @evidences.dig(:refin)&.first&.dig(:value) || 0
+        @evidences.dig(:refin)&.first&.dig(:total_value) || 0
       end
 
       def refin
@@ -101,7 +101,7 @@ module Risk
 
       def refin_historic_value
         if @evidences.dig(:historic)&.any?
-          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:total_value) || 0
         else
           nil
         end
@@ -160,12 +160,12 @@ module Risk
       end
 
       def pefin_value
-        @evidences&.dig(:pefin)&.first&.dig(:value) || 0
+        @evidences&.dig(:pefin)&.first&.dig(:total_value) || 0
       end
 
       def pefin_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:total_value) || 0
         else
           nil
         end
