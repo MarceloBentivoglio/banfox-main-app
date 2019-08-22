@@ -143,6 +143,10 @@ module Risk
         end
       end
 
+      def pefin
+        @evidences&.dig(:pefin)
+      end
+
       def pefin_quantity
         @evidences&.dig(:pefin)&.first&.dig(:quantity) || 0
       end

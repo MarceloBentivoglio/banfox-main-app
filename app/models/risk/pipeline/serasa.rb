@@ -19,6 +19,7 @@ module Risk
                    Risk::Referee::CompanyStatus,
                    Risk::Referee::SerasaQueries,
                    Risk::Referee::Bankruptcy,
+                   Risk::Referee::PefinLastOccurrence,
                    Risk::Referee::RefinLastOccurrence
 
       def call
