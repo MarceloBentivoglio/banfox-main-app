@@ -10,13 +10,13 @@ class Risk::Referee::AdminPefinValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           pefin: [
             {
-              value: 200
+              total_value: 200
             }
           ],
           historic: [
             {
               pefin: [
-                { value: 100
+                { total_value: 100
               }
               ]
             }
@@ -28,13 +28,13 @@ class Risk::Referee::AdminPefinValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           pefin: [
             {
-              value: 100
+              total_value: 100
             }
           ],
           historic: [
             {
               pefin: [
-                value: 125
+                total_value: 125
               ]
             }
           ]
@@ -55,7 +55,7 @@ class Risk::Referee::AdminPefinValueDeltaTest < ActiveSupport::TestCase
           historic: 100,
           current: 200,
           document: '0000000001',
-          name: 'John Doe' 
+          name: 'John Doe'
         },
         flag: Risk::KeyIndicatorReport::RED_FLAG
       },

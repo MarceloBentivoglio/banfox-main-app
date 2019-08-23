@@ -13,7 +13,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_1 => {
           'refin': [
             {
-              value: 1000,
+              total_value: 1000,
               quantity: 0
             }
           ],
@@ -22,7 +22,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_2 => {
           'refin': [
             {
-              value: 1000,
+              total_value: 1000,
               quantity: 10
             }
           ],
@@ -40,7 +40,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_1 => {
           refin: [
             {
-              value: 2000,
+              total_value: 2000,
               quantity: 10
             }
           ]
@@ -48,7 +48,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_3 => {
           refin: [
             {
-              value: 3000,
+              total_value: 3000,
               quantity: 15
             }
           ],
@@ -66,7 +66,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_2 => {
           refin: [
             {
-              value: 1001,
+              total_value: 1001,
               quantity: 16
             }
           ],
@@ -79,7 +79,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         @cnpj_3 => {
           refin: [
             {
-              value: 1002,
+              total_value: 1002,
               quantity: 5
             }
           ],
@@ -114,7 +114,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         "15.310.278/0001-32"=> {
           "refin"=> [
              {
-               "value"=>1001,
+               "total_value"=>1001,
                "quantity"=>16
              }
           ],
@@ -127,7 +127,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
             {
               "refin"=>[
                 {
-                  "value"=>1000,
+                  "total_value"=>1000,
                   "quantity"=>10
                 }
               ],
@@ -142,7 +142,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
         "28.153.804/0001-40"=> {
           "refin"=> [
             {
-              "value"=>1002,
+              "total_value"=>1002,
               "quantity"=>5
             }
           ],
@@ -150,12 +150,12 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
             {
               "quantity"=>16
             }
-          ], 
+          ],
           "historic"=> [
             {
               "refin"=> [
                 {
-                  "value"=>3000,
+                  "total_value"=>3000,
                   "quantity"=>15
                 }
               ],

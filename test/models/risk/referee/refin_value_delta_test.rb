@@ -34,7 +34,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
       refin: [
         {
           quantity: 10,
-          value: 1000,
+          total_value: 1000,
           date: Date.new(2019,1,21)
         }
       ],
@@ -55,7 +55,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
       refin: [
         {
           quantity: 10,
-          value: 1000,
+          total_value: 1000,
           date: Date.new(2019,1,21)
         }
       ],
@@ -64,7 +64,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           refin: [
             {
               quantity: 10,
-              value: 1000,
+              total_value: 1000,
               date: Date.new(2018,12,21)
             }
 
@@ -84,7 +84,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
       refin: [
         {
           quantity: 9,
-          value: 1500,
+          total_value: 1500,
           date: Date.new(2019,1,21)
         }
       ],
@@ -92,7 +92,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
         refin: [
           {
             quantity: 10,
-            value: 1000,
+            total_value: 1000,
             date: Date.new(2018,12,21)
           }
         ],
@@ -110,7 +110,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
       refin: [
         {
           quantity: 10,
-          value: 1600,
+          total_value: 1600,
           date: Date.new(2019,1,21)
         }
       ],
@@ -119,7 +119,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           refin: [
             {
               quantity: 9,
-              value: 1000,
+              total_value: 1000,
               date: Date.new(2018,12,21)
             }
           ]

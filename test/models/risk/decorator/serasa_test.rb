@@ -8,7 +8,7 @@ class Risk::Decorator::SerasaTest < ActiveSupport::TestCase
         {
           refin: [
             {
-              value: 1000
+              total_value: 1000
             }
           ]
         }

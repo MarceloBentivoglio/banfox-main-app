@@ -34,7 +34,7 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          value: 1000
+          total_value: 1000
         }
       ],
       historic: [
@@ -54,14 +54,14 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          value: 1000
+          total_value: 1000
         }
       ],
       historic: [
         {
           pefin: [
             {
-              value: 1000
+              total_value: 1000
             }
           ]
         }
@@ -78,14 +78,14 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          value: 1500
+          total_value: 1500
         }
       ],
       historic: [
         {
           pefin: [
             {
-              value: 1000
+              total_value: 1000
             }
           ]
         }
@@ -102,14 +102,14 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          value: 1600
+          total_value: 1600
         }
       ],
       historic: [
         {
           pefin: [
             {
-              value: 1000
+              total_value: 1000
             }
           ]
         }
