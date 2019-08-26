@@ -11,7 +11,6 @@ class Risk::Parser::SerasaTest < ActiveSupport::TestCase
 
     @parser = Risk::Parser::Serasa.new
     data = @parser.call(external_data)
-    binding.pry
   end
 
   test '.call with ambev' do

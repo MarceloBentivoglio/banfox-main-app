@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ParserSerasaTest < ActiveSupport::TestCase
 
-setup de
+setup do
   @external_datum = FactoryBot.create(:external_datum, :serasa_diadema)
 end
 

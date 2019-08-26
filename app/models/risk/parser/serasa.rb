@@ -11,7 +11,8 @@ module Risk
       def bootstrap_attributes
         @company_data = {
           injuction: false,
-          non_profit: false
+          non_profit: false,
+          negative_information: []
         }
         @partner_data = []
         @partner_documents = []
@@ -245,7 +246,8 @@ module Risk
           debt_overdue: [],
           bad_check: [],
           bad_check_ccf: [],
-          lost_check: []
+          lost_check: [],
+          negative_information: []
         }
 
         @partner_data << @current_partner_data
@@ -283,7 +285,8 @@ module Risk
           debt_overdue: [],
           bad_check: [],
           bad_check_ccf: [],
-          lost_check: []
+          lost_check: [],
+          negative_information: []
         }
 
         @partner_data << @current_partner_data
@@ -319,9 +322,8 @@ module Risk
         end
       end
 
-
       def parse_negative_information_totals(data)
-        @negative_information_totals = {
+        negative_information_totals = {
           quantity: data[0..8],
           description: data[9..35],
           initial_month_shortname: data[36..38],
@@ -337,7 +339,8 @@ module Risk
           total_value: data[90..102],
           type: data[103..105]
         }
-        assert_respective_negative_information
+
+        append_negative_information_to_respective_owner(negative_information_totals)
       end
 
       def parse_protest(data)
@@ -486,53 +489,11 @@ module Risk
         end
       end
 
-      def assert_respective_negative_information
+      def append_negative_information_to_respective_owner(negative_information)
         if @parsing_partner_data
-          assert_partner_negative_information
+          @current_partner_data[:negative_information] << negative_information
         else
-          assert_company_negative_information
-        end
-      end
-
-      def assert_company_negative_information
-        case @negative_information_totals[:type].to_i
-          when 1
-            'financial suspension'
-          when 3
-            @protest[:toal_value] = negative_information_totals[:total_value]
-          when 4
-            @lawsuit[:toal_value] = negative_information_totals[:total_value]
-          when 5
-            'bankruptcy_participation'
-          when 6
-            'bankruptcy'
-          when 7
-            @debt_overdue[:toal_value] = negative_information_totals[:total_value]
-          when 9
-            'bad check'
-          when 10
-            'refin'
-        end
-      end
-
-      def assert_partner_negative_information
-        case @negative_information_totals[:type].to_i
-          when 1
-            'financial suspension'
-          when 3
-            @current_partner_data[:protest][:total_value] = negative_information_totals[:total_value]
-          when 4
-            @current_partner_data[:lawsuit][:total_value] = negative_information_totals[:total_value]
-          when 5
-            'bankruptcy_participation'
-          when 6
-            'bankruptcy'
-          when 7
-            @current_partner_data[:debt_overdue][:total_value] = negative_information_totals[:total_value]
-          when 9
-            'bad check'
-          when 10
-            'refin'
+          @company_data[:negative_information] << negative_information
         end
       end
 
