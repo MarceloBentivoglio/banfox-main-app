@@ -92,7 +92,7 @@ module Risk
       end
 
       def refin_value
-        @evidences.dig(:refin)&.first&.dig(:value) || 0
+        @evidences.dig(:refin)&.first&.dig(:total_value) || 0
       end
 
       def refin
@@ -101,7 +101,7 @@ module Risk
 
       def refin_historic_value
         if @evidences.dig(:historic)&.any?
-          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:refin)&.first&.dig(:total_value) || 0
         else
           nil
         end
@@ -120,24 +120,40 @@ module Risk
       end
 
       def lawsuit_quantity
-        @evidences&.dig(:lawsuit)&.first&.dig(:quantity) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 4 }
+                  &.first
+                  &.dig(:quantity) || 0
       end
 
       def lawsuit_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:quantity) || 0
+            @evidences&.dig(:historic)
+                      &.first
+                      &.dig(:negative_information)
+                      &.select {|n| n[:type]&.to_i == 4 }
+                      &.first
+                      &.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def lawsuit_value
-        @evidences&.dig(:lawsuit)&.first&.dig(:value) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 4 }
+                  &.first
+                  &.dig(:value) || 0
       end
 
       def lawsuit_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:value) || 0
+            @evidences&.dig(:historic)
+                      &.first
+                      &.dig(:negative_information)
+                      &.select {|n| n[:type]&.to_i == 4 }
+                      &.first
+                      &.dig(:value) || 0
         else
           nil
         end
@@ -160,36 +176,53 @@ module Risk
       end
 
       def pefin_value
-        @evidences&.dig(:pefin)&.first&.dig(:value) || 0
+        @evidences&.dig(:pefin)&.first&.dig(:total_value) || 0
       end
 
       def pefin_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:pefin)&.first&.dig(:total_value) || 0
         else
           nil
         end
       end
 
       def protest_quantity
-        @evidences&.dig(:protest)&.first&.dig(:quantity) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 3 }
+                  &.first
+                  &.dig(:quantity) || 0
+
       end
 
       def protest_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:quantity) || 0
+          @evidences&.dig(:historic)
+                    &.first
+                    &.dig(:negative_information)
+                    &.select {|n| n[:type]&.to_i == 3 }
+                    &.first
+                    &.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def protest_value
-        @evidences&.dig(:protest)&.first&.dig(:value) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 3 }
+                  &.first
+                  &.dig(:value) || 0
       end
 
       def protest_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:value) || 0
+          @evidences&.dig(:historic)
+                    &.first
+                    &.dig(:negative_information)
+                    &.select {|n| n[:type]&.to_i == 3 }
+                    &.first
+                    &.dig(:value) || 0
         else
           nil
         end

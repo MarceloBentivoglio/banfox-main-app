@@ -4,7 +4,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      lawsuit: [],
+      negative_information: [],
       historic: []
     }
 
@@ -16,10 +16,10 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
-      lawsuit: [],
+      negative_information: [],
       historic: [
         {
-          lawsuit: []
+          negative_information: []
         }
       ]
     }
@@ -32,14 +32,15 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create yellow flag when the historic value is 0 and the entity is growing' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          value: 1000
+          value: 1000,
+          type: 4
         }
       ],
       historic: [
         {
-          lawsuit: []
+          negative_information: []
         }
       ]
     }
@@ -52,16 +53,18 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a green flag' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          value: 1000
+          value: 1000,
+          type: 4
         }
       ],
       historic: [
         {
-          lawsuit: [
+          negative_information: [
             {
-              value: 1100
+              value: 1100,
+              type: 4
             }
           ]
         }
@@ -76,16 +79,18 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a yellow flag' do
    evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          value: 1500
+          value: 1500,
+          type: 4
         }
       ],
       historic: [
         {
-          lawsuit: [
+          negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 4
             }
           ]
         }
@@ -100,16 +105,18 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a red flag' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          value: 1600
+          value: 1600,
+          type: 4,
         }
       ],
       historic: [
         {
-          lawsuit: [
+          negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 4
             }
           ]
         }
@@ -124,14 +131,14 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a green flag with "0000000000000" for a value' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
           value: "0000000000000"
         }
       ],
       historic: [
         {
-          lawsuit: [
+          negative_information: [
             {
               value: "0000000000000"
             }

@@ -1,4 +1,4 @@
-module Risk 
+module Risk
   module Parser
     class Serasa
       attr_accessor :pefin, :refin, :partner_data, :partner_documents
@@ -11,7 +11,7 @@ module Risk
       def bootstrap_attributes
         @company_data = {
           injuction: false,
-          non_profit: false
+          non_profit: false,
         }
         @partner_data = []
         @partner_documents = []
@@ -19,7 +19,6 @@ module Risk
         @refin = []
         @protest = []
         @lawsuit = []
-        @summary_occurrence = []
         @bankruptcy_participation = []
         @bankruptcy = []
         @debt_overdue = []
@@ -27,6 +26,7 @@ module Risk
         @bad_check_ccf = []
         @lost_check = []
         @serasa_queries = []
+        @negative_information = []
 
         @parsing_partner_data = false
       end
@@ -63,7 +63,7 @@ module Risk
         when '040102'
           parse_refin(value)
         when '040202'
-          parse_summary_occurrence(value)
+          parse_negative_information_totals(value)
         when '040301'
           parse_protest(value)
         when '040401'
@@ -116,14 +116,14 @@ module Risk
           refin: @refin,
           protest: @protest,
           lawsuit: @lawsuit,
-          summary_occurrence: @summary_occurrece,
           debt_overdue: @debt_overdue,
           bankruptcy_participation: @bankruptcy_participation,
           bankruptcy: @bankruptcy,
           bad_check: @bad_check,
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
-          serasa_queries: @serasa_queries
+          serasa_queries: @serasa_queries,
+          negative_information: @negative_information
         }
       end
 
@@ -246,7 +246,8 @@ module Risk
           debt_overdue: [],
           bad_check: [],
           bad_check_ccf: [],
-          lost_check: []
+          lost_check: [],
+          negative_information: []
         }
 
         @partner_data << @current_partner_data
@@ -284,7 +285,8 @@ module Risk
           debt_overdue: [],
           bad_check: [],
           bad_check_ccf: [],
-          lost_check: []
+          lost_check: [],
+          negative_information: []
         }
 
         @partner_data << @current_partner_data
@@ -320,9 +322,8 @@ module Risk
         end
       end
 
-
-      def parse_summary_occurrence(data)
-        @summary_occurrence << {
+      def parse_negative_information_totals(data)
+        negative_information_totals = {
           quantity: data[0..8],
           description: data[9..35],
           initial_month_shortname: data[36..38],
@@ -336,8 +337,10 @@ module Risk
           origin: data[66..85],
           agency: data[86..89],
           total_value: data[90..102],
-          code: parse_occurrence_code(data[103..105])
+          type: data[103..105]
         }
+
+        append_negative_information_to_respective_owner(negative_information_totals)
       end
 
       def parse_protest(data)
@@ -486,24 +489,11 @@ module Risk
         end
       end
 
-      def parse_occurrence_code(code)
-        case code.to_i
-        when 1
-          'financial suspension'
-        when 3
-          'protest'
-        when 4
-          'lawsuit'
-        when 5
-          'bankruptcy_participation'
-        when 6
-          'bankruptcy'
-        when 7
-          'overdue debt'
-        when 9
-          'bad check'
-        when 10
-          'refin'
+      def append_negative_information_to_respective_owner(negative_information)
+        if @parsing_partner_data
+          @current_partner_data[:negative_information] << negative_information
+        else
+          @negative_information << negative_information
         end
       end
 

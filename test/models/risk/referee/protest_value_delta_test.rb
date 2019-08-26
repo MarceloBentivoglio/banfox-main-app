@@ -4,7 +4,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      protest: [],
+      negative_information: [],
       historic: []
     }
 
@@ -16,10 +16,10 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
-      protest: [],
+      negative_information: [],
       historic: [
         {
-          protest: []
+          negative_information: []
         }
       ]
     }
@@ -32,14 +32,15 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create yellow flag when the historic value is 0 and the entity is growing' do
     evidences = {
-      protest: [
+      negative_information: [
         {
-          value: 1000
+          value: 1000,
+          type: 3
         }
       ],
       historic: [
         {
-          protest: []
+          negative_information: []
         }
       ]
     }
@@ -53,16 +54,20 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a green flag' do
     evidences = {
-      protest: [
+      negative_information: [
         {
-          value: 1000
+          :currency=>"R$ ",
+          :value=>"0000000001000",
+          :type=>"03 "
         }
       ],
       historic: [
         {
-          protest: [
+          negative_information: [
             {
-              value: 1000
+                :currency=>"R$ ",
+                :value=>"0000000001000",
+                :type=>"03 "
             }
           ]
         }
@@ -77,16 +82,18 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a yellow flag' do
     evidences = {
-      protest: [
+      negative_information: [
         {
-          value: 1500
+          value: 1500,
+          type: 3
         }
       ],
       historic: [
         {
-          protest: [
+          negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 3
             }
           ]
         }
@@ -101,16 +108,18 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a red flag' do
     evidences = {
-      protest: [
+      negative_information: [
         {
-          value: 1600
+          value: 1600,
+          type: 3
         }
       ],
       historic: [
         {
-          protest: [
+          negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 3
             }
           ]
         }
