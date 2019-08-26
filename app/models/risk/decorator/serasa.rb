@@ -184,12 +184,12 @@ module Risk
       end
 
       def protest_value
-        @evidences&.dig(:protest)&.first&.dig(:value) || 0
+        @evidences&.dig(:protest)&.dig(:total_value) || 0
       end
 
       def protest_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:value) || 0
+          @evidences.dig(:historic)&.first&.dig(:protest)&.dig(:total_value) || 0
         else
           nil
         end

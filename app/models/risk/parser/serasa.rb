@@ -1,4 +1,4 @@
-module Risk 
+module Risk
   module Parser
     class Serasa
       attr_accessor :pefin, :refin, :partner_data, :partner_documents
@@ -19,7 +19,6 @@ module Risk
         @refin = []
         @protest = []
         @lawsuit = []
-        @summary_occurrence = []
         @bankruptcy_participation = []
         @bankruptcy = []
         @debt_overdue = []
@@ -27,6 +26,7 @@ module Risk
         @bad_check_ccf = []
         @lost_check = []
         @serasa_queries = []
+        @negative_information_totals = {}
 
         @parsing_partner_data = false
       end
@@ -63,7 +63,7 @@ module Risk
         when '040102'
           parse_refin(value)
         when '040202'
-          parse_summary_occurrence(value)
+          parse_negative_information_totals(value)
         when '040301'
           parse_protest(value)
         when '040401'
@@ -116,7 +116,6 @@ module Risk
           refin: @refin,
           protest: @protest,
           lawsuit: @lawsuit,
-          summary_occurrence: @summary_occurrece,
           debt_overdue: @debt_overdue,
           bankruptcy_participation: @bankruptcy_participation,
           bankruptcy: @bankruptcy,
@@ -321,8 +320,8 @@ module Risk
       end
 
 
-      def parse_summary_occurrence(data)
-        @summary_occurrence << {
+      def parse_negative_information_totals(data)
+        @negative_information_totals = {
           quantity: data[0..8],
           description: data[9..35],
           initial_month_shortname: data[36..38],
@@ -336,8 +335,9 @@ module Risk
           origin: data[66..85],
           agency: data[86..89],
           total_value: data[90..102],
-          code: parse_occurrence_code(data[103..105])
+          type: data[103..105]
         }
+        assert_respective_negative_information
       end
 
       def parse_protest(data)
@@ -486,24 +486,53 @@ module Risk
         end
       end
 
-      def parse_occurrence_code(code)
-        case code.to_i
-        when 1
-          'financial suspension'
-        when 3
-          'protest'
-        when 4
-          'lawsuit'
-        when 5
-          'bankruptcy_participation'
-        when 6
-          'bankruptcy'
-        when 7
-          'overdue debt'
-        when 9
-          'bad check'
-        when 10
-          'refin'
+      def assert_respective_negative_information
+        if @parsing_partner_data
+          assert_partner_negative_information
+        else
+          assert_company_negative_information
+        end
+      end
+
+      def assert_company_negative_information
+        case @negative_information_totals[:type].to_i
+          when 1
+            'financial suspension'
+          when 3
+            @protest[:toal_value] = negative_information_totals[:total_value]
+          when 4
+            @lawsuit[:toal_value] = negative_information_totals[:total_value]
+          when 5
+            'bankruptcy_participation'
+          when 6
+            'bankruptcy'
+          when 7
+            @debt_overdue[:toal_value] = negative_information_totals[:total_value]
+          when 9
+            'bad check'
+          when 10
+            'refin'
+        end
+      end
+
+      def assert_partner_negative_information
+        case @negative_information_totals[:type].to_i
+          when 1
+            'financial suspension'
+          when 3
+            @current_partner_data[:protest][:total_value] = negative_information_totals[:total_value]
+          when 4
+            @current_partner_data[:lawsuit][:total_value] = negative_information_totals[:total_value]
+          when 5
+            'bankruptcy_participation'
+          when 6
+            'bankruptcy'
+          when 7
+            @current_partner_data[:debt_overdue][:total_value] = negative_information_totals[:total_value]
+          when 9
+            'bad check'
+          when 10
+            'refin'
         end
       end
 
