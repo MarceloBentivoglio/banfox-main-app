@@ -34,7 +34,8 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1000
+          value: 1000,
+          type: 3
         }
       ],
       historic: [
@@ -57,6 +58,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
         {
           :currency=>"R$ ",
           :value=>"0000000001000",
+          :type=>"03 "
         }
       ],
       historic: [
@@ -65,6 +67,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
             {
                 :currency=>"R$ ",
                 :value=>"0000000001000",
+                :type=>"03 "
             }
           ]
         }
@@ -81,14 +84,16 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1500
+          value: 1500,
+          type: 3
         }
       ],
       historic: [
         {
           negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 3
             }
           ]
         }
@@ -105,14 +110,16 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1600
+          value: 1600,
+          type: 3
         }
       ],
       historic: [
         {
           negative_information: [
             {
-              value: 1000
+              value: 1000,
+              type: 3
             }
           ]
         }

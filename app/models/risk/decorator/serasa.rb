@@ -184,12 +184,20 @@ module Risk
       end
 
       def protest_value
-        @evidences&.dig(:negative_information)&.first&.dig(:value) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 3 }
+                  &.first
+                  &.dig(:value) || 0
       end
 
       def protest_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:negative_information)&.first&.dig(:value) || 0
+          @evidences&.dig(:historic)
+                    &.first
+                    &.dig(:negative_information)
+                    &.select {|n| n[:type]&.to_i == 3 }
+                    &.first
+                    &.dig(:value) || 0
         else
           nil
         end
