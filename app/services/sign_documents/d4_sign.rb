@@ -12,7 +12,7 @@ class D4Sign
     #url = "https://secure.d4sign.com.br/api/v1/documents/#{D4Sign::SAFEID}/upload?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
     headers = {
       "Content-Type": "multipart/form-data;",
-      "tokenAPI": "#{D4Sign::TOKEN}"
+      "tokenAPI": "#{D4Sign::SANDTOKEN}"
     }
     body = {
       "file": File.new("/home/furuchooo/Downloads/venc_2019_05_09.pdf", "rb"),
@@ -21,8 +21,16 @@ class D4Sign
     puts response
   end
 
-  def self.add_signer_list
-    demo_doc_id = "d9f1a304-350b-4f00-b1d9-f6649e592dec"
+  def self.get_document(doc_id)
+    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
+    #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
+
+    response = RestClient.get(url)
+    puts response
+  end
+
+  def self.add_signer_list(doc_id)
+    demo_doc_id = "ed654f94-aede-4ad2-a45e-63e4e4fb90a4"
     url = "http://demo.d4sign.com.br/api/v1/documents/#{demo_doc_id}/createlist?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
     #doc_id = "dc0eb955-a532-4bda-b637-0037154526c2"
     #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
@@ -31,7 +39,7 @@ class D4Sign
     }
 
     body = {
-      "signers": [
+      "signers": JSON.generate([
         {
           "email": "furucho@banfox.com.br",
           "act": "1",
@@ -39,17 +47,30 @@ class D4Sign
           "certificadoicpbr": "0",
           "assinatura_presencial": "0"
         }
-      ]
+      ])
     }
     response = RestClient.post(url, body, headers)
     puts response.body
-    byebug
   end
 
-  def self.get_safes
-    url = "http://demo.d4sign.com.br/api/v1/safes?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
-    #url = "https://secure.d4sign.com.br/api/v1/safes?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
-    response = RestClient.get(url)
-    return JSON.parse(response)
+  def self.send_to_sign(doc_id)
+    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
+    #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
+
+    headers = {
+      "Content-Type": "application/json",
+      "tokenAPI": "#{D4Sign::SANDTOKEN}"
+    }
+
+    body = {
+      "message": "{mensagem_para_o_signatário}",
+      "skip_email": "0",
+      "workflow": "0"
+    }
+
+    response = RestClient.post(url, body, headers)
+    puts response.body
+    byebug
+
   end
 end
