@@ -34,7 +34,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1000,
+          total_value: 1000,
           type: 4
         }
       ],
@@ -55,7 +55,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1000,
+          total_value: 1000,
           type: 4
         }
       ],
@@ -63,7 +63,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
         {
           negative_information: [
             {
-              value: 1100,
+              total_value: 1100,
               type: 4
             }
           ]
@@ -81,7 +81,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
    evidences = {
       negative_information: [
         {
-          value: 1500,
+          total_value: 1500,
           type: 4
         }
       ],
@@ -89,7 +89,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
         {
           negative_information: [
             {
-              value: 1000,
+              total_value: 1000,
               type: 4
             }
           ]
@@ -107,7 +107,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1600,
+          total_value: 1600,
           type: 4,
         }
       ],
@@ -115,7 +115,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
         {
           negative_information: [
             {
-              value: 1000,
+              total_value: 1000,
               type: 4
             }
           ]
@@ -133,14 +133,14 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: "0000000000000"
+          total_value: "0000000000000"
         }
       ],
       historic: [
         {
           negative_information: [
             {
-              value: "0000000000000"
+              total_value: "0000000000000"
             }
           ]
         }

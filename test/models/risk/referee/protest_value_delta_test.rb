@@ -14,7 +14,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     assert_equal expected, Risk::Referee::ProtestValueDelta.new(decorated_evidences).assert
   end
 
-  test '.assert should create green flag when the historic value is 0 and the entity is stable' do
+  test '.assert should create green flag when the historic total_value is 0 and the entity is stable' do
     evidences = {
       negative_information: [],
       historic: [
@@ -30,11 +30,11 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     assert_equal expected, Risk::Referee::ProtestValueDelta.new(decorated_evidences).assert
   end
 
-  test '.assert should create yellow flag when the historic value is 0 and the entity is growing' do
+  test '.assert should create yellow flag when the historic total_value is 0 and the entity is growing' do
     evidences = {
       negative_information: [
         {
-          value: 1000,
+          total_value: 1000,
           type: 3
         }
       ],
@@ -57,7 +57,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
       negative_information: [
         {
           :currency=>"R$ ",
-          :value=>"0000000001000",
+          :total_value=>"0000000001000",
           :type=>"03 "
         }
       ],
@@ -66,7 +66,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
           negative_information: [
             {
                 :currency=>"R$ ",
-                :value=>"0000000001000",
+                :total_value=>"0000000001000",
                 :type=>"03 "
             }
           ]
@@ -84,7 +84,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1500,
+          total_value: 1500,
           type: 3
         }
       ],
@@ -92,7 +92,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
         {
           negative_information: [
             {
-              value: 1000,
+              total_value: 1000,
               type: 3
             }
           ]
@@ -110,7 +110,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          value: 1600,
+          total_value: 1600,
           type: 3
         }
       ],
@@ -118,7 +118,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
         {
           negative_information: [
             {
-              value: 1000,
+              total_value: 1000,
               type: 3
             }
           ]

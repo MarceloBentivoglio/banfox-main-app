@@ -143,7 +143,7 @@ module Risk
         @evidences&.dig(:negative_information)
                   &.select {|n| n[:type]&.to_i == 4 }
                   &.first
-                  &.dig(:value) || 0
+                  &.dig(:total_value) || 0
       end
 
       def lawsuit_historic_value
@@ -153,7 +153,7 @@ module Risk
                       &.dig(:negative_information)
                       &.select {|n| n[:type]&.to_i == 4 }
                       &.first
-                      &.dig(:value) || 0
+                      &.dig(:total_value) || 0
         else
           nil
         end
@@ -212,7 +212,7 @@ module Risk
         @evidences&.dig(:negative_information)
                   &.select {|n| n[:type]&.to_i == 3 }
                   &.first
-                  &.dig(:value) || 0
+                  &.dig(:total_value) || 0
       end
 
       def protest_historic_value
@@ -222,7 +222,7 @@ module Risk
                     &.dig(:negative_information)
                     &.select {|n| n[:type]&.to_i == 3 }
                     &.first
-                    &.dig(:value) || 0
+                    &.dig(:total_value) || 0
         else
           nil
         end
