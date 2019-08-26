@@ -10,7 +10,7 @@ class Risk::Referee::AdminProtestValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           negative_information: [
             {
-              value: 200,
+              total_value: 200,
               type: 3
             }
           ],
@@ -18,7 +18,7 @@ class Risk::Referee::AdminProtestValueDeltaTest < ActiveSupport::TestCase
             {
               negative_information: [
                 { 
-                  value: 100,
+                  total_value: 100,
                   type: 3
                 }
               ]
@@ -31,14 +31,14 @@ class Risk::Referee::AdminProtestValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           negative_information: [
             {
-              value: 100,
+              total_value: 100,
               type: 3
             }
           ],
           historic: [
             {
               negative_information: [
-                value: 125,
+                total_value: 125,
                 type: 3
               ]
             }

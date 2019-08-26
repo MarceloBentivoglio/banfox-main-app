@@ -10,7 +10,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           negative_information: [
             {
-              value: 200,
+              total_value: 200,
               type: 4
             }
           ],
@@ -18,7 +18,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
             {
               negative_information: [
                 { 
-                  value: 100,
+                  total_value: 100,
                   type: 4
                 }
               ]
@@ -31,7 +31,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
           role: 'admin',
           negative_information: [
             {
-              value: 100,
+              total_value: 100,
               type: 4
             }
           ],
@@ -39,7 +39,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
             {
               negative_information: [
                 {
-                  value: 125,
+                  total_value: 125,
                   type: 4
                 }
               ]
