@@ -58,15 +58,15 @@ class D4Sign
     #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
 
     headers = {
-      "Content-Type": "application/json",
-      "tokenAPI": "#{D4Sign::SANDTOKEN}"
+      :Content_Type => "application/json"
     }
 
     body = {
-      "message": "{mensagem_para_o_signatário}",
+      "message": "mensagem_para_o_signatário",
       "skip_email": "0",
-      "workflow": "0"
-    }
+      "workflow": "0",
+      "tokenAPI": "#{D4Sign::SANDTOKEN}"
+    }.to_json
 
     response = RestClient.post(url, body, headers)
     puts response.body
