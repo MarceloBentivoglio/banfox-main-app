@@ -120,24 +120,40 @@ module Risk
       end
 
       def lawsuit_quantity
-        @evidences&.dig(:lawsuit)&.first&.dig(:quantity) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 4 }
+                  &.first
+                  &.dig(:quantity) || 0
       end
 
       def lawsuit_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:quantity) || 0
+            @evidences&.dig(:historic)
+                      &.first
+                      &.dig(:negative_information)
+                      &.select {|n| n[:type]&.to_i == 4 }
+                      &.first
+                      &.dig(:quantity) || 0
         else
           nil
         end
       end
 
       def lawsuit_value
-        @evidences&.dig(:lawsuit)&.first&.dig(:value) || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 4 }
+                  &.first
+                  &.dig(:value) || 0
       end
 
       def lawsuit_historic_value
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:lawsuit)&.first&.dig(:value) || 0
+            @evidences&.dig(:historic)
+                      &.first
+                      &.dig(:negative_information)
+                      &.select {|n| n[:type]&.to_i == 4 }
+                      &.first
+                      &.dig(:value) || 0
         else
           nil
         end
@@ -190,7 +206,6 @@ module Risk
         else
           nil
         end
-
       end
 
       def protest_value

@@ -7,16 +7,19 @@ class Risk::Referee::PartnerLawsuitQuantityDeltaTest < ActiveSupport::TestCase
         {
           cnpj: '0000000001',
           name: 'John Doe',
-          lawsuit: [
+          negative_information: [
             {
-              quantity: 200
+              quantity: 200,
+              type: 4
             }
           ],
           historic: [
             {
-              lawsuit: [
-                { quantity: 100
-              }
+              negative_information: [
+                { 
+                  quantity: 100,
+                  type: 4
+                }
               ]
             }
           ]
@@ -24,15 +27,17 @@ class Risk::Referee::PartnerLawsuitQuantityDeltaTest < ActiveSupport::TestCase
         {
           cpf: '0000000002',
           name: 'Joane Doe',
-          lawsuit: [
+          negative_information: [
             {
-              quantity: 100
+              quantity: 100,
+              type: 4
             }
           ],
           historic: [
             {
-              lawsuit: [
-                quantity: 125
+              negative_information: [
+                quantity: 125,
+                type: 4
               ]
             }
           ]

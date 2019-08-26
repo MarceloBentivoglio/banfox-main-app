@@ -3,7 +3,7 @@ require 'test_helper'
 class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      lawsuit: [],
+      negative_information: [],
       historic: []
     }
 
@@ -15,10 +15,11 @@ class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create green flag when the historic quantity is 0 and the entity is stable' do
     evidences = {
-      lawsuit: [],
+      negative_information: [],
       historic: [
         {
-          lawsuit: []
+          negative_information: [],
+          type: 4
         }
       ]
     }
@@ -31,15 +32,14 @@ class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create yellow flag when the historic quantity is 0 and the entity is growing' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          quantity: 10
+          quantity: 10,
+          type: 4
         }
       ],
       historic: [
-        lawsuit: [
-          {
-          }
+        negative_information: [
         ]
       ]
     }
@@ -52,15 +52,17 @@ class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a green flag' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          quantity: 10
+          quantity: 10,
+          type: 4
         }
       ],
       historic: [
-        lawsuit: [
+        negative_information: [
           {
-            quantity: 10
+            quantity: 10,
+            type: 4
           }
         ]
       ]
@@ -74,15 +76,17 @@ class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a yellow flag' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          quantity: 15
+          quantity: 15,
+          type: 4
         }
       ],
       historic: [
-        lawsuit: [
+        negative_information: [
           {
-            quantity: 10
+            quantity: 10,
+            type: 4
           }
         ]
       ]
@@ -96,15 +100,17 @@ class Risk::Referee::LawsuitQuantityDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a red flag' do
     evidences = {
-      lawsuit: [
+      negative_information: [
         {
-          quantity: 16
+          quantity: 16,
+          type: 4
         }
       ],
       historic: [
-        lawsuit: [
+        negative_information: [
           {
-            quantity: 10
+            quantity: 10,
+            type: 4
           }
         ]
       ]
