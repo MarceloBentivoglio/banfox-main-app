@@ -30,8 +30,7 @@ class D4Sign
   end
 
   def self.add_signer_list(doc_id)
-    demo_doc_id = "ed654f94-aede-4ad2-a45e-63e4e4fb90a4"
-    url = "http://demo.d4sign.com.br/api/v1/documents/#{demo_doc_id}/createlist?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
+    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
     #doc_id = "dc0eb955-a532-4bda-b637-0037154526c2"
     #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
     headers = {
@@ -39,16 +38,22 @@ class D4Sign
     }
 
     body = {
-      "signers": JSON.generate([
+    "signers": [
         {
-          "email": "furucho@banfox.com.br",
-          "act": "1",
-          "foreign": "0",
-          "certificadoicpbr": "0",
-          "assinatura_presencial": "0"
+            "email": "furucho@banfox.com.br",
+            "act": "1",
+            "foreign": "1",
+            "certificadoicpbr": "1",
+            "assinatura_presencial": "0",
+            "docauth": "0",
+            "docauthandselfie": "0",
+       	    "embed_methodauth": "email",
+      	    "embed_smsnumber": "",
+      	    "upload_allow": "0",
+      	    "upload_obs": "teste"
         }
-      ])
-    }
+        ]
+      }.to_json
     response = RestClient.post(url, body, headers)
     puts response.body
   end
@@ -58,19 +63,17 @@ class D4Sign
     #url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
 
     headers = {
-      :Content_Type => "application/json"
+      "Content-Type": "application/json"
     }
 
     body = {
-      "message": "mensagem_para_o_signatário",
-      "skip_email": "0",
-      "workflow": "0",
-      "tokenAPI": "#{D4Sign::SANDTOKEN}"
+    "message": "oi Joaquim assine isso com o A1",
+    "skip_email": "0",
+    "workflow": "0",
+    "tokenAPI": "#{D4Sign::SANDTOKEN}"
     }.to_json
 
     response = RestClient.post(url, body, headers)
     puts response.body
-    byebug
-
   end
 end
