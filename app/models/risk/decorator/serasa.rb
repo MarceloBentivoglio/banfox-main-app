@@ -172,15 +172,25 @@ module Risk
       end
 
       def protest_quantity
-        @evidences&.dig(:company_data, :negative_information)&.select {|n| n[:type]&.to_i == 3 } || 0
+        @evidences&.dig(:negative_information)
+                  &.select {|n| n[:type]&.to_i == 3 }
+                  &.first
+                  &.dig(:quantity) || 0
+
       end
 
       def protest_historic_quantity
         if @evidences.dig(:historic).any?
-          @evidences.dig(:historic)&.first&.dig(:protest)&.first&.dig(:quantity) || 0
+          @evidences&.dig(:historic)
+                    &.first
+                    &.dig(:negative_information)
+                    &.select {|n| n[:type]&.to_i == 3 }
+                    &.first
+                    &.dig(:quantity) || 0
         else
           nil
         end
+
       end
 
       def protest_value

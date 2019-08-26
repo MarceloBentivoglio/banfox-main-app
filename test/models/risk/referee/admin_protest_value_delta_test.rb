@@ -8,16 +8,18 @@ class Risk::Referee::AdminProtestValueDeltaTest < ActiveSupport::TestCase
           cnpj: '0000000001',
           name: 'John Doe',
           role: 'admin',
-          protest: [
+          negative_information: [
             {
-              value: 200
+              value: 200,
+              type: 3
             }
           ],
           historic: [
             {
-              protest: [
+              negative_information: [
                 { 
-                  value: 100
+                  value: 100,
+                  type: 3
                 }
               ]
             }
@@ -27,15 +29,17 @@ class Risk::Referee::AdminProtestValueDeltaTest < ActiveSupport::TestCase
           cpf: '0000000002',
           name: 'Joane Doe',
           role: 'admin',
-          protest: [
+          negative_information: [
             {
-              value: 100
+              value: 100,
+              type: 3
             }
           ],
           historic: [
             {
-              protest: [
-                value: 125
+              negative_information: [
+                value: 125,
+                type: 3
               ]
             }
           ]
