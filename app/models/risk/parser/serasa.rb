@@ -12,7 +12,6 @@ module Risk
         @company_data = {
           injuction: false,
           non_profit: false,
-          negative_information: []
         }
         @partner_data = []
         @partner_documents = []
@@ -27,7 +26,7 @@ module Risk
         @bad_check_ccf = []
         @lost_check = []
         @serasa_queries = []
-        @negative_information_totals = {}
+        @negative_information = []
 
         @parsing_partner_data = false
       end
@@ -123,7 +122,8 @@ module Risk
           bad_check: @bad_check,
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
-          serasa_queries: @serasa_queries
+          serasa_queries: @serasa_queries,
+          negative_information: @negative_information
         }
       end
 
@@ -493,7 +493,7 @@ module Risk
         if @parsing_partner_data
           @current_partner_data[:negative_information] << negative_information
         else
-          @company_data[:negative_information] << negative_information
+          @negative_information << negative_information
         end
       end
 
