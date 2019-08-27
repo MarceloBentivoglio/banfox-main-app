@@ -80,9 +80,12 @@ Rails.application.routes.draw do
       namespace :operations do
         post "sign_document_status"
       end
+      namespace :stone do
+        match "welcome", to: "clients#welcome", via: :all
+        match "update", to: "clients#update", via: :all
+      end
     end
   end
-
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
 end
