@@ -62,5 +62,9 @@ FactoryBot.define do
     trait :serasa_biort do
       raw_data { [File.open("#{Rails.root}/test/support/files/20190705_BIORT.txt").read] }
     end
+
+    trait :serasa_positive_data do
+      raw_data { [File.open("#{Rails.root}/test/support/files/serasa_positive_information.txt").read] }
+    end
   end
 end

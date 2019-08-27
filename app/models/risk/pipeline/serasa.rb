@@ -20,7 +20,8 @@ module Risk
                    Risk::Referee::SerasaQueries,
                    Risk::Referee::Bankruptcy,
                    Risk::Referee::PefinLastOccurrence,
-                   Risk::Referee::RefinLastOccurrence
+                   Risk::Referee::RefinLastOccurrence,
+                   Risk::Referee::PunctualTimelyPayment
 
       def call
         build_evidences_with_historic

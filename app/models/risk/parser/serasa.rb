@@ -27,6 +27,7 @@ module Risk
         @lost_check = []
         @serasa_queries = []
         @negative_information = []
+        @timely_payment = []
 
         @parsing_partner_data = false
       end
@@ -104,6 +105,8 @@ module Risk
           parse_injuction(value)
         when '040298'
           parse_injuction(value)
+        when '021108'
+          parse_timely_payments(value)
         end
       end
 
@@ -123,8 +126,28 @@ module Risk
           bad_check_ccf: @bad_check_ccf,
           lost_check: @lost_check,
           serasa_queries: @serasa_queries,
-          negative_information: @negative_information
+          negative_information: @negative_information,
+          timely_payment: @timely_payment
         }
+      end
+
+      def parse_timely_payments(value)
+        timely_payment = {
+          description: value[0..12],
+          code: value[13..15],
+          code_description: value[16..36],
+          period_quantity_start: value[37..51],
+          period_quantity_end: value[52..66],
+          percentage_start: value[67..71],
+          percentage_end: value[72..76]
+        }
+
+        if @parsing_partner_data
+          @current_partner_data[:timely_payment] << timely_payment
+        else
+          @timely_payment << timely_payment
+        end
+
       end
 
       def parse_serasa_queries(value)
@@ -247,7 +270,8 @@ module Risk
           bad_check: [],
           bad_check_ccf: [],
           lost_check: [],
-          negative_information: []
+          negative_information: [],
+          timely_payment: [],
         }
 
         @partner_data << @current_partner_data
@@ -286,7 +310,8 @@ module Risk
           bad_check: [],
           bad_check_ccf: [],
           lost_check: [],
-          negative_information: []
+          negative_information: [],
+          timely_payment: [],
         }
 
         @partner_data << @current_partner_data

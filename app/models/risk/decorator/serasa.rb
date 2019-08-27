@@ -63,6 +63,12 @@ module Risk
         @evidences[:cpf_or_cnpj]
       end
 
+      def punctual_timely_payment
+        @evidences[:timely_payment]&.select {|n| n[:description]
+                                   &.rstrip == 'PONTUAL' }
+                                   &.first
+      end
+
       def non_profit
         @evidences.dig(:company_data, :non_profit)
       end
