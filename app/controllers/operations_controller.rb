@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document, :cancel]
+  before_action :set_seller, only: [:create, :consent, :create_document, :create_document_d4sign, :sign_document, :cancel]
 
   layout "application_w_flashes"
 
@@ -55,9 +55,10 @@ class OperationsController < ApplicationController
   def create_document_d4sign
     @operation = Operation.last_from_seller(@seller).last
     @operation.sign_document_requested_at = Time.current
-    doc_uuid = D4Sign.new(@operation, @seller)
-    D4Sign.add_signer_list(doc_uuid, @seller)
-    D4Sign.send_to_sign(doc_uuid)
+    d4sign = D4Sign.new(@operation, @seller)
+    @operation.sign_document_key = d4sign.send_document
+    @operation.sign_document_info = d4sign.add_signer_list(@operation.sign_document_key, @seller)
+    d4sign.send_to_sign(@operation.sign_documetn_key)
     @operation.save!
     redirect_to sign_document_operations_path
   end

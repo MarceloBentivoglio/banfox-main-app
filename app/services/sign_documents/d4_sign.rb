@@ -6,33 +6,15 @@ class D4Sign
   def initialize(operation, seller)
     @operation = operation
     @seller = seller
+  end
+
+  def send_document
     url2 = "localhost:4000/api/v1/documents"
     response = RestClient.post(url2 + "/create_pdf", body, headers)
     puts response
   end
 
-  def self.upload_document
-    url = "http://demo.d4sign.com.br/api/v1/documents/#{D4Sign::SANDSAFEID}/upload?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
-    
-    headers = {
-      "Content-Type": "multipart/form-data;",
-      "tokenAPI": "#{D4Sign::SANDTOKEN}"
-    }
-    body = {
-      "file": File.new("/home/furuchooo/Downloads/venc_2019_05_09.pdf", "rb"),
-    }
-    response = RestClient.post(url, body, headers)
-    puts response
-  end
-
-  def self.get_document(doc_id)
-    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
-
-    response = RestClient.get(url)
-    puts response
-  end
-
-  def self.add_signer_list(doc_id, seller)
+  def add_signer_list(doc_id, seller)
     @signers = []
     url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
     headers = {
@@ -69,13 +51,17 @@ class D4Sign
 
     begin
       response = RestClient.post(url, body, headers)
+      puts response.body
     rescue Exception => e
       puts e.response.body
     end
-    puts response.body
+    signer_list = []
+    json_response = JSON.parse(response.body)
+    json_response["message"].map {|signer| signer_list << { key_signer: signer["key_signer"], email: signer["email"] }}
+    signer_list
   end
 
-  def self.send_to_sign(doc_id)
+  def send_to_sign(doc_id)
     url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
 
     headers = {

@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     collection do
       get :consent
       get :create_document
+      get :create_document_d4sign
       get :sign_document
       put :cancel
     end
