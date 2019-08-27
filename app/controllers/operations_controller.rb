@@ -52,6 +52,16 @@ class OperationsController < ApplicationController
     redirect_to sign_document_operations_path
   end
 
+  def create_document_d4sign
+    @operation = Operation.last_from_seller(@seller).last
+    @operation.sign_document_requested_at = Time.current
+    doc_uuid = D4Sign.new(@operation, @seller)
+    D4Sign.add_signer_list(doc_uuid, @seller)
+    D4Sign.send_to_sign(doc_uuid)
+    @operation.save!
+    redirect_to sign_document_operations_path
+  end
+
   def sign_document
     operation = Operation.last_from_seller(@seller).last
     signer_signature_keys = operation.signer_signature_keys
