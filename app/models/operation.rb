@@ -70,7 +70,11 @@ class Operation < ApplicationRecord
   end
 
   def signer_signature_keys
-    sign_document_info.deep_symbolize_keys[:signer_signature_keys]
+    if sign_document_info.kind_of?(Array)
+      sign_document_info.map { |signer| signer.deep_symbolize_keys }
+    else
+      sign_document_info.deep_symbolize_keys[:signer_signature_keys]
+    end
   end
 
   def notify_seller(seller)

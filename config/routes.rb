@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       get :create_document
       get :create_document_d4sign
       get :sign_document
+      get :sign_document_d4sign
       put :cancel
     end
   end

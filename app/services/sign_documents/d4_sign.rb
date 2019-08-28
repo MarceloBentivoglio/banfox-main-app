@@ -1,7 +1,6 @@
 class D4Sign
-  SANDTOKEN = "live_e29a3eb16705ad1125e740596478c6c5d93644fe72fbad587d00103fc1c067d1"
-  SANDKEY = "live_crypt_y0hl7arZp0KBSAH1K1AiaUZ4w4uHqsIe"
-  SANDSAFEID = "fbc618e4-ed7e-4a87-b7d7-bc59a9477ce6"
+  TOKEN = "live_effdf56dfcdbfc106f76f92aabba5febfa3bf312fd829b16bd1c6ff8a6282e55"
+  KEY = "live_crypt_EEf6XfZYARawupkF6GsRGCMlIX7znn5K"
 
   def initialize(operation, seller)
     @operation = operation
@@ -11,12 +10,13 @@ class D4Sign
   def send_document
     url2 = "localhost:4000/api/v1/documents"
     response = RestClient.post(url2 + "/create_pdf", body, headers)
-    puts response
+    jresponse = JSON.parse(response)
+    jresponse["uuid"]
   end
 
   def add_signer_list(doc_id, seller)
     @signers = []
-    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
+    url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
     headers = {
       "Content-Type": "application/json"
     }
@@ -51,18 +51,17 @@ class D4Sign
 
     begin
       response = RestClient.post(url, body, headers)
-      puts response.body
+      signer_list = []
+      json_response = JSON.parse(response.body)
+      json_response["message"].map {|signer| signer_list << { key_signer: signer["key_signer"], email: signer["email"] }}
+      signer_list
     rescue Exception => e
-      puts e.response.body
+      puts e
     end
-    signer_list = []
-    json_response = JSON.parse(response.body)
-    json_response["message"].map {|signer| signer_list << { key_signer: signer["key_signer"], email: signer["email"] }}
-    signer_list
   end
 
   def send_to_sign(doc_id)
-    url = "http://demo.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::SANDTOKEN}&cryptKey=#{D4Sign::SANDKEY}"
+    url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/sendtosigner?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
 
     headers = {
       "Content-Type": "application/json"
@@ -70,9 +69,9 @@ class D4Sign
 
     body = {
     "message": "Bom dia. Clique no link abaixo para ser redirecionado e finalizar o processo.",
-    "skip_email": "0",
+    "skip_email": "1",
     "workflow": "0",
-    "tokenAPI": "#{D4Sign::SANDTOKEN}"
+    "tokenAPI": "#{D4Sign::TOKEN}"
     }.to_json
 
     begin
