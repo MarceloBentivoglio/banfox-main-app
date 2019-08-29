@@ -1,6 +1,8 @@
 class D4Sign
   TOKEN = "live_effdf56dfcdbfc106f76f92aabba5febfa3bf312fd829b16bd1c6ff8a6282e55"
   KEY = "live_crypt_EEf6XfZYARawupkF6GsRGCMlIX7znn5K"
+  #WEBHOOKURL = "http://localhost:3000/api/v1/operations/webhook_response"
+  WEBHOOKURL = "https://banfox.com.br/api/v1/operations/webhook_response"
 
   def initialize(operation, seller)
     @operation = operation
@@ -8,8 +10,7 @@ class D4Sign
   end
 
   def send_document
-    url2 = "localhost:4000/api/v1/documents"
-    response = RestClient.post(url2 + "/create_pdf", body, headers)
+    response = RestClient.post(url + "/create_pdf", body, headers)
     jresponse = JSON.parse(response)
     jresponse["uuid"]
   end
@@ -20,11 +21,10 @@ class D4Sign
       "Content-Type": "application/json"
     }
     body = {
-      "url": Rails.application.routes.url_helpers.api_v1_operations_webhook_response_url
+      "url": D4Sign::WEBHOOKURL
     }
     RestClient.post(url, body, headers)
   rescue Exception => e  
-    byebug
     Rollbar.error(e)
     nil
   end
@@ -38,7 +38,7 @@ class D4Sign
     
     @signers << {
       "email": seller.email_partner,
-      "act": "1",
+      "act": "8",
       "foreign": "0",
       "certificadoicpbr": "1",
       "assinatura_presencial": "0",
@@ -46,7 +46,7 @@ class D4Sign
     seller.joint_debtors.each do |joint_debtor|
       @signers << {
         "email": joint_debtor.email,
-        "act": "8",
+        "act": "12",
         "foreign": "0",
         "certificadoicpbr": "0",
         "assinatura_presencial": "0",
@@ -54,9 +54,9 @@ class D4Sign
     end
     @signers << {
       "email": "joao@banfox.com.br",
-      "act": "1",
+      "act": "4",
       "foreign": "0",
-      "certificadoicpbr": "1",
+      "certificadoicpbr": "0",
       "assinatura_presencial": "0",
     }
 

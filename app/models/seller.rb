@@ -153,6 +153,12 @@ class Seller < ApplicationRecord
     real_ou_presumido:  4,
   }
 
+  enum sign_documents_provider: {
+    not_chosen: 0,
+    clicksign:  1,
+    d4sign:     2,
+  }
+
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
   validates_with CpfValidator, attr: :cpf, if: :active_or_basic?
   validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?

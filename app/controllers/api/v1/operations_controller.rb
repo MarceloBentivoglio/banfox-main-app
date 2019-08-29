@@ -40,19 +40,19 @@ class Api::V1::OperationsController < Api::V1::BaseController
   end
 
   def webhook_response
-    response = request.body
+    response = params
 
     @operation = Operation.new
 
-    if response[:type_post] == "1"
-      @operation = Operation.find_by_sign_document_key(response[:uuid])
+    if response["type_post"] == "1"
+      @operation = Operation.find_by_sign_document_key(response["uuid"])
       @operation.signed_at = Time.current
       @operation.signed = true
       @operation.save!
       SlackMessage.new("CHQFGD43Y", "<!channel> o contrato da *Operação #{@operation.id}* foi completamente assinado").send_now
-    elsif response[:type_post] == "4"
-      @operation = Operation.find_by_sign_document_key(response[:uuid])
-      signer_email = response[:email]
+    elsif response["type_post"] == "4"
+      @operation = Operation.find_by_sign_document_key(response["uuid"])
+      signer_email = response["email"]
       new_sign_document_info = @operation.sign_document_info
       new_sign_document_info.each do |signer_signature_key|
         signer_signature_key.store("status", "signed") if signer_signature_key["email"] == signer_email
@@ -62,6 +62,9 @@ class Api::V1::OperationsController < Api::V1::BaseController
     end
     authorize @operation
     render body: {}.to_json, status: :created
+  rescue Exception => e
+    Rollbar.error(e)
+    nil
   end
 
   private
