@@ -57,6 +57,8 @@ class OperationsController < ApplicationController
     @operation.sign_document_requested_at = Time.current
     d4sign = D4Sign.new(@operation, @seller)
     @operation.sign_document_key = d4sign.send_document
+    d4sign.add_webhook(@operation.sign_document_key)
+    @operation.d4sign!
     @operation.sign_document_info = d4sign.add_signer_list(@operation.sign_document_key, @seller)
     d4sign.send_to_sign(@operation.sign_document_key)
     @operation.save!

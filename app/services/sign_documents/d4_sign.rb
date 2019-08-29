@@ -14,6 +14,21 @@ class D4Sign
     jresponse["uuid"]
   end
 
+  def add_webhook(doc_id)
+    url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/webhooks?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"
+    headers = {
+      "Content-Type": "application/json"
+    }
+    body = {
+      "url": Rails.application.routes.url_helpers.api_v1_operations_webhook_response_url
+    }
+    RestClient.post(url, body, headers)
+  rescue Exception => e  
+    byebug
+    Rollbar.error(e)
+    nil
+  end
+
   def add_signer_list(doc_id, seller)
     @signers = []
     url = "https://secure.d4sign.com.br/api/v1/documents/#{doc_id}/createlist?tokenAPI=#{D4Sign::TOKEN}&cryptKey=#{D4Sign::KEY}"

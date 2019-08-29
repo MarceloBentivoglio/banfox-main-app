@@ -81,6 +81,7 @@ Rails.application.routes.draw do
       resources :mobile_inputed_invoices, only: [ :create ]
       namespace :operations do
         post "sign_document_status"
+        post "webhook_response"
       end
     end
   end

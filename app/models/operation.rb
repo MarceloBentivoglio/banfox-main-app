@@ -25,6 +25,12 @@ class Operation < ApplicationRecord
   scope :last_from_seller, -> (seller) { joins(installments: [invoice: [:seller]]).where("sellers.id": seller.id).distinct }
   include Trackable
 
+  enum sign_documents_provider: {
+    not_chosen: 0,
+    clicksign:  1,
+    d4sign:     2,
+  }
+
   def statuses
     {
       no_on_going_operation: "Nenhuma operação",
