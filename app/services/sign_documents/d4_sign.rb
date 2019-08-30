@@ -120,7 +120,7 @@ class D4Sign
   end
 
   def host
-    Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
+    ENV.fetch('documents_app_access_host')
   end
 
   def seller_content
