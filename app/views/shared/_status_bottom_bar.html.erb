@@ -64,7 +64,11 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+            <% if @seller.d4sign? %>
+              <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+            <% else %>
+              <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+            <% end %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,

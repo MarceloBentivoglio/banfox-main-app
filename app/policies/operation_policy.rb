@@ -7,4 +7,9 @@ class OperationPolicy < ApplicationPolicy
   def sign_document_status?
     return true
   end
+
+  def webhook_response?
+    return true
+  end
+
 end

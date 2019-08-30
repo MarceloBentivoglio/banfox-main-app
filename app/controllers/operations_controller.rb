@@ -1,6 +1,6 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
-  before_action :set_seller, only: [:create, :consent, :create_document, :sign_document, :cancel]
+  before_action :set_seller, only: [:create, :consent, :create_document, :create_document_d4sign, :sign_document, :sign_document_d4sign, :cancel]
 
   layout "application_w_flashes"
 
@@ -52,6 +52,19 @@ class OperationsController < ApplicationController
     redirect_to sign_document_operations_path
   end
 
+  def create_document_d4sign
+    @operation = Operation.last_from_seller(@seller).last
+    @operation.sign_document_requested_at = Time.current
+    d4sign = D4Sign.new(@operation, @seller)
+    @operation.sign_document_key = d4sign.send_document
+    d4sign.add_webhook(@operation.sign_document_key)
+    @operation.d4sign!
+    @operation.sign_document_info = d4sign.add_signer_list(@operation.sign_document_key, @seller)
+    d4sign.send_to_sign(@operation.sign_document_key)
+    @operation.save!
+    redirect_to sign_document_d4sign_operations_path
+  end
+
   def sign_document
     operation = Operation.last_from_seller(@seller).last
     signer_signature_keys = operation.signer_signature_keys
@@ -60,6 +73,16 @@ class OperationsController < ApplicationController
     end
     @signature_key = main_signer_signature_key[:signature_key]
     @redirection_url = store_installments_url
+  end
+
+  def sign_document_d4sign
+    operation = Operation.last_from_seller(@seller).last
+    main_key_signer = operation.sign_document_info.find do |key_signer|
+      key_signer["email"] == @seller.email_partner
+    end
+    @signature_key = main_key_signer["key_signer"]
+    @redirection_url = store_installments_url
+    @document_uuid = operation.sign_document_key
   end
 
   def cancel

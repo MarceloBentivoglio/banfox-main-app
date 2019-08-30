@@ -68,7 +68,9 @@ Rails.application.routes.draw do
     collection do
       get :consent
       get :create_document
+      get :create_document_d4sign
       get :sign_document
+      get :sign_document_d4sign
       put :cancel
     end
   end
@@ -79,6 +81,7 @@ Rails.application.routes.draw do
       resources :mobile_inputed_invoices, only: [ :create ]
       namespace :operations do
         post "sign_document_status"
+        post "webhook_response"
       end
       namespace :stone do
         match "welcome", to: "clients#welcome", via: :all
