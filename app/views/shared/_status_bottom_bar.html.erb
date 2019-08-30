@@ -90,7 +90,11 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+            <% if @seller.d4sign? %>
+v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_d4sign_path, class: "btn-rounded blue button" %>
+            <% else %>
+v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+            <% end %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
               method: :put,
@@ -106,7 +110,12 @@
             <ul>
               <% @operation.signer_signature_keys.each do |signer_signature_key| %>
                 <% if signer_signature_key[:email] == @seller.email_partner %>
-                  <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "") %></li>
+                  <% if @operation.d4sign? %>
+                    <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_d4sign_path, class: "") %></li>
+                  <% else %>
+                    <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : (link_to "Vizualizar e assinar contrato", sign_document_operations_path, class: "") %></li>
+                  <% end %>
+
                 <% else %>
                   <li><%= signer_signature_key[:email] %> | <%= signer_signature_key[:status] == "signed" ? "Assinou" : "Pendente de assinatura" %></li>
                 <% end %>
