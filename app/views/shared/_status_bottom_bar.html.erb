@@ -64,7 +64,7 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <% if @seller.sign_document_provider.d4sign? %>
+            <% if @seller.d4sign? %>
               <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
             <% else %>
               <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
