@@ -1,8 +1,7 @@
 class D4Sign
   TOKEN = "live_effdf56dfcdbfc106f76f92aabba5febfa3bf312fd829b16bd1c6ff8a6282e55"
   KEY = "live_crypt_EEf6XfZYARawupkF6GsRGCMlIX7znn5K"
-  #WEBHOOKURL = "http://localhost:3000/api/v1/operations/webhook_response"
-  WEBHOOKURL = "https://banfox.com.br/api/v1/operations/webhook_response"
+  #WEBHOOKURL = "https://banfox.com.br/api/v1/operations/webhook_response"
 
   def initialize(operation, seller)
     @operation = operation
@@ -21,7 +20,7 @@ class D4Sign
       "Content-Type": "application/json"
     }
     body = {
-      "url": D4Sign::WEBHOOKURL
+      "url": ENV.fetch('WEBHOOKURL')
     }
     RestClient.post(url, body, headers)
   rescue Exception => e  
@@ -120,7 +119,7 @@ class D4Sign
   end
 
   def host
-    ENV.fetch('documents_app_access_host')
+    ENV.fetch('DOCAPPHOST')
   end
 
   def seller_content
