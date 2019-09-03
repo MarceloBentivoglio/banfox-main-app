@@ -62,6 +62,8 @@ class OperationsController < ApplicationController
     @operation.sign_document_info = d4sign.add_signer_list(@operation.sign_document_key, @seller)
     d4sign.send_to_sign(@operation.sign_document_key)
     @operation.save!
+    @operation.notify_joint_debtors(@seller)
+    @operation.notify_banfox_signer
     redirect_to sign_document_d4sign_operations_path
   end
 

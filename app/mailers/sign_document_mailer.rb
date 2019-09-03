@@ -2,9 +2,10 @@ class SignDocumentMailer < ApplicationMailer
 
   default from: 'joao@banfox.com.br'
 
-  def joint_debtor(name, email, signature_key)
+  def joint_debtor(name, email, signature_key, operation)
     @name = name.split.first
     @signature_key = signature_key
+    @operation = operation
 
     mail(
       to: email,
@@ -12,13 +13,13 @@ class SignDocumentMailer < ApplicationMailer
       )
   end
 
-  def banfox_signer(email, signature_key, operation_id)
+  def banfox_signer(email, signature_key, operation)
     @signature_key = signature_key
-    @operation_id = operation_id
+    @operation = operation
 
     mail(
     to: email,
-    subject: "Assinar documento de aditivo da operação \# #{@operation_id}"
+    subject: "Assinar documento de aditivo da operação \# #{@operation.id}"
     )
   end
 

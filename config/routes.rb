@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'sellers/dashboard'
   get 'sellers/analysis'
   get "signature/:signature_key", to: "signatures#joint_debtor"
+  get "signature_d4sign/:signature_key", to: "signatures#joint_debtor_d4sign"
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
