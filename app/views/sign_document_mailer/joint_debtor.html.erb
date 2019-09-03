@@ -34,9 +34,17 @@
                                 <tr>
                                   <td>
                                     <% if Rails.env.to_sym == :development  %>
-                                      <%= link_to "Vizualizar para assinar", "http://localhost:3000/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
+                                      <% if @operation.d4sign? %>
+                                        <%= link_to "Vizualizar para assinar", "http://localhost:3000/signature_d4sign/#{@signature_key}?operation_id=#{@operation.id}", target: "_blank", class: "button button--blue" %>
+                                      <% else %>
+                                        <%= link_to "Vizualizar para assinar", "http://localhost:3000/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
+                                      <% end %>
                                     <% else %>
-                                      <%= link_to "Vizualizar para assinar", "https://www.banfox.com.br/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
+                                      <% if @operation.d4sign? %>
+                                        <%= link_to "Vizualizar para assinar", "https://www.banfox.com.br/signature_d4sign/#{@signature_key}?operation_id=#{@operation.id}", target: "_blank", class: "button button--blue" %>
+                                      <% else %>
+                                        <%= link_to "Vizualizar para assinar", "https://www.banfox.com.br/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
+                                      <% end %>
                                     <% end %>
                                   </td>
                                 </tr>

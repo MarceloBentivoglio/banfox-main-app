@@ -108,7 +108,11 @@ class Operation < ApplicationRecord
         joint_debtor.email == signer_signature_key[:email]
       end
       if joint_debtor
-        SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key]).deliver_now
+        if self.d4sign?
+          SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:key_signer], self).deliver_now
+        else
+          SignDocumentMailer.joint_debtor(joint_debtor.name, signer_signature_key[:email], signer_signature_key[:signature_key], self).deliver_now
+        end
       end
     end
   end
@@ -116,7 +120,11 @@ class Operation < ApplicationRecord
   def notify_banfox_signer
     signer_signature_keys.each do |signer_signature_key|
       if signer_signature_key[:email] == "joao@banfox.com.br"
-        SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:signature_key], id).deliver_now
+        if self.d4sign?
+          SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:key_signer], self).deliver_now
+        else
+          SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:signature_key], self).deliver_now
+        end
       end
     end
   end
