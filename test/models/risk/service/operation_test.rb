@@ -2,11 +2,11 @@ require 'test_helper'
 
 class Risk::Service::OperationTest < ActiveSupport::TestCase
   class SpecificStrategy < Risk::Service::Operation
-    pipeline_list Risk::Pipeline::Serasa
+    pipeline_list Risk::Pipeline::RecurrentOperation::Serasa
   end
 
   setup do
-    Risk::Pipeline::Serasa.stubs(:fetchers).returns([Risk::Fetcher::Serasa])
+    Risk::Pipeline::RecurrentOperation::Serasa.stubs(:fetchers).returns([Risk::Fetcher::Serasa])
     Risk::Fetcher::Serasa.any_instance.stubs(:call)
 
     @subject = SpecificStrategy.new
@@ -14,7 +14,7 @@ class Risk::Service::OperationTest < ActiveSupport::TestCase
   end
 
   test '.pipeline_list configures list of pipelines to be used' do
-    assert_equal true, SpecificStrategy.pipelines.member?(Risk::Pipeline::Serasa)
+    assert_equal true, SpecificStrategy.pipelines.member?(Risk::Pipeline::RecurrentOperation::Serasa)
   end
 
   test '.fetchers_required gets a list of fetchers required from pipelines' do

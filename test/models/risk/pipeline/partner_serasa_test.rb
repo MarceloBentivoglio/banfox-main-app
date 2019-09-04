@@ -181,12 +181,12 @@ class Risk::Pipeline::PartnerSerasaTest < ActiveSupport::TestCase
       }
     }
 
-    pipeline = Risk::Pipeline::PartnerSerasa.new(@current_kir)
+    pipeline = Risk::Pipeline::RecurrentOperation::PartnerSerasa.new(@current_kir)
     assert_equal expected, pipeline.build_evidences
   end
 
   test '.call' do
-    pipeline = Risk::Pipeline::PartnerSerasa.new(@current_kir)
+    pipeline = Risk::Pipeline::RecurrentOperation::PartnerSerasa.new(@current_kir)
     pipeline.call
   end
 end

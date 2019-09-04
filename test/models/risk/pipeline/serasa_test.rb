@@ -107,7 +107,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
   end
 
   test '.build_evidences_with_historic' do
-    pipeline = Risk::Pipeline::Serasa.new(@current_kir)
+    pipeline = Risk::Pipeline::RecurrentOperation::Serasa.new(@current_kir)
 
     expected = {
       "serasa_api"=> {
@@ -174,7 +174,7 @@ class Risk::Pipeline::SerasaTest < ActiveSupport::TestCase
   end
 
   test '.call run referees' do
-    Risk::Pipeline::Serasa.new(@current_kir).call
+    Risk::Pipeline::RecurrentOperation::Serasa.new(@current_kir).call
 
     expected = Risk::KeyIndicatorReport::YELLOW_FLAG
     assert_equal expected, @current_kir.key_indicators[@cnpj_2]['refin_value_delta']["flag"]
