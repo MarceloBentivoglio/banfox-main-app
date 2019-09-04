@@ -1,6 +1,6 @@
 module Risk
   module Service
-    class Operation
+    class CNPJAnalysis
       include CNPJFormatter
       class << self
         attr_reader :pipelines
