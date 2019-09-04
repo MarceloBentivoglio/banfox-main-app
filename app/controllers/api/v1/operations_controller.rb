@@ -55,7 +55,10 @@ class Api::V1::OperationsController < Api::V1::BaseController
       signer_email = response["email"]
       new_sign_document_info = @operation.sign_document_info
       new_sign_document_info.each do |signer_signature_key|
-        signer_signature_key.store("status", "signed") if signer_signature_key["email"] == signer_email
+        if signer_signature_key["email"] == signer_email
+          signer_signature_key.store("status", "signed")
+          OperationMailer.signed(@operation, signer_email).deliver_now unless signer_email == "joao@banfox.com.br"
+        end
       end
       @operation.sign_document_info = new_sign_document_info
       @operation.save!

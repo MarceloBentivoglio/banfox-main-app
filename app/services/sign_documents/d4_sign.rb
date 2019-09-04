@@ -37,7 +37,7 @@ class D4Sign
     
     @signers << {
       "email": seller.email_partner,
-      "act": "8",
+      "act": "13",
       "foreign": "0",
       "certificadoicpbr": "1",
       "assinatura_presencial": "0",
