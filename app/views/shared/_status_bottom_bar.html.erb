@@ -65,7 +65,8 @@
           <div class="bottom-content">
             <span> </span>
             <% if @seller.d4sign? %>
-              <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+              <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button", onclick: "disable_button(this)" %>
+              <a class="btn-rounded blue button" id="action-on-process-button" style="display: none;">Processando</a>
             <% else %>
               <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
             <% end %>
@@ -91,7 +92,8 @@
           <div class="bottom-content">
             <span> </span>
             <% if @seller.d4sign? %>
-v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button" %>
+v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", onclick: "disable_button(this)" %>
+              <a class="btn-rounded blue button" id="action-on-process-button" style="display: none;">Processando</a>
             <% else %>
 v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
             <% end %>
