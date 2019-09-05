@@ -75,6 +75,8 @@ Rails.application.routes.draw do
       put :cancel
     end
   end
+  get "check_sign_document_status/:id", to: "operations#check_sign_document_status"
+
   resources :documents, only: [:index, :new, :create, :destroy]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
