@@ -1,8 +1,6 @@
 class CreateDocumentJob < ApplicationJob
   queue_as :default
 
-  after_perform :redirect_user_back
-
   def perform(operation, seller)
     d4sign = D4Sign.new(operation, seller)
     operation.create_document(seller, d4sign)

@@ -31,7 +31,7 @@ class Operation < ApplicationRecord
     d4sign:     2,
   }
 
-  enum document_status: {
+  enum sign_document_status: {
     not_started:        0,
     started:            1,
     document_sent:      2,
@@ -39,7 +39,6 @@ class Operation < ApplicationRecord
     signer_list_added:  4,
     document_ready:     5,
     completed:          6,
-    error:              7,
   }
 
   def statuses
@@ -79,7 +78,7 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    sign_document_key? && !signed
+    sign_document_key? && completed? && !signed
   end
 
   def deposit_pending?
@@ -256,7 +255,7 @@ class Operation < ApplicationRecord
     self.sign_document_key = d4sign.send_document
     self.document_sent!
   rescue Exception => e
-    self.error!
+    self.sign_document_error = true
     Rollbar.error(e)
   end
 
@@ -264,7 +263,7 @@ class Operation < ApplicationRecord
     d4sign.add_webhook(self.sign_document_key)
     self.webhook_added!
   rescue Exception => e
-    self.error!
+    self.sign_document_error = true
     Rollbar.error(e)
   end
 
@@ -272,7 +271,7 @@ class Operation < ApplicationRecord
     self.sign_document_info = d4sign.add_signer_list(self.sign_document_key, seller)
     self.signer_list_added!
   rescue Exception => e
-    self.error!
+    self.sign_document_error = true
     Rollbar.error(e)
   end
 
@@ -280,7 +279,7 @@ class Operation < ApplicationRecord
     d4sign.send_to_sign(self.sign_document_key)
     self.document_ready!
   rescue Exception => e
-    self.error!
+    self.sign_document_error = true
     Rollbar.error(e)
   end
 

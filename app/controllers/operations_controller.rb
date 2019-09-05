@@ -15,7 +15,7 @@ class OperationsController < ApplicationController
         operation.save!
         #TODO transform all deliver_now in deliver later
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
-        SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova de número *##{operation.id}*").send_now
+        #SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova de número *##{operation.id}*").send_now
       end
     end
     redirect_to store_installments_path
@@ -54,6 +54,7 @@ class OperationsController < ApplicationController
 
   def create_document_d4sign
     @operation = Operation.last_from_seller(@seller).last
+    @operation.started!
     CreateDocumentJob.perform_now(@operation, @seller)
     redirect_to sign_document_d4sign_operations_path
   end
@@ -92,6 +93,12 @@ class OperationsController < ApplicationController
     SlackMessage.new("CM0HURWU9", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} *cancelou* a operação *##{operation_id}*").send_now
     flash[:alert] << "Operação cancelada com sucesso!"
     redirect_to store_installments_path
+  end
+
+  def check_sign_document_status
+    operations_params = params.permit(:id)
+    @operation = Operation.find(operations_params["id"])
+    render :json => @operation.sign_document_status 
   end
 
   private
