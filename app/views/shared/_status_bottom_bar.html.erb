@@ -36,6 +36,7 @@
       <div class="operation-status">
         <input type="hidden" value="<%= @operation.id %>" id="current-operation-id">
         <input type="hidden" value="<%= @operation.sign_document_status %>" id="current-operation-sign-document-status">
+        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url"> 
         <% if @status == :no_on_going_operation %>
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">

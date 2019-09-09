@@ -11,5 +11,8 @@ class CreateDocumentJob < ApplicationJob
     operation.completed!
     operation.notify_joint_debtors(seller)
     operation.notify_banfox_signer
+  rescue Exception => e
+    operation.sign_document_error = true
+    Rollbar.error(e)
   end
 end

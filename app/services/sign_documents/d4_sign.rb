@@ -93,7 +93,6 @@ class D4Sign
     rescue Exception => e
       puts e.response.body
     end
-    puts response.body
   end
 
   private
