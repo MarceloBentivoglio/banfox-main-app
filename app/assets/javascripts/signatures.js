@@ -1,4 +1,4 @@
-function start_d4sign_debtors() {
+function start_d4sign_joint_debtors() {
   key_signer = document.getElementById("signature-div").getAttribute("data-signature-key");
   email = document.getElementById("signature-div").getAttribute("data-email");
   redirection_url = document.getElementById("signature-div").getAttribute("data-redirection-url");
