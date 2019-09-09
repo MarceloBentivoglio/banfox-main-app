@@ -3,7 +3,6 @@ function start_d4sign_debtors() {
   email = document.getElementById("signature-div").getAttribute("data-email");
   redirection_url = document.getElementById("signature-div").getAttribute("data-redirection-url");
   doc_uuid = document.getElementById("signature-div").getAttribute("data-document-uuid");
-  debugger
   d4sign.configure({
     container: "signature-div",
     key: doc_uuid,

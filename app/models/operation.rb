@@ -254,33 +254,21 @@ class Operation < ApplicationRecord
     self.d4sign!
     self.sign_document_key = d4sign.send_document
     self.document_sent!
-  rescue Exception => e
-    self.sign_document_error = true
-    Rollbar.error(e)
   end
 
   def add_webhook(d4sign)
     d4sign.add_webhook(self.sign_document_key)
     self.webhook_added!
-  rescue Exception => e
-    self.sign_document_error = true
-    Rollbar.error(e)
   end
 
   def add_signer_list(seller, d4sign)
     self.sign_document_info = d4sign.add_signer_list(self.sign_document_key, seller)
     self.signer_list_added!
-  rescue Exception => e
-    self.sign_document_error = true
-    Rollbar.error(e)
   end
 
   def prepare_to_sign(d4sign)
     d4sign.send_to_sign(self.sign_document_key)
     self.document_ready!
-  rescue Exception => e
-    self.sign_document_error = true
-    Rollbar.error(e)
   end
 
   private

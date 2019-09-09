@@ -7,6 +7,8 @@ class InstallmentsController < ApplicationController
 
   def store
     @installments = set_installments(@seller, @operation, @status).paginate(page: params[:page])
+    @d4sign_redirect_url = sign_document_d4sign_operations_path
+
     respond_to do |format|
       format.html
       format.js
