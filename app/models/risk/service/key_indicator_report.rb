@@ -1,6 +1,7 @@
 module Risk
   module Service
     class KeyIndicatorReport
+      include CNPJFormatter
       #ttl in minutes
       def initialize(params, ttl)
         @params = params
@@ -24,6 +25,9 @@ module Risk
         else
           key_indicator_report = Risk::KeyIndicatorReport.create(params)
 
+          params[:input_data].each do |cnpj|
+            key_indicator_report.key_indicators[cnpj_root_format(cnpj)] = {}
+          end
           #This will become a asynchronous worker
           service_strategy.call(key_indicator_report)
         end
@@ -47,7 +51,7 @@ module Risk
           input_data: input_data,
           kind: @params[:kind],
           ttl: @ttl,
-          operation_id: operation.id
+          operation_id: operation.id,
         }
       end
 
@@ -69,8 +73,8 @@ module Risk
 
       def service_strategy
         case @params[:kind]
-        when 'operation_part'
-          Risk::Service::OperationPartStrategy.new
+        when 'new_cnpj'
+          Risk::Service::NewCNPJStrategy.new
         when 'recurrent_operation'
           Risk::Service::RecurrentOperationStrategy.new
         end

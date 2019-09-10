@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class Risk::Service::OperationTest < ActiveSupport::TestCase
-  class SpecificStrategy < Risk::Service::Operation
+class Risk::Service::CNPJAnalysisTest < ActiveSupport::TestCase
+  class SpecificStrategy < Risk::Service::CNPJAnalysis
     pipeline_list Risk::Pipeline::Serasa
   end
 
