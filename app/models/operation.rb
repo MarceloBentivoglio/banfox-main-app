@@ -31,6 +31,16 @@ class Operation < ApplicationRecord
     d4sign:     2,
   }
 
+  enum sign_document_status: {
+    not_started:        0,
+    started:            1,
+    document_sent:      2,
+    webhook_added:      3,
+    signer_list_added:  4,
+    document_ready:     5,
+    completed:          6,
+  }
+
   def statuses
     {
       no_on_going_operation: "Nenhuma operação",
@@ -68,7 +78,7 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    sign_document_key? && !signed
+    sign_document_key? && completed? && !signed
   end
 
   def deposit_pending?
@@ -237,6 +247,28 @@ class Operation < ApplicationRecord
 
   def present_key_indicator_report
     @key_indicator_report ||= Risk::Presenter::KeyIndicatorReport.new(key_indicator_reports.last)
+  end
+
+  def create_document(seller, d4sign)
+    self.sign_document_requested_at = Time.current
+    self.d4sign!
+    self.sign_document_key = d4sign.send_document
+    self.document_sent!
+  end
+
+  def add_webhook(d4sign)
+    d4sign.add_webhook(self.sign_document_key)
+    self.webhook_added!
+  end
+
+  def add_signer_list(seller, d4sign)
+    self.sign_document_info = d4sign.add_signer_list(self.sign_document_key, seller)
+    self.signer_list_added!
+  end
+
+  def prepare_to_sign(d4sign)
+    d4sign.send_to_sign(self.sign_document_key)
+    self.document_ready!
   end
 
   private

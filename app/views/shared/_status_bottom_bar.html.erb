@@ -34,6 +34,9 @@
           </div>
       </div>
       <div class="operation-status">
+        <input type="hidden" value="<%= @operation.id %>" id="current-operation-id">
+        <input type="hidden" value="<%= @operation.sign_document_status %>" id="current-operation-sign-document-status">
+        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url"> 
         <% if @status == :no_on_going_operation %>
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">
@@ -64,10 +67,21 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <% if @seller.d4sign? %>
-              <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+            <% unless @operation.sign_document_error? %>
+              <% if @operation.not_started? %>
+                <% if @seller.d4sign? %>
+                  <%= link_to "Vizualizar e assinar contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", id: "create-document-button", onclick: "disable_button(this)" %>
+                  <a class="btn-rounded blue button" id="action-on-process-button" style="display: none;">Processando</a>
+                <% else %>
+                  <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+                <% end %>
+              <% elsif @operation.completed? %>
+                <%= link_to "Vizualizar e assinar contrato", sign_document_d4sign_operations_path, class: "btn-rounded blue button" %>
+              <% else %>
+                <a class="btn-rounded blue button" id="action-on-process-button">Processando</a>
+              <% end %>
             <% else %>
-              <%= link_to "Vizualizar e assinar contrato", create_document_operations_path, class: "btn-rounded blue button", id: "create-document-button" %>
+              Um erro ocorreu durante o processo do envio do documento. Por favor entre em contato com a equipe suporte.
             <% end %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
@@ -90,10 +104,21 @@
           </div>
           <div class="bottom-content">
             <span> </span>
-            <% if @seller.d4sign? %>
-v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button" %>
+            <% unless @operation.sign_document_error? %>
+              <% if @operation.not_started? %>
+                <% if @seller.d4sign? %>
+                  <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_d4sign_operations_path, class: "btn-rounded blue button", onclick: "disable_button(this)" %>
+                  <a class="btn-rounded blue button" id="action-on-process-button" style="display: none;">Processando</a>
+                <% else %>
+                  <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+                <% end %>
+              <% elsif @operation.completed? %>
+                <%= link_to "Vizualizar e assinar contrato", sign_document_d4sign_operations_path, class: "btn-rounded blue button" %>
+              <% else %>
+                <a class="btn-rounded blue button" id="action-on-process-button">Processando</a>
+              <% end %>
             <% else %>
-v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_document_operations_path, class: "btn-rounded blue button" %>
+              Um erro ocorreu durante o processo do envio do documento. Por favor entre em contato com a equipe de suporte.
             <% end %>
             <%= link_to "Cancelar Operação",
               cancel_operations_path(id: @operation.id),
@@ -135,4 +160,12 @@ v             <%= link_to "Estou ciente, quero vizualizar o contrato", create_do
     </div>
   </div>
 </div>
-
+<script>
+  window.onload = function() {
+    var status = document.getElementById("current-operation-sign-document-status").value
+    if ((status == "completed") || (status == "not_started")) {
+    } else {
+      var test = setInterval(check_sign_document_status, 2000);
+    }
+  }
+</script>

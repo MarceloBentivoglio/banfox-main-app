@@ -1,0 +1,70 @@
+<span class="preheader">Assinatura efetuada!</span>
+<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center">
+      <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="email-masthead">
+            <a href="https://www.banfox.com.br" class="email-masthead_name">
+              <img alt="Icon" src=https://res.cloudinary.com/banfox/image/upload/v1565722339/logo/Logo_banfox_color.png width="225" height="55"  />
+            </a>
+          </td>
+        </tr>
+        <!-- Email Body -->
+        <tr>
+          <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
+              <!-- Body content -->
+              <tr>
+                <td class="content-cell">
+                  <h1>Olá <%= @name.mb_chars.titleize.split.first %>,</h1>
+                  <p>A assinatura foi efetuada! Clique no botão para visualizar os documentos digitalmente.</p>
+                  <!-- Action -->
+                  <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center">
+                        <!-- Border based button
+                   https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center">
+                              <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td>
+                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Assinar documentos</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <p>Em caso de dúvidas basta responder este e-mail!</p>
+                  <p>Até breve,
+                    <br>Time <strong>Banfox</strong></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="content-cell" align="center">
+                  <p class="sub align-center">&copy; 2018 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">
+                    Banfox
+                    Avenida Angélica, 2529 - InovaBra Habitat
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

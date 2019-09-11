@@ -46,6 +46,15 @@ seller1 = Seller.create!(
   protection: 0.2,
 )
 
+joint_debtor1 = JointDebtor.create!(
+  name: "Furucho Solidário",
+  birthdate: Date.new(1987,09,30),
+  mobile: "11995599559",
+  documentation: "34411296870",
+  email: "furucho@banfox.com.br",
+  seller: seller1,
+)
+
 payer1 = Payer.create!(
     company_name: "hospital cristovão da gama s.a	",
     cnpj:"23198636000195",
