@@ -1,6 +1,6 @@
 <h2><%= t(".greeting") %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(:signup, url: create_signup_path) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -8,16 +8,27 @@
                 required: true,
                 autofocus: true ,
                 label: "Indique seu email corporativo",
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email" }
+    %>
     <%= f.error :corporate_email_validator, class: "invalid-feedback"  %>
     <%= f.input :password,
                 required: true,
                 label: "Crie uma Senha",
                 hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%#= f.input :password_confirmation,
+                input_html: { autocomplete: "new-password" } 
+    %>
+    <%= f.input :full_name,
+                required: true, 
+                label: "Nome do Usuário", 
+                input_html: { class: "full_name" }
+    %>
+    <%= f.input :mobile,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                label: "Telefone para contato",
+                input_html: { class: "mobile" }
+    %>
+    <%= f.input :cnpj, required: true, label: "CNPJ", input_html: { class: "cnpj" } %>
+    <%= f.error :cnpj_validator, class: "invalid-feedback"  %>
   </div>
 
   <div class="form-actions">
