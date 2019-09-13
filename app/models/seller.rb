@@ -78,6 +78,8 @@ class Seller < ApplicationRecord
   has_many_attached :partners_rgs, dependent: :purge
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
+  has_one_attached :digital_certificate, dependent: :purge
+
   include UserInputProcessing
 
   after_save :async_update_spreadsheet

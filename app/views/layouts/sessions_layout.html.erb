@@ -25,12 +25,19 @@
   <body style="background-color: #eef1f6 !important;">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-md-6 offset-md-3">
+        <div class="col-12">
           <%= link_to root_path do %>
             <div class="devise-logo">
               <%= image_tag "Logo_banfox_color.png" %>
             </div>
           <% end %>
+          <center>
+            <h1 class="devise-header">
+              Vamos <strong class="devise-header-strong">simplificar</strong> a sua gestão financeira?
+            </h1>
+          </center>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
           <div class="login-form">
             <%= yield %>
           </div>
