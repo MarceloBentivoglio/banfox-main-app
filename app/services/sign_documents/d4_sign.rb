@@ -49,6 +49,8 @@ class D4Sign
         "foreign": "0",
         "certificadoicpbr": "0",
         "assinatura_presencial": "0",
+        "embed_methodauth": "sms",
+        "embed_smsnumber": joint_debtor.mobile,
       }
     end
     @signers << {

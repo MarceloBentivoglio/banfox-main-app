@@ -75,6 +75,7 @@ class OperationMailer < ApplicationMailer
 
   def signed(operation, email)
     seller = operation&.seller
+    @operation = operation
     @name = ""
 
     if seller&.email_partner == email
