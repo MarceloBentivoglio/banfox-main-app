@@ -10,6 +10,21 @@ module Risk
 
       #TODO add a new status to know if key_indicator_report is ready
       def call
+        key_indicator_report = build_key_indicator_report
+        #KeyIndicatorReportJob.perform_later(key_indicator_report.id) unless @errors.any?
+        Risk::Service::KeyIndicatorReport.process(key_indicator_report)
+
+        key_indicator_report
+      end
+
+      def async_call
+        key_indicator_report = build_key_indicator_report
+        KeyIndicatorReportJob.perform_later(key_indicator_report.id) unless @errors.any?
+
+        key_indicator_report
+      end
+
+      def build_key_indicator_report
         if operation.nil?
           params = query_params
         else
@@ -25,10 +40,23 @@ module Risk
           key_indicator_report = Risk::KeyIndicatorReport.create(params)
 
           #This will become a asynchronous worker
-          service_strategy.call(key_indicator_report)
+          #service_strategy.call(key_indicator_report)
         end
 
         key_indicator_report
+      end
+
+      def self.process(key_indicator_report)
+        service_strategy(key_indicator_report)
+      end
+
+      def self.service_strategy(key_indicator_report)
+        case key_indicator_report.kind
+        when 'new_cnpj'
+          Risk::Service::NewCNPJStrategy.new.call(key_indicator_report)
+        when 'recurrent_operation'
+          Risk::Service::RecurrentOperationStrategy.new.call(key_indicator_report)
+        end
       end
 
       def operation
