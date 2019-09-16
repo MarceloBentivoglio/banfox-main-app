@@ -20,7 +20,6 @@ class Risk::Service::KeyIndicatorReportTest < ActiveSupport::TestCase
     @subject = Risk::Service::KeyIndicatorReport.new(@params, @ttl)
 
     Risk::Fetcher::Serasa.any_instance.stubs(:http_call).returns('')
-
   end
 
   test '.call executes the correct strategy' do
