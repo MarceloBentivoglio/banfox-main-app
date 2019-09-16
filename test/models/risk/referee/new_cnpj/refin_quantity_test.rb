@@ -5,7 +5,7 @@ class Risk::Referee::NewCNPJ::RefinQuantityTest < ActiveSupport::TestCase
     evidences = {
       refin: [
         {
-          quantity: 1
+          quantity: "1"
         }
       ]
     }
@@ -20,7 +20,7 @@ class Risk::Referee::NewCNPJ::RefinQuantityTest < ActiveSupport::TestCase
     evidences = {
       refin: [
         {
-          quantity: 0
+          quantity: "0"
         }
       ]
     }

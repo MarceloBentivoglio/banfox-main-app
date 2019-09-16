@@ -5,8 +5,8 @@ class Risk::Referee::NewCNPJ::LawsuitQuantityTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          type: 4,
-          quantity: 1
+          type: "4",
+          quantity: "1"
         }
       ]
     }
@@ -21,8 +21,8 @@ class Risk::Referee::NewCNPJ::LawsuitQuantityTest < ActiveSupport::TestCase
     evidences = {
       negative_information: [
         {
-          type: 4,
-          quantity: 0
+          type: "4",
+          quantity: "0"
         }
       ]
     }

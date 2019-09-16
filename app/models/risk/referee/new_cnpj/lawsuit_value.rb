@@ -14,7 +14,7 @@ module Risk
         end
 
         def assert
-          if @evidence[:value] <= @params[:green_limit]
+          if @evidence[:value].to_i <= @params[:green_limit]
             Risk::KeyIndicatorReport::GREEN_FLAG
           else
             Risk::KeyIndicatorReport::YELLOW_FLAG

@@ -5,7 +5,7 @@ class Risk::Referee::NewCNPJ::PefinValueTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          total_value: 1
+          total_value: "1"
         }
       ]
     }
@@ -20,7 +20,7 @@ class Risk::Referee::NewCNPJ::PefinValueTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          total_value: 0
+          total_value: "0"
         }
       ]
     }

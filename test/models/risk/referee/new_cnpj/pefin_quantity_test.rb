@@ -5,7 +5,7 @@ class Risk::Referee::NewCNPJ::PefinQuantityTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          quantity: 1
+          quantity: "1"
         }
       ]
     }
@@ -20,7 +20,7 @@ class Risk::Referee::NewCNPJ::PefinQuantityTest < ActiveSupport::TestCase
     evidences = {
       pefin: [
         {
-          quantity: 0
+          quantity: "0"
         }
       ]
     }
