@@ -34,7 +34,7 @@
     transition: all 0.6s ease;
     border: 1px solid $blue;
     text-decoration: none;
-    color: $blue;
+    color: $blue !important;
     background-color: $white;
   }
 }
