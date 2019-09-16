@@ -7,8 +7,8 @@ module Risk
             value:  evidence.lawsuit_value
           }
 
-          @code = 'new_lawsuit_value_delta'
-          @title = 'New Lawsuit Value Delta'
+          @code = 'new_lawsuit_value'
+          @title = 'New Lawsuit Value'
           @description = ''
           @params = { green_limit: 0 }
         end

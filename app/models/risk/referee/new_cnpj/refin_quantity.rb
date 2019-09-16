@@ -7,8 +7,8 @@ module Risk
             quantity:  evidence.refin_quantity
           }
 
-          @code = 'new_refin_quantity_delta'
-          @title = 'New Refin Quantity Delta'
+          @code = 'new_refin_quantity'
+          @title = 'New Refin Quantity'
           @description = ''
           @params = { green_limit: 0 }
         end

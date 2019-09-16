@@ -7,8 +7,8 @@ module Risk
             value:  evidence.pefin_value
           }
 
-          @code = 'new_pefin_value_delta'
-          @title = 'New Pefin Value Delta'
+          @code = 'new_pefin_value'
+          @title = 'New Pefin Value'
           @description = ''
           @params = { green_limit: 0 }
         end

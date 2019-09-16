@@ -7,8 +7,8 @@ module Risk
             value:  evidence.refin_value
           }
 
-          @code = 'new_refin_value_delta'
-          @title = 'New Refin Value Delta'
+          @code = 'new_refin_value'
+          @title = 'New Refin Value'
           @description = ''
           @params = { green_limit: 0 }
         end

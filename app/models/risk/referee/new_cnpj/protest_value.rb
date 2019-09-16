@@ -7,8 +7,8 @@ module Risk
             value:  evidence.protest_value
           }
 
-          @code = 'new_protest_value_delta'
-          @title = 'New Protest Value Delta'
+          @code = 'new_protest_value'
+          @title = 'New Protest Value'
           @description = ''
           @params = { green_limit: 0 }
         end
