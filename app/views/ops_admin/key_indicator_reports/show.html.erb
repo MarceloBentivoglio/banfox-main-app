@@ -1,4 +1,8 @@
-<div class="wrapper-page-wo-subnavbar" id="wrapped-page" polling-url="<%= ops_admin_key_indicator_report_path(@key_indicator_report)%>">
+<div class="wrapper-page-wo-subnavbar" 
+  <% if !@key_indicator_report.processed? %>
+     id="wrapped-page" polling-url="<%= ops_admin_key_indicator_report_path(@key_indicator_report)%>"
+  <% end %>
+  >
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">

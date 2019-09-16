@@ -20,7 +20,7 @@ module OpsAdmin
 
       respond_to do |format|
         format.html
-        format.json { render json: { processed: @key_indicator_report.processed}}
+        format.json { render json: { processed: @key_indicator_report.processed }}
       end
     end
 
