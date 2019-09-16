@@ -19,6 +19,10 @@ class OperationMailerPreview < ActionMailer::Preview
     OperationMailer.rejected(Operation.first, User.first, Seller.first).deliver_now
   end
 
+  def signed
+    OperationMailer.signed(Operation.last, "furucho@banfox.com.br")
+  end
+
   def to_analysis
     OperationMailer.to_analysis(Operation.first, User.first, Seller.first).deliver_now
   end

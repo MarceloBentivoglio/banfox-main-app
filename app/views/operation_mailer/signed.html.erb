@@ -1,4 +1,4 @@
-<span class="preheader">Abaixo você encontrará o contrato da operação.</span>
+<span class="preheader">Assinatura efetuada!</span>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
@@ -17,35 +17,19 @@
               <!-- Body content -->
               <tr>
                 <td class="content-cell">
-                  <h1>Solicitação de Assinatura de Documento da Operação</h1>
-                  <h3>Prezado administrador da Banfox, </h3>
-                  <p>Por favor utilize o botão abaixo para vizualizar e assinar o documento da operação.</p>
-                  <p>Você assinará como <strong>parte</strong></p>
+                  <h1>Olá <%= @name.mb_chars.titleize.split.first %>,</h1>
+                  <p>A assinatura foi efetuada! Clique no botão para visualizar os documentos digitalmente.</p>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
-                        <!-- Border based button
-                   https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                           <tr>
                             <td align="center">
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <% if Rails.env.to_sym == :development  %>
-                                      <% if @operation.d4sign? %>
-                                        <%= link_to "Vizualizar para assinar", "http://localhost:3000/signature_d4sign/#{@signature_key}?operation_id=#{@operation.id}", target: "_blank", class: "button button--blue" %>
-                                      <% else %>
-                                        <%= link_to "Vizualizar para assinar", "http://localhost:3000/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
-                                      <% end %>
-                                    <% else %>
-                                      <% if @operation.d4sign? %>
-                                        <%= link_to "Vizualizar para assinar", "https://www.banfox.com.br/signature_d4sign/#{@signature_key}?operation_id=#{@operation.id}", target: "_blank", class: "button button--blue" %>
-                                      <% else %>
-                                        <%= link_to "Vizualizar para assinar", "https://www.banfox.com.br/signature/#{@signature_key}", target: "_blank", class: "button button--blue" %>
-                                      <% end %>
-                                    <% end %>
+                                    <a href="https://secure.d4sign.com.br/desk/viewblob/<%= @operation.sign_document_key %>" class="button button--blue" target="_blank">Visualizar documentos</a>
                                   </td>
                                 </tr>
                               </table>
@@ -55,8 +39,9 @@
                       </td>
                     </tr>
                   </table>
-                  <p>Obrigado,
-                    <br>Time de tecnologia <strong>Banfox</strong></p>
+                  <p>Em caso de dúvidas basta responder este e-mail!</p>
+                  <p>Até breve,
+                    <br>Time <strong>Banfox</strong></p>
                 </td>
               </tr>
             </table>
@@ -67,7 +52,7 @@
             <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
               <tr>
                 <td class="content-cell" align="center">
-                  <p class="sub align-center">&copy; 2019 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">&copy; 2018 Banfox. Todos os direitos reservados.</p>
                   <p class="sub align-center">
                     Banfox
                     Avenida Angélica, 2529 - InovaBra Habitat

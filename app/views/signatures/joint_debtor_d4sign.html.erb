@@ -1,0 +1,18 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Contrato da operação",
+          optional_button: "",
+          } %>
+        <div id='signature-div' data-signature-key="<%= @signature_key %>" data-email="<%= @email %>" data-document-uuid="<%= @document_uuid %>" data-redirection-url="<%= @redirection_url %>"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = function() {
+    start_d4sign_joint_debtors();
+  }
+</script>

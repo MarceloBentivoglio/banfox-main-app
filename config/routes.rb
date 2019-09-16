@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'sellers/dashboard'
   get 'sellers/analysis'
   get "signature/:signature_key", to: "signatures#joint_debtor"
+  get "signature_d4sign/:signature_key", to: "signatures#joint_debtor_d4sign"
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -68,10 +69,14 @@ Rails.application.routes.draw do
     collection do
       get :consent
       get :create_document
+      get :create_document_d4sign
       get :sign_document
+      get :sign_document_d4sign
       put :cancel
     end
   end
+  get "check_sign_document_status/:id", to: "operations#check_sign_document_status"
+
   resources :documents, only: [:index, :new, :create, :destroy]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -79,6 +84,7 @@ Rails.application.routes.draw do
       resources :mobile_inputed_invoices, only: [ :create ]
       namespace :operations do
         post "sign_document_status"
+        post "webhook_response"
       end
       namespace :stone do
         match "welcome", to: "clients#welcome", via: :all

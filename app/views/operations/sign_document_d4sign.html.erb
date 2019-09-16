@@ -1,0 +1,27 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div id="signature-container">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Contrato da operação",
+          optional_button: "",
+          } %>
+          <div id='signature-div' data-signature-key="<%= @signature_key %>" data-partner-email="<%= @seller.email_partner %>" data-document-uuid="<%= @document_uuid %>" data-redirection-url="<%= @redirection_url %>"></div>
+          <%= link_to "Ver status da minha operação", store_installments_path, class: "btn-rounded blue button text-center", id: "opened-installments-button" %>
+        </div>
+        <div id="countdown-container" style="display: none;">
+          <div class="col-12">
+            <center><h2>Em breve você será redirecionado</h2></center>
+            <center><h3 id="countdown">5s</h3></center>
+          </div>
+        </div/>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = function() {
+    start_d4sign();
+  }
+</script>

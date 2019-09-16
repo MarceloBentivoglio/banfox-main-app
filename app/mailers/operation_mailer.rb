@@ -73,6 +73,25 @@ class OperationMailer < ApplicationMailer
       )
   end
 
+  def signed(operation, email)
+    seller = operation&.seller
+    @operation = operation
+    @name = ""
+
+    if seller&.email_partner == email
+      @name = seller&.full_name
+    else
+      seller&.joint_debtors&.each do |joint|
+        @name = joint&.name if joint&.email == email
+      end
+    end
+
+    mail(
+      to: email,
+      subject: 'Assinatura efetuada!'
+    )
+  end
+
   private
 
   def set_recipients(contact_email, partner_email)
