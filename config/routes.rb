@@ -54,9 +54,11 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     post "create_signup", to: "signup#create"
+    put  "update_signup", to: "signup#update"
   end
 
   get "how_digital_certificate_works", to: "digital_certificate_signup#how_digital_certificate_works"
+  get "digital_certificate_upload", to: "digital_certificate_signup#file_upload"
 
   resources :seller_steps
   resources :invoices, only: [:destroy, :show]

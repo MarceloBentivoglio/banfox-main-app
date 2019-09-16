@@ -3,32 +3,34 @@
 <%= simple_form_for(:signup, url: create_signup_path) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs devise-form">
+    <%= f.input :full_name,
+                required: true, 
+                label: "Nome Completo", 
+                placeholder: "ex: Antônio Souza",
+                input_html: { class: "full_name" }
+    %>
+    <%= f.input :mobile,
+                required: true,
+                label: "Celular de contato",
+                placeholder: "ex: (11) 9 8686-8686",
+                input_html: { class: "mobile" }
+    %>
     <%= f.input :email,
                 required: true,
                 autofocus: true ,
-                label: "Indique seu email corporativo",
+                label: "Email corporativo",
+                placeholder: "antonio@empresa.com.br",
+                hint: "Este será o email que você usará para acessar a plataforma da Banfox",
                 input_html: { autocomplete: "email" }
     %>
     <%= f.error :corporate_email_validator, class: "invalid-feedback"  %>
     <%= f.input :password,
                 required: true,
-                label: "Crie uma Senha",
+                label: "Crie uma senha de acesso",
                 hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } 
     %>
-    <%= f.input :full_name,
-                required: true, 
-                label: "Nome do Usuário", 
-                input_html: { class: "full_name" }
-    %>
-    <%= f.input :mobile,
-                required: true,
-                label: "Telefone para contato",
-                input_html: { class: "mobile" }
-    %>
-    <%= f.input :cnpj, required: true, label: "CNPJ", input_html: { class: "cnpj" } %>
-    <%= f.error :cnpj_validator, class: "invalid-feedback"  %>
   </div>
 
   <div class="form-actions">
@@ -37,5 +39,3 @@
 <% end %>
 
 <%= render "users/shared/links" %>
-
-

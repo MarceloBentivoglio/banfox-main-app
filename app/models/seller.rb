@@ -129,6 +129,7 @@ class Seller < ApplicationRecord
     partner:   3,
     consent:   4,
     active:    5,
+    no_a1:     6,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
@@ -164,7 +165,6 @@ class Seller < ApplicationRecord
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
   validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
   validates :full_name, :mobile, presence: { message: "precisa ser informado" }, if: :active_or_basic?
-  validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
 
   # TODO: Refactor this block of code
   before_validation :clean_inputs, :downcase_words

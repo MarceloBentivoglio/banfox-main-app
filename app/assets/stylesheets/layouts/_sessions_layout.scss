@@ -5,10 +5,16 @@
 }
 
 .devise-header-strong {
-  color: #3DD08E !important;
+  color: #6DC38E !important;
 }
 
 .devise-greeting {
   font-weight: 800;
   margin-bottom: 40px;
+}
+
+.devise-form {
+  .form-control-label {
+    font-weight: 700;
+  }
 }

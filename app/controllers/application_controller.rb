@@ -11,7 +11,11 @@
   rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
 
   def after_sign_in_path_for(resource_or_scope)
-   sellers_dashboard_path
+    if current_user&.seller&.no_a1?
+      how_digital_certificate_works_path
+    else
+      sellers_dashboard_path
+    end
   end
 
   def resource_name

@@ -6,21 +6,27 @@ class SignupController < Devise::SessionsController
   layout "empty_layout"
 
   def create
-    signup_params = params["signup"].permit(:email, :password, :full_name, :cnpj, :mobile)
+    signup_params = params["signup"].permit(:email, :password, :full_name, :mobile)
     user = SignupService.call(signup_params)
     if user.new_record?
       redirect_to new_user_registration_path
     else
       sign_in user
-      redirect_to how_digital_certificate_works
+      redirect_to how_digital_certificate_works_path
     end
   end
 
+  def edit
+  end
+
   def update
-    seller_params = params["seller"].permit(:id, :file, :key)
-    seller = Seller.find(seller_params[:id])
+    seller_params = params["seller"].permit(:digital_certificate, :digital_certificate_password)
+    seller = current_user.seller
     seller.set_pre_approved_initial_standard_settings
+    seller.update(seller_params)
     seller.active!
+    seller.pre_approved!
+    redirect_to sellers_dashboard_url
   end
 
 end

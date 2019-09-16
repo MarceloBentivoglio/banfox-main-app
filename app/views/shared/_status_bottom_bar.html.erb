@@ -41,7 +41,7 @@
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">
               <input type="checkbox" name="operation[consent]" id="operation_consent">
-              <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller.company_name.mb_chars.titleize %>, CNPJ <%= CNPJ.new(@seller.cnpj).formatted %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
+              <label for="operation_consent">Eu confirmo, como responsável legal pela empresa <%= @seller&.company_name&.mb_chars&.titleize %>, CNPJ <%= CNPJ.new(@seller.cnpj).formatted %>, que os produtos referentes as notas fiscais acima já foram devidamente entregues aos meus clientes.</label>
               <%= f.error :consent, class: "invalid-feedback" %>
           </div>
           <div class="bottom-content">

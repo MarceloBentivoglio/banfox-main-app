@@ -8,6 +8,7 @@ class SignupService
     seller_params["mobile"] = params["mobile"]
     seller_params["cnpj"] = params["cnpj"]
     seller = Seller.new(seller_params)
+    seller.no_a1!
     seller.save
 
     user_params["email"] = params["email"]
