@@ -4,7 +4,15 @@ module Risk
       class Serasa < Risk::Pipeline::Base
         #Interface Enforcement
         fetch_from Risk::Fetcher::Serasa
-        run_referees Risk::Referee::SerasaInjuction,
+        run_referees Risk::Referee::NewCNPJ::PefinQuantity,
+                     Risk::Referee::NewCNPJ::PefinValue,
+                     Risk::Referee::NewCNPJ::RefinValue,
+                     Risk::Referee::NewCNPJ::RefinQuantity,
+                     Risk::Referee::NewCNPJ::ProtestValue,
+                     Risk::Referee::NewCNPJ::ProtestQuantity,
+                     Risk::Referee::NewCNPJ::LawsuitValue,
+                     Risk::Referee::NewCNPJ::LawsuitQuantity,
+                     Risk::Referee::SerasaInjuction,
                      Risk::Referee::PartnerEntryDate,
                      Risk::Referee::FoundedIn,
                      Risk::Referee::SocialCapital,
