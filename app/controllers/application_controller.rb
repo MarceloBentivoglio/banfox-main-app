@@ -1,4 +1,4 @@
-  class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :require_active
@@ -33,15 +33,15 @@
   private
   # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def require_active
-      if (seller = current_user.seller)
-        unless seller.active?
-          flash[:alert] = "Você precisa completar seu cadastro"
-          redirect_to "#{seller_steps_path}/#{seller.next_step}"
-        end
-      else
+    if (seller = current_user.seller)
+      unless seller.active?
         flash[:alert] = "Você precisa completar seu cadastro"
-        redirect_to seller_steps_path
+        redirect_to "#{seller_steps_path}/#{seller.next_step}"
       end
+    else
+      flash[:alert] = "Você precisa completar seu cadastro"
+      redirect_to seller_steps_path
+    end
   end
 
   def require_permission_to_operate
