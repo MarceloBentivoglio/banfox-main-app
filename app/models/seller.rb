@@ -325,8 +325,13 @@ class Seller < ApplicationRecord
     self.fator = 0.034
     self.advalorem = 0.001
     self.protection = 0
-    self.operation_limit = Money.new("2000000")
+    #Operation limit was changed to 1/3 of the monthly_revenue
+    #self.operation_limit = Money.new("2000000")
     self.save!
+  end
+
+  def set_operation_limit
+    self.operation_limit = self.monthly_revenue / 3.0
   end
 
   def fee
