@@ -78,7 +78,8 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    sign_document_key? && completed? && !signed
+    (!d4sign? && sign_document_key? && !signed?) || 
+    (d4sign? && completed? && sign_document_key? && !signed?)
   end
 
   def deposit_pending?
