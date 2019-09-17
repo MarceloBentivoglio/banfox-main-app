@@ -21,7 +21,9 @@ module Risk
             'credito',
             'financiame',
             'financiamento',
-            'gestao riscos'
+            'gestao riscos',
+            'cef',
+            'cred'
           ],
           ignore_names: [
             'MVP FOMENTO MERCANTIL LTDA',

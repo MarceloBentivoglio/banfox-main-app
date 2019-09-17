@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_181752) do
+ActiveRecord::Schema.define(version: 2019_09_11_191647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_181752) do
     t.jsonb "evidences", default: {}
     t.bigint "operation_id"
     t.jsonb "key_indicators", default: {}
+    t.boolean "processed", default: false
   end
 
   create_table "key_indicators", force: :cascade do |t|
@@ -168,6 +169,9 @@ ActiveRecord::Schema.define(version: 2019_08_12_181752) do
     t.datetime "updated_at", null: false
     t.datetime "sign_document_requested_at"
     t.datetime "signed_at"
+    t.integer "sign_documents_provider"
+    t.integer "sign_document_status", default: 0
+    t.boolean "sign_document_error", default: false
   end
 
   create_table "payers", force: :cascade do |t|
@@ -249,6 +253,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_181752) do
     t.datetime "veredict_at"
     t.boolean "allowed_to_operate"
     t.datetime "forbad_to_operate_at"
+    t.integer "sign_documents_provider"
   end
 
   create_table "users", force: :cascade do |t|
