@@ -26,7 +26,7 @@ class SignupController < Devise::SessionsController
     seller.update(seller_params)
     seller.active!
     seller.pre_approved!
-    redirect_to sellers_dashboard_url
+    redirect_to digital_certificate_finished_path
   end
 
 end

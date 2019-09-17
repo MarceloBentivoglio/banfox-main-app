@@ -11,4 +11,6 @@ class DigitalCertificateSignupController < ApplicationController
   def file_upload
   end
 
+  def finished
+  end
 end

@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 
   get "how_digital_certificate_works", to: "digital_certificate_signup#how_digital_certificate_works"
   get "digital_certificate_upload", to: "digital_certificate_signup#file_upload"
+  get "digital_certificate_finished", to: "digital_certificate_signup#finished"
 
   resources :seller_steps
   resources :invoices, only: [:destroy, :show]

@@ -6,6 +6,7 @@
   <div class="form-inputs devise-form">
     <%= f.input :full_name,
                 required: true, 
+                autofocus: true ,
                 label: "Nome Completo", 
                 placeholder: "ex: Antônio Souza",
                 input_html: { class: "full_name" }
@@ -18,7 +19,6 @@
     %>
     <%= f.input :email,
                 required: true,
-                autofocus: true ,
                 label: "Email corporativo",
                 placeholder: "antonio@empresa.com.br",
                 hint: "Este será o email que você usará para acessar a plataforma da Banfox",
