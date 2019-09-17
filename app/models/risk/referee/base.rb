@@ -14,7 +14,7 @@ module Risk
           description: self.description,
           evidence: self.evidence,
           params: self.params,
-          flag: self.assert,
+          flag: self.assert
         }
       end
 

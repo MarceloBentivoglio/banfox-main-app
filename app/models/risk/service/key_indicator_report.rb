@@ -1,6 +1,7 @@
 module Risk
   module Service
     class KeyIndicatorReport
+      include CNPJFormatter
       #ttl in minutes
       def initialize(params, ttl)
         @params = params
@@ -10,6 +11,21 @@ module Risk
 
       #TODO add a new status to know if key_indicator_report is ready
       def call
+        key_indicator_report = build_key_indicator_report
+        #KeyIndicatorReportJob.perform_later(key_indicator_report.id) unless @errors.any?
+        Risk::Service::KeyIndicatorReport.process(key_indicator_report)
+
+        key_indicator_report
+      end
+
+      def async_call
+        key_indicator_report = build_key_indicator_report
+        KeyIndicatorReportJob.perform_later(key_indicator_report.id) unless @errors.any?
+
+        key_indicator_report
+      end
+
+      def build_key_indicator_report
         if operation.nil?
           params = query_params
         else
@@ -24,11 +40,27 @@ module Risk
         else
           key_indicator_report = Risk::KeyIndicatorReport.create(params)
 
+          params[:input_data].each do |cnpj|
+            key_indicator_report.key_indicators[cnpj_root_format(cnpj)] = {}
+          end
           #This will become a asynchronous worker
-          service_strategy.call(key_indicator_report)
+          #service_strategy.call(key_indicator_report)
         end
 
         key_indicator_report
+      end
+
+      def self.process(key_indicator_report)
+        service_strategy(key_indicator_report)
+      end
+
+      def self.service_strategy(key_indicator_report)
+        case key_indicator_report.kind
+        when 'new_cnpj'
+          Risk::Service::NewCNPJStrategy.new.call(key_indicator_report)
+        when 'recurrent_operation'
+          Risk::Service::RecurrentOperationStrategy.new.call(key_indicator_report)
+        end
       end
 
       def operation
@@ -47,7 +79,7 @@ module Risk
           input_data: input_data,
           kind: @params[:kind],
           ttl: @ttl,
-          operation_id: operation.id
+          operation_id: operation.id,
         }
       end
 
@@ -69,8 +101,8 @@ module Risk
 
       def service_strategy
         case @params[:kind]
-        when 'operation_part'
-          Risk::Service::OperationPartStrategy.new
+        when 'new_cnpj'
+          Risk::Service::NewCNPJStrategy.new
         when 'recurrent_operation'
           Risk::Service::RecurrentOperationStrategy.new
         end

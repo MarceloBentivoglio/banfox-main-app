@@ -304,9 +304,9 @@ class Seller < ApplicationRecord
   end
 
   def set_pre_approved_initial_standard_settings
-    self.fator = 0.039
+    self.fator = 0.034
     self.advalorem = 0.001
-    self.protection = 0.2
+    self.protection = 0
     self.operation_limit = Money.new("2000000")
     self.save!
   end
@@ -317,7 +317,6 @@ class Seller < ApplicationRecord
 
 
   private
-
   def async_update_spreadsheet
     SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)
   end

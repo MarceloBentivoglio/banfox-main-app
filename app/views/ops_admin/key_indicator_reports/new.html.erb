@@ -8,8 +8,13 @@
         } %>
         <div class="client-form-box">
           <div class="client-form">
-            <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path(kind: 'recurrent_operation') do |f| %>
+            <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path do |f| %>
               <%= f.input :input_data, label: "CNPJs separados por vírgula" %>
+              <select class="form-control" name="kind">
+                <option value="recurrent_operation">Operação Recorrente</option>
+                <option value="new_cnpj">Novo CNPJ</option>
+              </select>
+              <br />
               <%= f.submit "Analisar", class: "btn btn-rounded blue", id: "wrapper-loader-trigger"%>
             <% end %>
           </div>

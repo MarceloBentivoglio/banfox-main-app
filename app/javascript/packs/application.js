@@ -19,8 +19,7 @@ import { signDocument } from '../components/signDocument';
 import { enablePopover } from "../components/popover";
 import { enableTooltip } from "../components/tooltip";
 import { activateWrapperLoader } from "../components/wrapperLoader";
-
-
+import { activatePageLoader } from "../components/pageLoader";
 
 selectTagOnClick();
 maskCpfCnpjCurrency();
@@ -43,3 +42,4 @@ signDocument();
 enablePopover();
 enableTooltip();
 activateWrapperLoader();
+activatePageLoader();

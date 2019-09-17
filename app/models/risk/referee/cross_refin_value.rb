@@ -18,6 +18,8 @@ module Risk
       end
 
       def assert
+        return Risk::KeyIndicatorReport::GRAY_FLAG if @evidence[:refin_value_delta].nil? || @evidence[:refin_quantity_delta].nil?
+
         if @evidence[:refin_value_delta]['flag'] == Risk::KeyIndicatorReport::RED_FLAG
           return Risk::KeyIndicatorReport::YELLOW_FLAG 
         elsif @evidence[:refin_value_delta]['flag'] == Risk::KeyIndicatorReport::GREEN_FLAG

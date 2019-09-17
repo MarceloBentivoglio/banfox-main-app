@@ -9,7 +9,7 @@ class RunningRefereesTest < ActiveSupport::TestCase
                          .returns([biort_data])
   end
 
-  test 'run all referees' do
+  test 'run all referees with recurrent_operation' do
     params = {
       risk_key_indicator_report: {
         input_data: '08588244000149'
@@ -21,6 +21,18 @@ class RunningRefereesTest < ActiveSupport::TestCase
 
     assert_has_expected_key_indicators(key_indicator_report)
   end
+
+  test 'run all referees with new_cnpj' do
+    params = {
+      risk_key_indicator_report: {
+        input_data: '08588244000149'
+      },
+      kind: 'new_cnpj'
+    }
+
+    key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, DateTime.current + 1.day).call
+  end
+
 
   test 'run all referees using an operation' do
     using_shared_operation

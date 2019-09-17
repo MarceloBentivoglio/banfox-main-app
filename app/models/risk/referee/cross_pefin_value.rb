@@ -2,6 +2,7 @@ module Risk
   module Referee
     class CrossPefinValue < Base
       include DeltaEvaluator
+
       def initialize(evidence)
         @root_evidence = evidence.with_indifferent_access
         @evidence = {
@@ -18,6 +19,8 @@ module Risk
       end
 
       def assert
+        return Risk::KeyIndicatorReport::GRAY_FLAG if @evidence[:pefin_value_delta].nil? || @evidence[:pefin_quantity_delta].nil?
+
         if @evidence[:pefin_value_delta]['flag'] == Risk::KeyIndicatorReport::RED_FLAG
           return Risk::KeyIndicatorReport::YELLOW_FLAG 
         elsif @evidence[:pefin_value_delta]['flag'] == Risk::KeyIndicatorReport::GREEN_FLAG
