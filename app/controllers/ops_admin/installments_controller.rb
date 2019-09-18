@@ -39,8 +39,16 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
     @installment.paid!
+    payment_credit = PaymentCredit.new()
+    payment_credit.installment_id = @installment.id
+    payment_credit.seller = @installment.invoice.seller_id
+    payment_credit.paid_date = @installment.finished_at
+    payment_credit.save
     @installment.notify_seller(@seller)
-    redirect_to  ops_admin_operations_follow_up_path
+    redirect_to ops_admin_operations_follow_up_path
+  rescue Exception => e
+    Rollbar.error(e)
+    redirect_back(fallback_location: ops_admin_operations_follow_up_path)
   end
 
   def report_pdd

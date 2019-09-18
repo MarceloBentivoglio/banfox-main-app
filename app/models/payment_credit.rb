@@ -1,0 +1,2 @@
+class PaymentCredit < ApplicationRecord
+end
