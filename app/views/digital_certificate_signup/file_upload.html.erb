@@ -1,0 +1,46 @@
+<div class="col-12">
+  <%= link_to root_path do %>
+    <div class="devise-logo">
+      <%= image_tag "Logo_banfox_color.png" %>
+    </div>
+  <% end %>
+  <center>
+    <h1 class="devise-header">
+      O <a class="devise-header-strong">futuro</a> com a Banfox começa agora.
+    </h1>
+  </center>
+</div>
+<div class="col-12 col-md-6 offset-md-3">
+  <div class="login-form">
+    <h4 class="main-box-title" >Você está em boas mãos.</h4>
+    <div class="file_upload_card_body">
+      <p>
+        O acesso ao certificado digital A1 da sua empresa é necessário para podermos avaliar o seu comportamento 
+      financeiro e oferecer dicas valiosas que irão te ajudar a economizar e manter suas finanças em dia.
+      </p>
+    </div>
+    <%= simple_form_for(current_user.seller, url: update_signup_path, method: :put) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs devise-form">
+        <%= f.input :digital_certificate, 
+          as: :file,
+          required: true,
+          label: "Arquivo do Certificado Digital A1",
+          hint: "Esse é o mesmo arquivo de acesso que o seu contador utiliza.",
+          label_html: { class: "form-control-label" }
+        %>
+        <%= f.input :digital_certificate_password,
+          required: true,
+          label: "Crie uma senha de acesso",
+          hint: "Essa é a senha que você utiliza junto com o seu Certificado Digital A1"
+        %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Enviar Certificado Digital Com Segurança", class: "digital-certificate-buttons wide-button"  %>
+        <small>Entenda nossas políticas de privacidade e segurança aqui.</small'>
+      </div>
+    <% end %>
+  </div>
+</div>

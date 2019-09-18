@@ -78,6 +78,8 @@ class Seller < ApplicationRecord
   has_many_attached :partners_rgs, dependent: :purge
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
+  has_one_attached :digital_certificate, dependent: :purge
+
   include UserInputProcessing
 
   after_save :async_update_spreadsheet
@@ -127,6 +129,7 @@ class Seller < ApplicationRecord
     partner:   3,
     consent:   4,
     active:    5,
+    no_a1:     6,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well
@@ -160,29 +163,8 @@ class Seller < ApplicationRecord
   }
 
   #TODO: make validations on the backend of phone number, cep, date of birth, because currently we are using validation only in the frontend (mask)
-  validates_with CpfValidator, attr: :cpf, if: :active_or_basic?
-  validates :cpf, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_basic?
   validates :mobile, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_basic?
-  validates_with DateValidator, attr: :birth_date, if: :active_or_basic?
-  validates :full_name, :cpf, :mobile, :birth_date, presence: { message: "precisa ser informado" }, if: :active_or_basic?
-  validates_with CnpjValidator, if: :active_or_company?
-  validates :cnpj,  uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_company?
-  validates :phone, format: { with: /\A([1-9]{2}9\d{8}|^[1-9]{2}[2-5]\d{7})\z/, message: "precisa ser um número de linha fixa ou movel válido" }, if: :active_or_company?
-  validates :company_name, :cnpj, :website, :phone,  :zip_code, :address, :neighborhood, :address_number, :city, :state, presence: { message: "precisa ser informado" }, if: :active_or_company?
-  validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, :debt, presence: { message: "precisa ser informado" }, if: :active_or_finantial?
-  validates :monthly_revenue, :monthly_fixed_cost, :monthly_units_sold, :cost_per_unit, numericality: { greater_than: 0, message: "precisa ser maior que zero" }, if: :active_or_finantial?
-  validates :monthly_units_sold, numericality: { only_integer: true, message: "precisa ser um número inteiro" }, if: :active_or_finantial?
-  validates_with CpfValidator, attr: :cpf_partner, if: :active_or_partner?
-  validates :cpf_partner, uniqueness: { message: "já cadastrado, favor entrar em contato conosco" }, if: :active_or_partner?
-  validates :mobile_partner, format: { with: /\A[1-9]{2}9\d{8}\z/, message: "precisa ser um número de celular válido" }, if: :active_or_partner?
-  validates_with DateValidator, attr: :birth_date_partner, if: :active_or_partner?
-  validates :email_partner, email: true, if: :active_or_partner?
-  validates :email_partner, corporate_email: true, if: :active_or_partner?
-  validates :full_name_partner, :cpf_partner, :mobile_partner, :birth_date_partner, :email_partner, presence: { message: "precisa ser informado" }, if: :active_or_partner?
-  validates :consent, acceptance: {message: "é preciso ler e aceitar os termos"}, if: :active_or_consent?
-  validates :fator, numericality: {greater_than_or_equal_to: 0.01, less_than_or_equal_to: 0.07, allow_nil: true}
-  validates :advalorem, numericality: {greater_than_or_equal_to: 0.001, less_than_or_equal_to: 0.01, allow_nil: true}
-  validates :protection, numericality: {greater_than_or_equal_to: 0.0, less_than_or_equal_to: 0.3, allow_nil: true}
+  validates :full_name, :mobile, presence: { message: "precisa ser informado" }, if: :active_or_basic?
 
   # TODO: Refactor this block of code
   before_validation :clean_inputs, :downcase_words

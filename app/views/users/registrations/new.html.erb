@@ -1,23 +1,36 @@
-<h2><%= t(".greeting") %></h2>
+<center><h4 class="devise-greeting" ><%= t(".greeting") %></h4></center>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(:signup, url: create_signup_path) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs devise-form">
+    <%= f.input :full_name,
+                required: true, 
+                autofocus: true ,
+                label: "Nome Completo", 
+                placeholder: "ex: Antônio Souza",
+                input_html: { class: "full_name" }
+    %>
+    <%= f.input :mobile,
+                required: true,
+                label: "Celular de contato",
+                placeholder: "ex: (11) 9 8686-8686",
+                input_html: { class: "mobile" }
+    %>
     <%= f.input :email,
                 required: true,
-                autofocus: true ,
-                label: "Indique seu email corporativo",
-                input_html: { autocomplete: "email" }%>
+                label: "Email corporativo",
+                placeholder: "antonio@empresa.com.br",
+                hint: "Este será o email que você usará para acessar a plataforma da Banfox",
+                input_html: { autocomplete: "email" }
+    %>
     <%= f.error :corporate_email_validator, class: "invalid-feedback"  %>
     <%= f.input :password,
                 required: true,
-                label: "Crie uma Senha",
+                label: "Crie uma senha de acesso",
                 hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%#= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" } 
+    %>
   </div>
 
   <div class="form-actions">
@@ -26,5 +39,3 @@
 <% end %>
 
 <%= render "users/shared/links" %>
-
-

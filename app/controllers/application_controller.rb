@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :action_not_authorized
 
   def after_sign_in_path_for(resource_or_scope)
-   sellers_dashboard_path
+    if current_user&.seller&.no_a1?
+      how_digital_certificate_works_path
+    else
+      sellers_dashboard_path
+    end
   end
 
   def resource_name
@@ -34,9 +38,13 @@ class ApplicationController < ActionController::Base
   # TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def require_active
     if (seller = current_user.seller)
-      unless seller.active?
-        flash[:alert] = "Você precisa completar seu cadastro"
-        redirect_to "#{seller_steps_path}/#{seller.next_step}"
+      if seller.no_a1?
+        redirect_to how_digital_certificate_works_path
+      else
+        unless seller.active?
+          flash[:alert] = "Você precisa completar seu cadastro"
+          redirect_to "#{seller_steps_path}/#{seller.next_step}"
+        end
       end
     else
       flash[:alert] = "Você precisa completar seu cadastro"
