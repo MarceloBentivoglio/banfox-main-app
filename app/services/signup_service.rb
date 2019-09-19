@@ -1,21 +1,23 @@
 class SignupService
-
   def self.call(params)
-    user_params = {}
-    seller_params = {}
+    new.call(params)
+  end
 
-    seller_params["full_name"] = params["full_name"]
-    seller_params["mobile"] = params["mobile"]
-    seller_params["cnpj"] = params["cnpj"]
-    seller = Seller.new(seller_params)
+  def call(params)
+    seller = Seller.new(seller_params(params))
     seller.no_a1!
-    seller.save
 
-    user_params["email"] = params["email"]
-    user_params["password"] = params["password"]
-    user = User.new(user_params)
+    user = User.new(user_params(params))
     user.seller_id = seller.id
-    user.save
-    user
+
+    [seller, user]
+  end
+
+  def user_params(params)
+    params.permit(:email, :password)
+  end
+
+  def seller_params(params)
+    params.permit(:full_name, :mobile, :cnpj)
   end
 end

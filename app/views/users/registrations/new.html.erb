@@ -2,6 +2,9 @@
 
 <%= simple_form_for(:signup, url: create_signup_path) do |f| %>
   <%= f.error_notification %>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, "#{key} #{value.first}", class: "alert alert-danger #{key}" %>
+  <% end %>
 
   <div class="form-inputs devise-form">
     <%= f.input :full_name,
