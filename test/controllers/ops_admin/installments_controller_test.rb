@@ -47,4 +47,9 @@ class OpsAdmin::InstallmentControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test '.report_paid create a payment_credit' do
+    assert_difference 'PaymentCredit.count', +1  do
+      get report_paid_ops_admin_installment_path(@installment_1)
+    end
+  end
 end
