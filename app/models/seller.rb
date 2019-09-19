@@ -78,6 +78,7 @@ class Seller < ApplicationRecord
   has_many_attached :partners_rgs, dependent: :purge
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
+  has_many :payment_credits
   include UserInputProcessing
 
   after_save :async_update_spreadsheet
@@ -338,6 +339,13 @@ class Seller < ApplicationRecord
     fator + advalorem
   end
 
+  def payment_credit_value
+    unless payment_credits.empty?
+      payment_credits.first.credit
+    else
+      0
+    end
+  end
 
   private
   def async_update_spreadsheet

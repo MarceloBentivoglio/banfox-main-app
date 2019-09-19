@@ -14,22 +14,22 @@
             <span id="fee" class="big-number"></span>
           </div>
           <div class="content-col">
-            <span>Proteção (<%= percentage(@seller.protection) %>) </span>
-            <span id="protection" class="big-number" data-protection="<%= @seller.protection %>"></span>
+            <span>Saldo Ativo</span>
+            <span id="credit" class="big-number" data-credit="<%= @seller.payment_credit_value %>"></span>
           </div>
           <div class="content-col result">
             <span class="line">Depositamos para você:</span>
             <div class="line line-w-2-cols">
-              <span class="line-text">Hoje</span>
-              <span id="deposit_today"></span>
+              <span class="line-text">Valor</span>
+              <span id="net_value" class="big-number"></span>
             </div>
             <div class="line line-w-2-cols">
-              <span class="line-text">Na liquidação</span>
-              <span id="deposit_after"></span>
+              <span class="line-text">Crédito</span>
+              <span id="credit_to_sum"></span>
             </div>
             <div class="line line-w-2-cols last-line">
               <span class="line-text">Total</span>
-              <span id="net_value" class="big-number"></span>
+              <span id="total_with_credit" class="big-number"></span>
             </div>
           </div>
       </div>
