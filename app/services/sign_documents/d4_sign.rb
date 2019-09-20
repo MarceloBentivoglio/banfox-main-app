@@ -50,7 +50,7 @@ class D4Sign
         "certificadoicpbr": "0",
         "assinatura_presencial": "0",
         "embed_methodauth": "sms",
-        "embed_smsnumber": joint_debtor.mobile,
+        "embed_smsnumber": "+55" + joint_debtor.mobile,
       }
     end
     @signers << {
