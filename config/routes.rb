@@ -51,6 +51,16 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     unlocks: 'users/unlocks',
   }
+
+  devise_scope :user do
+    post "create_signup", to: "signup#create"
+    put  "update_signup", to: "signup#update"
+  end
+
+  get "how_digital_certificate_works", to: "digital_certificate_signup#how_digital_certificate_works"
+  get "digital_certificate_upload", to: "digital_certificate_signup#file_upload"
+  get "digital_certificate_finished", to: "digital_certificate_signup#finished"
+
   resources :seller_steps
   resources :invoices, only: [:destroy, :show]
   resources :invoices_documents_bundles, only: [:create] do
