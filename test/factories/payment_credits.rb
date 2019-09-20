@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :payment_credit do
-    installment { "" }
-    credit { 1 }
+    installment_id { 1 }
+    credit { 4500 }
     paid_date { "2019-09-18" }
-    seller { "" }
+    seller_id { 1 }
   end
 end

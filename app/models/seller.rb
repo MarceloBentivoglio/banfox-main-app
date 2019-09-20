@@ -341,7 +341,7 @@ class Seller < ApplicationRecord
 
   def payment_credit_value
     unless payment_credits.empty?
-      payment_credits.first.credit
+      payment_credits.sum(:credit)
     else
       0
     end
