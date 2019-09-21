@@ -247,10 +247,8 @@ class Installment < ApplicationRecord
   def delta_fator
     if overdue?
       value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days) / 30.0)) - initial_fator
-    elsif operation_ended_overdue?
-      final_fator - initial_fator
     else
-      0
+      final_fator - initial_fator
     end
   end
 
@@ -271,10 +269,8 @@ class Installment < ApplicationRecord
   def delta_advalorem
     if overdue?
       value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days) / 30.0)) - initial_advalorem
-    elsif operation_ended_overdue?
-      final_advalorem - initial_advalorem
     else
-      0
+      final_advalorem - initial_advalorem
     end
   end
 
@@ -288,6 +284,10 @@ class Installment < ApplicationRecord
 
   def delta_fee
     delta_fator + delta_advalorem
+  end
+
+  def display_delta_fee
+    delta_fee * -1
   end
 
   def net_value

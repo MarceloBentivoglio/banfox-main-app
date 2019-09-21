@@ -47,4 +47,16 @@ class OpsAdmin::InstallmentControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test '.report_paid create a payment_credit' do
+    assert_difference 'PaymentCredit.count', +1  do
+      get report_paid_ops_admin_installment_path(@installment_1)
+    end
+  end
+
+  test '.deposit create a payment_credit with a value to set payment_credits.sum to zero' do
+    FactoryBot.create(:payment_credit)
+    FactoryBot.create(:payment_credit)
+    get deposit_ops_admin_installment_path(@installment_1)
+    assert_equal @seller.payment_credits.sum(:credit), 0
+  end
 end

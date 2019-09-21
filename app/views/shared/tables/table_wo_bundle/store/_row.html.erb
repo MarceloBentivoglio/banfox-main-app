@@ -10,8 +10,6 @@
   <div class="content-col content-col-11 text-right  installment_value">  <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-11 text-right  fee">                <%= humanized_money_with_symbol item.fee %></div>
   <div class="content-col content-col-11 text-right  net_value">          <%= humanized_money_with_symbol item.net_value %></div>
-  <div class="content-col content-col-11 text-right">                     <%= humanized_money_with_symbol item.first_deposit_amount %></div>
-  <div class="content-col content-col-11 text-right">                     <%= humanized_money_with_symbol item.protection %></div>
   <% if "#{current_controller_name}.#{current_action_name}" == "installments.store" && @status == :no_on_going_operation %>
     <div class="content-col content-col-4 text-center">
       <input

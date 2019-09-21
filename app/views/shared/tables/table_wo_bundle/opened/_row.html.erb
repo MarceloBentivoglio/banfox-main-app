@@ -28,27 +28,27 @@
   </div>
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_net_value %> - [<%= humanized_money item.delta_fee %>]" class="red">
-        <%= humanized_money_with_symbol item.net_value %>
+      <span  class="red">
+        <%= humanized_money_with_symbol item.initial_net_value %>
       </span>
     <% else %>
       <span>
-        <%= humanized_money_with_symbol item.net_value %>
+        <%= humanized_money_with_symbol item.initial_net_value %>
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.first_deposit_amount %></div>
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_protection %> - [<%= humanized_money item.delta_fee %>]" class="red">
-        <%= humanized_money_with_symbol item.protection %>
+      <span data-toggle="tooltip" title="" data-original-title="Este valor será considerado apenas na sua próxima operação!" class="red" class="red">
+        <%= humanized_money_with_symbol item.display_delta_fee %>
       </span>
     <% else %>
-      <span>
-        <%= humanized_money_with_symbol item.protection %>
+      <span data-toggle="tooltip" title="" data-original-title="Caso pague adiantado, você receberá esse valor como Saldo Banfox." class="green">
+        <%= humanized_money_with_symbol item.display_delta_fee %>
       </span>
     <% end %>
   </div>
+
   <div class="content-col content-col-7  text-left extra-space-left">
     <%= render partial: "shared/tables/table_wo_bundle/opened/status_tag", locals: {status: item.status} %>
   </div>

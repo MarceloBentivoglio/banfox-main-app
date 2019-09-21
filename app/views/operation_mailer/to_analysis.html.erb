@@ -19,26 +19,6 @@
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>A operação que você nos mandou já está sendo analisada. Em menos de 2h você receberá um e-mail com o nosso posicionamento.</p>
-                  <table class="attribute-list" width="100%" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td class="attribute-list-container">
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td class="attribute-list-item"><strong>Valor bruto:</strong> <%= humanized_money_with_symbol @operation.total_value %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><strong>Valor líquido:</strong> <%= humanized_money_with_symbol @operation.net_value %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><span>Depósito na assinatura:</span> <%= humanized_money_with_symbol @operation.deposit_today %></td>
-                          </tr>
-                          <tr>
-                            <td class="attribute-list-item"><span>Depósito na liquidação:</span> <%= humanized_money_with_symbol @operation.protection %></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -85,6 +65,10 @@
                       <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
                     </tr>
                     <tr>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Crédito em conta</p></td>
+                      <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.payment_credit_value %></p></td>
+                    </tr>
+                    <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Total Líquido</p></td>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p></td>
                     </tr>
@@ -104,10 +88,10 @@
             <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
               <tr>
                 <td class="content-cell" align="center">
-                  <p class="sub align-center">&copy; 2018 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">&copy; 2019 Banfox. Todos os direitos reservados.</p>
                   <p class="sub align-center">
                     Banfox
-                    Avenida Angélica, 2529 - InovaBra Habitat
+                    Rua Vergueiro, 1061 - ACE Headquarters
                   </p>
                 </td>
               </tr>
