@@ -20,7 +20,7 @@
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>Obrigado por confiar na banfox!</p>
                   <p>Estamos passando para avisar que seu dinheiro já está a caminho!</p>
-                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.initial_deposit_today %></strong>. À medida que os títulos forem sendo liquidados, você irá receber a proteção de cada um deles, totalizando ao final <strong><%= humanized_money_with_symbol @operation.protection %></strong>.</p>
+                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.net_value %></strong>.</p>
                   <h1>Resumo da operação <%= @operation.id %></h1>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -28,8 +28,7 @@
                       <th class="purchase_heading"><p>Sacado</p></th>
                       <th class="purchase_heading"><p class="align-right">Vencimento</p></th>
                       <th class="purchase_heading"><p class="align-right">Valor</p></th>
-                      <th class="purchase_heading"><p class="align-right">Depósito hoje</p></th>
-                      <th class="purchase_heading"><p class="align-right">Depósito liquidação</p></th>
+                      <th class="purchase_heading"><p class="align-right">Depósito</p></th>
                     </tr>
                     <% @installments.each do |i| %>
                       <tr>
@@ -40,8 +39,7 @@
                         </td>
                         <td class="purchase_item"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
-                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.first_deposit_amount %></td>
-                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.protection %></td>
+                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
                       </tr>
                     <% end %>
                   </table>
@@ -51,16 +49,12 @@
                       <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
                     </tr>
                     <tr>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Montante que você recebe agora</p></td>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.initial_deposit_today %></p></td>
-                    </tr>
-                    <tr>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Proteção que você recebe na liquidação</p></td>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.initial_protection %></p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Crédito na sua conta</p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.payment_credit_value %></p></td>
                     </tr>
                   </table>
                   <br>
-                  <p>Com essa operação em andamento, seu limite disponível é de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Aproveite para acompanhar seus títulos na nossa plataforma:</p>
+                  <p>Com essa operação em andamento, seu limite disponível é de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -73,7 +67,7 @@
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Acessar minha área</a>
+                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
                                   </td>
                                 </tr>
                               </table>
@@ -96,10 +90,10 @@
             <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
               <tr>
                 <td class="content-cell" align="center">
-                  <p class="sub align-center">&copy; 2018 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">&copy; 2019 Banfox. Todos os direitos reservados.</p>
                   <p class="sub align-center">
                     Banfox
-                    Avenida Angélica, 2529 - InovaBra Habitat
+                    Rua Vergueiro, 1061 - ACE Headquarters
                   </p>
                 </td>
               </tr>
@@ -110,5 +104,3 @@
     </td>
   </tr>
 </table>
-
-
