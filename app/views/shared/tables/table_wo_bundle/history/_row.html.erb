@@ -12,37 +12,37 @@
   <div class="content-col content-col-10 text-right">
     <% if item.operation_ended_overdue? %>
       <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_fee %> + [<%= humanized_money item.delta_fee %>]">
-        <%= humanized_money_with_symbol item.fee %>
+        <%= humanized_money_with_symbol item.initial_fee %>
       </span>
     <% else %>
       <span>
-        <%= humanized_money_with_symbol item.fee %>
+        <%= humanized_money_with_symbol item.initial_fee %>
       </span>
     <% end %>
   </div>
   <div class="content-col content-col-10 text-right">
     <% if item.operation_ended_overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_net_value %> - [<%= humanized_money item.delta_fee %>]">
-        <%= humanized_money_with_symbol item.net_value %>
+      <span>
+        <%= humanized_money_with_symbol item.initial_net_value %>
       </span>
     <% else %>
       <span>
-        <%= humanized_money_with_symbol item.net_value %>
+        <%= humanized_money_with_symbol item.initial_net_value %>
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.first_deposit_amount %></div>
   <div class="content-col content-col-10 text-right">
     <% if item.operation_ended_overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_protection %> - [<%= humanized_money item.delta_fee %>]">
-        <%= humanized_money_with_symbol item.protection %>
+      <span class="red">
+        <%= humanized_money_with_symbol item.display_delta_fee %>
       </span>
     <% else %>
       <span>
-        <%= humanized_money_with_symbol item.protection %>
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% end %>
   </div>
+
   <div class="content-col content-col-7  text-left extra-space-left">
     <%= render partial: "shared/tables/table_wo_bundle/history/status_tag", locals: {status: item.status} %>
   </div>
