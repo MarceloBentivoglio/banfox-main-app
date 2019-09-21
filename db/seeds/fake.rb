@@ -48,7 +48,7 @@ seller1 = Seller.create!(
 
 joint_debtor1 = JointDebtor.create!(
   name: "Furucho Solidário",
-  birthdate: Date.new(1987,09,30),
+  birthdate: Date.new(1987,9,30),
   mobile: "11995599559",
   documentation: "34411296870",
   email: "furucho@banfox.com.br",
