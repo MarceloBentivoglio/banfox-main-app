@@ -11,7 +11,7 @@
         <h4 class="modal-body-title-icon"><i class="fa fa-check-circle"></i></h4>
         <h4 class="modal-body-title-message">Bem vindo à Banfox!</h4>
         <p>Olá <%= seller.full_name.mb_chars.titleize.split.first %>, tudo bem?</p>
-        <p>O cadastro da <%= seller.company_name.mb_chars.titleize %> já está ativo! Sua empresa foi pré-aprovada com um limite de <strong>R$ 20.000,00</strong>.
+        <p>O cadastro da <%= seller.company_name.mb_chars.titleize %> já está ativo! Sua empresa foi pré-aprovada com um limite de <strong><%= number_to_currency(@seller.operation_limit.to_i, :delimiter => ".")%></strong>.
         <p>Ah, e só pra deixar claro: assim que tivermos os primeiros pagamentos, este limite poderá ser aumentado. O histórico é super importante, tanto para conhecermos você melhor, quanto para você conhecer nossa forma de ajudá-lo.</p>
         <p>O próximo passo é subir suas notas fiscais na plataforma, enquanto nosso time finaliza a análise de sua empresa e se prepara para te ligar.</p>
         <p>Bons negócios!</p>

@@ -1,9 +1,9 @@
 .login-form {
   background: $near-white;
   color: $dark-blue;
-  padding: 10px 20px;
+  padding: 60px 60px;
   // margin: 50px 0;
-  border-radius: 3px;
+  border-radius: 8px;
   -webkit-box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
   h2 {
@@ -34,7 +34,7 @@
     transition: all 0.6s ease;
     border: 1px solid $blue;
     text-decoration: none;
-    color: $blue;
+    color: $blue !important;
     background-color: $white;
   }
 }
@@ -42,7 +42,7 @@
 .devise-logo {
   text-align: center;
   img {
-    height: 8em;
+    height: 11em;
     width: auto;
   }
 }

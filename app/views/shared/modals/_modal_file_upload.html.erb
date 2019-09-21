@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <% if @seller.company_name.include?("fluidtec") %>
+        <% if @seller&.company_name&.include?("fluidtec") %>
           <span class="modal-header-avatar-name">Faça o upload dos PDFs de suas notas fiscais</span>
         <% else %>
           <span class="modal-header-avatar-name">Faça o upload do XML das suas notas fiscais</span>

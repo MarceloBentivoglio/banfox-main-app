@@ -79,6 +79,7 @@ class Seller < ApplicationRecord
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
   has_many :payment_credits
+  has_one_attached :digital_certificate, dependent: :purge
   include UserInputProcessing
 
   after_save :async_update_spreadsheet
@@ -128,6 +129,7 @@ class Seller < ApplicationRecord
     partner:   3,
     consent:   4,
     active:    5,
+    with_a1:     6,
   }
 
   # If this enum is changed the steps in SellerStepsController must change as well

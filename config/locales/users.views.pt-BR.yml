@@ -106,7 +106,7 @@ pt-BR:
         update: Atualizar
         we_need_your_current_password_to_confirm_your_changes: precisamos da sua senha atual para confirmar suas mudanças
       new:
-        greeting: Olá, bem vindo!
+        greeting: Preencha com seus dados pessoais
         sign_up: Cadastrar minha empresa 100% grátis
       signed_up: Bem vindo! Você realizou seu registro com sucesso.
       signed_up_but_inactive: Você se inscreveu com sucesso, porém nós não podemos autenticá-lo porque sua conta ainda não foi ativada.
