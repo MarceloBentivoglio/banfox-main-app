@@ -34,10 +34,20 @@ class SignupController < Devise::SessionsController
     redirect_to digital_certificate_finished_path
   end
 
+  def digital_certificate_encrypted
+    return '' if seller_params[:digital_certificate].blank?
+    Base64.encode64(Security::Crypt.new(seller_params[:digital_certificate].read).encrypt)
+  end
+
+  def digital_certificate_password_encrypted
+    return '' if seller_params[:digital_certificate_password].blank?
+    Base64.encode64(Security::Crypt.new(seller_params[:digital_certificate_password]).encrypt)
+  end
+
   def cryptographed_seller_params
     {
-      digital_certificate_base64: Base64.encode64(Security::Crypt.new(seller_params[:digital_certificate].read).encrypt),
-      digital_certificate_password: Base64.encode64(Security::Crypt.new(seller_params[:digital_certificate_password]).encrypt)
+      digital_certificate_base64: digital_certificate_encrypted,
+      digital_certificate_password: digital_certificate_password_encrypted
     }
   end
 
