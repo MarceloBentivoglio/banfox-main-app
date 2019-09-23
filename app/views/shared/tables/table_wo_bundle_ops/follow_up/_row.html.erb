@@ -17,7 +17,7 @@
   <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-9 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_fee %> + [<%= humanized_money item.delta_fee %>]" class="red">
+      <span class="red">
         <%= humanized_money_with_symbol item.initial_fee %>
       </span>
     <% else %>
@@ -34,10 +34,10 @@
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
       <span class="red">
-        <%= humanized_money_with_symbol item.delta_fee * -1 %>
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% else %>
-      <span>
+      <span class="green">
         <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% end %>

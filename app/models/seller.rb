@@ -78,7 +78,7 @@ class Seller < ApplicationRecord
   has_many_attached :partners_rgs, dependent: :purge
   has_many_attached :partners_irpfs, dependent: :purge
   has_many_attached :partners_address_proofs, dependent: :purge
-  has_many :payment_credits
+  has_many :balances
   has_one_attached :digital_certificate, dependent: :purge
   include UserInputProcessing
 
@@ -341,9 +341,9 @@ class Seller < ApplicationRecord
     fator + advalorem
   end
 
-  def payment_credit_value
-    unless payment_credits.empty?
-      payment_credits.sum(:credit)
+  def balance_value
+    unless balances.empty?
+      balances.sum(:credit)
     else
       0
     end

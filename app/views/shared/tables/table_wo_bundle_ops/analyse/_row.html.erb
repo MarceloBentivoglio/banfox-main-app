@@ -10,10 +10,7 @@
   <div class="content-col content-col-9 text-right  installment_value">   <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-6 text-center">                     <%= percentage(item.invoice.fee) %></div>
   <div class="content-col content-col-8 text-right  fee">                 <%= humanized_money_with_symbol item.fee %></div>
-  <div class="content-col content-col-5 text-center">                     <%= percentage(item.invoice.seller.protection) %> </div>
-  <div class="content-col content-col-9 text-right">                      <%= humanized_money_with_symbol(item.protection) %></div>
-  <div class="content-col content-col-9 text-right  net_value">           <%= humanized_money_with_symbol item.net_value %></div>
-  <div class="content-col content-col-9 text-right">                      <%= humanized_money_with_symbol item.first_deposit_amount %></div>
+  <div class="content-col content-col-9 text-right  net_value">           <%= humanized_money_with_symbol item.initial_net_value %></div>
   <div class="content-col content-col-10 text-right">
   <% if item.ordered? %>
     <%= link_to "Aprovar", approve_ops_admin_installment_path(item)  %>

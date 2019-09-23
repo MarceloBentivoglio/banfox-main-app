@@ -29,21 +29,21 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     operation = @installment.operation
     @installment.deposited_at = Time.current
     @installment.deposited!
-    operation.credit = @seller.payment_credits.sum(:credit) if operation.credit.nil?
-    payment_credit = PaymentCredit.new.tap do |pc|
-      pc.installment_id = @installment.id
-      pc.seller_id = @installment.invoice.seller_id
-      pc.paid_date = @installment.finished_at
-      pc.credit = operation.credit * -1
+    operation.credit = @seller.balances.sum(:credit) if operation.credit.nil?
+    balance = Balance.new.tap do |b|
+      b.installment_id = @installment.id
+      b.seller_id = @installment.invoice.seller_id
+      b.paid_date = @installment.finished_at
+      b.credit = operation.credit * -1
     end
-    payment_credit.save!
+    balance.save!
     @installment.opened!
     @installment.operation.notify_seller(@seller)
     operation.save
     redirect_to ops_admin_operations_deposit_path
   rescue Exception => e
     Rollbar.error(e)
-    payment_credit.destroy unless payment_credit.nil?
+    balance.destroy unless balance.nil?
     redirect_to ops_admin_operations_deposit_path
   end
 
@@ -52,19 +52,19 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_advalorem = @installment.advalorem
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
-    payment_credit = PaymentCredit.new.tap do |pc|
-      pc.installment_id = @installment.id
-      pc.seller_id = @installment.invoice.seller_id
-      pc.paid_date = @installment.finished_at
-      pc.credit = @installment.delta_fee
+    balance = Balance.new.tap do |b|
+      b.installment_id = @installment.id
+      b.seller_id = @installment.invoice.seller_id
+      b.paid_date = @installment.finished_at
+      b.credit = @installment.delta_fee
     end
-    payment_credit.save
+    balance.save
     @installment.paid!
     @installment.notify_seller(@seller)
     redirect_to ops_admin_operations_follow_up_path
   rescue Exception => e
     Rollbar.error(e)
-    payment_credit.destroy
+    balance.destroy unless balance.nil?
     redirect_back(fallback_location: ops_admin_operations_follow_up_path)
   end
 
