@@ -17,45 +17,35 @@
   <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-9 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_fee %> + [<%= humanized_money item.delta_fee %>]" class="red">
-        <%= humanized_money_with_symbol item.fee %>
+      <span class="red">
+        <%= humanized_money_with_symbol item.initial_fee %>
       </span>
     <% else %>
       <span>
-        <%= humanized_money_with_symbol item.fee %>
+        <%= humanized_money_with_symbol item.initial_fee %>
       </span>
     <% end %>
   </div>
   <div class="content-col content-col-10 text-right">
+    <span>
+      <%= humanized_money_with_symbol item.initial_net_value %>
+    </span>
+  </div>
+  <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_net_value %> - [<%= humanized_money item.delta_fee %>]" class="red">
-        <%= humanized_money_with_symbol item.net_value %>
+      <span class="red">
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% else %>
-      <span>
-        <%= humanized_money_with_symbol item.net_value %>
+      <span class="green">
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% end %>
   </div>
-  <div class="content-col content-col-9 text-right"> <%= humanized_money_with_symbol item.first_deposit_amount %></div>
-  <div class="content-col content-col-9 text-right">
-    <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="<%= humanized_money_with_symbol item.initial_protection %> - [<%= humanized_money item.delta_fee %>]" class="red">
-        <%= humanized_money_with_symbol item.protection %>
-      </span>
-    <% else %>
-      <span>
-        <%= humanized_money_with_symbol item.protection %>
-      </span>
-    <% end %>
-  </div>
-  <div class="content-col content-col-5  text-left">
+  <div class="content-col content-col-5 text-left">
     <%= render partial: "shared/tables/table_wo_bundle_ops/status_tag", locals: {status: item.status} %>
   </div>
   <div class="content-col content-col-5 text-left">
     <span> <%= link_to "Paga", report_paid_ops_admin_installment_path(item) %> </span>
   </div>
-
-
 </div>
-

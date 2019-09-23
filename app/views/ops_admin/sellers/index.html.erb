@@ -10,7 +10,6 @@
               <th>Cnpj</th>
               <th>Fator</th>
               <th>Advalorem</th>
-              <th>Proteção</th>
               <th>Limite</th>
               <th>Devedor solidário</th>
               <th>Status</th>
@@ -25,7 +24,6 @@
                 <td> <%= seller.cnpj %> </td>
                 <td> <%= seller.fator %> </td>
                 <td> <%= seller.advalorem %> </td>
-                <td> <%= seller.protection %> </td>
                 <td> <%= humanized_money_with_symbol seller.operation_limit %> </td>
                 <td> <%= seller.joint_debtors.count %> </td>
                 <td> <%= seller.analysis_status %> </td>
