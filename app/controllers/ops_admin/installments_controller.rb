@@ -56,6 +56,7 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
       pc.installment_id = @installment.id
       pc.seller_id = @installment.invoice.seller_id
       pc.paid_date = @installment.finished_at
+      pc.credit = @installment.delta_fee
     end
     payment_credit.save
     @installment.paid!
