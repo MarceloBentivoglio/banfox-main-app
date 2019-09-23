@@ -188,7 +188,7 @@ class Installment < ApplicationRecord
   end
 
   def elapsed_days_for_advanced_payment
-    elapsed_days + 3.days
+    elapsed_days + 3
   end
 
   # Days until the due_date
@@ -242,11 +242,7 @@ class Installment < ApplicationRecord
     if operation_ended?
       final_fator
     elsif analysis_completed?
-      if overdue?
-        initial_fator + delta_fator
-      else
-        initial_fator
-      end
+      initial_fator
     else
       value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / 30.0))
     end
@@ -254,7 +250,7 @@ class Installment < ApplicationRecord
 
   def delta_fator
     if overdue?
-      value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days) / 30.0)) - initial_fator
+      (value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days) / 30.0)) - initial_fator) * -1
     elsif opened?
       initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days_for_advanced_payment) / 30.0)))
     else
@@ -266,11 +262,7 @@ class Installment < ApplicationRecord
     if operation_ended?
       final_advalorem
     elsif analysis_completed?
-      if overdue?
-        initial_advalorem + delta_advalorem
-      else
-        initial_advalorem
-      end
+      initial_advalorem
     else
       value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / 30.0))
     end
@@ -278,7 +270,7 @@ class Installment < ApplicationRecord
 
   def delta_advalorem
     if overdue?
-      value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days) / 30.0)) - initial_advalorem
+      (value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days) / 30.0)) - initial_advalorem) * -1
     elsif opened?
       initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days_for_advanced_payment) / 30.0)))
     else
