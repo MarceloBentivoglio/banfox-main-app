@@ -30,11 +30,11 @@ module Risk
             .order('created_at DESC')
 
           historic = analyzed_parts.map do |analyzed_part|
-            analyzed_part.key_indicator_report.evidences['serasa_api'][cnpj]
-          end
+            analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api', cnpj)
+          end.select {|evidence| !evidence.nil? }
 
           build_partner_historic(
-            @key_indicator_report.evidences['serasa_api'][cnpj]['partner_data'],
+            @key_indicator_report&.evidences&.dig('serasa_api', cnpj, 'partner_data'),
             historic
           )
           @key_indicator_report.key_indicators[cnpj] ||= {}
@@ -45,6 +45,7 @@ module Risk
       end
 
       def build_partner_historic(current_partner_data, historic_data)
+        return if current_partner_data.nil?
         historic = {}
 
         historic_data.each do |company|
