@@ -50,7 +50,6 @@ def main():
     selected_app, selected_branch = get_selection_from_arguments()
 
     error_with_environment = False
-    git_pull(selected_branch)
     heroku_envs = get_heroku_envs()
     local_envs = get_local_envs()
 
