@@ -4,9 +4,9 @@ class DateValidator < ActiveModel::Validator
     if date.instance_of?(String)
       date = Date.strptime(date, '%d%m%Y')
     end
-    record.errors.add(:date_validator, "necessário ser maior de 16 anos") if date >= (Date.current - 16.years)
-    rescue ArgumentError
-      record.errors.add(:date_validator, "necessário ser maior de 16 anos")
+    record.errors.add(options[:attr], "necessário ser maior de 16 anos") if date >= (Date.current - 16.years)
+  rescue ArgumentError
+    record.errors.add(options[:attr], "necessário ser maior de 16 anos")
   end
 end
 

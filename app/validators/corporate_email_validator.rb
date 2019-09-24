@@ -5,7 +5,7 @@ class CorporateEmailValidator < ActiveModel::EachValidator
     regexp  = /(?<=@)[^.]+(?=\.)/
     domain = regexp.match(value).to_s
     check_corporate_domain(domain)
-    record.errors.add(:corporate_email_validator, "é necessário um e-mail corporativo") unless @corporate_email
+    record.errors.add(:email, "é necessário um e-mail corporativo") unless @corporate_email
   end
 
   private
