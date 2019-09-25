@@ -294,6 +294,10 @@ class Installment < ApplicationRecord
     delta_fee * -1
   end
 
+  def delta_fee_to_credit
+    delta_fee.to_f * 100 unless delta_fee.nil?
+  end
+
   def net_value
     value - fee
   end
