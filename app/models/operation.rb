@@ -184,7 +184,7 @@ class Operation < ApplicationRecord
   end
 
   def net_value
-    installments.reduce(Money.new(0)){|total, i| total + i.net_value} - balance_value
+    installments.reduce(Money.new(0 + balance_value)){|total, i| total + i.net_value}
   end
 
   def net_value_approved
@@ -234,6 +234,10 @@ class Operation < ApplicationRecord
 
   def balance_value
     seller&.balance_value || 0
+  end
+
+  def balance_value_display
+    balance_value / 100.0
   end
 
   def order_elapsed_time
