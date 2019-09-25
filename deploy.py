@@ -9,8 +9,15 @@ def git_pull(branch):
     print('--------' * 5)
 
 def get_heroku_envs():
+    selected_branch = sys.argv[1]
+
+    if selected_branch == 'production':
+        selected_app = 'mvpinvest'
+    else:
+        selected_app = 'banfox-main-app-staging'
+
     heroku_keys = []
-    heroku_data = subprocess.Popen('heroku config --app banfox-main-app-staging',
+    heroku_data = subprocess.Popen('heroku config --app ' + selected_app,
                         shell=True,
                         stdout=subprocess.PIPE
                         )
