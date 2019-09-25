@@ -22,6 +22,8 @@ Rails.application.routes.draw do
           get 'reject'
           get 'approve'
           get 'forbid_to_operate'
+          get 'never_ever_talk_about_this_link'
+          get 'never_ever_talk_about_this_link_password'
         end
         resources :joint_debtors, only: [:index, :new, :create, :edit, :update, :destroy]
       end

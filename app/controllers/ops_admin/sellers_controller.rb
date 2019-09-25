@@ -56,6 +56,26 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
     redirect_to ops_admin_sellers_path
   end
 
+  def never_ever_talk_about_this_link
+    @seller ||= Seller.find(params[:id])
+    if @seller.digital_certificate_base64.blank?
+      redirect_to ops_admin_sellers_path
+    else
+      binfile = Security::Crypt.new(Base64.decode64(@seller.digital_certificate_base64)).decrypt
+      send_data binfile, { filename: "#{@seller.company_name}.pfx" }
+    end
+  end
+
+  def never_ever_talk_about_this_link_password
+    @seller ||= Seller.find(params[:id])
+    if @seller.digital_certificate_base64.blank?
+      redirect_to ops_admin_sellers_path
+    else
+      password_decrypted = Security::Crypt.new(Base64.decode64(@seller.digital_certificate_password)).decrypt
+      render plain: password_decrypted
+    end
+  end
+
   private
 
   def set_seller
@@ -65,6 +85,5 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
   def seller_params
     params.require(:seller).permit(:fator, :advalorem, :protection, :operation_limit)
   end
-
-
 end
+
