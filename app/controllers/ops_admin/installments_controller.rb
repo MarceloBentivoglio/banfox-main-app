@@ -52,12 +52,14 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_advalorem = @installment.advalorem
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
-    balance = Balance.new.tap do |b|
-      b.installment = @installment
-      b.seller = @seller
-      b.value = @installment.delta_fee
+    if @installment.overdue? || @installment.on_date?
+      balance = Balance.new.tap do |b|
+        b.installment = @installment
+        b.seller = @seller
+        b.value = @installment.delta_fee
+      end
+      balance.save
     end
-    balance.save
     @installment.paid!
     @installment.notify_seller(@seller)
     redirect_to ops_admin_operations_follow_up_path
