@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "issued_at"
+    t.date "issue_date"
     t.string "doc_parser_ref"
     t.jsonb "doc_parser_ticket"
     t.jsonb "doc_parser_data"
