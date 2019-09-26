@@ -29,12 +29,12 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     operation = @installment.operation
     @installment.deposited_at = Time.current
     @installment.deposited!
-    operation.credit = @seller.balances.sum(:credit) if operation.credit.nil?
+    operation.credit_cents = @seller.balances.sum(:credit) if operation.credit_cents.nil?
     balance = Balance.new.tap do |b|
       b.installment_id = @installment.id
       b.seller_id = @installment.invoice.seller_id
       b.paid_date = @installment.finished_at
-      b.credit = operation.credit * -1
+      b.credit = operation.credit_cents * -1
     end
     balance.save!
     @installment.opened!

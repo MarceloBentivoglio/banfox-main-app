@@ -37,20 +37,55 @@
                           <%= i.invoice.payer.company_name.mb_chars.titleize.split.first %>
                           <%= i.invoice.payer.company_name.mb_chars.titleize.split.second %>
                         </td>
-                        <td class="purchase_item"><%= i.due_date %></td>
+                        <td class="purchase_item align-right"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
                       </tr>
                     <% end %>
+                    <tr>
+                      <td class="purchase_item"></td>
+                      <td class="purchase_item">
+                        Saldo Banfox
+                      </td>
+                      <td class="purchase_item align-right"></td>
+                      <td class="purchase_item align-right"></td>
+                      <td class="purchase_item align-right">
+                        <%= humanized_money_with_symbol @operation.balance_value_display %>
+                      </td>
+                    </tr>
                   </table>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td class="purchase_footer" valign="middle"><p class="purchase_total purchase_total--label">Total Bruto</p></td>
-                      <td class="purchase_footer" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p></td>
+                      <td class="purchase_footer" valign="middle">
+                        <p class="purchase_total purchase_total--label">Total Bruto</p>
+                      </td>
+                      <td class="purchase_footer" valign="middle">
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total purchase_total--label">Crédito na sua conta</p></td>
-                      <td class="purchase_footer purchase_footer_second_line" valign="middle"><p class="purchase_total"><%= humanized_money_with_symbol @operation.balance_value %></p></td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total purchase_total--label">Taxa</p>
+                      </td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total"><%= humanized_money_with_symbol(@operation.fee * -1) %></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total purchase_total--label">Saldo Banfox</p>
+                      </td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.balance_value_display %></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total purchase_total--label">Total Liquido</p>
+                      </td>
+                      <td class="purchase_footer purchase_footer_second_line" valign="middle">
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p>
+                      </td>
                     </tr>
                   </table>
                   <br>
