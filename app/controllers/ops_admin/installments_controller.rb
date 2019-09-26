@@ -53,10 +53,9 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
     balance = Balance.new.tap do |b|
-      b.installment_id = @installment.id
-      b.seller_id = @installment.invoice.seller_id
-      b.paid_date = @installment.finished_at
-      b.credit = @installment.delta_fee
+      b.installment = @installment
+      b.seller = @seller
+      b.value = @installment.delta_fee
     end
     balance.save
     @installment.paid!

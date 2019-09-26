@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_191647) do
+ActiveRecord::Schema.define(version: 2019_09_26_180135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2019_09_11_191647) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["key_indicator_report_id"], name: "index_analyzed_parts_on_key_indicator_report_id"
+  end
+
+  create_table "balances", force: :cascade do |t|
+    t.bigint "installment_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "value_cents", default: 0, null: false
+    t.string "value_currency", default: "BRL", null: false
+    t.index ["installment_id"], name: "index_balances_on_installment_id"
+    t.index ["seller_id"], name: "index_balances_on_seller_id"
   end
 
   create_table "evidences", force: :cascade do |t|
@@ -109,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_191647) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "issue_date"
+    t.datetime "issued_at"
     t.string "doc_parser_ref"
     t.jsonb "doc_parser_ticket"
     t.jsonb "doc_parser_data"
@@ -172,6 +183,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_191647) do
     t.integer "sign_documents_provider"
     t.integer "sign_document_status", default: 0
     t.boolean "sign_document_error", default: false
+    t.integer "credit_cents"
   end
 
   create_table "payers", force: :cascade do |t|
@@ -195,6 +207,17 @@ ActiveRecord::Schema.define(version: 2019_09_11_191647) do
     t.decimal "advalorem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_credits", force: :cascade do |t|
+    t.bigint "installment_id"
+    t.integer "credit"
+    t.date "paid_date"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["installment_id"], name: "index_payment_credits_on_installment_id"
+    t.index ["seller_id"], name: "index_payment_credits_on_seller_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -254,6 +277,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_191647) do
     t.boolean "allowed_to_operate"
     t.datetime "forbad_to_operate_at"
     t.integer "sign_documents_provider"
+    t.string "digital_certificate_password"
+    t.text "digital_certificate_base64"
   end
 
   create_table "users", force: :cascade do |t|

@@ -39,12 +39,12 @@
   </div>
   <div class="content-col content-col-10 text-right">
     <% if item.overdue? %>
-      <span data-toggle="tooltip" title="" data-original-title="Este valor será considerado apenas na sua próxima operação!" class="red" class="red">
-        <%= humanized_money_with_symbol item.display_delta_fee %>
+      <span data-toggle="tooltip" title="" data-original-title="😣 Este valor será cobrado na sua próxima operação!" class="red" class="red">
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% else %>
-      <span data-toggle="tooltip" title="" data-original-title="Caso pague adiantado, você receberá esse valor como Saldo Banfox." class="green">
-        <%= humanized_money_with_symbol item.display_delta_fee %>
+      <span data-toggle="tooltip" title="" data-original-title="😍 Pague adiantado e receba esse desconto na sua próxima operação!" class="green">
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% end %>
   </div>

@@ -16,15 +16,9 @@
   </div>
   <div class="content-col content-col-10 text-right"> <%= humanized_money_with_symbol item.value %></div>
   <div class="content-col content-col-9 text-right">
-    <% if item.overdue? %>
-      <span class="red">
-        <%= humanized_money_with_symbol item.initial_fee %>
-      </span>
-    <% else %>
-      <span>
-        <%= humanized_money_with_symbol item.initial_fee %>
-      </span>
-    <% end %>
+    <span>
+      <%= humanized_money_with_symbol item.initial_fee %>
+    </span>
   </div>
   <div class="content-col content-col-10 text-right">
     <span>

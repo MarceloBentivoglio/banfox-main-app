@@ -34,7 +34,7 @@
   <div class="content-col content-col-10 text-right">
     <% if item.operation_ended_overdue? %>
       <span class="red">
-        <%= humanized_money_with_symbol item.display_delta_fee %>
+        <%= humanized_money_with_symbol item.delta_fee %>
       </span>
     <% else %>
       <span>
