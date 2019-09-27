@@ -78,9 +78,11 @@ module CreditAnalysis
     end
 
     def compare_str(str1, str2)
+      return false if str1.nil? || str2.nil?
+
       str1 = I18n.transliterate(str1)
       str2 = I18n.transliterate(str2)
-      return JaroWinkler.distance(str1, str2) >= @@minimum_similarity_accepted ? true : false
+      return JaroWinkler.distance(str1, str2) >= @@minimum_similarity_accepted
     end
 
     #ATTENTION Maybe it could be a good ideia to make this update in one transaction only

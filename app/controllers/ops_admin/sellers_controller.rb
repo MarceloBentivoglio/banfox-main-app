@@ -4,8 +4,7 @@ class OpsAdmin::SellersController < OpsAdmin::BaseController
   def index
     @sellers = Seller.where.not(analysis_status: :rejected, allowed_to_operate: false).order(company_name: :asc)
   end
-
-  def edit
+def edit
   end
 
   def update
