@@ -37,6 +37,7 @@ module CreditAnalysis
         raise Exception.new('Name or TaxIdStatus not found in BigBoost') if cpf_info[:name].blank? || cpf_info[:taxIdStatus].blank?
 
         cpf_info
+      end
     end
   end
 end
