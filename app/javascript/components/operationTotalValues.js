@@ -29,7 +29,7 @@ const operationTotalValuesAccordingToCheck = () => {
     const credit = Number($('#credit').data('credit'));
     const installments = $("[data-installment]:checked").toArray().map(el => JSON.parse(el.dataset.installment));
     const total = installments.reduce((sum, installment) => sum + installment.value_cents, 0);
-    const fee = installments.reduce((sum, installment) => sum + Number(installment.fee.fractional), 0);
+    const fee = installments.reduce((sum, installment) => sum + -1*Number(installment.fee.fractional), 0);
     const net_value = installments.reduce((sum, installment) => sum + Number(installment.net_value.fractional), 0);
     const total_with_credit = net_value + credit;
     showTotalsOnStatusBar(total, fee, credit, total_with_credit, net_value);
@@ -41,7 +41,7 @@ const operationInAnalysisTotalValues = () => {
     if (document.getElementById("status_bottom_bar") && (document.querySelectorAll('[data-installment]').length === 0)) {
       const credit = Number($('#credit').data('credit'));
       const total = $(".installment_value").toArray().reduce((sum, installment) => sum + formatToNumber(installment.textContent), 0);
-      const fee = $(".fee").toArray().reduce((sum, installment) => sum + formatToNumber(installment.textContent), 0);
+      const fee = $(".fee").toArray().reduce((sum, installment) => sum + -1*formatToNumber(installment.textContent), 0);
       const net_value = $(".net_value").toArray().reduce((sum, installment) => sum + formatToNumber(installment.textContent), 0);
       const total_with_credit = net_value + credit;
       showTotalsOnStatusBar(total, fee, credit, total_with_credit, net_value);
