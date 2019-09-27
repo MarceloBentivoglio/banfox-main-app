@@ -29,10 +29,9 @@ module CreditAnalysis
       end
 
       def treat_cpf_info
-        #TODO Use & to protect the code against schema changes
         {
-          name: @cpf_info[:info][:external_sources][0][:data][:Result][:BasicData][:Name].downcase,
-          taxIdStatus: @cpf_info[:info][:external_sources][0][:data][:Result][:BasicData][:TaxIdStatus].downcase
+          name: @cpf_info&.dig(:info, :external_sources, 0, :info, :external_sources, 0, :data, :Result, :BasicData, :Name)&.downcase,
+          taxIdStatus: @cpf_info&.dig(:info, :external_sources, 0, :data, :Result, :BasicData, :TaxIdStatus)&.downcase
         }
       end
     end
