@@ -22,8 +22,8 @@
               right_legend: "Disponível",
             } %>
           </div>
-           <div class="col-sm-12 col-md-4">
-            <%= render partial: "shared/cards/card_w_icon_info_title", locals: {
+          <div class="col-sm-12 col-md-4">
+            <%= render partial: "shared/cards/advance_payment_card", locals: {
               icon: render(partial: "shared/icons/lightbulb"),
               primary_content: Installment.total(:liquidation_expected_today, @seller),
               title: "Liquidação hoje",
