@@ -33,8 +33,7 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     balance = Balance.new.tap do |b|
       b.installment_id = @installment.id
       b.seller_id = @installment.invoice.seller_id
-      b.paid_date = @installment.finished_at
-      b.credit = operation.credit_cents * -1
+      b.value = operation.credit_cents * -1
     end
     balance.save!
     @installment.opened!
