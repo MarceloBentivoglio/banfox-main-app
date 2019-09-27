@@ -29,11 +29,14 @@ module CreditAnalysis
       end
 
       def treat_cpf_info
-        {
-          name: @cpf_info&.dig(:info, :external_sources, 0, :info, :external_sources, 0, :data, :Result, :BasicData, :Name)&.downcase,
+        cpf_info = {
+          name: @cpf_info&.dig(:info, :external_sources, 0, :data, :Result, :BasicData, :Name)&.downcase,
           taxIdStatus: @cpf_info&.dig(:info, :external_sources, 0, :data, :Result, :BasicData, :TaxIdStatus)&.downcase
         }
-      end
+
+        raise Exception.new('Name or TaxIdStatus not found in BigBoost') if cpf_info[:name].blank? || cpf_info[:taxIdStatus].blank?
+
+        cpf_info
     end
   end
 end
