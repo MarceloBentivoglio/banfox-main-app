@@ -14,8 +14,8 @@
             <span id="fee" class="big-number"></span>
           </div>
           <div class="content-col">
-            <span>Saldo Banfox</span>
-            <span id="credit" class="big-number" data-credit="<%= @seller.balance_value %>"></span>
+            <span>Seu balanço conosco</span>
+            <span id="credit" class="big-number" data-credit="<%= money_with_cents(@seller.total_balance) %>"></span>
           </div>
           <div class="content-col result">
             <span class="line">Depositamos para você:</span>
@@ -24,7 +24,7 @@
               <span id="net_value" class="big-number"></span>
             </div>
             <div class="line line-w-2-cols">
-              <span class="line-text">Saldo</span>
+              <span class="line-text">Balanço</span>
               <span id="credit_to_sum"></span>
             </div>
             <div class="line line-w-2-cols last-line">
@@ -36,7 +36,7 @@
       <div class="operation-status">
         <input type="hidden" value="<%= @operation.id %>" id="current-operation-id">
         <input type="hidden" value="<%= @operation.sign_document_status %>" id="current-operation-sign-document-status">
-        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url"> 
+        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url">
         <% if @status == :no_on_going_operation %>
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">
