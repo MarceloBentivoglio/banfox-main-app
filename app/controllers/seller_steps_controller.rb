@@ -63,7 +63,6 @@ class SellerStepsController < ApplicationController
     how_digital_certificate_works_url
   end
 
-# TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def check_not_fully_registered_seller
     if current_user&.seller&.active?
       flash[:alert] = "Você já completou essa etapa"
