@@ -19,8 +19,9 @@
                 <td class="content-cell">
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>Obrigado por confiar na banfox!</p>
-                  <p>Estamos passando para avisar que seu dinheiro já está a caminho!</p>
-                  <p>Hoje, estamos te depositando um total de <strong><%= humanized_money_with_symbol @operation.net_value %></strong>.</p>
+                  <p>
+                    Seu dinheiro já está a caminho! Será depositado um total de <strong><%= humanized_money_with_symbol @operation.net_value %></strong> em sua conta, conforme Termo de Operação assinado.
+                  </p>
                   <h1>Resumo da operação <%= @operation.id %></h1>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -89,7 +90,7 @@
                     </tr>
                   </table>
                   <br>
-                  <p>Com essa operação em andamento, seu limite disponível é de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
+                  <p>Com essa operação em andamento, seu limite disponível é de <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Aproveite para acompanhar seus títulos na nossa plataforma:</p>
                   <!-- Action -->
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
@@ -102,7 +103,7 @@
                               <table border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td>
-                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
+                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Acessar minha área</a>
                                   </td>
                                 </tr>
                               </table>
