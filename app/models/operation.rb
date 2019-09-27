@@ -78,7 +78,7 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    (!d4sign? && sign_document_key? && !signed?) || 
+    (!d4sign? && sign_document_key? && !signed?) ||
     (d4sign? && completed? && sign_document_key? && !signed?)
   end
 
@@ -184,7 +184,7 @@ class Operation < ApplicationRecord
   end
 
   def net_value
-    installments.reduce(Money.new(0 + balance_value)){|total, i| total + i.net_value}
+    installments.reduce(Money.new(0)){|total, i| total + i.net_value}
   end
 
   def net_value_approved
@@ -208,15 +208,15 @@ class Operation < ApplicationRecord
   end
 
   def deposit_today
-    net_value - protection
+    net_value - protection + total_balance
   end
 
   def deposit_today_approved
-    net_value_approved - protection_approved
+    net_value_approved - protection_approved + total_balance
   end
 
   def initial_deposit_today
-    initial_net_value - initial_protection
+    initial_net_value - initial_protection + total_balance
   end
 
   def payers
@@ -232,12 +232,8 @@ class Operation < ApplicationRecord
     seller&.company_name
   end
 
-  def balance_value
-    seller&.balance_value || 0
-  end
-
-  def balance_value_display
-    balance_value / 100.0
+  def total_balance
+    seller&.total_balance
   end
 
   def order_elapsed_time

@@ -5,6 +5,7 @@ class OperationsController < ApplicationController
   layout "application_w_flashes"
 
   def create
+    #TODO make this verification on a service
     operation = Operation.new(operation_params)
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
       ActiveRecord::Base.transaction do
@@ -98,7 +99,7 @@ class OperationsController < ApplicationController
   def check_sign_document_status
     operations_params = params.permit(:id)
     @operation = Operation.find(operations_params["id"])
-    render :json => @operation.sign_document_status 
+    render :json => @operation.sign_document_status
   end
 
   private
