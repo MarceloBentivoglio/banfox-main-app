@@ -343,7 +343,7 @@ class Seller < ApplicationRecord
 
   def balance_value
     unless balances.empty?
-      balances.sum(:credit)
+      balances.sum(:value_cents)
     else
       0
     end

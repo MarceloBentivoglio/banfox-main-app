@@ -19,9 +19,15 @@
                 <td class="content-cell">
                   <h1>Bem vindo à Banfox!</h1>
                   <h3>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>, tudo bem?</h3>
-                  <p>O cadastro da <%= @seller.company_name.mb_chars.titleize %> já está ativo! Sua empresa foi pré-aprovada com um limite de <strong><%= number_to_currency(@seller.operation_limit.to_i, :delimiter => ".")%></strong>.
-                  <p>Ah, e só pra deixar claro: assim que tivermos os primeiros pagamentos, este limite poderá ser aumentado. O histórico é super importante, tanto para conhecermos você melhor, quanto para você conhecer nossa forma de ajudá-lo.</p>
-                  <p>O próximo passo é subir suas notas fiscais na plataforma, enquanto nosso time finaliza a análise de sua empresa e se prepara para te ligar.</p>
+                  <p>
+                    A <%= @seller.company_name.mb_chars.titleize %> foi pré-aprovada! Nossa equipe irá finalizar a análise de sua empresa e, caso positivo, você terá acesso a todos os benefícios da plataforma Banfox!
+                  </p>
+                  <p>
+                    O próximo passo é subir suas notas fiscais na plataforma, para você já se acostumar com tudo, enquanto nosso time se perpara para te ligar e ajudar com eventuais dúvidas.
+                  </p>
+                  <p>
+                    Ah, e só pra deixar claro: assim que tivermos a confirmação por parte da nossa equipe, você poderá visualizar seu limite para operações. Este limite poderá ser aumentado, conforme sua pontualidade em efetuar os pagamentos. O histórico é super importante, tanto para conhecermos você melhor, quanto para você conhecer nossa forma de ajudá-lo.
+                  </p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
