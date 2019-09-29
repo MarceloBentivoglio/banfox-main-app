@@ -29,11 +29,14 @@ module CreditAnalysis
       end
 
       def treat_cpf_info
-        #TODO Use & to protect the code against schema changes
-        {
-          name: @cpf_info[:info][:external_sources][0][:data][:Result][:BasicData][:Name].downcase,
-          taxIdStatus: @cpf_info[:info][:external_sources][0][:data][:Result][:BasicData][:TaxIdStatus].downcase
+        cpf_info = {
+          name: @cpf_info&.dig(:info, :external_sources, 0, :data, :Result, :BasicData, :Name)&.downcase,
+          taxIdStatus: @cpf_info&.dig(:info, :external_sources, 0, :data, :Result, :BasicData, :TaxIdStatus)&.downcase
         }
+
+        raise Exception.new('Name or TaxIdStatus not found in BigBoost') if cpf_info[:name].blank? || cpf_info[:taxIdStatus].blank?
+
+        cpf_info
       end
     end
   end

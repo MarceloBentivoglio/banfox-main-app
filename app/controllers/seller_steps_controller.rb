@@ -23,7 +23,11 @@ class SellerStepsController < ApplicationController
   def update
     @seller.validation_status = step.to_s
     if @seller.update_attributes(seller_params)
-      @seller.active! if wizard_steps.last == step
+      if wizard_steps.last == step
+        @seller.active!
+        redirect_to takeabreath_path unless SellerAnalysis.call(@user, @seller)
+        return
+      end
     end
     if step == :basic
       @user.seller = @seller
@@ -63,7 +67,6 @@ class SellerStepsController < ApplicationController
     how_digital_certificate_works_url
   end
 
-# TODO: refactor, I am sure that there is a smater way to write this code with less querries
   def check_not_fully_registered_seller
     if current_user&.seller&.active?
       flash[:alert] = "Você já completou essa etapa"
