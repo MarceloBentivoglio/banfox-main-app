@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_180135) do
+ActiveRecord::Schema.define(version: 2019_09_29_234733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,9 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
     t.datetime "updated_at", null: false
     t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "BRL", null: false
+    t.bigint "operation_id"
     t.index ["installment_id"], name: "index_balances_on_installment_id"
+    t.index ["operation_id"], name: "index_balances_on_operation_id"
     t.index ["seller_id"], name: "index_balances_on_seller_id"
   end
 
@@ -120,7 +122,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "issue_date"
+    t.datetime "issued_at"
     t.string "doc_parser_ref"
     t.jsonb "doc_parser_ticket"
     t.jsonb "doc_parser_data"
@@ -183,7 +185,8 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
     t.integer "sign_documents_provider"
     t.integer "sign_document_status", default: 0
     t.boolean "sign_document_error", default: false
-    t.integer "credit_cents"
+    t.bigint "used_balance_cents", default: 0, null: false
+    t.string "used_balance_currency", default: "BRL", null: false
   end
 
   create_table "payers", force: :cascade do |t|
@@ -207,17 +210,6 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
     t.decimal "advalorem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "payment_credits", force: :cascade do |t|
-    t.bigint "installment_id"
-    t.integer "credit"
-    t.date "paid_date"
-    t.bigint "seller_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["installment_id"], name: "index_payment_credits_on_installment_id"
-    t.index ["seller_id"], name: "index_payment_credits_on_seller_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -304,6 +296,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_180135) do
   end
 
   add_foreign_key "analyzed_parts", "key_indicator_reports"
+  add_foreign_key "balances", "operations"
   add_foreign_key "installments", "invoices"
   add_foreign_key "installments", "operations"
   add_foreign_key "invoices", "payers"
