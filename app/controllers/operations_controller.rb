@@ -46,6 +46,7 @@ class OperationsController < ApplicationController
     @operation.sign_document_requested_at = Time.current
     @operation.set_used_balance!
     sign_documents = SignDocuments.new(@operation, @seller)
+    sign_documents.call
     @operation.sign_document_info = sign_documents.sign_document_info
     @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!

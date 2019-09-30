@@ -6,14 +6,19 @@ class SignDocuments
   def initialize(operation, seller)
     @operation = operation
     @seller = seller
-    response_serialized = RestClient.post(url, body, headers)
-    response = JSON.parse(response_serialized).deep_symbolize_keys
+  end
+
+  def call
+    response = http_call
     puts "*** Essa é a resposta que volta da API de documentos: #{response}"
     @sign_document_info = response.slice(:signer_signature_keys)
     @sign_document_key = response[:document_key]
   end
 
-  private
+  def http_call
+    response_serialized = RestClient.post(url, body, headers)
+    JSON.parse(response_serialized).deep_symbolize_keys
+  end
 
   def url
     "#{host}/api/v1/documents"
