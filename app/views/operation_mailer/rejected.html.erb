@@ -46,8 +46,7 @@
                     <tr>
                       <th class="purchase_heading"><p>Sacado</p></th>
                       <th class="purchase_heading"><p>Data de vencimento</p></th>
-                      <th class="purchase_heading"><p class="align-right">Valor bruto</p></th>
-                      <th class="purchase_heading"><p class="align-right">Valor líquido</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor nota</p></th>
                       <th class="purchase_heading"><p class="align-right">Status</p></th>
                     </tr>
                     <% @installments.each do |i| %>
@@ -58,7 +57,6 @@
                         </td>
                         <td class="purchase_item"><%= i.due_date %></td>
                         <td class="purchase_item align-right"><%= humanized_money_with_symbol i.value %></td>
-                        <td class="purchase_item align-right"><%= humanized_money_with_symbol i.net_value %></td>
                         <td class="purchase_item align-right"><%=  i.status[1] %></td>
                       </tr>
                     <% end %>
@@ -66,7 +64,7 @@
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td class="purchase_footer" valign="middle">
-                        <p class="purchase_total purchase_total--label">Total Bruto</p>
+                        <p class="purchase_total purchase_total--label">Valor total das notas</p>
                       </td>
                       <td class="purchase_footer" valign="middle">
                         <p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p>

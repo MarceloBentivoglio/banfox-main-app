@@ -37,6 +37,7 @@
 class Installment < ApplicationRecord
   belongs_to :invoice, optional: true
   belongs_to :operation, optional: true
+  has_one :balance, dependent: :destroy
   monetize :value_cents, with_model_currency: :currency
   monetize :initial_fator_cents, with_model_currency: :currency
   monetize :initial_advalorem_cents, with_model_currency: :currency

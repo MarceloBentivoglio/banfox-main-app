@@ -20,7 +20,7 @@
                   <h1>Olá <%= @seller.full_name.mb_chars.titleize.split.first %>,</h1>
                   <p>Obrigado por confiar na banfox!</p>
                   <p>
-                    Seu dinheiro já está a caminho! Será depositado um total de <strong><%= humanized_money_with_symbol @operation.net_value %></strong> em sua conta, conforme Termo de Operação assinado.
+                    Seu dinheiro já está a caminho! Será depositado um total de <strong><%= humanized_money_with_symbol @operation.initial_deposit_today %></strong> em sua conta, conforme Termo de Operação assinado.
                   </p>
                   <h1>Resumo da operação <%= @operation.id %></h1>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
@@ -28,8 +28,8 @@
                       <th class="purchase_heading"><p>Título</p></th>
                       <th class="purchase_heading"><p>Sacado</p></th>
                       <th class="purchase_heading"><p class="align-right">Vencimento</p></th>
-                      <th class="purchase_heading"><p class="align-right">Valor</p></th>
-                      <th class="purchase_heading"><p class="align-right">Depósito</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor nota</p></th>
+                      <th class="purchase_heading"><p class="align-right">Valor depósito</p></th>
                     </tr>
                     <% @installments.each do |i| %>
                       <tr>
@@ -46,27 +46,27 @@
                     <tr>
                       <td class="purchase_item"></td>
                       <td class="purchase_item">
-                        Saldo Banfox
+                        Saldo
                       </td>
                       <td class="purchase_item align-right"></td>
                       <td class="purchase_item align-right"></td>
                       <td class="purchase_item align-right">
-                        <%= humanized_money_with_symbol @operation.balance_value_display %>
+                        <%= humanized_money_with_symbol @operation.used_balance %>
                       </td>
                     </tr>
                   </table>
                   <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td class="purchase_footer" valign="middle">
-                        <p class="purchase_total purchase_total--label">Total Bruto</p>
+                        <p class="purchase_total purchase_total--label">Valor total das notas</p>
                       </td>
                       <td class="purchase_footer" valign="middle">
-                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value %></p>
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.total_value_deposited %></p>
                       </td>
                     </tr>
                     <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
-                        <p class="purchase_total purchase_total--label">Taxa</p>
+                        <p class="purchase_total purchase_total--label">Comissão Banfox</p>
                       </td>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
                         <p class="purchase_total"><%= humanized_money_with_symbol(@operation.fee * -1) %></p>
@@ -74,18 +74,18 @@
                     </tr>
                     <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
-                        <p class="purchase_total purchase_total--label">Saldo Banfox</p>
+                        <p class="purchase_total purchase_total--label">Saldo</p>
                       </td>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
-                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.balance_value_display %></p>
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.used_balance %></p>
                       </td>
                     </tr>
                     <tr>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
-                        <p class="purchase_total purchase_total--label">Total Liquido</p>
+                        <p class="purchase_total purchase_total--label">Valor total de depósito</p>
                       </td>
                       <td class="purchase_footer purchase_footer_second_line" valign="middle">
-                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.net_value %></p>
+                        <p class="purchase_total"><%= humanized_money_with_symbol @operation.initial_deposit_today %></p>
                       </td>
                     </tr>
                   </table>
