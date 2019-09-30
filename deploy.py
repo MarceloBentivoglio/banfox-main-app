@@ -70,6 +70,7 @@ def main():
         os.system('heroku git:remote --app {}'.format(selected_app))
         os.system('git push heroku {}:master'.format(selected_branch))
         os.system('heroku run rails db:migrate --app {}'.format(selected_app))
+        os.system('heroku restart --app {}'.format(selected_app))
 
 if __name__ == '__main__':
     main()
