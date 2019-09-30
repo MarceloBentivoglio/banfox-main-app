@@ -67,6 +67,7 @@ def main():
 
     if not error_with_environment:
         print('Environment seems ok, proceed with deploy')
+        print("cherry_pick_this")
         os.system('heroku git:remote --app {}'.format(selected_app))
         os.system('git push heroku {}:master'.format(selected_branch))
         os.system('heroku run rails db:migrate --app {}'.format(selected_app))
