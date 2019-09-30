@@ -17,7 +17,6 @@ class SellerAnalysis
       end
     end
     seller.pre_approved!
-    seller.set_operation_limit
     seller.set_pre_approved_initial_standard_settings
     seller.auto_veredict_at = Time.current
     seller.allowed_to_operate = true
