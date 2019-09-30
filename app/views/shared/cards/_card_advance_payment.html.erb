@@ -1,0 +1,15 @@
+<div class="card-white-w-multiple-content card-white-w-multiple-content-clickable card-h-medium" data-toggle="modal" data-target="#modal-advance-payment">
+  <div class="card-w-icon-info-title-container">
+    <div class="big-icon">
+      <%= icon %>
+    </div>
+    <div class="card-content">
+      <div class="primary-content"><%= humanized_money_with_symbol primary_content %></div>
+      <div class="secondary-content"><%= title %></div>
+    </div>
+    <div class="card-content" style="margin-left: 20px;">
+      <div class="secondary-content"><small>Entenda o <br>Pagamento Adiantado</small></div>
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/modals/modal_advance_payment" %>
