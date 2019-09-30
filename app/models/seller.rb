@@ -341,11 +341,11 @@ class Seller < ApplicationRecord
     fator + advalorem
   end
 
-  def balance_value
+  def total_balance
     unless balances.empty?
-      balances.sum(:value_cents)
+      Money.new(balances.sum(:value_cents))
     else
-      0
+      Money.new(0)
     end
   end
 

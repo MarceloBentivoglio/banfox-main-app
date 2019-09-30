@@ -1,10 +1,12 @@
 class OperationsController < ApplicationController
   before_action :no_operation_in_analysis, only: [:create]
   before_action :set_seller, only: [:create, :consent, :create_document, :create_document_d4sign, :sign_document, :sign_document_d4sign, :cancel]
+  before_action :set_operation, only: [:create_document, :create_document_d4sign]
 
   layout "application_w_flashes"
 
   def create
+    #TODO make this verification on a service
     operation = Operation.new(operation_params)
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
       ActiveRecord::Base.transaction do
@@ -41,8 +43,8 @@ class OperationsController < ApplicationController
   end
 
   def create_document
-    @operation = Operation.last_from_seller(@seller).last
     @operation.sign_document_requested_at = Time.current
+    @operation.set_used_balance!
     sign_documents = SignDocuments.new(@operation, @seller)
     sign_documents.call
     @operation.sign_document_info = sign_documents.sign_document_info
@@ -54,7 +56,7 @@ class OperationsController < ApplicationController
   end
 
   def create_document_d4sign
-    @operation = Operation.last_from_seller(@seller).last
+    @operation.set_used_balance!
     @operation.started!
     CreateDocumentJob.perform_now(@operation, @seller)
     redirect_to sign_document_d4sign_operations_path
@@ -99,7 +101,7 @@ class OperationsController < ApplicationController
   def check_sign_document_status
     operations_params = params.permit(:id)
     @operation = Operation.find(operations_params["id"])
-    render :json => @operation.sign_document_status 
+    render :json => @operation.sign_document_status
   end
 
   private
@@ -115,4 +117,9 @@ class OperationsController < ApplicationController
   def set_seller
     @seller = current_user.seller
   end
+
+  def set_operation
+    @operation = Operation.last_from_seller(@seller).last
+  end
+
 end
