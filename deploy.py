@@ -44,17 +44,34 @@ def get_local_envs():
     return local_keys
 
 def get_selection_from_arguments():
-    selected_branch = sys.argv[1]
+    selected_branch = ''
+    branches = subprocess.Popen('git branch',
+                        shell=True,
+                        stdout=subprocess.PIPE
+                        )
+
+    branches = branches.stdout.read()
+    branches = str(branches).split('\\n')
+    branches = [branch for branch in branches if branch[0] == '*']
+
+    if any(branches):
+        selected_branch = branches[0].split(' ')[1]
 
     if selected_branch == 'production':
         selected_app = 'mvpinvest'
-    else:
+    elif selected_branch == 'staging':
         selected_app = 'banfox-main-app-staging'
+    else:
+        print("There's no application for the current branch")
+        return [False, False]
 
     return [selected_app, selected_branch]
 
 def main():
     selected_app, selected_branch = get_selection_from_arguments()
+
+    if selected_branch is False:
+        return
 
     error_with_environment = False
     heroku_envs = get_heroku_envs()
@@ -67,9 +84,11 @@ def main():
 
     if not error_with_environment:
         print('Environment seems ok, proceed with deploy')
+        os.system('git checkout {}'.format({selected_branch}))
         os.system('heroku git:remote --app {}'.format(selected_app))
         os.system('git push heroku {}:master'.format(selected_branch))
         os.system('heroku run rails db:migrate --app {}'.format(selected_app))
+        os.system('heroku restart --app {}'.format(selected_app))
 
 if __name__ == '__main__':
     main()
