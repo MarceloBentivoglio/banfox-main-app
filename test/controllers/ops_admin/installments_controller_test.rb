@@ -60,10 +60,11 @@ class OpsAdmin::InstallmentControllerTest < ActionDispatch::IntegrationTest
   #   end
   # end
 
-  test '.deposit create a payment_credit with a value to set payment_credits.sum to zero' do
-    FactoryBot.create(:payment_credit)
-    FactoryBot.create(:payment_credit)
-    get deposit_ops_admin_installment_path(@installment_1)
-    assert_equal @seller.payment_credits.sum(:credit), 0
-  end
+  #TODO change this test for Balance
+  # test '.deposit create a payment_credit with a value to set payment_credits.sum to zero' do
+  #   FactoryBot.create(:payment_credit)
+  #   FactoryBot.create(:payment_credit)
+  #   get deposit_ops_admin_installment_path(@installment_1)
+  #   assert_equal @seller.payment_credits.sum(:credit), 0
+  # end
 end

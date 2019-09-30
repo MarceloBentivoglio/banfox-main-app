@@ -9,25 +9,24 @@
   </div>
   <div class="card-w-table-inside-summary">
     <div class="summary-column">
-      <strong>Requerido</strong> <span>Total bruto: <%= humanized_money_with_symbol operation.total_value %> </span>
-      <span>Taxa total: <%= humanized_money_with_symbol operation.fee %> </span>
-      <span>Retenção: <%= humanized_money_with_symbol operation.protection %> </span>
-      <span>Total líquido: <%= humanized_money_with_symbol operation.net_value %> </span>
-      <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
+      <strong>Requerido</strong>
+      <span>Valor das notas: <%= humanized_money_with_symbol operation.total_value %> </span>
+      <span>Comissão: <%= humanized_money_with_symbol -1*operation.fee %> </span>
+      <span>Saldo: <%= humanized_money_with_symbol operation.seller.total_balance %> </span>
+      <span>Depósito: <%= humanized_money_with_symbol operation.deposit_today %> </span>
     </div>
     <div class="summary-column summary-w-padding-left">
       <strong>Aprovado</strong>
-      <span>Total bruto: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
-      <span>Taxa total: <%= humanized_money_with_symbol operation.fee_approved %> </span>
-      <span>Retenção: <%= humanized_money_with_symbol operation.protection_approved %> </span>
-      <span>Total líquido: <%= humanized_money_with_symbol operation.net_value_approved %> </span>
-      <span>Total depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
+      <span>Valor das notas: <%= humanized_money_with_symbol operation.total_value_approved %> </span>
+      <span>Comissão: <%= humanized_money_with_symbol -1*operation.fee_approved %> </span>
+      <span>Saldo: <%= humanized_money_with_symbol operation.seller.total_balance %> </span>
+      <span>Depósito: <%= humanized_money_with_symbol operation.deposit_today_approved %> </span>
     </div>
     <div class="summary-column summary-w-padding-left">
       <strong>Arquivos de notas</strong>
       <div class="extended-column">
         <% operation.invoices.distinct.each do |invoice| %>
-          <% #link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
+          <%= link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
         <% end %>
       </div>
     </div>
