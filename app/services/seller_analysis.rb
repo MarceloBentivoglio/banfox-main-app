@@ -25,7 +25,7 @@ class SellerAnalysis
     SlackMessage.new("CC2NP6XHN", "<!channel> #{seller.company_name.titleize} \n cnpj: #{seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
 
     true
-  rescue StandardError => e
+  rescue Exception => e
     SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
 
     return false
