@@ -17,7 +17,9 @@
 class Operation < ApplicationRecord
   has_many :installments, dependent: :nullify
   has_many :invoices, through: :installments
+  has_one  :balance, dependent: :destroy
   has_many :key_indicator_reports, class_name: 'Risk::KeyIndicatorReport'
+  monetize :used_balance_cents, with_model_currency: :currency
 
   validates :consent, acceptance: {message: "é necessário dar o seu aval para a operação"}
   default_scope { order(created_at: :asc) }
@@ -78,7 +80,7 @@ class Operation < ApplicationRecord
   end
 
   def signing_process?
-    (!d4sign? && sign_document_key? && !signed?) || 
+    (!d4sign? && sign_document_key? && !signed?) ||
     (d4sign? && completed? && sign_document_key? && !signed?)
   end
 
@@ -140,7 +142,6 @@ class Operation < ApplicationRecord
     end
   end
 
-
   def consent_rejection!
     installments.each { |i| i.rejected_consent! }
   end
@@ -161,6 +162,10 @@ class Operation < ApplicationRecord
 
   def total_value_approved
     installments.reduce(Money.new(0)){|total, i| total + (i.approved? ? i.value : Money.new(0))}
+  end
+
+  def total_value_deposited
+    installments.reduce(Money.new(0)){|total, i| total + (i.deposited? ? i.value : Money.new(0))}
   end
 
   def fee
@@ -184,7 +189,7 @@ class Operation < ApplicationRecord
   end
 
   def net_value
-    installments.reduce(Money.new(0 + balance_value)){|total, i| total + i.net_value}
+    installments.reduce(Money.new(0)){|total, i| total + i.net_value}
   end
 
   def net_value_approved
@@ -208,15 +213,15 @@ class Operation < ApplicationRecord
   end
 
   def deposit_today
-    net_value - protection
+    net_value - protection + total_balance
   end
 
   def deposit_today_approved
-    net_value_approved - protection_approved
+    net_value_approved - protection_approved + total_balance
   end
 
   def initial_deposit_today
-    initial_net_value - initial_protection
+    initial_net_value - initial_protection + used_balance
   end
 
   def payers
@@ -232,12 +237,24 @@ class Operation < ApplicationRecord
     seller&.company_name
   end
 
-  def balance_value
-    seller&.balance_value || 0
+  def total_balance
+    seller&.total_balance
   end
 
-  def balance_value_display
-    balance_value / 100.0
+  def set_used_balance!
+    self.used_balance = self.total_balance
+    self.save!
+  end
+
+  def settle_balance
+    if no_on_going_operation?
+      balance = Balance.new.tap do |b|
+        b.operation = self
+        b.seller = seller
+        b.value = -1 * used_balance
+      end
+      balance.save!
+    end
   end
 
   def order_elapsed_time

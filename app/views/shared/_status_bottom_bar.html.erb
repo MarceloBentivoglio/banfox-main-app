@@ -3,40 +3,33 @@
     <div class="content">
       <div class="operation-finantials">
           <div class="content-col">
-            <span>Valor Bruto</span>
+            <span>Valor total das notas</span>
             <span id="total" class="big-number"></span>
           </div>
           <div class="content-col">
             <span data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" title="Entenda sua taxa" data-content="O Brasil tem suas peculiaridades, uma delas é que para questões de impostos precisamos quebrar sua taxa de <%= percentage(@seller.fee) %> em duas de <%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %>. Além disso, como os bancos podem demorar até três dias para liquidar um boleto em nossa conta, precisamos considerar esses três dias no cálculo da sua taxa. Não se preocupe estamos lutando para mudar isso! ">
-              Taxa Banfox (<%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %> )
+              Comissão Banfox (<%= percentage(@seller.fator) %> + <%= percentage(@seller.advalorem) %> )
               <i class="fa fa-info-circle blue"></i>
             </span>
             <span id="fee" class="big-number"></span>
           </div>
           <div class="content-col">
-            <span>Saldo Banfox</span>
-            <span id="credit" class="big-number" data-credit="<%= @seller.balance_value %>"></span>
+            <span>Saldo</span>
+            <% if @status == :signing_process || @status == :deposit_pending %>
+              <span id="credit" class="big-number" data-credit="<%= money_with_cents(@operation.used_balance) %>"></span>
+            <% else %>
+              <span id="credit" class="big-number" data-credit="<%= money_with_cents(@seller.total_balance) %>"></span>
+            <% end %>
           </div>
-          <div class="content-col result">
-            <span class="line">Depositamos para você:</span>
-            <div class="line line-w-2-cols">
-              <span class="line-text">Valor</span>
-              <span id="net_value" class="big-number"></span>
-            </div>
-            <div class="line line-w-2-cols">
-              <span class="line-text">Saldo</span>
-              <span id="credit_to_sum"></span>
-            </div>
-            <div class="line line-w-2-cols last-line">
-              <span class="line-text">Total</span>
-              <span id="total_with_credit" class="big-number"></span>
-            </div>
+          <div class="content-col right-vertical-line">
+            <span>Depositamos para você</span>
+            <strong id="total_with_credit" class="big-number"></strong>
           </div>
       </div>
       <div class="operation-status">
         <input type="hidden" value="<%= @operation.id %>" id="current-operation-id">
         <input type="hidden" value="<%= @operation.sign_document_status %>" id="current-operation-sign-document-status">
-        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url"> 
+        <input type="hidden" value="<%= @d4sign_redirect_url %>" id="sign-document-redirect-url">
         <% if @status == :no_on_going_operation %>
           <div class="top-content with-checkbox">
               <input name="operation[consent]" type="hidden" value="0">

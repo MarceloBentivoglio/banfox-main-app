@@ -29,21 +29,9 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     operation = @installment.operation
     @installment.deposited_at = Time.current
     @installment.deposited!
-    operation.credit_cents = @seller.balances.sum(:credit) if operation.credit_cents.nil?
-    balance = Balance.new.tap do |b|
-      b.installment_id = @installment.id
-      b.seller_id = @installment.invoice.seller_id
-      b.paid_date = @installment.finished_at
-      b.credit = operation.credit_cents * -1
-    end
-    balance.save!
     @installment.opened!
-    @installment.operation.notify_seller(@seller)
-    operation.save
-    redirect_to ops_admin_operations_deposit_path
-  rescue Exception => e
-    Rollbar.error(e)
-    balance.destroy unless balance.nil?
+    operation.notify_seller(@seller)
+    operation.settle_balance
     redirect_to ops_admin_operations_deposit_path
   end
 
@@ -58,7 +46,7 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
         b.seller = @seller
         b.value = @installment.delta_fee
       end
-      balance.save
+      balance.save!
     end
     @installment.paid!
     @installment.notify_seller(@seller)
