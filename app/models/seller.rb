@@ -349,6 +349,14 @@ class Seller < ApplicationRecord
     end
   end
 
+  def total_balance_integer
+    unless balances.empty?
+      balances.sum(:value_cents)
+    else
+      0
+    end
+  end
+
   private
   def async_update_spreadsheet
     SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)
