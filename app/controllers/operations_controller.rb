@@ -21,7 +21,7 @@ class OperationsController < ApplicationController
         SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova de número *##{operation.id}*").send_now
       end
     else
-      flash[:alert] << "A soma das parcelas excede o seu limite de operacional."
+      flash[:alert] << "A soma das parcelas excede o seu limite operacional."
     end
     redirect_to store_installments_path
     #TODO never fails silently
