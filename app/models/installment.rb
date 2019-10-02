@@ -188,6 +188,14 @@ class Installment < ApplicationRecord
     end
   end
 
+  def operation_ended_ahead?
+    if operation_ended?
+      finished_at.to_date < due_date
+    else
+      false
+    end
+  end
+
   def elapsed_days
     (Date.current - ordered_at.to_date).to_i
   end
@@ -381,13 +389,11 @@ class Installment < ApplicationRecord
 
   def notify_seller(seller)
     user = seller.users.first
-    if operation_ended_overdue? && final_protection.zero?
-      InstallmentMailer.paid_overdue_without_protection(self, user, seller).deliver_now
-    elsif operation_ended_overdue? && final_protection > 0
+    if operation_ended_overdue?
       InstallmentMailer.paid_overdue(self, user, seller).deliver_now
-    elsif final_protection.zero?
-      InstallmentMailer.paid_without_protection(self, user, seller).deliver_now
-    elsif final_protection > 0
+    elsif operation_ended_ahead?
+      InstallmentMailer.paid_ahead(self, user, seller).deliver_now
+    else
       InstallmentMailer.paid(self, user, seller).deliver_now
     end
   end
