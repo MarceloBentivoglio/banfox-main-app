@@ -184,14 +184,6 @@ class Installment < ApplicationRecord
     end
   end
 
-  def operation_ended_ahead?
-    if operation_ended?
-      finished_at.to_date < due_date
-    else
-      false
-    end
-  end
-
   def elapsed_days
     (Date.current - ordered_at.to_date).to_i
   end
@@ -232,10 +224,10 @@ class Installment < ApplicationRecord
     end
   end
 
-  def ended_operation_total_days
+  def overdue_operation_total_days
     if overdue?
       (Date.current - ordered_at.to_date).to_i
-    elsif operation_ended_overdue? || operation_ended_ahead?
+    elsif operation_ended_overdue?
       (finished_at.to_date - ordered_at.to_date).to_i
     else
       0
@@ -255,7 +247,7 @@ class Installment < ApplicationRecord
 
   def delta_fator
     if overdue?
-      (initial_fator - value * (1 - 1/(1 + invoice.fator)**((ended_operation_total_days) / 30.0)))
+      (initial_fator - value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days) / 30.0)))
     elsif opened?
       initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
     else
@@ -275,7 +267,7 @@ class Installment < ApplicationRecord
 
   def delta_advalorem
     if overdue?
-      (initial_advalorem - value * (1 - 1/(1 + invoice.advalorem)**((ended_operation_total_days) / 30.0)))
+      (initial_advalorem - value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days) / 30.0)))
     elsif opened?
       initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0)))
     else
@@ -375,11 +367,13 @@ class Installment < ApplicationRecord
 
   def notify_seller(seller)
     user = seller.users.first
-    if operation_ended_overdue?
+    if operation_ended_overdue? && final_protection.zero?
+      InstallmentMailer.paid_overdue_without_protection(self, user, seller).deliver_now
+    elsif operation_ended_overdue? && final_protection > 0
       InstallmentMailer.paid_overdue(self, user, seller).deliver_now
-    elsif operation_ended_ahead?
-      InstallmentMailer.paid_ahead(self, user, seller).deliver_now
-    else
+    elsif final_protection.zero?
+      InstallmentMailer.paid_without_protection(self, user, seller).deliver_now
+    elsif final_protection > 0
       InstallmentMailer.paid(self, user, seller).deliver_now
     end
   end

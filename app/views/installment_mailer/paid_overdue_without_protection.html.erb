@@ -43,8 +43,14 @@
                   </table>
                   <br>
                   <p>Assim, temos duas notícias muito boas:</p>
-                  <p class="align-justify">1. Parabéns, seu histórico positivo aumentou! Continue assim para obter melhores condições junto à Banfox.</p>
-                  <p class="align-justify">2. Seu limite disponível para operações é <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
+                  <p class="align-justify">1. Sua operação, que deveria durar <%= @installment.initial_operation_days %>, durou <strong><%= @installment.overdue_operation_total_days %></strong> dias. Assim, segue abaixo o valor da atualização referente aos <strong><%= @installment.overdue_days %> dias</strong> de atraso e conta para pagamento (você irá pagar somente pelo tempo que usou a Banfox, sem penalidades pelo atraso):</p>
+                  <p class="center m-b-0"><strong><%= humanized_money_with_symbol @installment.delta_fee %></strong></p>
+                  <p class="center m-b-0">MVP Fomento Mercantil Ltda.</p>
+                  <p class="center m-b-0">23.198.636/0001-95</p>
+                  <p class="center m-b-0">(237) Banco Bradesco S.A.</p>
+                  <p class="center m-b-0">Agencia: 0138</p>
+                  <p class="center">Conta: 70033-9 </p>
+                  <p class="align-justify">2. Assim que o pagamento acima for efetuado, seu limite disponivel para operações será <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
                   <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                       <td align="center">
@@ -66,7 +72,7 @@
                       </td>
                     </tr>
                   </table>
-                  <p>Obrigado!
+                  <p>Aguardamos você!
                     <br>Time <strong>Banfox</strong></p>
                 </td>
               </tr>
@@ -78,7 +84,7 @@
             <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
               <tr>
                 <td class="content-cell" align="center">
-                  <p class="sub align-center">&copy; 2019 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">&copy; 2018 Banfox. Todos os direitos reservados.</p>
                   <p class="sub align-center">
                     Banfox
                     Rua Vergueiro, 1061 - ACE Headquarters
