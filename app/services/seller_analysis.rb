@@ -17,7 +17,6 @@ class SellerAnalysis
       end
     end
     seller.pre_approved!
-    seller.set_operation_limit
     seller.set_pre_approved_initial_standard_settings
     seller.auto_veredict_at = Time.current
     seller.allowed_to_operate = true
@@ -26,7 +25,7 @@ class SellerAnalysis
     SlackMessage.new("CC2NP6XHN", "<!channel> #{seller.company_name.titleize} \n cnpj: #{seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
 
     true
-  rescue StandardError => e
+  rescue Exception => e
     SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
 
     return false

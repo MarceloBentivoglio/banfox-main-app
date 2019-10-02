@@ -16,9 +16,9 @@
           <div class="content-col">
             <span>Saldo</span>
             <% if @status == :signing_process || @status == :deposit_pending %>
-              <span id="credit" class="big-number" data-credit="<%= money_with_cents(@operation.used_balance) %>"></span>
+              <span id="credit" class="big-number" data-credit="<%= @operation.used_balance %>"></span>
             <% else %>
-              <span id="credit" class="big-number" data-credit="<%= money_with_cents(@seller.total_balance) %>"></span>
+              <span id="credit" class="big-number" data-credit="<%= @seller.total_balance %>"></span>
             <% end %>
           </div>
           <div class="content-col right-vertical-line">

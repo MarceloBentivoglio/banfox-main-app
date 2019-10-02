@@ -47,7 +47,6 @@ class ApplicationController < ActionController::Base
   def require_permission_to_operate
     if (current_user.seller)
       if current_user.seller.rejected? || (current_user.seller.allowed_to_operate == false)
-        flash[:alert] = "Infelizmente não conseguimos operar com você no momento"
         redirect_to unfortune_path
       end
     end
@@ -55,7 +54,6 @@ class ApplicationController < ActionController::Base
 
   def require_not_on_going
     if (current_user&.seller&.on_going?)
-      flash[:alert] = "Ainda estamos analisando seus dados. Entraremos em contato em breve"
       redirect_to takeabreath_path
     end
   end
@@ -65,7 +63,6 @@ class ApplicationController < ActionController::Base
   end
 
   def action_not_authorized
-    flash[:alert] = "Você não está autorizado a performar essa ação."
     redirect_back(fallback_location: root_path)
   end
 

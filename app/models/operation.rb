@@ -213,15 +213,15 @@ class Operation < ApplicationRecord
   end
 
   def deposit_today
-    net_value - protection + total_balance
+    net_value + total_balance
   end
 
   def deposit_today_approved
-    net_value_approved - protection_approved + total_balance
+    net_value_approved + total_balance
   end
 
   def initial_deposit_today
-    initial_net_value - initial_protection + used_balance
+    initial_net_value + used_balance
   end
 
   def payers
