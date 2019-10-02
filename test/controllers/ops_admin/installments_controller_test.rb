@@ -11,39 +11,34 @@ class OpsAdmin::InstallmentControllerTest < ActionDispatch::IntegrationTest
       ActionMailer::Base.mail(to: [@seller.users.first.email, @seller.email_partner], from: 'test@mail.com', subject: 'Sua parcela foi liquidada!', body: "")
     end
   end
+
   test '.report_paid send a "payment received" mail to seller' do
     mail_test = setting_mail
-    InstallmentMailer.expects(:paid).with(@installment_1, @seller.users.first, @seller).returns(mail_test)
+    installment_paid = FactoryBot.create(:installment, :paid, invoice: @invoice_1)
+    Time.stubs(:current).returns(installment_paid.finished_at)
+    InstallmentMailer.expects(:paid).with(installment_paid, @seller.users.first, @seller).returns(mail_test)
     assert_difference 'ActionMailer::Base.deliveries.count', +1 do
-      get report_paid_ops_admin_installment_path(@installment_1)
+      get report_paid_ops_admin_installment_path(installment_paid)
     end
   end
 
-  test '.report_paid send a "payment received with no protection left" mail to seller' do
+  test '.report_paid send a "overdue payment received" mail to seller' do
     mail_test = setting_mail
-    Installment.any_instance.stubs(:protection).returns(0)
-    InstallmentMailer.expects(:paid_without_protection).with(@installment_1, @seller.users.first, @seller).returns(mail_test)
+    installment_paid_overdue = FactoryBot.create(:installment, :paid_overdue, invoice: @invoice_1)
+    Time.stubs(:current).returns(installment_paid_overdue.finished_at)
+    InstallmentMailer.expects(:paid_overdue).with(installment_paid_overdue, @seller.users.first, @seller).returns(mail_test)
     assert_difference 'ActionMailer::Base.deliveries.count', +1 do
-      get report_paid_ops_admin_installment_path(@installment_1)
+      get report_paid_ops_admin_installment_path(installment_paid_overdue)
     end
   end
 
-  test '.report_paid send a "overdued payment received" mail to seller' do
+  test '.report_paid send a "ahead payment received" mail to seller' do
     mail_test = setting_mail
-    Installment.any_instance.stubs(:operation_ended_overdue?).returns(true)
-    InstallmentMailer.expects(:paid_overdue).with(@installment_1, @seller.users.first, @seller).returns(mail_test)
+    installment_paid_ahead = FactoryBot.create(:installment, :paid_ahead, invoice: @invoice_1)
+    Time.stubs(:current).returns(installment_paid_ahead.finished_at)
+    InstallmentMailer.expects(:paid_ahead).with(installment_paid_ahead, @seller.users.first, @seller).returns(mail_test)
     assert_difference 'ActionMailer::Base.deliveries.count', +1 do
-      get report_paid_ops_admin_installment_path(@installment_1)
-    end
-  end
-
-  test '.report_paid send a "overdued payment received with no protection left" mail to seller' do
-    mail_test = setting_mail
-    Installment.any_instance.stubs(:protection).returns(0)
-    Installment.any_instance.stubs(:operation_ended_overdue?).returns(true)
-    InstallmentMailer.expects(:paid_overdue_without_protection).with(@installment_1, @seller.users.first, @seller).returns(mail_test)
-    assert_difference 'ActionMailer::Base.deliveries.count', +1 do
-      get report_paid_ops_admin_installment_path(@installment_1)
+      get report_paid_ops_admin_installment_path(installment_paid_ahead)
     end
   end
 
