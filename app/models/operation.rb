@@ -132,7 +132,7 @@ class Operation < ApplicationRecord
 
   def notify_banfox_signer
     signer_signature_keys.each do |signer_signature_key|
-      if signer_signature_key[:email] == "joao@banfox.com.br"
+      if (signer_signature_key[:email] == "joao@banfox.com.br") || (signer_signature_key[:email] == "marcelo@banfox.com.br")
         if self.d4sign?
           SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:key_signer], self).deliver_now
         else

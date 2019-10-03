@@ -54,7 +54,7 @@ class D4Sign
       }
     end
     @signers << {
-      "email": "joao@banfox.com.br",
+      "email": "marcelo@banfox.com.br",
       "act": "4",
       "foreign": "0",
       "certificadoicpbr": "0",
@@ -208,11 +208,11 @@ class D4Sign
 
   def add_banfox_to_signers
     @signers << {
-      name: "João Vicente Conte",
+      name: "Marcelo Bentivoglio",
       birthdate: "1991-02-05",
-      mobile: Rails.env.development? ? "11998308090" : "11955550188",
+      mobile: Rails.env.development? ? "11998308090" : "11986898969",
       documentation: "339.430.918-13",
-      email: "joao@banfox.com.br",
+      email: "marcelo@banfox.com.br",
       sign_as: ["sign"]
     }
   end

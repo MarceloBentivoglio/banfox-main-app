@@ -1,6 +1,5 @@
 class SignDocumentMailer < ApplicationMailer
-
-  default from: 'joao@banfox.com.br'
+  default from: 'marcelo@banfox.com.br'
 
   def joint_debtor(name, email, signature_key, operation)
     @name = name.split.first
