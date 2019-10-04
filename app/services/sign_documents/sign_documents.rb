@@ -42,7 +42,7 @@ class SignDocuments
 
 
   def host
-    Rails.application.credentials[Rails.env.to_sym][:banfox_document_app][:access_host]
+    ENV.fetch('DOCAPPHOST')
   end
 
   #TODO Create serializers
