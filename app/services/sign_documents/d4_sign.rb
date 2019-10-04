@@ -54,7 +54,7 @@ class D4Sign
       }
     end
     @signers << {
-      "email": "joao@banfox.com.br",
+      "email": "marcelo@banfox.com.br",
       "act": "4",
       "foreign": "0",
       "certificadoicpbr": "0",
@@ -143,8 +143,8 @@ class D4Sign
       gross_value: @operation.total_value_approved.format(symbol: ''),
       fee: @operation.initial_fee.format(symbol: ''),
       net_value: @operation.initial_net_value.format(symbol: ''),
-      first_deposit: @operation.initial_deposit_today.format(symbol: ''),
-      protection: @operation.initial_protection.format(symbol: ''),
+      deposit_today: @operation.deposit_today.format(symbol: ''),
+      used_balance: @operation.used_balance.format(symbol: ''),
     }
   end
 
@@ -164,8 +164,6 @@ class D4Sign
           value: installment.value.format(symbol: ''),
           fee: installment.initial_fee.format(symbol: ''),
           net_value: installment.initial_net_value.format(symbol: ''),
-          first_deposit: installment.first_deposit_amount.format(symbol: ''),
-          protection: installment.initial_protection.format(symbol: ''),
         }
         installments << i
       end
@@ -208,11 +206,11 @@ class D4Sign
 
   def add_banfox_to_signers
     @signers << {
-      name: "João Vicente Conte",
+      name: "Marcelo Bentivoglio",
       birthdate: "1991-02-05",
-      mobile: Rails.env.development? ? "11998308090" : "11955550188",
+      mobile: Rails.env.development? ? "11998308090" : "11986898969",
       documentation: "339.430.918-13",
-      email: "joao@banfox.com.br",
+      email: "marcelo@banfox.com.br",
       sign_as: ["sign"]
     }
   end

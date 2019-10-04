@@ -132,7 +132,7 @@ class Operation < ApplicationRecord
 
   def notify_banfox_signer
     signer_signature_keys.each do |signer_signature_key|
-      if signer_signature_key[:email] == "joao@banfox.com.br"
+      if (signer_signature_key[:email] == "joao@banfox.com.br") || (signer_signature_key[:email] == "marcelo@banfox.com.br")
         if self.d4sign?
           SignDocumentMailer.banfox_signer(signer_signature_key[:email], signer_signature_key[:key_signer], self).deliver_now
         else
@@ -213,15 +213,15 @@ class Operation < ApplicationRecord
   end
 
   def deposit_today
-    net_value - protection + total_balance
+    net_value + total_balance
   end
 
   def deposit_today_approved
-    net_value_approved - protection_approved + total_balance
+    net_value_approved + total_balance
   end
 
   def initial_deposit_today
-    initial_net_value - initial_protection + used_balance
+    initial_net_value + used_balance
   end
 
   def payers

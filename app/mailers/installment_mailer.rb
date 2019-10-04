@@ -1,5 +1,5 @@
 class InstallmentMailer < ApplicationMailer
-  default from: 'joao@banfox.com.br'
+  default from: 'marcelo@banfox.com.br'
 
   def paid(installment, user, seller)
     @seller = seller

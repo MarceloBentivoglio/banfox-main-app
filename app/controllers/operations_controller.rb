@@ -7,6 +7,7 @@ class OperationsController < ApplicationController
 
   def create
     #TODO make this verification on a service
+    flash[:alert] = []
     operation = Operation.new(operation_params)
     if operation.installments.all? { |i| i.available? } && operation.installments.reduce(0) {|sum, i| sum + i.value } <= @seller.available_limit
       ActiveRecord::Base.transaction do
@@ -19,6 +20,8 @@ class OperationsController < ApplicationController
         OperationMailer.to_analysis(operation, current_user, @seller).deliver_now
         SlackMessage.new("CEPB65532", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} subiu uma operação nova de número *##{operation.id}*").send_now
       end
+    else
+      flash[:alert] << "A soma das parcelas excede o seu limite operacional."
     end
     redirect_to store_installments_path
     #TODO never fails silently
