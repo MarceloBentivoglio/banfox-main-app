@@ -53,7 +53,7 @@ class Installment < ApplicationRecord
   scope :from_seller,                -> (seller) { joins(:invoice).where(invoices: {seller: seller}) }
 
   # For the dashboard
-  scope :used_limit,                 -> (seller) { from_seller(seller).merge(ordered.or(deposited.opened)) }
+  scope :used_limit,                 -> (seller) { from_seller(seller).merge(ordered.or(approved).or(deposited.opened)) }
   scope :in_analysis,                -> (seller) { from_seller(seller).merge(ordered) }
   scope :liquidation_expected_today, -> (seller) { from_seller(seller).merge(opened.where(due_date: (Date.current - 3.days))) }
   scope :liquidation_expected_week,  -> (seller) { from_seller(seller).merge(opened.where("due_date > :today AND due_date <= :end_week", {today: (Date.current - 3.days), end_week: (Date.current - 3.days).end_of_week})) }
