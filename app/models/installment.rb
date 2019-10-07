@@ -172,6 +172,10 @@ class Installment < ApplicationRecord
     opened? && expected_liquidation_date < Date.current
   end
 
+  def ahead?
+    opened? && due_date > Date.current
+  end
+
   def operation_ended?
     finished_at.present?
   end
@@ -186,6 +190,10 @@ class Installment < ApplicationRecord
 
   def elapsed_days
     (Date.current - ordered_at.to_date).to_i
+  end
+
+  def initial_operation_days
+    (expected_liquidation_date - ordered_at.to_date).to_i
   end
 
   # Days until the due_date
@@ -214,6 +222,14 @@ class Installment < ApplicationRecord
     end
   end
 
+  def ended_operation_total_days
+    if operation_ended?
+      (finished_at.to_date - ordered_at.to_date).to_i
+    else
+      0
+    end
+  end
+
   def overdue_days
     if overdue?
       (Date.current - expected_liquidation_date).to_i
@@ -224,34 +240,26 @@ class Installment < ApplicationRecord
     end
   end
 
-  def overdue_operation_total_days
-    if overdue?
-      (Date.current - ordered_at.to_date).to_i
-    elsif operation_ended_overdue?
-      (finished_at.to_date - ordered_at.to_date).to_i
-    else
-      0
-    end
-  end
-
   # TODO change the name to fator_absolute
   def fator
     if operation_ended?
       final_fator
     elsif analysis_completed?
-      initial_fator
+      if overdue? || ahead?
+        (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
+      else
+        initial_fator
+      end
     else
       value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / 30.0))
     end
   end
 
   def delta_fator
-    if overdue?
-      (initial_fator - value * (1 - 1/(1 + invoice.fator)**((overdue_operation_total_days) / 30.0)))
-    elsif opened?
+    if opened?
       initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
     else
-      final_fator - initial_fator
+      initial_fator - final_fator
     end
   end
 
@@ -259,19 +267,21 @@ class Installment < ApplicationRecord
     if operation_ended?
       final_advalorem
     elsif analysis_completed?
-      initial_advalorem
+      if overdue? || ahead?
+        value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0))
+      else
+        initial_advalorem
+      end
     else
       value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / 30.0))
     end
   end
 
   def delta_advalorem
-    if overdue?
-      (initial_advalorem - value * (1 - 1/(1 + invoice.advalorem)**((overdue_operation_total_days) / 30.0)))
-    elsif opened?
+    if opened?
       initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0)))
     else
-      final_advalorem - initial_advalorem
+      initial_advalorem - final_advalorem
     end
   end
 
@@ -378,9 +388,6 @@ class Installment < ApplicationRecord
     end
   end
 
-  def initial_operation_days
-    (expected_liquidation_date - ordered_at.to_date).to_i
-  end
   private
 
   def destroy_parent_if_void
