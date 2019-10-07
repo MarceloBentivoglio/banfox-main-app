@@ -42,32 +42,33 @@
                     </tr>
                   </table>
                   <br>
-                  <p>Assim, temos duas notícias muito boas:</p>
-                  <p class="align-justify">1. Autorizamos a transferência do Valor de Proteção, no montante de: <strong><%= humanized_money_with_symbol @installment.final_protection %></strong> - sua operação, que deveria durar <%= @installment.initial_operation_days %>, durou <strong><%= @installment.overdue_operation_total_days %> dias</strong>; dessa forma, o valor foi reduzido proporcionalmente e você irá pagar somente pelo tempo que usou a Banfox, sem penalidades pelo atraso.</p>
-                  <p class="align-justify">2. Seu limite disponível para operações é <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
-                  <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td align="center">
-                        <!-- Border based button
-                   https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td align="center">
-                              <table border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                  <td>
-                                    <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <p>Aguardamos você!
-                    <br>Time <strong>Banfox</strong></p>
+                  <p>Percebemos que você utilizou nossos serviços por mais tempo que o previsto. Sua operação, que deveria durar <%= @installment.initial_operation_days %>, durou <strong><%= @installment.ended_operation_total_days %> dias</strong>. Por causa disso, foi gerado um saldo de <strong><%= humanized_money_with_symbol @installment.delta_fee %></strong>, proporcional à essa extensão de prazo, que será descontado na sua próxima operação. Não se preocupe, essa diferença não inclui multas, juros de mora ou qualquer tarifas!</p>
+                  <p>Seu saldo atual é de <strong><%= humanized_money_with_symbol @seller.total_balance %></strong>.</p>
+                  <% unless @seller.no_available_limit?  %>
+                    <p>Além disso, lembramos que seu limite disponível para operações é <strong><%= humanized_money_with_symbol @seller.available_limit %></strong>. Para efetuar uma nova operação, clique no link abaixo:</p>
+                    <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center">
+                          <!-- Border based button https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td align="center">
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td>
+                                      <a href="https://www.banfox.com.br/installments/store" class="button button--blue" target="_blank">Realizar nova operação</a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  <% end %>
+                  <p>Obrigado!
+                  <br>Time <strong>Banfox</strong></p>
                 </td>
               </tr>
             </table>
