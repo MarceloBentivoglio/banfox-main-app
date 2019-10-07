@@ -324,6 +324,10 @@ class Seller < ApplicationRecord
     operation_limit - used_limit
   end
 
+  def no_available_limit?
+    operation_limit == used_limit
+  end
+
   def set_pre_approved_initial_standard_settings
     self.fator = 0.034
     self.advalorem = 0.001
