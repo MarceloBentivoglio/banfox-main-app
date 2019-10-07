@@ -40,21 +40,24 @@ class OpsAdmin::InstallmentsController < OpsAdmin::BaseController
     @installment.final_advalorem = @installment.advalorem
     @installment.final_protection = @installment.protection
     @installment.finished_at = Time.current
-    if @installment.overdue? || @installment.on_date?
-      balance = Balance.new.tap do |b|
-        b.installment = @installment
-        b.seller = @seller
-        b.value = @installment.delta_fee
+    begin
+      if @installment.overdue? || @installment.on_date?
+        balance = Balance.new.tap do |b|
+          b.installment = @installment
+          b.seller = @seller
+          b.value = @installment.delta_fee
+        end
+        balance.save!
       end
-      balance.save!
+      @installment.paid!
+    rescue Exception => e
+      Rollbar.error(e)
+      balance.destroy unless balance.nil?
+    else
+      @installment.notify_seller(@seller)
+    ensure
+      redirect_to ops_admin_operations_follow_up_path
     end
-    @installment.paid!
-    @installment.notify_seller(@seller)
-    redirect_to ops_admin_operations_follow_up_path
-  rescue Exception => e
-    Rollbar.error(e)
-    balance.destroy unless balance.nil?
-    redirect_back(fallback_location: ops_admin_operations_follow_up_path)
   end
 
   def report_pdd
