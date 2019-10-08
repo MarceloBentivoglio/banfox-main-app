@@ -11,6 +11,7 @@ class OpsAdmin::InstallmentControllerTest < ActionDispatch::IntegrationTest
       ActionMailer::Base.mail(to: [@seller.users.first.email, @seller.email_partner], from: 'test@mail.com', subject: 'Sua parcela foi liquidada!', body: "")
     end
   end
+
   test '.report_paid send a "payment received" mail to seller' do
     mail_test = setting_mail
     InstallmentMailer.expects(:paid).with(@installment_1, @seller.users.first, @seller).returns(mail_test)
