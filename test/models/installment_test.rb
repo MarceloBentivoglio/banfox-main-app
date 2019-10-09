@@ -51,48 +51,11 @@ class InstallmentTest < ActiveSupport::TestCase
     @i.invoice.stubs(:advalorem).returns(0.001)
   end
 
-  test ".delta_fator for installment onverdue" do
+  test ".fator must return the initial_fator when installment opened" do
     i = @i.tap do |ins|
-      ins.ordered_at = Date.current - 35
-      ins.due_date = Date.current - 4
+      ins.ordered_at = Date.current - 30
+      ins.due_date = Date.current + 1
     end
-
-    expected = Money.new(-1221)
-
-    assert_equal expected, i.delta_fator
-  end
-
-  test ".delta_advalorem for installment onverdue" do
-    i = @i.tap do |ins|
-      ins.ordered_at = Date.current - 35
-      ins.due_date = Date.current - 4
-    end
-
-    expected = Money.new(-33)
-
-    assert_equal expected, i.delta_advalorem
-  end
-
-  test ".delta_fator for installment on time to be settled" do
-    i = @i.tap do |ins|
-      ins.ordered_at = Date.current - 34
-      ins.due_date = Date.current - 3
-    end
-
-    expected = Money.new(0)
-
-    assert_equal expected, i.delta_fator
-  end
-
-  test ".delta_advalorem for installment on time to be settled" do
-    i = @i.tap do |ins|
-      ins.ordered_at = Date.current - 34
-      ins.due_date = Date.current - 3
-    end
-
-    expected = Money.new(0)
-
-    assert_equal expected, i.delta_advalorem
   end
 
   test ".delta_fator for installment paid in advance" do
@@ -117,5 +80,114 @@ class InstallmentTest < ActiveSupport::TestCase
     assert_equal expected, i.delta_advalorem
   end
 
+  test ".delta_fator for installment on the due date" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 30
+      ins.due_date = Date.current
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_fator
+  end
+
+  test ".delta_advalorem for installment on the due date" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 30
+      ins.due_date = Date.current
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_advalorem
+  end
+
+  test ".delta_fator for installment on time to be settled. 1 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 32
+      ins.due_date = Date.current - 1
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_fator
+  end
+
+  test ".delta_advalorem for installment on time to be settled. 1 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 32
+      ins.due_date = Date.current - 1
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_advalorem
+  end
+
+  test ".delta_fator for installment on time to be settled. 2 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 33
+      ins.due_date = Date.current - 2
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_fator
+  end
+
+  test ".delta_advalorem for installment on time to be settled. 2 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 33
+      ins.due_date = Date.current - 2
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_advalorem
+  end
+
+  test ".delta_fator for installment on time to be settled. 3 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 34
+      ins.due_date = Date.current - 3
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_fator
+  end
+
+  test ".delta_advalorem for installment on time to be settled. 3 of 3 days" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 34
+      ins.due_date = Date.current - 3
+    end
+
+    expected = Money.new(0)
+
+    assert_equal expected, i.delta_advalorem
+  end
+
+  test ".delta_fator for installment onverdue" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 35
+      ins.due_date = Date.current - 4
+    end
+
+    expected = Money.new(-1221)
+
+    assert_equal expected, i.delta_fator
+  end
+
+  test ".delta_advalorem for installment onverdue" do
+    i = @i.tap do |ins|
+      ins.ordered_at = Date.current - 35
+      ins.due_date = Date.current - 4
+    end
+
+    expected = Money.new(-33)
+
+    assert_equal expected, i.delta_advalorem
+  end
 
 end
