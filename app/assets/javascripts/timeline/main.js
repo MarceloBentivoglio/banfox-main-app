@@ -5,11 +5,11 @@
 		this.datesContainer = this.element.getElementsByClassName('cd-h-timeline__dates')[0];
 		this.line = this.datesContainer.getElementsByClassName('cd-h-timeline__line')[0]; // grey line in the top timeline section
 		this.fillingLine = this.datesContainer.getElementsByClassName('cd-h-timeline__filling-line')[0]; // green filling line in the top timeline section  
-		this.date = this.line.getElementsByClassName('cd-h-timeline__date');
-		this.selectedDate = this.line.getElementsByClassName('cd-h-timeline__date--selected')[0];
+		this.date = document.getElementsByClassName('showTimelineEvent');
+		this.selectedDate = document.getElementsByClassName('cd-h-timeline__date--selected')[0];
 		this.dateValues = parseDate(this);
 		this.minLapse = calcMinLapse(this);
-		this.navigation = this.element.getElementsByClassName('cd-h-timeline__navigation');
+		this.navigation = document.getElementsByClassName('timelineNavigation');
 		this.contentWrapper = this.element.getElementsByClassName('cd-h-timeline__events')[0];
 		this.content = this.contentWrapper.getElementsByClassName('cd-h-timeline__event');
 		
@@ -55,14 +55,12 @@
   function initEvents(timeline) {
   	var self = timeline;
 		// click on arrow navigation
-		self.navigation[0].addEventListener('click', function(event){
-			event.preventDefault();
-			translateTimeline(self, 'prev');
-		});
-		self.navigation[1].addEventListener('click', function(event){
-			event.preventDefault();
-			translateTimeline(self, 'next');
-		});
+    for(var i = 0; i < self.navigation.length; i++) {
+      self.navigation[i].addEventListener('click', function(event){
+        event.preventDefault();
+        translateTimeline(self, 'prev');
+      });
+    }
 
 		//swipe on timeline
 		new SwipeContent(self.datesContainer);
@@ -86,6 +84,14 @@
 				});
 			})(i);
 		}
+
+    var action_buttons = document.getElementsByClassName('showTimelineEvent');
+    for(var i=0; i < action_buttons.length; i++) {
+      action_buttons[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        selectNewDate(self, event.target);
+      })
+    }
   };
 
   function updateFilling(timeline) { // update fillingLine scale value
@@ -108,7 +114,7 @@
     timeline.line.style.transform = 'translateX('+timeline.translate+'px)';
     // update the navigation items status (toggle inactive class)
 		(timeline.translate == 0 ) ? Util.addClass(timeline.navigation[0], 'cd-h-timeline__navigation--inactive') : Util.removeClass(timeline.navigation[0], 'cd-h-timeline__navigation--inactive');
-		(timeline.translate == containerWidth - timeline.lineLength ) ? Util.addClass(timeline.navigation[1], 'cd-h-timeline__navigation--inactive') : Util.removeClass(timeline.navigation[1], 'cd-h-timeline__navigation--inactive');
+		(timeline.translate == containerWidth - timeline.lineLength ) ? Util.addClass(timeline.navigation[1], 'cd-h-timeline__navigation--inactive') : false
   };
 
 	function selectNewDate(timeline, target) { // ned date has been selected -> update timeline

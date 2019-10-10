@@ -1,4 +1,18 @@
 .cd-h-timeline__events {
+  ol {
+    list-style: none;
+  }
+}
+
+.cd-h-timeline__event-title {
+  display: none;
+}
+
+.cd-h-timeline__event-date {
+  display: none;
+}
+
+.cd-h-timeline__events {
   position: relative;
 }
 
