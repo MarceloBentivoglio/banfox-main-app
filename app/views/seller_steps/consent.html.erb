@@ -30,6 +30,10 @@
               </div> <!-- .cd-h-timeline__container -->
 
               <div class="cd-h-timeline__events">
+                <a href="#0" data-date="02/01/2019" class="cd-h-timeline__date cd-h-timeline__date--selected showTimelineEvent" style="display: none"/></a>
+                <a href="#0" data-date="01/01/2019" class="cd-h-timeline__date cd-h-timeline__date--selected showTimelineEvent" style="display: none"/></a>
+                <a href="#0" data-date="03/01/2019" class="cd-h-timeline__date cd-h-timeline__date--selected showTimelineEvent" style="display: none"/></a>
+
                 <ol>
                   <li class="cd-h-timeline__event cd-h-timeline__event--selected text-component">
                     <div class="cd-h-timeline__event-content container">
@@ -65,10 +69,8 @@
                         <small>Entenda nossas políticas de privacidade e segurança <a id="showModalConsent" href="#">aqui</a>.</small>
                         </p>
                         <p>
-                        <a href="#0" data-date="02/01/2019" class="cd-h-timeline__date cd-h-timeline__date--selected showTimelineEvent" style="display: none"/></a>
-                        <a href="#0" data-date="02/01/2019" class="cd-h-timeline__date  showTimelineEvent showTimelineEvent btn-rounded blue wide-button action" />Li e aceito os termos do site<i class="fa fa-check"></i></a>
+                        <%= link_to raw('Li e aceito os termos do site <i class="fa fa-check"></i>'), "/seller_steps/consent", remote: true,  method: :put, class: 'btn-rounded blue wide-button action'%>
                         </p>
-
                       </p>
                       </div>
                   </li>
@@ -85,7 +87,7 @@
                         financeiro e oferecer dicas valiosas que irão te ajudar a economizar e manter suas finanças em dia.
                         </p>
                       </div>
-                      <%= simple_form_for(current_user.seller, url: update_signup_path, method: :put) do |f| %>
+                      <%= simple_form_for(current_user.seller, url: update_signup_path, method: :put, remote: true, input_html: {multipart: true}) do |f| %>
                         <%= f.error_notification %>
                         <div class="form-inputs devise-form">
                           <%= f.input :digital_certificate, 
@@ -103,22 +105,10 @@
                         </div>
 
                         <%= f.button :submit, "Enviar Certificado Digital Com Segurança", class: "btn-rounded blue"  %><br />
-
                       <% end %>
                       <hr />
-                      <%= simple_form_for @seller, url: wizard_path, method: :put do |f| %>
-                        <a href="#0" data-date="02/01/2019" class="cd-h-timeline__date btn-rounded blue showTimelineEvent showTimelineEvent" />Ou continuar sem certificado</a>
-                        <%= link_to "Voltar", previous_wizard_path %>
-                        <% Seller::CONSENT.each do |key, value| %>
-                          <input name="seller[<%= key %>]" type="hidden" value="0">
-                          <input class="hidden" type="checkbox" name="seller[<%= key %>]" id="seller_<%= key %>">
-                          <label class="tag-choice tag-consent" for="seller_<%= key %>">
-                            <%= value %>
-                            <i class="fa fa-check"></i>
-                          </label>
-                          <%= f.submit 'Finalizar', class: "btn-blue-transparent" %>
-                        <% end %>
-                      <% end %>
+                        <a href="#" class="btn-rounded blue" style="float: left" onclick="changeTimeline(timelineComponent, timelineComponent.date[0])">Voltar</a>
+                        <a href="#" class="btn-rounded blue" style="float: right">Continuar sem o certificado</a>
                       </p>
                     </div>
                   </li>

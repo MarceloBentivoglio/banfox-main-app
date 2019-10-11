@@ -50,6 +50,9 @@
 		Util.addClass(timeline.element, 'cd-h-timeline--loaded');
 		selectNewDate(timeline, timeline.selectedDate);
 		resetTimelinePosition(timeline, 'next');
+
+    window.timelineComponent = timeline;
+    window.changeTimeline = selectNewDate;
   };
 
   function initEvents(timeline) {

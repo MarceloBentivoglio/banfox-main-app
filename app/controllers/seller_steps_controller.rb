@@ -21,28 +21,14 @@ class SellerStepsController < ApplicationController
   end
 
   def update
-    @seller.validation_status = step.to_s
-    @seller.update_attributes(seller_params)
-
-    if wizard_steps.last == step
-      @seller.active!
-      #Now, just by getting in the last step, we have a confirmation that the user agreed by all rules in the website
-      @seller.update(consent: 'on')
-
-      respond_to do |format|
-        @analysis = SellerAnalysis.call(@user, @seller)
-        format.js
-      end
-      return
-    end
-
-    if step == :basic
-      @user.seller = @seller
-      @user.save!
-    end
-
+    @seller = SellerSignupService.new(step, current_user, seller_params).call
+    
     session["accessed"] = step
-    render_wizard @seller
+    return render_wizard @seller unless step == :consent
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
@@ -72,13 +58,13 @@ class SellerStepsController < ApplicationController
   end
 
   def finish_wizard_path
-    dashboard_url
+    sellers_dashboard_url
   end
 
   def check_not_fully_registered_seller
     if current_user&.seller&.active?
       flash[:alert] = "Você já completou essa etapa"
-      redirect_to dashboard_path
+      redirect_to sellers_dashboard_path
     end
   end
 
