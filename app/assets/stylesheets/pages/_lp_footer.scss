@@ -18,7 +18,7 @@
   border-bottom: 1px solid #fff;
   img {
     height: 150px;
-    text-align: left;
+    @media screen and (max-width: 767px) { display: block; margin-left: auto; margin-right: auto; }
   }
 }
 
@@ -29,10 +29,11 @@
     color: #fff;
   }
   .left-info {
-    padding-left: 0px;
+    @media screen and (min-width: 768px) { padding-right: 0px; }
+    @media screen and (max-width: 767px) { text-align: center }
   }
   .right-info {
-    padding-right: 0px;
-    text-align: right;
+    @media screen and (min-width: 768px) { padding-right: 0px; text-align: right;}
+    @media screen and (max-width: 767px) { text-align: center }
   }
 }

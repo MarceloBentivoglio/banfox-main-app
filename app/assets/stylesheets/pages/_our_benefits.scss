@@ -8,10 +8,12 @@
   background-color: #EEF2F6;
   height: 280px;
   margin-bottom: -130px;
+  @media screen and (max-width: 991px) { margin-bottom: -150px; }
+  @media screen and (max-width: 767px) { height: 190px; margin-bottom: -190px; }
 }
 
 .cta-padding-benefits {
-  padding: 70px 50px 40px 70px;
+  padding: 70px 50px 40px 50px;
 }
 #our-benefits {
   padding-top: 150px;
@@ -20,8 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-bottom: 50px;
+    @media screen and (min-width: 768px) { margin-bottom: 50px; }
   }
   .desktop-item {
     display: flex;
@@ -29,7 +30,7 @@
   .mobile-item {
     display: none;
   }
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 767px) {
     .desktop-item {
       display: none;
     }
@@ -38,7 +39,7 @@
     }
   }
   .card-data-benefits {
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 767px) {
       padding: 60px 30px 25px;
       margin-bottom: 20px;
     }

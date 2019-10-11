@@ -2,7 +2,7 @@
   padding-top: 150px;
   @media screen and (max-width: 599px) { padding-top: 100px }
   margin-bottom: 150px;
-  @media screen and (max-width: 599px) { margin-bottom: 100px }
+  @media screen and (max-width: 991px) { margin-bottom: 100px }
 }
 // card post banner
 .card-data-howitworks {
@@ -18,7 +18,7 @@
       //TODO
       @media screen and (max-width: 1199px) { width: 80px; }
       @media screen and (max-width: 991px) { width: 85px; }
-      @media screen and (max-width: 767px) { width: 95px; height: 80px; }
+      @media screen and (max-width: 767px) { width: 95px; height: 90px; }
       @media screen and (max-width: 479px) { width: 75px; height: 70px; }
     }
   }

@@ -402,7 +402,10 @@
   position: relative;
   z-index: 10;
   margin-bottom: -130px;
+  @media screen and (max-width: 991px) { margin-bottom: -160px; }
+  @media screen and (max-width: 767px) { margin-bottom: -190px; }
   .container {
+    @media screen and (max-width: 767px) { text-align: center; }
     background-color: #5433ff;
     border-radius: 80px 0px;
     h1 {
@@ -412,6 +415,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width: 767px) { margin-top: 40px; }
     }
     .text-border {
       border-top: 5px solid #fff;
