@@ -69,7 +69,7 @@
                         <small>Entenda nossas políticas de privacidade e segurança <a id="showModalConsent" href="#">aqui</a>.</small>
                         </p>
                         <p>
-                        <%= link_to raw('Li e aceito os termos do site <i class="fa fa-check"></i>'), "/seller_steps/consent", remote: true,  method: :put, class: 'btn-rounded blue wide-button action'%>
+                        <%= link_to raw('Li e aceito os termos do site <i class="fa fa-check"></i>'), "/seller_steps/consent", remote: true,  method: :put, class: 'btn-rounded blue '%>
                         </p>
                       </p>
                       </div>
@@ -107,8 +107,7 @@
                         <%= f.button :submit, "Enviar Certificado Digital Com Segurança", class: "btn-rounded blue"  %><br />
                       <% end %>
                       <hr />
-                        <a href="#" class="btn-rounded blue" style="float: left" onclick="changeTimeline(timelineComponent, timelineComponent.date[0])">Voltar</a>
-                        <a href="#" class="btn-rounded blue" style="float: right">Continuar sem o certificado</a>
+                        <a href="/sellers/dashboard" class="btn-rounded blue">Continuar sem o certificado</a>
                       </p>
                     </div>
                   </li>
