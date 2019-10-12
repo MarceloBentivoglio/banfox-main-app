@@ -272,10 +272,7 @@
 }
 .new-banner-hero {
   width: 100%;
-  height: calc(70vh + 100px);
-  @media screen and (max-width: 600px){
-    height: calc(88vh + 100px);
-  }
+  height: 600px;
   background: rgb(84,51,255);
   background: linear-gradient(127deg, rgba(84,51,255,1) 45%, rgba(84,104,255,1) 100%);
   background-clip: content-box;
@@ -295,18 +292,23 @@
       color: #F9FBFF;
       margin-bottom: 40px;
     }
+    @media screen and (max-width: 499px){ h1 { font-size: 12vw; } }
     h2 {
       font-weight: 700;
       font-size: 26px;
       color: #F9FBFF;
       margin-bottom: 40px;
     }
+    @media screen and (max-width: 499px){ h2 { font-size: 5vw; } }
+    @media screen and (max-width: 399px){ h2 { font-size: 6vw; } }
     h4 {
       font-family: Muli-Light;
       font-size: 18px;
       color: #F9FBFF;
       margin-bottom: 40px;
     }
+    @media screen and (max-width: 499px){ h4 { font-size: 4vw; } }
+    @media screen and (max-width: 399px){ h4 { font-size: 5vw; } }
   }
   .new-banner-hero-img {
     height: 100%;
@@ -316,7 +318,7 @@
     img {
       width: 100%
     }
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 991px) {
       display: none;
     }
   }
@@ -340,10 +342,9 @@
 .new-banner-brands {
   padding: 0px;
   width: 100%;
-  height: calc(30vh - 100px);
-  @media screen and (max-width: 600px){
-    height: calc(60vh - 100px);
-  }
+  height: 100px;
+  @media screen and (max-width: 991px){ height: 200px; }
+  @media screen and (max-width: 599px){ height: 330px; }
   background-color: #DDE3E9;
   background-clip: content-box;
   border-bottom-right-radius: 150px 150px;
@@ -353,7 +354,9 @@
     color: #8F97A1;
   }
   .brand-box {
-    height: calc(30vh - 100px);
+    height: 100px;
+    @media screen and (max-width: 991px){ height: 200px; }
+    @media screen and (max-width: 599px){ height: 300px; }
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -362,8 +365,25 @@
     img {
       height: 40px;
     }
+    .brand-title {
+      @media screen and (max-width: 991px) {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      @media screen and (max-width: 599px) {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+    }
     .brand-item {
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 991px) {
+        width: 50%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      @media screen and (max-width: 599px) {
         width: 100%;
         text-align: center;
         padding: 10px;
@@ -382,7 +402,10 @@
   position: relative;
   z-index: 10;
   margin-bottom: -130px;
+  @media screen and (max-width: 991px) { margin-bottom: -160px; }
+  @media screen and (max-width: 767px) { margin-bottom: -190px; }
   .container {
+    @media screen and (max-width: 767px) { text-align: center; }
     background-color: #5433ff;
     border-radius: 80px 0px;
     h1 {
@@ -392,6 +415,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media screen and (max-width: 767px) { margin-top: 40px; }
     }
     .text-border {
       border-top: 5px solid #fff;
