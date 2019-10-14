@@ -9,10 +9,22 @@
 #our-mission {
   padding-top: 150px; 
   margin-bottom: 150px;
+  @media screen and (max-width: 767px) { margin-bottom: 50px; }
   h1 {
     word-break: break-word;
   }
 
+  .how-title2 {
+    text-align: center;
+    color: #1C2E57;
+    margin-bottom: 75px;
+    @media screen and (min-width: 1200px) { padding: 0 15px;}
+    h1 { 
+      //shrinking text so "fundamentalmente" dont break up
+      @media screen and (max-width: 381px) { font-size: 2.3rem; } 
+      @media screen and (max-width: 353px) { font-size: 2rem; } 
+    }
+  }
   .card-data-ourmission {
     background: #F9FBFF;
     margin-bottom: 20px;
@@ -24,9 +36,10 @@
     }
     .card-data-header {
       margin-bottom: 30px;
-      @media screen and (min-width: 700px) and (max-width: 800px){
-        min-height: 200px;
-      }
+      @media screen and (min-width: 768px) and (max-width: 991px) { min-height: 200px; }
+    }
+    .card-data-main-title {
+      min-height: 0px; 
     }
     a {
       font-weight: 700;
@@ -54,7 +67,7 @@
         border-radius: 0px 0px 80px;
       }
     }
-    @media screen and (min-width: 700px) {
+    @media screen and (min-width: 768px) {
       .left-card {
         padding-left: 0px;
         padding-right: 20px;
