@@ -24,9 +24,6 @@ class SellerSignupService
 
   def basic_step(input_data)
     current_user.save
-    if current_user.seller.valid?
-      SellerAnalysisJob.perform_later(current_user.id)
-    end
   end
 
   def consent_step(input_data)
@@ -36,5 +33,8 @@ class SellerSignupService
       validation_status: 'active',
       consent: true
     )
+    if current_user.seller.valid?
+      SellerAnalysisJob.perform_later(current_user.id)
+    end
   end
 end
