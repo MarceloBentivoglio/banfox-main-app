@@ -23,12 +23,32 @@ class SellerAnalysis
     seller.active!
     seller.save
     SellerMailer.welcome(user, seller).deliver_now
-    SlackMessage.new("CC2NP6XHN", "<!channel> #{seller.company_name.titleize} \n cnpj: #{seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
-
+    formated_revenue = ActionController::Base.helpers.humanized_money_with_symbol seller.monthly_revenue
+    SlackMessage.new("CC2NP6XHN",
+                     "<!channel> #{seller.company_name.titleize}
+                     cnpj: #{seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*
+                     Site: #{seller.website}
+                     Nome: #{seller.full_name}
+                     Email: #{seller.users.first.email}
+                     Celular: #{seller.mobile}
+                     Telefone da Empresa: #{seller.phone}
+                     Revenue: #{formated_revenue}"
+                    ).send_now
     true
   rescue Exception => e
-    SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
-
+    SlackMessage.new("CH1KSHZ2T", "#{seller&.full_name ||= "Someone" } tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
+    formated_revenue = ActionController::Base.helpers.humanized_money_with_symbol(seller&.monthly_revenue)
+    SlackMessage.new("CC2NP6XHN",
+                     "<!channel> #{seller&.company_name&.titleize}
+                     cnpj: #{seller&.cnpj} acabou de se cadastrar mas ocorreu um problema com a analise do cpf
+                     *Erro: #{e.message}*
+                     Site: #{seller&.website}
+                     Nome: #{seller&.full_name}
+                     Email: #{seller&.users&.first&.email}
+                     Celular: #{seller&.mobile}
+                     Telefone da Empresa: #{seller&.phone}
+                     Revenue: #{formated_revenue}"
+                    ).send_now
     return false
   end
 end

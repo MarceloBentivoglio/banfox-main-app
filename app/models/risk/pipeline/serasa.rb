@@ -38,6 +38,7 @@ module Risk
                                              .where.not(key_indicator_report_id: @key_indicator_report.id)
                                              .includes(:key_indicator_report)
                                              .order('created_at DESC')
+                                             .limit(1)
 
           historic = analyzed_parts.map do |analyzed_part|
             analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api',cnpj)
