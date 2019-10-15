@@ -5,7 +5,7 @@ class SellerAnalysis
       seller.allowed_to_operate = false
       seller.forbad_to_operate_at = Time.current
       seller.auto_veredict_at = Time.current
-      seller.save!
+      seller.save
       SellerMailer.rejected(user, seller).deliver_now
 
       #We will not reject a seller for insufficient revenue, that's why check_revenue was removed
@@ -20,7 +20,8 @@ class SellerAnalysis
     seller.set_pre_approved_initial_standard_settings
     seller.auto_veredict_at = Time.current
     seller.allowed_to_operate = true
-    seller.save!
+    seller.active!
+    seller.save
     SellerMailer.welcome(user, seller).deliver_now
     SlackMessage.new("CC2NP6XHN", "<!channel> #{seller.company_name.titleize} \n cnpj: #{seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
 
