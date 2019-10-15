@@ -36,24 +36,7 @@ class SellersController < ApplicationController
     SlackMessage.new("CC2NP6XHN", "<!channel> #{@seller.company_name.titleize} \n cnpj: #{@seller.cnpj} acabou de se cadastrar e foi *pré-aprovado*").send_now
     redirect_to sellers_dashboard_path
   rescue StandardError => e
-    SlackMessage.new("CH1KSHZ2T", 
-                     "#{@seller&.full_name ||= "Someone" } tried to finish seller_steps but had a problem in the analysis
-                     Erro: #{e.message}"
-                    ).send_now
-    if seller.on_going?
-      formated_revenue = ActionController::Base.helpers.humanized_money_with_symbol @seller&.monthly_revenue
-      SlackMessage.new("CC2NP6XHN",
-                       "<!channel> #{@seller&.company_name&.titleize}
-                       cnpj: #{@seller&.cnpj} acabou de se cadastrar mas ocorreu um problema
-                       *Erro: #{e.message}*
-                       Site: #{@seller&.website}
-                       Nome: #{@seller&.full_name}
-                       Email: #{@seller&.users&.first&.email}
-                       Celular: #{@seller&.mobile}
-                       Telefone da Empresa: #{@seller&.phone}
-                       Revenue: #{formated_revenue}"
-                      ).send_now
-    end
+    SlackMessage.new("CH1KSHZ2T", "Someone tried to finish seller_steps but had a problem in the analysis \n Erro: #{e.message}").send_now
     redirect_to takeabreath_path and return
   end
 
