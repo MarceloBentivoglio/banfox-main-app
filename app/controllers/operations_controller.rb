@@ -48,11 +48,13 @@ class OperationsController < ApplicationController
   def create_document
     @operation.sign_document_requested_at = Time.current
     @operation.set_used_balance!
+    @operation.started!
     sign_documents = SignDocuments.new(@operation, @seller)
     sign_documents.call
     @operation.sign_document_info = sign_documents.sign_document_info
     @operation.sign_document_key = sign_documents.sign_document_key
     @operation.save!
+    @operation.completed!
     @operation.notify_joint_debtors(@seller)
     @operation.notify_banfox_signer
     redirect_to sign_document_operations_path
