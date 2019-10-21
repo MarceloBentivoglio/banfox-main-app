@@ -37,6 +37,8 @@ module Risk
                                                          else
                                                            external_datum.raw_data
                                                          end
+
+        @key_indicator_report.save
         @key_indicator_report
       end
     end

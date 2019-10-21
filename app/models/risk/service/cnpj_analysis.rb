@@ -12,9 +12,13 @@ module Risk
       def call(key_indicator_report)
         @key_indicator_report = key_indicator_report
 
-        persist_analyzed_parts
-        call_fetchers #Fills evidences
-        call_pipelines #Fills key_indicators
+        begin
+          persist_analyzed_parts
+          call_fetchers #Fills evidences
+          call_pipelines #Fills key_indicators
+        rescue Exception => e
+          Rollbar.error(e, "Error generating KRI: ##{@key_indicator_report.id}")
+        end
       end
 
       def persist_analyzed_parts
