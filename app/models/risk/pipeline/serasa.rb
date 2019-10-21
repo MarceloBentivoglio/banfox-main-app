@@ -42,7 +42,7 @@ module Risk
 
           historic = analyzed_parts.map do |analyzed_part|
             analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api',cnpj)
-          end.select {|evidence| evidence.nil? }
+          end.select {|evidence| !evidence.nil? }
 
           @key_indicator_report.evidences['serasa_api'][cnpj]['historic'] = historic
           @key_indicator_report.key_indicators[cnpj] ||= {}
