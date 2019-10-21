@@ -32,9 +32,8 @@ module Risk
       end
 
       def build_evidences_with_historic
-        cnpjs = @key_indicator_report.evidences['serasa_api'].keys
-        cnpjs.each do |cnpj|
-          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj)
+        @key_indicator_report&.input_data&.each do |cnpj|
+          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj[0..7])
                                              .where.not(key_indicator_report_id: @key_indicator_report.id)
                                              .includes(:key_indicator_report)
                                              .order('created_at DESC')
@@ -42,7 +41,7 @@ module Risk
 
           historic = analyzed_parts.map do |analyzed_part|
             analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api',cnpj)
-          end.select {|evidence| evidence.nil? }
+          end.select {|evidence| !evidence.nil? }
 
           @key_indicator_report.evidences['serasa_api'][cnpj]['historic'] = historic
           @key_indicator_report.key_indicators[cnpj] ||= {}

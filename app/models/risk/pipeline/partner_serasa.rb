@@ -22,9 +22,8 @@ module Risk
                    Risk::Referee::AdminBankruptcyParticipation
 
       def build_evidences
-        cnpjs = @key_indicator_report.evidences['serasa_api'].keys
-        cnpjs.each do |cnpj|
-          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj)
+        @key_indicator_report&.input_data&.each do |cnpj|
+          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj[0..7])
             .where.not(key_indicator_report_id: @key_indicator_report.id)
             .includes(:key_indicator_report)
             .order('created_at DESC')

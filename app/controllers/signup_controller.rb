@@ -30,8 +30,9 @@ class SignupController < Devise::SessionsController
     @seller.auto_veredict_at = Time.current
     @seller.allowed_to_operate = true
     @seller.update(cryptographed_seller_params)
-    #@seller.active!
-    #@seller.pre_approved!
+    @seller.active!
+    @seller.pre_approved!
+
     respond_to do |format|
       format.js
     end
