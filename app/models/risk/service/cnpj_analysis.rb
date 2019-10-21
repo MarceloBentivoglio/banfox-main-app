@@ -21,6 +21,7 @@ module Risk
         @key_indicator_report.input_data.each do |cnpj|
           Risk::AnalyzedPart.create(
             key_indicator_report_id: @key_indicator_report.id,
+            operation_id: @key_indicator_report.operation_id,
             cnpj: cnpj_root_format(cnpj)
           )
         end
