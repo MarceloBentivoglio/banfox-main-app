@@ -28,6 +28,7 @@ class Api::V1::OperationsController < Api::V1::BaseController
       new_sign_document_info[:signer_signature_keys].each do |signer_signature_key|
         if signer_signature_key[:email] == signer_email
           signer_signature_key.store(:status, "signed")
+          SlackMessage.new("CHQFGD43Y", "<!channel> #{signer_email} assinou o contrato da *Operação #{@operation.id}*").send_now
         end
       end
       @operation.sign_document_info = new_sign_document_info
@@ -57,6 +58,7 @@ class Api::V1::OperationsController < Api::V1::BaseController
       new_sign_document_info.each do |signer_signature_key|
         if signer_signature_key["email"] == signer_email
           signer_signature_key.store("status", "signed")
+          SlackMessage.new("CHQFGD43Y", "<!channel> #{signer_email} assinou o contrato da *Operação #{@operation.id}*").send_now
           OperationMailer.signed(@operation, signer_email).deliver_now unless (signer_email == "joao@banfox.com.br") || (signer_email == "marcelo@banfox.com.br")
         end
       end
