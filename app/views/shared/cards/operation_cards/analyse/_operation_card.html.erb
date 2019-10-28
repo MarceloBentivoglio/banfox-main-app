@@ -26,7 +26,7 @@
       <strong>Arquivos de notas</strong>
       <div class="extended-column">
         <% operation.invoices.distinct.each do |invoice| %>
-          <%#link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
+          <%= link_to "##{invoice.number}", url_for(invoice.document), {class: "file-link", target: :blank} %>
         <% end %>
       </div>
     </div>
