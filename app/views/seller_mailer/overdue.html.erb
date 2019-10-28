@@ -1,0 +1,97 @@
+<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center">
+      <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="email-masthead">
+            <a href="https://www.banfox.com.br" class="email-masthead_name">
+              <img alt="Icon" src=https://res.cloudinary.com/banfox/image/upload/v1565722339/logo/Logo_banfox_color.png width="225" height="55"  />
+            </a>
+          </td>
+        </tr>
+        <!-- Email Body -->
+        <tr>
+          <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
+              <!-- Body content -->
+              <tr>
+                <td class="content-cell">
+                  <h1>Bom dia, <%= @seller.company_name.mb_chars.titleize %>.</h1>
+                  <p>Estamos com os títulos abaixo em aberto, por enquanto, vocês não conseguirão realizar novas operações.</p>
+                  <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <th class="purchase_heading"></th>
+                      <th class="purchase_heading"></th>
+                      <th class="purchase_heading"></th>
+                      <th class="purchase_heading"></th>
+                    </tr>
+                    <% @installments.each do |i| %>
+                      <tr>
+                        <td class="purchase_item"><%= invoice_installment_partial_number_mask(i.invoice.number, i.number) %></td>
+                        <td class="purchase_item">
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.first %>
+                          <%= i.invoice.payer.company_name.mb_chars.titleize.split.second %>
+                        </td>
+                        <td class="purchase_item"><%= humanized_money_with_symbol i.value %></td>
+                        <td class="purchase_item"><%= l(i.due_date, format: '%d %b %Y') %></td>
+                      </tr>
+                    <% end %>
+                    <tr>
+                      <td class="purchase_item">Saldo Banfox</td>
+                      <td class="purchase_item"></td>
+                      <td class="purchase_item"><%= humanized_money_with_symbol @balances %></td>
+                      <td class="purchase_item"></td>
+                    </tr>
+                  </table>
+                  <br>
+                  <p>Manter os pagamentos em dia permite que vocês tenham o limite de crédito renovado mensalmente. Os títulos acima foram pagos?</p>
+                  <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center">
+                        <!-- Border based button
+                   https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center">
+                              <table border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td>
+                                    <a href="#" class="button button--blue" target="_blank">Sim, os títulos já foram pagos.</a>
+                                    <a href="#" class="button button--blue" target="_blank">Não, tive um problema.</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <p>Se pudermos ajudar em alguma coisa, nos avise.</p>
+                  <p>Atenciosamente,
+                    <br>Equipe <strong>Banfox</strong>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="content-cell" align="center">
+                  <p class="sub align-center">&copy; 2019 Banfox. Todos os direitos reservados.</p>
+                  <p class="sub align-center">
+                    Banfox
+                    Rua Vergueiro, 1061 - ACE Headquarters
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

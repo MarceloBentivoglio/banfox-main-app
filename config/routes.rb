@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pdf_parsed_invoices, only: [ :create ]
       resources :mobile_inputed_invoices, only: [ :create ]
+      resources :billing_ruler_responses, only: [ :paid, :pending ]
       namespace :operations do
         post "sign_document_status"
         post "webhook_response"
