@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_234733) do
+ActiveRecord::Schema.define(version: 2019_10_25_164429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_234733) do
     t.string "cnpj"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "operation_id"
     t.index ["key_indicator_report_id"], name: "index_analyzed_parts_on_key_indicator_report_id"
   end
 
@@ -122,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_234733) do
     t.bigint "payer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "issued_at"
+    t.date "issue_date"
     t.string "doc_parser_ref"
     t.jsonb "doc_parser_ticket"
     t.jsonb "doc_parser_data"
@@ -148,6 +149,14 @@ ActiveRecord::Schema.define(version: 2019_09_29_234733) do
     t.index ["seller_id"], name: "index_joint_debtors_on_seller_id"
   end
 
+  create_table "key_indicator_report_requests", force: :cascade do |t|
+    t.string "input_data"
+    t.integer "operation_id"
+    t.string "kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "key_indicator_reports", force: :cascade do |t|
     t.jsonb "input_data"
     t.string "pipeline"
@@ -159,6 +168,11 @@ ActiveRecord::Schema.define(version: 2019_09_29_234733) do
     t.bigint "operation_id"
     t.jsonb "key_indicators", default: {}
     t.boolean "processed", default: false
+    t.text "processing_error_message"
+    t.boolean "with_error", default: false
+    t.bigint "key_indicator_report_request_id"
+    t.string "cnpj"
+    t.index ["key_indicator_report_request_id"], name: "index_key_indicator_reports_on_key_indicator_report_request_id"
   end
 
   create_table "key_indicators", force: :cascade do |t|

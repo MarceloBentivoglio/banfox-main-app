@@ -13,22 +13,23 @@ module Risk
         @key_indicator_report = key_indicator_report
 
         begin
-          persist_analyzed_parts
+          persist_analyzed_part
           call_fetchers #Fills evidences
           call_pipelines #Fills key_indicators
         rescue Exception => e
           Rollbar.error(e, "Error generating KRI: ##{@key_indicator_report.id}")
+          @key_indicator_report.update(processed: true,
+                                       with_error: true,
+                                       processing_error_message: e.message)
         end
       end
 
-      def persist_analyzed_parts
-        @key_indicator_report.input_data.each do |cnpj|
-          Risk::AnalyzedPart.create(
-            key_indicator_report_id: @key_indicator_report.id,
-            operation_id: @key_indicator_report.operation_id,
-            cnpj: cnpj_root_format(cnpj)
-          )
-        end
+      def persist_analyzed_part
+        Risk::AnalyzedPart.create(
+          key_indicator_report_id: @key_indicator_report.id,
+          operation_id: @key_indicator_report.operation_id,
+          cnpj: cnpj_root_format(@key_indicator_report.cnpj)
+        )
       end
 
       def fetchers_required
