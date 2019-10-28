@@ -46,7 +46,7 @@ module Risk
           @key_indicator_report&.evidences&.dig('serasa_api', shortened_cnpj, 'partner_data'),
           historic
         )
-        @key_indicator_report.key_indicators[shortned_cnpj] ||= {}
+        @key_indicator_report.key_indicators[shortened_cnpj] ||= {}
         @key_indicator_report.save
 
         @key_indicator_report.evidences
