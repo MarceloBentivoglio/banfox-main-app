@@ -56,11 +56,9 @@ module Risk
         return if current_partner_data.nil?
         historic = {}
 
-        historic_data.each do |company|
-          company['partner_data'].each do |partner|
-            historic[partner['cpf']] ||= []
-            historic[partner['cpf']] << partner
-          end
+        historic_data['partner_data'].each do |partner|
+          historic[partner['cpf']] ||= []
+          historic[partner['cpf']] << partner
         end
 
         current_partner_data.each do |current_partner|
