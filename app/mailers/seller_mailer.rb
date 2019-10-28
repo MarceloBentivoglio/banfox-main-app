@@ -64,7 +64,7 @@ class SellerMailer < ApplicationMailer
     end
     SlackMessage.new("CPM2L0ESD", 
                      "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
-                     o e-mail de aviso do vencimento dos titulos: \n #{installments_text}").send_now
+                     o e-mail de aviso que os títulos abaixo vencem hoje: \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox vencendo hoje.'
@@ -84,6 +84,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo acabaram de vencer: \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox acabaram de vencer.'
@@ -103,6 +106,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo estão vencidos(2º ~ 10º dia de atraso): \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox atrasados.'
@@ -122,6 +128,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo estão vencidos(11º ~ 20º dia de atraso): \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox atrasados. Cuidado com a negativação.'
@@ -144,6 +153,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo serão negativados: \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox serão enviados para negativação.'
@@ -166,6 +178,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo estão vencidos(22º ~ 30º dia de atraso): \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox negativados.'
@@ -188,6 +203,9 @@ class SellerMailer < ApplicationMailer
         end
       end
     end
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
+                     o e-mail de aviso que os títulos abaixo serão protestados: \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox serão protestados.'
