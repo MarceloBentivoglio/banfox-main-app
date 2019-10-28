@@ -57,15 +57,14 @@ module Risk
         historic = {}
 
         historic_data['partner_data'].each do |partner|
-          historic[partner['cpf']] ||= []
-          historic[partner['cpf']] << partner
+          historic[partner['cpf']] = partner
         end
 
         current_partner_data.each do |current_partner|
           if historic[current_partner['cpf']]
             current_partner['historic'] = historic[current_partner['cpf']]
           else
-            current_partner['historic'] = []
+            current_partner['historic'] = {}
           end
         end
 
