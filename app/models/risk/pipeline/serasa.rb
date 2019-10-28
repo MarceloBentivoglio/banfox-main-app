@@ -36,10 +36,11 @@ module Risk
           last_operation = Operation.joins(:installments, invoices: [:payer, :seller])
                                     .where('installments.backoffice_status': ['approved' , 'deposited'])
                                     .where('invoices.seller': identify_part&.id)
+                                    .where('sellers.id=? OR payers.id=?', identify_part&.id, identify_part&.id)
                                     .last
 
         rescue Exception => e
-          raise 'Recurrent Operation not found'
+          raise "Recurrent Operation not found: #{e.message}"
         end
         shortened_cnpj = @key_indicator_report.cnpj[0..7]
 
