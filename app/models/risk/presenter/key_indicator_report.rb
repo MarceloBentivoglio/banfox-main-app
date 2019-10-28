@@ -21,6 +21,10 @@ module Risk
         @key_indicator_report.evidences.dig("serasa_api", cnpj[0..7], "company_data", "company_name")&.titleize
       end
 
+      def processing_status
+        @key_indicator_report.with_error? ? "(#{@key_indicator_report.processing_error_message})" : ''
+      end
+
       def conclusions
         blank_conclusions = [{
             name_with_cnpj: "",
