@@ -9,18 +9,6 @@ class RunningRefereesTest < ActiveSupport::TestCase
                          .returns([biort_data])
   end
 
-  test 'run all referees with recurrent_operation' do
-    params = {
-      risk_key_indicator_report: {
-        input_data: '08588244000149'
-      },
-      kind: 'recurrent_operation'
-    }
-
-    key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, DateTime.current + 1.day).call
-
-    assert_has_expected_key_indicators(key_indicator_report)
-  end
 
   test 'run all referees with new_cnpj' do
     params = {
@@ -29,31 +17,6 @@ class RunningRefereesTest < ActiveSupport::TestCase
       },
       kind: 'new_cnpj'
     }
-
-    key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, DateTime.current + 1.day).call
-  end
-
-
-  test 'run all referees using an operation' do
-    using_shared_operation
-    mocked_operation_params = {
-      input_data: ['08588244000149'],
-      kind: 'recurrent_operation',
-      ttl: DateTime.current + 1.day,
-      operation_id: @operation.id
-    }
-    Risk::Service::KeyIndicatorReport.any_instance
-                                     .expects(:operation_params)
-                                     .returns(mocked_operation_params)
-
-    params = {
-      kind: 'recurrent_operation',
-      operation_id: @operation.id
-    }
-
-    key_indicator_report = Risk::Service::KeyIndicatorReport.new(params, DateTime.current + 1.day).call
-
-    assert_has_expected_key_indicators(key_indicator_report)
   end
 
   def assert_has_expected_key_indicators(key_indicator_report)

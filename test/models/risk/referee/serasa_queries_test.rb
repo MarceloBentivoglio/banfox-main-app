@@ -38,46 +38,7 @@ class Risk::Referee::SerasaQueriesTest < ActiveSupport::TestCase
     }.with_indifferent_access
 
     decorated_evidences = Risk::Decorator::Serasa.new(production_data)
-    expected = {
-      code: 'serasa_queries',
-      title: 'Serasa Queries',
-      description: '',
-      params: {
-        keywords: [
-          'fomento',
-          'banco',
-          'securitizadora',
-          'fundo',
-          'fidc',
-          'gestao de risco',
-          'gestao de r',
-          'financeira',
-          'credito',
-          'financiame',
-          'financiamento',
-          'gestao riscos'
-        ],
-        ignore_names: [
-          'MVP FOMENTO MERCANTIL LTDA',
-        ],
-        green_limit: 1
-      },
-      evidence: {
-        names: [
-          'MVP FOMENTO MERCANTIL LTDA',
-          'MVP FOMENTO MERCANTIL LTDA',
-          'MVP FOMENTO MERCANTIL LTDA',
-          'BANCO SANTANDER BRASIL S/A',
-          'MVP FOMENTO MERCANTIL LTDA',
-        ],
-        found: [
-          'BANCO SANTANDER BRASIL S/A',
-        ],
-      },
-      flag: Risk::KeyIndicatorReport::GREEN_FLAG
-    }
-
-    assert_equal expected, Risk::Referee::SerasaQueries.new(decorated_evidences).call
+    assert_equal Risk::KeyIndicatorReport::GREEN_FLAG, Risk::Referee::SerasaQueries.new(decorated_evidences).call[:flag]
   end
 
   test '.call correctly returns a yellow flag' do
@@ -117,48 +78,8 @@ class Risk::Referee::SerasaQueriesTest < ActiveSupport::TestCase
     }.with_indifferent_access
 
     decorated_evidences = Risk::Decorator::Serasa.new(production_data)
-    expected = {
-      code: 'serasa_queries',
-      title: 'Serasa Queries',
-      description: '',
-      params: {
-        keywords: [
-          'fomento',
-          'banco',
-          'securitizadora',
-          'fundo',
-          'fidc',
-          'gestao de risco',
-          'gestao de r',
-          'financeira',
-          'credito',
-          'financiame',
-          'financiamento',
-          'gestao riscos'
-        ],
-        ignore_names: [
-          'MVP FOMENTO MERCANTIL LTDA',
-        ],
-        green_limit: 1
-      },
-      evidence: {
-        names: [
-          'MVP FOMENTO MERCANTIL LTDA',
-          'BANCO SANTANDER BRASIL S/A',
-          'MVP FOMENTO MERCANTIL LTDA',
-          'BANCO SANTANDER BRASIL S/A',
-          'FOMENTO BANCO SECURITIZADORA',
-        ],
-        found: [
-          'BANCO SANTANDER BRASIL S/A',
-          'BANCO SANTANDER BRASIL S/A',
-          'FOMENTO BANCO SECURITIZADORA',
-        ],
-      },
-      flag: Risk::KeyIndicatorReport::YELLOW_FLAG
-    }
-
-    assert_equal expected, Risk::Referee::SerasaQueries.new(decorated_evidences).call
+    
+    assert_equal Risk::KeyIndicatorReport::YELLOW_FLAG, Risk::Referee::SerasaQueries.new(decorated_evidences).call[:flag]
   end
 
 end

@@ -271,8 +271,8 @@ class Operation < ApplicationRecord
     '%02d horas, %02d minutos e %02d segundos' % [hours, minutes, seconds]
   end
 
-  def present_key_indicator_report
-    @key_indicator_report ||= Risk::Presenter::KeyIndicatorReport.new(key_indicator_reports.last)
+  def present_key_indicator_reports
+    @key_indicator_reports ||= key_indicator_reports.map {|kir| Risk::Presenter::KeyIndicatorReport.new(kir) }
   end
 
   def create_document(seller, d4sign)
@@ -297,10 +297,7 @@ class Operation < ApplicationRecord
     self.document_ready!
   end
 
-  private
-
   def protection_rate
     installments.first.invoice.seller.protection
   end
-
 end

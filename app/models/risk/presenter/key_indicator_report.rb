@@ -22,6 +22,20 @@ module Risk
       end
 
       def conclusions
+        blank_conclusions = [{
+            name_with_cnpj: "",
+            cnpj: @key_indicator_report.cnpj,
+            flags: {
+              gray: 0,
+              green: 0,
+              yellow: 0,
+              red: 0
+            }
+          }
+        ]
+
+        return blank_conclusions unless @key_indicator_report.key_indicators.any?
+
         @key_indicator_report.key_indicators.map do |cnpj, key_indicators|
           count_flags = {
             name_with_cnpj: "#{company_name(cnpj)} - #{CNPJ.new(cnpj).formatted}",
