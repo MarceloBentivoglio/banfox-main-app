@@ -53,7 +53,7 @@ module Risk
         raise 'CNPJ has no historic' if historic.nil? || !historic.any?
 
         @key_indicator_report.evidences['serasa_api'][shortened_cnpj]['historic'] = historic
-        @key_indicator_report.key_indicators[cnpj] ||= {}
+        @key_indicator_report.key_indicators[shortened_cnpj] ||= {}
         @key_indicator_report.save
 
         @key_indicator_report.evidences
