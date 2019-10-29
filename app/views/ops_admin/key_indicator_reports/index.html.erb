@@ -24,6 +24,7 @@
                     <th>CNPJ Analisado</th>
                     <th>Indicadores</th>
                     <th>Status de Processamento</th>
+                    <th>Tipo</th>
                     <th>Link</th>
                   </tr>
                 </thead>
@@ -41,6 +42,9 @@
                       </td>
                       <td>
                         <%= kir.processed? ? 'Finalizado' : 'Pendente' %>
+                      </td>
+                      <td>
+                        <%= kir.kind %>
                       </td>
                       <td>
                         <%= link_to 'visualizar', ops_admin_key_indicator_report_path(kir)%>
