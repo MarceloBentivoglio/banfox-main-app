@@ -3,10 +3,9 @@ class Api::V1::BillingRulerResponsesController < Api::V1::BaseController
  
   def paid
     #TODO
-    #safe_params = params.permit()
-    seller = Seller.find(id)
-    installments = []
-    installment_ids.map {|id| installments << Installment.find(id)}
+    #billing_ruler = BillingRuler.find_by_code(parans[:code])
+    #seller = billing_ruler.seller
+    #installments = billing_ruler.installments
     message_text = ""
     installments.each do |i|
       message_text += "#{invoice_installment_partial_number_mask(i.invoice.number, i.number)} \n "

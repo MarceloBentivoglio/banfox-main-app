@@ -1,4 +1,7 @@
 class SellerMailer < ApplicationMailer
+  #TODO
+  #getting installments is actually something cron will do and just send to the mail method.
+  
   add_template_helper(InfoMasksHelper)
   default from: 'marcelo@banfox.com.br'
 
