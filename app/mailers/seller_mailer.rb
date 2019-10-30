@@ -26,30 +26,20 @@ class SellerMailer < ApplicationMailer
   end
 
   #billing ruler
-  def monthly_organization(user, seller)
+  def monthly_organization(user, seller, installments)
     user = user
     @seller = seller
-    @installments = []
-    seller.invoices.each do |invoice|
-      invoice.installments.each do |installment|
-        @installments << installment if installment.opened? && installment.due_date.month == Date.today.month
-      end
-    end
+    @installments = installments
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Organização Mensal Banfox'
       )
   end
 
-  def weekly_organization(user, seller)
+  def weekly_organization(user, seller, installments)
     user = user
     @seller = seller
-    @installments = []
-    seller.invoices.each do |invoice|
-      invoice.installments.each do |installment|
-        @installments << installment if installment.opened? && installment.due_date.between?(Date.today.beginning_of_week, Date.today.end_of_week)
-      end
-    end
+    @installments = installments
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Organização Semanal Banfox'
