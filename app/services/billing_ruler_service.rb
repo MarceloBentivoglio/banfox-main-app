@@ -80,11 +80,12 @@ class BillingRulerService
       billing_ruler.installments << i
     end
     billing_ruler.code = SecureRandom.uuid
+    billing_ruler.send(method + "!")
     billing_ruler.send_to_seller!
     installments_text = ""
     installments.each do |i|
       installments_text += "#{invoice_installment_partial_number_mask(i.invoice.number, i.number)} \n "
     end
-    SellerMailer.send(method, @seller.users.first, @seller, installments_text).deliver_now
+    SellerMailer.send(method, @seller.users.first, @seller, installments, installments_text, billing_ruler.code).deliver_now
   end
 end
