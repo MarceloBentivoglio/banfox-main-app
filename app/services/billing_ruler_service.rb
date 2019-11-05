@@ -16,6 +16,7 @@ class BillingRulerService
     sending_to_serasa_installments = []
     overdue_after_serasa_installments = []
     protest_installments = []
+    no_installments = true
     @sellers.each do |seller|
       if today == today.beginning_of_month
         SlackMessage.new("CPVKLBR3J", "<!channel> Enviados e-mails de Organização Mensal").send_now
@@ -45,21 +46,28 @@ class BillingRulerService
         case today - installment.due_date
         when 0..2
           due_date_installments << installment
+          no_installments = false
         when 3
           just_overdued_installments << installment
+          no_installments = false
         when 4..8
           overdue_installments << installment
+          no_installments = false
         when 9..18
           overdue_pre_serasa_installments << installment
+          no_installments = false
         when 19
           sending_to_serasa_installments << installment
+          no_installments = false
         when 22..28
           overdue_after_serasa_installments << installment
+          no_installments = false
         when 29
           protest_installments << installment
+          no_installments = false
         end
       end
-      
+
       billing_ruler_mails("due_date",             due_date_installments)             unless due_date_installments.empty?
       billing_ruler_mails("just_overdued",        just_overdued_installments)        unless just_overdued_installments.empty?
       billing_ruler_mails("overdue",              overdue_installments)              unless overdue_installments.empty?
@@ -67,6 +75,10 @@ class BillingRulerService
       billing_ruler_mails("sending_to_serasa",    sending_to_serasa_installments)    unless sending_to_serasa_installments.empty?
       billing_ruler_mails("overdue_after_serasa", overdue_after_serasa_installments) unless overdue_after_serasa_installments.empty?
       billing_ruler_mails("protest",              protest_installments)              unless protest_installments.empty?
+    end
+
+    if no_installments
+      SlackMessage.new("CPVKLBR3J", "<!channel> Nenhum e-mail foi enviado hoje.").send_now
     end
   end
 
