@@ -30,6 +30,18 @@ module Risk
         end
       end
 
+      def identify_part
+        sellers = Seller.where(cnpj: @key_indicator_report.cnpj)
+        if sellers.any?
+          return sellers.first
+        end
+
+        payers = Payer.where(cnpj: @key_indicator_report.cnpj)
+        return payers.first if payers.any?
+
+        nil
+      end
+
       def require_fetcher?
         self.class.fetchers.any?
       end
@@ -45,6 +57,7 @@ module Risk
                 @key_indicator_report.key_indicators[cnpj][key_indicator[:code]] = key_indicator
               end
             else
+              @key_indicator_report.key_indicators[cnpj] ||= {}
               @key_indicator_report.key_indicators[cnpj][referee.code] = referee.call
             end
           end

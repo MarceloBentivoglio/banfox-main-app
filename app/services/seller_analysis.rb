@@ -5,7 +5,7 @@ class SellerAnalysis
       seller.allowed_to_operate = false
       seller.forbad_to_operate_at = Time.current
       seller.auto_veredict_at = Time.current
-      seller.save!
+      seller.save
       SellerMailer.rejected(user, seller).deliver_now
 
       #We will not reject a seller for insufficient revenue, that's why check_revenue was removed
@@ -20,7 +20,8 @@ class SellerAnalysis
     seller.set_pre_approved_initial_standard_settings
     seller.auto_veredict_at = Time.current
     seller.allowed_to_operate = true
-    seller.save!
+    seller.active!
+    seller.save
     SellerMailer.welcome(user, seller).deliver_now
     formated_revenue = ActionController::Base.helpers.humanized_money_with_symbol seller.monthly_revenue
     SlackMessage.new("CC2NP6XHN",

@@ -74,14 +74,12 @@
 }
 
 .consent {
-  height: 400px;
+  height: 70vh;
   padding: 1em 2em;
   overflow: scroll;
-  box-shadow: 0 0 0 1px rgba(89,105,128,.1), 0 1px 3px 0 rgba(89,105,128,.1), 0 1px 2px 0 rgba(0,0,0,.05);
-  border-radius: 3px;
   background-color: #fff;
   p, h4, h5 {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
   }
 }

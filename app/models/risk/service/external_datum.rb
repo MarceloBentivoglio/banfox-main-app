@@ -6,14 +6,14 @@ module Risk
       def initialize(fetcher_class, key_indicator_report)
         @fetcher = fetcher_class.new(key_indicator_report)
         @key_indicator_report = key_indicator_report
-        @query = key_indicator_report.input_data
+        @query = JSON.generate({ cnpj: CNPJ.new(key_indicator_report.cnpj).stripped })
         @ttl = key_indicator_report.ttl
       end
 
       def call
         #TTL = Time to live
         external_data = Risk::ExternalDatum.where(source: @fetcher.name)
-                                           .where("query=?", JSON.generate(@query))
+                                           .where("query=?", @query)
                                            .where('ttl >= ?', DateTime.now)
                                            .order('created_at DESC')
                                            .to_a
@@ -37,6 +37,8 @@ module Risk
                                                          else
                                                            external_datum.raw_data
                                                          end
+
+        @key_indicator_report.save
         @key_indicator_report
       end
     end

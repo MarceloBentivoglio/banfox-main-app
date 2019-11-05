@@ -43,12 +43,8 @@ module CreditAnalysis
     end
 
     def fetch_rf_info(cpf)
-      Timeout::timeout(10) do
-        #TODO explicit this code
-        #TOOO BigBoostCpfInfo.fetch_information(cpf)
-        rf_cpf_info = CreditAnalysis::CPFInformationFetch::BigBoostCpfInfo.new(cpf)
-        return rf_cpf_info.treated_cpf_info
-      end
+      rf_cpf_info = CreditAnalysis::CPFInformationFetch::BigBoostCpfInfo.new(cpf)
+      return rf_cpf_info.treated_cpf_info
     end
 
     def split_rf_infos

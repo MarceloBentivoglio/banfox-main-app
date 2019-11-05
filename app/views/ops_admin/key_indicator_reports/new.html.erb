@@ -15,6 +15,7 @@
                 <option value="new_cnpj">Novo CNPJ</option>
               </select>
               <br />
+              <input type="hidden" name="operation_id">
               <%= f.submit "Analisar", class: "btn btn-rounded blue", id: "wrapper-loader-trigger"%>
             <% end %>
           </div>

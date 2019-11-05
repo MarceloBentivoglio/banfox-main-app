@@ -32,21 +32,30 @@ module Risk
       end
 
       def build_evidences_with_historic
-        cnpjs = @key_indicator_report.evidences['serasa_api'].keys
-        cnpjs.each do |cnpj|
-          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj)
-                                             .where.not(key_indicator_report_id: @key_indicator_report.id)
-                                             .includes(:key_indicator_report)
-                                             .order('created_at DESC')
+        begin
+          last_operation = Operation.joins(:installments, invoices: [:payer, :seller])
+                                    .where('installments.backoffice_status': ['approved' , 'deposited'])
+                                    .where('invoices.seller': identify_part&.id)
+                                    .where('sellers.id=? OR payers.id=?', identify_part&.id, identify_part&.id)
+                                    .last
 
-          historic = analyzed_parts.map do |analyzed_part|
-            analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api',cnpj)
-          end.select {|evidence| evidence.nil? }
-
-          @key_indicator_report.evidences['serasa_api'][cnpj]['historic'] = historic
-          @key_indicator_report.key_indicators[cnpj] ||= {}
-          @key_indicator_report.save
+        rescue Exception => e
+          raise "Recurrent Operation not found: #{e.message}"
         end
+        shortened_cnpj = @key_indicator_report.cnpj[0..7]
+
+        historic = last_operation&.key_indicator_reports
+                                 &.select {|kir| kir.cnpj == @key_indicator_report.cnpj }
+                                 &.first
+                                 &.evidences
+                                 &.dig('serasa_api', shortened_cnpj)
+                                 &.select {|evidence| !evidence.nil?}
+
+        raise 'CNPJ has no historic' if historic.nil? || !historic.any?
+
+        @key_indicator_report.evidences['serasa_api'][shortened_cnpj]['historic'] = historic
+        @key_indicator_report.key_indicators[shortened_cnpj] ||= {}
+        @key_indicator_report.save
 
         @key_indicator_report.evidences
       end

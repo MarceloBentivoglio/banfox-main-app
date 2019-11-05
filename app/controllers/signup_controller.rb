@@ -25,14 +25,17 @@ class SignupController < Devise::SessionsController
   end
 
   def update
-    seller = current_user.seller
-    seller.set_pre_approved_initial_standard_settings
-    seller.auto_veredict_at = Time.current
-    seller.allowed_to_operate = true
-    seller.update(cryptographed_seller_params)
-    seller.active!
-    seller.pre_approved!
-    redirect_to digital_certificate_finished_path
+    @seller = current_user.seller
+    @seller.set_pre_approved_initial_standard_settings
+    @seller.auto_veredict_at = Time.current
+    @seller.allowed_to_operate = true
+    @seller.update(cryptographed_seller_params)
+    @seller.active!
+    @seller.pre_approved!
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def digital_certificate_encrypted
