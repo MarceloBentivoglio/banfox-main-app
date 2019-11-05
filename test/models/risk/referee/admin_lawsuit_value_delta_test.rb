@@ -14,8 +14,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
+          historic: {
               negative_information: [
                 { 
                   total_value: 100,
@@ -23,7 +22,6 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
                 }
               ]
             }
-          ]
         },
         {
           cnpj: '0000000002',
@@ -35,8 +33,7 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
+          historic: {
               negative_information: [
                 {
                   total_value: 125,
@@ -44,7 +41,6 @@ class Risk::Referee::AdminLawsuitValueDeltaTest < ActiveSupport::TestCase
                 }
               ]
             }
-          ]
         }
       ]
     }
