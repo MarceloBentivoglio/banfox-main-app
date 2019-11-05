@@ -12,14 +12,12 @@ class Risk::Referee::PartnerPefinValueDeltaTest < ActiveSupport::TestCase
               total_value: 200
             }
           ],
-          historic: [
-            {
-              pefin: [
-                { total_value: 100
-              }
-              ]
+          historic: {
+            pefin: [
+              { total_value: 100
             }
-          ]
+            ]
+          }
         },
         {
           cpf: '0000000002',
@@ -29,13 +27,11 @@ class Risk::Referee::PartnerPefinValueDeltaTest < ActiveSupport::TestCase
               total_value: 100
             }
           ],
-          historic: [
-            {
-              pefin: [
-                total_value: 125
-              ]
-            }
-          ]
+          historic: {
+            pefin: [
+              total_value: 125
+            ]
+          }
         }
       ]
     }

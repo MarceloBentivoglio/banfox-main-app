@@ -4,8 +4,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      negative_information: [],
-      historic: []
+      negative_information: []
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -17,11 +16,9 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
   test '.assert should create green flag when the historic total_value is 0 and the entity is stable' do
     evidences = {
       negative_information: [],
-      historic: [
-        {
+      historic: {
           negative_information: []
         }
-      ]
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -38,11 +35,9 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
           type: 3
         }
       ],
-      historic: [
-        {
+      historic: {
           negative_information: []
         }
-      ]
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -61,8 +56,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
           :type=>"03 "
         }
       ],
-      historic: [
-        {
+      historic: {
           negative_information: [
             {
                 :currency=>"R$ ",
@@ -71,7 +65,6 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
             }
           ]
         }
-      ]
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -88,8 +81,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
           type: 3
         }
       ],
-      historic: [
-        {
+      historic: {
           negative_information: [
             {
               total_value: 1000,
@@ -97,7 +89,6 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
             }
           ]
         }
-      ]
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -114,8 +105,7 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
           type: 3
         }
       ],
-      historic: [
-        {
+      historic: {
           negative_information: [
             {
               total_value: 1000,
@@ -123,7 +113,6 @@ class Risk::Referee::ProtestValueDeltaTest < ActiveSupport::TestCase
             }
           ]
         }
-      ]
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)

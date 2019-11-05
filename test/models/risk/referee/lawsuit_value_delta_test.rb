@@ -4,8 +4,7 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      negative_information: [],
-      historic: []
+      negative_information: []
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -17,11 +16,9 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
   test '.assert should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
       negative_information: [],
-      historic: [
-        {
-          negative_information: []
-        }
-      ]
+      historic: {
+        negative_information: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -38,11 +35,9 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
           type: 4
         }
       ],
-      historic: [
-        {
-          negative_information: []
-        }
-      ]
+      historic: {
+        negative_information: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -59,16 +54,14 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
           type: 4
         }
       ],
-      historic: [
-        {
-          negative_information: [
-            {
-              total_value: 1100,
-              type: 4
-            }
-          ]
-        }
-      ]
+      historic: {
+        negative_information: [
+          {
+            total_value: 1100,
+            type: 4
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -78,23 +71,21 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
   end
 
   test '.assert should create a yellow flag' do
-   evidences = {
+    evidences = {
       negative_information: [
         {
           total_value: 1500,
           type: 4
         }
       ],
-      historic: [
-        {
-          negative_information: [
-            {
-              total_value: 1000,
-              type: 4
-            }
-          ]
-        }
-      ]
+      historic: {
+        negative_information: [
+          {
+            total_value: 1000,
+            type: 4
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -111,16 +102,14 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
           type: 4,
         }
       ],
-      historic: [
-        {
-          negative_information: [
-            {
-              total_value: 1000,
-              type: 4
-            }
-          ]
-        }
-      ]
+      historic: {
+        negative_information: [
+          {
+            total_value: 1000,
+            type: 4
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -136,15 +125,13 @@ class Risk::Referee::LawsuitValueDeltaTest < ActiveSupport::TestCase
           total_value: "0000000000000"
         }
       ],
-      historic: [
-        {
-          negative_information: [
-            {
-              total_value: "0000000000000"
-            }
-          ]
-        }
-      ]
+      historic: {
+        negative_information: [
+          {
+            total_value: "0000000000000"
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
