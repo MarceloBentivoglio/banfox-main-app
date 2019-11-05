@@ -36,7 +36,7 @@ class BillingRulerService
       end
 
       seller.invoices.each do |invoice|
-        invoice.installments.each do |installent|
+        invoice.installments.each do |installment|
           installments << installment if installment.opened? && installment.due_date <= today
         end
       end
