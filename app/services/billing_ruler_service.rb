@@ -97,6 +97,6 @@ class BillingRulerService
     installments.each do |i|
       installments_text += "#{i.invoice.number}/#{i.number} \n "
     end
-    SellerMailer.send(method, @seller.users.first, @seller, installments, installments_text, billing_ruler.code).deliver_now
+    SellerMailer.send(method, seller.users.first, seller, installments, installments_text, billing_ruler.code).deliver_now
   end
 end
