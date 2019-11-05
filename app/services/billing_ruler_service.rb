@@ -1,5 +1,4 @@
 class BillingRulerService
-  add_template_helper(InfoMasksHelper)
 
   def initialize(sellers)
     @sellers = sellers
@@ -84,7 +83,7 @@ class BillingRulerService
     billing_ruler.send_to_seller!
     installments_text = ""
     installments.each do |i|
-      installments_text += "#{invoice_installment_partial_number_mask(i.invoice.number, i.number)} \n "
+      installments_text += "#{i.invoice.number}/#{i.number} \n "
     end
     SellerMailer.send(method, @seller.users.first, @seller, installments, installments_text, billing_ruler.code).deliver_now
   end
