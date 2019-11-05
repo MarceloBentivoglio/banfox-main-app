@@ -22,24 +22,32 @@ module Risk
                    Risk::Referee::AdminBankruptcyParticipation
 
       def build_evidences
-        cnpjs = @key_indicator_report.evidences['serasa_api'].keys
-        cnpjs.each do |cnpj|
-          analyzed_parts = Risk::AnalyzedPart.where(cnpj: cnpj)
-            .where.not(key_indicator_report_id: @key_indicator_report.id)
-            .includes(:key_indicator_report)
-            .order('created_at DESC')
+        begin
+          last_operation = Operation.joins(:installments, invoices: [:payer, :seller])
+                                    .where('installments.backoffice_status': ['approved' , 'deposited'])
+                                    .where('invoices.seller': identify_part&.id)
+                                    .last
 
-          historic = analyzed_parts.map do |analyzed_part|
-            analyzed_part&.key_indicator_report&.evidences&.dig('serasa_api', cnpj)
-          end.select {|evidence| !evidence.nil? }
-
-          build_partner_historic(
-            @key_indicator_report&.evidences&.dig('serasa_api', cnpj, 'partner_data'),
-            historic
-          )
-          @key_indicator_report.key_indicators[cnpj] ||= {}
-          @key_indicator_report.save
+        rescue Exception => e
+          raise 'Recurrent Operation not found'
         end
+        shortened_cnpj = @key_indicator_report.cnpj[0..7]
+
+        historic = last_operation&.key_indicator_reports
+                                 &.select {|kir| kir.cnpj == @key_indicator_report.cnpj }
+                                 &.first
+                                 &.evidences
+                                 &.dig('serasa_api', shortened_cnpj)
+                                 &.select {|evidence| !evidence.nil?}
+
+        raise 'CNPJ has no historic' if historic.nil? || !historic.any?
+
+        build_partner_historic(
+          @key_indicator_report&.evidences&.dig('serasa_api', shortened_cnpj, 'partner_data'),
+          historic
+        )
+        @key_indicator_report.key_indicators[shortened_cnpj] ||= {}
+        @key_indicator_report.save
 
         @key_indicator_report.evidences
       end
@@ -48,18 +56,15 @@ module Risk
         return if current_partner_data.nil?
         historic = {}
 
-        historic_data.each do |company|
-          company['partner_data'].each do |partner|
-            historic[partner['cpf']] ||= []
-            historic[partner['cpf']] << partner
-          end
+        historic_data['partner_data'].each do |partner|
+          historic[partner['cpf']] = partner
         end
 
         current_partner_data.each do |current_partner|
           if historic[current_partner['cpf']]
             current_partner['historic'] = historic[current_partner['cpf']]
           else
-            current_partner['historic'] = []
+            current_partner['historic'] = {}
           end
         end
 

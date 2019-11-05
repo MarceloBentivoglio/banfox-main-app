@@ -31,33 +31,32 @@
       </div>
     </div>
     <div class="summary-column summary-w-padding-left">
-      <% if operation.key_indicator_reports.any? %>
         <strong>Análise de crédito</strong>
-        <% operation.present_key_indicator_report&.conclusions.each do |key_indicators| %>
-          <span><%= link_to key_indicators[:name_with_cnpj], ops_admin_key_indicator_report_path(operation.present_key_indicator_report) %></span>
-          <div>
-            <div class="risk-flag gray-flag">
-              <span> <%= key_indicators[:flags][:gray] %></span>
+        <% operation.present_key_indicator_reports.each do |kir| %>
+          <% kir.conclusions.each do |key_indicators| %>
+            <span><%= link_to "#{key_indicators[:name_with_cnpj]} #{kir.processing_status}", ops_admin_key_indicator_report_path(kir) %></span>
+            <div>
+              <div class="risk-flag gray-flag">
+                <span> <%= key_indicators[:flags][:gray] %></span>
+              </div>
+              <div class="risk-flag green-flag">
+                <span> <%= key_indicators[:flags][:green] %></span>
+              </div>
+              <div class="risk-flag yellow-flag">
+                <span> <%= key_indicators[:flags][:yellow] %></span>
+              </div>
+              <div class="risk-flag red-flag">
+                <span> <%= key_indicators[:flags][:red] %></span>
+              </div>
             </div>
-            <div class="risk-flag green-flag">
-              <span> <%= key_indicators[:flags][:green] %></span>
-            </div>
-            <div class="risk-flag yellow-flag">
-              <span> <%= key_indicators[:flags][:yellow] %></span>
-            </div>
-            <div class="risk-flag red-flag">
-              <span> <%= key_indicators[:flags][:red] %></span>
-            </div>
-          </div>
+          <% end %>
         <% end %>
-      <% else %>
         <%= link_to 'Analisar Risco da Operação',
           ops_admin_key_indicator_reports_path(operation_id: operation.id, kind: 'recurrent_operation'),
           method: :create,
           id: "wrapper-loader-trigger"
         %>
         <%= render partial: "shared/loaders/wrapper_loader" %>
-      <% end %>
     </div>
 
   </div>

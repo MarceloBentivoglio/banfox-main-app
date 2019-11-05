@@ -4,8 +4,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is no historic' do
     evidences = {
-      refin: [],
-      historic: []
+      refin: []
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -17,11 +16,9 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
   test '.assert should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
       refin: [],
-      historic: [
-        {
-          refin: []
-        }
-      ]
+      historic: {
+        refin: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -38,11 +35,9 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           date: Date.new(2019,1,21)
         }
       ],
-      historic: [
-        {
-          refin: []
-        }
-      ]
+      historic: {
+        refin: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -59,18 +54,15 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           date: Date.new(2019,1,21)
         }
       ],
-      historic: [
-        {
-          refin: [
-            {
-              quantity: 10,
-              total_value: 1000,
-              date: Date.new(2018,12,21)
-            }
-
-          ]
-        }
-      ]
+      historic: {
+        refin: [
+          {
+            quantity: 10,
+            total_value: 1000,
+            date: Date.new(2018,12,21)
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -88,7 +80,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           date: Date.new(2019,1,21)
         }
       ],
-      historic: [
+      historic: {
         refin: [
           {
             quantity: 10,
@@ -96,7 +88,7 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
             date: Date.new(2018,12,21)
           }
         ],
-      ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -114,17 +106,15 @@ class Risk::Referee::RefinValueDeltaTest < ActiveSupport::TestCase
           date: Date.new(2019,1,21)
         }
       ],
-      historic: [
-        {
-          refin: [
-            {
-              quantity: 9,
-              total_value: 1000,
-              date: Date.new(2018,12,21)
-            }
-          ]
-        }
-      ]
+      historic: {
+        refin: [
+          {
+            quantity: 9,
+            total_value: 1000,
+            date: Date.new(2018,12,21)
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)

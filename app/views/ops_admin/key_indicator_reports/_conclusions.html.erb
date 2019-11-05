@@ -1,0 +1,17 @@
+<% Risk::Presenter::KeyIndicatorReport.new(key_indicator_report).conclusions.each do |conclusion| %>
+  <div>
+    <div class="risk-flag gray-flag">
+      <span> <%= conclusion[:flags][:gray] %></span>
+    </div>
+    <div class="risk-flag green-flag">
+      <span> <%= conclusion[:flags][:green] %></span>
+    </div>
+    <div class="risk-flag yellow-flag">
+      <span> <%= conclusion[:flags][:yellow] %></span>
+    </div>
+    <div class="risk-flag red-flag">
+      <span> <%= conclusion[:flags][:red] %></span>
+    </div>
+  </div>
+<% end %>
+

@@ -33,9 +33,7 @@ module Risk
       end
 
       def call
-        @key_indicator_report.input_data.each do |cnpj|
-          http_call({}, target(cnpj), nil)
-        end
+        http_call({}, target(@key_indicator_report.cnpj), nil)
 
         self
       end

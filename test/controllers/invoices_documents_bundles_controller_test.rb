@@ -31,7 +31,7 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
 
     stub_error = [RuntimeError.new("Invoice do not belongs to seller")]
 
-    CreateInvoicesFromDocuments.any_instance.stubs(:invoices).returns(stub_error)
+    DataParsing::CreateInvoicesFromDocuments.any_instance.stubs(:invoices).returns(stub_error)
 
     post invoices_documents_bundles_path
 
@@ -50,7 +50,7 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
 
     stub_error = [RuntimeError.new("File has not a valid type: xml, PDF")]
 
-    CreateInvoicesFromDocuments.any_instance.stubs(:invoices).returns(stub_error)
+    DataParsing::CreateInvoicesFromDocuments.any_instance.stubs(:invoices).returns(stub_error)
 
     post invoices_documents_bundles_path
 
@@ -71,7 +71,7 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
     invoice_mock.expects(:doc_parser_data?).returns(false)
     invoice_mock.expects(:document).returns(document_mock)
 
-    CreateInvoicesFromDocuments.any_instance.expects(:invoices).returns([invoice_mock])
+    DataParsing::CreateInvoicesFromDocuments.any_instance.expects(:invoices).returns([invoice_mock])
 
     post invoices_documents_bundles_path
 
@@ -91,7 +91,7 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
 
     InvoicesDocumentsBundlesController.any_instance.stubs(:params).returns(mocked_params)
 
-    CreateInvoicesFromDocuments.stubs(:new).with([xml_stub], @seller).returns(mocked_return)
+    DataParsing::CreateInvoicesFromDocuments.stubs(:new).with([xml_stub], @seller).returns(mocked_return)
 
     post invoices_documents_bundles_path
 
@@ -111,7 +111,7 @@ class InvoicesDocumentsBundlesControllerTest < ActionDispatch::IntegrationTest
 
     InvoicesDocumentsBundlesController.any_instance.stubs(:params).returns(mocked_params)
 
-    CreateInvoicesFromDocuments.stubs(:new).with([xml_stub], @seller).returns(mocked_return)
+    DataParsing::CreateInvoicesFromDocuments.stubs(:new).with([xml_stub], @seller).returns(mocked_return)
 
     post invoices_documents_bundles_path
 

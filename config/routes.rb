@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
     namespace :ops_admin do
-      resources :key_indicator_reports, only: [:new, :create, :show]
+      resources :key_indicator_reports
+      resources :key_indicator_report_requests
       resources :installments, only: [] do
         member do
           get 'approve'

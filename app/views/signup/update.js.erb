@@ -1,0 +1,5 @@
+<% if @seller.digital_certificate_base64.blank? %>
+    document.location.replace("/sellers/dashboard")
+<% else %>
+    changeTimeline(timelineComponent, timelineComponent.date[2])
+<% end %>

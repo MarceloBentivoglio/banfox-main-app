@@ -1,0 +1,65 @@
+<div class="wrapper-page-wo-subnavbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+          title: "Relatório de Indicadores de Risco",
+          optional_button: "",
+        } %>
+
+        <div class="card-w-table-inside">
+          <div class="card-w-table-inside-header">
+            <div class="header-column">
+              <span>Análise: </span>
+            </div>
+            <div class="header-column">
+            </div>
+          </div>
+          <div class="card-w-table-inside-summary">
+            <div class="summary-column">
+              <table class="table table-striped table_key_indicator_report">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>CNPJ Analisado</th>
+                    <th>Indicadores</th>
+                    <th>Status de Processamento</th>
+                    <th>Tipo</th>
+                    <th>Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @key_indicator_reports.each do |kir| %>
+                    <tr>
+                      <td>
+                        <%= kir.id %>
+                      </td>
+                      <td>
+                        <%= kir.cnpj %>
+                      </td>
+                      <td>
+                        <%= render partial: "conclusions", locals: { key_indicator_report: kir }%>
+                      </td>
+                      <td>
+                        <%= kir.processed? ? 'Finalizado' : 'Pendente' %>
+                      </td>
+                      <td>
+                        <%= kir.kind %>
+                      </td>
+                      <td>
+                        <%= link_to 'visualizar', ops_admin_key_indicator_report_path(kir)%>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+              <%= will_paginate @key_indicator_reports %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/loaders/wrapper_loader" %>

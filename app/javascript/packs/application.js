@@ -20,6 +20,7 @@ import { enablePopover } from "../components/popover";
 import { enableTooltip } from "../components/tooltip";
 import { activateWrapperLoader } from "../components/wrapperLoader";
 import { activatePageLoader } from "../components/pageLoader";
+import { consentModal } from "../components/consent";
 
 selectTagOnClick();
 maskCpfCnpjCurrency();
@@ -43,3 +44,4 @@ enablePopover();
 enableTooltip();
 activateWrapperLoader();
 activatePageLoader();
+consentModal();

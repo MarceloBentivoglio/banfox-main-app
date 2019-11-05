@@ -34,7 +34,7 @@ class D4Sign
     headers = {
       "Content-Type": "application/json"
     }
-    
+
     @signers << {
       "email": seller.email_partner,
       "act": "13",
@@ -84,10 +84,10 @@ class D4Sign
     }
 
     body = {
-    "message": "Bom dia. Clique no link abaixo para ser redirecionado e finalizar o processo.",
-    "skip_email": "1",
-    "workflow": "0",
-    "tokenAPI": "#{D4Sign::TOKEN}"
+      "message": "Bom dia. Clique no link abaixo para ser redirecionado e finalizar o processo.",
+      "skip_email": "1",
+      "workflow": "0",
+      "tokenAPI": "#{D4Sign::TOKEN}"
     }.to_json
 
     begin
