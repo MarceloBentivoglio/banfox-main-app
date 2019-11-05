@@ -68,13 +68,13 @@ class BillingRulerService
         end
       end
 
-      billing_ruler_mails("due_date",             due_date_installments)             unless due_date_installments.empty?
-      billing_ruler_mails("just_overdued",        just_overdued_installments)        unless just_overdued_installments.empty?
-      billing_ruler_mails("overdue",              overdue_installments)              unless overdue_installments.empty?
-      billing_ruler_mails("overdue_pre_serasa",   overdue_pre_serasa_installments)   unless overdue_pre_serasa_installments.empty?
-      billing_ruler_mails("sending_to_serasa",    sending_to_serasa_installments)    unless sending_to_serasa_installments.empty?
-      billing_ruler_mails("overdue_after_serasa", overdue_after_serasa_installments) unless overdue_after_serasa_installments.empty?
-      billing_ruler_mails("protest",              protest_installments)              unless protest_installments.empty?
+      billing_ruler_mails("due_date", due_date_installments, seller) unless due_date_installments.empty?
+      billing_ruler_mails("just_overdued", just_overdued_installments, seller) unless just_overdued_installments.empty?
+      billing_ruler_mails("overdue", overdue_installments, seller) unless overdue_installments.empty?
+      billing_ruler_mails("overdue_pre_serasa", overdue_pre_serasa_installments, seller) unless overdue_pre_serasa_installments.empty?
+      billing_ruler_mails("sending_to_serasa", sending_to_serasa_installments, seller) unless sending_to_serasa_installments.empty?
+      billing_ruler_mails("overdue_after_serasa", overdue_after_serasa_installments, seller) unless overdue_after_serasa_installments.empty?
+      billing_ruler_mails("protest", protest_installments, seller) unless protest_installments.empty?
     end
 
     if no_installments
@@ -84,7 +84,7 @@ class BillingRulerService
 
   private
 
-  def billing_ruler_mails(method, installments)
+  def billing_ruler_mails(method, installments, seller)
     billing_ruler = BillingRuler.new
     billing_ruler.seller = seller
     installments.each do |i|
