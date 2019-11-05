@@ -1,0 +1,3 @@
+daily_check:
+  cron: "0 9 * * *"
+  class: "BillingRulerCron"
