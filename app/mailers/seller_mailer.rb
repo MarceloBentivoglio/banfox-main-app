@@ -43,14 +43,11 @@ class SellerMailer < ApplicationMailer
       )
   end
 
-  def due_date(user, seller, installments, installments_text, billing_ruler_code)
+  def due_date(user, seller, installments, billing_ruler_code)
     user = user
     @seller = seller
     @installments = installments
     @response_url = "#{ENV.fetch('APPHOST')}/api/v1/billing_ruler_responses/#{billing_ruler_code}"
-    SlackMessage.new("CPM2L0ESD", 
-                     "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} 
-                     o e-mail de aviso que os títulos abaixo vencem hoje: \n #{installments_text}").send_now
     mail(
       to: set_recipients(user.email, @seller.email_partner),
       subject: 'Títulos Banfox vencendo hoje.'

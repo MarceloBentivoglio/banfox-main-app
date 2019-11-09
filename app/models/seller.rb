@@ -361,6 +361,26 @@ class Seller < ApplicationRecord
     end
   end
 
+  def monthly_organization_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.month == Date.today.month
+      end
+    end
+    installments
+  end
+
+  def weekly_organization_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today.beginning_of_week, Date.today.end_of_week)
+      end
+    end
+    installments
+  end
+
   private
   def async_update_spreadsheet
     SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)

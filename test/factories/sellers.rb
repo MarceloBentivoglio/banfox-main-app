@@ -37,7 +37,7 @@ FactoryBot.define do
     rf_sit_cad_partner { "regular" }
     birth_date_partner { "11121952" }
     mobile_partner { "11998308090" }
-    email_partner { "joaquim@banfox.com.br" }
+    email_partner { "furucho@banfox.com.br" }
     consent { true }
     fator { 0.45e-1 }
     advalorem { 0.5e-2 }
@@ -51,5 +51,14 @@ FactoryBot.define do
     created_at { "2019-07-16 15:36:16" }
     updated_at { "2019-07-16 15:36:16" }
     tax_regime { nil }
+
+    trait :seller_2 do
+      full_name { "Seller Dois" }
+      cpf { "08323588783" }
+      cnpj { "55843961000150" }
+      full_name_partner { "Seller Dois" }
+      email_partner { "seller2@banfox.com.br" }
+      cpf_partner { "08323588783" }
+    end
   end
 end
