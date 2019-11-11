@@ -53,15 +53,51 @@ class BillingRulerService
   end
 
   def due_date_mail_sender(seller)
-    installments = []
     installments = seller.due_date_eligible_installments
-    unless installments.empty?
-      slack_text = installments_slack_text(installments)
-      billing_ruler = billing_ruler_mails("due_date", installments, seller)
-      SlackMessage.new("CPM2L0ESD", 
-                       "<!channel> Enviado ao cliente #{@seller.company_name&.titleize} o e-mail de aviso que os títulos abaixo vencem hoje: \n #{slack_text}").send_now
-      send_mails("due_date", seller, installments, billing_ruler.code)
-    end
+    slack_text = "vencem hoje"
+    process_billing_ruler("due_date", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def just_overdued_mail_sender(seller)
+    installments = seller.just_overdued_eligible_installments
+    slack_text = "acabaram de vencer"
+    process_billing_ruler("just_overdued", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def overdue_mail_sender(seller)
+    installments = seller.overdue_eligible_installments
+    slack_text = "estão vencidos(4 ~ 9 dias após data de vencimento)"
+    process_billing_ruler("overdue", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def overdue_pre_serasa_mail_sender(seller)
+    installments = seller.overdue_pre_serasa_eligible_installments
+    slack_text = "estão vencidos(11 ~ 19 dias após data de vencimento)"
+    process_billing_ruler("overdue_pre_serasa", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def sending_to_serasa_mail_sender(seller)
+    installments = seller.sending_to_serasa_eligible_installments
+    slack_text = "serão negativados"
+    process_billing_ruler("sending_to_serasa", seller, installments, slack_text) unless installments.empty?
+  end
+     
+  def overdue_after_serasa_mail_sender(seller)
+    installments = seller.overdue_after_serasa_eligible_installments
+    slack_text = "estão vencidos(21 ~ 29 dias após data de vencimento)"
+    process_billing_ruler("overdue_after_serasa", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def protest_mail_sender(seller)
+    installments = seller.protest_eligible_installments
+    slack_text = "serão protestados"
+    process_billing_ruler("protest", seller, installments, slack_text) unless installments.empty?
+  end
+
+  def process_billing_ruler(method, seller, installments, slack_text)
+    billing_ruler = billing_ruler_mails(method, installments, seller)
+    send_mails(method, seller, installments, billing_ruler.code)
+    billing_ruler_slack(installments, seller, slack_text)
   end
 
   def send_mails(method, seller, installments, billing_code = nil)
@@ -72,12 +108,13 @@ class BillingRulerService
     end
   end
 
-  def installments_slack_text(installments)
+  def billing_ruler_slack(installments, seller, slack_text)
     installments_text = ""
     installments.each do |i|
       installments_text += "#{i.invoice.number}/#{i.number} \n "
     end
-    installments_text
+    SlackMessage.new("CPM2L0ESD", 
+                     "<!channel> Enviado ao cliente #{seller.company_name&.titleize} o e-mail de aviso que os títulos abaixo #{slack_text}: \n #{installments_text}").send_now
   end
 
   def billing_ruler_mails(method, installments, seller)
@@ -89,74 +126,4 @@ class BillingRulerService
     billing_ruler.send_to_seller!
     billing_ruler
   end
-
-=begin
-  def send_mails
-    today = Date.today
-    installments = []
-    week_installments = []
-    due_date_installments = []
-    just_overdued_installments = []
-    overdue_installments = []
-    overdue_pre_serasa_installments = []
-    sending_to_serasa_installments = []
-    overdue_after_serasa_installments = []
-    protest_installments = []
-    no_installments = true
-    @sellers.each do |seller|
-        SlackMessage.new("CPVKLBR3J", "<!channel> Enviados e-mails de Organização Semanal").send_now
-        seller.invoices.each do |invoice|
-          invoice.installments.each do |installment|
-            week_installments << installment if installment.opened? && installment.due_date.between?(Date.today.beginning_of_week, Date.today.end_of_week)
-          end
-        end
-        SellerMailer.weekly_organization(seller.users.first, seller, week_installments).deliver_now
-
-      seller.invoices.each do |invoice|
-        invoice.installments.each do |installment|
-          installments << installment if installment.opened? && installment.due_date <= today
-        end
-      end
-
-      installments.each do |installment|
-        case today - installment.due_date
-        when 0..2
-          due_date_installments << installment
-          no_installments = false
-        when 3
-          just_overdued_installments << installment
-          no_installments = false
-        when 4..8
-          overdue_installments << installment
-          no_installments = false
-        when 9..18
-          overdue_pre_serasa_installments << installment
-          no_installments = false
-        when 19
-          sending_to_serasa_installments << installment
-          no_installments = false
-        when 22..28
-          overdue_after_serasa_installments << installment
-          no_installments = false
-        when 29
-          protest_installments << installment
-          no_installments = false
-        end
-      end
-
-      billing_ruler_mails("due_date", due_date_installments, seller) unless due_date_installments.empty?
-      billing_ruler_mails("just_overdued", just_overdued_installments, seller) unless just_overdued_installments.empty?
-      billing_ruler_mails("overdue", overdue_installments, seller) unless overdue_installments.empty?
-      billing_ruler_mails("overdue_pre_serasa", overdue_pre_serasa_installments, seller) unless overdue_pre_serasa_installments.empty?
-      billing_ruler_mails("sending_to_serasa", sending_to_serasa_installments, seller) unless sending_to_serasa_installments.empty?
-      billing_ruler_mails("overdue_after_serasa", overdue_after_serasa_installments, seller) unless overdue_after_serasa_installments.empty?
-      billing_ruler_mails("protest", protest_installments, seller) unless protest_installments.empty?
-    end
-
-    if no_installments
-      SlackMessage.new("CPVKLBR3J", "<!channel> Nenhum e-mail foi enviado hoje.").send_now
-    end
-  end
-=end
-
 end
