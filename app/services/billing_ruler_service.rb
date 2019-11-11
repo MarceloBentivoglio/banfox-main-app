@@ -19,7 +19,6 @@ class BillingRulerService
   def monthly_organization_mail_sender
     no_installments = true
     @sellers.each do |seller|
-      installments = []
       installments = seller.monthly_organization_eligible_installments
       unless installments.empty?
         no_installments = false
@@ -37,7 +36,6 @@ class BillingRulerService
   def weekly_organization_mail_sender
     no_installments = true
     @sellers.each do |seller|
-      installments = []
       installments = seller.weekly_organization_eligible_installments
       unless installments.empty?
         no_installments = false
@@ -72,7 +70,7 @@ class BillingRulerService
 
   def overdue_pre_serasa_mail_sender(seller)
     installments = seller.overdue_pre_serasa_eligible_installments
-    slack_text = "estão vencidos(11 ~ 19 dias após data de vencimento)"
+    slack_text = "estão vencidos(10 ~ 19 dias após data de vencimento)"
     process_billing_ruler("overdue_pre_serasa", seller, installments, slack_text) unless installments.empty?
   end
 

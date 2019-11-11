@@ -1,11 +1,11 @@
 daily_check:
-  cron: "0 12 * * *"
+  cron: "0 13 * * 1-5"
   class: "BillingRulerCron"
 
 monthly_organization_check:
-  cron: "0 12 1 * *"
+  cron: "0 13 1 * *"
   class: "MonthlyOrganizationCron"
 
-weekly_organization_check:
-  cron: "0 12 * * 0"
-  class: "WeeklyOrganizationCron"
+#weekly_organization_check:
+#  cron: "0 13 * * 1"
+#  class: "WeeklyOrganizationCron"

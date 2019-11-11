@@ -11,12 +11,15 @@ class Api::V1::BillingRulerResponsesController < ActionController::API
       redirect_to billing_ruler_not_found_path
     else
       message_text = ""
-      billing_ruler&.installments.each do |i|
-        message_text += "#{i.invoice.number}/#{i.number} \n "
+      installments = billing_ruler.installments
+      unless installments.nil?
+        installments.each do |i|
+          message_text += "#{i.invoice&.number}/#{i.number} \n "
+        end
       end
       billing_ruler.paid!
       SlackMessage.new("CPM2L0ESD", 
-                       "<!channel> O cliente #{billing_ruler&.seller&.full_name} informou que já pagou os títulos: \n #{message_text}").send_now
+                       "<!channel> O cliente #{billing_ruler.seller&.full_name} informou que já pagou os títulos: \n #{message_text}").send_now
       redirect_to billing_ruler_paid_path
     end
   end
@@ -30,12 +33,15 @@ class Api::V1::BillingRulerResponsesController < ActionController::API
       redirect_to billing_ruler_not_found_path
     else
       message_text = ""
-      billing_ruler&.installments&.each do |i|
-        message_text += "#{i.invoice.number}/#{i.number} \n "
+      installments = billing_ruler.installments
+      unless installments.nil?
+        installments.each do |i|
+          message_text += "#{i.invoice&.number}/#{i.number} \n "
+        end
       end
       billing_ruler.pending!
       SlackMessage.new("CPM2L0ESD", 
-                       "<!channel> O cliente #{billing_ruler&.seller&.full_name} informou que não pagou os títulos: \n #{message_text}").send_now
+                       "<!channel> O cliente #{billing_ruler.seller&.full_name} informou que não pagou os títulos: \n #{message_text}").send_now
       redirect_to billing_ruler_pending_path
     end
   end

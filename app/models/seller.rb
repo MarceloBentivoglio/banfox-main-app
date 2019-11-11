@@ -395,7 +395,11 @@ class Seller < ApplicationRecord
     installments = []
     invoices&.each do |invoice|
       invoice&.installments&.each do |installment|
-        installments << installment if installment.opened? && installment.due_date == Date.today - 4
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today - 6, Date.today - 4)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 4
+        end
       end
     end
     installments
@@ -425,7 +429,11 @@ class Seller < ApplicationRecord
     installments = []
     invoices&.each do |invoice|
       invoice&.installments&.each do |installment|
-        installments << installment if installment.opened? && installment.due_date == Date.today - 20
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today - 22, Date.today - 20)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 20
+        end
       end
     end
     installments
@@ -445,7 +453,11 @@ class Seller < ApplicationRecord
     installments = []
     invoices&.each do |invoice|
       invoice&.installments&.each do |installment|
-        installments << installment if installment.opened? && installment.due_date == Date.today - 30
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today = 32,  Date.today - 30)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 30
+        end
       end
     end
     installments
