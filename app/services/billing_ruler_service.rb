@@ -4,14 +4,44 @@ class BillingRulerService
     @sellers = sellers
   end
 
-  def daily_billing_mail_checker
+  def due_date_mail_checker
     @sellers.each do |seller|
       due_date_mail_sender(seller)
+    end
+  end
+
+  def just_overdued_mail_checker
+    @sellers.each do |seller|
       just_overdued_mail_sender(seller)
+    end
+  end
+
+  def overdue_mail_checker
+    @sellers.each do |seller|
       overdue_mail_sender(seller)
+    end
+  end
+
+  def overdue_pre_serasa_mail_checker
+    @sellers.each do |seller|
       overdue_pre_serasa_mail_sender(seller)
+    end
+  end
+
+  def sending_to_serasa_mail_checker
+    @sellers.each do |seller|
       sending_to_serasa_mail_sender(seller)
+    end
+  end
+
+  def overdue_after_serasa_mail_checker
+    @sellers.each do |seller|
       overdue_after_serasa_mail_sender(seller)
+    end
+  end
+
+  def protest_mail_checker
+    @sellers.each do |seller|
       protest_mail_sender(seller)
     end
   end
@@ -27,9 +57,9 @@ class BillingRulerService
     end
 
     if no_installments
-      SlackMessage.new("CPVKLBR3J", "<!channel> Nenhum e-mail de Organização Mensal foi enviado").send_now
+      SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Mensal foi enviado").send_now
     else
-      SlackMessage.new("CPVKLBR3J", "<!channel> Enviados e-mails de Organização Mensal").send_now
+      SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Mensal").send_now
     end
   end
 
@@ -44,9 +74,9 @@ class BillingRulerService
     end
 
     if no_installments
-      SlackMessage.new("CPVKLBR3J", "<!channel> Nenhum e-mail de Organização Semanal foi enviado").send_now
+      SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Semanal foi enviado").send_now
     else
-      SlackMessage.new("CPVKLBR3J", "<!channel> Enviados e-mails de Organização Semanal").send_now
+      SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Semanal").send_now
     end
   end
 

@@ -1,11 +1,11 @@
-class MonthlyOrganizationCron
+class JustOverduedCron
   include Sidekiq::Worker
   sidekiq_options retry: false
 
   def perform()
     sellers = Seller.where(validation_status: "active", allowed_to_operate: true)
     billing_ruler_service = BillingRulerService.new(sellers)
-    billing_ruler_service.monthly_organization_mail_sender
-    SlackMessage.new("CPVKLBR3J", "<!channel> Olá! MonthlyOrganizationCron completou o seu processo.").send_now
+    billing_ruler_service.just_overdued_mail_checker
+    SlackMessage.new("CPVKLBR3J", "<!channel> Olá! JustOverduedCron completou o seu processo.").send_now
   end
 end
