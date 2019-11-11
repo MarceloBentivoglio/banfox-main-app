@@ -11,14 +11,14 @@ module Risk
 
       def cached_data
         @cached_data ||= Risk::ExternalDatum.where(source: @fetcher.name)
-                                            .where("query=?", @query)
+                                            .where(query: @query)
                                             .where('ttl >= ?', DateTime.now)
                                             .order('created_at DESC')
                                             .to_a
       end
 
       def call
-        if cached_data.any? && cached_data.first.ttl < DateTime.now || cached_data.empty?
+        if cached_data.any? && cached_data.last.ttl < DateTime.now || cached_data.empty?
           @fetcher.call
           external_datum = Risk::ExternalDatum.create(source: @fetcher.name,
                                                           query: @query,
