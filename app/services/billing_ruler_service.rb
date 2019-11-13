@@ -1,5 +1,5 @@
 class BillingRulerService
-  add_template_helper(InfoMasksHelper)
+  #add_template_helper(InfoMasksHelper)
 
   def initialize(seller, installment_ids, method)
     @seller = seller
