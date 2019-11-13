@@ -317,7 +317,7 @@ class Installment < ApplicationRecord
   end
 
   def initial_net_value
-    return corrected_net_value_cents unless corrected_net_value_cents.nil? || corrected_net_value_cents&.zero?
+    return Money.new(corrected_net_value_cents) unless corrected_net_value_cents.nil? || corrected_net_value_cents&.zero?
 
     value - initial_fee
   end
