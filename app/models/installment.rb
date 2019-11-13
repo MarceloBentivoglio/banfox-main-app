@@ -313,7 +313,7 @@ class Installment < ApplicationRecord
   end
 
   def net_value
-    return corrected_net_value_cents unless corrected_net_value_cents.nil?
+    return corrected_net_value_cents unless corrected_net_value_cents.nil? || corrected_net_value_cents&.zero?
 
     value - fee
   end
