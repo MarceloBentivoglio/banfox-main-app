@@ -33,6 +33,8 @@ Rails.application.routes.draw do
         get 'analyse'
         get 'deposit'
         get 'follow_up'
+        get 'billing_rulers'
+        post 'send_billing_mail'
       end
     end
   end

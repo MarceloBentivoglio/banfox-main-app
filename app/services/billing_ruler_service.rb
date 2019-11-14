@@ -4,6 +4,18 @@ class BillingRulerService
     @sellers = sellers
   end
 
+  def monthly_organization_mail_checker
+    @sellers.each do |seller|
+      monthly_organization_mail_sender(seller)
+    end
+  end
+
+  def weekly_organization_mail_checker
+    @sellers.each do |seller|
+      weekly_organization_mail_sender(seller)
+    end
+  end
+
   def due_date_mail_checker
     @sellers.each do |seller|
       due_date_mail_sender(seller)
@@ -46,38 +58,50 @@ class BillingRulerService
     end
   end
 
-  def monthly_organization_mail_sender
-    no_installments = true
-    @sellers.each do |seller|
-      installments = seller.monthly_organization_eligible_installments
-      unless installments.empty?
-        no_installments = false
-        send_mails("monthly_organization", seller, installments) 
-      end
-    end
+  # def monthly_organization_mail_sender
+  #   no_installments = true
+  #   @sellers.each do |seller|
+  #     installments = seller.monthly_organization_eligible_installments
+  #     unless installments.empty?
+  #       no_installments = false
+  #       send_mails("monthly_organization", seller, installments) 
+  #     end
+  #   end
 
-    if no_installments
-      SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Mensal foi enviado").send_now
-    else
-      SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Mensal").send_now
-    end
+  #   if no_installments
+  #     SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Mensal foi enviado").send_now
+  #   else
+  #     SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Mensal").send_now
+  #   end
+  # end
+
+  # def weekly_organization_mail_sender
+  #   no_installments = true
+  #   @sellers.each do |seller|
+  #     installments = seller.weekly_organization_eligible_installments
+  #     unless installments.empty?
+  #       no_installments = false
+  #       send_mails("weekly_organization", seller, installments) 
+  #     end
+  #   end
+
+  #   if no_installments
+  #     SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Semanal foi enviado").send_now
+  #   else
+  #     SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Semanal").send_now
+  #   end
+  # end
+
+  def monthly_organization_mail_sender(seller)
+    installments = seller.monthly_organization_eligible_installments
+    slack_text = "vencencerão neste mês"
+    process_billing_ruler("monthly_organization", seller, installments, slack_text) unless installments.empty?
   end
 
-  def weekly_organization_mail_sender
-    no_installments = true
-    @sellers.each do |seller|
-      installments = seller.weekly_organization_eligible_installments
-      unless installments.empty?
-        no_installments = false
-        send_mails("weekly_organization", seller, installments) 
-      end
-    end
-
-    if no_installments
-      SlackMessage.new("CPM2L0ESD", "<!channel> Nenhum e-mail de Organização Semanal foi enviado").send_now
-    else
-      SlackMessage.new("CPM2L0ESD", "<!channel> Enviados e-mails de Organização Semanal").send_now
-    end
+  def weekly_organization_mail_sender(seller)
+    installments = seller.weekly_organization_eligible_installments
+    slack_text = "vencencerão nesta semana"
+    process_billing_ruler("weekly_organization", seller, installments, slack_text) unless installments.empty?
   end
 
   def due_date_mail_sender(seller)
@@ -124,7 +148,8 @@ class BillingRulerService
 
   def process_billing_ruler(method, seller, installments, slack_text)
     billing_ruler = billing_ruler_mails(method, installments, seller)
-    send_mails(method, seller, installments, billing_ruler.code)
+    #Disabled for testing period
+    #send_mails(method, seller, installments, billing_ruler.code)
     billing_ruler_slack(installments, seller, slack_text)
   end
 
@@ -151,7 +176,7 @@ class BillingRulerService
     billing_ruler.installments = installments
     billing_ruler.code = SecureRandom.uuid
     billing_ruler.send(method + "!")
-    billing_ruler.send_to_seller!
+    billing_ruler.ready!
     billing_ruler
   end
 end
