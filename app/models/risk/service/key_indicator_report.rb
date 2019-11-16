@@ -10,7 +10,7 @@ module Risk
       end
 
       def self.call(key_indicator_report)
-        KeyIndicatorReportJob.perform_now(key_indicator_report.id)
+        KeyIndicatorReportJob.perform_later(key_indicator_report.id)
       end
 
       def self.process(key_indicator_report)

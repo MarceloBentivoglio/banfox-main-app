@@ -10,8 +10,8 @@ class CreateInvoicesFromDocumentsTest < ActiveSupport::TestCase
     mocked_invoice = FactoryBot.create(:invoice)
     mocked_service = mock()
     mocked_service.stubs(:invoice).returns([mocked_invoice])
-    ExtractDataFromXml.stubs(:new).with(xml_stub, @seller).returns(mocked_service)
-    CreateInvoicesFromDocuments.new([xml_stub], @seller)
+    DataParsing::ExtractDataFromXml.stubs(:new).with(xml_stub, @seller).returns(mocked_service)
+    DataParsing::CreateInvoicesFromDocuments.new([xml_stub], @seller)
   end
 
   test "calls ExtractDataFromPdf if a file is a pdf" do
@@ -19,13 +19,13 @@ class CreateInvoicesFromDocumentsTest < ActiveSupport::TestCase
     mocked_invoice = FactoryBot.create(:invoice)
     mocked_service = mock()
     mocked_service.stubs(:invoice).returns([mocked_invoice])
-    ExtractDataFromPdf.stubs(:new).with(pdf_stub, @seller).returns(mocked_service)
-    CreateInvoicesFromDocuments.new([pdf_stub], @seller)
+    DataParsing::ExtractDataFromPdf.stubs(:new).with(pdf_stub, @seller).returns(mocked_service)
+    DataParsing::CreateInvoicesFromDocuments.new([pdf_stub], @seller)
   end
 
   test "inform if a file is neither a xml nor a pdf" do
     json_stub = fixture_file_upload('files/json_stub.json','application/json')
-    invoices = CreateInvoicesFromDocuments.new([json_stub], @seller).invoices
+    invoices = DataParsing::CreateInvoicesFromDocuments.new([json_stub], @seller).invoices
     assert_equal invoices.first.message, "File has not a valid type: xml, PDF"
   end
 end

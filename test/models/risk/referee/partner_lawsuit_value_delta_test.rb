@@ -13,16 +13,14 @@ class Risk::Referee::PartnerLawsuitValueDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
-              negative_information: [
-                { 
-                  total_value: 100,
-                  type: 4
-                }
-              ]
-            }
-          ]
+          historic: {
+            negative_information: [
+              { 
+                total_value: 100,
+                type: 4
+              }
+            ]
+          }
         },
         {
           cpf: '0000000002',
@@ -33,14 +31,12 @@ class Risk::Referee::PartnerLawsuitValueDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
-              negative_information: [
-                total_value: 125,
-                type: 4
-              ]
-            }
-          ]
+          historic: {
+            negative_information: [
+              total_value: 125,
+              type: 4
+            ]
+          }
         }
       ]
     }

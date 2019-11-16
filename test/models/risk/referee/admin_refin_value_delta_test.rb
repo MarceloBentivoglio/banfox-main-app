@@ -13,14 +13,12 @@ class Risk::Referee::AdminRefinValueDeltaTest < ActiveSupport::TestCase
               total_value: 200
             }
           ],
-          historic: [
-            {
-              refin: [
-                { total_value: 100
-              }
-              ]
+          historic: {
+            refin: [
+              { total_value: 100
             }
-          ]
+            ]
+          }
         },
         {
           cpf: '0000000002',
@@ -31,13 +29,11 @@ class Risk::Referee::AdminRefinValueDeltaTest < ActiveSupport::TestCase
               total_value: 100
             }
           ],
-          historic: [
-            {
-              refin: [
-                total_value: 125
-              ]
-            }
-          ]
+          historic: {
+            refin: [
+              total_value: 125
+            ]
+          }
         }
       ]
     }

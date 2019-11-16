@@ -2,7 +2,7 @@ module OpsAdmin
   class KeyIndicatorReportsController < OpsAdmin::BaseController
     def index
       @key_indicator_reports = Risk::KeyIndicatorReport.where(key_indicator_report_request_id: params[:request_id])
-                              .paginate(page: params[:page], per_page: 10)
+                                                       .paginate(page: params[:page], per_page: 10)
     end
 
     def create

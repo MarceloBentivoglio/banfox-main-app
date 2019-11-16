@@ -13,8 +13,7 @@ class Risk::Referee::PartnerProtestQuantityDeltaTest < ActiveSupport::TestCase
               type: 3
             }
           ],
-          historic: [
-            {
+          historic: {
               negative_information: [
                 { 
                   quantity: 100,
@@ -22,7 +21,6 @@ class Risk::Referee::PartnerProtestQuantityDeltaTest < ActiveSupport::TestCase
                 }
               ]
             }
-          ]
         },
         {
           cpf: '0000000002',
@@ -33,14 +31,12 @@ class Risk::Referee::PartnerProtestQuantityDeltaTest < ActiveSupport::TestCase
               type: 3
             }
           ],
-          historic: [
-            {
+          historic: {
               negative_information: [
                 quantity: 125,
                 type: 3
               ]
             }
-          ]
         }
       ]
     }

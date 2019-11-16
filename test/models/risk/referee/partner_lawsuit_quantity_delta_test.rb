@@ -13,16 +13,14 @@ class Risk::Referee::PartnerLawsuitQuantityDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
-              negative_information: [
-                { 
-                  quantity: 100,
-                  type: 4
-                }
-              ]
-            }
-          ]
+          historic: {
+            negative_information: [
+              { 
+                quantity: 100,
+                type: 4
+              }
+            ]
+          }
         },
         {
           cpf: '0000000002',
@@ -33,14 +31,12 @@ class Risk::Referee::PartnerLawsuitQuantityDeltaTest < ActiveSupport::TestCase
               type: 4
             }
           ],
-          historic: [
-            {
-              negative_information: [
-                quantity: 125,
-                type: 4
-              ]
-            }
-          ]
+          historic: {
+            negative_information: [
+              quantity: 125,
+              type: 4
+            ]
+          }
         }
       ]
     }

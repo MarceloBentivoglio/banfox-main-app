@@ -13,15 +13,13 @@ class Risk::Referee::AdminPefinQuantityDeltaTest < ActiveSupport::TestCase
               quantity: 200
             }
           ],
-          historic: [
-            {
+          historic: {
               pefin: [
                 { 
                   quantity: 100
                 }
               ]
             }
-          ]
         },
         {
           cnpj: '0000000002',
@@ -32,13 +30,11 @@ class Risk::Referee::AdminPefinQuantityDeltaTest < ActiveSupport::TestCase
               quantity: 100
             }
           ],
-          historic: [
-            {
+          historic: {
               pefin: [
                 quantity: 125
               ]
             }
-          ]
         }
       ]
     }

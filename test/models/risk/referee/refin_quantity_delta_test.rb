@@ -3,8 +3,7 @@ require 'test_helper'
 class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      refin: [],
-      historic: []
+      refin: []
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -16,11 +15,9 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
   test '.assert should create green flag when the historic quantity is 0 and the entity is stable' do
     evidences = {
       refin: [],
-      historic: [
-        {
-          refin: []
-        }
-      ]
+      historic: {
+        refin: []
+      }
     }
 
     expected = Risk::KeyIndicatorReport::GREEN_FLAG
@@ -36,11 +33,9 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
           quantity: 1000
         }
       ],
-      historic: [
-        {
-          refin: []
-        }
-      ]
+      historic: {
+        refin: []
+      }
     }
 
     expected = Risk::KeyIndicatorReport::YELLOW_FLAG
@@ -56,15 +51,13 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
           quantity: 1000
         }
       ],
-      historic: [
-        {
-          refin: [
-            {
-              quantity: 1000
-            }
-          ]
-        }
-      ]
+      historic: {
+        refin: [
+          {
+            quantity: 1000
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -80,15 +73,13 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
           quantity: 15
         }
       ],
-      historic: [
-        {
-          refin: [
-            {
-              quantity: 10
-            }
-          ]
-        }
-      ]
+      historic: {
+        refin: [
+          {
+            quantity: 10
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -104,15 +95,13 @@ class Risk::Referee::RefinQuantityDeltaTest < ActiveSupport::TestCase
           quantity: 16
         }
       ],
-      historic: [
-        {
-          refin: [
-            {
-              quantity: 10
-            }
-          ]
-        }
-      ]
+      historic: {
+        refin: [
+          {
+            quantity: 10
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)

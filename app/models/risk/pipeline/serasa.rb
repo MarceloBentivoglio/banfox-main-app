@@ -53,6 +53,10 @@ module Risk
 
         raise 'CNPJ has no historic' if historic.nil? || !historic.any?
 
+        if @key_indicator_report.evidences.dig('serasa_api', shortened_cnpj).nil?
+          raise "CNPJ #{@key_indicator_report.cnpj} not found!"
+        end
+
         @key_indicator_report.evidences['serasa_api'][shortened_cnpj]['historic'] = historic
         @key_indicator_report.key_indicators[shortened_cnpj] ||= {}
         @key_indicator_report.save

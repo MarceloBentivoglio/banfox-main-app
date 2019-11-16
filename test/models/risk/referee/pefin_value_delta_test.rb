@@ -4,8 +4,7 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
 
   test '.assert should create a gray flag if there is only one company_summary' do
     evidences = {
-      pefin: [],
-      historic: []
+      pefin: []
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -17,11 +16,9 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
   test '.assert should create green flag when the historic value is 0 and the entity is stable' do
     evidences = {
       pefin: [],
-      historic: [
-        {
-          pefin: []
-        }
-      ]
+      historic: {
+        pefin: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -37,11 +34,9 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
           total_value: 1000
         }
       ],
-      historic: [
-        {
-          pefin: []
-        }
-      ]
+      historic: {
+        pefin: []
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -57,15 +52,13 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
           total_value: 1000
         }
       ],
-      historic: [
-        {
-          pefin: [
-            {
-              total_value: 1000
-            }
-          ]
-        }
-      ]
+      historic: {
+        pefin: [
+          {
+            total_value: 1000
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -81,15 +74,13 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
           total_value: 1500
         }
       ],
-      historic: [
-        {
-          pefin: [
-            {
-              total_value: 1000
-            }
-          ]
-        }
-      ]
+      historic: {
+        pefin: [
+          {
+            total_value: 1000
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)
@@ -105,15 +96,13 @@ class Risk::Referee::PefinValueDeltaTest < ActiveSupport::TestCase
           total_value: 1600
         }
       ],
-      historic: [
-        {
-          pefin: [
-            {
-              total_value: 1000
-            }
-          ]
-        }
-      ]
+      historic: {
+        pefin: [
+          {
+            total_value: 1000
+          }
+        ]
+      }
     }
 
     decorated_evidences = Risk::Decorator::Serasa.new(evidences)

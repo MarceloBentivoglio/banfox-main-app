@@ -15,13 +15,7 @@ FactoryBot.define do
   factory :external_datum, class: 'Risk::ExternalDatum' do
     source { "test_source" }
     query do
-      {
-        payers: [
-          "08728220000148"
-        ],
-        seller:  "16532989000114",
-        kind: 'recurrent_operation'
-      }
+      { cnpj: "09003947692413" }
     end
 
     ttl { DateTime.now + 1.hour }

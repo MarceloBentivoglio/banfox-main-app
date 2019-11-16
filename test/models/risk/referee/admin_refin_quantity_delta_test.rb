@@ -13,14 +13,12 @@ class Risk::Referee::AdminRefinQuantityDeltaTest < ActiveSupport::TestCase
               quantity: 200
             }
           ],
-          historic: [
-            {
-              refin: [
-                { quantity: 100
-              }
-              ]
+          historic: {
+            refin: [
+              { quantity: 100
             }
-          ]
+            ]
+          }
         },
         {
           cpf: '0000000002',
@@ -31,13 +29,11 @@ class Risk::Referee::AdminRefinQuantityDeltaTest < ActiveSupport::TestCase
               quantity: 100
             }
           ],
-          historic: [
-            {
-              refin: [
-                quantity: 125
-              ]
-            }
-          ]
+          historic: {
+            refin: [
+              quantity: 125
+            ]
+          }
         }
       ]
     }
