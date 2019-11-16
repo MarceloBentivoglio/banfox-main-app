@@ -23,6 +23,7 @@ class InvoicesDocumentsBundlesController < ApplicationController
       flash[:alert] = "É necessário ao menos subir uma nota fiscal"
     end
     if invoices_being_parsed
+      SlackMessage.new("CH1KSHZ2T", "<!channel> O cliente subiu um pdf!")
       redirect_to analysis_invoices_documents_bundles_path and return
     else
       redirect_to store_installments_path and return
