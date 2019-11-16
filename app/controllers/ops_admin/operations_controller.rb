@@ -42,4 +42,17 @@ class OpsAdmin::OperationsController < OpsAdmin::BaseController
       format.js
     end
   end
+
+  def billing_rulers
+    @billing_rulers = BillingRuler.where(status: "ready").order(:created_at)
+  end
+
+  def send_billing_mail
+    safe_params = params.permit(:id, :method)
+    billing_ruler = BillingRuler.find(safe_params[:id])
+    seller = billing_ruler.seller
+    SellerMailer.send(safe_params[:method], seller.users&.first, seller, billing_ruler.installments, billing_ruler.code).deliver_now
+    billing_ruler.sent_to_seller!
+    redirect_to ops_admin_operations_billing_rulers_path
+  end
 end

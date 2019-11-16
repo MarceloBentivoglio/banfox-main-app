@@ -361,6 +361,108 @@ class Seller < ApplicationRecord
     end
   end
 
+  def monthly_organization_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.month == Date.today.month
+      end
+    end
+    installments
+  end
+
+  def weekly_organization_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today.beginning_of_week, Date.today.end_of_week)
+      end
+    end
+    installments
+  end
+
+  def due_date_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today - 3, Date.today)
+      end
+    end
+    installments
+  end
+
+  def just_overdued_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today - 6, Date.today - 4)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 4
+        end
+      end
+    end
+    installments
+  end
+
+  def overdue_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today - 9, Date.today - 5)
+      end
+    end
+    installments
+  end
+
+  def overdue_pre_serasa_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today - 19, Date.today - 10)
+      end
+    end
+    installments
+  end
+
+  def sending_to_serasa_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today - 22, Date.today - 20)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 20
+        end
+      end
+    end
+    installments
+  end
+
+  def overdue_after_serasa_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        installments << installment if installment.opened? && installment.due_date.between?(Date.today - 29, Date.today - 21)
+      end
+    end
+    installments
+  end
+
+  def protest_eligible_installments
+    installments = []
+    invoices&.each do |invoice|
+      invoice&.installments&.each do |installment|
+        if Date.today.monday?
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today = 32,  Date.today - 30)
+        else
+          installments << installment if installment.opened? && installment.due_date == Date.today - 30
+        end
+      end
+    end
+    installments
+  end
+
   private
   def async_update_spreadsheet
     SpreadsheetsRowSetterJob.perform_later(spreadsheet_id, worksheet_name, (self.id + 1), self.seller_attributes)
