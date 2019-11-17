@@ -56,6 +56,9 @@ gem 'google-api-client', '~> 0.23.4'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
+# Scheduler
+gem "sidekiq-cron", "~> 1.1"
+
 # This gem is used to show backend errors on production
 gem 'rollbar'
 
