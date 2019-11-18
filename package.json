@@ -6,9 +6,11 @@
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
     "jquery-mask-plugin": "^1.14.15",
+    "jquery-stars": "https://github.com/viniciusmichelutti/jquery-stars.git",
     "jquery-ui": "^1.12.1",
     "popper.js": "^1.15.0",
     "simple-mask-money": "^1.0.0",
+    "starrr": "^2.0.4",
     "sweetalert": "^2.1.2",
     "webpack-jquery-ui": "^2.0.1"
   },

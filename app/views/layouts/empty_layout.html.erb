@@ -7,6 +7,8 @@
   <body style="min-height: 100vh; background: linear-gradient(to bottom, #f7f9fc 0%, #f7f9fc 50%, #46547C 50%, #46547C 50%, #46547C 100%);">
     <%#= render 'shared/flashes' %>
     <%= yield %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
