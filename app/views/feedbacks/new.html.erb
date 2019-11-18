@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8 offset-md-2">
-      <div class="feedback-form-box" style="align-items: left">
+    <div class="col-md-10 offset-md-2">
+      <div class="feedback-form-box">
         <div class="client-form-logo">
           <%= image_tag "porco.png", height: 100 %>
         </div>
@@ -9,10 +9,10 @@
           <h2 style="font-weight: bold">Obrigado por confiar na Banfox.</h2>
         </div>
         <div class="client-form">
-          <img class="avatar" style="width: 100px; align: left; position: absolute; left: 40px;" align='left' src="/avatar/marcelo_banfox.jpeg" />
+          <img class="avatar" style="width: 100px" align='left' src="/avatar/marcelo_banfox.jpeg" />
           <%= form_for(@feedback) do |f| %>
-          <div style="margin-top: 104px">
-            <strong>Olá, [Nome do Cliente]!</strong><br />
+          <div >
+            <strong>Olá, <%= @seller_name %>!</strong><br />
           Aqui é o Marcelo Bentivoglio, CEO da Banfox. Nós queremos melhorar sempre e por isso gostaria de 1 minuto do seu tempo para nos ajudar com a sua opinião. Obrigado!
           </div>
           <div id="feedback_form">
@@ -78,7 +78,19 @@
               </div>
           </div>
 
-          <%= f.submit "Enviar"%>
+          <div class="question">
+              <div class="question_text">
+                5. Como nós podemos melhorar? Alguma dica?
+              </div>
+              <div class="question_field">
+                <input type="text" name="banfox_how_can_we_improve" />
+              </div>
+          </div>
+
+          <div class="question">
+            <span style="color: #5468ff; font-weight: bold;">Obrigado pela ajuda, sua opinião é muito importante para nós. Conte com a gente!</span>
+            <input type="submit" value="Enviar" class="submit-button" />
+          </div>
         <% end %>
         </div>
       </div>

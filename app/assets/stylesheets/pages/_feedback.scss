@@ -36,7 +36,6 @@
     box-shadow: 0 2px 4px 0 #eceffc;
     form {
       margin-top: 15px;
-      width: 90%;
     }
     input[type=text], input[type=number], input[type=tel], input[type=email], input[type=password] select {
       width: 100%;
@@ -61,6 +60,15 @@
         -webkit-transition: .333s ease top, .333s ease opacity;
         transition: .333s ease top, .333s ease opacity;
       }
+    }
+    .submit-button {
+        width: 100%;
+        color: white;
+        font-weight: bold;
+        background-color: #5468ff;
+        border-radius: 7px;
+        margin-top: 10px;
+        height: 44px;
     }
     .question {
         margin-top: 10px;
