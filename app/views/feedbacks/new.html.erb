@@ -10,6 +10,7 @@
         </div>
         <div class="client-form">
           <img class="avatar" style="width: 100px; align: left; position: absolute; left: 40px;" align='left' src="/avatar/marcelo_banfox.jpeg" />
+          <%= form_for(@feedback) do |f| %>
           <div style="margin-top: 104px">
             <strong>Olá, [Nome do Cliente]!</strong><br />
           Aqui é o Marcelo Bentivoglio, CEO da Banfox. Nós queremos melhorar sempre e por isso gostaria de 1 minuto do seu tempo para nos ajudar com a sua opinião. Obrigado!
@@ -73,10 +74,12 @@
                 4. O que mais você gosta do produto da Banfox?
               </div>
               <div class="question_field">
-                <div class=""
+                <input type="text" name="banfox_what_do_you_like" />
               </div>
-
           </div>
+
+          <%= f.submit "Enviar"%>
+        <% end %>
         </div>
       </div>
     </div>

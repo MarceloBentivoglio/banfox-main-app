@@ -25,11 +25,29 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = Feedback.new.tap do |feedback|
+      feedback.user = current_user
+      feedback.rating = params[:rating]
+      feedback.recommend_banfox = params[:recommend_banfox] == "1"
+      feedback.questions = [
+        { 
+          question: 'Se a Banfox deixasse de existir, como você se sentiria?',
+          answer: params[:banfox_cease_to_exist]
+        },
+        {
+          question: 'Explique: Se a Banfox deixasse de existir, como você se sentiria?',
+          answer: params[:banfox_cease_to_exists_explanation],
+        },
+        {
+          question: 'O que mais você gosta do produto da Banfox?',
+          answer: params[:banfox_what_do_you_like]
+        }
+      ]
+    end
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to sellers_dashboard_path, notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new }

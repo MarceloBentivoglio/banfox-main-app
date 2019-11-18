@@ -70,8 +70,14 @@
         .question_text {
             font-weight: bold; 
             i {
-            color: #5468ff !important;
+              color: #5468ff !important;
             }
+        }
+
+        .question_field {
+          input {
+            border: 1px solid #CFD7D9;
+          }
         }
 
         .recommend_banfox_option {
