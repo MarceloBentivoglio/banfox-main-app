@@ -3,7 +3,7 @@ require 'test_helper'
 class BillingRulerServiceTest < ActiveSupport::TestCase
   setup do
     using_shared_operation
-    #ignore_slack_call
+    ignore_slack_call
     Date.stubs(:today).returns(Date.new(2019, 9, 8))
   end
 
@@ -60,6 +60,19 @@ class BillingRulerServiceTest < ActiveSupport::TestCase
     assert_equal BillingRuler.last.billing_type, "just_overdued"
   end
 
+  test ".just_overdued_mail_sender on mondays will get installments that overdued on the current day or on the weekend and send them" do
+    Date.stubs(:today).returns(Date.new(2019, 9, 9))
+    @installment_1.due_date = Date.today - 4
+    @installment_1.opened!
+    sellers = [@seller]
+    #::SellerMailer.any_instance.expects(:just_overdued)
+    billing_ruler_service = BillingRulerService.new(sellers)
+    assert_difference 'BillingRuler.count', +1 do
+      billing_ruler_service.just_overdued_mail_checker
+    end
+    assert_equal BillingRuler.last.billing_type, "just_overdued"
+  end
+
   test ".overdue_mail_sender get installments that are overdued from 5 to 9 days and send them" do
     @installment_1.due_date = Date.today - 9
     @installment_1.opened!
@@ -96,6 +109,19 @@ class BillingRulerServiceTest < ActiveSupport::TestCase
     assert_equal BillingRuler.last.billing_type, "sending_to_serasa"
   end
 
+  test ".sending_to_serasa_mail_sender on mondays will get installments that are overdued for 20~22 days and send them" do
+    Date.stubs(:today).returns(Date.new(2019, 9, 9))
+    @installment_1.due_date = Date.today - 20
+    @installment_1.opened!
+    sellers = [@seller]
+    #::SellerMailer.any_instance.expects(:sending_to_serasa)
+    billing_ruler_service = BillingRulerService.new(sellers)
+    assert_difference 'BillingRuler.count', +1 do
+      billing_ruler_service.sending_to_serasa_mail_checker
+    end
+    assert_equal BillingRuler.last.billing_type, "sending_to_serasa"
+  end
+
   test ".overdue_after_serasa_mail_sender get installments that are overdued from 21 to 29 days and send them" do
     @installment_1.due_date = Date.today - 24
     @installment_1.opened!
@@ -119,4 +145,18 @@ class BillingRulerServiceTest < ActiveSupport::TestCase
     end
     assert_equal BillingRuler.last.billing_type, "protest"
   end
+
+  test ".protest_mail_sender on mondays will get installments that are overdued for 30~32 days and send them" do
+    Date.stubs(:today).returns(Date.new(2019, 9, 9))
+    @installment_1.due_date = Date.today - 30
+    @installment_1.opened!
+    sellers = [@seller]
+    #::SellerMailer.any_instance.expects(:protest)
+    billing_ruler_service = BillingRulerService.new(sellers)
+    assert_difference 'BillingRuler.count', +1 do
+      billing_ruler_service.protest_mail_checker
+    end
+    assert_equal BillingRuler.last.billing_type, "protest"
+  end
+
 end
