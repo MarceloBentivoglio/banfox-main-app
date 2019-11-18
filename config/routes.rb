@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :feedbacks
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
+  require 'sidekiq/cron/web'
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
     namespace :ops_admin do
@@ -32,6 +34,8 @@ Rails.application.routes.draw do
         get 'analyse'
         get 'deposit'
         get 'follow_up'
+        get 'billing_rulers'
+        post 'send_billing_mail'
       end
     end
   end
@@ -42,6 +46,9 @@ Rails.application.routes.draw do
   get "solution", to: "pages#solution"
   get "unfortune", to: "pages#unfortune"
   get "takeabreath", to: "pages#take_a_breath"
+  get "billing_ruler_not_found", to: "pages#billing_ruler_not_found"
+  get "billing_ruler_paid", to: "pages#billing_ruler_paid"
+  get "billing_ruler_pending", to: "pages#billing_ruler_pending"
   get 'sellers/dashboard'
   get 'sellers/analysis'
   get "signature/:signature_key", to: "signatures#joint_debtor"
@@ -95,7 +102,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pdf_parsed_invoices, only: [ :create ]
       resources :mobile_inputed_invoices, only: [ :create ]
-      resources :billing_ruler_responses, only: [ :paid, :pending ]
+      resources :billing_ruler_responses do
+        member do
+          get :paid
+          get :pending
+        end
+      end
       namespace :operations do
         post "sign_document_status"
         post "webhook_response"

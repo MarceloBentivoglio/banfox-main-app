@@ -46,6 +46,8 @@ class Installment < ApplicationRecord
   monetize :final_fator_cents, with_model_currency: :currency
   monetize :final_advalorem_cents, with_model_currency: :currency
   monetize :final_protection_cents, with_model_currency: :currency
+  #Changes the net_value representation
+  monetize :corrected_net_value_cents, with_model_currency: :currency
 
   after_destroy :destroy_parent_if_void
   after_save :async_update_spreadsheet
@@ -315,6 +317,8 @@ class Installment < ApplicationRecord
   end
 
   def initial_net_value
+    return Money.new(corrected_net_value_cents) unless corrected_net_value_cents.nil? || corrected_net_value_cents&.zero?
+
     value - initial_fee
   end
 

@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
-  skip_before_action :require_active, only: [:home, :unfortune, :take_a_breath]
-  skip_before_action :require_permission_to_operate, only: [:home, :unfortune, :take_a_breath]
-  skip_before_action :require_not_on_going, only: [:home, :unfortune, :take_a_breath]
+  skip_before_action :authenticate_user!, only: [:home, :billing_ruler_paid, :billing_ruler_pending, :billing_ruler_not_found]
+  skip_before_action :require_active, only: [:home, :unfortune, :take_a_breath, :billing_ruler_paid, :billing_ruler_pending, :billing_ruler_not_found]
+  skip_before_action :require_permission_to_operate, only: [:home, :unfortune, :take_a_breath, :billing_ruler_paid, :billing_ruler_pending, :billing_ruler_not_found]
+  skip_before_action :require_not_on_going, only: [:home, :unfortune, :take_a_breath, :billing_ruler_paid, :billing_ruler_pending, :billing_ruler_not_found]
   before_action :require_on_going, only: [:take_a_breath]
   before_action :require_rejected, only: [:unfortune]
   before_action :set_user_and_seller, only: [:unfortune, :take_a_breath]
-  layout "homelayout"
+  layout :resolve_layout
 
   def home
     @redirection_options = {situation: "register"}
@@ -33,6 +33,15 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def resolve_layout
+    case action_name
+    when "billing_ruler_not_found", "billing_ruler_paid", "billing_ruler_pending"
+      "application_for_non_users"
+    else
+      "homelayout"
+    end
+  end
 
   def set_user_and_seller
     @user = current_user
