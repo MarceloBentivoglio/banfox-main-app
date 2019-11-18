@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-2">
+      <div class="feedback-form-box">
+        <div class="client-form-logo">
+          <%= image_tag "porco.png", height: 100 %>
+        </div>
+        <div class="client-form-header">
+          <h2 style="font-weight: bold">Obrigado por confiar na Banfox.</h2>
+        </div>
+        <div class="client-form">
+          <img class="avatar" style="width: 100px" align='left' src="/avatar/marcelo_banfox.jpeg" />
+          <%= form_for(@feedback) do |f| %>
+          <div >
+            <strong>Olá, <%= @seller_name %>!</strong><br />
+            <p>
+            Aqui é o Marcelo Bentivoglio, CEO da Banfox. Nós queremos melhorar sempre e por isso gostaria de 1 minuto do seu tempo para nos ajudar com a sua opinião. Obrigado!<br />
+            </p>
+            <p>
+            Vamos lá? <br />
+            </p>
+          </div>
+          <div id="feedback_form">
+            <div class="question">
+              <div class="question_text">
+                1. De 0 a 10, quão rápido foi resolver o problema?
+              </div>
+              <div class="question_field">
+                <div id="feedbackStar"></div>
+                <input type="hidden" id="feedback_star_input" name="rating" />
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question_text">
+                2. Você recomendaria a Banfox para um colega?
+              </div>
+              <div class="question_field">
+                <a href="#" class="recommend_banfox_option recommend_banfox_no selectedRecommendation">NÃO</a>
+                <a href="#" class="recommend_banfox_option recommend_banfox_yes">SIM</a>
+                <input type="hidden" value="0" name="recommend_banfox" id="recommend_banfox" />
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question_text">
+                3. Se a Banfox deixasse de existir, como você se sentiria?
+              </div>
+              <div class="question_field">
+                <div>
+                  <input type="radio" name="banfox_cease_to_exist" value="0" id="banfox_cease_0"/>
+                  <label for="banfox_cease_0">Muito preocupado, eu preciso da Banfox</label>
+                </div>
+
+                <div>
+                  <input type="radio" name="banfox_cease_to_exist" value="1" id="banfox_cease_1"/>
+                  <label for="banfox_cease_1">Preocupado, eu uso a Banfox</label>
+                </div>
+
+                <div>
+                  <input type="radio" name="banfox_cease_to_exist" value="2" id="banfox_cease_2"/>
+                  <label for="banfox_cease_2">Indiferente, tenho outras opções</label>
+                </div>
+
+                <div>
+                  <input type="radio" name="banfox_cease_to_exist" value="3" id="banfox_cease_3"/>
+                  <label for="banfox_cease_3">Não sei dizer, por mim tanto faz</label>
+                </div>
+
+                <div>
+                  <label for="why_banfox_cease_to_exists">Por que você escolheu essa opção?</label>
+                  <input type="text" id="why_banfox_cease_to_exists" name="banfox_cease_to_exists_explanation"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question_text">
+                4. O que mais você gosta do produto da Banfox?
+              </div>
+              <div class="question_field">
+                <input type="text" name="banfox_what_do_you_like" />
+              </div>
+          </div>
+
+          <div class="question">
+              <div class="question_text">
+                5. Como nós podemos melhorar? Alguma dica?
+              </div>
+              <div class="question_field">
+                <input type="text" name="banfox_how_can_we_improve" />
+              </div>
+          </div>
+
+          <div class="question">
+            <span style="color: #5468ff; font-weight: bold;">Obrigado pela ajuda, sua opinião é muito importante para nós. Conte com a gente!</span>
+            <input type="submit" value="Enviar" class="submit-button" />
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :feedbacks
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
