@@ -1,5 +1,5 @@
 monthly_organization_check:
-  cron: "0 13 * * *"
+  cron: "0 13 1 * *"
   class: "MonthlyOrganizationCron"
 
 #weekly_organization_check:
