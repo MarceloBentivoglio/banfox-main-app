@@ -38,7 +38,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to sellers_dashboard_path, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to store_installments_path, notice: 'Muito obrigado pelo seu feedback!' }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new }
