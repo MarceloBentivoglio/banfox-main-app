@@ -7,7 +7,7 @@ class SignaturesController < ApplicationController
 
   def joint_debtor
     @signature_key = params[:signature_key]
-    @redirection_url = new_feedbacks_url
+    @redirection_url = new_feedback_url
   end
 
   def joint_debtor_d4sign
@@ -19,7 +19,7 @@ class SignaturesController < ApplicationController
     operation.sign_document_info.each do |signer|
       @email = signer["email"] if signer["key_signer"] == @signature_key
     end
-    @redirection_url = new_feedbacks_url
+    @redirection_url = new_feedback_url
   end
 
 end
