@@ -38,6 +38,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
+        NetPromoterScoreService.call(@feedback)
         format.html { redirect_to store_installments_path, notice: 'Muito obrigado pelo seu feedback!' }
         format.json { render :show, status: :created, location: @feedback }
       else
