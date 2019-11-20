@@ -4,19 +4,18 @@
       <div class="col-12">
         <table class="table">
           <thead>
-            <th>Data de Criação</th>
+            <th>Data de Criação do Email</th>
             <th>Seller</th>
             <th>Status</th>
-            <th>Tipo de E-mail</th>
+            <th>Tipo de Email</th>
             <th>Títulos</th>
-            <th>Código de Resposta</th>
-            <th>Ações</th>
+            <!--th>Ações</th -->
           </thead>
           <tbody>
             <% @billing_rulers.each do |billing| %>
               <tr>
                 <td><%= billing.created_at_format %></td>
-                <td><%= billing.seller.full_name %></td>
+                <td><%= billing.seller.company_name&.titleize %></td>
                 <td><%= billing.status_translate %></td>
                 <td><%= billing.billing_type_translate %></td>
                 <td>
@@ -24,10 +23,9 @@
                     <%= installment.invoice.number %>/<%= installment.number %><br/>
                   <% end %>
                 </td>
-                <td><%= billing.code %></td>
-                <td>
-                  <%= link_to "Enviar", ops_admin_operations_send_billing_mail_path(id: billing.id, method: billing.billing_type), method: :post %>
-                </td>
+                <!--td>
+                  <%# link_to "Enviar", ops_admin_operations_send_billing_mail_path(id: billing.id, method: billing.billing_type), method: :post %>
+                </td -->
               </tr>
             <% end %>
           </tbody>

@@ -1,5 +1,5 @@
 monthly_organization_check:
-  cron: "0 13 * * *"
+  cron: "0 10 1 * *"
   class: "MonthlyOrganizationCron"
 
 #weekly_organization_check:
@@ -7,29 +7,29 @@ monthly_organization_check:
 #  class: "WeeklyOrganizationCron"
 
 due_date_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "DueDateCron"
 
 just_overdued_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "JustOverduedCron"
 
 overdue_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "OverdueCron"
 
 overdue_pre_serasa_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "OverduePreSerasaCron"
 
 sending_to_serasa_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "SendingToSerasaCron"
 
 overdue_after_serasa_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "OverdueAfterSerasaCron"
 
 protest_check:
-  cron: "0 13 * * 1-5"
+  cron: "0 10 * * 1-5"
   class: "ProtestCron"

@@ -454,7 +454,7 @@ class Seller < ApplicationRecord
     invoices&.each do |invoice|
       invoice&.installments&.each do |installment|
         if Date.today.monday?
-          installments << installment if installment.opened? && installment.due_date.between?(Date.today = 32,  Date.today - 30)
+          installments << installment if installment.opened? && installment.due_date.between?(Date.today - 32,  Date.today - 30)
         else
           installments << installment if installment.opened? && installment.due_date == Date.today - 30
         end

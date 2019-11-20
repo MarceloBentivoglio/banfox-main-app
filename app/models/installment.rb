@@ -46,6 +46,8 @@ class Installment < ApplicationRecord
   monetize :final_fator_cents, with_model_currency: :currency
   monetize :final_advalorem_cents, with_model_currency: :currency
   monetize :final_protection_cents, with_model_currency: :currency
+  #Changes the net_value representation
+  monetize :corrected_net_value_cents, with_model_currency: :currency
 
   after_destroy :destroy_parent_if_void
   after_save :async_update_spreadsheet
@@ -255,18 +257,18 @@ class Installment < ApplicationRecord
       final_fator
     elsif analysis_completed?
       if overdue? || ahead?
-        value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0))
+        value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / operation_length))
       else
         initial_fator
       end
     else
-      value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / 30.0))
+      value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / operation_length))
     end
   end
 
   def delta_fator
     if overdue? || ahead?
-      initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
+      initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / operation_length)))
     elsif opened?
       Money.new(0)
     else
@@ -279,18 +281,18 @@ class Installment < ApplicationRecord
       final_advalorem
     elsif analysis_completed?
       if overdue? || ahead?
-        value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0))
+        value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / operation_length))
       else
         initial_advalorem
       end
     else
-      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / 30.0))
+      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / operation_length))
     end
   end
 
   def delta_advalorem
     if overdue? || ahead?
-      initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0)))
+      initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / operation_length)))
     elsif opened?
       Money.new(0)
     else
@@ -315,6 +317,8 @@ class Installment < ApplicationRecord
   end
 
   def initial_net_value
+    return Money.new(corrected_net_value_cents) unless corrected_net_value_cents.nil? || corrected_net_value_cents&.zero?
+
     value - initial_fee
   end
 
@@ -397,6 +401,10 @@ class Installment < ApplicationRecord
     else
       InstallmentMailer.paid(self, user, seller).deliver_now
     end
+  end
+
+  def operation_length
+    due_date - ordered_at&.to_date
   end
 
   private

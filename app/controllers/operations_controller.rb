@@ -75,7 +75,7 @@ class OperationsController < ApplicationController
       signer_signature_key[:email] == @seller.email_partner
     end
     @signature_key = main_signer_signature_key[:signature_key]
-    @redirection_url = store_installments_url
+    @redirection_url = new_feedback_path
   end
 
   def sign_document_d4sign
@@ -84,7 +84,7 @@ class OperationsController < ApplicationController
       key_signer["email"] == @seller.email_partner
     end
     @signature_key = main_key_signer["key_signer"]
-    @redirection_url = store_installments_url
+    @redirection_url = new_feedback_path
     @document_uuid = operation.sign_document_key
   end
 
