@@ -5,6 +5,5 @@ class IpAPIServiceTest < ActiveSupport::TestCase
     user = FactoryBot.create(:user, :remote_original_ip)
 
     data = IpAPIService.new(user).call
-    byebug
   end
 end

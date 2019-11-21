@@ -190,4 +190,12 @@ class InstallmentTest < ActiveSupport::TestCase
     assert_equal expected, i.delta_advalorem
   end
 
+  test ".delta_fee don't uses initial_fator/advalorem when its a renegotiation" do
+    @i.renegotiation = true 
+    @i.created_at = Date.current - 30
+    @i.ordered_at = @i.created_at
+    @i.due_date = Date.current + 30
+    assert_equal Money.new("40763"), @i.delta_fee
+  end
+
 end

@@ -1,17 +1,17 @@
 puts "Starting seed............"
 puts "Creating first seller, the ADMIN ......."
 seller1 = Seller.create!(
-  full_name: "Santini Santos",
+  full_name: "Tester da Silva",
   cpf: "72871151318",
   rf_full_name: "seed",
   rf_sit_cad: "seed",
   birth_date: "21/04/1989",
   mobile: "11971937194",
-  company_name: "Biort Materiais de Implantes Importação Limitada",
-  company_nickname: "Biort",
+  company_name: "TESTE DESENVOLVIMENTO LTDA",
+  company_nickname: "TESTE",
   cnpj: "08588244000149",
   phone: "11971937194",
-  website: "www.biort.com.br",
+  website: "www.teste.com.br",
   address: "rua dos Meninos",
   address_number: "213",
   address_comp: "predio",
@@ -29,7 +29,7 @@ seller1 = Seller.create!(
   monthly_units_sold: 3000,
   cost_per_unit: Money.new(40000000),
   debt: Money.new(50000000),
-  full_name_partner: "Santini Santos",
+  full_name_partner: "Tester da Silva",
   cpf_partner: "72871151318",
   rf_full_name_partner: "seed",
   rf_sit_cad_partner: "seed",
@@ -56,7 +56,7 @@ joint_debtor1 = JointDebtor.create!(
 )
 
 payer1 = Payer.create!(
-    company_name: "hospital cristovão da gama s.a	",
+    company_name: "tech tester da gama s.a	",
     cnpj: "23198636000195",
     fator: 0.05,
     advalorem: 0.001,
@@ -426,16 +426,16 @@ Installment.create!(
 
 puts "Creating second seller, nota XML ......."
 seller2 = Seller.create!(
-  full_name: "Rodrigo Santini",
+  full_name: "Tester XML",
   cpf: "80287301087",
   rf_full_name: "seed",
   rf_sit_cad: "seed",
   birth_date: "11121952",
   mobile: "11998308090",
-  company_name: "Biort Implantes Não Admin Ltda",
+  company_name: "Tester de XML ltda",
   company_nickname: "",
   cnpj: "16532989000114",
-  phone: "11998308090",
+  phone: "11995933009",
   website: "asdfg",
   address: "Rua do Rocio",
   address_number: "450",
@@ -461,9 +461,9 @@ seller2 = Seller.create!(
   cost_per_unit_currency: "BRL",
   debt_cents: 342,
   debt_currency: "BRL",
-  full_name_partner: "Rodrigo Santini Main",
+  full_name_partner: "Partner de XML",
   cpf_partner: "80287301087",
-  rf_full_name_partner: "Rodrigo Santini Main",
+  rf_full_name_partner: "Partner De Xml",
   rf_sit_cad_partner: "regular",
   birth_date_partner: "11121952",
   mobile_partner: "11971937194",

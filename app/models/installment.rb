@@ -257,18 +257,18 @@ class Installment < ApplicationRecord
       final_fator
     elsif analysis_completed?
       if overdue? || ahead?
-        value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / operation_length))
+        value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0))
       else
         initial_fator
       end
     else
-      value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / operation_length))
+      value * (1 - 1/(1 + invoice.fator)**((outstanding_days_to_liquidation) / 30.0))
     end
   end
 
   def delta_fator
     if overdue? || ahead?
-      initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / operation_length)))
+      initial_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
     elsif opened?
       Money.new(0)
     else
@@ -281,18 +281,18 @@ class Installment < ApplicationRecord
       final_advalorem
     elsif analysis_completed?
       if overdue? || ahead?
-        value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / operation_length))
+        value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0))
       else
         initial_advalorem
       end
     else
-      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / operation_length))
+      value * (1 - 1/(1 + invoice.advalorem)**((outstanding_days_to_liquidation) / 30.0))
     end
   end
 
   def delta_advalorem
     if overdue? || ahead?
-      initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / operation_length)))
+      initial_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0)))
     elsif opened?
       Money.new(0)
     else
@@ -309,7 +309,19 @@ class Installment < ApplicationRecord
   end
 
   def delta_fee
-    delta_fator + delta_advalorem
+    if renegotiation
+      renegotiation_delta_fee
+    else
+      delta_fator + delta_advalorem
+    end
+  end
+
+  def renegotiation_delta_fee
+    new_fator = value * (1 - 1/(1 + invoice.fator)**((operation_length) / 30.0))
+    new_advalorem = value * (1 - 1/(1 + invoice.advalorem)**((operation_length) / 30.0))
+    new_delta_fator = new_fator - (value * (1 - 1/(1 + invoice.fator)**((elapsed_days) / 30.0)))
+    new_delta_advalorem = new_advalorem - (value * (1 - 1/(1 + invoice.advalorem)**((elapsed_days) / 30.0)))
+    new_delta_fator + new_delta_advalorem
   end
 
   def net_value
@@ -404,8 +416,7 @@ class Installment < ApplicationRecord
   end
 
   def operation_length
-    #due_date - ordered_at&.to_date
-    30.0
+    (expected_liquidation_date - created_at&.to_date).to_i
   end
 
   private
