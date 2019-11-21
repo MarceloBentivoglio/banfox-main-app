@@ -404,7 +404,8 @@ class Installment < ApplicationRecord
   end
 
   def operation_length
-    due_date - ordered_at&.to_date
+    #due_date - ordered_at&.to_date
+    30.0
   end
 
   private
