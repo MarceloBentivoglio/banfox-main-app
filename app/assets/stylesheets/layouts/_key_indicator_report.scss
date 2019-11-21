@@ -1,0 +1,20 @@
+#kir_login_form {
+  align-items: center;
+  .modal-body {
+    .form-group {
+      input {
+        border: 0px;
+        border-bottom: 1px solid #ced4da;
+        width: 100%;
+        margin-bottom: 25px;
+      }
+
+      i {
+        line-height: 37px;
+        border-bottom: 1px solid #ced4da;
+        margin-bottom: 25px;
+      }
+      clear: both;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :feedbacks
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate :user, lambda {|u| u.admin && !u.kir_permission } do
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
   require 'sidekiq/cron/web'
@@ -120,4 +121,7 @@ Rails.application.routes.draw do
   end
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
+  resources :feedbacks
+  get 'info', to: 'key_indicator_reports#login'
+  post '/info/authenticate', to: 'key_indicator_reports#authenticate'
 end

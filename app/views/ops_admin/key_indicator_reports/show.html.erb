@@ -10,6 +10,8 @@
           title: "Relatório de Indicadores de Risco",
           optional_button: "",
         } %>
+        
+        <%= link_to 'Voltar', ops_admin_key_indicator_reports_path(request_id: @key_indicator_report.key_indicator_report_request_id) %>
 
         <% @key_indicator_report.key_indicators.each do |cnpj, key_indicators|%>
         <div class="card-w-table-inside">
