@@ -40,7 +40,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'pages#home'
   get "howitworks", to: "pages#howitworks"
   get "about_us", to: "pages#about_us"
   get "solution", to: "pages#solution"
