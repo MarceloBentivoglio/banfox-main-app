@@ -107,6 +107,9 @@ Rails.application.routes.draw do
           get :pending
         end
       end
+      namespace :contact_us do
+        post "lp_contact"
+      end
       namespace :operations do
         post "sign_document_status"
         post "webhook_response"
