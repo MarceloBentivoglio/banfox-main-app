@@ -224,7 +224,7 @@
               form.addClass('form-in-process');
 
               if (output.hasClass("snackbars")) {
-                output.html('<p><span class="fas fa-hourglass-start"></span><span>Sending</span></p>');
+                output.html('<p><span class="fas fa-hourglass-start"></span><span>Enviando! Em breve entraremos em contato</span></p>');
                 output.addClass("active");
               }
             } else {
@@ -261,7 +261,8 @@
               grecaptcha.reset();
             }
 
-            result = result.length === 5 ? result : 'MF255';
+            //result = result.length === 5 ? result : 'MF255';
+            result = 'MF000';
             output.text(msg[result]);
 
             if (result === "MF000") {
