@@ -41,7 +41,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'pages#home'
   get "howitworks", to: "pages#howitworks"
   get "about_us", to: "pages#about_us"
   get "solution", to: "pages#solution"
@@ -108,6 +107,9 @@ Rails.application.routes.draw do
           get :paid
           get :pending
         end
+      end
+      namespace :contact_us do
+        post "lp_contact"
       end
       namespace :operations do
         post "sign_document_status"
