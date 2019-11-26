@@ -1,20 +1,30 @@
-<h2><%= t(".greeting") %></h2>
+<section id="mobile_page" style="display: none;">
+  <h2>Para uma melhor experiência utilize nossa plataforma em um computador na sua casa ou escritório</h2>
+</section>
+<section id="desktop_page" style="display: none;">
+  <h2><%= t(".greeting") %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+      <%= f.input :password,
+                  required: true,
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, t(".sign_in"), class: "btn-sessions" %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, t(".sign_in"), class: "btn-sessions" %>
+    </div>
+  <% end %>
 
-<%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</section>
+<script>
+  window.onload = function() {
+    check_if_mobile();
+  }
+</script>
