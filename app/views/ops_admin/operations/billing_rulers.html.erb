@@ -19,9 +19,18 @@
                 <td><%= billing.status_translate %></td>
                 <td><%= billing.billing_type_translate %></td>
                 <td>
-                  <% billing.installments.each do |installment| %>
-                    <%= installment.invoice.number %>/<%= installment.number %><br/>
-                  <% end %>
+                  <table>
+                    <tbody>
+                      <% billing.installments.each do |installment| %>
+                        <tr>
+                          <td><%= installment.invoice.number %>/<%= installment.number %></td>
+                          <td><%= installment.due_date_format %></td>
+                          <td><%= humanized_money_with_symbol installment.value %></td>
+                          <td><%= installment.invoice.payer_name %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </td>
                 <!--td>
                   <%# link_to "Enviar", ops_admin_operations_send_billing_mail_path(id: billing.id, method: billing.billing_type), method: :post %>
