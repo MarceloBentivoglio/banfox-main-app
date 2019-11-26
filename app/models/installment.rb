@@ -419,6 +419,10 @@ class Installment < ApplicationRecord
     (expected_liquidation_date - created_at&.to_date).to_i
   end
 
+  def due_date_format
+    due_date.strftime("%d/%m/%Y") unless due_date.nil?
+  end
+
   private
 
   def destroy_parent_if_void
