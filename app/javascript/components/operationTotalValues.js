@@ -24,7 +24,6 @@ const operationTotalValuesAccordingToCheck = () => {
     const total = installments.reduce((sum, installment) => sum + installment.value_cents, 0);
     const fee = installments.reduce((sum, installment) => sum + -1*Number(installment.fee.fractional), 0);
     const net_value = installments.reduce((sum, installment) => sum + Number(installment.net_value.fractional), 0);
-    debugger
     const total_with_credit = net_value + Number(credit);
     showTotalsOnStatusBar(total, fee, credit, total_with_credit, net_value);
   }).trigger("change");
