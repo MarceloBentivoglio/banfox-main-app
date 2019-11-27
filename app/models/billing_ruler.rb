@@ -71,7 +71,7 @@ class BillingRuler < ApplicationRecord
     when "overdue_after_serasa"
       "21~29 dias após vencimento"
     when "protest"
-      "serão protestados"
+      "Serão protestados"
     end
   end
 end
