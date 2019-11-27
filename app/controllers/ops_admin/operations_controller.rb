@@ -44,7 +44,7 @@ class OpsAdmin::OperationsController < OpsAdmin::BaseController
   end
 
   def billing_rulers
-    @billing_rulers = BillingRuler.where(status: "ready").order(:created_at)
+    @billing_rulers = BillingRuler.where(status: "ready").where(created_at: Date.today)
   end
 
   def send_billing_mail
