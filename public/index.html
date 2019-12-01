@@ -28,6 +28,9 @@
     <!-- core style css -->
     <link href="css/styles.css" rel="stylesheet" id="colors" />
 
+    <!-- banfox_chat -->
+    <link href="css/banfox_chat.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -657,7 +660,25 @@
             </div>
         </section>
         <!-- end contact form -->
-
+        <div class="chat-container">
+          <div class="container">
+            <div class="row">
+              <h1>CHAT</h1>
+              <div id="chat_window" class="banfox_chat_div">
+                <div class="chat_container banfox_side">
+                  <div class="timestamp">
+                    <small>13:02:11</small>
+                  </div>
+                  <div class="message">
+                    Bom dia! Sou o Gusttavo da Banfox, como posso te ajudar?
+                  </div>
+                </div>
+              </div>
+              <input type="text" id="chat_input" onkeyup="enable_submit(this)">
+              <button id="chat_button" type="button" onclick="send_message()" disabled="true">Enviar</button>
+            </div>
+          </div>
+        </div>
         <!-- start footer section -->
         <footer class="bg-light-gray">
             <div class="container">
@@ -813,8 +834,16 @@
     <script src="js/mailform/jquery.form.min.js"></script>
     <script src="js/mailform/jquery.rd-mailform.min.c.js"></script>
 
+    <!-- banfox chat (ノ・∀・)ノ -->
+    <script src="js/banfox-chat.js"></script>
+
     <!-- all js include end -->
 
 </body>
 
 </html>
+<script>
+  window.onload = function() {
+    setTimeout(get_chat_room, 3000)
+  }
+</script>

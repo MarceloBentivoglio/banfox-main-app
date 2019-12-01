@@ -99,6 +99,8 @@ Rails.application.routes.draw do
   resources :documents, only: [:index, :new, :create, :destroy]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      get "get_chat_room", to: "chat#get_chat_room"
+      post "send_message", to: "chat#send_message"
       resources :pdf_parsed_invoices, only: [ :create ]
       resources :mobile_inputed_invoices, only: [ :create ]
       resources :billing_ruler_responses do
