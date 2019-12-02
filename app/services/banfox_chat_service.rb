@@ -12,6 +12,7 @@ class BanfoxChatService
     body = {}
     body[:message] = params["message"]
     body[:room_code] = params["room_code"]
+    body[:sender_type] = "client"
     response = RestClient.post(url, body)
     response
   end

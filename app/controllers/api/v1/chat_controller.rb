@@ -16,24 +16,19 @@ class Api::V1::ChatController < ActionController::API
     response[:session_id] = banfox_chat_response["session_id"]
     response[:code] = banfox_chat_response["code"]
     response[:created_at] = created_at_format
+    response[:last_check] = banfox_chat_response["created_at"]
     render :json => response
   end
 
   def send_message
-    safe_params = params.permit(:message, :session_id, :room_code, :first)
+    safe_params = params.permit(:message, :room_code, :first, :session_id)
     banfox_chat_response = JSON(@banfox_chat.send_message(safe_params).body)
 
-    SlackMessage.new("CQSEU4466","<!channel> Um contato foi feito pelo chat da LP. Clique no link para conversar. #{safe_params["session_id"]}").send_now if safe_params["first"] == "true"
+    SlackMessage.new("CQSEU4466","<!channel> Um contato foi feito pelo chat da LP. Clique no link para conversar. http://localhost:4000/rooms/#{banfox_chat_response["access_token"]}").send_now if safe_params["first"] == "true"
     
-    if banfox_chat_response["created_at"] == ""
-      created_at_format = DateTime.current.strftime("%H:%M:%S")
-    else
-      created_at_format = banfox_chat_response["created_at"].to_datetime&.strftime("%H:%M:%S")
-    end
-
     response = {}
     response[:body] = banfox_chat_response["body"]
-    response[:created_at] = created_at_format
+    response[:created_at] = banfox_chat_response["created_at"]
     render :json => response
   end
 

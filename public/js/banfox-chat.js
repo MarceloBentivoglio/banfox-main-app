@@ -6,6 +6,7 @@ function get_chat_room() {
     success: function(data) {
       sessionStorage.session_id = data.session_id;
       sessionStorage.code = data.code;
+      sessionStorage.last_check = data.last_check;
       sessionStorage.first = true;
       document.getElementById("first_moment").innerHTML = data.created_at;
       document.getElementById("chat-container").style.display = "block";
