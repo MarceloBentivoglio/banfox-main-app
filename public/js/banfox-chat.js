@@ -7,6 +7,8 @@ function get_chat_room() {
       sessionStorage.session_id = data.session_id;
       sessionStorage.code = data.code;
       sessionStorage.first = true;
+      document.getElementById("first_moment").innerHTML = data.created_at;
+      document.getElementById("chat-container").style.display = "block";
     },
     error: function(data) {
       console.log(data.statusText)
@@ -49,6 +51,7 @@ function send_message() {
       $("#chat_window").append(html_block);
       document.getElementById("chat_input").value = ""
       document.getElementById("chat_input").focus();
+      scroll_to_last_message();
     },
     error: function(data){
       console.log(data.statusText);
@@ -65,7 +68,13 @@ function send_message() {
 
       $("#chat_window").append(html_block);
       document.getElementById("chat_input").focus();
-      //document.getElementsByClassName("chat_container")[document.getElementsByClassName("chat_container").length - 1].scrollIntoView();
+      scroll_to_last_message();
     }
   })
+}
+
+function scroll_to_last_message() {
+  var chat_div = document.getElementById("chat_window");
+
+  chat_div.scrollTop = chat_div.scrollHeight;
 }
