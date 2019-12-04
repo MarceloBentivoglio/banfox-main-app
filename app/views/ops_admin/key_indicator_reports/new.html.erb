@@ -1,58 +1,51 @@
-<div class="wrapper-page-wo-subnavbar">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="client-form-box">
-          <div class="client-form">
-            <%= simple_form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path do |f| %>
-              <%= f.input :input_data, label: "CNPJ's separados por virgula" %>
-              <br />
-              <input type="hidden" name="operation_id">
-              <%= f.submit "Analisar", class: "btn btn-rounded blue", id: "wrapper-loader-trigger"%>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="kir-container first-container well">
+  <h1>Bem vindo Clóvis!</h1>
+  <h2>Utilize o campo abaixo  para realizar uma pesquisa. Vamos começar?</h2>
+  <h3>CNPJs separados por virgula: <span class="example">Ex:  23122193000176, 33455143000143<span></h3>
+  <%= form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path do |f| %>
+    <ul>
+      <% @key_indicator_report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <%= f.text_area :input_data, label: "CNPJ's separados por virgula" %>
+    <br />
+    <input type="hidden" name="operation_id">
+    <%= f.submit "Pesquisar", class: "btn submit btn-rounded blue", id: "wrapper-loader-trigger"%>
+  <% end %>
 </div>
 
 <% if @history.any? %>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="client-form-box">
-          <div class="client-form">
-            <h2>Histórico (<%= @history.count %>)</h2>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>CNPJ</th>
-                  <th>Criado em</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @history.each do |kir| %>
-                  <tr>
-                    <td><%= kir.cnpj %></td>
-                    <td><%= kir.created_at %></td>
-                    <td>
-                      <% if kir.processed? %>
-                        <%= link_to 'Visualizar Análise', ops_admin_key_indicator_report_path(kir)  %>
-                      <% else %>
-                        Processando...
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="kir-container well">
+    <h1>Histórico de Consultas</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>CNPJ</th>
+          <th>Data da Consulta</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @history.each do |kir| %>
+          <tr>
+            <td><%= kir.cnpj %></td>
+            <td><%= kir.created_at.strftime('%d %b %Y') %></td>
+            <td>
+              <% if kir.processed? %>
+                <%= link_to 'Visualizar Análise', report_ops_admin_key_indicator_report_path(kir)  %>
+              <% else %>
+                Processando...
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   </div>
 <% end %>
+
+
 
 <%= render partial: "shared/loaders/wrapper_loader" %>

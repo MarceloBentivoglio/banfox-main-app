@@ -1,147 +1,90 @@
 <div class="wrapper-page-wo-subnavbar" 
   <% if !@key_indicator_report.processed? %>
-     id="wrapped-page" polling-url="<%= ops_admin_key_indicator_report_path(@key_indicator_report)%>"
-  <% end %>
-  >
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
-          title: "Relatório de Indicadores de Risco",
-          optional_button: "",
-        } %>
-        
-        <%= link_to 'Voltar', ops_admin_key_indicator_reports_path(request_id: @key_indicator_report.key_indicator_report_request_id) %>
+       id="wrapped-page" polling-url="<%= ops_admin_key_indicator_report_path(@key_indicator_report)%>"
+     <% end %>
+>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <%= render partial: "shared/headers/header_section_w_opt_btn", locals: {
+        title: "Relatório de Indicadores de Risco",
+        optional_button: "",
+      } %>
 
-        <% @key_indicator_report.key_indicators.each do |cnpj, key_indicators|%>
-        <div class="card-w-table-inside">
-          <div class="card-w-table-inside-header">
-            <div class="header-column">
-              <span>Análise: <%= @presenter.company_name(cnpj)&.titleize %> - <%= cnpj%></span>
+    <%= link_to 'Voltar', ops_admin_key_indicator_reports_path(request_id: @key_indicator_report.key_indicator_report_request_id) %>
+
+    <div class="card-w-table-inside">
+      <div class="card-w-table-inside-header">
+        <div class="header-column">
+          <span>Análise: <%= @presenter.company_name&.titleize %> - <%= @key_indicator_report.cnpj%></span>
+        </div>
+        <div class="header-column">
+          <% Risk::Presenter::KeyIndicatorReport.new(@key_indicator_report).conclusions.tap do |conclusion| %>
+            <div>
+              <div class="risk-flag gray-flag">
+                <span> <%= conclusion[:flags][:gray] %></span>
+              </div>
+              <div class="risk-flag green-flag">
+                <span> <%= conclusion[:flags][:green] %></span>
+              </div>
+              <div class="risk-flag yellow-flag">
+                <span> <%= conclusion[:flags][:yellow] %></span>
+              </div>
+              <div class="risk-flag red-flag">
+                <span> <%= conclusion[:flags][:red] %></span>
+              </div>
             </div>
-            <div class="header-column">
-                <% Risk::Presenter::KeyIndicatorReport.new(@key_indicator_report).conclusions.each do |conclusion| %>
-                  <% if conclusion[:cnpj] == cnpj %>
-                    <div>
-                      <div class="risk-flag gray-flag">
-                        <span> <%= conclusion[:flags][:gray] %></span>
-                      </div>
-                      <div class="risk-flag green-flag">
-                        <span> <%= conclusion[:flags][:green] %></span>
-                      </div>
-                      <div class="risk-flag yellow-flag">
-                        <span> <%= conclusion[:flags][:yellow] %></span>
-                      </div>
-                      <div class="risk-flag red-flag">
-                        <span> <%= conclusion[:flags][:red] %></span>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-            </div>
-          </div>
-          <div class="card-w-table-inside-summary">
-            <div class="summary-column">
-              <table class="table table-striped table_key_indicator_report">
-                <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th>Descrição</th>
-                    <th>Notas</th>
-                    <th>Evidências</th>
-                    <th>Configuração</th>
-                    <th>Bandeira</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% key_indicators.each do |key_indicator|%>
-                  <tr>
-                    <td><%= key_indicator.last['title'] %></td>
-                    <td><%= translate "key-indicators.#{key_indicator.last['title'].parameterize}" %></td>
-                    <td><%= key_indicator.last['description']%></td>
-                    <td>
-                      <ul>
-                      <% key_indicator.last['evidence'].each do |key, value| %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-w-table-inside-summary">
+        <div class="summary-column">
+          <table class="table table-striped table_key_indicator_report">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Notas</th>
+                <th>Evidências</th>
+                <th>Configuração</th>
+                <th>Bandeira</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <% @key_indicator_report.key_indicators.each do |code, key_indicator|%>
+                <tr>
+                  <td><%= key_indicator['title'] %></td>
+                  <td><%= translate "key-indicators.#{key_indicator['title']&.parameterize}" %></td>
+                  <td><%= key_indicator['description']%></td>
+                  <td>
+                    <ul>
+                      <% key_indicator['evidence']&.each do |key, value| %>
                         <li><%= key %> - <%= value %></li>
                       <% end %>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <% key_indicator.last['params'].each do |key, value| %>
-                          <li><%= key %> - <%= value %></li>
-                        <% end %>
-                      </ul>
-                    </td>
-                    <td>
-                      <div class="risk-flag <%= span_flag(key_indicator.last['flag']) %>">
-                        <span><i class="fa fa-flag"></i></span>
-                      </div>
-                    </td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <% end %>
-
-        <% @key_indicator_report.evidences.each do |kind, data|%>
-          <div class="card-w-table-inside">
-            <div class="card-w-table-inside-header">
-              <div class="header-column">
-                <span>Evidências Coletadas do <%= kind %></span>
-              </div>
-            </div>
-            <div class="card-w-table-inside-summary">
-              <div class="summary-column">
-                <% data.each do |cnpj, evidences| %>
-                  <span>Evidências do CNPJ: <%= CNPJ.new(cnpj).formatted %></span>
-                <table class="table table-striped table-key-indicator-report">
-                  <thead>
-                    <tr>
-                      <th>Código</th>
-                      <th>Evidências Coletadas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% evidences.each do |name, evidence|%>
-                      <tr>
-                        <td><%= name %></td>
-                        <% unless evidence.is_a?(Array) && evidence %>
-                          <td>
-                            <ul>
-                            <% evidence&.each do |k, v| %>
-                              <li><%= k %>: <%= v%></li>
-                            <% end if evidence %>
-                            </ul>
-                          </td>
-                        <% else %>
-                          <td>
-                            <% evidence.each do |evidence_hash| %>
-                            <ul>
-                              <% evidence_hash.each do |k,v| %>
-                                <li>
-                                  <%= k %>:
-                                  <%= render partial: 'evidence_recursive', locals: { evidence: v } %>
-                                </li>
-                              <% end %>
-                            </ul>
-                            <% end %>
-                          </td>
-                        <% end %>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <% key_indicator['params']&.each do |key, value| %>
+                        <li><%= key %> - <%= value %></li>
+                      <% end %>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="risk-flag <%= span_flag(key_indicator['flag']) %>">
+                      <span><i class="fa fa-flag"></i></span>
+                    </div>
+                  </td>
+                </tr>
               <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+    </div>
   </div>
+</div>
 </div>
 <%= render partial: "shared/loaders/wrapper_loader" %>
