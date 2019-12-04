@@ -844,6 +844,12 @@
 </html>
 <script>
   window.onload = function() {
-    setTimeout(get_chat_room, 3000)
+    var code = sessionStorage.code;
+    if(code == undefined) {
+      setTimeout(get_chat_room, 10000);
+    } else {
+      restore_chat_room(code);
+      setInterval( function() { check_new_messages(code); }, 3000 );
+    }
   }
 </script>
