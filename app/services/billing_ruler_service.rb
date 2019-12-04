@@ -164,7 +164,7 @@ class BillingRulerService
   def billing_ruler_slack(installments, seller, slack_text)
     installments_text = ""
     installments.each do |i|
-      installments_text += "#{i.invoice.number}/#{i.number} \n "
+      installments_text += "#{i.invoice.number}/#{i.number} - #{i.invoice_payer_name} Venc: #{i.due_date_format} \n "
     end
     SlackMessage.new("CPM2L0ESD", 
                      "<!channel> Enviado ao cliente #{seller.company_name&.titleize} o e-mail de aviso que os títulos abaixo #{slack_text}: \n #{installments_text}").send_now

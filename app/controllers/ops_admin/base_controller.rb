@@ -4,6 +4,6 @@ class OpsAdmin::BaseController < ApplicationController
 
   def authenticate_admin
     return if current_user.admin? && !current_user.kir_permission?
-    redirect_to root_path
+    redirect_to "/"
   end
 end

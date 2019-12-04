@@ -45,4 +45,12 @@ class Invoice < ApplicationRecord
   def protection_rate
     seller.protection
   end
+
+  def payer_name
+    payer.company_name unless payer.nil?
+  end
+
+  def payer_cnpj
+    payer.cnpj unless payer.nil?
+  end
 end

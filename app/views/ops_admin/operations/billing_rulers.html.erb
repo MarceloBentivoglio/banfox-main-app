@@ -4,10 +4,10 @@
       <div class="col-12">
         <table class="table">
           <thead>
-            <th>Data de Criação do Email</th>
-            <th>Seller</th>
+            <th>Data Email</th>
             <th>Status</th>
-            <th>Tipo de Email</th>
+            <th>Tipo Email</th>
+            <th>Seller</th>
             <th>Títulos</th>
             <!--th>Ações</th -->
           </thead>
@@ -15,13 +15,30 @@
             <% @billing_rulers.each do |billing| %>
               <tr>
                 <td><%= billing.created_at_format %></td>
-                <td><%= billing.seller.company_name&.titleize %></td>
                 <td><%= billing.status_translate %></td>
                 <td><%= billing.billing_type_translate %></td>
+                <td><%= billing.seller.company_name&.titleize %> - <%= billing.seller&.cnpj %></td>
                 <td>
-                  <% billing.installments.each do |installment| %>
-                    <%= installment.invoice.number %>/<%= installment.number %><br/>
-                  <% end %>
+                  <table>
+                    <thead>
+                      <th>Number</th>
+                      <th>Vencimento</th>
+                      <th>Valor</th>
+                      <th>Payer</th>
+                      <th>Renegoc?</th>
+                    </thead>
+                    <tbody>
+                      <% billing.installments.each do |installment| %>
+                        <tr>
+                          <td><%= installment.invoice_number %>/<%= installment.number %></td>
+                          <td><%= installment.due_date_format %></td>
+                          <td><%= humanized_money_with_symbol installment.value %></td>
+                          <td><%= installment.invoice_payer_name %> - <%= installment.invoice_payer_cnpj %></td>
+                          <td><%= installment.renegotiation %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </td>
                 <!--td>
                   <%# link_to "Enviar", ops_admin_operations_send_billing_mail_path(id: billing.id, method: billing.billing_type), method: :post %>

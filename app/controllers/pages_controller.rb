@@ -51,7 +51,7 @@ class PagesController < ApplicationController
   def require_on_going
     if (seller = current_user.seller)
       if !seller.on_going?
-        redirect_to root_path
+        redirect_to "/"
       end
     end
   end
@@ -59,7 +59,7 @@ class PagesController < ApplicationController
   def require_rejected
     if (seller = current_user.seller)
       if !seller.rejected?
-        redirect_to root_path
+        redirect_to "/"
       end
     end
   end
