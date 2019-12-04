@@ -1,0 +1,42 @@
+.banfox_chat_div {
+  height: 400px;
+  width: 100%;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  padding: 10px 0;
+  overflow: scroll;
+}
+
+.banfox_chat_div .chat_container {
+  width: 60%;
+  border-radius: 10px;
+  padding: 10px;
+  color: #000;
+  margin: 10px 0;
+}
+
+.banfox_chat_div .banfox_side {
+  background-color: #6471fc3d;
+  float: right;
+}
+
+.banfox_chat_div .client_side {
+  background-color: #dadada;
+  float: left;
+}
+
+.banfox_side .timestamp {
+  text-align: right;
+}
+
+.banfox_side .message {
+  text-align: right;
+}
+
+.client_side .timestamp {
+  text-align: left;
+}
+
+.client_side .message {
+  text-align: left;
+}
