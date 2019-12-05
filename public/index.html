@@ -660,22 +660,26 @@
             </div>
         </section>
         <!-- end contact form -->
-        <div class="chat-container" id="chat-container" style="display:none;">
+        <div id="closed_chat">
+          <button class="btn" type="button" onclick="openChat()">Chat</button>
+        </div>
+        <div class="chat-popup" id="chat-container">
           <div class="container">
             <div class="row">
-              <h1>CHAT</h1>
+              <h4>Bem Vindo a Banfox! :)</h4>
+              <button class="close" onclick="closeChat()"></button>
               <div id="chat_window" class="banfox_chat_div">
                 <div class="chat_container banfox_side">
                   <div class="timestamp">
                     <small id="first_moment"></small>
                   </div>
                   <div class="message">
-                    Olá! Percebi que se interessou pelo produto da Banfox, como posso te ajudar? :)
+                    Percebi que se interessou pelo nosso produto, como posso te ajudar?
                   </div>
                 </div>
               </div>
               <input type="text" id="chat_input" onkeyup="enable_submit(this)">
-              <button id="chat_button" type="button" onclick="send_message()" disabled="true">Enviar</button>
+              <button id="chat_button" class="btn" type="button" onclick="send_message()" disabled="true">Enviar</button>
             </div>
           </div>
         </div>
@@ -850,6 +854,12 @@
     } else {
       restore_chat_room(code);
       setInterval( function() { check_new_messages(code); }, 3000 );
+    }
+
+    document.getElementById("chat_input").onkeydown = function(e){
+      if(e.keyCode == 13) {
+        send_message();
+      }
     }
   }
 </script>

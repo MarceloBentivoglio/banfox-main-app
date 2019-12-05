@@ -10,7 +10,7 @@ function get_chat_room() {
       sessionStorage.last_check = data.last_check;
       sessionStorage.first = true;
       document.getElementById("first_moment").innerHTML = data.created_at;
-      document.getElementById("chat-container").style.display = "block";
+      openChat();
       setInterval( function() { check_new_messages(data.code); }, 3000 );
     },
     error: function(data) {
@@ -27,7 +27,7 @@ function restore_chat_room(code) {
     success: function(data) {
       get_history(code);
       document.getElementById("first_moment").innerHTML = data.created_at;
-      document.getElementById("chat-container").style.display = "block";
+      openChat();
     },
     error: function(data) {
       console.log(data.statusText)
@@ -142,3 +142,15 @@ function create_chat_message(data) {
   document.getElementById("chat_input").focus();
   scroll_to_last_message();
 }
+
+function closeChat() {
+  document.getElementById("chat-container").style.display = "none";
+  document.getElementById("closed_chat").style.display = "block";
+}
+
+function openChat() {
+  document.getElementById("chat-container").style.display = "block";
+  document.getElementById("closed_chat").style.display = "none";
+}
+
+
