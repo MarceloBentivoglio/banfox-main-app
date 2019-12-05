@@ -40,7 +40,7 @@ class Api::V1::ChatController < ActionController::API
     safe_params = params.permit(:message, :room_code, :first, :session_id)
     banfox_chat_response = JSON(@banfox_chat.send_message(safe_params).body)
 
-    SlackMessage.new("CQSEU4466","<!channel> Um contato foi feito pelo chat da LP. Clique no link para conversar. http://#{ENV.fetch('CHATAPIHOST')}/rooms/#{banfox_chat_response["access_token"]}").send_now if safe_params["first"] == "true"
+    SlackMessage.new("CQSEU4466","<!channel> Um contato foi feito pelo chat da LP. Clique no link para conversar. #{ENV.fetch('CHATAPIHOST')}/rooms/#{banfox_chat_response["access_token"]}").send_now if safe_params["first"] == "true"
     
     response = {}
     response[:body] = banfox_chat_response["body"]
