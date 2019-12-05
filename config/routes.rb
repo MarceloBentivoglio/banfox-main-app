@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :feedbacks
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate :user, lambda {|u| u.admin && !u.kir_permission } do
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
   require 'sidekiq/cron/web'
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
     namespace :ops_admin do
-      resources :key_indicator_reports
+      resources :key_indicator_reports do
+        member do
+          get :report
+        end
+      end
       resources :key_indicator_report_requests
       resources :installments, only: [] do
         member do
@@ -127,4 +132,7 @@ Rails.application.routes.draw do
   end
   match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create]
+  resources :feedbacks
+  get 'info', to: 'key_indicator_reports#login'
+  post '/info/authenticate', to: 'key_indicator_reports#authenticate'
 end

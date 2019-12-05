@@ -8,23 +8,25 @@
     </div>
 
     <div class="section-middle hidden-xs hidden-sm">
-      <%= link_to ops_admin_sellers_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
-        <span>Clientes</span>
-      <% end %>
-      <%= link_to ops_admin_operations_analyse_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
-        <span>Operações para análise</span>
-      <% end %>
-      <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
-        <span>Operações para depósito</span>
-      <% end %>
-      <%= link_to ops_admin_operations_follow_up_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
-        <span>Operações para acompanhamento</span>
-      <% end %>
-      <%= link_to new_ops_admin_key_indicator_report_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
-        <span>Análise de Crédito</span>
-      <% end %>
-      <%= link_to ops_admin_operations_billing_rulers_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
-        <span>Régua de Cobrança</span>
+      <% unless current_user.kir_permission? %>
+        <%= link_to ops_admin_sellers_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
+          <span>Clientes</span>
+        <% end %>
+        <%= link_to ops_admin_operations_analyse_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
+          <span>Operações para análise</span>
+        <% end %>
+        <%= link_to ops_admin_operations_deposit_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'left')}" do %>
+          <span>Operações para depósito</span>
+        <% end %>
+        <%= link_to ops_admin_operations_follow_up_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+          <span>Operações para acompanhamento</span>
+        <% end %>
+        <%= link_to ops_admin_operations_billing_rulers_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+          <span>Régua de Cobrança</span>
+        <% end %>
+        <%= link_to new_ops_admin_key_indicator_report_path, class: "navbar-section-item navbar-section-item-link #{highlight_navbar_item(current_controller_name, current_action_name, 'right')}" do %>
+          <span>Análise de Crédito</span>
+        <% end %>
       <% end %>
     </div>
 
