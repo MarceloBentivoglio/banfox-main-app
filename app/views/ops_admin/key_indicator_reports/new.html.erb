@@ -1,5 +1,5 @@
 <div class="kir-container first-container well">
-  <h1>Bem vindo Clóvis!</h1>
+  <h1>Bem vindo <%= current_user&.seller&.full_name&.titleize %>!</h1>
   <h2>Utilize o campo abaixo  para realizar uma pesquisa. Vamos começar?</h2>
   <h3>CNPJs separados por virgula: <span class="example">Ex:  23122193000176, 33455143000143<span></h3>
   <%= form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path do |f| %>
