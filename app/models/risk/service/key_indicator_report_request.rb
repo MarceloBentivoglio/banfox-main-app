@@ -1,7 +1,7 @@
 module Risk
   module Service
     class KeyIndicatorReportRequest 
-      def self.call(params)
+      def self.call(params, current_user=nil)
         if params.keys.member?(:cnpjs) &&
            params.keys.member?(:operation_id)
 
@@ -10,13 +10,13 @@ module Risk
             params[:cnpjs] = [operation.seller.cnpj, operation.payers.map {|payer| payer.cnpj}].flatten
           end
           
-          new.call params if validate_input_data(params)
+          new.call(params, current_user) if validate_input_data(params)
         else
           raise 'cnpjs, operation_id or report_kind was not passed during KeyIndicatorReportRequest call'
         end
       end
 
-      def call(params)
+      def call(params, current_user)
         request = Risk::KeyIndicatorReportRequest.create(operation_id: params[:operation_id],
                                                          input_data: params[:cnpjs]
                                                         )
@@ -30,7 +30,9 @@ module Risk
                                           kind: kind,
                                           ttl: DateTime.now + 7.days,
                                           operation_id: params[:operation_id],
-                                          historic: JSON.generate(historic))
+                                          historic: JSON.generate(historic),
+                                          requested_by_user_id: current_user&.id
+                                         )
         end
 
         reports.each do |report|

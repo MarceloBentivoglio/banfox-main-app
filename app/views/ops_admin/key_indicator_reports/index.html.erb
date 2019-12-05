@@ -6,6 +6,7 @@
           title: "Relatório de Indicadores de Risco",
           optional_button: "",
         } %>
+        <%= link_to 'Voltar', new_ops_admin_key_indicator_report_path %>
 
         <div class="card-w-table-inside">
           <div class="card-w-table-inside-header">
@@ -47,7 +48,7 @@
                         <%= kir.kind %>
                       </td>
                       <td>
-                        <%= link_to 'visualizar', ops_admin_key_indicator_report_path(kir)%>
+                        <%= link_to 'visualizar', report_ops_admin_key_indicator_report_path(kir)%>
                       </td>
                     </tr>
                   <% end %>

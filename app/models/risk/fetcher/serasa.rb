@@ -8,6 +8,10 @@ module Risk
         @data = []
       end
 
+      def cache_query_key
+        JSON.generate({ cnpj: CNPJ.new(@key_indicator_report.cnpj).stripped })
+      end
+
       def name
         'serasa_api'
       end

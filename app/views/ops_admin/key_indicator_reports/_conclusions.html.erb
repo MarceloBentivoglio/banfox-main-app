@@ -1,4 +1,4 @@
-<% Risk::Presenter::KeyIndicatorReport.new(key_indicator_report).conclusions.each do |conclusion| %>
+<% Risk::Presenter::KeyIndicatorReport.new(key_indicator_report).conclusions.tap do |conclusion| %>
   <div>
     <div class="risk-flag gray-flag">
       <span> <%= conclusion[:flags][:gray] %></span>

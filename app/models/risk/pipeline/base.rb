@@ -48,17 +48,19 @@ module Risk
 
       def call
         decorated_evidences = decorate_evidences(@key_indicator_report)
-        self.class.referees.each do |referee_klass|
-          decorated_evidences.each_cnpj do |cnpj, evidences|
-            referee = referee_klass.new(evidences)
-            if referee.multiple_assertions?
-              key_indicators = referee.call
-              key_indicators.each do |key_indicator|
-                @key_indicator_report.key_indicators[cnpj][key_indicator[:code]] = key_indicator
+        if !self.class.referees.nil?
+          self.class.referees.each do |referee_klass|
+            decorated_evidences.each_cnpj do |cnpj, evidences|
+              referee = referee_klass.new(evidences)
+              if referee.multiple_assertions?
+                key_indicators = referee.call
+                key_indicators.each do |key_indicator|
+                  @key_indicator_report.key_indicators[key_indicator[:code]] = key_indicator
+                end
+              else
+                @key_indicator_report.key_indicators ||= {}
+                @key_indicator_report.key_indicators[referee.code] = referee.call
               end
-            else
-              @key_indicator_report.key_indicators[cnpj] ||= {}
-              @key_indicator_report.key_indicators[cnpj][referee.code] = referee.call
             end
           end
         end

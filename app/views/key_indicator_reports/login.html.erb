@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render partial: "shared/layouts/standard_html_head" %>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  </head>
+  <body style="background-color: #eef1f6 !important;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <a href="/">
+            <div class="devise-logo">
+              <img src="/assets/Logo_banfox_color-f8a96ce513353feccf1644fa8eedc4c613724147308f4f1733366fccb2df3a80.png" />
+            </div>
+          </a>          <center>
+            <h1 class="devise-header">
+              Vamos <a class="devise-header-strong">simplificar</a> a sua análise de crédito?
+            </h1>
+          </center>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
+          <div class="login-form">
+            <h2>Bem vindo!</h2>
+
+            <%= simple_form_for(@user, url: '/info/authenticate') do |f| %>
+              <div class="form-inputs">
+                <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+                <%= f.input :password,
+                  required: true,
+                  input_html: { autocomplete: "current-password" } %>
+              </div>
+
+              <div class="form-actions">
+                <%= f.button :submit, 'Login', class: "btn-sessions" %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+  </body>
+</html>

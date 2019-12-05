@@ -13,6 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def persist_user_ip
     current_user&.update(remote_original_ip: request.headers['HTTP_CF_CONNECTING_IP'])
-    AntiFraudInfoJob.perform_later(current_user.id)
+    AntiFraudInfoJob.perform_later(current_user.id) unless current_user.nil?
   end
 end
