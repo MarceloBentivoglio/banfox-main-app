@@ -851,5 +851,11 @@
       restore_chat_room(code);
       setInterval( function() { check_new_messages(code); }, 3000 );
     }
+
+    document.getElementById("chat_input").onkeydown = function(e){
+      if(e.keyCode == 13) {
+        send_message();
+      }
+    }
   }
 </script>
