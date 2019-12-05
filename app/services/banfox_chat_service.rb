@@ -31,7 +31,7 @@ class BanfoxChatService
   end
 
   def check_new_messages(code)
-    url = "#{APIHOST}/api/v1/check_new_messages/#{code}"
+    url = "#{APIHOST}/api/v1/check_new_messages/#{code}?sent_from=banfox"
     response = RestClient.get(url)
     response
   end

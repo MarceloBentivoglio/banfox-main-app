@@ -1,4 +1,5 @@
 function get_chat_room() {
+
   $.ajax({
     url: "/api/v1/get_chat_room",
     type: "get",
@@ -10,6 +11,7 @@ function get_chat_room() {
       sessionStorage.first = true;
       document.getElementById("first_moment").innerHTML = data.created_at;
       document.getElementById("chat-container").style.display = "block";
+      setInterval( function() { check_new_messages(data.code); }, 3000 );
     },
     error: function(data) {
       console.log(data.statusText)
