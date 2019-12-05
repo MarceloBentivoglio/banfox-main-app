@@ -1,5 +1,6 @@
 class BanfoxChatService
-  APIHOST = "localhost:4000"
+  #APIHOST = "localhost:4000"
+  APIHOST = ENV.fetch('CHATAPIHOST')
 
   def get_room
     url = "#{APIHOST}/api/v1/get_chat_room"
