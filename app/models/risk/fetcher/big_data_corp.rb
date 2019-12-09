@@ -40,7 +40,6 @@ module Risk
       end
 
       def call
-        begin
         return false if @invalid_params
         
         @company_response = HTTParty.get(
@@ -60,9 +59,6 @@ module Risk
           companies: JSON.parse(@company_response),
           partners: partner_response
         }
-        rescue Exception => e
-          byebug
-        end
       end
 
       def needs_parsing?
