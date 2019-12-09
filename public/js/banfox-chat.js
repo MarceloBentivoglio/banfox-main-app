@@ -157,5 +157,3 @@ function openChat() {
   document.getElementById("chat-container").style.display = "block";
   document.getElementById("closed_chat").style.display = "none";
 }
-
-

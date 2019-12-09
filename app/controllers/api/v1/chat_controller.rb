@@ -67,4 +67,18 @@ class Api::V1::ChatController < ActionController::API
     render :json => banfox_chat_response
   end
 
+  def enable_chat_api
+    @banfox_chat.enable_chat_api(ENV.fetch("CHAT_API_SECRET_KEY"))
+    redirect_back fallback_location: ops_admin_sellers_path
+  end
+
+  def disable_chat_api
+    @banfox_chat.disable_chat_api(ENV.fetch("CHAT_API_SECRET_KEY"))
+    redirect_back fallback_location: ops_admin_sellers_path
+  end
+
+  def check_api_availability
+    banfox_chat_response = JSON(@banfox_chat.check_api_availability.body)
+    render :json => banfox_chat_response
+  end
 end
