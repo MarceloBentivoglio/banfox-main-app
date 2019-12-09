@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @trace_exception.message %>
+</p>
+
+<p>
+  <strong>Trace:</strong>
+  <%= @trace_exception.trace %>
+</p>
+
+<p>
+  <strong>Instance variables:</strong>
+  <%= @trace_exception.instance_variables %>
+</p>
+
+<p>
+  <strong>Instance variable names:</strong>
+  <%= @trace_exception.instance_variable_names %>
+</p>
+
+<p>
+  <strong>Rack session:</strong>
+  <%= @trace_exception.rack_session %>
+</p>
+
+<p>
+  <strong>Request method:</strong>
+  <%= @trace_exception.request_method %>
+</p>
+
+<p>
+  <strong>Query hash:</strong>
+  <%= @trace_exception.query_hash %>
+</p>
+
+<p>
+  <strong>Request params:</strong>
+  <%= @trace_exception.request_params %>
+</p>
+
+<p>
+  <strong>Query params:</strong>
+  <%= @trace_exception.query_params %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @trace_exception.path %>
+</p>
+
+<p>
+  <strong>Env:</strong>
+  <%= @trace_exception.env %>
+</p>
+
+<%= link_to 'Edit', edit_trace_exception_path(@trace_exception) %> |
+<%= link_to 'Back', trace_exceptions_path %>

@@ -17,6 +17,10 @@ module Risk
         @key_indicator_report = key_indicator_report
       end
 
+      def created_at
+        @key_indicator_report&.created_at&.strftime('%d %B %Y')
+      end
+
       def company_name
         @serasa&.dig('company_data', 'company_name')&.titleize
       end

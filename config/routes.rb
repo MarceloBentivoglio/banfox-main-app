@@ -109,6 +109,9 @@ Rails.application.routes.draw do
       post "send_message", to: "chat#send_message"
       get "get_history/:code", to: "chat#get_history"
       get "check_new_messages/:code", to: "chat#check_new_messages"
+      put "enable_chat_api", to: "chat#enable_chat_api"
+      put "disable_chat_api", to: "chat#disable_chat_api"
+      get "check_chat_api_availability", to: "chat#check_api_availability"
       resources :pdf_parsed_invoices, only: [ :create ]
       resources :mobile_inputed_invoices, only: [ :create ]
       resources :billing_ruler_responses do

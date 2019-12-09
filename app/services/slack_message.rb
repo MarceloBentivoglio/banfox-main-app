@@ -6,10 +6,14 @@ class SlackMessage
   end
 
   def send_now
-    response = RestClient.post(url, payload, headers)
+    RestClient.post(url, payload, headers) unless dev_env?
   end
 
   private
+
+  def dev_env?
+    Rails.env.development? || Rails.env.test?
+  end
 
   def url
     "https://slack.com/api/chat.postMessage"
@@ -36,7 +40,7 @@ class SlackMessage
 
   def prefix
     if Rails.env.development? || Rails.env.test?
-      "---- Isso é apenas um teste ---- \n"
+      "---- Ambiente de Teste ---- \n"
     else
       ""
     end
