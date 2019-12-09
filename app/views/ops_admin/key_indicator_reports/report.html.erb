@@ -27,7 +27,9 @@
   <hr />
   <div class="row">
     <div class="col-sm">
-      <span class="highlight-text">Empresa no SIMPLES Nacional</span><br />
+      <% if @presenter.simples_nacional? %>
+        <span class="highlight-text">Empresa no SIMPLES Nacional</span><br />
+      <% end %>
       <% @presenter&.company_cnae.each do |cnae| %>
         <span class="info-text">
           <%= cnae['Code'] %> - <%= cnae['Activity'] %>
@@ -48,96 +50,95 @@
 </div>
 
 <% unless @presenter.partners.any? %>
-<div class="kir-container-title">
-  <h1>Sócios</h1>
+  <div class="kir-container-title">
+    <h1>Sócios</h1>
 
-  <h2 class="alert-text">Empresa possui poucos dados na internet sobre sócios</h2>
-</div>
-
+    <h2 class="alert-text">Empresa possui poucos dados na internet sobre sócios</h2>
+  </div>
 
 <% else %>
-<div class="kir-container-title">
-  <h1>Sócios</h1>
-</div>
+  <div class="kir-container-title">
+    <h1>Sócios</h1>
+  </div>
 
-<% @presenter.partners.each do |partner| %>
-<div class="kir-container well partner-container">
-  <span class="highlight-text"><%= partner[:name] %></span><br />
-  <span class="info-text">CPF. <%= partner[:cpf] %></span><br />
-  <% unless partner[:rg]&.to_i&.zero? %>
-    <span class="info-text">RG. <%= partner[:rg] %></span><br />
+  <% @presenter.partners.each do |partner| %>
+    <div class="kir-container well partner-container">
+      <span class="highlight-text"><%= partner[:name] %></span><br />
+      <span class="info-text">CPF. <%= partner[:cpf] %></span><br />
+      <% unless partner[:rg]&.to_i&.zero? %>
+        <span class="info-text">RG. <%= partner[:rg] %></span><br />
+      <% end %>
+      <span class="info-text"><%= partner[:birth_date] %> - <%= partner[:age] %> Anos</span><br />
+      <br />
+
+      <span class="info-text"><%= partner[:role] %></span><br />
+      <span class="info-text"><%= partner[:email] %></span><br />
+      <br />
+
+      <span class="info-text"><%= partner[:address] %></span><br />
+      <span class="info-text"><%= partner[:district] %> - <%= partner[:city] %> - <%= partner[:state] %></span><br />
+      <span class="info-text">CEP. 34805-992</span><br />
+      <span class="info-text">PIB do CEP (em breve)</span><br />
+      <span class="info-text">Algoritmo de validação de endereços estará disponível na próxima versão</span><br />
+      <br />
+      <span class="info-text">Entrou na empresa em <%= partner[:entry_date] %></span><br />
+      <% unless partner[:business_relationships].nil? %>
+        <span class="info-text">Sócio em outras empresas:</span><br />
+        <% partner[:business_relationships].each do |business_relationship| %>
+          <span class="info-text"> - <%= business_relationship['RelatedEntityName']&.titleize%></span><br />
+        <% end %>
+      <% end %>
+      <br />
+
+      <span class="highlight-text">Informações Financeiras</span><br />
+      <span class="info-text"><%= partner.dig(:financial_data, :number_of_minimum_wage)%></span><br />
+      <span class="info-text">Patrimônio estimado de <%= partner.dig(:financial_data, :total_assets) %></span><br />
+      <br />
+
+      <% if partner[:pefins].any? %>
+        <span class="highlight-text">Possui <%= partner[:pefins].count %> Pefins</span><br />
+      <% else %>
+        <span class="highlight-text">Não possui Pefins</span><br />
+        <br />
+      <% end %>
+
+      <% if partner[:refins].any? %>
+        <span class="highlight-text">Possui <%= partner[:refins].count %> Refins</span><br />
+        <br />
+      <% else %>
+        <span class="highlight-text">Não possui Refins</span><br />
+        <br />
+      <% end %>
+
+      <% if partner[:protests].any? %>
+        <span class="highlight-text">Possui <%= partner[:protests].count %> Protestos</span><br />
+      <% else %>
+        <span class="highlight-text">Não possui protestos</span><br />
+        <br />
+      <% end %>
+
+      <% if partner[:lawsuits].any? %>
+        <span class="highlight-text">Possui <%= partner[:lawsuits].count %> Ações Judiciais</span><br />
+      <% else %>
+        <span class="highlight-text">Não possui ações judiciais</span><br />
+        <br />
+      <% end %>
+
+      <% if partner[:bankruptcy_participations].any? %>
+        <span class="highlight-text">Possui <%= partner[:bankruptcy_participations].count %> Participações em Falência</span><br />
+      <% else %>
+        <span class="highlight-text">Não possui participações em falência</span><br />
+        <br />
+      <% end %>
+
+      <% if partner[:bad_checks].any? %>
+        <span class="highlight-text">Possui <%= partner[:bad_checks].count %> problemas com cheques</span><br />
+      <% else %>
+        <span class="highlight-text">Não possui problemas com cheques</span><br />
+        <br />
+      <% end %>
+    </div>
   <% end %>
-  <span class="info-text"><%= partner[:birth_date] %> - <%= partner[:age] %> Anos</span><br />
-  <br />
-
-  <span class="info-text"><%= partner[:role] %></span><br />
-  <span class="info-text"><%= partner[:email] %></span><br />
-  <br />
-  
-  <span class="info-text"><%= partner[:address] %></span><br />
-  <span class="info-text"><%= partner[:district] %> - <%= partner[:city] %> - <%= partner[:state] %></span><br />
-  <span class="info-text">CEP. 34805-992</span><br />
-  <span class="info-text">PIB do CEP (em breve)</span><br />
-  <span class="info-text">Algoritmo de validação de endereços estará disponível na próxima versão</span><br />
-  <br />
-  <span class="info-text">Entrou na empresa em <%= partner[:entry_date] %></span><br />
-  <% unless partner[:business_relationships].nil? %>
-    <span class="info-text">Sócio em outras empresas:</span><br />
-    <% partner[:business_relationships].each do |business_relationship| %>
-      <span class="info-text"> - <%= business_relationship['RelatedEntityName']&.titleize%></span><br />
-    <% end %>
-  <% end %>
-  <br />
-
-  <span class="highlight-text">Informações Financeiras</span><br />
-  <span class="info-text"><%= partner.dig(:financial_data, :number_of_minimum_wage)%></span><br />
-  <span class="info-text">Patrimônio estimado de <%= partner.dig(:financial_data, :total_assets) %></span><br />
-  <br />
-
-  <% if partner[:pefins].any? %>
-    <span class="highlight-text">Possui <%= partner[:pefins].count %> Pefins</span><br />
-  <% else %>
-    <span class="highlight-text">Não possui Pefins</span><br />
-    <br />
-  <% end %>
-
-  <% if partner[:refins].any? %>
-    <span class="highlight-text">Possui <%= partner[:refins].count %> Refins</span><br />
-    <br />
-  <% else %>
-    <span class="highlight-text">Não possui Refins</span><br />
-    <br />
-  <% end %>
-
-  <% if partner[:protests].any? %>
-    <span class="highlight-text">Possui <%= partner[:protests].count %> Protestos</span><br />
-  <% else %>
-    <span class="highlight-text">Não possui protestos</span><br />
-    <br />
-  <% end %>
-
-  <% if partner[:lawsuits].any? %>
-    <span class="highlight-text">Possui <%= partner[:lawsuits].count %> Ações Judiciais</span><br />
-  <% else %>
-    <span class="highlight-text">Não possui ações judiciais</span><br />
-    <br />
-  <% end %>
-
-  <% if partner[:bankruptcy_participations].any? %>
-    <span class="highlight-text">Possui <%= partner[:bankruptcy_participations].count %> Participações em Falência</span><br />
-  <% else %>
-    <span class="highlight-text">Não possui participações em falência</span><br />
-    <br />
-  <% end %>
-
-  <% if partner[:bad_checks].any? %>
-    <span class="highlight-text">Possui <%= partner[:bad_checks].count %> problemas com cheques</span><br />
-  <% else %>
-    <span class="highlight-text">Não possui problemas com cheques</span><br />
-    <br />
-  <% end %>
-</div>
-<% end %>
 
 <% end %>
 
@@ -167,31 +168,31 @@
 </div>
 
 <!--
-<div class="kir-container well"> <h1>Últimos 5 protestos da MVP Fomento Mercantil</h1> <table class="table"> <tbody> <tr>
-        <td>Protesto</td>
-        <td>19 Set 2019</td>
-        <td>Rio de Janeiro</td>
-        <td>R$ 22,00</td>
-      </tr>
-      <tr>
-        <td>Protesto</td>
-        <td>19 Set 2019</td>
-        <td>Rio de Janeiro</td>
-        <td>R$ 22,00</td>
-      </tr>
-      <tr>
-        <td>Protesto</td>
-        <td>19 Set 2019</td>
-        <td>Rio de Janeiro</td>
-        <td>R$ 22,00</td>
-      </tr>
-      <tr>
-        <td>Protesto</td>
-        <td>19 Set 2019</td>
-        <td>Rio de Janeiro</td>
-        <td>R$ 22,00</td>
-      </tr>
-    </tbody>
+  <div class="kir-container well"> <h1>Últimos 5 protestos da MVP Fomento Mercantil</h1> <table class="table"> <tbody> <tr>
+  <td>Protesto</td>
+  <td>19 Set 2019</td>
+  <td>Rio de Janeiro</td>
+  <td>R$ 22,00</td>
+  </tr>
+  <tr>
+  <td>Protesto</td>
+  <td>19 Set 2019</td>
+  <td>Rio de Janeiro</td>
+  <td>R$ 22,00</td>
+  </tr>
+  <tr>
+  <td>Protesto</td>
+  <td>19 Set 2019</td>
+  <td>Rio de Janeiro</td>
+  <td>R$ 22,00</td>
+  </tr>
+  <tr>
+  <td>Protesto</td>
+  <td>19 Set 2019</td>
+  <td>Rio de Janeiro</td>
+  <td>R$ 22,00</td>
+  </tr>
+  </tbody>
   </table>
-</div>
+  </div>
 -->

@@ -1,10 +1,11 @@
 module Risk
   module Fetcher
     class BigDataCorp
-      attr_reader :cnpj, :access_token, :params, :key_indicator_report, :data
+      attr_reader :cnpj, :access_token, :params, :key_indicator_report, :data, :cache_query_key
 
       def initialize(key_indicator_report)
         @key_indicator_report = key_indicator_report
+        @cache_query_key = JSON.generate({ key: "v0#{key_indicator_report.cnpj}" })
       end
 
       def query
@@ -15,10 +16,6 @@ module Risk
 
       def name
         'big_data_corp'
-      end
-
-      def cache_query_key
-        @query
       end
 
       def invalid_params!
@@ -41,6 +38,7 @@ module Risk
 
       def call
         return false if @invalid_params
+
         
         @company_response = HTTParty.get(
           'https://bigboost.bigdatacorp.com.br/companies',
@@ -76,11 +74,11 @@ module Risk
       end
 
       def partner_data_query(cpf)
-        basic_data_query = query
-        basic_data_query['Datasets'] = 'basic_data,financial_data,business_relationships'
-        basic_data_query['q'] = "doc{#{cpf}}"
+        partner_data_query = query
+        partner_data_query['Datasets'] = 'basic_data,financial_data,business_relationships'
+        partner_data_query['q'] = "doc{#{cpf}}"
 
-        basic_data_query
+        partner_data_query
       end
 
       def get_all_partners

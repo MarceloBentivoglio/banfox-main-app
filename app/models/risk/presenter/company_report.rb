@@ -21,6 +21,10 @@ module Risk
         @key_indicator_report&.created_at&.strftime('%d %B %Y')
       end
 
+      def simples_nacional?
+        @big_data_corp&.dig("companies", "Result",0,"BasicData","TaxRegimes", "Simples")
+      end
+
       def company_name
         @serasa&.dig('company_data', 'company_name')&.titleize
       end

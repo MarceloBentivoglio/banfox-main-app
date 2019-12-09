@@ -20,7 +20,7 @@ module Risk
         if cached_data.any? && cached_data.last.ttl < DateTime.now || cached_data.empty?
           @fetcher.call
           external_datum = Risk::ExternalDatum.create(source: @fetcher.name,
-                                                      query: @query,
+                                                      query: @fetcher.cache_query_key,
                                                       raw_data: @fetcher.data,
                                                       ttl: @ttl,
                                                       )
