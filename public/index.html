@@ -28,6 +28,9 @@
     <!-- core style css -->
     <link href="css/styles.css" rel="stylesheet" id="colors" />
 
+    <!-- banfox_chat -->
+    <link href="css/banfox_chat.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -657,7 +660,29 @@
             </div>
         </section>
         <!-- end contact form -->
-
+        <div id="closed_chat">
+          <button class="btn" type="button" onclick="openChat()">Chat</button>
+        </div>
+        <div class="chat-popup" id="chat-container">
+          <div class="container">
+            <div class="row">
+              <h4>Bem Vindo a Banfox! :)</h4>
+              <button class="close" onclick="closeChat()"></button>
+              <div id="chat_window" class="banfox_chat_div">
+                <div class="chat_container banfox_side">
+                  <div class="timestamp">
+                    <small id="first_moment"></small>
+                  </div>
+                  <div class="message">
+                    Percebi que se interessou pelo nosso produto, como posso te ajudar?
+                  </div>
+                </div>
+              </div>
+              <input type="text" id="chat_input" onkeyup="enable_submit(this)">
+              <button id="chat_button" class="btn" type="button" onclick="send_message()" disabled="true">Enviar</button>
+            </div>
+          </div>
+        </div>
         <!-- start footer section -->
         <footer class="bg-light-gray">
             <div class="container">
@@ -813,8 +838,27 @@
     <script src="js/mailform/jquery.form.min.js"></script>
     <script src="js/mailform/jquery.rd-mailform.min.c.js"></script>
 
+    <!-- banfox chat (ノ・∀・)ノ -->
+    <script src="js/banfox-chat.js"></script>
+
     <!-- all js include end -->
 
 </body>
 
 </html>
+<script>
+  window.onload = function() {
+    var code = sessionStorage.code;
+    if((code == undefined) || (code == "undefined")) {
+      setTimeout(get_chat_room, 10000);
+    } else {
+      restore_chat_room(code);
+    }
+
+    document.getElementById("chat_input").onkeydown = function(e){
+      if(e.keyCode == 13) {
+        send_message();
+      }
+    }
+  }
+</script>
