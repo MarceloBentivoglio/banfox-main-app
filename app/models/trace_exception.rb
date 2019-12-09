@@ -1,0 +1,2 @@
+class TraceException < ApplicationRecord
+end

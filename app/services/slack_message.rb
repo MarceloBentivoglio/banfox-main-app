@@ -36,7 +36,7 @@ class SlackMessage
 
   def prefix
     if Rails.env.development? || Rails.env.test?
-      "---- Isso é apenas um teste ---- \n"
+      "---- Ambiente de Teste ---- \n"
     else
       ""
     end

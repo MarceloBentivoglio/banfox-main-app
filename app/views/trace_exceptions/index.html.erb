@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trace Exceptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Trace</th>
+      <th>Instance variables</th>
+      <th>Instance variable names</th>
+      <th>Rack session</th>
+      <th>Request method</th>
+      <th>Query hash</th>
+      <th>Request params</th>
+      <th>Query params</th>
+      <th>Path</th>
+      <th>Env</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trace_exceptions.each do |trace_exception| %>
+      <tr>
+        <td><%= trace_exception.message %></td>
+        <td><%= trace_exception.trace %></td>
+        <td><%= trace_exception.instance_variables %></td>
+        <td><%= trace_exception.instance_variable_names %></td>
+        <td><%= trace_exception.rack_session %></td>
+        <td><%= trace_exception.request_method %></td>
+        <td><%= trace_exception.query_hash %></td>
+        <td><%= trace_exception.request_params %></td>
+        <td><%= trace_exception.query_params %></td>
+        <td><%= trace_exception.path %></td>
+        <td><%= trace_exception.env %></td>
+        <td><%= link_to 'Show', trace_exception %></td>
+        <td><%= link_to 'Edit', edit_trace_exception_path(trace_exception) %></td>
+        <td><%= link_to 'Destroy', trace_exception, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trace Exception', new_trace_exception_path %>
