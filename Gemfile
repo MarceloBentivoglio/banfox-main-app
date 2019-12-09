@@ -60,7 +60,7 @@ gem 'sidekiq-failures', '~> 1.0'
 gem "sidekiq-cron", "~> 1.1"
 
 # This gem is used to show backend errors on production
-gem 'rollbar'
+gem 'rollbar', path: 'lib/gems/rollbar-gem'
 
 # This gem is used to enable sending trasactional e-mails
 gem 'postmark-rails'
