@@ -6,34 +6,42 @@ class Api::V1::ChatController < ActionController::API
   def get_chat_room
     banfox_chat_response = JSON(@banfox_chat.get_room.body)
 
-    if banfox_chat_response["created_at"] == ""
-      created_at_format = DateTime.current.strftime("%H:%M:%S")
+    if banfox_chat_response["unavailable"]
+      render :json => {message: "System Unavailable"}
     else
-      created_at_format = banfox_chat_response["created_at"].to_datetime&.strftime("%H:%M:%S")
+      if banfox_chat_response["created_at"] == ""
+        created_at_format = DateTime.current.strftime("%H:%M:%S")
+      else
+        created_at_format = banfox_chat_response["created_at"].to_datetime&.strftime("%H:%M:%S")
+      end
+      response = {}
+      response[:session_id] = banfox_chat_response["session_id"]
+      response[:code] = banfox_chat_response["code"]
+      response[:created_at] = created_at_format
+      response[:last_check] = banfox_chat_response["created_at"]
+      render :json => response
     end
-
-    response = {}
-    response[:session_id] = banfox_chat_response["session_id"]
-    response[:code] = banfox_chat_response["code"]
-    response[:created_at] = created_at_format
-    response[:last_check] = banfox_chat_response["created_at"]
-    render :json => response
   end
 
   def restore_chat_room
     safe_params = params.permit(:code)
     banfox_chat_response = JSON(@banfox_chat.restore_room(safe_params["code"]).body)
 
-    if banfox_chat_response["created_at"] == ""
-      created_at_format = DateTime.current.strftime("%H:%M:%S")
+    if banfox_chat_response["unavailable"]
+      render :json => {message: "System Unavailable"}
     else
-      created_at_format = banfox_chat_response["created_at"].to_datetime&.strftime("%H:%M:%S")
-    end
+      byebug
+      if banfox_chat_response["created_at"] == ""
+        created_at_format = DateTime.current.strftime("%H:%M:%S")
+      else
+        created_at_format = banfox_chat_response["created_at"].to_datetime&.strftime("%H:%M:%S")
+      end
 
-    response = {}
-    response[:created_at] = created_at_format
-    response[:last_check] = banfox_chat_response["created_at"]
-    render :json => response
+      response = {}
+      response[:created_at] = created_at_format
+      response[:last_check] = banfox_chat_response["created_at"]
+      render :json => response
+    end
   end
 
   def send_message
