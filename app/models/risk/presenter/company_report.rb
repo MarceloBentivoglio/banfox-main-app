@@ -118,6 +118,7 @@ module Risk
       def partners
         @serasa&.dig('partner_data').map do |docs|
           formatted_cpf = complete_cpf(docs['cpf'])&.formatted
+          next if formatted_cpf.nil?
           partner_data = @big_data_corp.dig('partners','Result')
                                        .select do |partner|
                                          big_data_corp_cpf = partner['BasicData']['TaxIdNumber']
@@ -125,7 +126,7 @@ module Risk
 
                                          big_data_corp_cpf == serasa_cpf
                                        end
-          return {} if partner_data.nil? || partner_data.empty?
+          next {} if partner_data.nil? || partner_data.empty?
           birth_date = partner_data.first.dig('BasicData', "BirthDate")
           unless birth_date.nil?
             birth_date = Date.parse(birth_date).strftime('%d/%m/%Y')
@@ -146,7 +147,6 @@ module Risk
           {
             name:  docs['name']&.strip&.titleize,
             cpf: formatted_cpf,
-            rg: docs['rg'],
             age: partner_data.first.dig('BasicData', "Age"),
             role: translate_role(docs['role']),
             birth_date: birth_date,
@@ -164,7 +164,8 @@ module Risk
             bankruptcy_participations: docs['bankruptcy_participation'],
             bad_checks: docs['bad_check']
           }
-        end
+        end&.select {|partner| !partner.nil? }
+           &.select {|partner| !partner.empty? }
       end
 
       def company_summary
@@ -279,7 +280,7 @@ module Risk
       end
 
       def complete_cpf(cpf)
-        return '' if cpf.nil?
+        return nil if cpf.nil?
 
         cpf = cpf.split('').map {|digit| digit.to_i }
         cpf << CPF::VerifierDigit.generate(cpf)

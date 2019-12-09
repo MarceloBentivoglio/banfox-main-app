@@ -49,18 +49,16 @@
   </div>
 </div>
 
-<% unless @presenter.partners.any? %>
+<% if !@presenter.partners.any? %>
   <div class="kir-container-title">
     <h1>Sócios</h1>
 
     <h2 class="alert-text">Empresa possui poucos dados na internet sobre sócios</h2>
   </div>
-
 <% else %>
   <div class="kir-container-title">
     <h1>Sócios</h1>
   </div>
-
   <% @presenter.partners.each do |partner| %>
     <div class="kir-container well partner-container">
       <span class="highlight-text"><%= partner[:name] %></span><br />
@@ -77,14 +75,13 @@
 
       <span class="info-text"><%= partner[:address] %></span><br />
       <span class="info-text"><%= partner[:district] %> - <%= partner[:city] %> - <%= partner[:state] %></span><br />
-      <span class="info-text">CEP. 34805-992</span><br />
       <span class="info-text">PIB do CEP (em breve)</span><br />
       <span class="info-text">Algoritmo de validação de endereços estará disponível na próxima versão</span><br />
       <br />
       <span class="info-text">Entrou na empresa em <%= partner[:entry_date] %></span><br />
       <% unless partner[:business_relationships].nil? %>
         <span class="info-text">Sócio em outras empresas:</span><br />
-        <% partner[:business_relationships].each do |business_relationship| %>
+        <% partner[:business_relationships]&.each do |business_relationship| %>
           <span class="info-text"> - <%= business_relationship['RelatedEntityName']&.titleize%></span><br />
         <% end %>
       <% end %>
@@ -95,44 +92,44 @@
       <span class="info-text">Patrimônio estimado de <%= partner.dig(:financial_data, :total_assets) %></span><br />
       <br />
 
-      <% if partner[:pefins].any? %>
-        <span class="highlight-text">Possui <%= partner[:pefins].count %> Pefins</span><br />
+      <% if partner[:pefins]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:pefins]&.count %> Pefins</span><br />
       <% else %>
         <span class="highlight-text">Não possui Pefins</span><br />
         <br />
       <% end %>
 
-      <% if partner[:refins].any? %>
-        <span class="highlight-text">Possui <%= partner[:refins].count %> Refins</span><br />
+      <% if partner[:refins]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:refins]&.count %> Refins</span><br />
         <br />
       <% else %>
         <span class="highlight-text">Não possui Refins</span><br />
         <br />
       <% end %>
 
-      <% if partner[:protests].any? %>
-        <span class="highlight-text">Possui <%= partner[:protests].count %> Protestos</span><br />
+      <% if partner[:protests]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:protests]&.count %> Protestos</span><br />
       <% else %>
         <span class="highlight-text">Não possui protestos</span><br />
         <br />
       <% end %>
 
-      <% if partner[:lawsuits].any? %>
-        <span class="highlight-text">Possui <%= partner[:lawsuits].count %> Ações Judiciais</span><br />
+      <% if partner[:lawsuits]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:lawsuits]&.count %> Ações Judiciais</span><br />
       <% else %>
         <span class="highlight-text">Não possui ações judiciais</span><br />
         <br />
       <% end %>
 
-      <% if partner[:bankruptcy_participations].any? %>
-        <span class="highlight-text">Possui <%= partner[:bankruptcy_participations].count %> Participações em Falência</span><br />
+      <% if partner[:bankruptcy_participations]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:bankruptcy_participations]&.count %> Participações em Falência</span><br />
       <% else %>
         <span class="highlight-text">Não possui participações em falência</span><br />
         <br />
       <% end %>
 
-      <% if partner[:bad_checks].any? %>
-        <span class="highlight-text">Possui <%= partner[:bad_checks].count %> problemas com cheques</span><br />
+      <% if partner[:bad_checks]&.any? %>
+        <span class="highlight-text">Possui <%= partner[:bad_checks]&.count %> problemas com cheques</span><br />
       <% else %>
         <span class="highlight-text">Não possui problemas com cheques</span><br />
         <br />
@@ -160,8 +157,11 @@
 </div>
 
 <br />
-<br />
-<br />
+
+<div class="kir-container well">
+  <h1>Mais informações em breve!</h1>
+</div>
+
 
 <div class="kir-container well">
   <%= link_to 'Voltar', "/ops_admin/key_indicator_reports?request_id=#{@key_indicator_report.key_indicator_report_request_id}" %>
