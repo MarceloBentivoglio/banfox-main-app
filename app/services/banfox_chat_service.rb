@@ -35,4 +35,26 @@ class BanfoxChatService
     response = RestClient.get(url)
     response
   end
+
+  def enable_chat_api(secret_key)
+    url = "#{APIHOST}/api/v1/enable_chat_api"
+    body = {}
+    body[:secret_key] = secret_key
+    response = RestClient.put(url, body)
+    response
+  end
+
+  def disable_chat_api(secret_key)
+    url = "#{APIHOST}/api/v1/disable_chat_api"
+    body = {}
+    body[:secret_key] = secret_key
+    response = RestClient.put(url, body)
+    response
+  end
+
+  def check_api_availability
+    url = "#{APIHOST}/api/v1/check_api_availability"
+    response = RestClient.get(url)
+    response
+  end
 end
