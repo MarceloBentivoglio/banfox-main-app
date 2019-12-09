@@ -30,7 +30,6 @@ class Api::V1::ChatController < ActionController::API
     if banfox_chat_response["unavailable"]
       render :json => {message: "System Unavailable"}
     else
-      byebug
       if banfox_chat_response["created_at"] == ""
         created_at_format = DateTime.current.strftime("%H:%M:%S")
       else
