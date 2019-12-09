@@ -159,6 +159,50 @@
   <% end %>
 </div>
 
+
+<div class="kir-container well"> 
+  <h1>Últimos 5 protestos da <%= @presenter.company_name %></h1> 
+  <table class="table"> 
+    <tbody> 
+      <% @presenter.protests.each do |protest| %>
+        <tr>
+          <td><%= protest[:date] %></td>
+          <td><%= protest[:city] %></td>
+          <td><%= protest[:value] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="kir-container well"> 
+  <h1>Últimos 5 pefins da <%= @presenter.company_name %></h1> 
+  <table class="table"> 
+    <tbody> 
+      <% @presenter.pefins.each do |pefin| %>
+        <tr>
+          <td><%= pefin[:date] %></td>
+          <td><%= pefin[:value] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="kir-container well"> 
+  <h1>Últimos 5 refins da <%= @presenter.company_name %></h1> 
+  <table class="table"> 
+    <tbody> 
+      <% @presenter.refins.each do |refin| %>
+        <tr>
+          <td><%= refin[:date] %></td>
+          <td><%= refin[:value] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <br />
 <br />
 <br />
@@ -167,32 +211,4 @@
   <%= link_to 'Voltar', "/ops_admin/key_indicator_reports?request_id=#{@key_indicator_report.key_indicator_report_request_id}" %>
 </div>
 
-<!--
-  <div class="kir-container well"> <h1>Últimos 5 protestos da MVP Fomento Mercantil</h1> <table class="table"> <tbody> <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  </tbody>
-  </table>
-  </div>
--->
+
