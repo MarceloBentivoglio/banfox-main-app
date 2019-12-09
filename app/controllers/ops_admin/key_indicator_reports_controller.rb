@@ -25,8 +25,9 @@ module OpsAdmin
       respond_to do |format|
         begin
           @key_indicator_report_request = Risk::Service::KeyIndicatorReportRequest.call(input_data, current_user)
+          @key_indicator_report_request.reload
 
-          format.html { redirect_to ops_admin_key_indicator_reports_path(request_id: @key_indicator_report_request) }
+          format.html { redirect_to report_ops_admin_key_indicator_report_path(@key_indicator_report_request.key_indicator_reports.first) }
         rescue Exception => e
           @key_indicator_report = Risk::KeyIndicatorReport.new
           @key_indicator_report.errors.add(:input_data, e.message)
