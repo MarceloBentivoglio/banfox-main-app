@@ -1,0 +1,9 @@
+## [Unreleased]
+
+## [0.0.1] - 2019-12-09
+### Added
+### Changed
+ - Navigation and routing when creating a key indicator report
+ - Fixed a problem where the partner data was not showing
+ - Fixed a critical bug where caching was mixing data from different CNPJ's
+### Removed
