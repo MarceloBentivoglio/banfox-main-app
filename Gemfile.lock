@@ -6,6 +6,11 @@ GIT
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
 
+PATH
+  remote: lib/gems/rollbar-gem
+  specs:
+    rollbar (2.22.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1075,8 +1080,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    rollbar (2.20.2)
-      multi_json
     rubyzip (1.2.3)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -1210,7 +1213,7 @@ DEPENDENCIES
   rails (= 5.2.0)
   rails_admin
   redis
-  rollbar
+  rollbar!
   sass-rails
   selenium-webdriver
   sidekiq
