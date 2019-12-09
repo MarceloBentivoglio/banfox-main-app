@@ -5,13 +5,15 @@ function get_chat_room() {
     type: "get",
     data: "",
     success: function(data) {
-      sessionStorage.session_id = data.session_id;
-      sessionStorage.code = data.code;
-      sessionStorage.last_check = data.last_check;
-      sessionStorage.first = true;
-      document.getElementById("first_moment").innerHTML = data.created_at;
-      openChat();
-      setInterval( function() { check_new_messages(data.code); }, 3000 );
+      if(data.message != "System Unavailable"){
+        sessionStorage.session_id = data.session_id;
+        sessionStorage.code = data.code;
+        sessionStorage.last_check = data.last_check;
+        sessionStorage.first = true;
+        document.getElementById("first_moment").innerHTML = data.created_at;
+        openChat();
+        setInterval( function() { check_new_messages(data.code); }, 3000 );
+      }
     },
     error: function(data) {
       console.log(data.statusText)
@@ -25,9 +27,12 @@ function restore_chat_room(code) {
     type: "get",
     data: "",
     success: function(data) {
-      get_history(code);
-      document.getElementById("first_moment").innerHTML = data.created_at;
-      openChat();
+      if(data.message != "System Unavailable"){
+        get_history(code);
+        document.getElementById("first_moment").innerHTML = data.created_at;
+        openChat();
+        setInterval( function() { check_new_messages(code); }, 3000 );
+      }
     },
     error: function(data) {
       console.log(data.statusText)

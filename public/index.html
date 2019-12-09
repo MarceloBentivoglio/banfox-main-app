@@ -849,11 +849,10 @@
 <script>
   window.onload = function() {
     var code = sessionStorage.code;
-    if(code == undefined) {
+    if((code == undefined) || (code == "undefined")) {
       setTimeout(get_chat_room, 10000);
     } else {
       restore_chat_room(code);
-      setInterval( function() { check_new_messages(code); }, 3000 );
     }
 
     document.getElementById("chat_input").onkeydown = function(e){
