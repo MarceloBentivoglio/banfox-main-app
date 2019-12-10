@@ -17,15 +17,27 @@ module Risk
         @key_indicator_report = key_indicator_report
       end
 
+      def lawsuits
+        @serasa["lawsuit"].map do |lawsuit|
+          date = Date.parse(lawsuit["date"]).strftime("%d-%m-%Y")
+          value = ActionController::Base.helpers.number_to_currency(lawsuit['value'])
+          {
+            date: date,
+            value: value,
+            operation_nature: lawsuit["operation_nature"],
+          }
+        end
+      end
+
       def protests
         @serasa["protest"].map do |protest|
           date = Date.parse(protest["date"]).strftime("%d-%m-%Y")
           value = ActionController::Base.helpers.number_to_currency(protest['value'])
+          location = "#{protest['city']} - #{protest['state']}"
           {
-            city: protest["city"],
+            location: location,
             date: date,
             value: protest["currency"] + value,
-            quantity: protest["quantity"],
           }
         end
       end
@@ -52,9 +64,15 @@ module Risk
         end
       end
 
-      def lawsuits
-        #TODO
-        #"date"=>"20190703", "value"=>"0000003855380", "currency"=>"R$ ", "quantity"=>"000000051", "guarantor"=>" ", "operation_nature"=>"FISCAL ESTADUAL     "
+      def bankruptcies
+        @serasa["bankruptcy"].map do |bank|
+          date = Date.parse(bank["date"]).strftime("%d-%m-%Y")
+          {
+            date: date,
+            kind: bank["kind"],
+            origin: bank["origin"],
+          }
+        end
       end
 
       def created_at
