@@ -156,6 +156,90 @@
   <% end %>
 </div>
 
+<% unless @presenter.lawsuits.empty? %>
+  <div class="kir-container well"> 
+    <h1>Últimas 5 ações judiciais da <%= @presenter.company_name %></h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.lawsuits.each do |lawsuit| %>
+          <tr>
+            <td><%= lawsuit[:date] %></td>
+            <td><%= lawsuit[:value] %></td>
+            <td><%= lawsuit[:operation_nature] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% unless @presenter.protests.empty? %>
+  <div class="kir-container well"> 
+    <h1>Últimos 5 protestos</h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.protests.each do |protest| %>
+          <tr>
+            <td><%= protest[:date] %></td>
+            <td><%= protest[:value] %></td>
+            <td><%= protest[:location] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% unless @presenter.pefins.empty? %>
+  <div class="kir-container well pefin-refin"> 
+    <h1>Últimos 5 pefins</h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.pefins.each do |pefin| %>
+          <tr>
+            <td><%= pefin[:date] %></td>
+            <td><%= pefin[:value] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% unless @presenter.refins.empty? %>
+  <div class="kir-container well pefin-refin"> 
+    <h1>Últimos 5 refins</h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.refins.each do |refin| %>
+          <tr>
+            <td><%= refin[:date] %></td>
+            <td><%= refin[:value] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+<div style="clear:both;"></div>
+
+<% unless @presenter.bankruptcies.empty? %>
+  <div class="kir-container well"> 
+    <h1>Últimos 5 pedidos de falência</h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.bankruptcies.each do |bank| %>
+          <tr>
+            <td><%= bank[:date] %></td>
+            <td><%= bank[:kind] %></td>
+            <td><%= bank[:origin] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
 <br />
 
 <div class="kir-container well">
@@ -167,32 +251,4 @@
   <%= link_to 'Voltar', "/ops_admin/key_indicator_reports/new" %>
 </div>
 
-<!--
-  <div class="kir-container well"> <h1>Últimos 5 protestos da MVP Fomento Mercantil</h1> <table class="table"> <tbody> <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  <tr>
-  <td>Protesto</td>
-  <td>19 Set 2019</td>
-  <td>Rio de Janeiro</td>
-  <td>R$ 22,00</td>
-  </tr>
-  </tbody>
-  </table>
-  </div>
--->
+

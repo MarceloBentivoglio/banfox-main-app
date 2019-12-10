@@ -17,6 +17,64 @@ module Risk
         @key_indicator_report = key_indicator_report
       end
 
+      def lawsuits
+        @serasa["lawsuit"].map do |lawsuit|
+          date = Date.parse(lawsuit["date"]).strftime("%d-%m-%Y")
+          value = ActionController::Base.helpers.number_to_currency(lawsuit['value'])
+          {
+            date: date,
+            value: value,
+            operation_nature: lawsuit["operation_nature"],
+          }
+        end
+      end
+
+      def protests
+        @serasa["protest"].map do |protest|
+          date = Date.parse(protest["date"]).strftime("%d-%m-%Y")
+          value = ActionController::Base.helpers.number_to_currency(protest['value'])
+          location = "#{protest['city']} - #{protest['state']}"
+          {
+            location: location,
+            date: date,
+            value: protest["currency"] + value,
+          }
+        end
+      end
+
+      def pefins
+        @serasa["pefin"].map do |pefin|
+          date = Date.parse(pefin["date"]).strftime("%d-%m-%Y")
+          value = ActionController::Base.helpers.number_to_currency(pefin['value'])
+          {
+            date: date,
+            value: value,
+          }
+        end
+      end
+
+      def refins
+        @serasa["refin"].map do |refin|
+          date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
+          value = ActionController::Base.helpers.number_to_currency(refin['value'])
+          {
+            date: date,
+            value: value,
+          }
+        end
+      end
+
+      def bankruptcies
+        @serasa["bankruptcy"].map do |bank|
+          date = Date.parse(bank["date"]).strftime("%d-%m-%Y")
+          {
+            date: date,
+            kind: bank["kind"],
+            origin: bank["origin"],
+          }
+        end
+      end
+
       def created_at
         @key_indicator_report&.created_at&.strftime('%d %B %Y')
       end
