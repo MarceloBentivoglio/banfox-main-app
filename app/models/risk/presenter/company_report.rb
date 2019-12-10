@@ -155,7 +155,7 @@ module Risk
             city: docs.dig('city')&.strip,
             state: docs.dig('state')&.strip,
             entry_date: partner_entry_date(docs['cpf']),
-            business_relationships: business_relationships,
+            business_relationships: business_relationships&.uniq {|n| n['RelatedEntityName']},
             financial_data: financial_data,
             pefins: docs['pefin'],
             refins: docs['refin'],
