@@ -177,13 +177,14 @@ module Risk
         @serasa&.dig('partner_data').map do |docs|
           formatted_cpf = complete_cpf(docs['cpf'])&.formatted
           next if formatted_cpf.nil?
-          partner_data = @big_data_corp.dig('partners','Result')
+          partner_data = @big_data_corp['partners']
                                        .select do |partner|
-                                         big_data_corp_cpf = partner['BasicData']['TaxIdNumber']
+                                         big_data_corp_cpf = partner.dig('Result',0,'BasicData','TaxIdNumber')
                                          serasa_cpf = CPF.new(formatted_cpf).stripped
 
                                          big_data_corp_cpf == serasa_cpf
                                        end
+
           next {} if partner_data.nil? || partner_data.empty?
           birth_date = partner_data.first.dig('BasicData', "BirthDate")
           unless birth_date.nil?

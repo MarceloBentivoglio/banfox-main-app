@@ -39,19 +39,14 @@ module Risk
       def call
         return false if @invalid_params
 
-        
         @company_response = HTTParty.get(
           'https://bigboost.bigdatacorp.com.br/companies',
           query: company_basic_data_query,
           headers: headers
         ).body
 
-        partners = fetch_partners
-        if partners&.any?
-          partner_response = JSON.parse(partners.first)
-        else
-          partner_response = {}
-        end
+        partner_response = fetch_partners
+        partner_response = [] if !partner_response.any?
 
         @data = {
           companies: JSON.parse(@company_response),
@@ -65,11 +60,13 @@ module Risk
 
       def fetch_partners
         get_all_partners.map do |cpf|
-          HTTParty.get(
+          response = HTTParty.get(
             'https://bigboost.bigdatacorp.com.br/peoplev2',
             query: partner_data_query(complete_cpf(cpf)),
             headers: headers
           ).body
+
+          JSON.parse(response)
         end
       end
 
