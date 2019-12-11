@@ -185,7 +185,9 @@ module Risk
                                          big_data_corp_cpf == serasa_cpf
                                        end
 
+
           next {} if partner_data.nil? || partner_data.empty?
+          partner_data = partner_data.first['Result']
           birth_date = partner_data.first.dig('BasicData', "BirthDate")
           unless birth_date.nil?
             birth_date = Date.parse(birth_date).strftime('%d/%m/%Y')
