@@ -221,8 +221,7 @@ module Risk
                                          serasa_cpf = CPF.new(formatted_cpf).stripped
 
                                          big_data_corp_cpf == serasa_cpf
-                                       end
-
+                                       end.uniq {|partner| partner.dig('Result',0, 'BasicData', 'TaxIdNumber')}
 
           next {} if partner_data.nil? || partner_data.empty?
           partner_data = partner_data.first['Result']
@@ -231,7 +230,7 @@ module Risk
             birth_date = Date.parse(birth_date).strftime('%d/%m/%Y')
           end
 
-          business_relationships = partner_data&.first&.dig("BusinessRelationships", "BusinessRelationships")
+          business_relationships = partner_data&.first&.dig("BusinessRelationships", "BusinessRelationships").select {|business| business['RelationshipType'] == 'OWNERSHIP'}
 
           financial_data = {
             number_of_minimum_wage: partner_data&.first
