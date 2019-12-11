@@ -37,7 +37,7 @@ module Risk
           {
             location: location,
             date: date,
-            value: protest["currency"] + value,
+            value: value,
           }
         end
       end
