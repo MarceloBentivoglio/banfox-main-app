@@ -264,6 +264,7 @@ module Risk
           }
         end&.select {|partner| !partner.nil? }
            &.select {|partner| !partner.empty? }
+           &.uniq {|partner| partner[:cpf] }
       end
 
       def company_summary
