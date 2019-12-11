@@ -21,7 +21,7 @@
       <span class="info-text"><%= @presenter&.company_zipcode %></span>
     </div>
     <div class="col-sm">
-      <span class="company-status">Empresa Ativa</span>
+      <span class="company-status"><i class="fas fa-star"></i> Empresa Ativa</span>
     </div>
   </div>
   <hr />
@@ -58,9 +58,12 @@
 <% else %>
   <div class="kir-container-title">
     <h1>Sócios</h1>
+
   </div>
   <% @presenter.partners.each do |partner| %>
     <div class="kir-container well partner-container">
+
+      <span class="company-status"><i class="fas fa-star"></i>Verificado</span>
       <span class="highlight-text"><%= partner[:name] %></span><br />
       <span class="info-text">CPF. <%= partner[:cpf] %></span><br />
       <% unless partner[:rg]&.to_i&.zero? %>
@@ -239,11 +242,20 @@
     </table>
   </div>
 <% end %>
-
 <br />
 
 <div class="kir-container well">
   <h1>Mais informações em breve!</h1>
+</div>
+
+
+<div class="kir-container">
+  <span class="status"><i class="fas fa-star"></i> Empresa Ativa</span><br />
+  O status da empresa está como ATIVA na base de dados da Receita Federal.
+  <br />
+  <br />
+  <span class="status"><i class="fas fa-star"></i>Verificado</span><br />
+  As informações de Nome, CPF e Data de Nascimento do sócio foram verificadas na Base da Receita Federal
 </div>
 
 
