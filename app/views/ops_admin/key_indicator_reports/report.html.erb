@@ -244,10 +244,46 @@
 <% end %>
 <br />
 
+<div class="kir-container-title">
+  <h1>III. Informações de Processos Jurídicos</h1>
+  <h2 <% if @presenter.lawsuits_tj[:total] > 0 %>class="alert-text"<% end %>>Empresa possui <%= @presenter.lawsuits_tj[:total] %> processos jurídicos </h2>
+</div>
+
+<div class="kir-container well">
+  <% unless @presenter.lawsuits_tj[:per_partner].nil? %>
+    <% @presenter.lawsuits_tj[:per_partner].each do |lawsuits| %>
+      <% if !lawsuits.nil? && lawsuits.any? %>
+        <h2>Processos Jurídicos de <%= lawsuits&.first[:name] %></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Número do Processo</th>
+              <th>Órgão</th>
+              <th>Assunto</th>
+              <th>Participação</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% lawsuits&.each do |lawsuit| %>
+              <tr>
+                <td><%= lawsuit[:number] %></td>
+                <td><%= lawsuit[:court_name] %></td>
+                <td><%= lawsuit[:main_subject] %></td>
+                <td><%= lawsuit[:polarity] %></td>
+                <td><%= lawsuit[:value] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
 <div class="kir-container well">
   <h1>Mais informações em breve!</h1>
 </div>
-
 
 <div class="kir-container">
   <span class="status"><i class="fas fa-star"></i> Empresa Ativa</span><br />

@@ -15,6 +15,44 @@ module Risk
         @big_data_corp = key_indicator_report.evidences.dig('big_data_corp')
 
         @key_indicator_report = key_indicator_report
+        lawsuits_tj
+      end
+
+      def lawsuits_tj
+        return @lawsuits_tj if !@lawsuits_tj.nil?
+        partner_documents = @big_data_corp.dig('companies','Result',0, "OwnersLawsuits",'Lawsuits')&.keys
+
+        partner_data = self&.partners&.select {|partner| partner_documents.member? CPF.new(partner[:cpf]).stripped }
+                                     &.map do |partner|
+                                       partner_cpf = CPF.new(partner[:cpf]).stripped
+                                       partner[:lawsuits_tj] = @big_data_corp.dig('companies','Result',0, "OwnersLawsuits",'Lawsuits', partner_cpf)
+                                       unless partner[:lawsuits_tj].nil?
+                                         partner[:lawsuits_tj]['Lawsuits'].each do |lawsuits|
+                                           partner_polarity = lawsuits["Parties"]&.select {|party| party["Doc"] == partner_cpf }&.first["Polarity"]
+                                           lawsuits[:partner_polarity] = partner_polarity
+                                         end
+                                       end
+
+                                       partner
+                                     end
+
+        @lawsuits_tj = {
+          total: partner_data.reduce(0) {|total, partner| total + (partner.dig(:lawsuits_tj,'Lawsuits')&.size || 0)},
+          per_partner: partner_data&.map do |partner|
+            partner.dig(:lawsuits_tj,'Lawsuits')&.map do |lawsuit|
+              {
+                name: partner[:name],
+                number: lawsuit['Number'],
+                court_name: lawsuit['CourtName'],
+                main_subject: lawsuit['MainSubject'],
+                polarity: lawsuit[:partner_polarity],
+                value: ActionController::Base.helpers.number_to_currency(lawsuit['Value'])
+              }
+            end
+          end
+        }
+
+        @lawsuits_tj
       end
 
       def lawsuits

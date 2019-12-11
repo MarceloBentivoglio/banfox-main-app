@@ -5,7 +5,7 @@ module Risk
 
       def initialize(key_indicator_report)
         @key_indicator_report = key_indicator_report
-        @cache_query_key = JSON.generate({ key: "v0#{key_indicator_report.cnpj}" })
+        @cache_query_key = JSON.generate({ key: "v0.1_#{key_indicator_report.cnpj}" })
       end
 
       def query
@@ -24,7 +24,7 @@ module Risk
 
       def company_basic_data_query
         basic_data_query = query
-        basic_data_query['Datasets'] = 'basic_data,economic_group_data'
+        basic_data_query['Datasets'] = 'owners_lawsuits,basic_data,economic_group_data'
         basic_data_query['q'] = "doc{#{key_indicator_report.cnpj}}"
 
         basic_data_query
