@@ -402,12 +402,16 @@ module Risk
       end
 
       def partner_entry_date(cpf)
+        begin
         documents = @serasa['partner_documents'].select {|partner| partner['cpf_or_cnpj'] == cpf }
         if documents.any?
           entry_date = documents.first['entry_date']
           if !entry_date.nil?
             return Date.parse(entry_date).strftime('%d/%m/%Y')
           end
+        end
+        rescue Exception => e
+          return ''
         end
 
         nil
