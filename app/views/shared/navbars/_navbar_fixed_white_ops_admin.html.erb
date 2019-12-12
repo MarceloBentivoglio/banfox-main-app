@@ -44,16 +44,18 @@
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
-            <li id="chat-enabler">
-              <%= link_to api_v1_enable_chat_api_path, method: :put do %>
-                <i class="fa fa-comment"></i> Habilitar Chat API
-              <% end %>
-            </li>
-            <li id="chat-disabler">
-              <%= link_to api_v1_disable_chat_api_path, method: :put do %>
-                <i class="fa fa-comment"></i> Desabilitar Chat API
-              <% end %>
-            </li>
+            <% unless current_user.kir_permission? %>
+              <li id="chat-enabler">
+                <%= link_to api_v1_enable_chat_api_path, method: :put do %>
+                  <i class="fa fa-comment"></i> Habilitar Chat API
+                <% end %>
+              </li>
+              <li id="chat-disabler">
+                <%= link_to api_v1_disable_chat_api_path, method: :put do %>
+                  <i class="fa fa-comment"></i> Desabilitar Chat API
+                <% end %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
