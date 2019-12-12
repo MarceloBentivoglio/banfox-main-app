@@ -34,7 +34,7 @@
         <strong>Análise de crédito</strong>
         <% operation.present_key_indicator_reports.each do |kir| %>
           <% if kir.processed? %>
-            <% kir.conclusions.each do |key_indicators| %>
+            <% kir.conclusions.tap do |key_indicators| %>
               <span><%= link_to "#{key_indicators[:name_with_cnpj]} #{kir.processing_status}", ops_admin_key_indicator_report_path(kir) %></span>
               <div>
                 <div class="risk-flag gray-flag">
