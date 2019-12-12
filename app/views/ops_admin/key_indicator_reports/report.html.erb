@@ -300,6 +300,16 @@
                 </tr>
               <% end %>
             <% end %>
+            <% unless partner[:bad_checks].empty? %>
+              <% partner[:bad_checks].each do |bad_check| %>
+                <tr>
+                  <td>Cheque com Problema</td>
+                  <td><%= bad_check[:date] %></td>
+                  <td><%= bad_check[:value] %></td>
+                  <td><%= bad_check[:location] %></td>
+                </tr>
+              <% end %>
+            <% end %>
           </tbody>
         </table>
       </div>

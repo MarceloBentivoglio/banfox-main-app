@@ -256,6 +256,17 @@ module Risk
             }
           end
 
+          bad_checks = docs["bad_check"].map do |bad_check|
+            date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(refin['value'])
+            location = "#{bad_check['city']} - #{bad_check['state']}"
+            {
+              date: date,
+              value: value,
+              location: location,
+            }
+          end
+
           {
             name:  docs['name']&.strip&.titleize,
             cpf: formatted_cpf,
@@ -274,7 +285,7 @@ module Risk
             protests: protests,
             lawsuits: lawsuits,
             bankruptcy_participations: bankruptcies,
-            bad_checks: docs['bad_check'],
+            bad_checks: bad_checks,
             finnancial_problems: finnancial_problems
           }
         end&.select {|partner| !partner.nil? }
