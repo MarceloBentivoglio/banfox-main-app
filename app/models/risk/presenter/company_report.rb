@@ -22,7 +22,7 @@ module Risk
         return @lawsuits_tj if !@lawsuits_tj.nil?
         partner_documents = @big_data_corp.dig('companies','Result',0, "OwnersLawsuits",'Lawsuits')&.keys
 
-        partner_data = self&.partners&.select {|partner| partner_documents.member? CPF.new(partner[:cpf]).stripped }
+        partner_data = self&.partners&.select {|partner| partner_documents&.member? CPF.new(partner[:cpf]).stripped }
                                      &.map do |partner|
                                        partner_cpf = CPF.new(partner[:cpf]).stripped
                                        partner[:lawsuits_tj] = @big_data_corp.dig('companies','Result',0, "OwnersLawsuits",'Lawsuits', partner_cpf)
