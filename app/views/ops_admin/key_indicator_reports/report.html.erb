@@ -193,6 +193,22 @@
   </div>
 <% end %>
 
+<% unless @presenter.refins.empty? %>
+  <div class="kir-container well pefin-refin"> 
+    <h1>Últimos 5 refins</h1> 
+    <table class="table"> 
+      <tbody> 
+        <% @presenter.refins.each do |refin| %>
+          <tr>
+            <td><%= refin[:date] %></td>
+            <td><%= refin[:value] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
 <% unless @presenter.pefins.empty? %>
   <div class="kir-container well pefin-refin"> 
     <h1>Últimos 5 pefins</h1> 
@@ -209,21 +225,6 @@
   </div>
 <% end %>
 
-<% unless @presenter.refins.empty? %>
-  <div class="kir-container well pefin-refin"> 
-    <h1>Últimos 5 refins</h1> 
-    <table class="table"> 
-      <tbody> 
-        <% @presenter.refins.each do |refin| %>
-          <tr>
-            <td><%= refin[:date] %></td>
-            <td><%= refin[:value] %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
 <div style="clear:both;"></div>
 
 <% unless @presenter.bankruptcies.empty? %>
@@ -243,6 +244,81 @@
   </div>
 <% end %>
 <br />
+
+<% unless @presenter.partners.empty? %>
+  <% @presenter.partners.each do |partner| %>
+    <% if partner[:finnancial_problems] %>
+      <div class="kir-container well"> 
+        <h1>O sócio <%= partner[:name] %> possui problemas financeiros </h1> 
+        <table class="table"> 
+          <tbody> 
+            <% unless partner[:lawsuits].empty? %>
+              <% partner[:lawsuits].each do |lawsuit| %>
+                <tr>
+                  <td>Ação Judicial</td>
+                  <td><%= lawsuit[:date] %></td>
+                  <td><%= lawsuit[:value] %></td>
+                  <td><%= lawsuit[:operation_nature] %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% unless partner[:protests].empty? %>
+              <% partner[:protests].each do |protest| %>
+                <tr>
+                  <td>Protesto</td>
+                  <td><%= protest[:date] %></td>
+                  <td><%= protest[:value] %></td>
+                  <td><%= protest[:location] %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% unless partner[:refins].empty? %>
+              <% partner[:refins].each do |refin| %>
+                <tr>
+                  <td>Refin</td>
+                  <td><%= refin[:date] %></td>
+                  <td><%= refin[:value] %></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% unless partner[:pefins].empty? %>
+              <% partner[:pefins].each do |pefin| %>
+                <tr>
+                  <td>Pefin</td>
+                  <td><%= pefin[:date] %></td>
+                  <td><%= pefin[:value] %></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% unless partner[:bankruptcy_participations].empty? %>
+              <% partner[:bankruptcy_participations].each do |bank| %>
+                <tr>
+                  <td>Participação em Falência</td>
+                  <td><%= bank[:date] %></td>
+                  <td><%= bank[:kind] %></td>
+                  <td><%= bank[:origin] %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% unless partner[:bad_checks].empty? %>
+              <% partner[:bad_checks].each do |bad_check| %>
+                <tr>
+                  <td>Cheque com Problema</td>
+                  <td><%= bad_check[:date] %></td>
+                  <td><%= bad_check[:value] %></td>
+                  <td><%= bad_check[:location] %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
 
 <div class="kir-container-title">
   <h1>III. Informações de Processos Jurídicos</h1>
