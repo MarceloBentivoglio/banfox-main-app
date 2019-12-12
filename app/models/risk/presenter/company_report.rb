@@ -15,11 +15,11 @@ module Risk
         @big_data_corp = key_indicator_report.evidences.dig('big_data_corp')
 
         @key_indicator_report = key_indicator_report
-        lawsuits_tj
       end
 
       def lawsuits_tj
         return @lawsuits_tj if !@lawsuits_tj.nil?
+        begin
         partner_documents = @big_data_corp.dig('companies','Result',0, "OwnersLawsuits",'Lawsuits')&.keys
 
         partner_data = self&.partners&.select {|partner| partner_documents&.member? CPF.new(partner[:cpf]).stripped }
@@ -51,6 +51,10 @@ module Risk
             end
           end
         }
+
+        rescue Exception => e
+          @lawsuits_tj = []
+        end
 
         @lawsuits_tj
       end
