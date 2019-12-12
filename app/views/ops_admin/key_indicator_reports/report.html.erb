@@ -161,7 +161,11 @@
 
 <% unless @presenter.lawsuits.empty? %>
   <div class="kir-container well"> 
-    <h1>Últimas 5 ações judiciais da <%= @presenter.company_name %></h1> 
+    <% if @presenter.lawsuits.count == 1 %>
+      <h1>Única ação judicial da <%= @presenter.company_name %></h1> 
+    <% else %>
+      <h1>Últimas <%= @presenter.lawsuits.count %> ações judiciais da <%= @presenter.company_name %></h1> 
+    <% end %>
     <table class="table"> 
       <tbody> 
         <% @presenter.lawsuits.each do |lawsuit| %>
@@ -178,7 +182,11 @@
 
 <% unless @presenter.protests.empty? %>
   <div class="kir-container well"> 
-    <h1>Últimos 5 protestos</h1> 
+    <% if @presenter.protests.count == 1 %>
+      <h1>Único protesto da <% @presenter.company_name %></h1> 
+    <% else %>
+      <h1>Últimos <%= @presenter.protests.count %> protestos</h1> 
+    <% end %>
     <table class="table"> 
       <tbody> 
         <% @presenter.protests.each do |protest| %>
@@ -195,7 +203,11 @@
 
 <% unless @presenter.refins.empty? %>
   <div class="kir-container well pefin-refin"> 
-    <h1>Últimos 5 refins</h1> 
+    <% if @presenter.refins.count == 1 %>
+      <h1>Único refin</h1> 
+    <% else %>
+      <h1>Últimos <%= @presenter.refins.count %> refins</h1> 
+    <% end %>
     <table class="table"> 
       <tbody> 
         <% @presenter.refins.each do |refin| %>
@@ -211,7 +223,11 @@
 
 <% unless @presenter.pefins.empty? %>
   <div class="kir-container well pefin-refin"> 
-    <h1>Últimos 5 pefins</h1> 
+    <% if @presenter.pefins.count == 1 %>
+      <h1>Único pefin</h1> 
+    <% else %>
+      <h1>Últimos <%= @presenter.pefins.count %> pefins</h1> 
+    <% end %>
     <table class="table"> 
       <tbody> 
         <% @presenter.pefins.each do |pefin| %>
@@ -229,7 +245,11 @@
 
 <% unless @presenter.bankruptcies.empty? %>
   <div class="kir-container well"> 
-    <h1>Últimos 5 pedidos de falência</h1> 
+    <% if @presenter.bankruptcies.count == 1 %>
+      <h1>Único pedido de falência</h1> 
+    <% else %>
+      <h1>Últimos <%= @presenter.bankruptcies.count %> pedidos de falência</h1> 
+    <% end %>
     <table class="table"> 
       <tbody> 
         <% @presenter.bankruptcies.each do |bank| %>
@@ -370,9 +390,6 @@
   As informações de Nome, CPF e Data de Nascimento do sócio foram verificadas na Base da Receita Federal
 </div>
 
-
 <div class="kir-container well">
   <%= link_to 'Voltar', "/ops_admin/key_indicator_reports/new" %>
 </div>
-
-
