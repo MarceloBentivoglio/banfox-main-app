@@ -213,6 +213,7 @@ module Risk
 
       def partners
         @serasa&.dig('partner_data').map do |docs|
+          finnancial_problems = false
           formatted_cpf = complete_cpf(docs['cpf'])&.formatted
           next if formatted_cpf.nil?
           partner_data = @big_data_corp['partners']
@@ -242,6 +243,67 @@ module Risk
                                                                              &.dig('FinantialData','TotalAssets'))
           }
 
+          finnancial_problems = true if !docs["lawsuit"].empty? || !docs["protest"].empty? || !docs["refin"].empty? || !docs["pefin"].empty? || !docs["bankruptcy_participation"].empty? || !docs["bad_check"].empty?
+
+          lawsuits = docs["lawsuit"].map do |lawsuit|
+            date = Date.parse(lawsuit["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(lawsuit['value'])
+            {
+              date: date,
+              value: value,
+              operation_nature: lawsuit["operation_nature"],
+            }
+          end
+
+          protests = docs['protest'].map do |protest|
+            date = Date.parse(protest["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(protest['value'])
+            location = "#{protest['city']} - #{protest['state']}"
+            {
+              location: location,
+              date: date,
+              value: value,
+            }
+          end
+
+          pefins = docs["pefin"].map do |pefin|
+            date = Date.parse(pefin["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(pefin['value'])
+            {
+              date: date,
+              value: value,
+            }
+          end
+
+          refins = docs["refin"].map do |refin|
+            date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(refin['value'])
+            {
+              date: date,
+              value: value,
+            }
+          end
+
+          bankruptcies = docs["bankruptcy_participation"].map do |bank|
+            date = Date.parse(bank["date"]).strftime("%d-%m-%Y")
+            {
+              date: date,
+              kind: bank["kind"],
+              origin: bank["origin"],
+            }
+          end
+
+          bad_checks = docs["bad_check"].map do |bad_check|
+            date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(refin['value'])
+            location = "#{bad_check['city']} - #{bad_check['state']}"
+            {
+              date: date,
+              value: value,
+              location: location,
+            }
+          end
+
           {
             name:  docs['name']&.strip&.titleize,
             cpf: formatted_cpf,
@@ -255,12 +317,13 @@ module Risk
             entry_date: partner_entry_date(docs['cpf']),
             business_relationships: business_relationships&.uniq {|n| n['RelatedEntityName']},
             financial_data: financial_data,
-            pefins: docs['pefin'],
-            refins: docs['refin'],
-            protests: docs['protest'],
-            lawsuits: docs['lawsuit'],
-            bankruptcy_participations: docs['bankruptcy_participation'],
-            bad_checks: docs['bad_check']
+            pefins: pefins,
+            refins: refins,
+            protests: protests,
+            lawsuits: lawsuits,
+            bankruptcy_participations: bankruptcies,
+            bad_checks: bad_checks,
+            finnancial_problems: finnancial_problems
           }
         end&.select {|partner| !partner.nil? }
            &.select {|partner| !partner.empty? }

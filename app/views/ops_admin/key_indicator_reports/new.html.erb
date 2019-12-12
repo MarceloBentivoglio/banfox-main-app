@@ -2,6 +2,7 @@
   <h1>Bem vindo!</h1>
   <h2>Utilize o campo abaixo  para realizar uma pesquisa. Vamos começar?</h2>
   <h3>Insira um CNPJ no cambo abaixo <span class="example">Ex:  23122193000176<span></h3>
+
   <%= form_for @key_indicator_report, url: ops_admin_key_indicator_reports_path do |f| %>
     <ul>
       <% @key_indicator_report.errors.full_messages.each do |msg| %>
@@ -12,6 +13,8 @@
     <br />
     <input type="hidden" name="operation_id">
     <%= f.submit "Pesquisar", class: "btn submit btn-rounded blue", id: "wrapper-loader-trigger"%>
+
+    <h2><%= flash[:error]  %></h2>
   <% end %>
 </div>
 

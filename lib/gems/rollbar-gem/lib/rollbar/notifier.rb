@@ -145,7 +145,6 @@ module Rollbar
      #end
       #
       
-      byebug
       level = lookup_exception_level(level, exception,
                                      use_exception_level_filters)
 
