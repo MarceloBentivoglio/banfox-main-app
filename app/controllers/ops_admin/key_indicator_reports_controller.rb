@@ -20,14 +20,26 @@ module OpsAdmin
         kind: params[:kind]
       }
 
-
       @history = Risk::KeyIndicatorReport.where(requested_by_user_id: current_user.id)
+      request_allowed = @history.count <= 10
+
+      request_message = request_allowed ? 'Request was allowed!' : 'Request was denied!'
+      SlackMessage.new('CR87XF2US', "#{current_user.email} requested a credit analysis report\nTotal of requests of this user: #{@history.count}\n#{request_message}").send_now
+
       respond_to do |format|
         begin
-          @key_indicator_report_request = Risk::Service::KeyIndicatorReportRequest.call(input_data, current_user)
-          @key_indicator_report_request.reload
+          if request_allowed
+            @key_indicator_report_request = Risk::Service::KeyIndicatorReportRequest.call(input_data, current_user)
+            @key_indicator_report_request.reload
 
-          format.html { redirect_to report_ops_admin_key_indicator_report_path(@key_indicator_report_request.key_indicator_reports.first) }
+            format.html { redirect_to report_ops_admin_key_indicator_report_path(@key_indicator_report_request.key_indicator_reports.first) }
+          else
+            @key_indicator_report = Risk::KeyIndicatorReport.new
+            @key_indicator_report.input_data = input_data[:cnpjs]&.join(',')
+
+            flash[:error] = 'Você ultrapassou o limite de relatórios. Uma mensagem já foi enviada para nossa equipe e entraremos em contato em breve.'
+            format.html { render :new }
+          end
         rescue Exception => e
           @key_indicator_report = Risk::KeyIndicatorReport.new
           @key_indicator_report.errors.add(:input_data, e.message)
