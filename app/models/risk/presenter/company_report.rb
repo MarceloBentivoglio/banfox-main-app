@@ -285,22 +285,24 @@ module Risk
           end
 
           bankruptcies = docs["bankruptcy_participation"].map do |bank|
-            date = Date.parse(bank["date"]).strftime("%d-%m-%Y")
+            date = Date.parse(bank["lawsuit_date"]).strftime("%d-%m-%Y")
+
             {
               date: date,
-              kind: bank["kind"],
-              origin: bank["origin"],
+              type: bank["participation_type"],
+              company: bank["company"],
+              cnpj: banf["cnpj"]
             }
           end
 
           bad_checks = docs["bad_check"].map do |bad_check|
-            date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
-            value = ActionController::Base.helpers.number_to_currency(refin['value'])
-            location = "#{bad_check['city']} - #{bad_check['state']}"
+            date = Date.parse(bad_check["date"]).strftime("%d-%m-%Y")
+            value = ActionController::Base.helpers.number_to_currency(bad_check['value'])
             {
               date: date,
               value: value,
-              location: location,
+              city: bad_check["city"],
+              check_number: bad_check["check_number"],
             }
           end
 
