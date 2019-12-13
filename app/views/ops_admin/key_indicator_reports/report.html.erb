@@ -319,9 +319,9 @@
         <% end %>
         <% unless partner[:refins].empty? %>
           <% if partner[:refins].count == 1 %>
-            <h1>Único refin</h1> 
+            <h2>Único refin</h2>
           <% else %>
-            <h1>Últimos <%= partner[:refins].count %> refins</h1> 
+            <h2>Últimos <%= partner[:refins].count %> refins</h2>
           <% end %>
           <table class="table"> 
             <thead>
@@ -342,9 +342,9 @@
         <% end %>
         <% unless partner[:pefins].empty? %>
           <% if partner[:pefins].count == 1 %>
-            <h1>Único pefin</h1> 
+            <h2>Único pefin</h2>
           <% else %>
-            <h1>Últimos <%= partner[:pefins].count %> pefins</h1> 
+            <h2>Últimos <%= partner[:pefins].count %> pefins</h2>
           <% end %>
           <table class="table"> 
             <thead>
@@ -365,11 +365,11 @@
         <% end %>
         <% unless partner[:bankruptcy_participations].empty? %>
           <% if partner[:bankruptcy_participations].count == 1 %>
-            <h1>Única participação em falência</h1> 
+            <h2>Única participação em falência</h2>
           <% else %>
-            <h1>Últimas <%= partner[:bankruptcy_participations].count %> participações em falências</h1> 
+            <h2>Últimas <%= partner[:bankruptcy_participations].count %> participações em falências</h2>
           <% end %>
-          <table class="table"> 
+          <table class="table">
             <thead>
               <tr>
                 <th>Data</th>
@@ -390,9 +390,9 @@
         <% end %>
         <% unless partner[:bad_checks].empty? %>
           <% if partner[:bad_checks].count == 1 %>
-            <h1>Único pefin</h1> 
+            <h2>Único pefin</h2>
           <% else %>
-            <h1>Últimos <%= partner[:bad_checks].count %> pefins</h1> 
+            <h2>Últimos <%= partner[:bad_checks].count %> pefins</h2>
           <% end %>
           <table class="table"> 
             <thead>
