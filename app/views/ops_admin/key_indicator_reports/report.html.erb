@@ -161,7 +161,7 @@
     <% if @presenter.lawsuits[:lawsuit_list].count == 1 %>
       <h1>Única ação judicial</h1> 
     <% else %>
-      <h1>Últimas <%= @presenter.lawsuits.count %> ações judiciais totalizando <%= @presenter.lawsuits[:total_value] %></h1> 
+      <h1>Últimas <%= @presenter.lawsuits[:lawsuit_list].count %> ações judiciais totalizando <%= @presenter.lawsuits[:total_value] %></h1> 
     <% end %>
     <table class="table"> 
       <tbody> 
