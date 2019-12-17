@@ -156,16 +156,16 @@
   <% end %>
 </div>
 
-<% unless @presenter.lawsuits.empty? %>
+<% unless @presenter.lawsuits[:lawsuit_list].empty? %>
   <div class="kir-container well"> 
-    <% if @presenter.lawsuits.count == 1 %>
+    <% if @presenter.lawsuits[:lawsuit_list].count == 1 %>
       <h1>Única ação judicial</h1> 
     <% else %>
-      <h1>Últimas <%= @presenter.lawsuits.count %> ações judiciais</h1> 
+      <h1>Últimas <%= @presenter.lawsuits.count %> ações judiciais totalizando <%= @presenter.lawsuits[:total_value] %></h1> 
     <% end %>
     <table class="table"> 
       <tbody> 
-        <% @presenter.lawsuits.each do |lawsuit| %>
+        <% @presenter.lawsuits[:lawsuit_list].each do |lawsuit| %>
           <tr>
             <td><%= lawsuit[:date] %></td>
             <td><%= lawsuit[:value] %></td>
@@ -177,16 +177,16 @@
   </div>
 <% end %>
 
-<% unless @presenter.protests.empty? %>
+<% unless @presenter.protests[:protest_list].empty? %>
   <div class="kir-container well"> 
-    <% if @presenter.protests.count == 1 %>
+    <% if @presenter.protests[:protest_list].count == 1 %>
       <h1>Único protesto</h1> 
     <% else %>
-      <h1>Últimos <%= @presenter.protests.count %> protestos</h1> 
+      <h1>Últimos <%= @presenter.protests[:protest_list].count %> protestos totalizando <%= @presenter.protests[:total_value] %></h1> 
     <% end %>
     <table class="table"> 
       <tbody> 
-        <% @presenter.protests.each do |protest| %>
+        <% @presenter.protests[:protest_list].each do |protest| %>
           <tr>
             <td><%= protest[:date] %></td>
             <td><%= protest[:value] %></td>
@@ -198,16 +198,16 @@
   </div>
 <% end %>
 
-<% unless @presenter.refins.empty? %>
+<% unless @presenter.refins[:refin_list].empty? %>
   <div class="kir-container well pefin-refin"> 
-    <% if @presenter.refins.count == 1 %>
+    <% if @presenter.refins[:refin_list].count == 1 %>
       <h1>Único refin</h1> 
     <% else %>
-      <h1>Últimos <%= @presenter.refins.count %> refins</h1> 
+      <h1>Últimos <%= @presenter.refins[:refin_list].count %> refins totalizando <%= @presenter.refins[:total_value] %></h1> 
     <% end %>
     <table class="table"> 
       <tbody> 
-        <% @presenter.refins.each do |refin| %>
+        <% @presenter.refins[:refin_list].each do |refin| %>
           <tr>
             <td><%= refin[:date] %></td>
             <td><%= refin[:value] %></td>
@@ -218,16 +218,16 @@
   </div>
 <% end %>
 
-<% unless @presenter.pefins.empty? %>
+<% unless @presenter.pefins[:pefin_list].empty? %>
   <div class="kir-container well pefin-refin"> 
-    <% if @presenter.pefins.count == 1 %>
+    <% if @presenter.pefins[:pefin_list].count == 1 %>
       <h1>Único pefin</h1> 
     <% else %>
-      <h1>Últimos <%= @presenter.pefins.count %> pefins</h1> 
+      <h1>Últimos <%= @presenter.pefins[:pefin_list].count %> pefins totalizando <%= @presenter.pefins[:total_value] %></h1> 
     <% end %>
     <table class="table"> 
       <tbody> 
-        <% @presenter.pefins.each do |pefin| %>
+        <% @presenter.pefins[:pefin_list].each do |pefin| %>
           <tr>
             <td><%= pefin[:date] %></td>
             <td><%= pefin[:value] %></td>
@@ -264,7 +264,7 @@
 
 <% unless @presenter.partners.empty? %>
   <% @presenter.partners.each do |partner| %>
-    <% if partner[:finnancial_problems] %>
+    <% if partner[:financial_problems] %>
       <div class="kir-container well">
         <h1><%= partner[:name] %> possui</h1>
         <% unless partner[:lawsuits].empty? %>
@@ -414,7 +414,7 @@
           </table>
         <% end %>
       </div>
-    <% end %><!-- if finnancial_problems -->
+    <% end %><!-- if financial_problems -->
   <% end %><!-- each partners -->
 <% end %><!-- unless partners empty -->
 

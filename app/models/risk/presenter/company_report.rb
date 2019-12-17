@@ -60,50 +60,64 @@ module Risk
       end
 
       def lawsuits
+        lawsuit_total_value = @serasa["lawsuit"].reduce(0) {|sum, protest| sum + protest['value'].to_i }
+        total_value = ActionController::Base.helpers.number_to_currency(lawsuit_total_value)
+        lawsuits = { total_value: total_value, lawsuit_list: []}
         @serasa["lawsuit"].map do |lawsuit|
           date = Date.parse(lawsuit["date"]).strftime("%d-%m-%Y")
           value = ActionController::Base.helpers.number_to_currency(lawsuit['value'])
-          {
+          lawsuits[:lawsuit_list] << {
             date: date,
             value: value,
             operation_nature: lawsuit["operation_nature"],
           }
         end
+        lawsuits
       end
 
       def protests
+        protest_total_value = @serasa["protest"].reduce(0) {|sum, protest| sum + protest['value'].to_i }
+        total_value = ActionController::Base.helpers.number_to_currency(protest_total_value)
+        protests = {total_value: total_value, protest_list: []}
         @serasa["protest"].map do |protest|
           date = Date.parse(protest["date"]).strftime("%d-%m-%Y")
           value = ActionController::Base.helpers.number_to_currency(protest['value'])
           location = "#{protest['city']} - #{protest['state']}"
-          {
+          protests[:protest_list] << {
             location: location,
             date: date,
             value: value,
           }
         end
+        protests
       end
 
       def pefins
+        total_value = ActionController::Base.helpers.number_to_currency(@serasa["pefin"].first['total_value']) unless @serasa["pefin"].empty?
+        pefins = {total_value: total_value, pefin_list: []}
         @serasa["pefin"].map do |pefin|
           date = Date.parse(pefin["date"]).strftime("%d-%m-%Y")
           value = ActionController::Base.helpers.number_to_currency(pefin['value'])
-          {
+          pefins[:pefin_list] << {
             date: date,
             value: value,
           }
         end
+        pefins
       end
 
       def refins
+        total_value = ActionController::Base.helpers.number_to_currency(@serasa["refin"].first['total_value']) unless @serasa["refin"].empty?
+        refins = {total_value: total_value, refin_list: []}
         @serasa["refin"].map do |refin|
           date = Date.parse(refin["date"]).strftime("%d-%m-%Y")
           value = ActionController::Base.helpers.number_to_currency(refin['value'])
-          {
+          refins[:refin_list] << {
             date: date,
             value: value,
           }
         end
+        refins
       end
 
       def bankruptcies
@@ -217,7 +231,7 @@ module Risk
 
       def partners
         @serasa&.dig('partner_data').map do |docs|
-          finnancial_problems = false
+          financial_problems = false
           formatted_cpf = complete_cpf(docs['cpf'])&.formatted
           next if formatted_cpf.nil?
           partner_data = @big_data_corp['partners']
@@ -247,7 +261,7 @@ module Risk
                                                                              &.dig('FinantialData','TotalAssets'))
           }
 
-          finnancial_problems = true if !docs["lawsuit"].empty? || !docs["protest"].empty? || !docs["refin"].empty? || !docs["pefin"].empty? || !docs["bankruptcy_participation"].empty? || !docs["bad_check"].empty?
+          financial_problems = true if !docs["lawsuit"].empty? || !docs["protest"].empty? || !docs["refin"].empty? || !docs["pefin"].empty? || !docs["bankruptcy_participation"].empty? || !docs["bad_check"].empty?
 
           lawsuits = docs["lawsuit"].map do |lawsuit|
             date = Date.parse(lawsuit["date"]).strftime("%d-%m-%Y")
@@ -329,7 +343,7 @@ module Risk
             lawsuits: lawsuits,
             bankruptcy_participations: bankruptcies,
             bad_checks: bad_checks,
-            finnancial_problems: finnancial_problems
+            financial_problems: financial_problems
           }
         end&.select {|partner| !partner.nil? }
            &.select {|partner| !partner.empty? }
@@ -360,10 +374,11 @@ module Risk
       def company_summary_lawsuit(lawsuits)
         if lawsuits.any?
           quantity = lawsuits.first['quantity'].to_i
-          protest_total_value = lawsuits.reduce(0) {|sum, protest| sum + protest['value'].to_i }
-          total_value = ActionController::Base.helpers.number_to_currency(protest_total_value )
-
-          { class: 'alert-text', title: "#{quantity} Ações Judiciais totalizando #{total_value}"}
+          if quantity == 1
+            { class: 'alert-text', title: "#{quantity} Ação Judicial"}
+          else
+            { class: 'alert-text', title: "#{quantity} Ações Judiciais"}
+          end
         else
           { class: 'info-text', title: 'Não possui ações judiciais' }
         end
@@ -372,9 +387,11 @@ module Risk
       def company_summary_pefin(pefins)
         if pefins.any?
           quantity = pefins.first['quantity'].to_i
-          total_value = ActionController::Base.helpers.number_to_currency(pefins.first['total_value'])
-
-          { class: 'alert-text', title: "#{quantity} Pefin(s) totalizando #{total_value}"}
+          if quantity == 1
+            { class: 'alert-text', title: "#{quantity} Pefin"}
+          else
+            { class: 'alert-text', title: "#{quantity} Pefins"}
+          end
         else
           { class: 'info-text', title: 'Não possui Pefins' }
         end
@@ -383,9 +400,11 @@ module Risk
       def company_summary_refin(refins)
         if refins.any?
           quantity = refins.first['quantity'].to_i
-          total_value = ActionController::Base.helpers.number_to_currency(refins.first['total_value'])
-
-          { class: 'alert-text', title: "#{quantity} Refin(s) totalizando #{total_value}"}
+          if quantity == 1
+            { class: 'alert-text', title: "#{quantity} Refin"}
+          else
+            { class: 'alert-text', title: "#{quantity} Refins"}
+          end
         else
           { class: 'info-text', title: 'Não possui Refins' }
         end
@@ -394,10 +413,11 @@ module Risk
       def company_summary_protest(protests)
         if protests.any?
           quantity = protests.first['quantity'].to_i
-          protest_total_value = protests.reduce(0) {|sum, protest| sum + protest['value'].to_i }
-          total_value = ActionController::Base.helpers.number_to_currency(protest_total_value )
-
-          { class: 'alert-text', title: "#{quantity} Protestos totalizando #{total_value}"}
+          if quantity == 1
+            { class: 'alert-text', title: "#{quantity} Protesto"}
+          else
+            { class: 'alert-text', title: "#{quantity} Protestos"}
+          end
         else
           { class: 'info-text', title: 'Não possui Refins' }
         end
