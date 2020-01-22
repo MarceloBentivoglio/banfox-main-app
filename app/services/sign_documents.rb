@@ -131,11 +131,11 @@ class SignDocuments
 
   def add_banfox_to_signers
     @signers << {
-      name: "Marcelo Bentivoglio",
+      name: "João Vicente Conte",
       birthdate: "1991-02-05",
-      mobile: Rails.env.development? ? "11998308090" : "11986898969",
+      mobile: Rails.env.development? ? "11995933009" : "11955550188",
       documentation: "339.430.918-13",
-      email: "marcelo@banfox.com.br",
+      email: "joao@banfox.com.br",
       sign_as: ["sign"]
     }
   end
