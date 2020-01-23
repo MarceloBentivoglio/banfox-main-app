@@ -21,7 +21,7 @@ module OpsAdmin
       }
 
       @history = Risk::KeyIndicatorReport.where(requested_by_user_id: current_user.id)
-      request_allowed = @history.count <= 10
+      request_allowed = @history.count <= 100
 
       request_message = request_allowed ? 'Request was allowed!' : 'Request was denied!'
       SlackMessage.new('CR87XF2US', "#{current_user.email} requested a credit analysis report\nTotal of requests of this user: #{@history.count}\n#{request_message}").send_now
